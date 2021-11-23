@@ -5,3 +5,4 @@ bookdown::gitbook:
     github: no
     facebook: no
     linkedin: no
+bookdown::pdf_book: default

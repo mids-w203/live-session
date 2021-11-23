@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.7 Probability | Statistics for Data Science</title>
+  <title>2.3 Car crashes and Random Variables | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.7 Probability | Statistics for Data Science" />
+  <meta property="og:title" content="2.3 Car crashes and Random Variables | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.7 Probability | Statistics for Data Science" />
+  <meta name="twitter:title" content="2.3 Car crashes and Random Variables | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probability-theory.html"/>
-<link rel="next" href="working-with-a-sample-space-part-i.html"/>
+<link rel="prev" href="randomness-questions.html"/>
+<link rel="next" href="visualizing-distributions-via-simulation.html"/>
 <script src="libs/header-attrs-2.6.4/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -246,20 +246,48 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probability" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> Probability</h2>
+<div id="car-crashes-and-random-variables" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Car crashes and Random Variables</h2>
+<blockquote>
+<p>Suppose that you stand at an intersection for six hours one day and report the time of each crash you observe during the observation period.</p>
+</blockquote>
 <ul>
-<li>Probability is a system of reasoning that we use to model the world under incomplete information</li>
-<li>This model underlies virtually <em>every</em> other model you’ll ever use</li>
+<li>What sample space, <span class="math inline">\(\Omega\)</span>, is appropriate to represent this scenario?</li>
+<li>Is <span class="math inline">\(\Omega\)</span> a finite or an infinite set? Is it countable or uncountable?</li>
+<li>If the police department happens to care only about the number of crashes during the six-hour observation period, what random variable <span class="math inline">\(X\)</span> would represent this summary?</li>
+<li>Can you describe the range of your <span class="math inline">\(X\)</span>? Is it finite or infinite?</li>
+<li>Is your <span class="math inline">\(X\)</span> a discrete or a continuous random variable?</li>
 </ul>
+<div class="notes">
+<p>This example motivates us to move our focus from the sample space to random variables. The sample space may sometimes be very large or may be overcrowded with unnecessary details that must be eluded in our statistical summary.</p>
+</div>
+<div id="discrete-continuous-random-variables" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Discrete &amp; Continuous Random Variables</h3>
+<ul>
+<li>Suppose <span class="math inline">\(X\)</span> is a random variable that describes the time a student spends on w203 homework 1.
+<ul>
+<li>If you have only granular measurement – i.e. the number of nights spent working on the homework – is this discrete or continuous?</li>
+<li>If you have the number of hours, is it discrete or continuous?</li>
+<li>If you have the number of seconds? Or milliseconds?</li>
+</ul></li>
+<li>Is it possible that <span class="math inline">\(P(X = a) = 0\)</span> for every point <span class="math inline">\(a\)</span>? For example, that <span class="math inline">\(P(X = 3600) = 0\)</span>.</li>
+</ul>
+<div class="notes">
+<ul>
+<li><strong>Instructors</strong>: this might be too simple; you’re free to skip past and have students discuss</li>
+<li>How does the probability over any of the values change as the bins shrink from hours, to minutes, to seconds?</li>
+<li>Which random variable has more information?</li>
+</ul>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="probability-theory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="working-with-a-sample-space-part-i.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="randomness-questions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-distributions-via-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
