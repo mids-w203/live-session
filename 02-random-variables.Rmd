@@ -12,7 +12,7 @@ theme_set(theme_minimal())
 2. 
 3. 
 
-
+## Random Variables
 
 - Random variables are objects that we use to hold numerical representations of real-world phenomena
 - We can use a probability model to model how frequently events in the random variable will occur 
