@@ -12,6 +12,17 @@ theme_set(theme_minimal())
 2. 
 3. 
 
+
+## Class Announcements
+
+## Roadmap
+**Rearview Mirror**
+
+**Today**
+
+**Looking Ahead**
+
+
 ## Random Variables
 
 - Random variables are objects that we use to hold numerical representations of real-world phenomena
@@ -19,7 +30,8 @@ theme_set(theme_minimal())
 - From the axioms of probability, we can build a whole, expressive modeling system (that need not be grounded **at all** in the minutia of the world) that is useful for making predictions
 - We assert that there is a probability density (or distribution) function, but we never get to see it. 
 
-## Randomness: Questions
+## Random Variables: Questions
+### Randomness 
 
 ![sample space](./images/random_variable.png)
 
@@ -27,17 +39,10 @@ theme_set(theme_minimal())
 2. If you select a person at random from the US population and measure their blood pressure, what does $\Omega$ represent?  What does $w$ represent?  What is the random variable?
 3. Why do we need a random variable to represent blood pressure? Why can't we make predictions about blood pressure without random variables?    
 
-::: notes 
-- **We can either conduct this as a breakout activity, or as a whole-class discussion.**
-- We can describe people's past blood pressure. 
-- But, as statisticians we don't have information about the atoms in their bloodstream; the exact location (and amount) of plaque or how much salt they've eaten in a day. 
-- We need to create a model that we can use that captures as much of the real world as is useful. In this case, the probability model has very little to do with the blood or their arteries. 
-- We're replacing something that is real (the blood) with something that is "made up" the probability model, but *this is useful*!
-::: 
 
-## Car crashes and Random Variables
+### Car crashes and Random Variables
 
-> Suppose that you stand at an intersection for six hours one day and report the time of each crash you observe during the observation period.
+Suppose that you stand at an intersection for six hours one day and report the time of each crash you observe during the observation period.
 
 - What sample space, $\Omega$, is appropriate to represent this scenario?
 - Is $\Omega$ a finite or an infinite set? Is it countable or uncountable? 
@@ -45,9 +50,6 @@ theme_set(theme_minimal())
 - Can you describe the range of your $X$? Is it finite or infinite?
 - Is your $X$ a discrete or a continuous random variable?
 
-::: notes
-This example motivates us to move our focus from the sample space to random variables. The sample space may sometimes be very large or may be overcrowded with unnecessary details that must be eluded in our statistical summary. 
-::: 
 
 ### Discrete & Continuous Random Variables
 
@@ -57,11 +59,6 @@ This example motivates us to move our focus from the sample space to random vari
   - If you have the number of seconds? Or milliseconds? 
 - Is it possible that $P(X = a) = 0$ for every point $a$? For example, that $P(X = 3600) = 0$. 
 
-::: notes 
-- **Instructors**: this might be too simple; you're free to skip past and have students discuss 
-- How does the probability over any of the values change as the bins shrink from hours, to minutes, to seconds? 
-- Which random variable has more information? 
-::: 
 
 ## Visualizing Distributions Via Simulation
 
@@ -83,7 +80,7 @@ d %>%
   geom_line()
 ```
 
-### Simulate Draws 
+**Simulate Draws** 
 
 There's another way to get an **approximate** idea of what the distribution looks like.  Here's how we take a single draw from a normal distribution with a specific set of features:
 
@@ -91,7 +88,7 @@ There's another way to get an **approximate** idea of what the distribution look
 rnorm(n = 1, mean = 2, sd = 1)
 ```
 
-### Repeating the Experiment
+**Repeating the Experiment**
 
 We want to rerun that experiment 10 times.  We take a draw, then rewind time, clear our memory and start over with fresh randomness.  To do this in R, an easy way is with the `replicate()` function.  Change the code below so that it repeats the experiment above 10 times, then use `hist()` to display a plot of the result. 
 
@@ -104,7 +101,7 @@ simulation <- replicate(
 simulation
 ```
 
-### Better Visualization
+**Better Visualization**
 
 Here's some fancy ggplot code to draw a nice histogram of the result, along with the true density.  Remove the first line to make it work with your simulation.
 
@@ -127,17 +124,20 @@ dat_hist %>%
 ```
 
 
-### Repeating the Experiment (Questions)
+**Repeating the Experiment: Questions**
 
 - What happens to your plot as you increase the number of draws from 10 to 100 to 1000...?
 - In your own words, what is the difference between the distribution and the sample you are taking?
 
-### The Visualization Trick 
-- This is a pretty useful "*trick*".  
+**The Visualization Trick** 
+
+- This is a pretty useful *trick*.  
 - The repetition we're using has no analogue in the real world -- we don't get to shake up the world like a snow globe a number of times in a row to see what it does.
 - But, when we say "take a draw from the distribution" another way to say this is that we're *simulating* the random variable.
 
-### Apply the Visualization Trick, Part I 
+### Apply the Visualization Trick
+
+**Part I** 
 
 - How can the visualization trick help us?  Here's a problem:
 
@@ -146,7 +146,7 @@ dat_hist %>%
 
 - We could do some math to compute the density function of $Z$, but it's actually quite messy.  Instead, let's use the visualization trick to get an approximate idea.
 
-### Apply the Visualization Trick, Part II
+**Part II**
 
 - First, write an R function to simulate a single draw from $Z$.  
 
@@ -193,7 +193,7 @@ where $c$ is a constant.
 
 ![cake](./images/cake.png)
 
-### Review of Terms 
+**Review of Terms** 
 
 Remember some of the key terms we learned in the async:
 

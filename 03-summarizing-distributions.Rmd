@@ -11,7 +11,7 @@
 
 ## Roadmap 
 
-### Roadmap -- Rearview mirror 
+**Roadmap -- Rearview mirror** 
 
 - Statisticians create a population model to represent the world.
 - Random variables are the building blocks of a model. 
@@ -24,7 +24,7 @@
     - a marginal pmf / pdf describes one variable in isolation
     - a conditonal pmf / pdf describes one variable given the value of another
 
-### Roadmap -- Today's Lesson
+**Roadmap -- Today's Lesson**
 
 - A joint distribution has more information than we can ever use (or estimate with finite data).
 - To do useful things, we need to summarize certain features we care about:
@@ -33,7 +33,7 @@
     - Covariance
     - Correlation
   
-### Roadmap -- Coming Attractions 
+**Roadmap -- Coming Attractions** 
 
 - A predictor is a function that provides a value for one variable, given values of some others.
 - Using our summary tools, we will define a predictor's error and then minimize it.
@@ -41,8 +41,7 @@
 
 
 
-## Proof Strategy Workshop
-### Proof Strategy Workshop: Expectation
+## Proof Strategy Workshop: Expectation
 
 > Let $Y$ be the random variable given by $X^2$ where $X$ is a uniform distribution on the support $[0, 1]$.
 >
@@ -52,7 +51,7 @@
 - First, study your proof.
 - Second, in breakout rooms, teach your proof to your classmates.
 
-#### Proof 1
+**Proof 1**
 
 We first compute the CDF of Y.  For $0 \leq y \leq 1$,
 
@@ -73,7 +72,7 @@ $$
 
 
 
-#### Proof 2
+**Proof 2**
 
 Apply the bonus result from HW 2:  Note that $Y=h(x)$ where $h(x)= x^2$.    For $0 \leq y \leq 1$,
 
@@ -88,7 +87,7 @@ E[Y] = \int_0^1 y f_Y(y) dy = \int_0^1 \frac{1}{2} y^{1/2} dy = \frac{1}{3}y^{3/
 $$
 
 
-#### Proof 3
+**Proof 3**
 
 Apply the Law of the Unthinking Statistician (LOTUS):
 
@@ -100,24 +99,24 @@ $$
 E[Y] = 0 + \frac{1}{3}x^3 \Bigg|_0^1 +  0 = \frac{1}{3}
 $$
 
-### Proof Debrief
+**Proof Debrief**
 
 - In words, what is the power of the Law of the Unthinking Statistician?
 - Which was your favorite proof?
 
 ## Linearity of Expectation
 
-### Expectation is Linear
+**Expectation is Linear**
 
 - For a random variable $X$ and constants $a$ and $b$: $$E(aX + b) = aE(X) + b$$
 - For two random variables $X$ and $Y$: $$E(X + Y) = E(X) + E(Y)$$.
 
-### Using Linearity, Part I
+**Using Linearity, Part I**
 
 - Linearity is a very powerful property.  Using it can often make your solutions much cleaner.
 - Say you want to find the expectation of a symmetric variable, $X$.  For example, here's a random variable that's symmetric around 5.
 
-### Using Linearity, Part II
+**Using Linearity, Part II**
 ```{r, echo = FALSE}
 library(tidyverse)
 
