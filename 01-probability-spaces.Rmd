@@ -25,7 +25,7 @@ At the end of this week's learning, student will be able to:
 
 ## What does a statistician look like?
 
-### A statistician looks like YOU!
+**A statistician looks like YOU!**
 
 - It doesn't matter if you've never taken a stats class before, or if you're reviewing using this class. 
 - It doesn't matter how old, young, tall, or short you are.
@@ -49,11 +49,12 @@ Unfortunately, it's important to keep these intros to just 90 seconds, so there 
 
 ![picard](./images/picard.jpg)
 
-## Probability 
+**Probability** 
+
 - Probability is a system of reasoning that we use to model the world under incomplete information
 - This model underlies virtually *every* other model you'll ever use
 
-## Working with a Sample Space, Part I
+### Working with a Sample Space, Part I
 
 1. **You roll two six-sided dice**: 
     1. How would you define an appropriate sample space, $\Omega$? 
@@ -61,7 +62,7 @@ Unfortunately, it's important to keep these intros to just 90 seconds, so there 
     3. What is an appropriate event space, and how many elements does it have?
     4. Give an example of an event.
 
-## Working with a Sample Space, Part II
+### Working with a Sample Space, Part II
 
 2. **For a random sample of 1,000 Berkeley students**:   
     1. How would you define an appropriate sample space, $\Omega$? 
@@ -69,7 +70,7 @@ Unfortunately, it's important to keep these intros to just 90 seconds, so there 
     3. What is an example of an event for this scenario?
     4. Can a single person be represented in the space twice? Why or why not? 
     
-## Working with a Sample Sapce, Part III
+### Working with a Sample Sapce, Part III
 
 3. **Suppose that you're sitting in a surf lineup, and you have to pick a wave that is the right height. Too small, and you won't get anywhere, too large and you'll get crushed.** 
     1. What sample space is appropriate to represent the height of a single wave, $\Omega$? 
@@ -82,7 +83,7 @@ To represent 10 waves, you should use $\mathbb{R}^{10}$.  It is an interesting m
 :::
     
     
-## Proofs: Style Counts
+### Proofs: Style Counts
 
 In each week of a class, you are either caught up or behind.
 
@@ -90,8 +91,6 @@ In each week of a class, you are either caught up or behind.
 - If you are caught up in a given week, the probability that you will be caught up in the next week is 0.7. 
 - If you are behind in a given week, the probability that you will be caught up in the next week is 0.4. 
 - **What is the probability that you are caught up in week 3?**
-
-## Proofs: Style Counts (cont.)
 
 Identify as many ways to improve this proof as you can:
 
@@ -110,4 +109,4 @@ $$P(C) = .65 * .7 + .35 * .4 = .595$$
     1. Complete the homework that builds on this unit
     2. Complete all videos and reading for unit 2
 
-## Good luck getting started!
+**Good luck getting started!**
