@@ -1,5 +1,5 @@
 # Hypothesis Testing
-![](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
+![update!](./images/frequentists_vs_bayesians.png)
 
 ## Learning Objectives 
 

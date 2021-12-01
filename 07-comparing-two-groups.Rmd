@@ -1,5 +1,5 @@
 # Comparing Two Groups
-![](https://imgs.xkcd.com/comics/t_distribution.png)
+![](./images/t_distribution.png)
 
 ## Learning Objectives 
 

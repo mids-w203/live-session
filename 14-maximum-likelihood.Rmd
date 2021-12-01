@@ -278,7 +278,7 @@ You have data from the last 10 times you tried.
   
   - What is the probability ($p$) that the printer jams on the next print job?
 
-![bbc, office space](https://ychef.files.bbci.co.uk/1600x900/p0701hzn.jpg){width=80%}
+![bbc, office space](./images/office_space.jpg){width=80%}
 
 **Part II** 
 

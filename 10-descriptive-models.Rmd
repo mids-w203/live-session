@@ -1,5 +1,5 @@
 # Descriptive Model Building
-![](https://imgs.xkcd.com/comics/curve_fitting.png){width=80%}
+![](./images/curve_fitting.png){width=80%}
 
 ## Learning Objectives 
 

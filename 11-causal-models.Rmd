@@ -1,6 +1,6 @@
 # Explanatory Model Building
 
-![](https://imgs.xkcd.com/comics/correlation.png){width=80%}
+![](./images/correlation.png){width=80%}
 
 
 ## Learning Objectives 

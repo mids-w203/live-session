@@ -1,9 +1,6 @@
 
 # The Classical Linear Model
 
-![](https://miro.medium.com/max/956/1*_lXdcfP1Ur4-ZpGSibLAVQ.png){width=80%}
-
-
 ## Learning Objectives 
 
 1. 

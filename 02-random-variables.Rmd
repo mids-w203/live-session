@@ -1,5 +1,10 @@
 # Defining Random Variables
 
+```{r load packages, echo=FALSE}
+library(tidyverse)
+```
+
+
 ## Learning Objectives 
 
 1. 
