@@ -2,18 +2,18 @@
 
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
 ```
 
 ```
-## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.1
-## ✓ tidyr   1.1.1     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.7
+## v tidyr   1.1.4     v stringr 1.4.0
+## v readr   2.1.1     v forcats 0.5.1
 ```
 
 ```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -79,7 +79,7 @@ Suppose that you stand at an intersection for six hours one day and report the t
 
 Here is the true density function for a normal random variable.
 
-<img src="02-random-variables_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+![](02-random-variables_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
 
 **Simulate Draws** 
 
@@ -91,7 +91,7 @@ rnorm(n = 1, mean = 2, sd = 1)
 ```
 
 ```
-## [1] 2.603463
+## [1] 1.819932
 ```
 
 **Repeating the Experiment**
@@ -139,7 +139,7 @@ dat_hist %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="02-random-variables_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](02-random-variables_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 
 **Repeating the Experiment: Questions**
@@ -221,3 +221,13 @@ Remember some of the key terms we learned in the async:
 - Marginal Distribution
 
 Explain each of these three in terms of the cake metaphor.
+
+## Working with a Shiny App
+
+
+```r
+knitr::include_app(url = 'http://statistics.wtf/betahat/', height = '1200px')
+```
+
+<iframe src="http://statistics.wtf/betahat/?showcase=0" width="600px" height="1200px" data-external="1"></iframe>
+

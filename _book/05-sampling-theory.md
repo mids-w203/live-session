@@ -74,7 +74,7 @@ For each scenario, is the IID assumption plausible?
 - You have an iid sample of size 2,  $(X_1,X_2)$.
 - Compute the sampling distribution of $\overline X = \frac{X_1+X_2}{2}$.
 
-<img src="05-sampling-theory_files/figure-html/make axes-1.png" width="672" />
+![](05-sampling-theory_files/figure-latex/make axes-1.pdf)<!-- --> 
 
 **Questions:**
 
@@ -140,8 +140,8 @@ rbinom(n=n, size=1, prob=p)
 ```
 
 ```
-## [1] 0 1 0
-## [1] 0 1 0
+## [1] 0 0 1
+## [1] 0 0 0
 ```
 
 **replicate()** 
@@ -167,7 +167,7 @@ replicate(10, log(10))
 hist(x = rnorm(100), main = "Simulated Sample Means")
 ```
 
-<img src="05-sampling-theory_files/figure-html/quick histogram-1.png" width="672" />
+![](05-sampling-theory_files/figure-latex/quick histogram-1.pdf)<!-- --> 
 
 **ggplot()**
 
@@ -181,7 +181,7 @@ d %>%
   geom_histogram() 
 ```
 
-<img src="05-sampling-theory_files/figure-html/ggplot histogram-1.png" width="672" />
+![](05-sampling-theory_files/figure-latex/ggplot histogram-1.pdf)<!-- --> 
 
 ## Exercise
 **Part 1**

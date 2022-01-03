@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.6 Probability Theory | Statistics for Data Science</title>
+  <title>1.5 Probability Theory | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.6 Probability Theory | Statistics for Data Science" />
+  <meta property="og:title" content="1.5 Probability Theory | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.6 Probability Theory | Statistics for Data Science" />
+  <meta name="twitter:title" content="1.5 Probability Theory | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2021-12-01" />
+<meta name="date" content="2022-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,9 +32,10 @@
   
   
 <link rel="prev" href="student-introductions.html"/>
-<link rel="next" href="reminders.html"/>
-<script src="libs/header-attrs-2.6.4/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="working-with-a-sample-space.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -59,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -138,18 +139,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="what-can-you-learn-in-this-class.html"><a href="what-can-you-learn-in-this-class.html"><i class="fa fa-check"></i><b>1.2</b> What can you learn in this class?</a></li>
-<li class="chapter" data-level="1.3" data-path="instructor-introduction.html"><a href="instructor-introduction.html"><i class="fa fa-check"></i><b>1.3</b> Instructor Introduction</a></li>
-<li class="chapter" data-level="1.4" data-path="what-does-a-statistician-look-like.html"><a href="what-does-a-statistician-look-like.html"><i class="fa fa-check"></i><b>1.4</b> What does a statistician look like?</a></li>
-<li class="chapter" data-level="1.5" data-path="student-introductions.html"><a href="student-introductions.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions</a></li>
-<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a>
+<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="probability-theory.html"><a href="probability-theory.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.6.1</b> Working with a Sample Space, Part I</a></li>
-<li class="chapter" data-level="1.6.2" data-path="probability-theory.html"><a href="probability-theory.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.6.2</b> Working with a Sample Space, Part II</a></li>
-<li class="chapter" data-level="1.6.3" data-path="probability-theory.html"><a href="probability-theory.html#working-with-a-sample-sapce-part-iii"><i class="fa fa-check"></i><b>1.6.3</b> Working with a Sample Sapce, Part III</a></li>
-<li class="chapter" data-level="1.6.4" data-path="probability-theory.html"><a href="probability-theory.html#proofs-style-counts"><i class="fa fa-check"></i><b>1.6.4</b> Proofs: Style Counts</a></li>
+<li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="reminders.html"><a href="reminders.html"><i class="fa fa-check"></i><b>1.7</b> Reminders</a></li>
+<li class="chapter" data-level="1.4" data-path="student-introductions.html"><a href="student-introductions.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions</a></li>
+<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.5</b> Probability Theory</a></li>
+<li class="chapter" data-level="1.6" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.6</b> Working with a Sample Space</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.6.1</b> Working with a Sample Space, Part I</a></li>
+<li class="chapter" data-level="1.6.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.6.2</b> Working with a Sample Space, Part II</a></li>
+<li class="chapter" data-level="1.6.3" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-sapce-part-iii"><i class="fa fa-check"></i><b>1.6.3</b> Working with a Sample Sapce, Part III</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="proofs-style-counts.html"><a href="proofs-style-counts.html"><i class="fa fa-check"></i><b>1.7</b> Proofs: Style Counts</a></li>
+<li class="chapter" data-level="1.8" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.8</b> A practice problem</a></li>
+<li class="chapter" data-level="1.9" data-path="concluding-reminders.html"><a href="concluding-reminders.html"><i class="fa fa-check"></i><b>1.9</b> Concluding Reminders</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
@@ -169,8 +175,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.6.2</b> Apply the Visualization Trick</a></li>
 <li class="chapter" data-level="2.6.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.6.3</b> How is simulation useful?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="computing-different-distributions-.html"><a href="computing-different-distributions-.html"><i class="fa fa-check"></i><b>2.7</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.7" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.7</b> Computing Different Distributions.</a></li>
 <li class="chapter" data-level="2.8" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.8</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.9" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.9</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
@@ -369,71 +376,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probability-theory" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Probability Theory</h2>
+<div id="probability-theory" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Probability Theory</h2>
+<p><strong>Probability</strong></p>
+<p>Probability is a system of reasoning that we use to model the world under incomplete information. This model underlies virtually <em>every</em> other model you’ll ever use as a data scientist.</p>
 <div class="figure">
 <img src="images/picard.jpg" alt="" />
 <p class="caption">picard</p>
 </div>
-<p><strong>Probability</strong></p>
-<ul>
-<li>Probability is a system of reasoning that we use to model the world under incomplete information</li>
-<li>This model underlies virtually <em>every</em> other model you’ll ever use</li>
-</ul>
-<div id="working-with-a-sample-space-part-i" class="section level3" number="1.6.1">
-<h3><span class="header-section-number">1.6.1</span> Working with a Sample Space, Part I</h3>
-<ol style="list-style-type: decimal">
-<li><strong>You roll two six-sided dice</strong>:
-<ol style="list-style-type: decimal">
-<li>How would you define an appropriate sample space, <span class="math inline">\(\Omega\)</span>?</li>
-<li>How many elements exist in <span class="math inline">\(\Omega\)</span>?</li>
-<li>What is an appropriate event space, and how many elements does it have?</li>
-<li>Give an example of an event.</li>
-</ol></li>
-</ol>
-</div>
-<div id="working-with-a-sample-space-part-ii" class="section level3" number="1.6.2">
-<h3><span class="header-section-number">1.6.2</span> Working with a Sample Space, Part II</h3>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>For a random sample of 1,000 Berkeley students</strong>:
-<ol style="list-style-type: decimal">
-<li>How would you define an appropriate sample space, <span class="math inline">\(\Omega\)</span>?</li>
-<li>How big is <span class="math inline">\(\Omega\)</span>? How many elements does it contain?</li>
-<li>What is an example of an event for this scenario?</li>
-<li>Can a single person be represented in the space twice? Why or why not?</li>
-</ol></li>
-</ol>
-</div>
-<div id="working-with-a-sample-sapce-part-iii" class="section level3" number="1.6.3">
-<h3><span class="header-section-number">1.6.3</span> Working with a Sample Sapce, Part III</h3>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Suppose that you’re sitting in a surf lineup, and you have to pick a wave that is the right height. Too small, and you won’t get anywhere, too large and you’ll get crushed.</strong>
-<ol style="list-style-type: decimal">
-<li>What sample space is appropriate to represent the height of a single wave, <span class="math inline">\(\Omega\)</span>?</li>
-<li>How big is <span class="math inline">\(\Omega\)</span>? How many elements does it contain?</li>
-<li>What is an example of an event that could be part of the event space?</li>
-<li>What sample space is appropriate to represent the height of the next 10 waves? How large is this sample space?</li>
-</ol></li>
-</ol>
-<div class="notes">
-<p>To represent 10 waves, you should use <span class="math inline">\(\mathbb{R}^{10}\)</span>. It is an interesting mathematical fact that <span class="math inline">\(\mathbb{R}\)</span> and <span class="math inline">\(\mathbb{R}^{10}\)</span> actually have the same cardinality. There exists a 1-to-1 function between these sets.</p>
-</div>
-</div>
-<div id="proofs-style-counts" class="section level3" number="1.6.4">
-<h3><span class="header-section-number">1.6.4</span> Proofs: Style Counts</h3>
-<p>In each week of a class, you are either caught up or behind.</p>
-<ul>
-<li>The probability that you are caught up in Week 1 is 0.7.</li>
-<li>If you are caught up in a given week, the probability that you will be caught up in the next week is 0.7.</li>
-<li>If you are behind in a given week, the probability that you will be caught up in the next week is 0.4.</li>
-<li><strong>What is the probability that you are caught up in week 3?</strong></li>
-</ul>
-<p>Identify as many ways to improve this proof as you can:</p>
-<p>If you are caught up in a week, there are two possibilities for the previous week: caught up and behind. Let <span class="math inline">\(P(C)\)</span> be the probability of being caught up. In week 1, <span class="math inline">\(P(C) = .7\)</span>. The probability of being behind is <span class="math inline">\(P(B) = 1 - .7 = .3\)</span>. We first break down the probability for week 2:</p>
-<p><span class="math display">\[P(C) = .7 \cdot .7 + .3 \cdot .4 = .65\]</span></p>
-<p>Now we can repeat the process for week 3:</p>
-<p><span class="math display">\[P(C) = .65 * .7 + .35 * .4 = .595\]</span></p>
-</div>
+<p>In this course, probability theory builds out to random variables; when combined with sampling theory we are able to develop p-values (which are also random variables) and an inferential paradigm to communicate what we know and how certain a statement we can make about it.</p>
+<p>In introduction to machine learning, literally the first model that you will train is a naive bayes classifier, which is an application of Bayes’ Theorem, trained using an iterative fitting algorithm. Later in machine learning, you’ll be fitting non-linear models, but at every point the input data that you are supplying to your models are generated from samples from random variables. That the world can be represented by random variables (which we will cover in the coming weeks) means that you can transform – squeeze and smush, or stretch and pull – variables to heighten different aspects of the variables to produce the most useful <em>information</em> from your data.</p>
+<p>As you move into NLP, you might think of generative text as a conditional probability problem: given some particular set of words as an input, what is the most likely <em>next</em> word or words that someone might type?</p>
+<p>Beyond the direct instrumental value that we see working with probability, there are two additional aims that we have in starting the course in the manner.</p>
+<p>First, because we are starting with the axioms of probability as they apply to data science statistics, students in this course develop a <em>much</em> fuller understanding of classical statistics than students in most other programs. Unfortunately, it is very common for students and then professionals to see statistics as a series of rules that have to be followed absolutely and without deviation. In this view of statistics, there are distributions to memorize; there are repeated problems to solve that require the rote application of some algebraic rule (i.e. compute the sample average and standard deviation of some vector); and, there are myriad, byzantine statistical tests to memorize and apply. In this view of statistics, if the real-world problem that comes to you as a data scientist doesn’t clearly fit into a box, there’s no way to move forward.</p>
+<blockquote>
+<p>Statistics like this is not fun.</p>
+</blockquote>
+<p>In the way that we are approaching this course, we hope that you’re able to learn <em>why</em> certain distributions (like the normal distribution) arise repeatedly, and why we can use them. We also hope that because you know how sampling theory and random variables combine, that you can be more creative and inventive to solve problems that you haven’t seen before.</p>
+<p>The second additional aim that we have for this course is that it can serve as either an introduction or a re-introduction to reading and making arguments using the language of math. For some, this will be a new language; for others, it may have been some years since they have worked with the language; for some, this will feel quite familiar. New algorithms and data science model advancements <em>nearly always</em> developed in the math first, and then applied into algorithms second. In our view, being a literate reader of graduate- and professional-level math is a necessary skill for any data scientist that is going to keep astride of the field as it continues to develop and these first weeks of the course are designed to bring everyone back into reading and reasoning in the language.</p>
 </div>
             </section>
 
@@ -441,11 +401,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="student-introductions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reminders.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="working-with-a-sample-space.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -485,6 +444,10 @@ gitbook.start({
 "text": null
 },
 "download": ["203-live-session.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

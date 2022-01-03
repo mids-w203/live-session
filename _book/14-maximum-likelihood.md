@@ -129,7 +129,7 @@ rpois(n = 10, lambda = 2)
 ```
 
 ```
-##  [1] 0 3 4 2 2 2 1 0 0 0
+##  [1] 3 4 4 2 3 1 0 2 2 1
 ```
 
 ### MLE for Poisson Random Variables: Data 
@@ -192,7 +192,7 @@ plot(
 )
 ```
 
-<img src="14-maximum-likelihood_files/figure-html/plot the likelihood-1.png" width="672" />
+![](14-maximum-likelihood_files/figure-latex/plot the likelihood-1.pdf)<!-- --> 
 
 
 ```r

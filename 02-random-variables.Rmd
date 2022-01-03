@@ -201,3 +201,10 @@ Remember some of the key terms we learned in the async:
 - Marginal Distribution
 
 Explain each of these three in terms of the cake metaphor.
+
+## Working with a Shiny App
+
+```{r, out.width='600px'}
+knitr::include_app(url = 'http://statistics.wtf/betahat/', height = '1200px')
+```
+

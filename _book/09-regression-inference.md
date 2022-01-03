@@ -163,6 +163,6 @@ ggplot() +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="09-regression-inference_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](09-regression-inference_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 Compute the standard deviation of the bootstrapped regression coefficients.  How does this compare to the robust standard errors you computed above?

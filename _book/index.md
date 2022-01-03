@@ -2,7 +2,7 @@
 title: "Statistics for Data Science"
 cover-image: "images/coffee.jpeg"
 author: "UC Berkeley, School of Information"
-date: "2021-12-01"
+date: "2022-01-03"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
