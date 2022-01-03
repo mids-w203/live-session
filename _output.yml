@@ -1,3 +1,4 @@
+output_dir: "docs"
 bookdown::gitbook:
   toc_depth: 3
   split_by: section
