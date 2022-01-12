@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.9 Working with a Shiny App | Statistics for Data Science</title>
+  <title>2.10 Working with a Shiny App | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.9 Working with a Shiny App | Statistics for Data Science" />
+  <meta property="og:title" content="2.10 Working with a Shiny App | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.9 Working with a Shiny App | Statistics for Data Science" />
+  <meta name="twitter:title" content="2.10 Working with a Shiny App | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-03" />
+<meta name="date" content="2022-01-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,30 +160,38 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="class-announcements.html"><a href="class-announcements.html"><i class="fa fa-check"></i><b>2.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="2.3" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>2.3</b> Roadmap</a></li>
-<li class="chapter" data-level="2.4" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>2.4</b> Random Variables</a></li>
-<li class="chapter" data-level="2.5" data-path="random-variables-questions.html"><a href="random-variables-questions.html"><i class="fa fa-check"></i><b>2.5</b> Random Variables: Questions</a>
+<li class="chapter" data-level="2.2" data-path="class-announcements.html"><a href="class-announcements.html"><i class="fa fa-check"></i><b>2.2</b> Class Announcements</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="random-variables-questions.html"><a href="random-variables-questions.html#randomness"><i class="fa fa-check"></i><b>2.5.1</b> Randomness</a></li>
-<li class="chapter" data-level="2.5.2" data-path="random-variables-questions.html"><a href="random-variables-questions.html#car-crashes-and-random-variables"><i class="fa fa-check"></i><b>2.5.2</b> Car crashes and Random Variables</a></li>
-<li class="chapter" data-level="2.5.3" data-path="random-variables-questions.html"><a href="random-variables-questions.html#discrete-continuous-random-variables"><i class="fa fa-check"></i><b>2.5.3</b> Discrete &amp; Continuous Random Variables</a></li>
+<li class="chapter" data-level="2.2.1" data-path="class-announcements.html"><a href="class-announcements.html#homework"><i class="fa fa-check"></i><b>2.2.1</b> Homework</a></li>
+<li class="chapter" data-level="2.2.2" data-path="class-announcements.html"><a href="class-announcements.html#study-groups"><i class="fa fa-check"></i><b>2.2.2</b> Study Groups</a></li>
+<li class="chapter" data-level="2.2.3" data-path="class-announcements.html"><a href="class-announcements.html#course-resources"><i class="fa fa-check"></i><b>2.2.3</b> Course Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.6</b> Visualizing Distributions Via Simulation</a>
+<li class="chapter" data-level="2.3" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html"><i class="fa fa-check"></i><b>2.3</b> Using Definitions of Random Variables</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.6.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.6.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.6.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.6.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.6.3</b> How is simulation useful?</a></li>
+<li class="chapter" data-level="2.3.1" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html#random-varaible"><i class="fa fa-check"></i><b>2.3.1</b> Random Varaible</a></li>
+<li class="chapter" data-level="2.3.2" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html#functions-of-functions"><i class="fa fa-check"></i><b>2.3.2</b> Functions of Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.7</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.8" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.8</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.9" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.9</b> Working with a Shiny App</a></li>
+<li class="chapter" data-level="2.4" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html"><i class="fa fa-check"></i><b>2.4</b> Pieces of a Random Variable</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions"><i class="fa fa-check"></i><b>2.4.1</b> Probability Density Functions and Cumulative Density Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
+<li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
+<li class="chapter" data-level="2.7" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.7</b> Visualizing Distributions Via Simulation</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.7.1</b> The Visualization Trick</a></li>
+<li class="chapter" data-level="2.7.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.7.2</b> Apply the Visualization Trick</a></li>
+<li class="chapter" data-level="2.7.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.7.3</b> How is simulation useful?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.8</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.9" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.9</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.10" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.10</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html"><i class="fa fa-check"></i><b>3.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="3.3" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>3.3</b> Roadmap</a></li>
+<li class="chapter" data-level="3.3" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>3.3</b> Roadmap</a></li>
 <li class="chapter" data-level="3.4" data-path="proof-strategy-workshop-expectation.html"><a href="proof-strategy-workshop-expectation.html"><i class="fa fa-check"></i><b>3.4</b> Proof Strategy Workshop: Expectation</a></li>
 <li class="chapter" data-level="3.5" data-path="linearity-of-expectation.html"><a href="linearity-of-expectation.html"><i class="fa fa-check"></i><b>3.5</b> Linearity of Expectation</a></li>
 </ul></li>
@@ -191,7 +199,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.1" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="4.2" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="4.3" data-path="roadmap-2.html"><a href="roadmap-2.html"><i class="fa fa-check"></i><b>4.3</b> Roadmap</a></li>
+<li class="chapter" data-level="4.3" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>4.3</b> Roadmap</a></li>
 <li class="chapter" data-level="4.4" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html"><i class="fa fa-check"></i><b>4.4</b> Conditional Expectation Function (CEF)</a></li>
 <li class="chapter" data-level="4.5" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.5</b> Computing the CEF</a></li>
 <li class="chapter" data-level="4.6" data-path="group-exercise.html"><a href="group-exercise.html"><i class="fa fa-check"></i><b>4.6</b> Group Exercise</a>
@@ -205,7 +213,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="learning-objectives-4.html"><a href="learning-objectives-4.html"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="5.2" data-path="class-announcements-3.html"><a href="class-announcements-3.html"><i class="fa fa-check"></i><b>5.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="5.3" data-path="roadmap-3.html"><a href="roadmap-3.html"><i class="fa fa-check"></i><b>5.3</b> Roadmap</a></li>
+<li class="chapter" data-level="5.3" data-path="roadmap-2.html"><a href="roadmap-2.html"><i class="fa fa-check"></i><b>5.3</b> Roadmap</a></li>
 <li class="chapter" data-level="5.4" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.4</b> Key Terms and Assumptions</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.4.1</b> Definitions</a></li>
@@ -226,7 +234,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="learning-objectives-5.html"><a href="learning-objectives-5.html"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="class-announcements-4.html"><a href="class-announcements-4.html"><i class="fa fa-check"></i><b>6.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="6.3" data-path="roadmap-4.html"><a href="roadmap-4.html"><i class="fa fa-check"></i><b>6.3</b> Roadmap</a></li>
+<li class="chapter" data-level="6.3" data-path="roadmap-3.html"><a href="roadmap-3.html"><i class="fa fa-check"></i><b>6.3</b> Roadmap</a></li>
 <li class="chapter" data-level="6.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6.4</b> Discussion</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="discussion.html"><a href="discussion.html#discussion-questions-1"><i class="fa fa-check"></i><b>6.4.1</b> Discussion Questions 1</a></li>
@@ -240,7 +248,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="7.2" data-path="class-announcements-5.html"><a href="class-announcements-5.html"><i class="fa fa-check"></i><b>7.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="7.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>7.3</b> Roadmap</a></li>
+<li class="chapter" data-level="7.3" data-path="roadmap-4.html"><a href="roadmap-4.html"><i class="fa fa-check"></i><b>7.3</b> Roadmap</a></li>
 <li class="chapter" data-level="7.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html"><i class="fa fa-check"></i><b>7.4</b> Teamwork Discussion</a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#we-all-belong"><i class="fa fa-check"></i><b>7.4.1</b> We All Belong</a></li>
@@ -253,7 +261,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="class-announcements-6.html"><a href="class-announcements-6.html"><i class="fa fa-check"></i><b>8.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="8.3" data-path="roadmap-6.html"><a href="roadmap-6.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap</a></li>
+<li class="chapter" data-level="8.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap</a></li>
 <li class="chapter" data-level="8.4" data-path="regression-discussion.html"><a href="regression-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Regression Discussion</a>
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="regression-discussion.html"><a href="regression-discussion.html#discussion-questions-3"><i class="fa fa-check"></i><b>8.4.1</b> Discussion Questions</a></li>
@@ -269,7 +277,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="learning-objectives-8.html"><a href="learning-objectives-8.html"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="9.2" data-path="class-announcements-7.html"><a href="class-announcements-7.html"><i class="fa fa-check"></i><b>9.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="9.3" data-path="roadmap-7.html"><a href="roadmap-7.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap</a></li>
+<li class="chapter" data-level="9.3" data-path="roadmap-6.html"><a href="roadmap-6.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap</a></li>
 <li class="chapter" data-level="9.4" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html"><i class="fa fa-check"></i><b>9.4</b> Uncertainty in OLS</a>
 <ul>
 <li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-4"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
@@ -281,7 +289,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="10.1" data-path="learning-objectives-9.html"><a href="learning-objectives-9.html"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="10.2" data-path="class-announcements-8.html"><a href="class-announcements-8.html"><i class="fa fa-check"></i><b>10.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="10.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>10.3</b> Roadmap</a></li>
+<li class="chapter" data-level="10.3" data-path="roadmap-7.html"><a href="roadmap-7.html"><i class="fa fa-check"></i><b>10.3</b> Roadmap</a></li>
 <li class="chapter" data-level="10.4" data-path="discussion-1.html"><a href="discussion-1.html"><i class="fa fa-check"></i><b>10.4</b> Discussion</a>
 <ul>
 <li class="chapter" data-level="10.4.1" data-path="discussion-1.html"><a href="discussion-1.html#three-modes-of-model-building"><i class="fa fa-check"></i><b>10.4.1</b> Three modes of model building</a></li>
@@ -297,7 +305,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="11.2" data-path="class-announcements-9.html"><a href="class-announcements-9.html"><i class="fa fa-check"></i><b>11.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="11.3" data-path="roadmap-9.html"><a href="roadmap-9.html"><i class="fa fa-check"></i><b>11.3</b> Roadmap</a></li>
+<li class="chapter" data-level="11.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>11.3</b> Roadmap</a></li>
 <li class="chapter" data-level="11.4" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.4</b> Discussion</a>
 <ul>
 <li class="chapter" data-level="11.4.1" data-path="discussion-2.html"><a href="discussion-2.html#path-diagrams"><i class="fa fa-check"></i><b>11.4.1</b> Path Diagrams</a></li>
@@ -310,7 +318,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="12.2" data-path="class-announcements-10.html"><a href="class-announcements-10.html"><i class="fa fa-check"></i><b>12.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="12.3" data-path="roadmap-10.html"><a href="roadmap-10.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
+<li class="chapter" data-level="12.3" data-path="roadmap-9.html"><a href="roadmap-9.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
 <li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model</a>
 <ul>
 <li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM</a></li>
@@ -322,7 +330,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="13.1" data-path="learning-objectives-12.html"><a href="learning-objectives-12.html"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="13.2" data-path="class-announcements-11.html"><a href="class-announcements-11.html"><i class="fa fa-check"></i><b>13.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="13.3" data-path="roadmap-11.html"><a href="roadmap-11.html"><i class="fa fa-check"></i><b>13.3</b> Roadmap</a></li>
+<li class="chapter" data-level="13.3" data-path="roadmap-10.html"><a href="roadmap-10.html"><i class="fa fa-check"></i><b>13.3</b> Roadmap</a></li>
 <li class="chapter" data-level="13.4" data-path="what-data-science-hopes-to-accomplish.html"><a href="what-data-science-hopes-to-accomplish.html"><i class="fa fa-check"></i><b>13.4</b> What data science hopes to accomplish</a></li>
 <li class="chapter" data-level="13.5" data-path="learning-from-data.html"><a href="learning-from-data.html"><i class="fa fa-check"></i><b>13.5</b> Learning from Data</a></li>
 <li class="chapter" data-level="13.6" data-path="data-science-and-statistics.html"><a href="data-science-and-statistics.html"><i class="fa fa-check"></i><b>13.6</b> Data Science and Statistics</a></li>
@@ -343,7 +351,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="14.1" data-path="learning-objectives-13.html"><a href="learning-objectives-13.html"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="14.2" data-path="class-announcements-12.html"><a href="class-announcements-12.html"><i class="fa fa-check"></i><b>14.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="14.3" data-path="roadmap-12.html"><a href="roadmap-12.html"><i class="fa fa-check"></i><b>14.3</b> Roadmap</a></li>
+<li class="chapter" data-level="14.3" data-path="roadmap-11.html"><a href="roadmap-11.html"><i class="fa fa-check"></i><b>14.3</b> Roadmap</a></li>
 <li class="chapter" data-level="14.4" data-path="what-is-a-model.html"><a href="what-is-a-model.html"><i class="fa fa-check"></i><b>14.4</b> What is a model?</a></li>
 <li class="chapter" data-level="14.5" data-path="estimation-1.html"><a href="estimation-1.html"><i class="fa fa-check"></i><b>14.5</b> Estimation</a></li>
 <li class="chapter" data-level="14.6" data-path="discussion-of-maximum-likelihood-estimation.html"><a href="discussion-of-maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14.6</b> Discussion of Maximum Likelihood Estimation</a></li>
@@ -376,9 +384,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="working-with-a-shiny-app" class="section level2" number="2.9">
-<h2><span class="header-section-number">2.9</span> Working with a Shiny App</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="working-with-a-shiny-app.html#cb11-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_app</span>(<span class="at">url =</span> <span class="st">&#39;http://statistics.wtf/betahat/&#39;</span>, <span class="at">height =</span> <span class="st">&#39;1200px&#39;</span>)</span></code></pre></div>
+<div id="working-with-a-shiny-app" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> Working with a Shiny App</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="working-with-a-shiny-app.html#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_app</span>(<span class="at">url =</span> <span class="st">&#39;http://statistics.wtf/betahat/&#39;</span>, <span class="at">height =</span> <span class="st">&#39;1200px&#39;</span>)</span></code></pre></div>
 <iframe src="http://statistics.wtf/betahat/?showcase=0" width="600px" height="1200px" data-external="1">
 </iframe>
 
