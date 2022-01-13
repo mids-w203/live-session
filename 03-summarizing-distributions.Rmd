@@ -1,5 +1,10 @@
 # Summarizing Distributions
 
+```{r load unit 03 packages}
+library(tidyverse)
+```
+
+
 ## Learning Objectives 
 
 1. 
@@ -118,8 +123,6 @@ $$
 
 **Using Linearity, Part II**
 ```{r, echo = FALSE}
-library(tidyverse)
-
 d <- data.frame(
   x   = c(2,3,7,8), 
   p_x = c(0.2, 0.3, 0.3, 0.2)) 
