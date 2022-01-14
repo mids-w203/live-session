@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Unit 7 Comparing Two Groups | Statistics for Data Science</title>
+  <title>2.7 Joint Density | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Unit 7 Comparing Two Groups | Statistics for Data Science" />
+  <meta property="og:title" content="2.7 Joint Density | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Unit 7 Comparing Two Groups | Statistics for Data Science" />
+  <meta name="twitter:title" content="2.7 Joint Density | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="assumptions-behind-the-t-test.html"/>
-<link rel="next" href="learning-objectives-6.html"/>
+<link rel="prev" href="moving-between-pdf-and-cdf.html"/>
+<link rel="next" href="visualizing-distributions-via-simulation.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -389,17 +389,57 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comparing-two-groups" class="section level1" number="7">
-<h1><span class="header-section-number">Unit 7</span> Comparing Two Groups</h1>
-<p><img src="images/t_distribution.png" /></p>
+<div id="joint-density" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Joint Density</h2>
+<p>Working with a single random variable helps to develop our understanding of how to relate the different features of a <em>pdf</em> and a <em>cdf</em> through differentiation and integration. However, there’s not really <em>that</em> much else that we can do; and, there is probably very little in our professional worlds that would look like a single random variable in isolation.</p>
+<p>We really start to get to something useful when we consider joint density functions. Joint density functions describe the probability that <em>both</em> of two random variables. That is, if we are working with random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, then the joint density function provides a probability statement for <span class="math inline">\(P(X \cap Y)\)</span>.</p>
+<p>In this course, we might typically write this joint density function as <span class="math inline">\(f_{X,Y}(x,y) = f(\cdot)\)</span> where <span class="math inline">\(f(\cdot)\)</span> is the actual function that represents the joint probability.</p>
+<div id="uniform-joint-density" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Uniform Joint Density</h3>
+<p>Suppose that we know that two variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly uniformly distributed within the the <em>support</em> <span class="math inline">\(x \in [0,4], y \in [0,4]\)</span>. We have a requirement, imposed by the <em>Kolmogorov Axioms</em> that all probabilities must be non-zero, and that the total probability across the whole support must be one.</p>
+<ul>
+<li>Can you use these facts to determine answers to the following:
+<ul>
+<li>What kind of shape does this joint <em>pdf</em> have?</li>
+<li>What is the specific function that describes this shape?</li>
+<li>If you draw this shape on three axes, and <span class="math inline">\(X\)</span>, and <span class="math inline">\(Y\)</span>, and a <span class="math inline">\(P(X,Y)\)</span>, what does this plot look like?</li>
+<li>How do you get from the joint density function, to a marginal density function for <span class="math inline">\(X\)</span>?</li>
+<li>How do you get form the joint density function, to a marginal denisty function for <span class="math inline">\(Y\)</span>?</li>
+<li>How do you get from these marginal density functions of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> back to the joint density? Is this alwasy possible?</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="joint-density.html#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_app</span>(<span class="st">&#39;http://www.statistics.wtf/PDF_Explorer/&#39;</span>)</span></code></pre></div>
+<iframe src="http://www.statistics.wtf/PDF_Explorer/?showcase=0" width="672" height="400px" data-external="1">
+</iframe>
+</div>
+<div id="saddle-sores" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Saddle Sores</h3>
+<p>Suppose that you know that two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly distributed with the following <em>pdf</em>:</p>
+<p><span class="math display">\[
+f_{X,Y}(x,y) = 
+  begin{cases}
+    a * x^2 * y^2)     &amp; 0 &lt; x &lt; 1, 0 &lt; y &lt; 1
+    0                   &amp; otherwise     \\
+  \end{cases}
+\]</span></p>
+<ul>
+<li>Can you use these faects to determine the following?
+<ul>
+<li>What value of <span class="math inline">\(a\)</span> makes this a valid joint pdf?</li>
+<li>What is the marginal pdf of <span class="math inline">\(x\)</span>? That is, what is <span class="math inline">\(f_{x}(x)\)</span>?</li>
+<li>What is the conditional pdf of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>? That is, what is $f_{x|y}(x,y)?</li>
+<li>Given these facts, would you say that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are dependent or independent?</li>
+</ul></li>
+</ul>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="assumptions-behind-the-t-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="learning-objectives-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="moving-between-pdf-and-cdf.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-distributions-via-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

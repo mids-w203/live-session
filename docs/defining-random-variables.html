@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-11" />
+<meta name="date" content="2022-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,15 +177,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
-<li class="chapter" data-level="2.7" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.7</b> Visualizing Distributions Via Simulation</a>
+<li class="chapter" data-level="2.7" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.7</b> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.7.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.7.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.7.3</b> How is simulation useful?</a></li>
+<li class="chapter" data-level="2.7.1" data-path="joint-density.html"><a href="joint-density.html#uniform-joint-density"><i class="fa fa-check"></i><b>2.7.1</b> Uniform Joint Density</a></li>
+<li class="chapter" data-level="2.7.2" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.7.2</b> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.8</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.9" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.9</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.10" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.10</b> Working with a Shiny App</a></li>
+<li class="chapter" data-level="2.8" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.8</b> Visualizing Distributions Via Simulation</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.8.1</b> The Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.8.2</b> Apply the Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.8.3</b> How is simulation useful?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.10" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.10</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.11" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.11</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
@@ -386,6 +391,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="defining-random-variables" class="section level1" number="2">
 <h1><span class="header-section-number">Unit 2</span> Defining Random Variables</h1>
+<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 </div>
             </section>
 

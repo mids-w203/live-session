@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-11" />
+<meta name="date" content="2022-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,15 +177,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
-<li class="chapter" data-level="2.7" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.7</b> Visualizing Distributions Via Simulation</a>
+<li class="chapter" data-level="2.7" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.7</b> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.7.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.7.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.7.3</b> How is simulation useful?</a></li>
+<li class="chapter" data-level="2.7.1" data-path="joint-density.html"><a href="joint-density.html#uniform-joint-density"><i class="fa fa-check"></i><b>2.7.1</b> Uniform Joint Density</a></li>
+<li class="chapter" data-level="2.7.2" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.7.2</b> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.8</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.9" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.9</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.10" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.10</b> Working with a Shiny App</a></li>
+<li class="chapter" data-level="2.8" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.8</b> Visualizing Distributions Via Simulation</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.8.1</b> The Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.8.2</b> Apply the Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.8.3</b> How is simulation useful?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.10" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.10</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.11" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.11</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
@@ -386,26 +391,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-exercise-3" class="section level2" number="12.6">
 <h2><span class="header-section-number">12.6</span> R Exercise</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-exercise-3.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb39-2"><a href="r-exercise-3.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb39-3"><a href="r-exercise-3.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb39-4"><a href="r-exercise-3.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb39-5"><a href="r-exercise-3.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb39-6"><a href="r-exercise-3.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-exercise-3.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb43-2"><a href="r-exercise-3.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb43-3"><a href="r-exercise-3.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb43-4"><a href="r-exercise-3.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb43-5"><a href="r-exercise-3.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb43-6"><a href="r-exercise-3.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-exercise-3.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb40-2"><a href="r-exercise-3.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="r-exercise-3.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-exercise-3.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb44-2"><a href="r-exercise-3.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="r-exercise-3.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 <pre><code>## Rows: 32
 ## Columns: 11
-## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4…
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, …
 ## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
-## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0, 4…
-## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, 150…
-## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4.08…
-## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250, 5…
-## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98, 1…
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.…
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150,…
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, …
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.25…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.9…
 ## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1
 ## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
 ## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 4

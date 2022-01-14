@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-11" />
+<meta name="date" content="2022-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,15 +177,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
-<li class="chapter" data-level="2.7" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.7</b> Visualizing Distributions Via Simulation</a>
+<li class="chapter" data-level="2.7" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.7</b> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.7.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.7.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.7.3</b> How is simulation useful?</a></li>
+<li class="chapter" data-level="2.7.1" data-path="joint-density.html"><a href="joint-density.html#uniform-joint-density"><i class="fa fa-check"></i><b>2.7.1</b> Uniform Joint Density</a></li>
+<li class="chapter" data-level="2.7.2" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.7.2</b> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.8</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.9" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.9</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.10" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.10</b> Working with a Shiny App</a></li>
+<li class="chapter" data-level="2.8" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.8</b> Visualizing Distributions Via Simulation</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.8.1</b> The Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.8.2</b> Apply the Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.8.3</b> How is simulation useful?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.10" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.10</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.11" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.11</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
@@ -388,8 +393,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.7</span> Comparing Groups R Exercise</h2>
 <p>The General Social Survey (GSS) is one of the longest running and extensive survey projects in the US. The full dataset includes over 1000 variables spanning demographics, attitudes, and behaviors. The file <code>GSS_w203.RData</code> contains a small selection of a variables from the 2018 GSS.</p>
 <p>To learn about each variable, you can enter it into the search bar at the <a href="https://gssdataexplorer.norc.org/variables/vfilter">GSS data explorer</a></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="comparing-groups-r-exercise.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/GSS_w203.RData&#39;</span>)</span>
-<span id="cb21-2"><a href="comparing-groups-r-exercise.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GSS)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="comparing-groups-r-exercise.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/GSS_w203.RData&#39;</span>)</span>
+<span id="cb25-2"><a href="comparing-groups-r-exercise.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GSS)</span></code></pre></div>
 <pre><code>##            rincome               happy                           sexnow        wwwhr           emailhr       
 ##  $25000 or more: 851   very happy   : 701   women                   :758   Min.   :  0.00   Min.   :  0.000  
 ##  $20000 - 24999: 107   pretty happy :1307   man                     :640   1st Qu.:  3.00   1st Qu.:  0.000  

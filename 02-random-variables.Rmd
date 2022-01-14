@@ -152,7 +152,45 @@ Suppose that you learn than a particular random variable, $X$ has the following 
 
 ## Joint Density 
 
-Working with a single random variable helps 
+Working with a single random variable helps to develop our understanding of how to relate the different features of a *pdf* and a *cdf* through differentiation and integration. However, there's not really *that* much else that we can do; and, there is probably very little in our professional worlds that would look like a single random variable in isolation. 
+
+We really start to get to something useful when we consider joint density functions. Joint density functions describe the probability that *both* of two random variables. That is, if we are working with random variables $X$ and $Y$, then the joint density function provides a probability statement for $P(X \cap Y)$. 
+
+In this course, we might typically write this joint density function as $f_{X,Y}(x,y) = f(\cdot)$ where $f(\cdot)$ is the actual function that represents the joint probability. 
+
+### Uniform Joint Density 
+
+Suppose that we know that two variables, $X$ and $Y$ are jointly uniformly distributed within the the *support* $x \in [0,4], y \in [0,4]$. We have a requirement, imposed by the *Kolmogorov Axioms* that all probabilities must be non-zero, and that the total probability across the whole support must be one. 
+
+- Can you use these facts to determine answers to the following: 
+  - What kind of shape does this joint *pdf* have? 
+  - What is the specific function that describes this shape? 
+  - If you draw this shape on three axes, and $X$, and $Y$, and a $P(X,Y)$, what does this plot look like? 
+  - How do you get from the joint density function, to a marginal density function for $X$? 
+  - How do you get form the joint density function, to a marginal denisty function for $Y$? 
+  - How do you get from these marginal density functions of $X$ and $Y$ back to the joint density? Is this alwasy possible? 
+  
+```{r}
+knitr::include_app('http://www.statistics.wtf/PDF_Explorer/')
+```
+
+### Saddle Sores 
+
+Suppose that you know that two random variables, $X$ and $Y$ are jointly distributed with the following *pdf*: 
+
+$$
+f_{X,Y}(x,y) = 
+  begin{cases}
+    a * x^2 * y^2)     & 0 < x < 1, 0 < y < 1
+    0                   & otherwise     \\
+  \end{cases}
+$$
+
+- Can you use these faects to determine the following? 
+  - What value of $a$ makes this a valid joint pdf? 
+  - What is the marginal pdf of $x$? That is, what is $f_{x}(x)$? 
+  - What is the conditional pdf of $X$ given $Y$? That is, what is $f_{x|y}(x,y)? 
+  - Given these facts, would you say that $X$ and $Y$ are dependent or independent? 
 
 ## Visualizing Distributions Via Simulation
 

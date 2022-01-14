@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-11" />
+<meta name="date" content="2022-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="discrete-continuous-random-variables.html"/>
-<link rel="next" href="visualizing-distributions-via-simulation.html"/>
+<link rel="next" href="joint-density.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -177,15 +177,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
-<li class="chapter" data-level="2.7" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.7</b> Visualizing Distributions Via Simulation</a>
+<li class="chapter" data-level="2.7" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.7</b> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.7.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.7.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.7.3</b> How is simulation useful?</a></li>
+<li class="chapter" data-level="2.7.1" data-path="joint-density.html"><a href="joint-density.html#uniform-joint-density"><i class="fa fa-check"></i><b>2.7.1</b> Uniform Joint Density</a></li>
+<li class="chapter" data-level="2.7.2" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.7.2</b> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.8</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.9" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.9</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.10" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.10</b> Working with a Shiny App</a></li>
+<li class="chapter" data-level="2.8" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.8</b> Visualizing Distributions Via Simulation</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.8.1</b> The Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.8.2</b> Apply the Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.8.3</b> How is simulation useful?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.10" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.10</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.11" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.11</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
@@ -390,7 +395,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>More importantly for this course, in <strong>Definition 1.2.15</strong> the book defines the relationship between <em>cdf</em> and <em>pdf</em> in the following way:</p>
 
 <div class="definition">
-<p><span id="def:unnamed-chunk-6" class="definition"><strong>Definition 2.4  \iffalse (Probability Density Function (PDF))  </strong></span>For a continous random variable <span class="math inline">\(X\)</span> with CDF <span class="math inline">\(F\)</span>, the <em>probability density function</em> of <span class="math inline">\(X\)</span> is</p>
+<p><span id="def:unnamed-chunk-5" class="definition"><strong>Definition 2.4  \iffalse (Probability Density Function (PDF))  </strong></span>For a continous random variable <span class="math inline">\(X\)</span> with CDF <span class="math inline">\(F\)</span>, the <em>probability density function</em> of <span class="math inline">\(X\)</span> is</p>
 <span class="math display">\[
   f(x) = \left. \frac{d F(u)}{du} \right|_{u=x}, \forall x \in \mathbb{R}.
 \]</span>
@@ -400,7 +405,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-7" class="example"><strong>Example 2.3  \iffalse (Working with a continuous pdf and cdf)  </strong></span>Suppose that you learn than a particular random variable, <span class="math inline">\(X\)</span> has the following function that describes its <em>pdf</em>, <span class="math inline">\(f_{x}(x) = \frac{1}{10}x\)</span>. Also, suppose that you know that the smallest value that is possible for this random varaible to obtain is 0.</p>
+<p><span id="exm:unnamed-chunk-6" class="example"><strong>Example 2.3  \iffalse (Working with a continuous pdf and cdf)  </strong></span>Suppose that you learn than a particular random variable, <span class="math inline">\(X\)</span> has the following function that describes its <em>pdf</em>, <span class="math inline">\(f_{x}(x) = \frac{1}{10}x\)</span>. Also, suppose that you know that the smallest value that is possible for this random varaible to obtain is 0.</p>
 <ol style="list-style-type: decimal">
 <li>What is the CDF of <span class="math inline">\(X\)</span>?</li>
 <li>What is the maximum possible value that <span class="math inline">\(x\)</span> can obtain? How did you develop this answer, using the Kolmogorov axioms of probability?</li>
@@ -417,7 +422,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="discrete-continuous-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-distributions-via-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="joint-density.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

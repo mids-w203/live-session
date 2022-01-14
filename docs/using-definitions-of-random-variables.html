@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-11" />
+<meta name="date" content="2022-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,15 +177,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
-<li class="chapter" data-level="2.7" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.7</b> Visualizing Distributions Via Simulation</a>
+<li class="chapter" data-level="2.7" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.7</b> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.7.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.7.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.7.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.7.3</b> How is simulation useful?</a></li>
+<li class="chapter" data-level="2.7.1" data-path="joint-density.html"><a href="joint-density.html#uniform-joint-density"><i class="fa fa-check"></i><b>2.7.1</b> Uniform Joint Density</a></li>
+<li class="chapter" data-level="2.7.2" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.7.2</b> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.8</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.9" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.9</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.10" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.10</b> Working with a Shiny App</a></li>
+<li class="chapter" data-level="2.8" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.8</b> Visualizing Distributions Via Simulation</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.8.1</b> The Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.8.2</b> Apply the Visualization Trick</a></li>
+<li class="chapter" data-level="2.8.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.8.3</b> How is simulation useful?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.10" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.10</b> Understanding Joint Distributions</a></li>
+<li class="chapter" data-level="2.11" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.11</b> Working with a Shiny App</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
@@ -391,7 +396,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>What is a random variable? Does this definition help you?</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-2" class="definition"><strong>Definition 2.1  \iffalse (Random Variable)  </strong></span>A random variable is a function <span class="math inline">\(X : \Omega \rightarrow \mathbb{R},\)</span> such that <span class="math inline">\(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\)</span>.
+<span id="def:unnamed-chunk-1" class="definition"><strong>Definition 2.1  \iffalse (Random Variable)  </strong></span>A random variable is a function <span class="math inline">\(X : \Omega \rightarrow \mathbb{R},\)</span> such that <span class="math inline">\(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\)</span>.
 </div>
 <p>Someone, please, read that without using a single “omega”, <span class="math inline">\(\mathbb{R}\)</span>, or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean.</p>
 <p>The goal of writing with math symbols like this is to be <em>absolutely</em> clear what concepts the author does and does not mean to invoke when they write a definition or a theorem. In a very real sense, this is a language that has specific meaning attached to specific symbols; there is a correspondence between the mathematical language and each of our home languages, but exactly what the relationship is needs to be defined into each student’s home language.</p>
@@ -415,7 +420,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-3" class="example"><strong>Example 2.1  \iffalse (MNIST)  </strong></span>Suppose that you are doing some image processing work. To keep things simple, that you are doing image classification in the style of the MNIST dataset.</p>
+<p><span id="exm:unnamed-chunk-2" class="example"><strong>Example 2.1  \iffalse (MNIST)  </strong></span>Suppose that you are doing some image processing work. To keep things simple, that you are doing image classification in the style of the MNIST dataset.</p>
 <ul>
 <li>Can someone describe what this task is trying to accomplish?</li>
 <li>Has anyone done work like this?</li>

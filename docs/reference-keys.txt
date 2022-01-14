@@ -1,10 +1,10 @@
-def:unnamed-chunk-2
+def:unnamed-chunk-1
 def:fxn
-exm:unnamed-chunk-3
-def:unnamed-chunk-4
-exm:unnamed-chunk-5
-def:unnamed-chunk-6
-exm:unnamed-chunk-7
+exm:unnamed-chunk-2
+def:unnamed-chunk-3
+exm:unnamed-chunk-4
+def:unnamed-chunk-5
+exm:unnamed-chunk-6
 probability-spaces
 learning-objectives
 course-learning-objectives
@@ -33,6 +33,9 @@ pieces-of-a-random-variable
 probability-density-functions-and-cumulative-density-functions
 discrete-continuous-random-variables
 moving-between-pdf-and-cdf
+joint-density
+uniform-joint-density
+saddle-sores
 visualizing-distributions-via-simulation
 the-visualization-trick
 apply-the-visualization-trick
