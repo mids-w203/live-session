@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-13" />
+<meta name="date" content="2022-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -197,8 +197,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html"><i class="fa fa-check"></i><b>3.2</b> Class Announcements</a></li>
 <li class="chapter" data-level="3.3" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>3.3</b> Roadmap</a></li>
-<li class="chapter" data-level="3.4" data-path="proof-strategy-workshop-expectation.html"><a href="proof-strategy-workshop-expectation.html"><i class="fa fa-check"></i><b>3.4</b> Proof Strategy Workshop: Expectation</a></li>
-<li class="chapter" data-level="3.5" data-path="linearity-of-expectation.html"><a href="linearity-of-expectation.html"><i class="fa fa-check"></i><b>3.5</b> Linearity of Expectation</a></li>
+<li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]</a></li>
+<li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula</a></li>
+<li class="chapter" data-level="3.4.3" data-path="computing-examples.html"><a href="computing-examples.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.4.3</b> Compute the Expected Value</a></li>
+<li class="chapter" data-level="3.4.4" data-path="computing-examples.html"><a href="computing-examples.html#compute-the-variance"><i class="fa fa-check"></i><b>3.4.4</b> Compute the Variance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.5</b> Expected Value by Code</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.5.1</b> Expected Value of a Six-Sided Die</a></li>
+<li class="chapter" data-level="3.5.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.5.2</b> Variacne of a Six-Sided Die</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.6</b> Practice Computing</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.6.1</b> Single Variable</a></li>
+<li class="chapter" data-level="3.6.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.6.2</b> Joint Density</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP</a>
 <ul>
@@ -421,18 +436,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Check into the help documentation.</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="optimization-in-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
-<span id="cb46-2"><a href="optimization-in-r.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
-<span id="cb46-3"><a href="optimization-in-r.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
-<span id="cb46-4"><a href="optimization-in-r.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="optimization-in-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="optimization-in-r.html#cb45-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
+<span id="cb45-2"><a href="optimization-in-r.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb45-3"><a href="optimization-in-r.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
+<span id="cb45-4"><a href="optimization-in-r.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="optimization-in-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 96</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="optimization-in-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb49-2"><a href="optimization-in-r.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
-<span id="cb49-3"><a href="optimization-in-r.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
-<span id="cb49-4"><a href="optimization-in-r.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
-<span id="cb49-5"><a href="optimization-in-r.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
-<span id="cb49-6"><a href="optimization-in-r.html#cb49-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="optimization-in-r.html#cb48-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb48-2"><a href="optimization-in-r.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
+<span id="cb48-3"><a href="optimization-in-r.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
+<span id="cb48-4"><a href="optimization-in-r.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
+<span id="cb48-5"><a href="optimization-in-r.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
+<span id="cb48-6"><a href="optimization-in-r.html#cb48-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
 <pre><code>## $maximum
 ## [1] 0.5
 ## 

@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-13" />
+<meta name="date" content="2022-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -197,8 +197,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html"><i class="fa fa-check"></i><b>3.2</b> Class Announcements</a></li>
 <li class="chapter" data-level="3.3" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>3.3</b> Roadmap</a></li>
-<li class="chapter" data-level="3.4" data-path="proof-strategy-workshop-expectation.html"><a href="proof-strategy-workshop-expectation.html"><i class="fa fa-check"></i><b>3.4</b> Proof Strategy Workshop: Expectation</a></li>
-<li class="chapter" data-level="3.5" data-path="linearity-of-expectation.html"><a href="linearity-of-expectation.html"><i class="fa fa-check"></i><b>3.5</b> Linearity of Expectation</a></li>
+<li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]</a></li>
+<li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula</a></li>
+<li class="chapter" data-level="3.4.3" data-path="computing-examples.html"><a href="computing-examples.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.4.3</b> Compute the Expected Value</a></li>
+<li class="chapter" data-level="3.4.4" data-path="computing-examples.html"><a href="computing-examples.html#compute-the-variance"><i class="fa fa-check"></i><b>3.4.4</b> Compute the Variance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.5</b> Expected Value by Code</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.5.1</b> Expected Value of a Six-Sided Die</a></li>
+<li class="chapter" data-level="3.5.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.5.2</b> Variacne of a Six-Sided Die</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.6</b> Practice Computing</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.6.1</b> Single Variable</a></li>
+<li class="chapter" data-level="3.6.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.6.2</b> Joint Density</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP</a>
 <ul>
@@ -391,17 +406,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-exercise-3" class="section level2" number="12.6">
 <h2><span class="header-section-number">12.6</span> R Exercise</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-exercise-3.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb43-2"><a href="r-exercise-3.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb43-3"><a href="r-exercise-3.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb43-4"><a href="r-exercise-3.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb43-5"><a href="r-exercise-3.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb43-6"><a href="r-exercise-3.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-exercise-3.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb42-2"><a href="r-exercise-3.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb42-3"><a href="r-exercise-3.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb42-4"><a href="r-exercise-3.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb42-5"><a href="r-exercise-3.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb42-6"><a href="r-exercise-3.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-exercise-3.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb44-2"><a href="r-exercise-3.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="r-exercise-3.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-exercise-3.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb43-2"><a href="r-exercise-3.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="r-exercise-3.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 <pre><code>## Rows: 32
 ## Columns: 11
 ## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, …

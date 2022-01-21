@@ -44,102 +44,110 @@ library(tidyverse)
 - Using our summary tools, we will define a predictor's error and then minimize it.
 - This is a basis for linear regression
 
+## Computing Examples 
 
+### Expected Value of a Die [discrete random variable]
 
-## Proof Strategy Workshop: Expectation
+- The expected value (or population mean) of a discrete random variable $X$ is the weighted average of the values in the range of $X$.
+- Suppose that $X$ represents the number of years of education that someone has completed, and so has a support that ranges from $0$ years of education, up to $28$ years of education. (Incidentally, Mark Labovitz has about 28 years of education). 
 
-> Let $Y$ be the random variable given by $X^2$ where $X$ is a uniform distribution on the support $[0, 1]$.
->
-> What is the expected value of $Y$? 
-
-- Your instructor will assign you to Proof 1, Proof 2, OR Proof 3.
-- First, study your proof.
-- Second, in breakout rooms, teach your proof to your classmates.
-
-**Proof 1**
-
-We first compute the CDF of Y.  For $0 \leq y \leq 1$,
-
-$$
-F_Y(y) = P(Y \leq y) = P(X^2 \leq y) = P(X \leq \sqrt{y}) = \sqrt{y}
-$$
-Next, we take the derivative to get Y's density for $0 \leq y \leq 1$:
-
-$$
-f_Y(y) = \frac{\partial}{\partial y} F_Y(y) = \frac{1}{2} y^{-1/2}
-$$
-
-(On your assignments, make sure you write a complete expression)  Finally, 
-
-$$ 
-E[Y] = \int_0^1 y f_Y(y) dy = \int_0^1 \frac{1}{2} y^{1/2} dy = \frac{1}{3}y^{3/2} \Bigg|_{y=0}^1 = \frac{1}{3} - 0 = \frac{1}{3}
-$$
-
-
-
-**Proof 2**
-
-Apply the bonus result from HW 2:  Note that $Y=h(x)$ where $h(x)= x^2$.    For $0 \leq y \leq 1$,
-
-$$
-f_{Y}(y) =   f_X(h^{-1}(y)) \cdot \left| \frac{d}{dy} h^{-1}(y) \right| = f_X(\sqrt{y}) \left| \frac{d}{dy} \sqrt{y} \right| = 1\cdot  \frac{1}{2} y^{-1/2}
-$$
-
-(On your assignments, make sure you write a complete expression)  Finally, we find the expectation:
-
-$$
-E[Y] = \int_0^1 y f_Y(y) dy = \int_0^1 \frac{1}{2} y^{1/2} dy = \frac{1}{3}y^{3/2} \Bigg|_{y=0}^1 = \frac{1}{3} - 0 = \frac{1}{3}
-$$
-
-
-**Proof 3**
-
-Apply the Law of the Unthinking Statistician (LOTUS):
-
-$$
-E[Y] = \int_{-\infty}^\infty x^2 f_X(x) dx = \int_{-\infty}^0 x^2 \cdot 0 + \int_0^1 x^2 \cdot 1 dx + \int_1^{\infty} x^2 \cdot 0
-$$
-
-$$
-E[Y] = 0 + \frac{1}{3}x^3 \Bigg|_0^1 +  0 = \frac{1}{3}
-$$
-
-**Proof Debrief**
-
-- In words, what is the power of the Law of the Unthinking Statistician?
-- Which was your favorite proof?
-
-## Linearity of Expectation
-
-**Expectation is Linear**
-
-- For a random variable $X$ and constants $a$ and $b$: $$E(aX + b) = aE(X) + b$$
-- For two random variables $X$ and $Y$: $$E(X + Y) = E(X) + E(Y)$$.
-
-**Using Linearity, Part I**
-
-- Linearity is a very powerful property.  Using it can often make your solutions much cleaner.
-- Say you want to find the expectation of a symmetric variable, $X$.  For example, here's a random variable that's symmetric around 5.
-
-**Using Linearity, Part II**
 ```{r, echo = FALSE}
-d <- data.frame(
-  x   = c(2,3,7,8), 
-  p_x = c(0.2, 0.3, 0.3, 0.2)) 
+set.seed(1)
+population_education <- sample(
+  x    = 0: 28, 
+  size = 2000, 
+  replace = TRUE, 
+  prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+)
 
-d %>%
-  ggplot() +
-  geom_point(
-    aes(x = x, y = p_x)) + 
-  geom_segment(
-    aes(
-      x = x, xend = x, 
-      y = 0, yend = p_x)) + 
-  coord_cartesian(
-    xlim = c(0, 10), 
-    ylim = c(0.0, 0.5)) + 
+ggplot() + 
+  aes(x=population_education) + 
+  geom_histogram(bins = 28, fill = '#003262') + 
   labs(
-    title = 'PMF of Discrete Random Variable', 
-    x = 'Value of X', 
-    y = 'P(Value of X)')
+    title = 'Years of Education', 
+    x     = 'Years', 
+    y     = 'Pr(Instances)')
 ```
+
+without using specific numbers, describe the process you would use to calculate the expected value of this distribution. 
+
+### Using a formula 
+
+How does the following formula match with your concept of expectation from that last section?
+
+$$
+  E(X) = \sum_{y \in \{Years\}} y \cdot P(X=y)
+$$
+
+### Compute the Expected Value 
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+- Calculating by hand, what is the expected value $X$? 
+
+> Fill this in by hand. 
+
+```{r solution, echo = FALSE}
+## For a fair die, we know that the pmf is: 
+##  $f(x) = 1/6$ for x in {1,2,3,4,5,6}. 
+## The $E[X]$ is therefore 1/6*(1+2+3+4+5+6) = 3.5.
+```
+
+### Compute the Variance 
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+- Calculating by hand, what is the variance of $X$? 
+
+## Expected Value by Code 
+
+### Expected Value of a Six-Sided Die
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+- Build an object to represent the whole sample space, $\Omega$ of a six sided die. 
+- Determine what probabilities to assign to each value of that object. 
+- Write the code to run the expectation algorithm that you just performed by hand. 
+
+```{r}
+die <- 'fill this in' 
+```
+
+### Variacne of a Six-Sided Die
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+5. Using what you know about the definition of variance, write a function that will compute the variance of your `die` object. 
+
+```{r}
+variance_function <- function() { 
+  ## fill this in
+}
+
+## variance_function(die)
+```
+
+## Practice Computing 
+
+### Single Variable 
+
+Suppose that $X$ has the following density function: 
+
+\[ 
+  f_{X}(x) = \begin{cases} 
+    6x(1 - x), & 0 < x < 1 \\ 
+    0, & otherwise \\ 
+  \end{cases}
+\]
+
+- Find $E[X]$.
+- Find $E[X^2]$. 
+- Find $V[X]$. 
+
+### Joint Density 
+
+Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y$ for $0 < y < x < 1. $ 
+
+- Find $E[X]$
+- Find $E[EY]$
+- Find $\rho[X,Y]$
