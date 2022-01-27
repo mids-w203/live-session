@@ -1,53 +1,91 @@
 # Conditional Expectation and The BLP
 
+```{r package loads 04, echo=FALSE, message=FALSE}
+library(ggplot2)
+
+theme_set(theme_minimal())
+
+knitr::knit_engines$set(notes = function(options) {
+  code <- paste(options$code, collapse = "\n")
+})
+```
+
+
+One of our most fundamental goals as data scientists is to produce predictions that are *good*. In this week's async, we make a statement of performance that we can use to evaluate how good a job a predictor is doing, choosing Mean Squared Error. 
+
+With the goal of minimizing MSE, then we then present, justify, and prove that the conditional expectation function (*the CEF*) is the globally best possible predictor. This is an incredible powerful result, and one that serves as the backstop for **every** other predictor that you will ever fit, whether that predictor is a "simple" regression, or that predictor is a machine learning algorithms (e.g. a random forest) or a deep learning algorithm. Read that again -- even the most technologically advanced algorithms *cannot possibly* perform better than the conditional expectation function. 
+
+Why does the CEF do so well? Because it can contain a *vast* amount of complex information and relationships; in fact, the complexity of the CEF is a product of the complexity of the underlying probability space. If that is the case, then why don't we just use the CEF as our predictor every time? 
+
+Well, this is one of the core problems of applied data science work: we are never given the function that describes the behavior of the random variable. And so, we're left in a world where we are forced to produce predictions from simplifications of the CEF. A very strong simplification, but one that is useful for our puny human brains, is to restrict ourselves to predictors that make predictions from a linear combination of input variables. 
+
+Why should we make such a strong restriction? After all, the conditional expectation function might be a fantastically complex combination of input features, why should we entertain functions that are only linear combinations? Essentially, this is because we're limited in our ability to reason about anything more complex than a linear combination.
+
+## Thunder Struck
+
 ![thunder struck](./images/conditional_risk.png)
 
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the end of this weeks learning, which includes the asynchronous lectures, reading the textbook, this live session, and the homework associated with the concepts, student should be able to
+
+1. **Recognize** that the conditional expectation function, the *CEF*, is a the pure-form, best-possible predictor of a target variable given information about other variables. 
+2. **Recall** that all other predictors, be they linear predictors, non-linear predictors, branching predictors, or deep learning predictors, are an attempt to approximate the CEF. 
+3. **Produce** the conditional expectation function as a predictor, given joint densities of random variables. 
+4. **Appreciate** that the best linear predictor, which is a restriction of predictors to include only those that are linear combinations of variables, can produce reasonable predictions, and **anticipate** that the BLP forms the target of inquiry for regression.
 
 ## Class Announcements
 
-## Roadmap 
+### Test 1 is releasing to you today.
 
-**Roadmap -- Rearview Mirror** 
+The first test is releasing today. There are review sessions scheduled for this week, practice tests available, and practice problems available. The format for the test is posted in the course discussion channel. In addition to your test, your instructor will describe your responsibilities that are due next week. 
+
+## Roadmap 
+### Rearview Mirror
 
 - Statisticians create a population model to represent the world.
 - $E[X], V[X], Cov[X,Y]$ are "simple" summaries of complex joint distributions, which are hooks for our analyses. 
 - They also have useful properties -- for example, $E[X + Y] = E[X] + E[Y]$.
 
-**Roadmap -- This week** 
+### This week
 
 - We look at situations with one or more "input" random variables, and one "output."
 - Conditional expectation summarizes the output, given values for the inputs.
 - The conditional expectation function (CEF) is a predictor -- a function that yields a value for the output, give values for the inputs.
 - The best linear predictor (BLP) summarizes a relationship using a line / linear function.
 
-**Roadmap -- Coming Attractions** 
+### Coming Attractions
 
 - OLS regression is a workhorse of modern statistics, causal analysis, etc
     - It is also the basis for many other models in classical stats and machine learning
 - The target that OLS estimates is exactly the BLP, which we're learning about this week.
 
+## Conditional Expectation Function (CEF), part one
 
-## Conditional Expectation Function (CEF)
+Think back to remember the definition of the expectation of $Y$:
 
-- Expectation of $Y$:
 $$
-E[Y] = \int_{-\infty}^\infty y \cdot f_{Y}(y) dy
-$$
-- Conditional expectation of $Y$ given $X=x \in \text{Supp}[X]$: 
-$$
-E[Y|X=x] =  \int_{-\infty}^\infty y \cdot f_{Y|X}(y|x) dy
+  E[Y] = \int_{-\infty}^\infty y \cdot f_{Y}(y) dy
 $$
 
-- Compare and contrast $E[Y]$ and $E[Y|X]$. For example, how are their components similar or different? 
+This week, in the async reading and lectures we added a new concept, the conditional expectation of $Y$ given $X=x \in \text{Supp}[X]$: 
+
+$$
+  E[Y|X=x] =  \int_{-\infty}^\infty y \cdot f_{Y|X}(y|x) dy
+$$
+
+## Conditional Expectation Function (CEF), part two 
+
+1. What desirable properties of a predictor does the expectation possess? Why is this desirable? 
+2. How, if at all, does the conditional expectation improve on these desirable properties? 
+
+## Conditional Expectation Function (CEF), part three
+
+- Compare and contrast $E[Y]$ and $E[Y|X]$. For example, when you look at how these operators are "shaped", how are their components similar or different? 
 - What is $E[Y|X]$ a function of? What are "input" variables to this function?
 - What is $E[E[Y|X]]$ a function of? 
 
-::: notes 
+```{notes, include = FALSE} 
 
 - (Question 1) In both, we have a probability density function multiplied by the values that we realize; this is basically serving as a "weighting" function, we're merely changing what that weighting function is! 
 - In both cases we're looking at a "mean" of a distribution -- in one it is just a "conditional mean" than a "marginal mean". 
@@ -59,7 +97,7 @@ $$
   - Once we fix $X=x$, then $E[Y|X=x]$ is fixed to some constant -- there is one value that $E[Y|X=x]$ maps to. 
 
 - (Question 3) That isn't a function of anything! Once you've computed $E[E[Y|X]]$, you've integrated out all variables! 
-::: 
+```
 
 ## Computing the CEF
 
@@ -73,10 +111,54 @@ f(x,y) =
 \end{cases}
 $$
 
+What does the joint PDF of this function look like? 
 
-![](./images/triangle.jpg){width=50%}
+```{r}
+ggplot() + 
+  geom_blank() + 
+  labs(
+    title = 'Joint PDF of X,Y', 
+    x = 'x axis', 
+    y = latex2exp::latex2exp('$P_{X,Y}(x,y)$')
+  )
+```
+- What is the expectation of $X$? 
+- What is the expectation of $Y$? 
+- How would you compute the variance of $X$? (We're not going to do it live). 
+- What is the conditional expectation of $Y$, given that $X=x=0$? 
+- What is the conditional expectation of $Y$, given that $X=x=0.5$? 
+- What is the conditional expectation of $X$, given that $Y=y=0.5$? 
+- Which of the two of these has a lower conditional variances? 
+  - $V[Y|X=0.25]$; or, 
+  - $V[Y|X=0.75]$. 
+- How does $V[Y]$ compare to $V[Y|X=1]$? Which is larger? 
 
-- In week 2 we computed the conditional density of this function: 
+## Conditional Density Functions
+
+Suppose that you were told that $X$ and $Y$ are jointly distributed according to the following joint denisty function: 
+
+$$ 
+  f_{X,Y}(x,y) = 
+    \begin{cases}
+      2 & 0 \leq x \leq 1, 0 \leq y \leq x \\ 
+      0 & otherwise
+    \end{cases}
+$$ 
+
+Show that the conditional distribution for $Y$ give $X$ is equal to: 
+
+
+
+
+
+
+
+
+
+
+
+
+## Conditional Distribution to Conditional Expectation
 
 $$
 f_{Y|X}(y|x) = 
@@ -87,13 +169,42 @@ f_{Y|X}(y|x) =
 $$
 
 - What is the conditional expectation function? 
+
+```{notes, include = FALSE} 
+\begin{align*} 
+  E[Y|X=x] &= \int_{0}^{x} y \cdot f_{Y|X}(y|x) dy \\ 
+         &= \int_{0}^{x} y \cdot \frac{1}{x} dy \\ 
+         &= \left. \frac{1}{2x}y^{2} \right \rvert^{x}_{0} \\ 
+         &= \frac{x}{2}
+\end{align*}         
+```
+
 - What is the conditional variance function? 
 
-::: notes 
+```{notes, include = FALSE}
 
-::: 
+  V[Y|X] &= E[Y^2|X] - E[Y|X]^2
 
-## Group Exercise
+So, let's figure out what's happening for the $E[Y^2|X]$. 
+
+  E[Y^2|X=x] &= \int_{0}^{x} y^2 \cdot f_{Y|X}(y|x) dy \\ 
+           &= \int_{0}^{x} y^2 \cdot \frac{1}{x} dy \\ 
+           &= \left. \frac{1}{3x} y^3 \right \rvert_0^x \\
+           &= \frac{x^2}{3}
+
+So, we can combine these pieces! 
+
+
+  V[Y|X] = \frac{x^2}{3} - \left(\frac{x}{2}\right)^2 = \frac{x^2}{12}
+
+
+The curious among you might want to compare this value to the $V[Y]$. To do so, youd go back to the joint distribution that started this question, solve for the marginal distribution of $Y$, and then compute the variance of $Y$ from that marginal. 
+
+- Would you expect the variance will be positive or negative for these two quantities, $V[Y]$ and $V[Y|X]$.
+```
+
+
+## Breakout Activity
 
 ### Minimizing MSE
 
@@ -109,22 +220,27 @@ $$
 
 - Deriving a Function to Minimize MSE
 
-\begin{align*}
+\[ 
+\begin{aligned}
   E[(Y - g(X))^2|X]
-      &= E[Y^2 - 2Yg(X) + g^2(X)|X]                   \\
-      &= E[Y^2|X] + E[-2Yg(X)|X] + E[g^2(X)|X]      \\
-      &= E[Y^2|X] - 2g(X)E[Y|X] + g^2(X)E[1|X]      \\
+      &= E[Y^2 - 2Yg(X) + g^2(X)|X]                                \\
+      &= E[Y^2|X] + E[-2Yg(X)|X] + E[g^2(X)|X]                     \\
+      &= E[Y^2|X] - 2g(X)E[Y|X] + g^2(X)E[1|X]                     \\
       &= (E[Y^2|X] - E^2[Y|X]) + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X)) \\
-      &= V[Y|X] + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X)) \\
-      &= V[Y|X] + (E[Y|X] - g(X))^2                  \\
-\end{align*} 
+      &= V[Y|X] + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X))                \\
+      &= V[Y|X] + (E[Y|X] - g(X))^2                                \\
+\end{aligned} 
+\]
 
 - Then we have: 
-\begin{align*}
-  E[(Y-g(X))^2] &= E\big[E[(Y-g(X))^2|X]\big] \\ 
-    &=E\big[V[Y|X]+(E[Y|X]-g(X))^2\big]\\
+
+\[
+\begin{aligned}
+  E[(Y-g(X))^2] &= E\big[E[(Y-g(X))^2|X]\big]     \\ 
+    &=E\big[V[Y|X]+(E[Y|X]-g(X))^2\big]           \\
     &=E\big[V[Y|X]\big]+E\big[(E[Y|X]-g(X))^2\big]\\
-\end{align*}
+\end{aligned}
+\]
 
 - $E[V[Y|X]]$ doesn't depend on $g$; and, 
 - $E[(E[Y|X]-g(X))^2]\ge 0$.
@@ -133,22 +249,22 @@ $\therefore g(X) = E[Y|X]$ gives the smallest $E[(Y-g(X))^2]$
 
 - **Implication:** If you are choosing some $g$, you can't do better than $g(x) = E[Y|X=x]$.
 
-### Working with the BLP
+## Working with the BLP
 
 Why Linear?
 
 - In some cases, we might try to estimate the CEF. More commonly, however, we work with linear predictors. Why? 
 
-::: notes
+```{notes}
 - We don't know joint density function of $Y$. So, it is "difficult" to derive a suitable CEF. 
 - To estimate *flexible* functions requires considerably more data. Assumptions about distribution (e.g. a linear form) allow you to leverage those assumptions to learn 'more' from the same amount of data. 
 - Other times, the CEF, even if we *could* produce an estimate, might be so complex that it isn't useful or would be difficult to work with. 
 - And, many times, linear predictors (which might seem trivially simple) actually do a very good job of producing predictions that are 'close' or useful. 
-::: 
+```
 
-### Joint Distribution Practice
+###Joint Distribution Practice
 
-#### Professorial Mistakes (Discrete RVs)
+### Professorial Mistakes (Discrete RVs)
 
 - Let the number of questions that students ask be a RV, $X$.  
 - Let $X$ take on values: $\{1, 2, 3\}$, each with probability $1/3$.  

@@ -45,9 +45,9 @@ There are several resources to support your learning. A learning object last wee
 
 What is a random variable? Does this definition help you? 
 
-```{definition, name = "Random Variable"}
+::: {.definition name="Random Variable"}
 A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S$. 
-```
+:::
 
 Someone, please, read that without using a single "omega", $\mathbb{R}$, or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean. 
 
@@ -60,15 +60,17 @@ Why do we say that random variables are functions? Is there some useful property
 
 ### Functions of Functions
 
-```{definition, name = "Function of a Random Variable", label = "fxn"}
+What about a function of a random variable, which is a function of a function. 
+
+::: {.definition name="Function of a Random Variable"}
 Let $g : U \rightarrow \mathbb{R}$ be some function, where $X(\Omega) \subset U \subset \mathbb{R}$. Then, if $g \circ X : \Omega \rightarrow \mathbb{R}$ is a random variable, we say that $g$ is a *function* of X and write $g(X)$ to denote the random variable $g \circ X$.  
-```
+:::
 
 If a random variable is a function from the real world, or the sample space, or the outcome space to a real number, then what does it mean to define a function of a random variable? 
 
 - At what point does this function work? Does this function change the sample space that is possible to observe? Or, does this function change the real-number that each outcome points to? 
 
-```{example, name = "MNIST"}
+::: {.example name="MNIST"}
 Suppose that you are doing some image processing work. To keep things simple, that you are doing image classification in the style of the MNIST dataset. 
 
 - Can someone describe what this task is trying to accomplish? 
@@ -78,15 +80,15 @@ However, suppose that rather than having good clean indicators for whether a pix
 
 1. How might creating a function that re-maps this grey into more extreme values help your model? 
 2. Is it possible to "blur" events that are in the outcome space? Does this "blurring" meet the requirements of a function of a random variable, as provided above? 
-```
+:::
 
 ## Pieces of a Random Variable 
 
 When you look at the definition of a random variable, there are two key pieces that must exist for every random variable. What are these pieces? As a hint, we actually developed one of these key pieces *last* week when we were discussing elementary probability. 
 
-```{definition, name = "Random Variable, Suite"}
+::: {.definition name="Random Variable, Suite"}
 A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S$. 
-```
+:::
 
 1. 
 2. 
@@ -96,20 +98,20 @@ A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $
 - What is a probability mass function? 
 - What do the **Kolmogorov Axioms** mean must be true about any probability mass function (*pmf*)? 
 
-```{example, name = "Berkeley Drivers, No Survivors"} 
-You should try driving in Berkeley some time. It is a **trip**! Without being deliberately ageist, the city is full of ageing hippies driving subarus and making what seem to be stochastic right-or-left turns to buy incense, pottery, or just sourdough bread. 
+::: {.example name="Berkeley Drivers, No Survivors"} 
+You should try driving in Berkeley some time. It is a **trip**! Without being deliberately ageist, the city is full of ageing hippies driving Subaru and making what seem to be stochastic right-or-left turns to buy incense, pottery, or just sourdough bread. 
 
-Suppose that you are walking to campus, and you have to cross 10 crosswalks, each of which are spaced a block apart. Further, suppose that as you get closer to campus, there are fewer aging hippies, and therefore, there is decreasing risk that you're hit by a Subaru as you cross the street. Specifically, and fortunately for our math, the risk of being hit decreases linearily with each block that you cross. 
+Suppose that you are walking to campus, and you have to cross 10 crosswalks, each of which are spaced a block apart. Further, suppose that as you get closer to campus, there are fewer aging hippies, and therefore, there is decreasing risk that you're hit by a Subaru as you cross the street. Specifically, and fortunately for our math, the risk of being hit decreases linearly with each block that you cross. 
 
-Finally, campus provides you with the safety reports from last year, and reports that there were 120 student-subaru incideces last year, out of 10,000 student-crosswalk crossings. 
+Finally, campus provides you with the safety reports from last year, and reports that there were 120 student-Subaru incidents last year, out of 10,000 student-crosswalk crossings. 
 
-1. What is the *pmf* for the probability that you are involved in a student-subaru incident as you walk across these 10 blocks? What sample space, $\Omega$ is appropriate to represent this scenario? 
+1. What is the *pmf* for the probability that you are involved in a student-Subaru incident as you walk across these 10 blocks? What sample space, $\Omega$ is appropriate to represent this scenario? 
 2. Suppose that you don't leave your house -- this is a remote program after all! What is your cumulative probability of being involved in a student-subaru incident?  
-3. What is the cumulative probability *cmf* for the probability that you are involved in a student-subaru incedent? 
+3. What is the cumulative probability *cmf* for the probability that you are involved in a student-Subaru incident? 
 4. Suppose that you live three blocks from campus, but your classmate lives five blocks from campus. What is the difference in the cumulative probability? 
 5. How would you describe the cumulative probability of being hit as you walk closer to campus? That is, suppose that you start 10 blocks away from campus, and are walking to get closer. Is your cumulative probability of being hit on your way to campus increasing or decreasing as you get closer to campus? 
 6. How would you describe the cumulative probability of being hit as you walk **further** from campus? That is, suppose that you start on campus, and you're walking to a bar after classes. Is your cumulative probability of being hit on your way away from campus increasing or decreasing as you get further from campus? 
-```
+:::
 
 ## Discrete & Continuous Random Variables
 
@@ -129,18 +131,18 @@ The book defines *pmf* and *cmf* first as a way of developing intuition and a wa
 
 More importantly for this course, in **Definition 1.2.15** the book defines the relationship between *cdf* and *pdf* in the following way:
 
-```{definition, name = "Probability Density Function (PDF)"}
+::: {.definition name="Probability Density Function (PDF)"}
 For a continous random variable $X$ with CDF $F$, the *probability density function* of $X$ is 
 
 $$
   f(x) = \left. \frac{d F(u)}{du} \right|_{u=x}, \forall x \in \mathbb{R}.
 $$  
-```
+:::
 
 - How does this definition, which relates *pdf* and *cdf* by a means of differentiation and integration, fit with the ideas that we just developed in the context of walking to and from campus?  
 
-```{example, name = "Working with a continuous pdf and cdf"}
-Suppose that you learn than a particular random variable, $X$ has the following function that describes its *pdf*, $f_{x}(x) = \frac{1}{10}x$. Also, suppose that you know that the smallest value that is possible for this random varaible to obtain is 0. 
+::: {.example name="Working with a continuous pdf and cdf"}
+Suppose that you learn than a particular random variable, $X$ has the following function that describes its *pdf*, $f_{x}(x) = \frac{1}{10}x$. Also, suppose that you know that the smallest value that is possible for this random variable to obtain is 0. 
 
 1. What is the CDF of $X$? 
 2. What is the maximum possible value that $x$ can obtain? How did you develop this answer, using the Kolmogorov axioms of probability? 
@@ -148,7 +150,7 @@ Suppose that you learn than a particular random variable, $X$ has the following 
 4. What is the probability of an outcome between 0.25 and 0.75? Produce an answer to this in two ways: 
   1. Using the $pdf$
   2. Using the $cdf$
-```
+:::
 
 ## Joint Density 
 
@@ -178,15 +180,15 @@ knitr::include_app('http://www.statistics.wtf/PDF_Explorer/')
 
 Suppose that you know that two random variables, $X$ and $Y$ are jointly distributed with the following *pdf*: 
 
-$$
+\[
 f_{X,Y}(x,y) = 
-  begin{cases}
-    a * x^2 * y^2)     & 0 < x < 1, 0 < y < 1
-    0                   & otherwise     \\
+  \begin{cases}
+    a * x^{2} * y^{2} & 0 < x < 1, 0 < y < 1 \\
+    0 & otherwise
   \end{cases}
-$$
+\]
 
-- Can you use these faects to determine the following? 
+- Can you use these facts to determine the following? 
   - What value of $a$ makes this a valid joint pdf? 
   - What is the marginal pdf of $x$? That is, what is $f_{x}(x)$? 
   - What is the conditional pdf of $X$ given $Y$? That is, what is $f_{x|y}(x,y)? 

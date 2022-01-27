@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.5 Computing the CEF | Statistics for Data Science</title>
+  <title>4.8 Computing the CEF | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.5 Computing the CEF | Statistics for Data Science" />
+  <meta property="og:title" content="4.8 Computing the CEF | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.5 Computing the CEF | Statistics for Data Science" />
+  <meta name="twitter:title" content="4.8 Computing the CEF | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,15 +24,15 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="conditional-expectation-function-cef.html"/>
-<link rel="next" href="group-exercise.html"/>
+<link rel="prev" href="conditional-expectation-function-cef-part-three.html"/>
+<link rel="next" href="conditional-density-functions.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -217,16 +217,31 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="4.3" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>4.3</b> Roadmap</a></li>
-<li class="chapter" data-level="4.4" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html"><i class="fa fa-check"></i><b>4.4</b> Conditional Expectation Function (CEF)</a></li>
-<li class="chapter" data-level="4.5" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.5</b> Computing the CEF</a></li>
-<li class="chapter" data-level="4.6" data-path="group-exercise.html"><a href="group-exercise.html"><i class="fa fa-check"></i><b>4.6</b> Group Exercise</a>
+<li class="chapter" data-level="4.1" data-path="thunder-struck.html"><a href="thunder-struck.html"><i class="fa fa-check"></i><b>4.1</b> Thunder Struck</a></li>
+<li class="chapter" data-level="4.2" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.3" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.3</b> Class Announcements</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="group-exercise.html"><a href="group-exercise.html#minimizing-mse"><i class="fa fa-check"></i><b>4.6.1</b> Minimizing MSE</a></li>
-<li class="chapter" data-level="4.6.2" data-path="group-exercise.html"><a href="group-exercise.html#working-with-the-blp"><i class="fa fa-check"></i><b>4.6.2</b> Working with the BLP</a></li>
-<li class="chapter" data-level="4.6.3" data-path="group-exercise.html"><a href="group-exercise.html#joint-distribution-practice"><i class="fa fa-check"></i><b>4.6.3</b> Joint Distribution Practice</a></li>
+<li class="chapter" data-level="4.3.1" data-path="class-announcements-2.html"><a href="class-announcements-2.html#test-1-is-releasing-to-you-today."><i class="fa fa-check"></i><b>4.3.1</b> Test 1 is releasing to you today.</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>4.4</b> Roadmap</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="roadmap-1.html"><a href="roadmap-1.html#rearview-mirror"><i class="fa fa-check"></i><b>4.4.1</b> Rearview Mirror</a></li>
+<li class="chapter" data-level="4.4.2" data-path="roadmap-1.html"><a href="roadmap-1.html#this-week"><i class="fa fa-check"></i><b>4.4.2</b> This week</a></li>
+<li class="chapter" data-level="4.4.3" data-path="roadmap-1.html"><a href="roadmap-1.html#coming-attractions"><i class="fa fa-check"></i><b>4.4.3</b> Coming Attractions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="conditional-expectation-function-cef-part-one.html"><a href="conditional-expectation-function-cef-part-one.html"><i class="fa fa-check"></i><b>4.5</b> Conditional Expectation Function (CEF), part one</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-expectation-function-cef-part-two.html"><a href="conditional-expectation-function-cef-part-two.html"><i class="fa fa-check"></i><b>4.6</b> Conditional Expectation Function (CEF), part two</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-expectation-function-cef-part-three.html"><a href="conditional-expectation-function-cef-part-three.html"><i class="fa fa-check"></i><b>4.7</b> Conditional Expectation Function (CEF), part three</a></li>
+<li class="chapter" data-level="4.8" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.8</b> Computing the CEF</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-density-functions.html"><a href="conditional-density-functions.html"><i class="fa fa-check"></i><b>4.9</b> Conditional Density Functions</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-distribution-to-conditional-expectation.html"><a href="conditional-distribution-to-conditional-expectation.html"><i class="fa fa-check"></i><b>4.10</b> Conditional Distribution to Conditional Expectation</a></li>
+<li class="chapter" data-level="4.11" data-path="breakout-activity.html"><a href="breakout-activity.html"><i class="fa fa-check"></i><b>4.11</b> Breakout Activity</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="breakout-activity.html"><a href="breakout-activity.html#minimizing-mse"><i class="fa fa-check"></i><b>4.11.1</b> Minimizing MSE</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html"><i class="fa fa-check"></i><b>4.12</b> Working with the BLP</a>
+<ul>
+<li class="chapter" data-level="4.12.1" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html#professorial-mistakes-discrete-rvs"><i class="fa fa-check"></i><b>4.12.1</b> Professorial Mistakes (Discrete RVs)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="learning-from-random-samples.html"><a href="learning-from-random-samples.html"><i class="fa fa-check"></i><b>5</b> Learning from Random Samples</a>
@@ -404,8 +419,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="computing-the-cef" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Computing the CEF</h2>
+<div id="computing-the-cef" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Computing the CEF</h2>
 <ul>
 <li>Suppose that random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly continuous, with joint density function given by,</li>
 </ul>
@@ -416,32 +431,36 @@ f(x,y) =
     0, &amp; otherwise
 \end{cases}
 \]</span></p>
-<p><img src="images/triangle.jpg" style="width:50.0%" /></p>
-<ul>
-<li>In week 2 we computed the conditional density of this function:</li>
-</ul>
-<p><span class="math display">\[
-f_{Y|X}(y|x) = 
-  \begin{cases}
-    \frac{1}{x}, &amp; 0 \leq y \leq x \\ 
-    0, &amp; \text{otherwise}
-  \end{cases}
-\]</span></p>
-<ul>
-<li>What is the conditional expectation function?</li>
-<li>What is the conditional variance function?</li>
-</ul>
-<div class="notes">
-
-</div>
+<p>What does the joint PDF of this function look like?</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="computing-the-cef.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="computing-the-cef.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_blank</span>() <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="computing-the-cef.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-4"><a href="computing-the-cef.html#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Joint PDF of X,Y&#39;</span>, </span>
+<span id="cb13-5"><a href="computing-the-cef.html#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;x axis&#39;</span>, </span>
+<span id="cb13-6"><a href="computing-the-cef.html#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> latex2exp<span class="sc">::</span><span class="fu">latex2exp</span>(<span class="st">&#39;$P_{X,Y}(x,y)$&#39;</span>)</span>
+<span id="cb13-7"><a href="computing-the-cef.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## Warning: &#39;latex2exp::latex2exp&#39; is deprecated.
+## Use &#39;TeX&#39; instead.
+## See help(&quot;Deprecated&quot;) and help(&quot;latex2exp-deprecated&quot;).</code></pre>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+- What is the expectation of <span class="math inline">\(X\)</span>?
+- What is the expectation of <span class="math inline">\(Y\)</span>?
+- How would you compute the variance of <span class="math inline">\(X\)</span>? (We’re not going to do it live).
+- What is the conditional expectation of <span class="math inline">\(Y\)</span>, given that <span class="math inline">\(X=x=0\)</span>?
+- What is the conditional expectation of <span class="math inline">\(Y\)</span>, given that <span class="math inline">\(X=x=0.5\)</span>?
+- What is the conditional expectation of <span class="math inline">\(X\)</span>, given that <span class="math inline">\(Y=y=0.5\)</span>?
+- Which of the two of these has a lower conditional variances?
+- <span class="math inline">\(V[Y|X=0.25]\)</span>; or,
+- <span class="math inline">\(V[Y|X=0.75]\)</span>.
+- How does <span class="math inline">\(V[Y]\)</span> compare to <span class="math inline">\(V[Y|X=1]\)</span>? Which is larger?</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="conditional-expectation-function-cef.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="group-exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conditional-expectation-function-cef-part-three.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conditional-density-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -483,7 +502,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["203-live-session.pdf"],
 "search": {
 "engine": "fuse",
 "options": null

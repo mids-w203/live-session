@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,8 +218,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="4.3" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>4.3</b> Roadmap</a></li>
+<li class="chapter" data-level="4.2" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.2</b> Class Announcements</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="class-announcements-2.html"><a href="class-announcements-2.html#test-1-is-releasing-to-you-today."><i class="fa fa-check"></i><b>4.2.1</b> Test 1 is releasing to you today.</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>4.3</b> Roadmap</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="roadmap-1.html"><a href="roadmap-1.html#rearview-mirror"><i class="fa fa-check"></i><b>4.3.1</b> Rearview Mirror</a></li>
+<li class="chapter" data-level="4.3.2" data-path="roadmap-1.html"><a href="roadmap-1.html#this-week"><i class="fa fa-check"></i><b>4.3.2</b> This week</a></li>
+<li class="chapter" data-level="4.3.3" data-path="roadmap-1.html"><a href="roadmap-1.html#coming-attractions"><i class="fa fa-check"></i><b>4.3.3</b> Coming Attractions</a></li>
+</ul></li>
 <li class="chapter" data-level="4.4" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html"><i class="fa fa-check"></i><b>4.4</b> Conditional Expectation Function (CEF)</a></li>
 <li class="chapter" data-level="4.5" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.5</b> Computing the CEF</a></li>
 <li class="chapter" data-level="4.6" data-path="group-exercise.html"><a href="group-exercise.html"><i class="fa fa-check"></i><b>4.6</b> Group Exercise</a>
@@ -423,24 +431,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p>Deriving a Function to Minimize MSE</p></li>
 </ul>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math display">\[ 
+\begin{aligned}
   E[(Y - g(X))^2|X]
-      &amp;= E[Y^2 - 2Yg(X) + g^2(X)|X]                   \\
-      &amp;= E[Y^2|X] + E[-2Yg(X)|X] + E[g^2(X)|X]      \\
-      &amp;= E[Y^2|X] - 2g(X)E[Y|X] + g^2(X)E[1|X]      \\
+      &amp;= E[Y^2 - 2Yg(X) + g^2(X)|X]                                \\
+      &amp;= E[Y^2|X] + E[-2Yg(X)|X] + E[g^2(X)|X]                     \\
+      &amp;= E[Y^2|X] - 2g(X)E[Y|X] + g^2(X)E[1|X]                     \\
       &amp;= (E[Y^2|X] - E^2[Y|X]) + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X)) \\
-      &amp;= V[Y|X] + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X)) \\
-      &amp;= V[Y|X] + (E[Y|X] - g(X))^2                  \\
-\end{align*}\]</span></p>
+      &amp;= V[Y|X] + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X))                \\
+      &amp;= V[Y|X] + (E[Y|X] - g(X))^2                                \\
+\end{aligned} 
+\]</span></p>
 <ul>
-<li><p>Then we have:
-<span class="math display">\[\begin{align*}
-E[(Y-g(X))^2] &amp;= E\big[E[(Y-g(X))^2|X]\big] \\ 
-  &amp;=E\big[V[Y|X]+(E[Y|X]-g(X))^2\big]\\
-  &amp;=E\big[V[Y|X]\big]+E\big[(E[Y|X]-g(X))^2\big]\\
-\end{align*}\]</span></p></li>
-<li><p><span class="math inline">\(E[V[Y|X]]\)</span> doesn’t depend on <span class="math inline">\(g\)</span>; and,</p></li>
-<li><p><span class="math inline">\(E[(E[Y|X]-g(X))^2]\ge 0\)</span>.</p></li>
+<li>Then we have:</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+  E[(Y-g(X))^2] &amp;= E\big[E[(Y-g(X))^2|X]\big]     \\ 
+    &amp;=E\big[V[Y|X]+(E[Y|X]-g(X))^2\big]           \\
+    &amp;=E\big[V[Y|X]\big]+E\big[(E[Y|X]-g(X))^2\big]\\
+\end{aligned}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(E[V[Y|X]]\)</span> doesn’t depend on <span class="math inline">\(g\)</span>; and,</li>
+<li><span class="math inline">\(E[(E[Y|X]-g(X))^2]\ge 0\)</span>.</li>
 </ul>
 <p><span class="math inline">\(\therefore g(X) = E[Y|X]\)</span> gives the smallest <span class="math inline">\(E[(Y-g(X))^2]\)</span></p>
 <ul>
