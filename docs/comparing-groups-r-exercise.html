@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,15 +297,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="8.2" data-path="class-announcements-6.html"><a href="class-announcements-6.html"><i class="fa fa-check"></i><b>8.2</b> Class Announcements</a></li>
 <li class="chapter" data-level="8.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap</a></li>
-<li class="chapter" data-level="8.4" data-path="regression-discussion.html"><a href="regression-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Regression Discussion</a>
+<li class="chapter" data-level="8.4" data-path="regression-discussion.html"><a href="regression-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Regression Discussion</a></li>
+<li class="chapter" data-level="8.5" data-path="working-on-math.html"><a href="working-on-math.html"><i class="fa fa-check"></i><b>8.5</b> Working on Math</a></li>
+<li class="chapter" data-level="8.6" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>8.6</b> Visualizing Data</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="regression-discussion.html"><a href="regression-discussion.html#discussion-questions-3"><i class="fa fa-check"></i><b>8.4.1</b> Discussion Questions</a></li>
-<li class="chapter" data-level="8.4.2" data-path="regression-discussion.html"><a href="regression-discussion.html#reasoning-by-analogies"><i class="fa fa-check"></i><b>8.4.2</b> Reasoning by Analogies</a></li>
+<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions-3"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="8.6.2" data-path="visualizing-data.html"><a href="visualizing-data.html#reasoning-by-analogies"><i class="fa fa-check"></i><b>8.6.2</b> Reasoning by Analogies</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.5</b> Coding Activity:R Cheat Sheet</a></li>
-<li class="chapter" data-level="8.6" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.6</b> R Exercise</a>
+<li class="chapter" data-level="8.7" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.7</b> Coding Activity:R Cheat Sheet</a></li>
+<li class="chapter" data-level="8.8" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.8</b> R Exercise</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.6.1</b> Assess the Relationship between Price and Square Footage</a></li>
+<li class="chapter" data-level="8.8.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.8.1</b> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="ols-regression-inference.html"><a href="ols-regression-inference.html"><i class="fa fa-check"></i><b>9</b> OLS Regression Inference</a>
@@ -425,30 +427,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>To learn about each variable, you can enter it into the search bar at the <a href="https://gssdataexplorer.norc.org/variables/vfilter">GSS data explorer</a></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="comparing-groups-r-exercise.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/GSS_w203.RData&#39;</span>)</span>
 <span id="cb26-2"><a href="comparing-groups-r-exercise.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GSS)</span></code></pre></div>
-<pre><code>##            rincome               happy                           sexnow        wwwhr           emailhr       
-##  $25000 or more: 851   very happy   : 701   women                   :758   Min.   :  0.00   Min.   :  0.000  
-##  $20000 - 24999: 107   pretty happy :1307   man                     :640   1st Qu.:  3.00   1st Qu.:  0.000  
-##  $10000 - 14999:  94   not too happy: 336   transgender             :  2   Median :  8.00   Median :  2.000  
-##  $15000 - 19999:  61   DK           :   0   a gender not listed here:  1   Mean   : 13.91   Mean   :  7.152  
-##  lt $1000      :  33   IAP          :   0   Don&#39;t know              :  0   3rd Qu.: 20.00   3rd Qu.: 10.000  
-##  (Other)       : 169   NA           :   0   (Other)                 :  0   Max.   :140.00   Max.   :100.000  
-##  NA&#39;s          :1033   NA&#39;s         :   4   NA&#39;s                    :947   NA&#39;s   :986      NA&#39;s   :929      
-##               socrel                socommun      numpets          tvhours                           major1    
-##  sev times a week:382   never           :510   Min.   : 0.000   Min.   : 0.000   business administration: 138  
-##  sev times a mnth:287   once a month    :243   1st Qu.: 0.000   1st Qu.: 1.000   education              :  79  
-##  once a month    :259   sev times a week:219   Median : 1.000   Median : 2.000   engineering            :  54  
-##  sev times a year:240   sev times a year:196   Mean   : 1.718   Mean   : 2.938   nursing                :  51  
-##  almost daily    :217   sev times a mnth:174   3rd Qu.: 2.000   3rd Qu.: 4.000   health                 :  42  
-##  (Other)         :171   (Other)         :215   Max.   :20.000   Max.   :24.000   (Other)                : 546  
-##  NA&#39;s            :792   NA&#39;s            :791   NA&#39;s   :1201     NA&#39;s   :793      NA&#39;s                   :1438  
-##      owngun   
-##  yes    :537  
-##  no     :993  
-##  refused: 39  
-##  DK     :  0  
-##  IAP    :  0  
-##  NA     :  0  
-##  NA&#39;s   :779</code></pre>
+<pre><code>##            rincome               happy                           sexnow   
+##  $25000 or more: 851   very happy   : 701   women                   :758  
+##  $20000 - 24999: 107   pretty happy :1307   man                     :640  
+##  $10000 - 14999:  94   not too happy: 336   transgender             :  2  
+##  $15000 - 19999:  61   DK           :   0   a gender not listed here:  1  
+##  lt $1000      :  33   IAP          :   0   Don&#39;t know              :  0  
+##  (Other)       : 169   NA           :   0   (Other)                 :  0  
+##  NA&#39;s          :1033   NA&#39;s         :   4   NA&#39;s                    :947  
+##      wwwhr           emailhr                     socrel                socommun  
+##  Min.   :  0.00   Min.   :  0.000   sev times a week:382   never           :510  
+##  1st Qu.:  3.00   1st Qu.:  0.000   sev times a mnth:287   once a month    :243  
+##  Median :  8.00   Median :  2.000   once a month    :259   sev times a week:219  
+##  Mean   : 13.91   Mean   :  7.152   sev times a year:240   sev times a year:196  
+##  3rd Qu.: 20.00   3rd Qu.: 10.000   almost daily    :217   sev times a mnth:174  
+##  Max.   :140.00   Max.   :100.000   (Other)         :171   (Other)         :215  
+##  NA&#39;s   :986      NA&#39;s   :929       NA&#39;s            :792   NA&#39;s            :791  
+##     numpets          tvhours                           major1         owngun   
+##  Min.   : 0.000   Min.   : 0.000   business administration: 138   yes    :537  
+##  1st Qu.: 0.000   1st Qu.: 1.000   education              :  79   no     :993  
+##  Median : 1.000   Median : 2.000   engineering            :  54   refused: 39  
+##  Mean   : 1.718   Mean   : 2.938   nursing                :  51   DK     :  0  
+##  3rd Qu.: 2.000   3rd Qu.: 4.000   health                 :  42   IAP    :  0  
+##  Max.   :20.000   Max.   :24.000   (Other)                : 546   NA     :  0  
+##  NA&#39;s   :1201     NA&#39;s   :793      NA&#39;s                   :1438   NA&#39;s   :779</code></pre>
 <p>You have a set of questions that you would like to answer with a statistical test. <strong>For each question</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>Choose the most appropriate test.</li>

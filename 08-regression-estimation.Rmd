@@ -33,8 +33,17 @@
 - To make regression estimates useful, we need measures of uncertainty (standard errors, tests...).
 - The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
 
-
 ## Regression Discussion
+
+## Working on Math 
+
+Meet us over at this [link](https://miro.com/welcomeonboard/OWZ3SHlpeVBMYjdnc2xXUFhzQVNWaFpnTkg2dmF1Z3I1UUJBWVZobWFOeVduSHJNTTRSQUt3akVyQUt0MnAyM3wzNDU4NzY0NTE4MDA4MjA1NTc3?invite_link_id=319921528710) to work on some math together. 
+
+## Visualizing Data 
+
+```{r}
+knitr::include_app(url = 'http://statistics.wtf/minibeta01/', height = '800px')
+```
 
 ### Discussion Questions
 
@@ -164,3 +173,6 @@ price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + 
 ```{r}
 
 ```
+
+
+
