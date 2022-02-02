@@ -117,6 +117,8 @@ learning-objectives-7
 class-announcements-6
 roadmap-5
 regression-discussion
+working-on-math
+visualizing-data
 discussion-questions-3
 reasoning-by-analogies
 coding-activityr-cheat-sheet
