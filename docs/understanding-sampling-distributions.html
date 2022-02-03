@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14.5 Estimation | Statistics for Data Science</title>
+  <title>5.3 Understanding Sampling Distributions | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14.5 Estimation | Statistics for Data Science" />
+  <meta property="og:title" content="5.3 Understanding Sampling Distributions | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14.5 Estimation | Statistics for Data Science" />
+  <meta name="twitter:title" content="5.3 Understanding Sampling Distributions | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="what-is-a-model.html"/>
-<link rel="next" href="discussion-of-maximum-likelihood-estimation.html"/>
+<link rel="prev" href="key-terms-and-assumptions.html"/>
+<link rel="next" href="uncertainty.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -424,13 +424,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="estimation-1" class="section level2" number="14.5">
-<h2><span class="header-section-number">14.5</span> Estimation</h2>
+<div id="understanding-sampling-distributions" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Understanding Sampling Distributions</h2>
 <ul>
-<li><p>We have the tools to use data to infer information about the (joint) distribution</p></li>
-<li><p>Because the joint distribution is complicated, we’ll usually estimate simpler summaries of the joint distribution – e.g. <span class="math inline">\(E[X]\)</span>, <span class="math inline">\(V[X]\)</span>, <span class="math inline">\(E[Y|X]\)</span>, <span class="math inline">\(Cov[X,Y]\)</span></p></li>
-<li><p>There are a number of techniques that you can use to develop an estimator for a parameter. These techniques vary in terms of the principle used to arrive at the estimator and the strength of the assumptions needed to support it.</p></li>
-<li><p>However, all of these estimators are statistics meaning they are functions of the data <span class="math inline">\(\{X_i\}_{i=1}^n\)</span></p></li>
+<li>Let <span class="math inline">\(X\)</span> be a Bernoulli random variable representing an unfair coin with <span class="math inline">\(P(X=1) = 0.7\)</span>.</li>
+<li>You have an iid sample of size 2, <span class="math inline">\((X_1,X_2)\)</span>.</li>
+<li>Compute the sampling distribution of <span class="math inline">\(\overline X = \frac{X_1+X_2}{2}\)</span>.</li>
+</ul>
+<p><img src="203-live-session_files/figure-html/make%20axes-1.png" width="672" /></p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>Explain the difference between a population distribution and the sampling distribution of a statistic.</li>
+<li>As we toss more and more coins, <span class="math inline">\(\overline X_{(100)} \rightarrow \overline X_{(10000)}\)</span> what will the value of <span class="math inline">\(\overline X\)</span> get closer to? What law generates this, and why does this law generate this result?</li>
+<li>Why do we want to know things about the sampling distribution of a statistic?</li>
 </ul>
 </div>
             </section>
@@ -438,8 +444,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="what-is-a-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="discussion-of-maximum-likelihood-estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="key-terms-and-assumptions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="uncertainty.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

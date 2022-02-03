@@ -8,36 +8,40 @@ theme_set(theme_minimal())
 ![south hall](./images/south_hall.jpeg)
 
 
-## Learning Objectives 
+## Goals, Framework, and Learning Objectives 
 
-1. 
-2. 
-3. 
-
-## Class Announcements
+### Class Announcements
 
 - You're done with probability theory. Congrats!
 - You're also done with your first test. Congrats! 
 - We're going to have a second test in a few weeks; then we're done testing for the semester
 
+### Learning Objectives 
+At the end of this week, students will be able to 
 
-## Roadmap 
+1. **Understand** what iid sampling is, and evaluate whether the assumption of iid sampling is sufficiently plausible to engage in frequentist modeling.
+2. **Appreciate** that with iid sampling, summarizing functions of random variables are, themselves, random variables with probability distributions and values that they obtain.
+2. **Recall** the definition of an estimator, 
+2. **Recall** definition of an estimator, **state** and **understand** the desirable properties of estimators, and **evaluate** whether an estimator possesses those desirable properties. 
+3. **Distinguish** between the concepts of {expectation & sample mean}, {variance & unbiased sample variance estimator, sampling-based variance in the sample mean}. 
 
-**Where We're Going -- Coming Attractions** 
+### Roadmap 
+
+#### Where We're Going -- Coming Attractions
 
 - We're going to start bringing data into our work 
 - First, we're going to develop a testing framework that is built on sampling theory and reference distributions -- `t.tests`, `wilcox.test` and the like
 - Second, we're going to show that OLS regression is the sample estimator of the BLP 
 - Third, we're going to use the testing distribution to test regression coefficients 
 
-**Where We've Been -- Random Variables and Probability Theory** 
+#### Where We've Been -- Random Variables and Probability Theory
 
 - Statisticians create a model (A.K.A. population) to represent the world.
 - That model can be described by parameters like expecation, covariance.
 - So far, these parameter values have come from our imaginations
 
 
-**Where we Are**
+#### Where we Are
 
 - We want to fit models -- use data to set their parameter values.
 - A sample is a set of random variables
@@ -48,6 +52,13 @@ theme_set(theme_minimal())
 
 ## Key Terms and Assumptions
 
+### IID
+For each scenario, is the IID assumption plausible?
+
+- Call a random phone number.  If someone answers, interview all persons in the household.  Repeat until you have data on 100 people.
+- Call a random phone number, interview the person if they are over 30.  Repeat until you have data on 100 people.
+- Record year-to-date price change for 20 largest car manufacturers.
+- Measure net exports per GDP for all 195 countries recognized by the UN.
 
 ### Definitions
 
@@ -62,16 +73,7 @@ Define each of the following:
 - Convergence in Probability 
 - Convergence in Distribution
 
-### IID
-
-For each scenario, is the IID assumption plausible?
-
-- Call a random phone number.  If someone answers, interview all persons in the household.  Repeat until you have data on 100 people.
-- Call a random phone number, interview the person if they are over 30.  Repeat until you have data on 100 people.
-- Record year-to-date price change for 20 largest car manufacturers.
-- Measure net exports per GDP for all 195 countries recognized by the UN.
-
-### Understanding Sampling Distributions 
+## Understanding Sampling Distributions 
 
 - Let $X$ be a Bernoulli random variable representing an unfair coin with $P(X=1) = 0.7$.
 - You have an iid sample of size 2,  $(X_1,X_2)$.
@@ -81,10 +83,10 @@ For each scenario, is the IID assumption plausible?
 ggplot() + 
   aes(x = c(0,5), y = c(0,1)) + 
   geom_blank() + 
-  theme_bw() + 
-  theme(
-    panel.background = element_rect(fill = "transparent",colour = NA),
-    plot.background = element_rect(fill = "transparent",colour = NA)
+  labs(
+    title = 'Distribution of Bernoulli RV', 
+    x     = 'Value of X', 
+    y     = 'Probability of that Value of X'
   )
 ```
 
@@ -112,7 +114,7 @@ ggplot() +
 
 ## Write Code to Demo the Central Limit Theorem (CLT)
 
-### Motivating the Central Limit Theor (CLT)
+### Motivating the Central Limit Theorem (CLT)
 
 - Standard Errors tell us a lot about the uncertainty in our statistics
 - But we want to say more: 
@@ -157,23 +159,10 @@ rbinom(n=n, size=1, prob=p)
 replicate(10, log(10))
 ```
 
-**hist()** 
-
-- To quickly visualize your results, try `hist`
-
-```{r quick histogram, fig.height=4}
-hist(x = rnorm(100), main = "Simulated Sample Means")
-```
-
-**ggplot()**
-
-- Or, to work with `ggplot` store these results in a data.frame.  
-
 ```{r ggplot histogram, message=FALSE, fig.height=4}
-d <- data.frame(x = rnorm(100))
-d %>% 
-  ggplot(aes(x=x)) + 
-  geom_histogram() 
+ggplot() + 
+  aes(x = rnorm(100)) + 
+  geom_histogram(bins = '8') 
 ```
 
 ## Exercise
@@ -184,8 +173,9 @@ Throughout this part, we will use fair coins (`p = 0.5`).
 1. Fill in the function below so that it simulates taking n draws from a Bernoulli distribution with parameter p.  This is like tossing n coins at the same time. Use the `mean` function to compute the sample mean -- the average of the number of heads that are showing.  Make sure that when you run it, you return values in $\{0,1/3,2/3,1\}$.
 
 ```{r define coin tossing function}
-experiment = function(n, p){
-}
+experiment <- function(n, p){
+
+  }
 ```
 
 2. The sample mean is a random variable. To understand it, use the visualization trick from a few weeks ago.  Use the `replicate` function to run the above experiment 1000 times, and plot a histogram of the results.
@@ -237,7 +227,7 @@ For this activity, you can simply use your eyes to gauge how skewed a distributi
 ```
 
 
-## Discussion Questions
+### Discussion Questions
 
 1. How does the skewness of the population distribution affect the applicability of the Central Limit Theorem?  What lesson can you take for your practice of statistics?
 

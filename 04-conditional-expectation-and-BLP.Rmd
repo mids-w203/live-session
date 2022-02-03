@@ -113,15 +113,16 @@ $$
 
 What does the joint PDF of this function look like? 
 
-```{r}
+```{r create blank plot for pdf, echo = FALSE}
 ggplot() + 
   geom_blank() + 
   labs(
     title = 'Joint PDF of X,Y', 
     x = 'x axis', 
-    y = latex2exp::latex2exp('$P_{X,Y}(x,y)$')
+    y = latex2exp::TeX('$P_{X,Y}(x,y)$')
   )
 ```
+
 - What is the expectation of $X$? 
 - What is the expectation of $Y$? 
 - How would you compute the variance of $X$? (We're not going to do it live). 
