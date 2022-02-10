@@ -1,23 +1,46 @@
 # Hypothesis Testing
+
+Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurt assumption. 
+
+Like a petulant child, NHST essentially proclaims, 
+
+> "Oh yeah? Well, if you actually loved me then you would buy me an iPad!" 
+
+Which is to say, it says, "Oh yeah? If this absurd thing isn't true, prove it to me!" 
+
 ![update!](./images/frequentists_vs_bayesians.png)
+
+### What is Frequentist testing doing? {-}
+
+This testing framework works on **samples** of data, and applies **estimators** to produce **estimates** of **population parameters** that are fundamentally unknown and unknowable. Despite this unknown and unknowable population target, with some carefully written down estimators we can rely on the convergence characteristics of some estimators to produce *useful*, *reliable* results. 
+
+We begin with the one-sample t-test. The one-sample t-test relies on the sample average as an estimator of a population expectation. In doing so, it relies on the effectiveness of the **Weak Law of Large Numbers** and the **Central Limit Theorem** to guarantee that the estimator that **converges in probability** to the population expectation, while also **converging in distribution** to a Gaussian distribution. 
+
+These two convergences permit a data scientist to make several **inferences** based on data: 
+
+1. The probability of generating data that *"looks like what is observed"*, if the null-hypothesis were true. This is often referred to as the **p-value** of a test, and is the petulant statement identified above.
+2. An interval of values that, with some stated probability (e.g. 95%), contains the true population parameter. 
+
+
+
+This framework begins a **exceedingly important** task that we must understand, and undertake when we are working as data scientists: Producing our best-estimate, communicating how we arrived at that estimate, what (if any) guarantees that estimate provides, and *crucially* all **limitations** of our estimate. 
 
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+1. **Understand** the connection between random variables, sampling, and statistical tests.
+2. **Apply** the Frenquentist testing framework in a simple test -- the one-sample t-test. 
+3. **Anticipate** that every additional Frequentist test is a closely related variant of this test. 
 
 
 ## Class Announcements
 
-- Test 2 is this week
-    - Includes units 4-5 (not 6)
-    - There is another practice test on Gradescope
-- Lab 1 starts after live session 7
-    - 2 week lab
-    - You will work in a group to conduct hypothesis tests
-
-
+1. You will be taking your second test this week. The test follows the same format as the first test, which we will discuss in live session. The test will cover *Unit 4: Conditional Expectation and the Best Linear Predictor* and *Unit 5: Learning from Random Samples.* 
+  - Like the first test, our goal is to communicate to you what concepts we think are important, and then to test those concepts directly, and fairly. The purpose of the test is to give you an incentive to review what you have learned through probability theory, and then to demonstrate that you can produce work based on that knowledge. 
+  - There is another practice test on Gradescope, and in the GitHub repository. 
+2. In rosier news, we're moving out of the *only* pencil and paper section of this course, and bringing what we have learned out into the dirty world of data. This means a few things: 
+  - If you haven't yet worked through the **R Bridge Course** that is available to you, working on this bridge course will be useful for you (after you complete your test). The goal of the course is to get you up and running with reasonably successful code and workflows for the data-based portion of the course. 
+3. We will assign teams, and begin our work on **Lab 1** in Live Session next week. This is a two-week, group lab that you will work on with three total team-mates. The lab will cover some of the fundamentals of hypothesis tests, 
+    
 ## Roadmap
 
 **Looking Backwards**
@@ -37,21 +60,47 @@
 - We'll build on the one-sample t-test, to introduce several other statistical tests.
 - We'll see how to choose a test from different alternatives, with an eye on meeting the required assumptions, and maximizing power.
 
-## Discussion
-
-### Discussion Questions 1
+## What does a hypothesis test do? 
 
 - What are the two possible outcomes of a hypothesis test?
+- What are the four-possible combinations of (a) hypothesis test rest; and (b) state of the world? 
+- Does a hypothesis test always have to report a result that is consistent with the state of the world? What does it mean if it *does*, and what does it mean if it *does not*. 
+- What if you made up your own testing framework, called the {Your Last Name's} Groundhog test. Which is literally a groundhog looking to see its shadow. Because you made the test, suppose that you know that it is *totally random* whether a groundhog sees its shadow. *How useful would this test be at separating states of the world?*  
 - What guarantee do you get if you follow the decision rules properly?
 - Why do we standardize the mean to create a test statistic?
 
-$$ t = \frac{ \overline{X}_n - \mu}{\sqrt{\frac{s^2}{n}}} $$
+$$ 
+  t = \frac{ \overline{X}_n - \mu}{\sqrt{\frac{s^2}{n}}}
+$$
 
-### Discussion Questions 2
-- Explain this joke:
+## Madlib prompt
 
-<img src=https://imgs.xkcd.com/comics/null_hypothesis.png></img>
+```{r}
+tone_of_voice     <- 'NA'
+mode_of_speech    <- 'NA'
+superlative       <- 'NA'
+score_on_test     <- 'NA'
+name_of_classmate <- 'NA'
+emotion           <- 'NA'
+eating_verb       <- 'NA' #slurp
+vessel            <- 'NA'
+thing_found_in_compost <- 'NA'
+```
 
+## Madlib completed 
+Suppose that a classmate comes to you, and, in a `r tone_of_voice` voice `r mode_of_speech`, "Hey, I've got something that is `r superlative` for statistics. All you've got to do to get `r score_on_test` on Test 2 and make `r name_of_classmate` `r emotion` is `r eating_verb` this `r vessel` of `r thing_found_in_compost`. 
+
+You're skeptical, but also curious because that last test was tough. Good. 
+
+Acknowledging that we're only 40% of the way through the course, you decide to hire a hungry, underpaid PhD student the School to conduct the experiment to evaluate this claim. They report back, no details about the test, but they do tell you, "We're sure there's no effect of `r thing_found_in_compost`."
+
+- Do you believe them? 
+- What, if any, reasons can you imagine not to believe this conclusion? 
+
+## All joking aside 
+Explain this joke:
+
+![har har har](https://imgs.xkcd.com/comics/null_hypothesis.png)
 
 ## Manual Computation of a t-Test
 
@@ -67,7 +116,7 @@ voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
 
 ```
 
-2. Using `qt()`, compute the t critical value for a hypothesis test for this sample. (Following convention, set $\alpha = .05$.)
+2. Using `qt()`, compute the t critical value for a hypothesis test for this sample. 
 
 ```{r}
 
@@ -85,8 +134,9 @@ voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
 
 ```
 
-5. Should you reject the null?  Argue this in two different ways.
+5. Should you reject the null?  Argue this in two different ways. (Following convention, set $\alpha = .05$.)
 
+> 
 
 6. Suppose you were to use a normal distribution instead of a t-distribution to test your hypothesis.  What would your p-value be for the z-test?
 
@@ -96,12 +146,13 @@ voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
 
 7. Without actually computing it, say whether a 95% confidence interval for the mean would include 12 volts.
 
+> 
+
 8. Compute a 95% confidence interval for the mean.
 
 ```{r}
 
 ```
-
 
 ## Data Exercise
 

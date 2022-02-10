@@ -111,6 +111,21 @@ ggplot() +
 
 *(Standard errors in parentheses when available)*
 
+## Standard Errors 
+
+Errors in stating standard errors frequently occur. (We wanted to start with what might the most vapid, but also confusing statement possible!)
+
+Standard errors are a statement about the sampling variance of the sample average. But, related to this concept are the ideas of the *Population Variance*, the *Plug-In Estimator for the Sample Variance*, the *Unbiased Sample Variance*, and, finally, the *Sampling Variance of the Sample Average* (i.e the *Standard Error*). 
+
+How are each of these concepts related to one another, and how can we keep them all straight? As a group, fill out the following columns? 
+
+| Population Concept    | Sample Estimator | Estimator Properties | Sampling Variance of Sample Estimator | 
+|-----------------------|------------------|----------------------|---------------------------------------|
+| Expected Value        |                  |                      |                                       | 
+| Population Variance   |                  |                      |                                       | 
+| Population Covariance |                  |                      |                                       | 
+| CEF                   |                  |                      |                                       | 
+| BLP                   |                  |                      |                                       | 
 
 ## Write Code to Demo the Central Limit Theorem (CLT)
 
