@@ -76,15 +76,15 @@ $$
 ## Madlib prompt
 
 ```{r}
-tone_of_voice     <- 'NA'
-mode_of_speech    <- 'NA'
-superlative       <- 'NA'
-score_on_test     <- 'NA'
-name_of_classmate <- 'NA'
-emotion           <- 'NA'
-eating_verb       <- 'NA' #slurp
-vessel            <- 'NA'
-thing_found_in_compost <- 'NA'
+tone_of_voice     <- 'yell'
+mode_of_speech    <- 'call'
+superlative       <- 'worst'
+score_on_test     <- '70'
+name_of_classmate <- 'victor'
+emotion           <- 'ennui'
+eating_verb       <- 'smack' #slurp
+vessel            <- 'bowl'
+thing_found_in_compost <- 'bannana peel'
 ```
 
 ## Madlib completed 

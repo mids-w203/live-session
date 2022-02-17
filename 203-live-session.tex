@@ -114,7 +114,7 @@
 
 \title{Statistics for Data Science}
 \author{UC Berkeley, School of Information}
-\date{2022-02-10}
+\date{2022-02-17}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2219,26 +2219,26 @@ This framework begins a \textbf{exceedingly important} task that we must underst
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tone\_of\_voice     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{mode\_of\_speech    }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{superlative       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{score\_on\_test     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{name\_of\_classmate }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{emotion           }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{eating\_verb       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}} \CommentTok{\#slurp}
-\NormalTok{vessel            }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
-\NormalTok{thing\_found\_in\_compost }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}NA\textquotesingle{}}
+\NormalTok{tone\_of\_voice     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}yell\textquotesingle{}}
+\NormalTok{mode\_of\_speech    }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}call\textquotesingle{}}
+\NormalTok{superlative       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}worst\textquotesingle{}}
+\NormalTok{score\_on\_test     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}70\textquotesingle{}}
+\NormalTok{name\_of\_classmate }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}victor\textquotesingle{}}
+\NormalTok{emotion           }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}ennui\textquotesingle{}}
+\NormalTok{eating\_verb       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}smack\textquotesingle{}} \CommentTok{\#slurp}
+\NormalTok{vessel            }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}bowl\textquotesingle{}}
+\NormalTok{thing\_found\_in\_compost }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}bannana peel\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{madlib-completed}{%
 \section{Madlib completed}\label{madlib-completed}}
 
-Suppose that a classmate comes to you, and, in a NA voice NA, ``Hey, I've got something that is NA for statistics. All you've got to do to get NA on Test 2 and make NA NA is NA this NA of NA.
+Suppose that a classmate comes to you, and, in a yell voice call, ``Hey, I've got something that is worst for statistics. All you've got to do to get 70 on Test 2 and make victor ennui is smack this bowl of bannana peel.
 
 You're skeptical, but also curious because that last test was tough. Good.
 
-Acknowledging that we're only 40\% of the way through the course, you decide to hire a hungry, underpaid PhD student the School to conduct the experiment to evaluate this claim. They report back, no details about the test, but they do tell you, ``We're sure there's no effect of NA.''
+Acknowledging that we're only 40\% of the way through the course, you decide to hire a hungry, underpaid PhD student the School to conduct the experiment to evaluate this claim. They report back, no details about the test, but they do tell you, ``We're sure there's no effect of bannana peel.''
 
 \begin{itemize}
 \tightlist
@@ -2404,10 +2404,10 @@ For the following scenarios, what is the strongest argument against the validity
 \hypertarget{comparing-two-groups}{%
 \chapter{Comparing Two Groups}\label{comparing-two-groups}}
 
-\includegraphics{./images/t_distribution.png}
-
 \hypertarget{learning-objectives-6}{%
 \section{Learning Objectives}\label{learning-objectives-6}}
+
+This week, we introduce the idea of comparing two groups to evaluate whether the data that we have sampled lead us to believe that the population distribution of the random variables are different. Of course, because we don't get access to the function that describes the random variable, we can't \emph{actually} know if the populations are different. It is for this reason that we call it statistical inference -- we are inferring from a sample some belief about the populations.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2449,7 +2449,8 @@ For the following scenarios, what is the strongest argument against the validity
 \hypertarget{roadmap-4}{%
 \section{Roadmap}\label{roadmap-4}}
 
-\textbf{Rearview Mirror}
+\hypertarget{rearview-mirror-1}{%
+\subsection{Rearview Mirror}\label{rearview-mirror-1}}
 
 \begin{itemize}
 \tightlist
@@ -2475,7 +2476,8 @@ For the following scenarios, what is the strongest argument against the validity
   A hypothesis test is a procedure for rejecting or not rejecting a null, such the probability of a type 1 error is constrained.
 \end{itemize}
 
-\textbf{Today}
+\hypertarget{today}{%
+\subsection{Today}\label{today}}
 
 \begin{itemize}
 \tightlist
@@ -2487,7 +2489,8 @@ For the following scenarios, what is the strongest argument against the validity
   Secondarily, we want to maximize power.
 \end{itemize}
 
-\textbf{Looking Ahead}
+\hypertarget{looking-ahead}{%
+\subsection{Looking ahead}\label{looking-ahead}}
 
 \begin{itemize}
 \tightlist
@@ -2500,59 +2503,42 @@ For the following scenarios, what is the strongest argument against the validity
 \hypertarget{teamwork-discussion}{%
 \section{Teamwork Discussion}\label{teamwork-discussion}}
 
-\textbf{Working on Data Science Teams}
+\hypertarget{working-on-data-science-teams}{%
+\subsection{Working on Data Science Teams}\label{working-on-data-science-teams}}
+
+Data science is a \emph{beautiful} combination of team-work and individual-work. It provides the opportunity to work together on a data pipeline with people from all over the organization, to deal with technical, statistical, and social questions that are always interesting. While we expect that everyone on a team will be a professional, there is so much range within the pursuit of data science that projects are nearly always collaborative exercises.
+
+Together as teams, we
 
 \begin{itemize}
 \tightlist
 \item
-  Data science is a \emph{beautiful} combination of team-work and individual-work
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Teams:
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Define research ambitions and scope
-    \item
-      Imagine/envision the landscape of what is possible
-    \item
-      Support, discuss, review and integrate individual contributions
-    \end{itemize}
-  \item
-    Individuals:
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Conduct the heads-down work that moves question answering forward
-    \end{itemize}
-  \end{itemize}
+  Define research ambitions and scope
+\item
+  Imagine/envision the landscape of what is possible
+\item
+  Support, discuss, review and integrate individual contributions
 \end{itemize}
 
-\textbf{The Problematic Psychology of Data Science}
+Together as individuals we conduct the heads-down work that moves question answering forward. This might be reading papers to determine the most appropriate method to bring to bear on the question, or researching the data that is available, or understanding the technical requirements that we have to meet for this answer to be useful to our organization in real time.
 
-\begin{itemize}
-\tightlist
-\item
-  People talk about the \emph{impostor syndrome} -- a feeling of inadequacy or interloping that is sometimes also associated with a fear of under-performing relative to the expectation of others on the team.
+What is your instructor \emph{uniquely} capable of? Let them tell you! But, at the same time, what would they acknowledge that others are better than them?
 
-  \begin{itemize}
-  \tightlist
-  \item
-    These emotions are common through data science, academics, computer science.
-  \item
-    But, the emotions are also commonplace in journalism, film-making, and public speaking
-  \end{itemize}
-\item
-  What might be generating these feelings?
-\end{itemize}
+See, the thing is, because there is so much that has to be done, there literally are very, very few people who are one-stop data science shops. Instead, teams rely on collaboration and joint expertise in order to get good work done.
+
+\hypertarget{the-problematic-psychology-of-data-science}{%
+\subsection{The Problematic Psychology of Data Science}\label{the-problematic-psychology-of-data-science}}
+
+People talk about the \emph{impostor syndrome}: a feeling of inadequacy or interloping that is sometimes also associated with a fear of under-performing relative to the expectation of others on the team. These emotions are common through data science, academics, computer science. But, these types of emotions are also commonplace in journalism, film-making, and public speaking.
+
+Has anybody ever had the dream that they're late to a test? Or, that that they've got to give a speech that they're unprepared for? Does anybody remember playing an instrument as a kid and having to go to recitals? Or, play for a championship on a youth sports team? Or, go into a test two?
+
+What are the feelings associated with those events? What might be generating these feelings?
 
 \includegraphics[width=0.25\textwidth,height=\textheight]{images/among_us.jpeg}
 
-\textbf{What Makes an Effective Team?}
+\hypertarget{what-makes-an-effective-team}{%
+\subsection{What Makes an Effective Team?}\label{what-makes-an-effective-team}}
 
 \begin{itemize}
 \tightlist
@@ -2561,13 +2547,19 @@ For the following scenarios, what is the strongest argument against the validity
 \end{itemize}
 
 \begin{quote}
-What really matters is less about who is on the team, and more about how the team works together.
+What really matters to creating an effective tema is less about who is on the team, and more about how the team works together.
 \end{quote}
+
+In your live session, your section might take 7 minutes to read this brief. If so, please read the following sections:
 
 \begin{itemize}
 \tightlist
 \item
-  In your live session, your section might take 7 minutes to read this brief, reading the problem statement, the proposed solution, and the framework for team effectiveness (stopping at the section titled \emph{``Tool: Help teams determine their own needs.''})
+  The problem statement;
+\item
+  The proposed solution;
+\item
+  The framework for team effectiveness, stopping at the section titled \emph{``Tool: Help teams determine their own needs.''}
 \end{itemize}
 
 \begin{quote}
@@ -2598,34 +2590,6 @@ What really matters is less about who is on the team, and more about how the tea
 \begin{quote}
 How can you add to the psychological safety of your peers in the section and lab teammates?
 \end{quote}
-
-\begin{itemize}
-\tightlist
-\item
-  Only 26\% of data science jobs are held by women.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Morgan Ames (a professor in the program, teaching w231), in \href{https://mitpress.mit.edu/books/charisma-machine}{\emph{The Charisma Machine}} (available for free through the \href{https://ebookcentral.proquest.com/lib/berkeley-ebooks/detail.action?docID=5968332}{library}, and with the introduction chapter \href{./ames_2019.pdf}{here}) studies the One Laptop Per Child initiative, and argues that the failure of OLPC is (another) example of:
-  \end{itemize}
-\item
-  Sociological barriers that make broad-based, inclusive collaboration in tech challenging.
-\end{itemize}
-
-\begin{quote}
-``One Laptop Per Child implicitly invokes the social imaginary of the technically precocious boy\ldots{} This imaginary shows a ``natural'' mastery of technical toys as well as a particular kind of rebellious sensibility that enables technical tinkering---but is still exclusionary by connecting technical prowess to boys in particular.''
-\end{quote}
-
-\begin{quote}
-``In contrast, I found that each {[}successful{]} student had a constellation of resources that encouraged them down this path: families that steered them toward creative and critical thinking, a focus on the importance of education, and in many cases another computer in the home. This account circumscribes the role of technology, {[}\ldots{} and{]} instead highlights the importance of social worlds.''
-\end{quote}
-
-\begin{itemize}
-\tightlist
-\item
-  In the face of uneven challenges faced by under-represented peoples in data science, what actions can we take to produce an inclusive, integrated data science team?
-\end{itemize}
 
 \hypertarget{team-kick-off}{%
 \section{Team Kick-Off}\label{team-kick-off}}
@@ -2700,8 +2664,8 @@ non-parametric
 \end{minipage} \\
 \midrule
 \endhead
-unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal & \textbf{Wicoxon rank-sum} ordinal var i.i.d.  \\
-paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wicoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
+unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal & \textbf{Wilcoxon rank-sum} ordinal var i.i.d.  \\
+paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wilcoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
 \bottomrule
 \end{longtable}
 
@@ -4054,13 +4018,13 @@ In this analysis, we will use the mtcars dataset which is a dataset that was ext
 \begin{verbatim}
 ## Rows: 32
 ## Columns: 11
-## $ mpg  <dbl> 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, ~
+## $ mpg  <dbl> 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4,~
 ## $ cyl  <dbl> 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
-## $ disp <dbl> 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.~
-## $ hp   <dbl> 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150,~
-## $ drat <dbl> 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, ~
-## $ wt   <dbl> 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.25~
-## $ qsec <dbl> 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.9~
+## $ disp <dbl> 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0, 46~
+## $ hp   <dbl> 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, 150,~
+## $ drat <dbl> 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4.08,~
+## $ wt   <dbl> 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250, 5.~
+## $ qsec <dbl> 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98, 17~
 ## $ vs   <dbl> 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1
 ## $ am   <dbl> 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
 ## $ gear <dbl> 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 4

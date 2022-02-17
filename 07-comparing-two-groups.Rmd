@@ -1,7 +1,8 @@
 # Comparing Two Groups
-![](./images/t_distribution.png)
 
 ## Learning Objectives 
+
+This week, we introduce the idea of comparing two groups to evaluate whether the data that we have sampled lead us to believe that the population distribution of the random variables are different. Of course, because we don't get access to the function that describes the random variable, we can't *actually* know if the populations are different. It is for this reason that we call it statistical inference -- we are inferring from a sample some belief about the populations. 
 
 1. 
 2. 
@@ -10,7 +11,7 @@
 ## Class Announcements
 
 - Great work completing your final w203 test!
-- There is **no** unit 7 homework!
+- There is **no** unit 7 homework! 
 - The Hypothesis Testing Lab is released today! 
     - Lab is due at Unit 09 Live Session (two weeks)
     - Group lab in two parts: 
@@ -19,7 +20,7 @@
     
 
 ## Roadmap
-**Rearview Mirror**
+### Rearview Mirror
 
 - Statisticians create a population model to represent the world
 - A population model has parameters we are interested in
@@ -28,51 +29,59 @@
     - Ex: The vitamin has zero effect on performance
 - A hypothesis test is a procedure for rejecting or not rejecting a null, such the probability of a type 1 error is constrained.
 
-**Today**
+### Today
 
 - There are often multiple hypothesis tests you can apply to a scenario.
 - Our primary concern is choosing a test with assumptions we can defend.
 - Secondarily, we want to maximize power.
 
-**Looking Ahead**
+### Looking ahead 
 
 - Next week, we start working with models for linear regression
 - We will see how hypothesis testing is also used for regression parameters.
 
 ## Teamwork Discussion
+### Working on Data Science Teams
+Data science is a *beautiful* combination of team-work and individual-work. It provides the opportunity to work together on a data pipeline with people from all over the organization, to deal with technical, statistical, and social questions that are always interesting. While we expect that everyone on a team will be a professional, there is so much range within the pursuit of data science that projects are nearly always collaborative exercises. 
 
-**Working on Data Science Teams** 
+Together as teams, we
 
-- Data science is a *beautiful* combination of team-work and individual-work
-  - Teams:
-    - Define research ambitions and scope
-    - Imagine/envision the landscape of what is possible 
-    - Support, discuss, review and integrate individual contributions
-  - Individuals: 
-    - Conduct the heads-down work that moves question answering forward 
+  - Define research ambitions and scope
+  - Imagine/envision the landscape of what is possible 
+  - Support, discuss, review and integrate individual contributions
+  
+Together as individuals we conduct the heads-down work that moves question answering forward. This might be reading papers to determine the most appropriate method to bring to bear on the question, or researching the data that is available, or understanding the technical requirements that we have to meet for this answer to be useful to our organization in real time. 
 
-**The Problematic Psychology of Data Science**
+What is your instructor *uniquely* capable of? Let them tell you! But, at the same time, what would they acknowledge that others are better than them? 
 
-- People talk about the *impostor syndrome* -- a feeling of inadequacy or interloping that is sometimes also associated with a fear of under-performing relative to the expectation of others on the team.
-  - These emotions are common through data science, academics, computer science.
-  - But, the emotions are also commonplace in journalism, film-making, and public speaking
-- What might be generating these feelings?
+See, the thing is, because there is so much that has to be done, there literally are very, very few people who are one-stop data science shops. Instead, teams rely on collaboration and joint expertise in order to get good work done. 
+
+### The Problematic Psychology of Data Science
+
+People talk about the *impostor syndrome*: a feeling of inadequacy or interloping that is sometimes also associated with a fear of under-performing relative to the expectation of others on the team. These emotions are common through data science, academics, computer science. But, these types of emotions are also commonplace in journalism, film-making, and public speaking. 
+
+Has anybody ever had the dream that they're late to a test? Or, that that they've got to give a speech that they're unprepared for? Does anybody remember playing an instrument as a kid and having to go to recitals? Or, play for a championship on a youth sports team? Or, go into a test two? 
+
+What are the feelings associated with those events? What might be generating these feelings?
 
 ![](images/among_us.jpeg){width=25%}
 
 
-**What Makes an Effective Team?**
+### What Makes an Effective Team?
 
 - This reading on [*effective* teams](https://rework.withgoogle.com/print/guides/5721312655835136/) summarizes academic research to argue: 
 
-> What really matters is less about who is on the team, and more about how the team works together. 
+> What really matters to creating an effective tema is less about who is on the team, and more about how the team works together. 
 
-- In your live session, your section might take 7 minutes to read this brief, reading the problem statement, the proposed solution, and the framework for team effectiveness (stopping at the section titled *"Tool: Help teams determine their own needs."*) 
+In your live session, your section might take 7 minutes to read this brief. If so, please read the following sections: 
+
+- The problem statement; 
+- The proposed solution; 
+- The framework for team effectiveness, stopping at the section titled *"Tool: Help teams determine their own needs."* 
 
 > "Psychological safety refers to an individual's perception of the consequences of taking an interpersonal risk. It is a belief that a team is safe for risk taking in the face of being seen as ignorant, incompetent, negative, or disruptive." 
 > 
 > "In a team with high psychological safety, teammates feel safe to take risks around their team members. They feel confident that no one on the team will embarrass or punish anyone else for admitting a mistake, asking a question, or offering a new idea."
-
 
 ### We All Belong
 
@@ -83,18 +92,6 @@
 - Knowing the circumstances that generate feelings of anxiety -- what steps can we take as a section, or a team, to recognize and respond to these circumstances? 
 
 > How can you add to the psychological safety of your peers in the section and lab teammates?
-
-- Only 26% of data science jobs are held by women.
-  - Morgan Ames (a professor in the program, teaching w231), in [*The Charisma Machine*](https://mitpress.mit.edu/books/charisma-machine) (available for free through the [library](https://ebookcentral.proquest.com/lib/berkeley-ebooks/detail.action?docID=5968332), and with the introduction chapter [here](./ames_2019.pdf)) studies the One Laptop Per Child initiative, and argues that the failure of OLPC is (another) example of: 
-  
-- Sociological barriers that make broad-based, inclusive collaboration in tech challenging. 
-
-
-> "One Laptop Per Child implicitly invokes the social imaginary of the technically precocious boy... This imaginary shows a “natural” mastery of technical toys as well as a particular kind of rebellious sensibility that enables technical tinkering—but is still exclusionary by connecting technical prowess to boys in particular." 
-
-> "In contrast, I found that each [successful] student had a constellation of resources that encouraged them down this path: families that steered them toward creative and critical thinking, a focus on the importance of education, and in many cases another computer in the home. This account circumscribes the role of technology, [... and] instead highlights the importance of social worlds." 
-
-- In the face of uneven challenges faced by under-represented peoples in data science, what actions can we take to produce an inclusive, integrated data science team?
 
 ## Team Kick-Off
 **Lab 1 Teams**
@@ -125,8 +122,8 @@ Take a moment to recall the tests you learned this week.  Here is a quick cheat-
 
 | paired/unpaired | parametric                                                                      | non-parametric                                          |
 |-----------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
-| unpaired        | **unpaired t-test** <br> - metric var <br> - i.i.d. <br> - (not too un-)normal  | **Wicoxon rank-sum** <br> ordinal var <br> i.i.d. <br>  |
-| paired          | **paired t-test** <br> metric var <br> i.i.d. <br> (not too un-)normal          | **Wicoxon signed-rank** <br> metric var <br> i.i.d. <br> difference is symmetric  <br> <br> **sign test** <br> ordinal var <br> i.i.d. |
+| unpaired        | **unpaired t-test** <br> - metric var <br> - i.i.d. <br> - (not too un-)normal  | **Wilcoxon rank-sum** <br> ordinal var <br> i.i.d. <br>  |
+| paired          | **paired t-test** <br> metric var <br> i.i.d. <br> (not too un-)normal          | **Wilcoxon signed-rank** <br> metric var <br> i.i.d. <br> difference is symmetric  <br> <br> **sign test** <br> ordinal var <br> i.i.d. |
    
 ## Comparing Groups R Exercise
 
