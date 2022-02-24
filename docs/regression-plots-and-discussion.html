@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.7 Assumptions Behind the t-test | Statistics for Data Science</title>
+  <title>8.9 Regression Plots and Discussion | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.7 Assumptions Behind the t-test | Statistics for Data Science" />
+  <meta property="og:title" content="8.9 Regression Plots and Discussion | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.7 Assumptions Behind the t-test | Statistics for Data Science" />
+  <meta name="twitter:title" content="8.9 Regression Plots and Discussion | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-exercise.html"/>
-<link rel="next" href="comparing-two-groups.html"/>
+<link rel="prev" href="r-exercise.html"/>
+<link rel="next" href="ols-regression-inference.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -425,15 +425,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assumptions-behind-the-t-test" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> Assumptions Behind the t-test</h2>
-<p>For the following scenarios, what is the strongest argument against the validity of a t-test?</p>
-<ul>
-<li><p>You have a sample of 50 CEO salaries, and you want to know whether the mean salary is greater than $1 million.</p></li>
-<li><p>A nonprofit organization measures the percentage of students that pass an 8th grade reading test in 40 neighboring California counties. You are interested in whether the percentage of students that pass in California is over 80%</p></li>
-<li><p>You have survey data in which respondents assess their own opinion of corgis, with options ranging from “1 - extreme disgust” to “5 - affection so intense it threatens my career.” You want to know whether people on the average like corgis more than 3, representing neutrality.</p></li>
-</ul>
+<div id="regression-plots-and-discussion" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> Regression Plots and Discussion</h2>
+<p>In this next set of notes, we’re going to give some data, displayed in plots, and we will try to apply what we have learned in the async and reading for this week to answer questions about each of the scatter plots.</p>
+<div id="plot-1" class="section level3" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Plot 1</h3>
+<p>Consider data that is generated according to the following function:</p>
+<p><span class="math display">\[
+  Y = 1 + 2x_1 + 3x_2 + e, 
+\]</span></p>
+<p>where <span class="math inline">\(x_1 \sim N(0,2)\)</span>, <span class="math inline">\(x_2 \sim N(0,2)\)</span> and <span class="math inline">\(e\)</span> is a constant equal to zero. You could represent a sample of 100 observations from this population function and produce the following 3d scatter plot. In this plot, there are three dimensions, an <code>x1</code> dimension, and <code>x2</code> dimension, and a <code>y</code> dimension.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="regression-plots-and-discussion.html#cb36-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_app</span>(<span class="at">url =</span><span class="st">&quot;http://www.statistics.wtf/minibeta_l01/&quot;</span>)</span></code></pre></div>
+<iframe src="http://www.statistics.wtf/minibeta_l01/?showcase=0" width="672" height="400px" data-external="1">
+</iframe>
+<ol style="list-style-type: decimal">
+<li>Rotate the cube and explore the data, looking at each face of the cube, including from the top down.</li>
+<li>One of the points that we have made during the random variables section of the course is that every random variable that has been measured can also be marginalized off. You might think of this as “casting down” data from three dimensions, to only two.</li>
+<li>Sketch the following 2d scatter plots, taking care the label your axes.:
+1. <span class="math inline">\(Y = f(x_1)\)</span> (but not <span class="math inline">\(x_2\)</span>)
+2. <span class="math inline">\(Y = f(x_2)\)</span> (but not <span class="math inline">\(x_1\)</span>)
+3. <span class="math inline">\(x2 = f_x_1)\)</span></li>
+<li>Once you have sketched the scatter plots, what line would you fit that minimizes the sum of squared residuals in the vertical direction. Define a residual, <span class="math inline">\(\epsilon\)</span>, to be the vertical distance between the line you draw, and the corresponding point on the input data.</li>
+<li>What is the <em>average</em> of the residuals for each of the lines that you have fitted?</li>
+<li></li>
+</ol>
 
+</div>
 </div>
 <!-- </div> -->
             </section>
@@ -441,8 +458,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-exercise.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="comparing-two-groups.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-exercise.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ols-regression-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

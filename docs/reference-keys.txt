@@ -124,6 +124,8 @@ reasoning-by-analogies
 coding-activityr-cheat-sheet
 r-exercise
 assess-the-relationship-between-price-and-square-footage
+regression-plots-and-discussion
+plot-1
 ols-regression-inference
 learning-objectives-8
 class-announcements-7

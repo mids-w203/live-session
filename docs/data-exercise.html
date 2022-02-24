@@ -24,7 +24,7 @@
 <meta name="author" content="UC Berkeley, School of Information" />
 
 
-<meta name="date" content="2022-02-02" />
+<meta name="date" content="2022-02-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -309,6 +309,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.8.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.8.1</b> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
+<li class="chapter" data-level="8.9" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html"><i class="fa fa-check"></i><b>8.9</b> Regression Plots and Discussion</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html#plot-1"><i class="fa fa-check"></i><b>8.9.1</b> Plot 1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="ols-regression-inference.html"><a href="ols-regression-inference.html"><i class="fa fa-check"></i><b>9</b> OLS Regression Inference</a>
 <ul>
@@ -436,37 +440,68 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>The file athlet2.Rdata contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-exercise.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/athlet2.RData&quot;</span>)</span>
 <span id="cb24-2"><a href="data-exercise.html#cb24-2" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
-<pre><code>##    dscore dinstt doutstt htpriv vtpriv dapps htwrd vtwrd dwinrec dpriv
-## 1      10   -409   -4679      0      0 -1038     1     1       0     0
-## 2     -14     NA     -66      0      0 -7051     1     1       0     0
-## 3      23   -654    -637      0      0  6209     1     0       1     0
-## 4       8   -222     456      0      0  -129     1     1       0     0
-## 5     -12    -10     208      0      0   794     1     1       0     0
-## 6       7    494      17      0      0   411     0     0       0     0
-## 7     -21      2       2      0      0 -4363     1     1       0     0
-## 8      -5     96    -333      0      0  1144     1     0       1     0
-## 9      -3    223    2526      0      0  3956     0     0       0     0
-## 10    -32    -20       0      0      0  -641     0     1      -1     0
-## 11      9     66       0      0      0  -278     1     0       1     0
-## 12      1     56    -346      0      0 -2223     1     0       1     0
-## 13      7    556     717      0      0 -5217     1     0       1     0
-## 14    -20    169    -461      0      0  1772     0     1      -1     0
-## 15     35   -135     396      0      0    85     1     0       1     0
-## 16     35    -40       0      0      0  -988     1     0       1     0
-## 17    -25     24       0      0      0 -8140     1     1       0     0
-## 18     -9     90       0      0      0  8418     0     1      -1     0
-## 19    -33     27     900      0      0 -3273     0     0       0     0
-## 20      7    -89     -31      0      0  1906     1     0       1     0
-## 21     -3    536    2352      0      0  -151     1     1       0     0
-## 22     -6  13261    9111      1      0 -9936     1     1       0     1
-## 23    -29  13809   10076      1      0 -6265     0     1      -1     1
-## 24     14 -17631  -10589      0      1  1252     1     0       1    -1
-## 25    -18  14885    9983      1      0 -4529     1     1       0     1
-## 26     48 -15220  -11400      0      1  -318     1     0       1    -1
-## 27     -3     99     -29      0      0  -797     0     1      -1     0
-## 28     -3    -54     -88      0      0  -372     0     1      -1     0
-## 29     -3    -98   -4175      1      0  2460     1     1       0     1
-## 30      2   -304    2987      0      1 -3035     1     1       0    -1</code></pre>
+<pre><code>##    dscore dinstt doutstt htpriv vtpriv dapps
+## 1      10   -409   -4679      0      0 -1038
+## 2     -14     NA     -66      0      0 -7051
+## 3      23   -654    -637      0      0  6209
+## 4       8   -222     456      0      0  -129
+## 5     -12    -10     208      0      0   794
+## 6       7    494      17      0      0   411
+## 7     -21      2       2      0      0 -4363
+## 8      -5     96    -333      0      0  1144
+## 9      -3    223    2526      0      0  3956
+## 10    -32    -20       0      0      0  -641
+## 11      9     66       0      0      0  -278
+## 12      1     56    -346      0      0 -2223
+## 13      7    556     717      0      0 -5217
+## 14    -20    169    -461      0      0  1772
+## 15     35   -135     396      0      0    85
+## 16     35    -40       0      0      0  -988
+## 17    -25     24       0      0      0 -8140
+## 18     -9     90       0      0      0  8418
+## 19    -33     27     900      0      0 -3273
+## 20      7    -89     -31      0      0  1906
+## 21     -3    536    2352      0      0  -151
+## 22     -6  13261    9111      1      0 -9936
+## 23    -29  13809   10076      1      0 -6265
+## 24     14 -17631  -10589      0      1  1252
+## 25    -18  14885    9983      1      0 -4529
+## 26     48 -15220  -11400      0      1  -318
+## 27     -3     99     -29      0      0  -797
+## 28     -3    -54     -88      0      0  -372
+## 29     -3    -98   -4175      1      0  2460
+## 30      2   -304    2987      0      1 -3035
+##    htwrd vtwrd dwinrec dpriv
+## 1      1     1       0     0
+## 2      1     1       0     0
+## 3      1     0       1     0
+## 4      1     1       0     0
+## 5      1     1       0     0
+## 6      0     0       0     0
+## 7      1     1       0     0
+## 8      1     0       1     0
+## 9      0     0       0     0
+## 10     0     1      -1     0
+## 11     1     0       1     0
+## 12     1     0       1     0
+## 13     1     0       1     0
+## 14     0     1      -1     0
+## 15     1     0       1     0
+## 16     1     0       1     0
+## 17     1     1       0     0
+## 18     0     1      -1     0
+## 19     0     0       0     0
+## 20     1     0       1     0
+## 21     1     1       0     0
+## 22     1     1       0     1
+## 23     0     1      -1     1
+## 24     1     0       1    -1
+## 25     1     1       0     1
+## 26     1     0       1    -1
+## 27     0     1      -1     0
+## 28     0     1      -1     0
+## 29     1     1       0     1
+## 30     1     1       0    -1</code></pre>
 <p>We are especially interested in the variable, dscore, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.</p>
 <ol style="list-style-type: decimal">
 <li><p>The instructor will assign you to one of two teams. Team 1 will argue that the t-test is appropriate to this scenario. Team 2 will argue that the t-test is invalid. Take a few minutes to examine the data, then formulate your best argument.</p></li>
