@@ -1,0 +1,18 @@
+output:
+  bookdown::gitbook:
+    toc_depth: 3
+    split_by: section
+    config:
+      toc:
+        collapse: section
+        scroll_highlight: yes
+      fontsettings:
+        theme: white
+        family: serif
+        size: 2
+    highlight: tango
+    css: [css/style.css, css/box.css]
+  bookdown::pdf_book:
+    keep_tex: TRUE
+    includes:
+      in_header: latex/preamble.tex

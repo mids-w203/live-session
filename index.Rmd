@@ -1,0 +1,25 @@
+---
+title: "Statistics for Data Science"
+cover-image: "images/coffee.jpeg"
+author: 
+  - D. Alex Hughes, Paul Laskowski & The 203 Teaching Team^[UC Berkeley, School of Information]
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+always_allow_html: yes
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+biblatexoptions:
+  - sortcites
+link-citations: yes
+github-repo: "mids-w203/live-session"
+description: "This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called *Statistics for Data Science*."
+tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
+---
+
+# Live Session {-}
+
+![](./images/campus.jpeg)
+
+This is the live session work space for the course. Our goal with this repository, is that we're able to communicate *ahead of time* our aims for each week, and that you can prepare accordingly. 
+

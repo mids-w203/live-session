@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="7.4 Teamwork Discussion | Statistics for Data Science" />
+<meta property="og:type" content="book" />
+<meta property="og:image" content="/images/coffee.jpeg" />
+<meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
+<meta name="github-repo" content="mids-w203/live-session" />
+
+<meta name="author" content="D. Alex Hughes" />
+<meta name="author" content="Paul Laskowski" />
+<meta name="author" content="The 203 Teaching Team" />
+
+<meta name="date" content="2022-08-16" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science.">
+
+<title>7.4 Teamwork Discussion | Statistics for Data Science</title>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+/* show arrow before summary tag as in bootstrap
+TODO: remove if boostrap in updated in html_document (rmarkdown#1485) */
+details > summary {
+  display: list-item;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#live-session-introduction" id="toc-live-session-introduction">Live Session Introduction</a>
+<ul>
+<li><a href="blooms-taxonomy.html#blooms-taxonomy" id="toc-blooms-taxonomy">Bloom’s Taxonomy</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-probability-spaces.html#probability-spaces" id="toc-probability-spaces"><span class="toc-section-number">1</span> Probability Spaces</a>
+<ul>
+<li><a href="1.1-learning-objectives.html#learning-objectives" id="toc-learning-objectives"><span class="toc-section-number">1.1</span> Learning Objectives</a></li>
+<li class="has-sub"><a href="1.2-course-learning-objectives.html#course-learning-objectives" id="toc-course-learning-objectives"><span class="toc-section-number">1.2</span> Course Learning Objectives</a>
+<ul>
+<li><a href="1.2-course-learning-objectives.html#learning-objectives-1" id="toc-learning-objectives-1"><span class="toc-section-number">1.2.1</span> Learning Objectives</a></li>
+</ul></li>
+<li class="has-sub"><a href="1.3-introductions.html#introductions" id="toc-introductions"><span class="toc-section-number">1.3</span> Introductions</a>
+<ul>
+<li><a href="1.3-introductions.html#instructor-introductions" id="toc-instructor-introductions"><span class="toc-section-number">1.3.1</span> Instructor Introductions</a></li>
+<li><a href="1.3-introductions.html#what-does-a-statistician-look-like-you" id="toc-what-does-a-statistician-look-like-you"><span class="toc-section-number">1.3.2</span> What does a statistician look like? You!</a></li>
+</ul></li>
+<li><a href="1.4-student-introductions-breakout-one.html#student-introductions-breakout-one" id="toc-student-introductions-breakout-one"><span class="toc-section-number">1.4</span> Student Introductions [Breakout One]</a></li>
+<li><a href="1.5-probability-theory.html#probability-theory" id="toc-probability-theory"><span class="toc-section-number">1.5</span> Probability Theory</a></li>
+<li class="has-sub"><a href="1.6-working-with-a-sample-space.html#working-with-a-sample-space" id="toc-working-with-a-sample-space"><span class="toc-section-number">1.6</span> Working with a Sample Space</a>
+<ul>
+<li><a href="1.6-working-with-a-sample-space.html#working-with-a-sample-space-part-i" id="toc-working-with-a-sample-space-part-i"><span class="toc-section-number">1.6.1</span> Working with a Sample Space, Part I</a></li>
+<li><a href="1.6-working-with-a-sample-space.html#working-with-a-sample-space-part-ii" id="toc-working-with-a-sample-space-part-ii"><span class="toc-section-number">1.6.2</span> Working with a Sample Space, Part II</a></li>
+<li><a href="1.6-working-with-a-sample-space.html#working-with-a-sample-sapce-part-iii" id="toc-working-with-a-sample-sapce-part-iii"><span class="toc-section-number">1.6.3</span> Working with a Sample Sapce, Part III</a></li>
+</ul></li>
+<li><a href="1.7-proofs-style-counts.html#proofs-style-counts" id="toc-proofs-style-counts"><span class="toc-section-number">1.7</span> Proofs: Style Counts</a></li>
+<li><a href="1.8-a-practice-problem.html#a-practice-problem" id="toc-a-practice-problem"><span class="toc-section-number">1.8</span> A practice problem</a></li>
+<li><a href="1.9-concluding-reminders.html#concluding-reminders" id="toc-concluding-reminders"><span class="toc-section-number">1.9</span> Concluding Reminders</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-defining-random-variables.html#defining-random-variables" id="toc-defining-random-variables"><span class="toc-section-number">2</span> Defining Random Variables</a>
+<ul>
+<li><a href="2.1-learning-objectives-2.html#learning-objectives-2" id="toc-learning-objectives-2"><span class="toc-section-number">2.1</span> Learning Objectives</a></li>
+<li class="has-sub"><a href="2.2-class-announcements.html#class-announcements" id="toc-class-announcements"><span class="toc-section-number">2.2</span> Class Announcements</a>
+<ul>
+<li><a href="2.2-class-announcements.html#homework" id="toc-homework"><span class="toc-section-number">2.2.1</span> Homework</a></li>
+<li><a href="2.2-class-announcements.html#study-groups" id="toc-study-groups"><span class="toc-section-number">2.2.2</span> Study Groups</a></li>
+<li><a href="2.2-class-announcements.html#course-resources" id="toc-course-resources"><span class="toc-section-number">2.2.3</span> Course Resources</a></li>
+</ul></li>
+<li class="has-sub"><a href="2.3-using-definitions-of-random-variables.html#using-definitions-of-random-variables" id="toc-using-definitions-of-random-variables"><span class="toc-section-number">2.3</span> Using Definitions of Random Variables</a>
+<ul>
+<li><a href="2.3-using-definitions-of-random-variables.html#random-varaible" id="toc-random-varaible"><span class="toc-section-number">2.3.1</span> Random Varaible</a></li>
+<li><a href="2.3-using-definitions-of-random-variables.html#functions-of-functions" id="toc-functions-of-functions"><span class="toc-section-number">2.3.2</span> Functions of Functions</a></li>
+</ul></li>
+<li class="has-sub"><a href="2.4-pieces-of-a-random-variable.html#pieces-of-a-random-variable" id="toc-pieces-of-a-random-variable"><span class="toc-section-number">2.4</span> Pieces of a Random Variable</a>
+<ul>
+<li><a href="2.4-pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions" id="toc-probability-density-functions-and-cumulative-density-functions"><span class="toc-section-number">2.4.1</span> Probability Density Functions and Cumulative Density Functions</a></li>
+</ul></li>
+<li><a href="2.5-discrete-continuous-random-variables.html#discrete-continuous-random-variables" id="toc-discrete-continuous-random-variables"><span class="toc-section-number">2.5</span> Discrete &amp; Continuous Random Variables</a></li>
+<li><a href="2.6-moving-between-pdf-and-cdf.html#moving-between-pdf-and-cdf" id="toc-moving-between-pdf-and-cdf"><span class="toc-section-number">2.6</span> Moving Between PDF and CDF</a></li>
+<li class="has-sub"><a href="2.7-joint-density.html#joint-density" id="toc-joint-density"><span class="toc-section-number">2.7</span> Joint Density</a>
+<ul>
+<li><a href="2.7-joint-density.html#uniform-joint-density" id="toc-uniform-joint-density"><span class="toc-section-number">2.7.1</span> Uniform Joint Density</a></li>
+<li><a href="2.7-joint-density.html#saddle-sores" id="toc-saddle-sores"><span class="toc-section-number">2.7.2</span> Saddle Sores</a></li>
+</ul></li>
+<li class="has-sub"><a href="2.8-visualizing-distributions-via-simulation.html#visualizing-distributions-via-simulation" id="toc-visualizing-distributions-via-simulation"><span class="toc-section-number">2.8</span> Visualizing Distributions Via Simulation</a>
+<ul>
+<li><a href="2.8-visualizing-distributions-via-simulation.html#the-visualization-trick" id="toc-the-visualization-trick"><span class="toc-section-number">2.8.1</span> The Visualization Trick</a></li>
+<li><a href="2.8-visualizing-distributions-via-simulation.html#apply-the-visualization-trick" id="toc-apply-the-visualization-trick"><span class="toc-section-number">2.8.2</span> Apply the Visualization Trick</a></li>
+<li><a href="2.8-visualizing-distributions-via-simulation.html#how-is-simulation-useful" id="toc-how-is-simulation-useful"><span class="toc-section-number">2.8.3</span> How is simulation useful?</a></li>
+</ul></li>
+<li><a href="2.9-computing-different-distributions..html#computing-different-distributions." id="toc-computing-different-distributions."><span class="toc-section-number">2.9</span> Computing Different Distributions.</a></li>
+<li><a href="2.10-understanding-joint-distributions.html#understanding-joint-distributions" id="toc-understanding-joint-distributions"><span class="toc-section-number">2.10</span> Understanding Joint Distributions</a></li>
+<li><a href="2.11-working-with-a-shiny-app.html#working-with-a-shiny-app" id="toc-working-with-a-shiny-app"><span class="toc-section-number">2.11</span> Working with a Shiny App</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-summarizing-distributions.html#summarizing-distributions" id="toc-summarizing-distributions"><span class="toc-section-number">3</span> Summarizing Distributions</a>
+<ul>
+<li><a href="3.1-learning-objectives-3.html#learning-objectives-3" id="toc-learning-objectives-3"><span class="toc-section-number">3.1</span> Learning Objectives</a></li>
+<li><a href="3.2-class-announcements-1.html#class-announcements-1" id="toc-class-announcements-1"><span class="toc-section-number">3.2</span> Class Announcements</a></li>
+<li><a href="3.3-roadmap.html#roadmap" id="toc-roadmap"><span class="toc-section-number">3.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="3.4-computing-examples.html#computing-examples" id="toc-computing-examples"><span class="toc-section-number">3.4</span> Computing Examples</a>
+<ul>
+<li><a href="3.4-computing-examples.html#expected-value-of-a-die-discrete-random-variable" id="toc-expected-value-of-a-die-discrete-random-variable"><span class="toc-section-number">3.4.1</span> Expected Value of a Die [discrete random variable]</a></li>
+<li><a href="3.4-computing-examples.html#using-a-formula" id="toc-using-a-formula"><span class="toc-section-number">3.4.2</span> Using a formula</a></li>
+<li><a href="3.4-computing-examples.html#compute-the-expected-value" id="toc-compute-the-expected-value"><span class="toc-section-number">3.4.3</span> Compute the Expected Value</a></li>
+<li><a href="3.4-computing-examples.html#compute-the-variance" id="toc-compute-the-variance"><span class="toc-section-number">3.4.4</span> Compute the Variance</a></li>
+</ul></li>
+<li class="has-sub"><a href="3.5-expected-value-by-code.html#expected-value-by-code" id="toc-expected-value-by-code"><span class="toc-section-number">3.5</span> Expected Value by Code</a>
+<ul>
+<li><a href="3.5-expected-value-by-code.html#expected-value-of-a-six-sided-die" id="toc-expected-value-of-a-six-sided-die"><span class="toc-section-number">3.5.1</span> Expected Value of a Six-Sided Die</a></li>
+<li><a href="3.5-expected-value-by-code.html#variacne-of-a-six-sided-die" id="toc-variacne-of-a-six-sided-die"><span class="toc-section-number">3.5.2</span> Variacne of a Six-Sided Die</a></li>
+</ul></li>
+<li class="has-sub"><a href="3.6-practice-computing.html#practice-computing" id="toc-practice-computing"><span class="toc-section-number">3.6</span> Practice Computing</a>
+<ul>
+<li><a href="3.6-practice-computing.html#single-variable" id="toc-single-variable"><span class="toc-section-number">3.6.1</span> Single Variable</a></li>
+<li><a href="3.6-practice-computing.html#joint-density-1" id="toc-joint-density-1"><span class="toc-section-number">3.6.2</span> Joint Density</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-conditional-expectation-and-the-blp.html#conditional-expectation-and-the-blp" id="toc-conditional-expectation-and-the-blp"><span class="toc-section-number">4</span> Conditional Expectation and The BLP</a>
+<ul>
+<li><a href="4.1-thunder-struck.html#thunder-struck" id="toc-thunder-struck"><span class="toc-section-number">4.1</span> Thunder Struck</a></li>
+<li><a href="4.2-learning-objectives-4.html#learning-objectives-4" id="toc-learning-objectives-4"><span class="toc-section-number">4.2</span> Learning Objectives</a></li>
+<li class="has-sub"><a href="4.3-class-announcements-2.html#class-announcements-2" id="toc-class-announcements-2"><span class="toc-section-number">4.3</span> Class Announcements</a>
+<ul>
+<li><a href="4.3-class-announcements-2.html#test-1-is-releasing-to-you-today." id="toc-test-1-is-releasing-to-you-today."><span class="toc-section-number">4.3.1</span> Test 1 is releasing to you today.</a></li>
+</ul></li>
+<li class="has-sub"><a href="4.4-roadmap-1.html#roadmap-1" id="toc-roadmap-1"><span class="toc-section-number">4.4</span> Roadmap</a>
+<ul>
+<li><a href="4.4-roadmap-1.html#rearview-mirror" id="toc-rearview-mirror"><span class="toc-section-number">4.4.1</span> Rearview Mirror</a></li>
+<li><a href="4.4-roadmap-1.html#this-week" id="toc-this-week"><span class="toc-section-number">4.4.2</span> This week</a></li>
+<li><a href="4.4-roadmap-1.html#coming-attractions" id="toc-coming-attractions"><span class="toc-section-number">4.4.3</span> Coming Attractions</a></li>
+</ul></li>
+<li><a href="4.5-conditional-expectation-function-cef-part-one.html#conditional-expectation-function-cef-part-one" id="toc-conditional-expectation-function-cef-part-one"><span class="toc-section-number">4.5</span> Conditional Expectation Function (CEF), part one</a></li>
+<li><a href="4.6-conditional-expectation-function-cef-part-two.html#conditional-expectation-function-cef-part-two" id="toc-conditional-expectation-function-cef-part-two"><span class="toc-section-number">4.6</span> Conditional Expectation Function (CEF), part two</a></li>
+<li><a href="4.7-conditional-expectation-function-cef-part-three.html#conditional-expectation-function-cef-part-three" id="toc-conditional-expectation-function-cef-part-three"><span class="toc-section-number">4.7</span> Conditional Expectation Function (CEF), part three</a></li>
+<li><a href="4.8-computing-the-cef.html#computing-the-cef" id="toc-computing-the-cef"><span class="toc-section-number">4.8</span> Computing the CEF</a></li>
+<li><a href="4.9-conditional-density-functions.html#conditional-density-functions" id="toc-conditional-density-functions"><span class="toc-section-number">4.9</span> Conditional Density Functions</a></li>
+<li><a href="4.10-conditional-distribution-to-conditional-expectation.html#conditional-distribution-to-conditional-expectation" id="toc-conditional-distribution-to-conditional-expectation"><span class="toc-section-number">4.10</span> Conditional Distribution to Conditional Expectation</a></li>
+<li class="has-sub"><a href="4.11-breakout-activity.html#breakout-activity" id="toc-breakout-activity"><span class="toc-section-number">4.11</span> Breakout Activity</a>
+<ul>
+<li><a href="4.11-breakout-activity.html#minimizing-mse" id="toc-minimizing-mse"><span class="toc-section-number">4.11.1</span> Minimizing MSE</a></li>
+</ul></li>
+<li class="has-sub"><a href="4.12-working-with-the-blp.html#working-with-the-blp" id="toc-working-with-the-blp"><span class="toc-section-number">4.12</span> Working with the BLP</a>
+<ul>
+<li><a href="4.12-working-with-the-blp.html#professorial-mistakes-discrete-rvs" id="toc-professorial-mistakes-discrete-rvs"><span class="toc-section-number">4.12.1</span> Professorial Mistakes (Discrete RVs)</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="5-learning-from-random-samples.html#learning-from-random-samples" id="toc-learning-from-random-samples"><span class="toc-section-number">5</span> Learning from Random Samples</a>
+<ul>
+<li><a href="5.1-learning-objectives-5.html#learning-objectives-5" id="toc-learning-objectives-5"><span class="toc-section-number">5.1</span> Learning Objectives</a></li>
+<li><a href="5.2-class-announcements-3.html#class-announcements-3" id="toc-class-announcements-3"><span class="toc-section-number">5.2</span> Class Announcements</a></li>
+<li><a href="5.3-roadmap-2.html#roadmap-2" id="toc-roadmap-2"><span class="toc-section-number">5.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="5.4-key-terms-and-assumptions.html#key-terms-and-assumptions" id="toc-key-terms-and-assumptions"><span class="toc-section-number">5.4</span> Key Terms and Assumptions</a>
+<ul>
+<li><a href="5.4-key-terms-and-assumptions.html#definitions" id="toc-definitions"><span class="toc-section-number">5.4.1</span> Definitions</a></li>
+<li><a href="5.4-key-terms-and-assumptions.html#iid" id="toc-iid"><span class="toc-section-number">5.4.2</span> IID</a></li>
+<li><a href="5.4-key-terms-and-assumptions.html#understanding-sampling-distributions" id="toc-understanding-sampling-distributions"><span class="toc-section-number">5.4.3</span> Understanding Sampling Distributions</a></li>
+</ul></li>
+<li><a href="5.5-uncertainty.html#uncertainty" id="toc-uncertainty"><span class="toc-section-number">5.5</span> Uncertainty</a></li>
+<li class="has-sub"><a href="5.6-write-code-to-demo-the-central-limit-theorem-clt.html#write-code-to-demo-the-central-limit-theorem-clt" id="toc-write-code-to-demo-the-central-limit-theorem-clt"><span class="toc-section-number">5.6</span> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<ul>
+<li><a href="5.6-write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theor-clt" id="toc-motivating-the-central-limit-theor-clt"><span class="toc-section-number">5.6.1</span> Motivating the Central Limit Theor (CLT)</a></li>
+<li><a href="5.6-write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r" id="toc-sampling-from-the-bernoulli-distribution-in-r"><span class="toc-section-number">5.6.2</span> Sampling from the Bernoulli Distribution in R</a></li>
+<li><a href="5.6-write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands" id="toc-useful-r-commands"><span class="toc-section-number">5.6.3</span> Useful R Commands</a></li>
+</ul></li>
+<li><a href="5.7-exercise.html#exercise" id="toc-exercise"><span class="toc-section-number">5.7</span> Exercise</a></li>
+<li><a href="5.8-discussion-questions.html#discussion-questions" id="toc-discussion-questions"><span class="toc-section-number">5.8</span> Discussion Questions</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-hypothesis-testing.html#hypothesis-testing" id="toc-hypothesis-testing"><span class="toc-section-number">6</span> Hypothesis Testing</a>
+<ul>
+<li><a href="6.1-learning-objectives-6.html#learning-objectives-6" id="toc-learning-objectives-6"><span class="toc-section-number">6.1</span> Learning Objectives</a></li>
+<li><a href="6.2-class-announcements-4.html#class-announcements-4" id="toc-class-announcements-4"><span class="toc-section-number">6.2</span> Class Announcements</a></li>
+<li><a href="6.3-roadmap-3.html#roadmap-3" id="toc-roadmap-3"><span class="toc-section-number">6.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="6.4-discussion.html#discussion" id="toc-discussion"><span class="toc-section-number">6.4</span> Discussion</a>
+<ul>
+<li><a href="6.4-discussion.html#discussion-questions-1" id="toc-discussion-questions-1"><span class="toc-section-number">6.4.1</span> Discussion Questions 1</a></li>
+<li><a href="6.4-discussion.html#discussion-questions-2" id="toc-discussion-questions-2"><span class="toc-section-number">6.4.2</span> Discussion Questions 2</a></li>
+</ul></li>
+<li><a href="6.5-manual-computation-of-a-t-test.html#manual-computation-of-a-t-test" id="toc-manual-computation-of-a-t-test"><span class="toc-section-number">6.5</span> Manual Computation of a t-Test</a></li>
+<li><a href="6.6-data-exercise.html#data-exercise" id="toc-data-exercise"><span class="toc-section-number">6.6</span> Data Exercise</a></li>
+<li><a href="6.7-assumptions-behind-the-t-test.html#assumptions-behind-the-t-test" id="toc-assumptions-behind-the-t-test"><span class="toc-section-number">6.7</span> Assumptions Behind the t-test</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-comparing-two-groups.html#comparing-two-groups" id="toc-comparing-two-groups"><span class="toc-section-number">7</span> Comparing Two Groups</a>
+<ul>
+<li><a href="7.1-learning-objectives-7.html#learning-objectives-7" id="toc-learning-objectives-7"><span class="toc-section-number">7.1</span> Learning Objectives</a></li>
+<li><a href="7.2-class-announcements-5.html#class-announcements-5" id="toc-class-announcements-5"><span class="toc-section-number">7.2</span> Class Announcements</a></li>
+<li><a href="7.3-roadmap-4.html#roadmap-4" id="toc-roadmap-4"><span class="toc-section-number">7.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="7.4-teamwork-discussion.html#teamwork-discussion" id="toc-teamwork-discussion"><span class="toc-section-number">7.4</span> Teamwork Discussion</a>
+<ul>
+<li><a href="7.4-teamwork-discussion.html#we-all-belong" id="toc-we-all-belong"><span class="toc-section-number">7.4.1</span> We All Belong</a></li>
+</ul></li>
+<li><a href="7.5-team-kick-off.html#team-kick-off" id="toc-team-kick-off"><span class="toc-section-number">7.5</span> Team Kick-Off</a></li>
+<li><a href="7.6-a-quick-review.html#a-quick-review" id="toc-a-quick-review"><span class="toc-section-number">7.6</span> A Quick Review</a></li>
+<li><a href="7.7-comparing-groups-r-exercise.html#comparing-groups-r-exercise" id="toc-comparing-groups-r-exercise"><span class="toc-section-number">7.7</span> Comparing Groups R Exercise</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-ols-regression-estimates.html#ols-regression-estimates" id="toc-ols-regression-estimates"><span class="toc-section-number">8</span> OLS Regression Estimates</a>
+<ul>
+<li><a href="8.1-learning-objectives-8.html#learning-objectives-8" id="toc-learning-objectives-8"><span class="toc-section-number">8.1</span> Learning Objectives</a></li>
+<li><a href="8.2-class-announcements-6.html#class-announcements-6" id="toc-class-announcements-6"><span class="toc-section-number">8.2</span> Class Announcements</a></li>
+<li><a href="8.3-roadmap-5.html#roadmap-5" id="toc-roadmap-5"><span class="toc-section-number">8.3</span> Roadmap</a></li>
+<li><a href="8.4-regression-discussion.html#regression-discussion" id="toc-regression-discussion"><span class="toc-section-number">8.4</span> Regression Discussion</a></li>
+<li><a href="8.5-working-on-math.html#working-on-math" id="toc-working-on-math"><span class="toc-section-number">8.5</span> Working on Math</a></li>
+<li class="has-sub"><a href="8.6-visualizing-data.html#visualizing-data" id="toc-visualizing-data"><span class="toc-section-number">8.6</span> Visualizing Data</a>
+<ul>
+<li><a href="8.6-visualizing-data.html#discussion-questions-3" id="toc-discussion-questions-3"><span class="toc-section-number">8.6.1</span> Discussion Questions</a></li>
+<li><a href="8.6-visualizing-data.html#reasoning-by-analogies" id="toc-reasoning-by-analogies"><span class="toc-section-number">8.6.2</span> Reasoning by Analogies</a></li>
+</ul></li>
+<li><a href="8.7-coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.7</span> Coding Activity:R Cheat Sheet</a></li>
+<li class="has-sub"><a href="8.8-r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.8</span> R Exercise</a>
+<ul>
+<li><a href="8.8-r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</a></li>
+</ul></li>
+<li class="has-sub"><a href="8.9-regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.9</span> Regression Plots and Discussion</a>
+<ul>
+<li><a href="8.9-regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.9.1</span> Plot 1</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="9-ols-regression-inference.html#ols-regression-inference" id="toc-ols-regression-inference"><span class="toc-section-number">9</span> OLS Regression Inference</a>
+<ul>
+<li><a href="9.1-learning-objectives-9.html#learning-objectives-9" id="toc-learning-objectives-9"><span class="toc-section-number">9.1</span> Learning Objectives</a></li>
+<li><a href="9.2-class-announcements-7.html#class-announcements-7" id="toc-class-announcements-7"><span class="toc-section-number">9.2</span> Class Announcements</a></li>
+<li><a href="9.3-roadmap-6.html#roadmap-6" id="toc-roadmap-6"><span class="toc-section-number">9.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="9.4-uncertainty-in-ols.html#uncertainty-in-ols" id="toc-uncertainty-in-ols"><span class="toc-section-number">9.4</span> Uncertainty in OLS</a>
+<ul>
+<li><a href="9.4-uncertainty-in-ols.html#discussion-questions-4" id="toc-discussion-questions-4"><span class="toc-section-number">9.4.1</span> Discussion Questions</a></li>
+<li><a href="9.4-uncertainty-in-ols.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.4.2</span> Understanding Uncertainty</a></li>
+</ul></li>
+<li><a href="9.5-r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.5</span> R Exercise</a></li>
+</ul></li>
+<li class="has-sub"><a href="10-descriptive-model-building.html#descriptive-model-building" id="toc-descriptive-model-building"><span class="toc-section-number">10</span> Descriptive Model Building</a>
+<ul>
+<li><a href="10.1-learning-objectives-10.html#learning-objectives-10" id="toc-learning-objectives-10"><span class="toc-section-number">10.1</span> Learning Objectives</a></li>
+<li><a href="10.2-class-announcements-8.html#class-announcements-8" id="toc-class-announcements-8"><span class="toc-section-number">10.2</span> Class Announcements</a></li>
+<li><a href="10.3-roadmap-7.html#roadmap-7" id="toc-roadmap-7"><span class="toc-section-number">10.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="10.4-discussion-1.html#discussion-1" id="toc-discussion-1"><span class="toc-section-number">10.4</span> Discussion</a>
+<ul>
+<li><a href="10.4-discussion-1.html#three-modes-of-model-building" id="toc-three-modes-of-model-building"><span class="toc-section-number">10.4.1</span> Three modes of model building</a></li>
+<li><a href="10.4-discussion-1.html#the-statistical-modeling-process-in-different-modes" id="toc-the-statistical-modeling-process-in-different-modes"><span class="toc-section-number">10.4.2</span> The statistical modeling process in different modes</a></li>
+</ul></li>
+<li class="has-sub"><a href="10.5-r-activity-measuring-the-return-to-education.html#r-activity-measuring-the-return-to-education" id="toc-r-activity-measuring-the-return-to-education"><span class="toc-section-number">10.5</span> R Activity: Measuring the return to education</a>
+<ul>
+<li><a href="10.5-r-activity-measuring-the-return-to-education.html#transformations" id="toc-transformations"><span class="toc-section-number">10.5.1</span> Transformations</a></li>
+<li><a href="10.5-r-activity-measuring-the-return-to-education.html#estimation" id="toc-estimation"><span class="toc-section-number">10.5.2</span> Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="11-explanatory-model-building.html#explanatory-model-building" id="toc-explanatory-model-building"><span class="toc-section-number">11</span> Explanatory Model Building</a>
+<ul>
+<li><a href="11.1-learning-objectives-11.html#learning-objectives-11" id="toc-learning-objectives-11"><span class="toc-section-number">11.1</span> Learning Objectives</a></li>
+<li><a href="11.2-class-announcements-9.html#class-announcements-9" id="toc-class-announcements-9"><span class="toc-section-number">11.2</span> Class Announcements</a></li>
+<li><a href="11.3-roadmap-8.html#roadmap-8" id="toc-roadmap-8"><span class="toc-section-number">11.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="11.4-discussion-2.html#discussion-2" id="toc-discussion-2"><span class="toc-section-number">11.4</span> Discussion</a>
+<ul>
+<li><a href="11.4-discussion-2.html#path-diagrams" id="toc-path-diagrams"><span class="toc-section-number">11.4.1</span> Path Diagrams</a></li>
+<li><a href="11.4-discussion-2.html#omitted-variable-bias" id="toc-omitted-variable-bias"><span class="toc-section-number">11.4.2</span> Omitted Variable Bias</a></li>
+</ul></li>
+<li><a href="11.5-r-exercise-2.html#r-exercise-2" id="toc-r-exercise-2"><span class="toc-section-number">11.5</span> R Exercise</a></li>
+<li><a href="11.6-discussion-3.html#discussion-3" id="toc-discussion-3"><span class="toc-section-number">11.6</span> Discussion</a></li>
+</ul></li>
+<li class="has-sub"><a href="12-the-classical-linear-model.html#the-classical-linear-model" id="toc-the-classical-linear-model"><span class="toc-section-number">12</span> The Classical Linear Model</a>
+<ul>
+<li><a href="12.1-learning-objectives-12.html#learning-objectives-12" id="toc-learning-objectives-12"><span class="toc-section-number">12.1</span> Learning Objectives</a></li>
+<li><a href="12.2-class-announcements-10.html#class-announcements-10" id="toc-class-announcements-10"><span class="toc-section-number">12.2</span> Class Announcements</a></li>
+<li><a href="12.3-roadmap-9.html#roadmap-9" id="toc-roadmap-9"><span class="toc-section-number">12.3</span> Roadmap</a></li>
+<li class="has-sub"><a href="12.4-the-classical-linear-model-1.html#the-classical-linear-model-1" id="toc-the-classical-linear-model-1"><span class="toc-section-number">12.4</span> The Classical Linear Model</a>
+<ul>
+<li><a href="12.4-the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm" id="toc-comparing-the-large-sample-model-and-the-clm"><span class="toc-section-number">12.4.1</span> Comparing the Large Sample Model and the CLM</a></li>
+</ul></li>
+<li><a href="12.5-problems-with-the-clm-requirements.html#problems-with-the-clm-requirements" id="toc-problems-with-the-clm-requirements"><span class="toc-section-number">12.5</span> Problems with the CLM Requirements</a></li>
+<li><a href="12.6-r-exercise-3.html#r-exercise-3" id="toc-r-exercise-3"><span class="toc-section-number">12.6</span> R Exercise</a></li>
+</ul></li>
+<li class="has-sub"><a href="13-reproducible-research.html#reproducible-research" id="toc-reproducible-research"><span class="toc-section-number">13</span> Reproducible Research</a>
+<ul>
+<li><a href="13.1-learning-objectives-13.html#learning-objectives-13" id="toc-learning-objectives-13"><span class="toc-section-number">13.1</span> Learning Objectives</a></li>
+<li><a href="13.2-class-announcements-11.html#class-announcements-11" id="toc-class-announcements-11"><span class="toc-section-number">13.2</span> Class Announcements</a></li>
+<li><a href="13.3-roadmap-10.html#roadmap-10" id="toc-roadmap-10"><span class="toc-section-number">13.3</span> Roadmap</a></li>
+<li><a href="13.4-what-data-science-hopes-to-accomplish.html#what-data-science-hopes-to-accomplish" id="toc-what-data-science-hopes-to-accomplish"><span class="toc-section-number">13.4</span> What data science hopes to accomplish</a></li>
+<li><a href="13.5-learning-from-data.html#learning-from-data" id="toc-learning-from-data"><span class="toc-section-number">13.5</span> Learning from Data</a></li>
+<li><a href="13.6-data-science-and-statistics.html#data-science-and-statistics" id="toc-data-science-and-statistics"><span class="toc-section-number">13.6</span> Data Science and Statistics</a></li>
+<li><a href="13.7-why-statistics-a-closing-argument-for-statistics.html#why-statistics-a-closing-argument-for-statistics" id="toc-why-statistics-a-closing-argument-for-statistics"><span class="toc-section-number">13.7</span> Why Statistics?: A Closing Argument for Statistics</a></li>
+<li class="has-sub"><a href="13.8-course-goals.html#course-goals" id="toc-course-goals"><span class="toc-section-number">13.8</span> Course Goals</a>
+<ul>
+<li><a href="13.8-course-goals.html#course-section-iii-purpose-driven-models" id="toc-course-section-iii-purpose-driven-models"><span class="toc-section-number">13.8.1</span> Course Section III: Purpose-Driven Models</a></li>
+<li><a href="13.8-course-goals.html#course-section-ii-sampling-theory-and-testing" id="toc-course-section-ii-sampling-theory-and-testing"><span class="toc-section-number">13.8.2</span> Course Section II: Sampling Theory and Testing</a></li>
+<li><a href="13.8-course-goals.html#course-section-i-probability-theory" id="toc-course-section-i-probability-theory"><span class="toc-section-number">13.8.3</span> Course Section I: Probability Theory</a></li>
+<li><a href="13.8-course-goals.html#statistics-as-a-foundation-for-mids" id="toc-statistics-as-a-foundation-for-mids"><span class="toc-section-number">13.8.4</span> Statistics as a Foundation for MIDS</a></li>
+</ul></li>
+<li class="has-sub"><a href="13.9-reproducibility-discussion.html#reproducibility-discussion" id="toc-reproducibility-discussion"><span class="toc-section-number">13.9</span> Reproducibility Discussion</a>
+<ul>
+<li><a href="13.9-reproducibility-discussion.html#discussion-4" id="toc-discussion-4"><span class="toc-section-number">13.9.1</span> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="14-maximum-likelihood-estimation.html#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation"><span class="toc-section-number">14</span> Maximum Likelihood Estimation</a>
+<ul>
+<li><a href="14.1-learning-objectives-14.html#learning-objectives-14" id="toc-learning-objectives-14"><span class="toc-section-number">14.1</span> Learning Objectives</a></li>
+<li><a href="14.2-class-announcements-12.html#class-announcements-12" id="toc-class-announcements-12"><span class="toc-section-number">14.2</span> Class Announcements</a></li>
+<li><a href="14.3-roadmap-11.html#roadmap-11" id="toc-roadmap-11"><span class="toc-section-number">14.3</span> Roadmap</a></li>
+<li><a href="14.4-what-is-a-model.html#what-is-a-model" id="toc-what-is-a-model"><span class="toc-section-number">14.4</span> What is a model?</a></li>
+<li><a href="14.5-estimation-1.html#estimation-1" id="toc-estimation-1"><span class="toc-section-number">14.5</span> Estimation</a></li>
+<li><a href="14.6-discussion-of-maximum-likelihood-estimation.html#discussion-of-maximum-likelihood-estimation" id="toc-discussion-of-maximum-likelihood-estimation"><span class="toc-section-number">14.6</span> Discussion of Maximum Likelihood Estimation</a></li>
+<li class="has-sub"><a href="14.7-optimization-in-r.html#optimization-in-r" id="toc-optimization-in-r"><span class="toc-section-number">14.7</span> Optimization in R</a>
+<ul>
+<li><a href="14.7-optimization-in-r.html#optimization-example-optimum-price" id="toc-optimization-example-optimum-price"><span class="toc-section-number">14.7.1</span> Optimization Example: Optimum Price</a></li>
+</ul></li>
+<li class="has-sub"><a href="14.8-mle-for-poisson-random-variables.html#mle-for-poisson-random-variables" id="toc-mle-for-poisson-random-variables"><span class="toc-section-number">14.8</span> MLE for Poisson Random Variables</a>
+<ul>
+<li><a href="14.8-mle-for-poisson-random-variables.html#mle-for-poisson-random-variables-data" id="toc-mle-for-poisson-random-variables-data"><span class="toc-section-number">14.8.1</span> MLE for Poisson Random Variables: Data</a></li>
+<li><a href="14.8-mle-for-poisson-random-variables.html#mle-estimation" id="toc-mle-estimation"><span class="toc-section-number">14.8.2</span> MLE Estimation</a></li>
+</ul></li>
+<li><a href="14.9-confidence-intervals.html#confidence-intervals" id="toc-confidence-intervals"><span class="toc-section-number">14.9</span> Confidence Intervals</a></li>
+<li><a href="14.10-maximum-likelihood-example-printers.html#maximum-likelihood-example-printers" id="toc-maximum-likelihood-example-printers"><span class="toc-section-number">14.10</span> Maximum Likelihood Example: Printers</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="teamwork-discussion" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Teamwork Discussion</h2>
+<p><strong>Working on Data Science Teams</strong></p>
+<ul>
+<li>Data science is a <em>beautiful</em> combination of team-work and individual-work
+<ul>
+<li>Teams:
+<ul>
+<li>Define research ambitions and scope</li>
+<li>Imagine/envision the landscape of what is possible</li>
+<li>Support, discuss, review and integrate individual contributions</li>
+</ul></li>
+<li>Individuals:
+<ul>
+<li>Conduct the heads-down work that moves question answering forward</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>The Problematic Psychology of Data Science</strong></p>
+<ul>
+<li>People talk about the <em>impostor syndrome</em> – a feeling of inadequacy or interloping that is sometimes also associated with a fear of under-performing relative to the expectation of others on the team.
+<ul>
+<li>These emotions are common through data science, academics, computer science.</li>
+<li>But, the emotions are also commonplace in journalism, film-making, and public speaking</li>
+</ul></li>
+<li>What might be generating these feelings?</li>
+</ul>
+<p><img src="images/among_us.jpeg" style="width:25.0%" /></p>
+<p><strong>What Makes an Effective Team?</strong></p>
+<ul>
+<li>This reading on <a href="https://rework.withgoogle.com/print/guides/5721312655835136/"><em>effective</em> teams</a> summarizes academic research to argue:</li>
+</ul>
+<blockquote>
+<p>What really matters is less about who is on the team, and more about how the team works together.</p>
+</blockquote>
+<ul>
+<li>In your live session, your section might take 7 minutes to read this brief, reading the problem statement, the proposed solution, and the framework for team effectiveness (stopping at the section titled <em>“Tool: Help teams determine their own needs.”</em>)</li>
+</ul>
+<blockquote>
+<p>“Psychological safety refers to an individual’s perception of the consequences of taking an interpersonal risk. It is a belief that a team is safe for risk taking in the face of being seen as ignorant, incompetent, negative, or disruptive.”</p>
+<p>“In a team with high psychological safety, teammates feel safe to take risks around their team members. They feel confident that no one on the team will embarrass or punish anyone else for admitting a mistake, asking a question, or offering a new idea.”</p>
+</blockquote>
+<div id="we-all-belong" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> We All Belong</h3>
+<ul>
+<li>From your experience, can you give an example of taking a personal risk as part of a team?
+<ul>
+<li>Can you describe your emotions when contemplating this risk?</li>
+<li>If you did take the risk, how did the reactions of your teammates affect you?</li>
+</ul></li>
+<li>Knowing the circumstances that generate feelings of anxiety – what steps can we take as a section, or a team, to recognize and respond to these circumstances?</li>
+</ul>
+<blockquote>
+<p>How can you add to the psychological safety of your peers in the section and lab teammates?</p>
+</blockquote>
+<ul>
+<li>Only 26% of data science jobs are held by women.
+<ul>
+<li>Morgan Ames (a professor in the program, teaching w231), in <a href="https://mitpress.mit.edu/books/charisma-machine"><em>The Charisma Machine</em></a> (available for free through the <a href="https://ebookcentral.proquest.com/lib/berkeley-ebooks/detail.action?docID=5968332">library</a>, and with the introduction chapter <a href="./ames_2019.pdf">here</a>) studies the One Laptop Per Child initiative, and argues that the failure of OLPC is (another) example of:</li>
+</ul></li>
+<li>Sociological barriers that make broad-based, inclusive collaboration in tech challenging.</li>
+</ul>
+<blockquote>
+<p>“One Laptop Per Child implicitly invokes the social imaginary of the technically precocious boy… This imaginary shows a “natural” mastery of technical toys as well as a particular kind of rebellious sensibility that enables technical tinkering—but is still exclusionary by connecting technical prowess to boys in particular.”</p>
+</blockquote>
+<blockquote>
+<p>“In contrast, I found that each [successful] student had a constellation of resources that encouraged them down this path: families that steered them toward creative and critical thinking, a focus on the importance of education, and in many cases another computer in the home. This account circumscribes the role of technology, [… and] instead highlights the importance of social worlds.”</p>
+</blockquote>
+<ul>
+<li>In the face of uneven challenges faced by under-represented peoples in data science, what actions can we take to produce an inclusive, integrated data science team?</li>
+</ul>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="7.3-roadmap-4.html"><button class="btn btn-default">Previous</button></a>
+<a href="7.5-team-kick-off.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

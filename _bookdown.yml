@@ -1,0 +1,11 @@
+book_filename: "203-live-session"
+repo: https://github.com/mids-w203/live-session
+output_dir: "docs"
+delete_merged_file: true
+clean: [packages.bib]
+language:
+  label:
+    fig: "Figure"
+    tab: "Table"
+  ui:
+    chapter_name: "Unit "

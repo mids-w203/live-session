@@ -1,0 +1,153 @@
+# Summarizing Distributions
+
+```{r load unit 03 packages}
+library(tidyverse)
+```
+
+
+## Learning Objectives 
+
+1. 
+2. 
+3. 
+
+
+## Class Announcements 
+
+## Roadmap 
+
+**Roadmap -- Rearview mirror** 
+
+- Statisticians create a population model to represent the world.
+- Random variables are the building blocks of a model. 
+- We can describe the distribution of a random variable using:
+    - a cdf (all random varibles)
+    - a pmf (discrete random variables)
+    - a pdf (continuous random variables)
+- When we have multiple random variables,
+    - a joint pmf / pdf describes how they behave together
+    - a marginal pmf / pdf describes one variable in isolation
+    - a conditonal pmf / pdf describes one variable given the value of another
+
+**Roadmap -- Today's Lesson**
+
+- A joint distribution has more information than we can ever use (or estimate with finite data).
+- To do useful things, we need to summarize certain features we care about:
+    - Expectation
+    - Variance
+    - Covariance
+    - Correlation
+  
+**Roadmap -- Coming Attractions** 
+
+- A predictor is a function that provides a value for one variable, given values of some others.
+- Using our summary tools, we will define a predictor's error and then minimize it.
+- This is a basis for linear regression
+
+## Computing Examples 
+
+### Expected Value of a Die [discrete random variable]
+
+- The expected value (or population mean) of a discrete random variable $X$ is the weighted average of the values in the range of $X$.
+- Suppose that $X$ represents the number of years of education that someone has completed, and so has a support that ranges from $0$ years of education, up to $28$ years of education. (Incidentally, Mark Labovitz has about 28 years of education). 
+
+```{r, echo = FALSE}
+set.seed(1)
+population_education <- sample(
+  x    = 0: 28, 
+  size = 2000, 
+  replace = TRUE, 
+  prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+)
+
+ggplot() + 
+  aes(x=population_education) + 
+  geom_histogram(bins = 28, fill = '#003262') + 
+  labs(
+    title = 'Years of Education', 
+    x     = 'Years', 
+    y     = 'Pr(Instances)')
+```
+
+without using specific numbers, describe the process you would use to calculate the expected value of this distribution. 
+
+### Using a formula 
+
+How does the following formula match with your concept of expectation from that last section?
+
+$$
+  E(X) = \sum_{y \in \{Years\}} y \cdot P(X=y)
+$$
+
+### Compute the Expected Value 
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+- Calculating by hand, what is the expected value $X$? 
+
+> Fill this in by hand. 
+
+```{r solution, echo = FALSE}
+## For a fair die, we know that the pmf is: 
+##  $f(x) = 1/6$ for x in {1,2,3,4,5,6}. 
+## The $E[X]$ is therefore 1/6*(1+2+3+4+5+6) = 3.5.
+```
+
+### Compute the Variance 
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+- Calculating by hand, what is the variance of $X$? 
+
+## Expected Value by Code 
+
+### Expected Value of a Six-Sided Die
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+- Build an object to represent the whole sample space, $\Omega$ of a six sided die. 
+- Determine what probabilities to assign to each value of that object. 
+- Write the code to run the expectation algorithm that you just performed by hand. 
+
+```{r}
+die <- 'fill this in' 
+```
+
+### Variacne of a Six-Sided Die
+
+Let $X$ represent the result of one roll of a 6 sided die. 
+
+5. Using what you know about the definition of variance, write a function that will compute the variance of your `die` object. 
+
+```{r}
+variance_function <- function() { 
+  ## fill this in
+}
+
+## variance_function(die)
+```
+
+## Practice Computing 
+
+### Single Variable 
+
+Suppose that $X$ has the following density function: 
+
+\[ 
+  f_{X}(x) = \begin{cases} 
+    6x(1 - x), & 0 < x < 1 \\ 
+    0, & otherwise \\ 
+  \end{cases}
+\]
+
+- Find $E[X]$.
+- Find $E[X^2]$. 
+- Find $V[X]$. 
+
+### Joint Density 
+
+Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y$ for $0 < y < x < 1. $ 
+
+- Find $E[X]$
+- Find $E[EY]$
+- Find $\rho[X,Y]$

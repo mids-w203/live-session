@@ -1,0 +1,209 @@
+# OLS Regression Estimates
+![](./images/linear_regression.png)
+
+## Learning Objectives 
+
+1. 
+2. 
+3. 
+
+
+## Class Announcements
+
+1. Lab 1 is due next week.
+2. There is no HW 8.  We will have HW 9 as usual.
+3. You're doing great - keep it up!
+
+## Roadmap
+
+**Rear-View Mirror**
+
+- Statisticians create a population model to represent the world.
+- Sometimes, the model includes an "outcome" random variable $Y$ and "input" random variables $X_1, X_2,...,X_k$.
+- The joint distribution of $Y$ and $X_1, X_2,...,X_k$ is complicated.
+- The best linear predictor (BLP) is the canonical way to summarize the relationship.
+
+**Today**
+
+- OLS regression is an estimator for the BLP
+- We'll discuss the *mechanics* of OLS
+
+**Looking Ahead**
+
+- To make regression estimates useful, we need measures of uncertainty (standard errors, tests...).
+- The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
+
+## Regression Discussion
+
+## Working on Math 
+
+Meet us over at this [link](https://miro.com/welcomeonboard/OWZ3SHlpeVBMYjdnc2xXUFhzQVNWaFpnTkg2dmF1Z3I1UUJBWVZobWFOeVduSHJNTTRSQUt3akVyQUt0MnAyM3wzNDU4NzY0NTE4MDA4MjA1NTc3?invite_link_id=319921528710) to work on some math together. 
+
+## Visualizing Data 
+
+Consider that you have two variables, $X_{1}$ and $X_{2}$ that are predicting $Y$. 
+
+```{r, echo = FALSE}
+knitr::include_app(url = 'http://statistics.wtf/minibeta01/', height = '800px')
+```
+
+### Discussion Questions
+
+Suppose we have random variables $X$ and $Y$.
+
+- Why do we care about the BLP?
+- What assumptions are needed for OLS to consistently estimate the BLP?
+- What assumptions are needed in terms of causality ($X$ causes $Y$, $Y$ causes $X$, etc.) in order to compute the regression of $Y$ on $X$?
+
+### Reasoning by Analogies
+
+Here are some phrases about regression "in the population."  Convert each of them to its sample counterpart.
+
+- Population :: Sample 
+- Error $\epsilon$ :: residuals :: $e_{i}$
+- The BLP is the predictor that minimizes expected squared error.
+- $\beta_1 = \frac{Cov[X,Y]}{V[X]}$.
+- $Cov[X, \epsilon] = 0$
+- $E[\epsilon] = 0$
+- The population moment conditions uniquely specify one line, which is the BLP.
+
+## Coding Activity:R Cheat Sheet
+
+Suppose `x` and `y` are variables in dataframe `d`.
+
+To fit an ols regression of Y on X:
+
+    mod <- lm(y ~ x, data = d)
+
+To access **coefficients** from the model object:
+
+    mod$coefficients
+    or coef(mod)
+    
+To access **fitted values** from the model object:
+
+    mod$fitted
+    or fitted(mod)
+    or predict(mod)
+
+To access **residuals** from the model object:
+
+    mod$residuals
+    or resid(mod)
+   
+To create a scatterplot that includes the regression line:
+
+    plot(d['x'], d['y'])
+    abline(mod)
+    or 
+    d %>% 
+      ggplot() + 
+      aes(x = x, y = y) + 
+      geom_point() + 
+      geom_smooth(method = lm)
+
+
+## R Exercise
+
+**Real Estate in Boston** 
+
+The file `hprice1.Rdata` contains 88 observations of homes in the Boston area, taken from the real estate pages of the Boston Globe during 1990.  This data was provided by Wooldridge.
+
+```{r}
+load('data/hprice1.RData') # provides 3 objects 
+```
+
+```{r}
+head(data)
+```
+
+- Are there variables that would _not_ be valid outcomes for an OLS regression? If so, why? 
+- Are there variables that would _not_ be valid inputs for an OLS regression? If so, why? 
+
+### Assess the Relationship between Price and Square Footage
+
+Suppose that you're interested in knowing the relationship between price and square footage. 
+
+0. Assess the assumptions of the Large-Sample Linear Model.
+
+1. Create a scatterplot of `price` and `sqrft`. Like every plot you make, ensure that the plot *minimally* has a title and meaningful axes. 
+
+```{r}
+
+```
+
+2. Find the correlation between the two variables.
+
+3. Recall the equation for the slope of the OLS regression line -- here you can either use Variance and Covariance, or if you're bold, the linear algebra.  Compute the slope manually (without using `lm()`)
+
+```{r}
+
+```
+
+4.  Regress `price` on `sqrft` using the `lm` function. This will produce an estimate for the following model: 
+
+\[ 
+price = \beta_{0} + \beta_{1} sqrft + e
+\] 
+
+
+```{r}
+```
+
+5. Create a scatterplot that includes the fitted regression.
+
+```{r}
+
+```
+
+6. Interpret what the coefficient means. 
+
+- State what features you are allowing to change and what features you're requiring do not change.
+- For each additional square foot, how much more (or less) is the house worth? 
+
+7. Estimate a new model (and save it into another object) that includes the size of the lot and whether the house is a colonial. This will estimate the model: 
+
+\[ 
+price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
+\] 
+
+- *BUT BEFORE YOU DO*, make a prediction: What do you think is going to happen to the coefficient that relates square footage and price? 
+  - Will the coefficient increase, decrease, or stay the same? 
+
+7. Compute the sample correlation between $X$ and $e_i$. What guarantees do we have from the book about this correlation? Does the data seem to bear this out?
+
+```{r}
+
+```
+
+## Regression Plots and Discussion 
+
+In this next set of notes, we're going to give some data, displayed in plots, and we will try to apply what we have learned in the async and reading for this week to answer questions about each of the scatter plots. 
+
+### Plot 1
+
+Consider data that is generated according to the following function: 
+
+$$
+  Y = 1 + 2x_1 + 3x_2 + e, 
+$$
+
+where $x_1 \sim N(0,2)$, $x_2 \sim N(0,2)$ and $e$ is a constant equal to zero. 
+
+From this population, you might consider taking a sample of 100 observations, and representing this data in the following 3d scatter plot. In this plot, there are three dimensions, an $x_1, x_2$, and $y$ dimensions. 
+
+```{r}
+knitr::include_app(url ="http://www.statistics.wtf/minibeta_l01/")
+```
+
+1. Rotate the cube and explore the data, looking at each face of the cube, including from the top down. 
+2. One of the lessons that we learned during the random variables section of the course is that every random variable that has been measured can also be marginalized off. You might think of this as "casting down" data from three dimensions, to only two. 
+  1. Sketch the following 2d scatter plots, taking care the label your axes. You need not represent all 100 points, but rather create the *gestalt* of what you see.  
+    1. $Y = f(x_1)$ (but not $x_2$)
+    2. $Y = f(x_2)$ (but not $x_1$)
+    3. $x2 = f(x_1)$
+  2. Once you have sketched the scatter plots, what line would you fit that minimizes the sum of squared residuals in the vertical direction. Define a residual, $\epsilon$, to be the vertical distance between the line you draw, and the corresponding point on the input data. 
+3. What is the *average* of the residuals for each of the lines that you have fitted? How does this correspond to the *moment conditions* discussed in the async? What would happen if you translated this line vertically? 
+4. Rotate the cube so that the points "fall into line". When you see this line, how does it help you describe the function that governs this data? 
+
+
