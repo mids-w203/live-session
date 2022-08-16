@@ -100,7 +100,7 @@ Acknowledging that we're only 40% of the way through the course, you decide to h
 ## All joking aside 
 Explain this joke:
 
-![har har har](https://imgs.xkcd.com/comics/null_hypothesis.png)
+![har har har](./images/null_hypothesis.png)
 
 ## Manual Computation of a t-Test
 

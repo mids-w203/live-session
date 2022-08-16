@@ -155,13 +155,8 @@
   pdfcreator={LaTeX via pandoc}}
 
 \title{Statistics for Data Science}
-<<<<<<< HEAD:203-live-session.tex
-\author{UC Berkeley, School of Information}
-\date{2022-02-17}
-=======
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
 \date{2022-08-16}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -374,7 +369,7 @@ Probability is a system of reasoning that we use to model the world under incomp
 \begin{figure}
 \centering
 \includegraphics{./images/picard.jpg}
-\caption{picard}
+\caption{told you this would be spacey}
 \end{figure}
 
 In this course, probability theory builds out to random variables; when combined with sampling theory we are able to develop p-values (which are also random variables) and an inferential paradigm to communicate what we know and how certain a statement we can make about it.
@@ -883,11 +878,6 @@ Suppose that we know that two variables, \(X\) and \(Y\) are jointly uniformly d
 \end{Highlighting}
 \end{Shaded}
 
-<<<<<<< HEAD:203-live-session.tex
-\href{http://www.statistics.wtf/PDF_Explorer/}{\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-1-1.pdf}}
-
-=======
->>>>>>> trying-betahat:docs/203-live-session.tex
 \hypertarget{saddle-sores}{%
 \subsection{Saddle Sores}\label{saddle-sores}}
 
@@ -927,11 +917,7 @@ f_{X,Y}(x,y) =
 
 Here is the true density function for a normal random variable.
 
-<<<<<<< HEAD:203-live-session.tex
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-2-1.pdf}
-=======
 \includegraphics{203-live-session_files/figure-latex/unnamed-chunk-4-1.pdf}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 \textbf{Simulate Draws}
 
@@ -944,11 +930,7 @@ There's another way to get an \textbf{approximate} idea of what the distribution
 \end{Shaded}
 
 \begin{verbatim}
-<<<<<<< HEAD:203-live-session.tex
-## [1] 1.794937
-=======
 ## [1] 1.00333
->>>>>>> trying-betahat:docs/203-live-session.tex
 \end{verbatim}
 
 \textbf{Repeating the Experiment}
@@ -997,11 +979,7 @@ Here's some fancy ggplot code to draw a nice histogram of the result, along with
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-<<<<<<< HEAD:203-live-session.tex
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-5-1.pdf}
-=======
 \includegraphics{203-live-session_files/figure-latex/unnamed-chunk-7-1.pdf}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 \textbf{Repeating the Experiment: Questions}
 
@@ -1159,8 +1137,6 @@ Explain each of these three in terms of the cake metaphor.
 \end{Highlighting}
 \end{Shaded}
 
-\href{http://statistics.wtf/betahat/}{\includegraphics[width=600px]{203-live-session_files/figure-latex/unnamed-chunk-7-1} }
-
 \hypertarget{summarizing-distributions}{%
 \chapter{Summarizing Distributions}\label{summarizing-distributions}}
 
@@ -1269,11 +1245,7 @@ Explain each of these three in terms of the cake metaphor.
   Suppose that \(X\) represents the number of years of education that someone has completed, and so has a support that ranges from \(0\) years of education, up to \(28\) years of education. (Incidentally, Mark Labovitz has about 28 years of education).
 \end{itemize}
 
-<<<<<<< HEAD:203-live-session.tex
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-8-1.pdf}
-=======
 \includegraphics{203-live-session_files/figure-latex/unnamed-chunk-10-1.pdf}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 without using specific numbers, describe the process you would use to calculate the expected value of this distribution.
 
@@ -1554,23 +1526,7 @@ f(x,y) =
 
 What does the joint PDF of this function look like?
 
-<<<<<<< HEAD:203-live-session.tex
 \includegraphics{203-live-session_files/figure-latex/create blank plot for pdf-1.pdf}
-=======
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-  \FunctionTok{geom\_blank}\NormalTok{() }\SpecialCharTok{+} 
-  \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{title =} \StringTok{\textquotesingle{}Joint PDF of X,Y\textquotesingle{}}\NormalTok{, }
-    \AttributeTok{x =} \StringTok{\textquotesingle{}x axis\textquotesingle{}}\NormalTok{, }
-    \AttributeTok{y =}\NormalTok{ latex2exp}\SpecialCharTok{::}\FunctionTok{TeX}\NormalTok{(}\StringTok{\textquotesingle{}$P\_\{X,Y\}(x,y)$\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{+} 
-  \FunctionTok{theme\_light}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-14-1.pdf}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 \begin{itemize}
 \tightlist
@@ -1603,11 +1559,7 @@ What does the joint PDF of this function look like?
 \hypertarget{conditional-density-functions}{%
 \section{Conditional Density Functions}\label{conditional-density-functions}}
 
-<<<<<<< HEAD:203-live-session.tex
-Suppose that you were told that \(X\) and \(Y\) are jointly distributed according to the following joint denisty function:
-=======
 Suppose that you were told that \(X\) and \(Y\) are jointly distributed according to the following joint density function:
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 \[ 
   f_{X,Y}(x,y) = 
@@ -1619,13 +1571,10 @@ Suppose that you were told that \(X\) and \(Y\) are jointly distributed accordin
 
 Show that the conditional distribution for \(Y\) give \(X\) is equal to:
 
-<<<<<<< HEAD:203-live-session.tex
-=======
 \vspace{10cm}
 
 Then put more after.
 
->>>>>>> trying-betahat:docs/203-live-session.tex
 \hypertarget{conditional-distribution-to-conditional-expectation}{%
 \section{Conditional Distribution to Conditional Expectation}\label{conditional-distribution-to-conditional-expectation}}
 
@@ -2002,7 +1951,7 @@ How are each of these concepts related to one another, and how can we keep them 
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1765}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2157}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3824}}@{}}
-\toprule
+\toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 Population Concept
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -2012,14 +1961,14 @@ Estimator Properties
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Sampling Variance of Sample Estimator
 \end{minipage} \\
-\midrule
+\midrule()
 \endhead
 Expected Value & & & \\
 Population Variance & & & \\
 Population Covariance & & & \\
 CEF & & & \\
 BLP & & & \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{write-code-to-demo-the-central-limit-theorem-clt}{%
@@ -2409,7 +2358,7 @@ Explain this joke:
 
 \begin{figure}
 \centering
-\includegraphics{https://imgs.xkcd.com/comics/null_hypothesis.png}
+\includegraphics{./images/null_hypothesis.png}
 \caption{har har har}
 \end{figure}
 
@@ -2818,15 +2767,9 @@ non-parametric
 \end{minipage} \\
 \midrule()
 \endhead
-<<<<<<< HEAD:203-live-session.tex
 unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal & \textbf{Wilcoxon rank-sum} ordinal var i.i.d.  \\
 paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wilcoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
-\bottomrule
-=======
-unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal & \textbf{Wicoxon rank-sum} ordinal var i.i.d.  \\
-paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wicoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
 \bottomrule()
->>>>>>> trying-betahat:docs/203-live-session.tex
 \end{longtable}
 
 \hypertarget{comparing-groups-r-exercise}{%
@@ -2844,30 +2787,30 @@ To learn about each variable, you can enter it into the search bar at the \href{
 \end{Shaded}
 
 \begin{verbatim}
-##            rincome               happy                           sexnow        wwwhr           emailhr       
-##  $25000 or more: 851   very happy   : 701   women                   :758   Min.   :  0.00   Min.   :  0.000  
-##  $20000 - 24999: 107   pretty happy :1307   man                     :640   1st Qu.:  3.00   1st Qu.:  0.000  
-##  $10000 - 14999:  94   not too happy: 336   transgender             :  2   Median :  8.00   Median :  2.000  
-##  $15000 - 19999:  61   DK           :   0   a gender not listed here:  1   Mean   : 13.91   Mean   :  7.152  
-##  lt $1000      :  33   IAP          :   0   Don't know              :  0   3rd Qu.: 20.00   3rd Qu.: 10.000  
-##  (Other)       : 169   NA           :   0   (Other)                 :  0   Max.   :140.00   Max.   :100.000  
-##  NA's          :1033   NA's         :   4   NA's                    :947   NA's   :986      NA's   :929      
-##               socrel                socommun      numpets          tvhours                           major1    
-##  sev times a week:382   never           :510   Min.   : 0.000   Min.   : 0.000   business administration: 138  
-##  sev times a mnth:287   once a month    :243   1st Qu.: 0.000   1st Qu.: 1.000   education              :  79  
-##  once a month    :259   sev times a week:219   Median : 1.000   Median : 2.000   engineering            :  54  
-##  sev times a year:240   sev times a year:196   Mean   : 1.718   Mean   : 2.938   nursing                :  51  
-##  almost daily    :217   sev times a mnth:174   3rd Qu.: 2.000   3rd Qu.: 4.000   health                 :  42  
-##  (Other)         :171   (Other)         :215   Max.   :20.000   Max.   :24.000   (Other)                : 546  
-##  NA's            :792   NA's            :791   NA's   :1201     NA's   :793      NA's                   :1438  
-##      owngun   
-##  yes    :537  
-##  no     :993  
-##  refused: 39  
-##  DK     :  0  
-##  IAP    :  0  
-##  NA     :  0  
-##  NA's   :779
+##            rincome               happy                           sexnow        wwwhr       
+##  $25000 or more: 851   very happy   : 701   women                   :758   Min.   :  0.00  
+##  $20000 - 24999: 107   pretty happy :1307   man                     :640   1st Qu.:  3.00  
+##  $10000 - 14999:  94   not too happy: 336   transgender             :  2   Median :  8.00  
+##  $15000 - 19999:  61   DK           :   0   a gender not listed here:  1   Mean   : 13.91  
+##  lt $1000      :  33   IAP          :   0   Don't know              :  0   3rd Qu.: 20.00  
+##  (Other)       : 169   NA           :   0   (Other)                 :  0   Max.   :140.00  
+##  NA's          :1033   NA's         :   4   NA's                    :947   NA's   :986     
+##     emailhr                     socrel                socommun      numpets          tvhours      
+##  Min.   :  0.000   sev times a week:382   never           :510   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.:  0.000   sev times a mnth:287   once a month    :243   1st Qu.: 0.000   1st Qu.: 1.000  
+##  Median :  2.000   once a month    :259   sev times a week:219   Median : 1.000   Median : 2.000  
+##  Mean   :  7.152   sev times a year:240   sev times a year:196   Mean   : 1.718   Mean   : 2.938  
+##  3rd Qu.: 10.000   almost daily    :217   sev times a mnth:174   3rd Qu.: 2.000   3rd Qu.: 4.000  
+##  Max.   :100.000   (Other)         :171   (Other)         :215   Max.   :20.000   Max.   :24.000  
+##  NA's   :929       NA's            :792   NA's            :791   NA's   :1201     NA's   :793     
+##                      major1         owngun   
+##  business administration: 138   yes    :537  
+##  education              :  79   no     :993  
+##  engineering            :  54   refused: 39  
+##  nursing                :  51   DK     :  0  
+##  health                 :  42   IAP    :  0  
+##  (Other)                : 546   NA     :  0  
+##  NA's                   :1438   NA's   :779
 \end{verbatim}
 
 You have a set of questions that you would like to answer with a statistical test. \textbf{For each question}:
@@ -2981,23 +2924,10 @@ Meet us over at this \href{https://miro.com/welcomeonboard/OWZ3SHlpeVBMYjdnc2xXU
 \hypertarget{visualizing-data}{%
 \section{Visualizing Data}\label{visualizing-data}}
 
-<<<<<<< HEAD:203-live-session.tex
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_app}\NormalTok{(}\AttributeTok{url =} \StringTok{\textquotesingle{}http://statistics.wtf/minibeta01/\textquotesingle{}}\NormalTok{, }\AttributeTok{height =} \StringTok{\textquotesingle{}800px\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\href{http://statistics.wtf/minibeta01/}{\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-33-1.pdf}}
+Consider that you have two variables, \(X_{1}\) and \(X_{2}\) that are predicting \(Y\).
 
 \hypertarget{discussion-questions-1}{%
 \subsection{Discussion Questions}\label{discussion-questions-1}}
-=======
-Consider that you have two variables, \(X_{1}\) and \(X_{2}\) that are predicting \(Y\).
-
-\hypertarget{discussion-questions-3}{%
-\subsection{Discussion Questions}\label{discussion-questions-3}}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 Suppose we have random variables \(X\) and \(Y\).
 
@@ -3474,11 +3404,7 @@ With this, it is possible to plot the distribution of these regression coefficie
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-<<<<<<< HEAD:203-live-session.tex
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-46-1.pdf}
-=======
 \includegraphics{203-live-session_files/figure-latex/unnamed-chunk-50-1.pdf}
->>>>>>> trying-betahat:docs/203-live-session.tex
 
 Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?
 
@@ -4233,15 +4159,6 @@ In this analysis, we will use the mtcars dataset which is a dataset that was ext
 \begin{verbatim}
 ## Rows: 32
 ## Columns: 11
-<<<<<<< HEAD:203-live-session.tex
-## $ mpg  <dbl> 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4,~
-## $ cyl  <dbl> 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
-## $ disp <dbl> 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0, 46~
-## $ hp   <dbl> 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, 150,~
-## $ drat <dbl> 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4.08,~
-## $ wt   <dbl> 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250, 5.~
-## $ qsec <dbl> 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98, 17~
-=======
 ## $ mpg  <dbl> 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.~
 ## $ cyl  <dbl> 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
 ## $ disp <dbl> 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 27~
@@ -4249,7 +4166,6 @@ In this analysis, we will use the mtcars dataset which is a dataset that was ext
 ## $ drat <dbl> 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.0~
 ## $ wt   <dbl> 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.~
 ## $ qsec <dbl> 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18~
->>>>>>> trying-betahat:docs/203-live-session.tex
 ## $ vs   <dbl> 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1
 ## $ am   <dbl> 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
 ## $ gear <dbl> 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 4
@@ -4733,11 +4649,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 \end{Shaded}
 
 \begin{verbatim}
-<<<<<<< HEAD:203-live-session.tex
-##  [1] 2 2 1 0 2 1 3 3 1 2
-=======
 ##  [1] 1 1 3 2 5 1 5 6 1 0
->>>>>>> trying-betahat:docs/203-live-session.tex
 \end{verbatim}
 
 \hypertarget{mle-for-poisson-random-variables-data}{%

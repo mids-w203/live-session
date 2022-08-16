@@ -120,13 +120,8 @@ ggplot() +
   labs(
     title = 'Joint PDF of X,Y', 
     x = 'x axis', 
-<<<<<<< HEAD
-    y = latex2exp::TeX('$P_{X,Y}(x,y)$')
-  )
-=======
     y = latex2exp::TeX('$P_{X,Y}(x,y)$')) + 
   theme_light()
->>>>>>> trying-betahat
 ```
 
 - What is the expectation of $X$? 

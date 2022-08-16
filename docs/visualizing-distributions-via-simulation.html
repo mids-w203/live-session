@@ -23,11 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<<<<<<< HEAD
-<meta name="date" content="2022-02-17" />
-=======
 <meta name="date" content="2022-08-16" />
->>>>>>> trying-betahat
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -462,38 +458,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p><strong>Simulate Draws</strong></p>
 <p>There’s another way to get an <strong>approximate</strong> idea of what the distribution looks like. Here’s how we take a single draw from a normal distribution with a specific set of features:</p>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-distributions-via-simulation.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 2.364156</code></pre>
-=======
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="visualizing-distributions-via-simulation.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1.00333</code></pre>
->>>>>>> trying-betahat
 <p><strong>Repeating the Experiment</strong></p>
 <p>We want to rerun that experiment 10 times. We take a draw, then rewind time, clear our memory and start over with fresh randomness. To do this in R, an easy way is with the <code>replicate()</code> function. Change the code below so that it repeats the experiment above 10 times, then use <code>hist()</code> to display a plot of the result.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-distributions-via-simulation.html#cb7-1" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
-<span id="cb7-2"><a href="visualizing-distributions-via-simulation.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n    =</span> <span class="dv">10</span>,      <span class="co"># should you change this line? </span></span>
-<span id="cb7-3"><a href="visualizing-distributions-via-simulation.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="dv">1</span> <span class="sc">+</span> .<span class="dv">2</span>   <span class="co"># or this line? </span></span>
-<span id="cb7-4"><a href="visualizing-distributions-via-simulation.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-5"><a href="visualizing-distributions-via-simulation.html#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="visualizing-distributions-via-simulation.html#cb7-6" aria-hidden="true" tabindex="-1"></a>simulation</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualizing-distributions-via-simulation.html#cb4-1" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
+<span id="cb4-2"><a href="visualizing-distributions-via-simulation.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n    =</span> <span class="dv">10</span>,      <span class="co"># should you change this line? </span></span>
+<span id="cb4-3"><a href="visualizing-distributions-via-simulation.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="dv">1</span> <span class="sc">+</span> .<span class="dv">2</span>   <span class="co"># or this line? </span></span>
+<span id="cb4-4"><a href="visualizing-distributions-via-simulation.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-5"><a href="visualizing-distributions-via-simulation.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="visualizing-distributions-via-simulation.html#cb4-6" aria-hidden="true" tabindex="-1"></a>simulation</span></code></pre></div>
 <pre><code>##  [1] 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2 1.2</code></pre>
 <p><strong>Better Visualization</strong></p>
 <p>Here’s some fancy ggplot code to draw a nice histogram of the result, along with the true density. Remove the first line to make it work with your simulation.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualizing-distributions-via-simulation.html#cb9-1" aria-hidden="true" tabindex="-1"></a>short_simulation <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>)</span>
-<span id="cb9-2"><a href="visualizing-distributions-via-simulation.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="visualizing-distributions-via-simulation.html#cb9-3" aria-hidden="true" tabindex="-1"></a>true_density <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb9-4"><a href="visualizing-distributions-via-simulation.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(<span class="at">x =</span> x, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb9-5"><a href="visualizing-distributions-via-simulation.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-6"><a href="visualizing-distributions-via-simulation.html#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="visualizing-distributions-via-simulation.html#cb9-7" aria-hidden="true" tabindex="-1"></a>dat_hist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(short_simulation)</span>
-<span id="cb9-8"><a href="visualizing-distributions-via-simulation.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="visualizing-distributions-via-simulation.html#cb9-9" aria-hidden="true" tabindex="-1"></a>dat_hist <span class="sc">%&gt;%</span> </span>
-<span id="cb9-10"><a href="visualizing-distributions-via-simulation.html#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb9-11"><a href="visualizing-distributions-via-simulation.html#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb9-12"><a href="visualizing-distributions-via-simulation.html#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> short_simulation, <span class="at">y =</span> ..density..)) <span class="sc">+</span> </span>
-<span id="cb9-13"><a href="visualizing-distributions-via-simulation.html#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
-<span id="cb9-14"><a href="visualizing-distributions-via-simulation.html#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> short_simulation), <span class="at">fun =</span> true_density, <span class="at">color =</span> <span class="st">&#39;darkred&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="visualizing-distributions-via-simulation.html#cb6-1" aria-hidden="true" tabindex="-1"></a>short_simulation <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>)</span>
+<span id="cb6-2"><a href="visualizing-distributions-via-simulation.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="visualizing-distributions-via-simulation.html#cb6-3" aria-hidden="true" tabindex="-1"></a>true_density <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-4"><a href="visualizing-distributions-via-simulation.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(<span class="at">x =</span> x, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb6-5"><a href="visualizing-distributions-via-simulation.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-6"><a href="visualizing-distributions-via-simulation.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="visualizing-distributions-via-simulation.html#cb6-7" aria-hidden="true" tabindex="-1"></a>dat_hist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(short_simulation)</span>
+<span id="cb6-8"><a href="visualizing-distributions-via-simulation.html#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="visualizing-distributions-via-simulation.html#cb6-9" aria-hidden="true" tabindex="-1"></a>dat_hist <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="visualizing-distributions-via-simulation.html#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb6-11"><a href="visualizing-distributions-via-simulation.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb6-12"><a href="visualizing-distributions-via-simulation.html#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> short_simulation, <span class="at">y =</span> ..density..)) <span class="sc">+</span> </span>
+<span id="cb6-13"><a href="visualizing-distributions-via-simulation.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
+<span id="cb6-14"><a href="visualizing-distributions-via-simulation.html#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> short_simulation), <span class="at">fun =</span> true_density, <span class="at">color =</span> <span class="st">&#39;darkred&#39;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p><strong>Repeating the Experiment: Questions</strong></p>
@@ -530,9 +521,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Simulate a draw <span class="math inline">\(Y\)</span>.</li>
 <li>Return the sum of the previous draws.</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizing-distributions-via-simulation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>rz <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb11-2"><a href="visualizing-distributions-via-simulation.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="co"># Replace with your code</span></span>
-<span id="cb11-3"><a href="visualizing-distributions-via-simulation.html#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="visualizing-distributions-via-simulation.html#cb8-1" aria-hidden="true" tabindex="-1"></a>rz <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb8-2"><a href="visualizing-distributions-via-simulation.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="co"># Replace with your code</span></span>
+<span id="cb8-3"><a href="visualizing-distributions-via-simulation.html#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li>Use the previous code to repeat this experiment 10,000 times and plot a histogram.</li>
 <li>See if you can guess what the the distribution is, and plot your guess on the histogram.</li>
@@ -593,7 +584,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["203-live-session.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
