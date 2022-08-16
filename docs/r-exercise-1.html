@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 R Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 R Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
@@ -21,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="UC Berkeley, School of Information" />
+<meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-02-21" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="uncertainty-in-ols.html"/>
 <link rel="next" href="descriptive-model-building.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -120,6 +119,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
 <body>
@@ -132,30 +133,36 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
-<ul>
-<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session</a></li>
 <li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
+<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations</a></li>
+<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework</a></li>
+<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
+<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="student-introductions.html"><a href="student-introductions.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions</a></li>
-<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.5</b> Probability Theory</a></li>
-<li class="chapter" data-level="1.6" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.6</b> Working with a Sample Space</a>
+<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]</a></li>
+<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a></li>
+<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability</a></li>
+<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem</a></li>
+<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.6.1</b> Working with a Sample Space, Part I</a></li>
-<li class="chapter" data-level="1.6.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.6.2</b> Working with a Sample Space, Part II</a></li>
-<li class="chapter" data-level="1.6.3" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-sapce-part-iii"><i class="fa fa-check"></i><b>1.6.3</b> Working with a Sample Sapce, Part III</a></li>
+<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I</a></li>
+<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="proofs-style-counts.html"><a href="proofs-style-counts.html"><i class="fa fa-check"></i><b>1.7</b> Proofs: Style Counts</a></li>
-<li class="chapter" data-level="1.8" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.8</b> A practice problem</a></li>
-<li class="chapter" data-level="1.9" data-path="concluding-reminders.html"><a href="concluding-reminders.html"><i class="fa fa-check"></i><b>1.9</b> Concluding Reminders</a></li>
+<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence</a></li>
+<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem</a></li>
+<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
@@ -408,6 +415,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals</a></li>
 <li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -425,14 +436,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-exercise-1" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> R Exercise</h2>
+<div id="r-exercise-1" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> R Exercise<a href="r-exercise-1.html#r-exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Real Estate in Boston</strong></p>
 <p>The file <code>hprice1.RData</code> contains 88 observations of homes in the Boston area, taken from the real estate pages of the Boston Globe during 1990. This data was provided by Wooldridge.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-exercise-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-exercise-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
 <p>Last week, we fit a regression of price on square feet.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-exercise-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a>model_one <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data)</span>
-<span id="cb38-2"><a href="r-exercise-1.html#cb38-2" aria-hidden="true" tabindex="-1"></a>model_one</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-exercise-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>model_one <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data)</span>
+<span id="cb37-2"><a href="r-exercise-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a>model_one</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = price ~ sqrft, data = data)
@@ -444,7 +455,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Estimate a new model (and save it into another object) that includes the size of the lot and whether the house is a colonial. This will estimate the model:</li>
 </ol>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
   price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
 \]</span></p>
 <ul>
@@ -462,31 +473,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Bootstrap.</strong> The book <em>very</em> quickly talks about bootstrapping which is the process of sampling <em>with replacement</em> and fitting a model. The idea behind the bootstrap is that since the data is generated via an iid sample from the population, that you can simulate re-running your analysis by drawing repeated samples from the data that you have.</p></li>
 </ol>
 <p>Below is code that will conduct a boostrapping estimator of the uncertainty of the <code>sqrft</code> variable when <code>lotsize</code> and <code>colonial</code> are included in the model.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-exercise-1.html#cb40-1" aria-hidden="true" tabindex="-1"></a>bootstrap_sqft <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>) { </span>
-<span id="cb40-2"><a href="r-exercise-1.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  number_of_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb40-3"><a href="r-exercise-1.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="r-exercise-1.html#cb40-4" aria-hidden="true" tabindex="-1"></a>    coef_sqft <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, number_of_bootstraps)</span>
-<span id="cb40-5"><a href="r-exercise-1.html#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="r-exercise-1.html#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_of_bootstraps) { </span>
-<span id="cb40-7"><a href="r-exercise-1.html#cb40-7" aria-hidden="true" tabindex="-1"></a>      bootstrap_data <span class="ot">&lt;-</span> d[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>number_of_rows, <span class="at">size=</span>number_of_rows, <span class="at">replace=</span><span class="cn">TRUE</span>), ]  </span>
-<span id="cb40-8"><a href="r-exercise-1.html#cb40-8" aria-hidden="true" tabindex="-1"></a>      estimated_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize <span class="sc">+</span> colonial, <span class="at">data =</span> bootstrap_data)</span>
-<span id="cb40-9"><a href="r-exercise-1.html#cb40-9" aria-hidden="true" tabindex="-1"></a>      coef_sqft[i]    <span class="ot">&lt;-</span> <span class="fu">coef</span>(estimated_model)[<span class="st">&#39;sqrft&#39;</span>]</span>
-<span id="cb40-10"><a href="r-exercise-1.html#cb40-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb40-11"><a href="r-exercise-1.html#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_sqft)</span>
-<span id="cb40-12"><a href="r-exercise-1.html#cb40-12" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-exercise-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a>bootstrap_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-exercise-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>bootstrap_sqft <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>) { </span>
+<span id="cb39-2"><a href="r-exercise-1.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  number_of_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb39-3"><a href="r-exercise-1.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="r-exercise-1.html#cb39-4" aria-hidden="true" tabindex="-1"></a>    coef_sqft <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, number_of_bootstraps)</span>
+<span id="cb39-5"><a href="r-exercise-1.html#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="r-exercise-1.html#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_of_bootstraps) { </span>
+<span id="cb39-7"><a href="r-exercise-1.html#cb39-7" aria-hidden="true" tabindex="-1"></a>      bootstrap_data <span class="ot">&lt;-</span> d[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>number_of_rows, <span class="at">size=</span>number_of_rows, <span class="at">replace=</span><span class="cn">TRUE</span>), ]  </span>
+<span id="cb39-8"><a href="r-exercise-1.html#cb39-8" aria-hidden="true" tabindex="-1"></a>      estimated_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize <span class="sc">+</span> colonial, <span class="at">data =</span> bootstrap_data)</span>
+<span id="cb39-9"><a href="r-exercise-1.html#cb39-9" aria-hidden="true" tabindex="-1"></a>      coef_sqft[i]    <span class="ot">&lt;-</span> <span class="fu">coef</span>(estimated_model)[<span class="st">&#39;sqrft&#39;</span>]</span>
+<span id="cb39-10"><a href="r-exercise-1.html#cb39-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb39-11"><a href="r-exercise-1.html#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_sqft)</span>
+<span id="cb39-12"><a href="r-exercise-1.html#cb39-12" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-exercise-1.html#cb40-1" aria-hidden="true" tabindex="-1"></a>bootstrap_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <p>With this, it is possible to plot the distribution of these regression coefficients:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-exercise-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb42-2"><a href="r-exercise-1.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_result) <span class="sc">+</span> </span>
-<span id="cb42-3"><a href="r-exercise-1.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb42-4"><a href="r-exercise-1.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb42-5"><a href="r-exercise-1.html#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Estimated Coefficient&#39;</span>, </span>
-<span id="cb42-6"><a href="r-exercise-1.html#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>, </span>
-<span id="cb42-7"><a href="r-exercise-1.html#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Bootstrap coefficients for square footage&#39;</span></span>
-<span id="cb42-8"><a href="r-exercise-1.html#cb42-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better
-## value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-exercise-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb41-2"><a href="r-exercise-1.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_result) <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="r-exercise-1.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb41-4"><a href="r-exercise-1.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb41-5"><a href="r-exercise-1.html#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Estimated Coefficient&#39;</span>, </span>
+<span id="cb41-6"><a href="r-exercise-1.html#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>, </span>
+<span id="cb41-7"><a href="r-exercise-1.html#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Bootstrap coefficients for square footage&#39;</span></span>
+<span id="cb41-8"><a href="r-exercise-1.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?</p>
 
 </div>

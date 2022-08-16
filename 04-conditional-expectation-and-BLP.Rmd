@@ -2,6 +2,7 @@
 
 ```{r package loads 04, echo=FALSE, message=FALSE}
 library(ggplot2)
+source(file = 'src/blank_lines.R')
 
 theme_set(theme_minimal())
 
@@ -119,9 +120,10 @@ ggplot() +
   labs(
     title = 'Joint PDF of X,Y', 
     x = 'x axis', 
-    y = latex2exp::latex2exp('$P_{X,Y}(x,y)$')
-  )
+    y = latex2exp::TeX('$P_{X,Y}(x,y)$')) + 
+  theme_light()
 ```
+
 - What is the expectation of $X$? 
 - What is the expectation of $Y$? 
 - How would you compute the variance of $X$? (We're not going to do it live). 
@@ -135,7 +137,7 @@ ggplot() +
 
 ## Conditional Density Functions
 
-Suppose that you were told that $X$ and $Y$ are jointly distributed according to the following joint denisty function: 
+Suppose that you were told that $X$ and $Y$ are jointly distributed according to the following joint density function: 
 
 $$ 
   f_{X,Y}(x,y) = 
@@ -147,8 +149,11 @@ $$
 
 Show that the conditional distribution for $Y$ give $X$ is equal to: 
 
+```{r, echo = FALSE, results = 'asis'}
+blank_lines(n=10)
+```
 
-
+Then put more after. 
 
 
 

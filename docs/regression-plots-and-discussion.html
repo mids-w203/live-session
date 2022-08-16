@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.9 Regression Plots and Discussion | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.9 Regression Plots and Discussion | Statistics for Data Science" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
@@ -21,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="UC Berkeley, School of Information" />
+<meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-02-21" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="r-exercise.html"/>
 <link rel="next" href="ols-regression-inference.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -120,6 +119,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
 <body>
@@ -132,30 +133,36 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
-<ul>
-<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session</a></li>
 <li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
+<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations</a></li>
+<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework</a></li>
+<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
+<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="student-introductions.html"><a href="student-introductions.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions</a></li>
-<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.5</b> Probability Theory</a></li>
-<li class="chapter" data-level="1.6" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.6</b> Working with a Sample Space</a>
+<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]</a></li>
+<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a></li>
+<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability</a></li>
+<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem</a></li>
+<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.6.1</b> Working with a Sample Space, Part I</a></li>
-<li class="chapter" data-level="1.6.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.6.2</b> Working with a Sample Space, Part II</a></li>
-<li class="chapter" data-level="1.6.3" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-sapce-part-iii"><i class="fa fa-check"></i><b>1.6.3</b> Working with a Sample Sapce, Part III</a></li>
+<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I</a></li>
+<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="proofs-style-counts.html"><a href="proofs-style-counts.html"><i class="fa fa-check"></i><b>1.7</b> Proofs: Style Counts</a></li>
-<li class="chapter" data-level="1.8" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.8</b> A practice problem</a></li>
-<li class="chapter" data-level="1.9" data-path="concluding-reminders.html"><a href="concluding-reminders.html"><i class="fa fa-check"></i><b>1.9</b> Concluding Reminders</a></li>
+<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence</a></li>
+<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem</a></li>
+<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
@@ -408,6 +415,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals</a></li>
 <li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -425,29 +436,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-plots-and-discussion" class="section level2" number="8.9">
-<h2><span class="header-section-number">8.9</span> Regression Plots and Discussion</h2>
+<div id="regression-plots-and-discussion" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Regression Plots and Discussion<a href="regression-plots-and-discussion.html#regression-plots-and-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this next set of notes, we’re going to give some data, displayed in plots, and we will try to apply what we have learned in the async and reading for this week to answer questions about each of the scatter plots.</p>
-<div id="plot-1" class="section level3" number="8.9.1">
-<h3><span class="header-section-number">8.9.1</span> Plot 1</h3>
+<div id="plot-1" class="section level3 hasAnchor" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Plot 1<a href="regression-plots-and-discussion.html#plot-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider data that is generated according to the following function:</p>
 <p><span class="math display">\[
-  Y = 1 + 2x_1 + 3x_2 + e, 
+  Y = 1 + 2x_1 + 3x_2 + e,
 \]</span></p>
-<p>where <span class="math inline">\(x_1 \sim N(0,2)\)</span>, <span class="math inline">\(x_2 \sim N(0,2)\)</span> and <span class="math inline">\(e\)</span> is a constant equal to zero. You could represent a sample of 100 observations from this population function and produce the following 3d scatter plot. In this plot, there are three dimensions, an <code>x1</code> dimension, and <code>x2</code> dimension, and a <code>y</code> dimension.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="regression-plots-and-discussion.html#cb36-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_app</span>(<span class="at">url =</span><span class="st">&quot;http://www.statistics.wtf/minibeta_l01/&quot;</span>)</span></code></pre></div>
+<p>where <span class="math inline">\(x_1 \sim N(0,2)\)</span>, <span class="math inline">\(x_2 \sim N(0,2)\)</span> and <span class="math inline">\(e\)</span> is a constant equal to zero.</p>
+<p>From this population, you might consider taking a sample of 100 observations, and representing this data in the following 3d scatter plot. In this plot, there are three dimensions, an <span class="math inline">\(x_1, x_2\)</span>, and <span class="math inline">\(y\)</span> dimensions.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="regression-plots-and-discussion.html#cb35-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_app</span>(<span class="at">url =</span><span class="st">&quot;http://www.statistics.wtf/minibeta_l01/&quot;</span>)</span></code></pre></div>
 <iframe src="http://www.statistics.wtf/minibeta_l01/?showcase=0" width="672" height="400px" data-external="1">
 </iframe>
 <ol style="list-style-type: decimal">
 <li>Rotate the cube and explore the data, looking at each face of the cube, including from the top down.</li>
-<li>One of the points that we have made during the random variables section of the course is that every random variable that has been measured can also be marginalized off. You might think of this as “casting down” data from three dimensions, to only two.</li>
-<li>Sketch the following 2d scatter plots, taking care the label your axes.:
+<li>One of the lessons that we learned during the random variables section of the course is that every random variable that has been measured can also be marginalized off. You might think of this as “casting down” data from three dimensions, to only two.</li>
+<li>Sketch the following 2d scatter plots, taking care the label your axes. You need not represent all 100 points, but rather create the <em>gestalt</em> of what you see.<br />
 1. <span class="math inline">\(Y = f(x_1)\)</span> (but not <span class="math inline">\(x_2\)</span>)
 2. <span class="math inline">\(Y = f(x_2)\)</span> (but not <span class="math inline">\(x_1\)</span>)
-3. <span class="math inline">\(x2 = f_x_1)\)</span></li>
+3. <span class="math inline">\(x2 = f(x_1)\)</span></li>
 <li>Once you have sketched the scatter plots, what line would you fit that minimizes the sum of squared residuals in the vertical direction. Define a residual, <span class="math inline">\(\epsilon\)</span>, to be the vertical distance between the line you draw, and the corresponding point on the input data.</li>
-<li>What is the <em>average</em> of the residuals for each of the lines that you have fitted?</li>
-<li></li>
+<li>What is the <em>average</em> of the residuals for each of the lines that you have fitted? How does this correspond to the <em>moment conditions</em> discussed in the async? What would happen if you translated this line vertically?</li>
+<li>Rotate the cube so that the points “fall into line”. When you see this line, how does it help you describe the function that governs this data?</li>
 </ol>
 
 </div>

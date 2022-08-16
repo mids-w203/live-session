@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.6 R Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.6 R Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
@@ -21,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="UC Berkeley, School of Information" />
+<meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-02-21" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="problems-with-the-clm-requirements.html"/>
 <link rel="next" href="reproducible-research.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -120,6 +119,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
 <body>
@@ -132,30 +133,36 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
-<ul>
-<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session</a></li>
 <li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
+<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations</a></li>
+<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework</a></li>
+<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
+<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="student-introductions.html"><a href="student-introductions.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions</a></li>
-<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.5</b> Probability Theory</a></li>
-<li class="chapter" data-level="1.6" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.6</b> Working with a Sample Space</a>
+<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]</a></li>
+<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a></li>
+<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability</a></li>
+<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem</a></li>
+<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.6.1</b> Working with a Sample Space, Part I</a></li>
-<li class="chapter" data-level="1.6.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.6.2</b> Working with a Sample Space, Part II</a></li>
-<li class="chapter" data-level="1.6.3" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-sapce-part-iii"><i class="fa fa-check"></i><b>1.6.3</b> Working with a Sample Sapce, Part III</a></li>
+<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I</a></li>
+<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="proofs-style-counts.html"><a href="proofs-style-counts.html"><i class="fa fa-check"></i><b>1.7</b> Proofs: Style Counts</a></li>
-<li class="chapter" data-level="1.8" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.8</b> A practice problem</a></li>
-<li class="chapter" data-level="1.9" data-path="concluding-reminders.html"><a href="concluding-reminders.html"><i class="fa fa-check"></i><b>1.9</b> Concluding Reminders</a></li>
+<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence</a></li>
+<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem</a></li>
+<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
@@ -408,6 +415,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals</a></li>
 <li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -425,32 +436,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-exercise-3" class="section level2" number="12.6">
-<h2><span class="header-section-number">12.6</span> R Exercise</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-exercise-3.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb45-2"><a href="r-exercise-3.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb45-3"><a href="r-exercise-3.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb45-4"><a href="r-exercise-3.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb45-5"><a href="r-exercise-3.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb45-6"><a href="r-exercise-3.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div id="r-exercise-3" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> R Exercise<a href="r-exercise-3.html#r-exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-exercise-3.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-2"><a href="r-exercise-3.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb44-3"><a href="r-exercise-3.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb44-4"><a href="r-exercise-3.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb44-5"><a href="r-exercise-3.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb44-6"><a href="r-exercise-3.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-exercise-3.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb46-2"><a href="r-exercise-3.html#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="r-exercise-3.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-exercise-3.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb45-2"><a href="r-exercise-3.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="r-exercise-3.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 <pre><code>## Rows: 32
 ## Columns: 11
-## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.…
-## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, …
-## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0…
-## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245,…
-## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.7…
-## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440…
-## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02…
-## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, …
-## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, …
-## $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, …</code></pre>
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.…
+## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 27…
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65,…
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.0…
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18…
+## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1
+## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
+## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 4
+## $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2, 2, 4, 2, 1, 2, 2, 4, 6, 8, 2</code></pre>
 <p><strong>Questions:</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Using the mtcars data, run a multiple linear regression to find the relationship between displacement (<code>disp</code>), gross horsepower (<code>hp</code>), weight (<code>wt</code>), and rear axle ratio (<code>drat</code>) on the miles per gallon (<code>mpg</code>).</p></li>

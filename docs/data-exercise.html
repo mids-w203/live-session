@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.6 Data Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.6 Data Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
@@ -21,10 +20,10 @@
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
 
-<meta name="author" content="UC Berkeley, School of Information" />
+<meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-02-21" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="manual-computation-of-a-t-test.html"/>
 <link rel="next" href="assumptions-behind-the-t-test.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -120,6 +119,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
 <body>
@@ -132,30 +133,36 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session Introduction</a>
-<ul>
-<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session</a></li>
 <li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
+<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations</a></li>
+<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework</a></li>
+<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
+<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="student-introductions.html"><a href="student-introductions.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions</a></li>
-<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.5</b> Probability Theory</a></li>
-<li class="chapter" data-level="1.6" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.6</b> Working with a Sample Space</a>
+<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]</a></li>
+<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a></li>
+<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability</a></li>
+<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem</a></li>
+<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.6.1</b> Working with a Sample Space, Part I</a></li>
-<li class="chapter" data-level="1.6.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.6.2</b> Working with a Sample Space, Part II</a></li>
-<li class="chapter" data-level="1.6.3" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-sapce-part-iii"><i class="fa fa-check"></i><b>1.6.3</b> Working with a Sample Sapce, Part III</a></li>
+<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I</a></li>
+<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="proofs-style-counts.html"><a href="proofs-style-counts.html"><i class="fa fa-check"></i><b>1.7</b> Proofs: Style Counts</a></li>
-<li class="chapter" data-level="1.8" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.8</b> A practice problem</a></li>
-<li class="chapter" data-level="1.9" data-path="concluding-reminders.html"><a href="concluding-reminders.html"><i class="fa fa-check"></i><b>1.9</b> Concluding Reminders</a></li>
+<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence</a></li>
+<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem</a></li>
+<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
@@ -408,6 +415,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals</a></li>
 <li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -425,8 +436,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-exercise" class="section level2" number="6.6">
-<h2><span class="header-section-number">6.6</span> Data Exercise</h2>
+<div id="data-exercise" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Data Exercise<a href="data-exercise.html#data-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>t-Test Micro Cheat Sheet</strong></p>
 <ul>
 <li>Key t-Test Assumptions
@@ -438,70 +449,39 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Testing the Home Team Advantage</strong></p>
 <p>The file athlet2.Rdata contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-exercise.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/athlet2.RData&quot;</span>)</span>
-<span id="cb24-2"><a href="data-exercise.html#cb24-2" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
-<pre><code>##    dscore dinstt doutstt htpriv vtpriv dapps
-## 1      10   -409   -4679      0      0 -1038
-## 2     -14     NA     -66      0      0 -7051
-## 3      23   -654    -637      0      0  6209
-## 4       8   -222     456      0      0  -129
-## 5     -12    -10     208      0      0   794
-## 6       7    494      17      0      0   411
-## 7     -21      2       2      0      0 -4363
-## 8      -5     96    -333      0      0  1144
-## 9      -3    223    2526      0      0  3956
-## 10    -32    -20       0      0      0  -641
-## 11      9     66       0      0      0  -278
-## 12      1     56    -346      0      0 -2223
-## 13      7    556     717      0      0 -5217
-## 14    -20    169    -461      0      0  1772
-## 15     35   -135     396      0      0    85
-## 16     35    -40       0      0      0  -988
-## 17    -25     24       0      0      0 -8140
-## 18     -9     90       0      0      0  8418
-## 19    -33     27     900      0      0 -3273
-## 20      7    -89     -31      0      0  1906
-## 21     -3    536    2352      0      0  -151
-## 22     -6  13261    9111      1      0 -9936
-## 23    -29  13809   10076      1      0 -6265
-## 24     14 -17631  -10589      0      1  1252
-## 25    -18  14885    9983      1      0 -4529
-## 26     48 -15220  -11400      0      1  -318
-## 27     -3     99     -29      0      0  -797
-## 28     -3    -54     -88      0      0  -372
-## 29     -3    -98   -4175      1      0  2460
-## 30      2   -304    2987      0      1 -3035
-##    htwrd vtwrd dwinrec dpriv
-## 1      1     1       0     0
-## 2      1     1       0     0
-## 3      1     0       1     0
-## 4      1     1       0     0
-## 5      1     1       0     0
-## 6      0     0       0     0
-## 7      1     1       0     0
-## 8      1     0       1     0
-## 9      0     0       0     0
-## 10     0     1      -1     0
-## 11     1     0       1     0
-## 12     1     0       1     0
-## 13     1     0       1     0
-## 14     0     1      -1     0
-## 15     1     0       1     0
-## 16     1     0       1     0
-## 17     1     1       0     0
-## 18     0     1      -1     0
-## 19     0     0       0     0
-## 20     1     0       1     0
-## 21     1     1       0     0
-## 22     1     1       0     1
-## 23     0     1      -1     1
-## 24     1     0       1    -1
-## 25     1     1       0     1
-## 26     1     0       1    -1
-## 27     0     1      -1     0
-## 28     0     1      -1     0
-## 29     1     1       0     1
-## 30     1     1       0    -1</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-exercise.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/athlet2.RData&quot;</span>)</span>
+<span id="cb23-2"><a href="data-exercise.html#cb23-2" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<pre><code>##    dscore dinstt doutstt htpriv vtpriv dapps htwrd vtwrd dwinrec dpriv
+## 1      10   -409   -4679      0      0 -1038     1     1       0     0
+## 2     -14     NA     -66      0      0 -7051     1     1       0     0
+## 3      23   -654    -637      0      0  6209     1     0       1     0
+## 4       8   -222     456      0      0  -129     1     1       0     0
+## 5     -12    -10     208      0      0   794     1     1       0     0
+## 6       7    494      17      0      0   411     0     0       0     0
+## 7     -21      2       2      0      0 -4363     1     1       0     0
+## 8      -5     96    -333      0      0  1144     1     0       1     0
+## 9      -3    223    2526      0      0  3956     0     0       0     0
+## 10    -32    -20       0      0      0  -641     0     1      -1     0
+## 11      9     66       0      0      0  -278     1     0       1     0
+## 12      1     56    -346      0      0 -2223     1     0       1     0
+## 13      7    556     717      0      0 -5217     1     0       1     0
+## 14    -20    169    -461      0      0  1772     0     1      -1     0
+## 15     35   -135     396      0      0    85     1     0       1     0
+## 16     35    -40       0      0      0  -988     1     0       1     0
+## 17    -25     24       0      0      0 -8140     1     1       0     0
+## 18     -9     90       0      0      0  8418     0     1      -1     0
+## 19    -33     27     900      0      0 -3273     0     0       0     0
+## 20      7    -89     -31      0      0  1906     1     0       1     0
+## 21     -3    536    2352      0      0  -151     1     1       0     0
+## 22     -6  13261    9111      1      0 -9936     1     1       0     1
+## 23    -29  13809   10076      1      0 -6265     0     1      -1     1
+## 24     14 -17631  -10589      0      1  1252     1     0       1    -1
+## 25    -18  14885    9983      1      0 -4529     1     1       0     1
+## 26     48 -15220  -11400      0      1  -318     1     0       1    -1
+## 27     -3     99     -29      0      0  -797     0     1      -1     0
+## 28     -3    -54     -88      0      0  -372     0     1      -1     0
+## 29     -3    -98   -4175      1      0  2460     1     1       0     1
+## 30      2   -304    2987      0      1 -3035     1     1       0    -1</code></pre>
 <p>We are especially interested in the variable, dscore, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.</p>
 <ol style="list-style-type: decimal">
 <li><p>The instructor will assign you to one of two teams. Team 1 will argue that the t-test is appropriate to this scenario. Team 2 will argue that the t-test is invalid. Take a few minutes to examine the data, then formulate your best argument.</p></li>
