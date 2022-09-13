@@ -4,14 +4,14 @@ output:
     split_by: section
     config:
       toc:
-        collapse: section
+        collapse: chapter
         scroll_highlight: yes
       fontsettings:
         theme: white
         family: serif
         size: 2
     highlight: tango
-    css: [css/style.css, css/box.css]
+    css: [css/box.css]
   bookdown::pdf_book:
     keep_tex: TRUE
     includes:

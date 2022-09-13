@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.2 Class Announcements | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.2 Class Announcements | Statistics for Data Science" />
   <meta property="og:type" content="book" />
+  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
@@ -23,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-08-16" />
+<meta name="date" content="2022-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,6 +33,7 @@
   
 <link rel="prev" href="learning-objectives-10.html"/>
 <link rel="next" href="roadmap-8.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,9 +51,8 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -119,7 +120,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
@@ -133,305 +133,313 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session</a></li>
-<li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
+<li><a href="index.html#live-session" id="toc-live-session">Live Session</a></li>
+<li><a href="probability-spaces.html#probability-spaces" id="toc-probability-spaces"><span class="toc-section-number">1</span> Probability Spaces</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a>
+<li><a href="learning-objectives.html#learning-objectives" id="toc-learning-objectives"><span class="toc-section-number">1.1</span> Learning Objectives</a></li>
+<li><a href="course-learning-objectives.html#course-learning-objectives" id="toc-course-learning-objectives"><span class="toc-section-number">1.2</span> Course Learning Objectives</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
-<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations</a></li>
-<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework</a></li>
-<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
-<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
+<li><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models" id="toc-understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><span class="toc-section-number">1.2.1</span> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
+<li><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations" id="toc-understand-and-apply-statistical-models-in-common-situations"><span class="toc-section-number">1.2.2</span> Understand and apply statistical models in common situations</a></li>
+<li><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework" id="toc-analyze-a-research-question-using-a-linear-regression-framework"><span class="toc-section-number">1.2.3</span> Analyze a research question using a linear regression framework</a></li>
+<li><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience" id="toc-interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><span class="toc-section-number">1.2.4</span> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
+<li><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team." id="toc-contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><span class="toc-section-number">1.2.5</span> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
+<li><a href="introductions.html#introductions" id="toc-introductions"><span class="toc-section-number">1.3</span> Introductions</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!</a></li>
+<li><a href="introductions.html#instructor-introductions" id="toc-instructor-introductions"><span class="toc-section-number">1.3.1</span> Instructor Introductions</a></li>
+<li><a href="introductions.html#what-does-a-statistician-look-like-you" id="toc-what-does-a-statistician-look-like-you"><span class="toc-section-number">1.3.2</span> What does a statistician look like? You!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]</a></li>
-<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]</a></li>
-<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a></li>
-<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability</a></li>
-<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem</a></li>
-<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space</a>
+<li><a href="student-introductions-breakout-one.html#student-introductions-breakout-one" id="toc-student-introductions-breakout-one"><span class="toc-section-number">1.4</span> Student Introductions [Breakout One]</a></li>
+<li><a href="student-introductions-breakout-two.html#student-introductions-breakout-two" id="toc-student-introductions-breakout-two"><span class="toc-section-number">1.5</span> Student Introductions [Breakout Two]</a></li>
+<li><a href="probability-theory.html#probability-theory" id="toc-probability-theory"><span class="toc-section-number">1.6</span> Probability Theory</a></li>
+<li><a href="axiomatic-probability.html#axiomatic-probability" id="toc-axiomatic-probability"><span class="toc-section-number">1.7</span> Axiomatic Probability</a></li>
+<li><a href="definition-vs.-theorem.html#definition-vs.-theorem" id="toc-definition-vs.-theorem"><span class="toc-section-number">1.8</span> Definition vs. Theorem</a></li>
+<li><a href="working-with-a-sample-space.html#working-with-a-sample-space" id="toc-working-with-a-sample-space"><span class="toc-section-number">1.9</span> Working with a Sample Space</a>
 <ul>
-<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I</a></li>
-<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II</a></li>
+<li><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i" id="toc-working-with-a-sample-space-part-i"><span class="toc-section-number">1.9.1</span> Working with a Sample Space, Part I</a></li>
+<li><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii" id="toc-working-with-a-sample-space-part-ii"><span class="toc-section-number">1.9.2</span> Working with a Sample Space, Part II</a></li>
 </ul></li>
-<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence</a></li>
-<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem</a></li>
-<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete</a></li>
+<li><a href="independence.html#independence" id="toc-independence"><span class="toc-section-number">1.10</span> Independence</a></li>
+<li><a href="a-practice-problem.html#a-practice-problem" id="toc-a-practice-problem"><span class="toc-section-number">1.11</span> A practice problem</a></li>
+<li><a href="student-tasks-to-complete.html#student-tasks-to-complete" id="toc-student-tasks-to-complete"><span class="toc-section-number">1.12</span> Student Tasks to Complete</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
+<li><a href="defining-random-variables.html#defining-random-variables" id="toc-defining-random-variables"><span class="toc-section-number">2</span> Defining Random Variables</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="class-announcements.html"><a href="class-announcements.html"><i class="fa fa-check"></i><b>2.2</b> Class Announcements</a>
+<li><a href="learning-objectives-1.html#learning-objectives-1" id="toc-learning-objectives-1"><span class="toc-section-number">2.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements.html#class-announcements" id="toc-class-announcements"><span class="toc-section-number">2.2</span> Class Announcements</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="class-announcements.html"><a href="class-announcements.html#homework"><i class="fa fa-check"></i><b>2.2.1</b> Homework</a></li>
-<li class="chapter" data-level="2.2.2" data-path="class-announcements.html"><a href="class-announcements.html#study-groups"><i class="fa fa-check"></i><b>2.2.2</b> Study Groups</a></li>
-<li class="chapter" data-level="2.2.3" data-path="class-announcements.html"><a href="class-announcements.html#course-resources"><i class="fa fa-check"></i><b>2.2.3</b> Course Resources</a></li>
+<li><a href="class-announcements.html#homework" id="toc-homework"><span class="toc-section-number">2.2.1</span> Homework</a></li>
+<li><a href="class-announcements.html#study-groups" id="toc-study-groups"><span class="toc-section-number">2.2.2</span> Study Groups</a></li>
+<li><a href="class-announcements.html#course-resources" id="toc-course-resources"><span class="toc-section-number">2.2.3</span> Course Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html"><i class="fa fa-check"></i><b>2.3</b> Using Definitions of Random Variables</a>
+<li><a href="using-definitions-of-random-variables.html#using-definitions-of-random-variables" id="toc-using-definitions-of-random-variables"><span class="toc-section-number">2.3</span> Using Definitions of Random Variables</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html#random-varaible"><i class="fa fa-check"></i><b>2.3.1</b> Random Varaible</a></li>
-<li class="chapter" data-level="2.3.2" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html#functions-of-functions"><i class="fa fa-check"></i><b>2.3.2</b> Functions of Functions</a></li>
+<li><a href="using-definitions-of-random-variables.html#random-varaible" id="toc-random-varaible"><span class="toc-section-number">2.3.1</span> Random Varaible</a></li>
+<li><a href="using-definitions-of-random-variables.html#functions-of-functions" id="toc-functions-of-functions"><span class="toc-section-number">2.3.2</span> Functions of Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html"><i class="fa fa-check"></i><b>2.4</b> Pieces of a Random Variable</a>
+<li><a href="pieces-of-a-random-variable.html#pieces-of-a-random-variable" id="toc-pieces-of-a-random-variable"><span class="toc-section-number">2.4</span> Pieces of a Random Variable</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions"><i class="fa fa-check"></i><b>2.4.1</b> Probability Density Functions and Cumulative Density Functions</a></li>
+<li><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions" id="toc-probability-density-functions-and-cumulative-density-functions"><span class="toc-section-number">2.4.1</span> Probability Density Functions and Cumulative Density Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.5</b> Discrete &amp; Continuous Random Variables</a></li>
-<li class="chapter" data-level="2.6" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.6</b> Moving Between PDF and CDF</a></li>
-<li class="chapter" data-level="2.7" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.7</b> Joint Density</a>
+<li><a href="discrete-continuous-random-variables.html#discrete-continuous-random-variables" id="toc-discrete-continuous-random-variables"><span class="toc-section-number">2.5</span> Discrete &amp; Continuous Random Variables</a></li>
+<li><a href="moving-between-pdf-and-cdf.html#moving-between-pdf-and-cdf" id="toc-moving-between-pdf-and-cdf"><span class="toc-section-number">2.6</span> Moving Between PDF and CDF</a></li>
+<li><a href="joint-density.html#joint-density" id="toc-joint-density"><span class="toc-section-number">2.7</span> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="joint-density.html"><a href="joint-density.html#uniform-joint-density"><i class="fa fa-check"></i><b>2.7.1</b> Uniform Joint Density</a></li>
-<li class="chapter" data-level="2.7.2" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.7.2</b> Saddle Sores</a></li>
+<li><a href="joint-density.html#uniform-joint-density" id="toc-uniform-joint-density"><span class="toc-section-number">2.7.1</span> Uniform Joint Density</a></li>
+<li><a href="joint-density.html#saddle-sores" id="toc-saddle-sores"><span class="toc-section-number">2.7.2</span> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.8</b> Visualizing Distributions Via Simulation</a>
+<li><a href="visualizing-distributions-via-simulation.html#visualizing-distributions-via-simulation" id="toc-visualizing-distributions-via-simulation"><span class="toc-section-number">2.8</span> Visualizing Distributions Via Simulation</a>
 <ul>
-<li class="chapter" data-level="2.8.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#the-visualization-trick"><i class="fa fa-check"></i><b>2.8.1</b> The Visualization Trick</a></li>
-<li class="chapter" data-level="2.8.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick"><i class="fa fa-check"></i><b>2.8.2</b> Apply the Visualization Trick</a></li>
-<li class="chapter" data-level="2.8.3" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful"><i class="fa fa-check"></i><b>2.8.3</b> How is simulation useful?</a></li>
+<li><a href="visualizing-distributions-via-simulation.html#the-visualization-trick" id="toc-the-visualization-trick"><span class="toc-section-number">2.8.1</span> The Visualization Trick</a></li>
+<li><a href="visualizing-distributions-via-simulation.html#apply-the-visualization-trick" id="toc-apply-the-visualization-trick"><span class="toc-section-number">2.8.2</span> Apply the Visualization Trick</a></li>
+<li><a href="visualizing-distributions-via-simulation.html#how-is-simulation-useful" id="toc-how-is-simulation-useful"><span class="toc-section-number">2.8.3</span> How is simulation useful?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
-<li class="chapter" data-level="2.10" data-path="understanding-joint-distributions.html"><a href="understanding-joint-distributions.html"><i class="fa fa-check"></i><b>2.10</b> Understanding Joint Distributions</a></li>
-<li class="chapter" data-level="2.11" data-path="working-with-a-shiny-app.html"><a href="working-with-a-shiny-app.html"><i class="fa fa-check"></i><b>2.11</b> Working with a Shiny App</a></li>
+<li><a href="computing-different-distributions..html#computing-different-distributions." id="toc-computing-different-distributions."><span class="toc-section-number">2.9</span> Computing Different Distributions.</a></li>
+<li><a href="understanding-joint-distributions.html#understanding-joint-distributions" id="toc-understanding-joint-distributions"><span class="toc-section-number">2.10</span> Understanding Joint Distributions</a></li>
+<li><a href="working-with-a-shiny-app.html#working-with-a-shiny-app" id="toc-working-with-a-shiny-app"><span class="toc-section-number">2.11</span> Working with a Shiny App</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
+<li><a href="summarizing-distributions.html#summarizing-distributions" id="toc-summarizing-distributions"><span class="toc-section-number">3</span> Summarizing Distributions</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html"><i class="fa fa-check"></i><b>3.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="3.3" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>3.3</b> Roadmap</a></li>
-<li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples</a>
+<li><a href="learning-objectives-2.html#learning-objectives-2" id="toc-learning-objectives-2"><span class="toc-section-number">3.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-1.html#class-announcements-1" id="toc-class-announcements-1"><span class="toc-section-number">3.2</span> Class Announcements</a></li>
+<li><a href="roadmap.html#roadmap" id="toc-roadmap"><span class="toc-section-number">3.3</span> Roadmap</a></li>
+<li><a href="computing-examples.html#computing-examples" id="toc-computing-examples"><span class="toc-section-number">3.4</span> Computing Examples</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]</a></li>
-<li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula</a></li>
-<li class="chapter" data-level="3.4.3" data-path="computing-examples.html"><a href="computing-examples.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.4.3</b> Compute the Expected Value</a></li>
-<li class="chapter" data-level="3.4.4" data-path="computing-examples.html"><a href="computing-examples.html#compute-the-variance"><i class="fa fa-check"></i><b>3.4.4</b> Compute the Variance</a></li>
+<li><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable" id="toc-expected-value-of-a-die-discrete-random-variable"><span class="toc-section-number">3.4.1</span> Expected Value of a Die [discrete random variable]</a></li>
+<li><a href="computing-examples.html#using-a-formula" id="toc-using-a-formula"><span class="toc-section-number">3.4.2</span> Using a formula</a></li>
+<li><a href="computing-examples.html#compute-the-expected-value" id="toc-compute-the-expected-value"><span class="toc-section-number">3.4.3</span> Compute the Expected Value</a></li>
+<li><a href="computing-examples.html#compute-the-variance" id="toc-compute-the-variance"><span class="toc-section-number">3.4.4</span> Compute the Variance</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.5</b> Expected Value by Code</a>
+<li><a href="expected-value-by-code.html#expected-value-by-code" id="toc-expected-value-by-code"><span class="toc-section-number">3.5</span> Expected Value by Code</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.5.1</b> Expected Value of a Six-Sided Die</a></li>
-<li class="chapter" data-level="3.5.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.5.2</b> Variacne of a Six-Sided Die</a></li>
+<li><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die" id="toc-expected-value-of-a-six-sided-die"><span class="toc-section-number">3.5.1</span> Expected Value of a Six-Sided Die</a></li>
+<li><a href="expected-value-by-code.html#variacne-of-a-six-sided-die" id="toc-variacne-of-a-six-sided-die"><span class="toc-section-number">3.5.2</span> Variacne of a Six-Sided Die</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.6</b> Practice Computing</a>
+<li><a href="practice-computing.html#practice-computing" id="toc-practice-computing"><span class="toc-section-number">3.6</span> Practice Computing</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.6.1</b> Single Variable</a></li>
-<li class="chapter" data-level="3.6.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.6.2</b> Joint Density</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="thunder-struck.html"><a href="thunder-struck.html"><i class="fa fa-check"></i><b>4.1</b> Thunder Struck</a></li>
-<li class="chapter" data-level="4.2" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.2</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.3" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.3</b> Class Announcements</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="class-announcements-2.html"><a href="class-announcements-2.html#test-1-is-releasing-to-you-today."><i class="fa fa-check"></i><b>4.3.1</b> Test 1 is releasing to you today.</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="roadmap-1.html"><a href="roadmap-1.html"><i class="fa fa-check"></i><b>4.4</b> Roadmap</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="roadmap-1.html"><a href="roadmap-1.html#rearview-mirror"><i class="fa fa-check"></i><b>4.4.1</b> Rearview Mirror</a></li>
-<li class="chapter" data-level="4.4.2" data-path="roadmap-1.html"><a href="roadmap-1.html#this-week"><i class="fa fa-check"></i><b>4.4.2</b> This week</a></li>
-<li class="chapter" data-level="4.4.3" data-path="roadmap-1.html"><a href="roadmap-1.html#coming-attractions"><i class="fa fa-check"></i><b>4.4.3</b> Coming Attractions</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="conditional-expectation-function-cef-part-one.html"><a href="conditional-expectation-function-cef-part-one.html"><i class="fa fa-check"></i><b>4.5</b> Conditional Expectation Function (CEF), part one</a></li>
-<li class="chapter" data-level="4.6" data-path="conditional-expectation-function-cef-part-two.html"><a href="conditional-expectation-function-cef-part-two.html"><i class="fa fa-check"></i><b>4.6</b> Conditional Expectation Function (CEF), part two</a></li>
-<li class="chapter" data-level="4.7" data-path="conditional-expectation-function-cef-part-three.html"><a href="conditional-expectation-function-cef-part-three.html"><i class="fa fa-check"></i><b>4.7</b> Conditional Expectation Function (CEF), part three</a></li>
-<li class="chapter" data-level="4.8" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.8</b> Computing the CEF</a></li>
-<li class="chapter" data-level="4.9" data-path="conditional-density-functions.html"><a href="conditional-density-functions.html"><i class="fa fa-check"></i><b>4.9</b> Conditional Density Functions</a></li>
-<li class="chapter" data-level="4.10" data-path="conditional-distribution-to-conditional-expectation.html"><a href="conditional-distribution-to-conditional-expectation.html"><i class="fa fa-check"></i><b>4.10</b> Conditional Distribution to Conditional Expectation</a></li>
-<li class="chapter" data-level="4.11" data-path="breakout-activity.html"><a href="breakout-activity.html"><i class="fa fa-check"></i><b>4.11</b> Breakout Activity</a>
-<ul>
-<li class="chapter" data-level="4.11.1" data-path="breakout-activity.html"><a href="breakout-activity.html#minimizing-mse"><i class="fa fa-check"></i><b>4.11.1</b> Minimizing MSE</a></li>
-</ul></li>
-<li class="chapter" data-level="4.12" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html"><i class="fa fa-check"></i><b>4.12</b> Working with the BLP</a>
-<ul>
-<li class="chapter" data-level="4.12.1" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html#professorial-mistakes-discrete-rvs"><i class="fa fa-check"></i><b>4.12.1</b> Professorial Mistakes (Discrete RVs)</a></li>
+<li><a href="practice-computing.html#single-variable" id="toc-single-variable"><span class="toc-section-number">3.6.1</span> Single Variable</a></li>
+<li><a href="practice-computing.html#joint-density-1" id="toc-joint-density-1"><span class="toc-section-number">3.6.2</span> Joint Density</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="learning-from-random-samples.html"><a href="learning-from-random-samples.html"><i class="fa fa-check"></i><b>5</b> Learning from Random Samples</a>
+<li><a href="conditional-expectation-and-the-blp.html#conditional-expectation-and-the-blp" id="toc-conditional-expectation-and-the-blp"><span class="toc-section-number">4</span> Conditional Expectation and The BLP</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html"><i class="fa fa-check"></i><b>5.1</b> Goals, Framework, and Learning Objectives</a>
+<li><a href="thunder-struck.html#thunder-struck" id="toc-thunder-struck"><span class="toc-section-number">4.1</span> Thunder Struck</a></li>
+<li><a href="learning-objectives-3.html#learning-objectives-3" id="toc-learning-objectives-3"><span class="toc-section-number">4.2</span> Learning Objectives</a></li>
+<li><a href="class-announcements-2.html#class-announcements-2" id="toc-class-announcements-2"><span class="toc-section-number">4.3</span> Class Announcements</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#class-announcements-3"><i class="fa fa-check"></i><b>5.1.1</b> Class Announcements</a></li>
-<li class="chapter" data-level="5.1.2" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1.2</b> Learning Objectives</a></li>
-<li class="chapter" data-level="5.1.3" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#roadmap-2"><i class="fa fa-check"></i><b>5.1.3</b> Roadmap</a></li>
+<li><a href="class-announcements-2.html#test-1-is-releasing-to-you-today." id="toc-test-1-is-releasing-to-you-today."><span class="toc-section-number">4.3.1</span> Test 1 is releasing to you today.</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.2</b> Key Terms and Assumptions</a>
+<li><a href="roadmap-1.html#roadmap-1" id="toc-roadmap-1"><span class="toc-section-number">4.4</span> Roadmap</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#iid"><i class="fa fa-check"></i><b>5.2.1</b> IID</a></li>
-<li class="chapter" data-level="5.2.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.2.2</b> Definitions</a></li>
+<li><a href="roadmap-1.html#rearview-mirror" id="toc-rearview-mirror"><span class="toc-section-number">4.4.1</span> Rearview Mirror</a></li>
+<li><a href="roadmap-1.html#this-week" id="toc-this-week"><span class="toc-section-number">4.4.2</span> This week</a></li>
+<li><a href="roadmap-1.html#coming-attractions" id="toc-coming-attractions"><span class="toc-section-number">4.4.3</span> Coming Attractions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Understanding Sampling Distributions</a></li>
-<li class="chapter" data-level="5.4" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.4</b> Uncertainty</a></li>
-<li class="chapter" data-level="5.5" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.5</b> Standard Errors</a></li>
-<li class="chapter" data-level="5.6" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.6</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<li><a href="conditional-expectation-function-cef.html#conditional-expectation-function-cef" id="toc-conditional-expectation-function-cef"><span class="toc-section-number">4.5</span> Conditional Expectation Function (CEF),</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.6.1</b> Motivating the Central Limit Theorem (CLT)</a></li>
-<li class="chapter" data-level="5.6.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.6.2</b> Sampling from the Bernoulli Distribution in R</a></li>
-<li class="chapter" data-level="5.6.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.6.3</b> Useful R Commands</a></li>
+<li><a href="conditional-expectation-function-cef.html#part-i" id="toc-part-i"><span class="toc-section-number">4.5.1</span> Part I</a></li>
+<li><a href="conditional-expectation-function-cef.html#part-ii" id="toc-part-ii"><span class="toc-section-number">4.5.2</span> Part II</a></li>
+<li><a href="conditional-expectation-function-cef.html#part-iii" id="toc-part-iii"><span class="toc-section-number">4.5.3</span> Part III</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.7</b> Exercise</a>
+<li><a href="computing-the-cef.html#computing-the-cef" id="toc-computing-the-cef"><span class="toc-section-number">4.6</span> Computing the CEF</a></li>
+<li><a href="conditional-functionals.html#conditional-functionals" id="toc-conditional-functionals"><span class="toc-section-number">4.7</span> Conditional Functionals</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.7.1</b> Discussion Questions</a></li>
+<li><a href="conditional-functionals.html#conditional-expectation" id="toc-conditional-expectation"><span class="toc-section-number">4.7.1</span> Conditional Expectation</a></li>
+<li><a href="conditional-functionals.html#conditional-variance" id="toc-conditional-variance"><span class="toc-section-number">4.7.2</span> Conditional Variance</a></li>
 </ul></li>
+<li><a href="breakout-activity.html#breakout-activity" id="toc-breakout-activity"><span class="toc-section-number">4.8</span> Breakout Activity</a>
+<ul>
+<li><a href="breakout-activity.html#minimizing-mse" id="toc-minimizing-mse"><span class="toc-section-number">4.8.1</span> Minimizing MSE</a></li>
+<li><a href="breakout-activity.html#the-pudding-aka-where-the-proof-is" id="toc-the-pudding-aka-where-the-proof-is"><span class="toc-section-number">4.8.2</span> The pudding (aka: “Where the proof is”)</a></li>
+<li><a href="breakout-activity.html#the-implication" id="toc-the-implication"><span class="toc-section-number">4.8.3</span> The Implication</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
+<li><a href="working-with-the-blp.html#working-with-the-blp" id="toc-working-with-the-blp"><span class="toc-section-number">4.9</span> Working with the BLP</a>
 <ul>
-<li class="chapter" data-level="" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#what-is-frequentist-testing-doing"><i class="fa fa-check"></i>What is Frequentist testing doing?</a></li>
-<li class="chapter" data-level="6.1" data-path="learning-objectives-5.html"><a href="learning-objectives-5.html"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="class-announcements-4.html"><a href="class-announcements-4.html"><i class="fa fa-check"></i><b>6.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="6.3" data-path="roadmap-3.html"><a href="roadmap-3.html"><i class="fa fa-check"></i><b>6.3</b> Roadmap</a></li>
-<li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
-<li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
-<li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="7.2" data-path="class-announcements-5.html"><a href="class-announcements-5.html"><i class="fa fa-check"></i><b>7.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="7.3" data-path="roadmap-4.html"><a href="roadmap-4.html"><i class="fa fa-check"></i><b>7.3</b> Roadmap</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="roadmap-4.html"><a href="roadmap-4.html#rearview-mirror-1"><i class="fa fa-check"></i><b>7.3.1</b> Rearview Mirror</a></li>
-<li class="chapter" data-level="7.3.2" data-path="roadmap-4.html"><a href="roadmap-4.html#today"><i class="fa fa-check"></i><b>7.3.2</b> Today</a></li>
-<li class="chapter" data-level="7.3.3" data-path="roadmap-4.html"><a href="roadmap-4.html#looking-ahead"><i class="fa fa-check"></i><b>7.3.3</b> Looking ahead</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html"><i class="fa fa-check"></i><b>7.4</b> Teamwork Discussion</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#working-on-data-science-teams"><i class="fa fa-check"></i><b>7.4.1</b> Working on Data Science Teams</a></li>
-<li class="chapter" data-level="7.4.2" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#the-problematic-psychology-of-data-science"><i class="fa fa-check"></i><b>7.4.2</b> The Problematic Psychology of Data Science</a></li>
-<li class="chapter" data-level="7.4.3" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#what-makes-an-effective-team"><i class="fa fa-check"></i><b>7.4.3</b> What Makes an Effective Team?</a></li>
-<li class="chapter" data-level="7.4.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#we-all-belong"><i class="fa fa-check"></i><b>7.4.4</b> We All Belong</a></li>
-</ul></li>
-<li class="chapter" data-level="7.5" data-path="team-kick-off.html"><a href="team-kick-off.html"><i class="fa fa-check"></i><b>7.5</b> Team Kick-Off</a></li>
-<li class="chapter" data-level="7.6" data-path="a-quick-review.html"><a href="a-quick-review.html"><i class="fa fa-check"></i><b>7.6</b> A Quick Review</a></li>
-<li class="chapter" data-level="7.7" data-path="comparing-groups-r-exercise.html"><a href="comparing-groups-r-exercise.html"><i class="fa fa-check"></i><b>7.7</b> Comparing Groups R Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="ols-regression-estimates.html"><a href="ols-regression-estimates.html"><i class="fa fa-check"></i><b>8</b> OLS Regression Estimates</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="8.2" data-path="class-announcements-6.html"><a href="class-announcements-6.html"><i class="fa fa-check"></i><b>8.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="8.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap</a></li>
-<li class="chapter" data-level="8.4" data-path="regression-discussion.html"><a href="regression-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Regression Discussion</a></li>
-<li class="chapter" data-level="8.5" data-path="working-on-math.html"><a href="working-on-math.html"><i class="fa fa-check"></i><b>8.5</b> Working on Math</a></li>
-<li class="chapter" data-level="8.6" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>8.6</b> Visualizing Data</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions-1"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
-<li class="chapter" data-level="8.6.2" data-path="visualizing-data.html"><a href="visualizing-data.html#reasoning-by-analogies"><i class="fa fa-check"></i><b>8.6.2</b> Reasoning by Analogies</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.7</b> Coding Activity:R Cheat Sheet</a></li>
-<li class="chapter" data-level="8.8" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.8</b> R Exercise</a>
-<ul>
-<li class="chapter" data-level="8.8.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.8.1</b> Assess the Relationship between Price and Square Footage</a></li>
-</ul></li>
-<li class="chapter" data-level="8.9" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html"><i class="fa fa-check"></i><b>8.9</b> Regression Plots and Discussion</a>
-<ul>
-<li class="chapter" data-level="8.9.1" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html#plot-1"><i class="fa fa-check"></i><b>8.9.1</b> Plot 1</a></li>
+<li><a href="working-with-the-blp.html#professorial-mistakes-discrete-rvs" id="toc-professorial-mistakes-discrete-rvs"><span class="toc-section-number">4.9.1</span> Professorial Mistakes (Discrete RVs)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="ols-regression-inference.html"><a href="ols-regression-inference.html"><i class="fa fa-check"></i><b>9</b> OLS Regression Inference</a>
+<li><a href="learning-from-random-samples.html#learning-from-random-samples" id="toc-learning-from-random-samples"><span class="toc-section-number">5</span> Learning from Random Samples</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="learning-objectives-8.html"><a href="learning-objectives-8.html"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="class-announcements-7.html"><a href="class-announcements-7.html"><i class="fa fa-check"></i><b>9.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="9.3" data-path="roadmap-6.html"><a href="roadmap-6.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap</a></li>
-<li class="chapter" data-level="9.4" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html"><i class="fa fa-check"></i><b>9.4</b> Uncertainty in OLS</a>
+<li><a href="goals-framework-and-learning-objectives.html#goals-framework-and-learning-objectives" id="toc-goals-framework-and-learning-objectives"><span class="toc-section-number">5.1</span> Goals, Framework, and Learning Objectives</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-2"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
-<li class="chapter" data-level="9.4.2" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#understanding-uncertainty"><i class="fa fa-check"></i><b>9.4.2</b> Understanding Uncertainty</a></li>
+<li><a href="goals-framework-and-learning-objectives.html#class-announcements-3" id="toc-class-announcements-3"><span class="toc-section-number">5.1.1</span> Class Announcements</a></li>
+<li><a href="goals-framework-and-learning-objectives.html#learning-objectives-4" id="toc-learning-objectives-4"><span class="toc-section-number">5.1.2</span> Learning Objectives</a></li>
+<li><a href="goals-framework-and-learning-objectives.html#roadmap-2" id="toc-roadmap-2"><span class="toc-section-number">5.1.3</span> Roadmap</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="r-exercise-1.html"><a href="r-exercise-1.html"><i class="fa fa-check"></i><b>9.5</b> R Exercise</a></li>
+<li><a href="key-terms-and-assumptions.html#key-terms-and-assumptions" id="toc-key-terms-and-assumptions"><span class="toc-section-number">5.2</span> Key Terms and Assumptions</a>
+<ul>
+<li><a href="key-terms-and-assumptions.html#iid" id="toc-iid"><span class="toc-section-number">5.2.1</span> IID</a></li>
+<li><a href="key-terms-and-assumptions.html#definitions" id="toc-definitions"><span class="toc-section-number">5.2.2</span> Definitions</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="descriptive-model-building.html"><a href="descriptive-model-building.html"><i class="fa fa-check"></i><b>10</b> Descriptive Model Building</a>
+<li><a href="understanding-sampling-distributions.html#understanding-sampling-distributions" id="toc-understanding-sampling-distributions"><span class="toc-section-number">5.3</span> Understanding Sampling Distributions</a></li>
+<li><a href="uncertainty.html#uncertainty" id="toc-uncertainty"><span class="toc-section-number">5.4</span> Uncertainty</a></li>
+<li><a href="standard-errors.html#standard-errors" id="toc-standard-errors"><span class="toc-section-number">5.5</span> Standard Errors</a></li>
+<li><a href="write-code-to-demo-the-central-limit-theorem-clt.html#write-code-to-demo-the-central-limit-theorem-clt" id="toc-write-code-to-demo-the-central-limit-theorem-clt"><span class="toc-section-number">5.6</span> Write Code to Demo the Central Limit Theorem (CLT)</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="learning-objectives-9.html"><a href="learning-objectives-9.html"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="10.2" data-path="class-announcements-8.html"><a href="class-announcements-8.html"><i class="fa fa-check"></i><b>10.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="10.3" data-path="roadmap-7.html"><a href="roadmap-7.html"><i class="fa fa-check"></i><b>10.3</b> Roadmap</a></li>
-<li class="chapter" data-level="10.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>10.4</b> Discussion</a>
-<ul>
-<li class="chapter" data-level="10.4.1" data-path="discussion.html"><a href="discussion.html#three-modes-of-model-building"><i class="fa fa-check"></i><b>10.4.1</b> Three modes of model building</a></li>
-<li class="chapter" data-level="10.4.2" data-path="discussion.html"><a href="discussion.html#the-statistical-modeling-process-in-different-modes"><i class="fa fa-check"></i><b>10.4.2</b> The statistical modeling process in different modes</a></li>
+<li><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt" id="toc-motivating-the-central-limit-theorem-clt"><span class="toc-section-number">5.6.1</span> Motivating the Central Limit Theorem (CLT)</a></li>
+<li><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r" id="toc-sampling-from-the-bernoulli-distribution-in-r"><span class="toc-section-number">5.6.2</span> Sampling from the Bernoulli Distribution in R</a></li>
+<li><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands" id="toc-useful-r-commands"><span class="toc-section-number">5.6.3</span> Useful R Commands</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html"><i class="fa fa-check"></i><b>10.5</b> R Activity: Measuring the return to education</a>
+<li><a href="exercise.html#exercise" id="toc-exercise"><span class="toc-section-number">5.7</span> Exercise</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html#transformations"><i class="fa fa-check"></i><b>10.5.1</b> Transformations</a></li>
-<li class="chapter" data-level="10.5.2" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html#estimation"><i class="fa fa-check"></i><b>10.5.2</b> Estimation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="explanatory-model-building.html"><a href="explanatory-model-building.html"><i class="fa fa-check"></i><b>11</b> Explanatory Model Building</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="class-announcements-9.html"><a href="class-announcements-9.html"><i class="fa fa-check"></i><b>11.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="11.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>11.3</b> Roadmap</a></li>
-<li class="chapter" data-level="11.4" data-path="discussion-1.html"><a href="discussion-1.html"><i class="fa fa-check"></i><b>11.4</b> Discussion</a>
-<ul>
-<li class="chapter" data-level="11.4.1" data-path="discussion-1.html"><a href="discussion-1.html#path-diagrams"><i class="fa fa-check"></i><b>11.4.1</b> Path Diagrams</a></li>
-<li class="chapter" data-level="11.4.2" data-path="discussion-1.html"><a href="discussion-1.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.4.2</b> Omitted Variable Bias</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.5</b> R Exercise</a></li>
-<li class="chapter" data-level="11.6" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.6</b> Discussion</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="the-classical-linear-model.html"><a href="the-classical-linear-model.html"><i class="fa fa-check"></i><b>12</b> The Classical Linear Model</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="12.2" data-path="class-announcements-10.html"><a href="class-announcements-10.html"><i class="fa fa-check"></i><b>12.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="12.3" data-path="roadmap-9.html"><a href="roadmap-9.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
-<li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model</a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="problems-with-the-clm-requirements.html"><a href="problems-with-the-clm-requirements.html"><i class="fa fa-check"></i><b>12.5</b> Problems with the CLM Requirements</a></li>
-<li class="chapter" data-level="12.6" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.6</b> R Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>13</b> Reproducible Research</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="learning-objectives-12.html"><a href="learning-objectives-12.html"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="13.2" data-path="class-announcements-11.html"><a href="class-announcements-11.html"><i class="fa fa-check"></i><b>13.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="13.3" data-path="roadmap-10.html"><a href="roadmap-10.html"><i class="fa fa-check"></i><b>13.3</b> Roadmap</a></li>
-<li class="chapter" data-level="13.4" data-path="what-data-science-hopes-to-accomplish.html"><a href="what-data-science-hopes-to-accomplish.html"><i class="fa fa-check"></i><b>13.4</b> What data science hopes to accomplish</a></li>
-<li class="chapter" data-level="13.5" data-path="learning-from-data.html"><a href="learning-from-data.html"><i class="fa fa-check"></i><b>13.5</b> Learning from Data</a></li>
-<li class="chapter" data-level="13.6" data-path="data-science-and-statistics.html"><a href="data-science-and-statistics.html"><i class="fa fa-check"></i><b>13.6</b> Data Science and Statistics</a></li>
-<li class="chapter" data-level="13.7" data-path="why-statistics-a-closing-argument-for-statistics.html"><a href="why-statistics-a-closing-argument-for-statistics.html"><i class="fa fa-check"></i><b>13.7</b> Why Statistics?: A Closing Argument for Statistics</a></li>
-<li class="chapter" data-level="13.8" data-path="course-goals.html"><a href="course-goals.html"><i class="fa fa-check"></i><b>13.8</b> Course Goals</a>
-<ul>
-<li class="chapter" data-level="13.8.1" data-path="course-goals.html"><a href="course-goals.html#course-section-iii-purpose-driven-models"><i class="fa fa-check"></i><b>13.8.1</b> Course Section III: Purpose-Driven Models</a></li>
-<li class="chapter" data-level="13.8.2" data-path="course-goals.html"><a href="course-goals.html#course-section-ii-sampling-theory-and-testing"><i class="fa fa-check"></i><b>13.8.2</b> Course Section II: Sampling Theory and Testing</a></li>
-<li class="chapter" data-level="13.8.3" data-path="course-goals.html"><a href="course-goals.html#course-section-i-probability-theory"><i class="fa fa-check"></i><b>13.8.3</b> Course Section I: Probability Theory</a></li>
-<li class="chapter" data-level="13.8.4" data-path="course-goals.html"><a href="course-goals.html#statistics-as-a-foundation-for-mids"><i class="fa fa-check"></i><b>13.8.4</b> Statistics as a Foundation for MIDS</a></li>
-</ul></li>
-<li class="chapter" data-level="13.9" data-path="reproducibility-discussion.html"><a href="reproducibility-discussion.html"><i class="fa fa-check"></i><b>13.9</b> Reproducibility Discussion</a>
-<ul>
-<li class="chapter" data-level="13.9.1" data-path="reproducibility-discussion.html"><a href="reproducibility-discussion.html#discussion-3"><i class="fa fa-check"></i><b>13.9.1</b> Discussion</a></li>
+<li><a href="exercise.html#discussion-questions" id="toc-discussion-questions"><span class="toc-section-number">5.7.1</span> Discussion Questions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14</b> Maximum Likelihood Estimation</a>
+<li><a href="hypothesis-testing.html#hypothesis-testing" id="toc-hypothesis-testing"><span class="toc-section-number">6</span> Hypothesis Testing</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="learning-objectives-13.html"><a href="learning-objectives-13.html"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="14.2" data-path="class-announcements-12.html"><a href="class-announcements-12.html"><i class="fa fa-check"></i><b>14.2</b> Class Announcements</a></li>
-<li class="chapter" data-level="14.3" data-path="roadmap-11.html"><a href="roadmap-11.html"><i class="fa fa-check"></i><b>14.3</b> Roadmap</a></li>
-<li class="chapter" data-level="14.4" data-path="what-is-a-model.html"><a href="what-is-a-model.html"><i class="fa fa-check"></i><b>14.4</b> What is a model?</a></li>
-<li class="chapter" data-level="14.5" data-path="estimation-1.html"><a href="estimation-1.html"><i class="fa fa-check"></i><b>14.5</b> Estimation</a></li>
-<li class="chapter" data-level="14.6" data-path="discussion-of-maximum-likelihood-estimation.html"><a href="discussion-of-maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14.6</b> Discussion of Maximum Likelihood Estimation</a></li>
-<li class="chapter" data-level="14.7" data-path="optimization-in-r.html"><a href="optimization-in-r.html"><i class="fa fa-check"></i><b>14.7</b> Optimization in R</a>
-<ul>
-<li class="chapter" data-level="14.7.1" data-path="optimization-in-r.html"><a href="optimization-in-r.html#optimization-example-optimum-price"><i class="fa fa-check"></i><b>14.7.1</b> Optimization Example: Optimum Price</a></li>
+<li><a href="hypothesis-testing.html#what-is-frequentist-testing-doing" id="toc-what-is-frequentist-testing-doing">What is Frequentist testing doing?</a></li>
+<li><a href="learning-objectives-5.html#learning-objectives-5" id="toc-learning-objectives-5"><span class="toc-section-number">6.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-4.html#class-announcements-4" id="toc-class-announcements-4"><span class="toc-section-number">6.2</span> Class Announcements</a></li>
+<li><a href="roadmap-3.html#roadmap-3" id="toc-roadmap-3"><span class="toc-section-number">6.3</span> Roadmap</a></li>
+<li><a href="what-does-a-hypothesis-test-do.html#what-does-a-hypothesis-test-do" id="toc-what-does-a-hypothesis-test-do"><span class="toc-section-number">6.4</span> What does a hypothesis test do?</a></li>
+<li><a href="madlib-prompt.html#madlib-prompt" id="toc-madlib-prompt"><span class="toc-section-number">6.5</span> Madlib prompt</a></li>
+<li><a href="madlib-completed.html#madlib-completed" id="toc-madlib-completed"><span class="toc-section-number">6.6</span> Madlib completed</a></li>
+<li><a href="all-joking-aside.html#all-joking-aside" id="toc-all-joking-aside"><span class="toc-section-number">6.7</span> All joking aside</a></li>
+<li><a href="manual-computation-of-a-t-test.html#manual-computation-of-a-t-test" id="toc-manual-computation-of-a-t-test"><span class="toc-section-number">6.8</span> Manual Computation of a t-Test</a></li>
+<li><a href="data-exercise.html#data-exercise" id="toc-data-exercise"><span class="toc-section-number">6.9</span> Data Exercise</a></li>
+<li><a href="assumptions-behind-the-t-test.html#assumptions-behind-the-t-test" id="toc-assumptions-behind-the-t-test"><span class="toc-section-number">6.10</span> Assumptions Behind the t-test</a></li>
 </ul></li>
-<li class="chapter" data-level="14.8" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html"><i class="fa fa-check"></i><b>14.8</b> MLE for Poisson Random Variables</a>
+<li><a href="comparing-two-groups.html#comparing-two-groups" id="toc-comparing-two-groups"><span class="toc-section-number">7</span> Comparing Two Groups</a>
 <ul>
-<li class="chapter" data-level="14.8.1" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html#mle-for-poisson-random-variables-data"><i class="fa fa-check"></i><b>14.8.1</b> MLE for Poisson Random Variables: Data</a></li>
-<li class="chapter" data-level="14.8.2" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html#mle-estimation"><i class="fa fa-check"></i><b>14.8.2</b> MLE Estimation</a></li>
-</ul></li>
-<li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals</a></li>
-<li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<li><a href="learning-objectives-6.html#learning-objectives-6" id="toc-learning-objectives-6"><span class="toc-section-number">7.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-5.html#class-announcements-5" id="toc-class-announcements-5"><span class="toc-section-number">7.2</span> Class Announcements</a></li>
+<li><a href="roadmap-4.html#roadmap-4" id="toc-roadmap-4"><span class="toc-section-number">7.3</span> Roadmap</a>
 <ul>
-<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
+<li><a href="roadmap-4.html#rearview-mirror-1" id="toc-rearview-mirror-1"><span class="toc-section-number">7.3.1</span> Rearview Mirror</a></li>
+<li><a href="roadmap-4.html#today" id="toc-today"><span class="toc-section-number">7.3.2</span> Today</a></li>
+<li><a href="roadmap-4.html#looking-ahead" id="toc-looking-ahead"><span class="toc-section-number">7.3.3</span> Looking ahead</a></li>
+</ul></li>
+<li><a href="teamwork-discussion.html#teamwork-discussion" id="toc-teamwork-discussion"><span class="toc-section-number">7.4</span> Teamwork Discussion</a>
+<ul>
+<li><a href="teamwork-discussion.html#working-on-data-science-teams" id="toc-working-on-data-science-teams"><span class="toc-section-number">7.4.1</span> Working on Data Science Teams</a></li>
+<li><a href="teamwork-discussion.html#the-problematic-psychology-of-data-science" id="toc-the-problematic-psychology-of-data-science"><span class="toc-section-number">7.4.2</span> The Problematic Psychology of Data Science</a></li>
+<li><a href="teamwork-discussion.html#what-makes-an-effective-team" id="toc-what-makes-an-effective-team"><span class="toc-section-number">7.4.3</span> What Makes an Effective Team?</a></li>
+<li><a href="teamwork-discussion.html#we-all-belong" id="toc-we-all-belong"><span class="toc-section-number">7.4.4</span> We All Belong</a></li>
+</ul></li>
+<li><a href="team-kick-off.html#team-kick-off" id="toc-team-kick-off"><span class="toc-section-number">7.5</span> Team Kick-Off</a></li>
+<li><a href="a-quick-review.html#a-quick-review" id="toc-a-quick-review"><span class="toc-section-number">7.6</span> A Quick Review</a></li>
+<li><a href="comparing-groups-r-exercise.html#comparing-groups-r-exercise" id="toc-comparing-groups-r-exercise"><span class="toc-section-number">7.7</span> Comparing Groups R Exercise</a></li>
+</ul></li>
+<li><a href="ols-regression-estimates.html#ols-regression-estimates" id="toc-ols-regression-estimates"><span class="toc-section-number">8</span> OLS Regression Estimates</a>
+<ul>
+<li><a href="learning-objectives-7.html#learning-objectives-7" id="toc-learning-objectives-7"><span class="toc-section-number">8.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-6.html#class-announcements-6" id="toc-class-announcements-6"><span class="toc-section-number">8.2</span> Class Announcements</a></li>
+<li><a href="roadmap-5.html#roadmap-5" id="toc-roadmap-5"><span class="toc-section-number">8.3</span> Roadmap</a></li>
+<li><a href="regression-discussion.html#regression-discussion" id="toc-regression-discussion"><span class="toc-section-number">8.4</span> Regression Discussion</a></li>
+<li><a href="working-on-math.html#working-on-math" id="toc-working-on-math"><span class="toc-section-number">8.5</span> Working on Math</a></li>
+<li><a href="visualizing-data.html#visualizing-data" id="toc-visualizing-data"><span class="toc-section-number">8.6</span> Visualizing Data</a>
+<ul>
+<li><a href="visualizing-data.html#discussion-questions-1" id="toc-discussion-questions-1"><span class="toc-section-number">8.6.1</span> Discussion Questions</a></li>
+<li><a href="visualizing-data.html#reasoning-by-analogies" id="toc-reasoning-by-analogies"><span class="toc-section-number">8.6.2</span> Reasoning by Analogies</a></li>
+</ul></li>
+<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.7</span> Coding Activity:R Cheat Sheet</a></li>
+<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.8</span> R Exercise</a>
+<ul>
+<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</a></li>
+</ul></li>
+<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.9</span> Regression Plots and Discussion</a>
+<ul>
+<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.9.1</span> Plot 1</a></li>
+</ul></li>
+</ul></li>
+<li><a href="ols-regression-inference.html#ols-regression-inference" id="toc-ols-regression-inference"><span class="toc-section-number">9</span> OLS Regression Inference</a>
+<ul>
+<li><a href="learning-objectives-8.html#learning-objectives-8" id="toc-learning-objectives-8"><span class="toc-section-number">9.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-7.html#class-announcements-7" id="toc-class-announcements-7"><span class="toc-section-number">9.2</span> Class Announcements</a></li>
+<li><a href="roadmap-6.html#roadmap-6" id="toc-roadmap-6"><span class="toc-section-number">9.3</span> Roadmap</a></li>
+<li><a href="uncertainty-in-ols.html#uncertainty-in-ols" id="toc-uncertainty-in-ols"><span class="toc-section-number">9.4</span> Uncertainty in OLS</a>
+<ul>
+<li><a href="uncertainty-in-ols.html#discussion-questions-2" id="toc-discussion-questions-2"><span class="toc-section-number">9.4.1</span> Discussion Questions</a></li>
+<li><a href="uncertainty-in-ols.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.4.2</span> Understanding Uncertainty</a></li>
+</ul></li>
+<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.5</span> R Exercise</a></li>
+</ul></li>
+<li><a href="descriptive-model-building.html#descriptive-model-building" id="toc-descriptive-model-building"><span class="toc-section-number">10</span> Descriptive Model Building</a>
+<ul>
+<li><a href="learning-objectives-9.html#learning-objectives-9" id="toc-learning-objectives-9"><span class="toc-section-number">10.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-8.html#class-announcements-8" id="toc-class-announcements-8"><span class="toc-section-number">10.2</span> Class Announcements</a></li>
+<li><a href="roadmap-7.html#roadmap-7" id="toc-roadmap-7"><span class="toc-section-number">10.3</span> Roadmap</a></li>
+<li><a href="discussion.html#discussion" id="toc-discussion"><span class="toc-section-number">10.4</span> Discussion</a>
+<ul>
+<li><a href="discussion.html#three-modes-of-model-building" id="toc-three-modes-of-model-building"><span class="toc-section-number">10.4.1</span> Three modes of model building</a></li>
+<li><a href="discussion.html#the-statistical-modeling-process-in-different-modes" id="toc-the-statistical-modeling-process-in-different-modes"><span class="toc-section-number">10.4.2</span> The statistical modeling process in different modes</a></li>
+</ul></li>
+<li><a href="r-activity-measuring-the-return-to-education.html#r-activity-measuring-the-return-to-education" id="toc-r-activity-measuring-the-return-to-education"><span class="toc-section-number">10.5</span> R Activity: Measuring the return to education</a>
+<ul>
+<li><a href="r-activity-measuring-the-return-to-education.html#transformations" id="toc-transformations"><span class="toc-section-number">10.5.1</span> Transformations</a></li>
+<li><a href="r-activity-measuring-the-return-to-education.html#estimation" id="toc-estimation"><span class="toc-section-number">10.5.2</span> Estimation</a></li>
+</ul></li>
+</ul></li>
+<li><a href="explanatory-model-building.html#explanatory-model-building" id="toc-explanatory-model-building"><span class="toc-section-number">11</span> Explanatory Model Building</a>
+<ul>
+<li><a href="learning-objectives-10.html#learning-objectives-10" id="toc-learning-objectives-10"><span class="toc-section-number">11.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-9.html#class-announcements-9" id="toc-class-announcements-9"><span class="toc-section-number">11.2</span> Class Announcements</a></li>
+<li><a href="roadmap-8.html#roadmap-8" id="toc-roadmap-8"><span class="toc-section-number">11.3</span> Roadmap</a></li>
+<li><a href="discussion-1.html#discussion-1" id="toc-discussion-1"><span class="toc-section-number">11.4</span> Discussion</a>
+<ul>
+<li><a href="discussion-1.html#path-diagrams" id="toc-path-diagrams"><span class="toc-section-number">11.4.1</span> Path Diagrams</a></li>
+<li><a href="discussion-1.html#omitted-variable-bias" id="toc-omitted-variable-bias"><span class="toc-section-number">11.4.2</span> Omitted Variable Bias</a></li>
+</ul></li>
+<li><a href="r-exercise-2.html#r-exercise-2" id="toc-r-exercise-2"><span class="toc-section-number">11.5</span> R Exercise</a></li>
+<li><a href="discussion-2.html#discussion-2" id="toc-discussion-2"><span class="toc-section-number">11.6</span> Discussion</a></li>
+</ul></li>
+<li><a href="the-classical-linear-model.html#the-classical-linear-model" id="toc-the-classical-linear-model"><span class="toc-section-number">12</span> The Classical Linear Model</a>
+<ul>
+<li><a href="learning-objectives-11.html#learning-objectives-11" id="toc-learning-objectives-11"><span class="toc-section-number">12.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-10.html#class-announcements-10" id="toc-class-announcements-10"><span class="toc-section-number">12.2</span> Class Announcements</a></li>
+<li><a href="roadmap-9.html#roadmap-9" id="toc-roadmap-9"><span class="toc-section-number">12.3</span> Roadmap</a></li>
+<li><a href="the-classical-linear-model-1.html#the-classical-linear-model-1" id="toc-the-classical-linear-model-1"><span class="toc-section-number">12.4</span> The Classical Linear Model</a>
+<ul>
+<li><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm" id="toc-comparing-the-large-sample-model-and-the-clm"><span class="toc-section-number">12.4.1</span> Comparing the Large Sample Model and the CLM</a></li>
+</ul></li>
+<li><a href="problems-with-the-clm-requirements.html#problems-with-the-clm-requirements" id="toc-problems-with-the-clm-requirements"><span class="toc-section-number">12.5</span> Problems with the CLM Requirements</a></li>
+<li><a href="r-exercise-3.html#r-exercise-3" id="toc-r-exercise-3"><span class="toc-section-number">12.6</span> R Exercise</a></li>
+</ul></li>
+<li><a href="reproducible-research.html#reproducible-research" id="toc-reproducible-research"><span class="toc-section-number">13</span> Reproducible Research</a>
+<ul>
+<li><a href="learning-objectives-12.html#learning-objectives-12" id="toc-learning-objectives-12"><span class="toc-section-number">13.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-11.html#class-announcements-11" id="toc-class-announcements-11"><span class="toc-section-number">13.2</span> Class Announcements</a></li>
+<li><a href="roadmap-10.html#roadmap-10" id="toc-roadmap-10"><span class="toc-section-number">13.3</span> Roadmap</a></li>
+<li><a href="what-data-science-hopes-to-accomplish.html#what-data-science-hopes-to-accomplish" id="toc-what-data-science-hopes-to-accomplish"><span class="toc-section-number">13.4</span> What data science hopes to accomplish</a></li>
+<li><a href="learning-from-data.html#learning-from-data" id="toc-learning-from-data"><span class="toc-section-number">13.5</span> Learning from Data</a></li>
+<li><a href="data-science-and-statistics.html#data-science-and-statistics" id="toc-data-science-and-statistics"><span class="toc-section-number">13.6</span> Data Science and Statistics</a></li>
+<li><a href="why-statistics-a-closing-argument-for-statistics.html#why-statistics-a-closing-argument-for-statistics" id="toc-why-statistics-a-closing-argument-for-statistics"><span class="toc-section-number">13.7</span> Why Statistics?: A Closing Argument for Statistics</a></li>
+<li><a href="course-goals.html#course-goals" id="toc-course-goals"><span class="toc-section-number">13.8</span> Course Goals</a>
+<ul>
+<li><a href="course-goals.html#course-section-iii-purpose-driven-models" id="toc-course-section-iii-purpose-driven-models"><span class="toc-section-number">13.8.1</span> Course Section III: Purpose-Driven Models</a></li>
+<li><a href="course-goals.html#course-section-ii-sampling-theory-and-testing" id="toc-course-section-ii-sampling-theory-and-testing"><span class="toc-section-number">13.8.2</span> Course Section II: Sampling Theory and Testing</a></li>
+<li><a href="course-goals.html#course-section-i-probability-theory" id="toc-course-section-i-probability-theory"><span class="toc-section-number">13.8.3</span> Course Section I: Probability Theory</a></li>
+<li><a href="course-goals.html#statistics-as-a-foundation-for-mids" id="toc-statistics-as-a-foundation-for-mids"><span class="toc-section-number">13.8.4</span> Statistics as a Foundation for MIDS</a></li>
+</ul></li>
+<li><a href="reproducibility-discussion.html#reproducibility-discussion" id="toc-reproducibility-discussion"><span class="toc-section-number">13.9</span> Reproducibility Discussion</a>
+<ul>
+<li><a href="reproducibility-discussion.html#discussion-3" id="toc-discussion-3"><span class="toc-section-number">13.9.1</span> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation"><span class="toc-section-number">14</span> Maximum Likelihood Estimation</a>
+<ul>
+<li><a href="learning-objectives-13.html#learning-objectives-13" id="toc-learning-objectives-13"><span class="toc-section-number">14.1</span> Learning Objectives</a></li>
+<li><a href="class-announcements-12.html#class-announcements-12" id="toc-class-announcements-12"><span class="toc-section-number">14.2</span> Class Announcements</a></li>
+<li><a href="roadmap-11.html#roadmap-11" id="toc-roadmap-11"><span class="toc-section-number">14.3</span> Roadmap</a></li>
+<li><a href="what-is-a-model.html#what-is-a-model" id="toc-what-is-a-model"><span class="toc-section-number">14.4</span> What is a model?</a></li>
+<li><a href="estimation-1.html#estimation-1" id="toc-estimation-1"><span class="toc-section-number">14.5</span> Estimation</a></li>
+<li><a href="discussion-of-maximum-likelihood-estimation.html#discussion-of-maximum-likelihood-estimation" id="toc-discussion-of-maximum-likelihood-estimation"><span class="toc-section-number">14.6</span> Discussion of Maximum Likelihood Estimation</a></li>
+<li><a href="optimization-in-r.html#optimization-in-r" id="toc-optimization-in-r"><span class="toc-section-number">14.7</span> Optimization in R</a>
+<ul>
+<li><a href="optimization-in-r.html#optimization-example-optimum-price" id="toc-optimization-example-optimum-price"><span class="toc-section-number">14.7.1</span> Optimization Example: Optimum Price</a></li>
+</ul></li>
+<li><a href="mle-for-poisson-random-variables.html#mle-for-poisson-random-variables" id="toc-mle-for-poisson-random-variables"><span class="toc-section-number">14.8</span> MLE for Poisson Random Variables</a>
+<ul>
+<li><a href="mle-for-poisson-random-variables.html#mle-for-poisson-random-variables-data" id="toc-mle-for-poisson-random-variables-data"><span class="toc-section-number">14.8.1</span> MLE for Poisson Random Variables: Data</a></li>
+<li><a href="mle-for-poisson-random-variables.html#mle-estimation" id="toc-mle-estimation"><span class="toc-section-number">14.8.2</span> MLE Estimation</a></li>
+</ul></li>
+<li><a href="confidence-intervals.html#confidence-intervals" id="toc-confidence-intervals"><span class="toc-section-number">14.9</span> Confidence Intervals</a></li>
+<li><a href="maximum-likelihood-example-printers.html#maximum-likelihood-example-printers" id="toc-maximum-likelihood-example-printers"><span class="toc-section-number">14.10</span> Maximum Likelihood Example: Printers</a></li>
+</ul></li>
+<li><a href="appendix.html#appendix" id="toc-appendix">Appendix</a>
+<ul>
+<li><a href="blooms-taxonomy.html#blooms-taxonomy" id="toc-blooms-taxonomy">Bloom’s Taxonomy</a></li>
 </ul></li>
 </ul>
 
@@ -450,8 +458,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="class-announcements-9" class="section level2 hasAnchor" number="11.2">
-<h2><span class="header-section-number">11.2</span> Class Announcements<a href="class-announcements-9.html#class-announcements-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="class-announcements-9" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Class Announcements</h2>
 <p><strong>Lab 2-Regression</strong></p>
 <p><strong>Overview</strong></p>
 <ul>
@@ -574,7 +582,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "section",
+"collapse": "chapter",
 "scroll_highlight": true
 }
 });
