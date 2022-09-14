@@ -4,6 +4,8 @@
 library(tidyverse)
 ```
 
+![yosemite valley](./images/yosemite.jpg)
+
 ## Learning Objectives 
 
 At the end of this week's course of study (which includes the async, sync, and homework) students should be able to 
@@ -16,12 +18,11 @@ From the axioms of probability, it is possible to build a whole, expressive mode
 
 There is both a beauty and a tragedy when reasoning about random variables: we describe random variables using their joint density function. 
 
-The beauty is that by reasoning with such general objects we can produce guarantees that hold in every case, no matter the function that stands in for the joint density function. 
+The **beauty** is that by reasoning with such general objects -- the definitions that we create, and the theorems that we derive in this section of the course -- produce guarantees that hold in every case, no matter the function that stands in for the joint density function. We will compute several examples of *specific* functions to provide a chance to reason about these objects and how they "work". 
 
-The tragedy is that in the "real world", the world where we are going to eventually going to train and deploy our models, we are never provided with this joint density function.  In examples that we compute, to provide a chance to reason about these objects, we will typically write down a *specific* function that a random variable represents, despite the limitation that we cannot directly observe this function in the wild. 
+The **tragedy** is that in the "real world", the world where we are going to eventually going to train and deploy our models, we are never provided with this joint density function. Perhaps this is the creation myth for probability theory: in a perfect world, we can produce a perfect result. But, in the "fallen" world of data, we will only be able to produce approximations.  
 
 ## Class Announcements
-
 ### Homework 
 
 1. You should have turned in your first homework. The solution set for this homework is scheduled to be released to you in two days. The solution set contains a full explanation of how we solved the questions posed to you. You can expect that feedback for this homework will be released back to you within seven days. 

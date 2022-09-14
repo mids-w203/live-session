@@ -1,48 +1,73 @@
 # Summarizing Distributions
 
-```{r load unit 03 packages}
+```{r load unit 03 packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
+![a majestic valley](./images/yosemite.jpg)
 
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the end of the live session and homework this week, students will be able to
+
+1. **Understand** the importance of thinking in terms of random variables, while; 
+2. **Appreciating** that it is not typically possible to fully model the world with a single function. 
+3. **Articulate** why we need a target for a model, and propose several possible such targets.
+4. **Produce** summaries of location and relationship given a particular functional form for a random variable.
 
 
 ## Class Announcements 
 
-## Roadmap 
+Where have we come from, and where are we going? 
 
-**Roadmap -- Rearview mirror** 
+### What is in the rearview mirror? 
 
-- Statisticians create a population model to represent the world.
-- Random variables are the building blocks of a model. 
+- Statisticians create a population model to represent the world; random variables are the building blocks of such a model.
 - We can describe the distribution of a random variable using:
-    - a cdf (all random varibles)
-    - a pmf (discrete random variables)
-    - a pdf (continuous random variables)
+    - A *CDF* for all random variables
+    - A *PMF* for discrete random variables
+    - A *PDF* for continuous random variables
 - When we have multiple random variables,
-    - a joint pmf / pdf describes how they behave together
-    - a marginal pmf / pdf describes one variable in isolation
-    - a conditonal pmf / pdf describes one variable given the value of another
+    - The joint PMF/PDF describes how they behave together
+    - The marginal PMF/PDF describes one variable in isolation
+    - The conditonal PMF/PDF describes one variable given the value of another
 
-**Roadmap -- Today's Lesson**
+### Today's Lesson
 
-- A joint distribution has more information than we can ever use (or estimate with finite data).
-- To do useful things, we need to summarize certain features we care about:
-    - Expectation
-    - Variance
-    - Covariance
-    - Correlation
-  
-**Roadmap -- Coming Attractions** 
+What might seem frustrating about this probability theory system of reasoning is that we are building a castle in the sky -- a fiction. We're supposing that there is some function that describes the probability that values are generated. In reality, there is no such generative function; it is *extremely unlikely* (though we'll acknowledge that it is possible) that the physical reality we belive we exist within is just a complex simulation that has been programmed with functions by some unknown designer. 
+
+Especially frustrating is that we're supposing this function, and then we're further saying, 
+
+> "If only we had this impossible function; and if only we also had the ability to take an impossible derivative of this impossible function, then we could..." 
+
+#### Single number summaries of a single random variable
+
+But, here's the upshot! 
+
+**What we are doing today is laying the baseline for models that we will introduce next week.** Here, we are going to suggest that there are radical simplifications that we can produce that hold specific guarantees, no matter how complex the function that we're reasoning about. 
+
+In particular, in one specific usage of the term *best* we will prove that the Expectation operation is the best one-number summary of any distribution. To do so, we will define a term, *variance*, which is the squared deviations from the expectation of a variable that describes how "spread out" is a variable. Then, we will define a concept that is the *mean squared error* that is the square of the distance between a model prediction and a random variable's realization. The key realization is that when the model predicts the expectation, then the MSE is equal to the variance of the random variable, which is the smallest possible value it could realize. 
+
+#### Single number summaries of relationships between random variables
+
+Although the single number summaries are **incredibly** powerful, that's not enough for today's lesson! We're also going to suggest that we can create a measure of linear dependence between two variables that we call the "covariance", and a related, rescaled version of this relationship that is called the correlation. 
+
+### Future Attractions 
 
 - A predictor is a function that provides a value for one variable, given values of some others.
 - Using our summary tools, we will define a predictor's error and then minimize it.
 - This is a basis for linear regression
+
+## Discussion of Terms 
+
+Together with your instructor, you will talk about what each of the following definitions mean in your own words, for the key concepts, you might also formalize this intuition into a formula that can be computed. 
+
+- Expected Value, or Expectation 
+- Central Moments $\rightarrow$ Variance $\rightarrow$ Standard Deviation
+- Set aside for later: Chebyshev's Inequality and the Normal Distribution 
+- Mean Squared Error and its alternative formula 
+- Covariance and Correlation
+
 
 ## Computing Examples 
 
@@ -53,11 +78,13 @@ library(tidyverse)
 
 ```{r, echo = FALSE}
 set.seed(1)
+
 population_education <- sample(
-  x    = 0: 28, 
+  x    = 0:28, 
   size = 2000, 
   replace = TRUE, 
   prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+  ## pretty fancy probability distribution, eh? ^^ 
 )
 
 ggplot() + 
@@ -66,7 +93,7 @@ ggplot() +
   labs(
     title = 'Years of Education', 
     x     = 'Years', 
-    y     = 'Pr(Instances)')
+    y     = 'Number of Instances')
 ```
 
 without using specific numbers, describe the process you would use to calculate the expected value of this distribution. 
@@ -76,9 +103,10 @@ without using specific numbers, describe the process you would use to calculate 
 How does the following formula match with your concept of expectation from that last section?
 
 $$
-  E(X) = \sum_{y \in \{Years\}} y \cdot P(X=y)
+  E(X) = \sum_{x \in \{years\}} x \cdot P(X=x)
 $$
 
+## Computing by Hand
 ### Compute the Expected Value 
 
 Let $X$ represent the result of one roll of a 6 sided die. 
@@ -110,7 +138,10 @@ Let $X$ represent the result of one roll of a 6 sided die.
 - Write the code to run the expectation algorithm that you just performed by hand. 
 
 ```{r}
-die <- 'fill this in' 
+die <- data.frame(
+    value = 'fill this in',
+    prob  = 'fill this in'
+  )
 ```
 
 ### Variacne of a Six-Sided Die
@@ -120,12 +151,27 @@ Let $X$ represent the result of one roll of a 6 sided die.
 5. Using what you know about the definition of variance, write a function that will compute the variance of your `die` object. 
 
 ```{r}
-variance_function <- function() { 
+variance_function <- function(die) { 
   ## fill this in
+  mu = 'fill this in'
+  var = 'fill this in'
+  
+  return(var)
 }
 
-## variance_function(die)
+variance_function(die)
 ```
+
+Suppose that you had to keep the values the same on the die, that is. That is the domain of the outcome still had to be the countable set of integers from one to six. 
+
+- How would you change the probability distribution to decrease the variance of this random variable? 
+- What is the smallest value that you can generate for this random variable? Use the `variance_function` from above to actually compute this variance. 
+- What is the largest value of variance that you can generate for this random variable? Use the `variance_function` from above to actually compute this variance. 
+
+Now suppose that you again had an equal probability of every outcome, but you were to apply a function to the number of spots that are showing on the die. Rather that each dot contributing one value to the random variable, instead the random variable's outcome is the square of the number of spots. 
+
+- How would this change the mean?  
+- How would this change the variance? 
 
 ## Practice Computing 
 
