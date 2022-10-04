@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-09-13" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,6 +328,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="team-kick-off.html#team-kick-off" id="toc-team-kick-off"><span class="toc-section-number">7.5</span> Team Kick-Off</a></li>
 <li><a href="a-quick-review.html#a-quick-review" id="toc-a-quick-review"><span class="toc-section-number">7.6</span> A Quick Review</a></li>
 <li><a href="comparing-groups-r-exercise.html#comparing-groups-r-exercise" id="toc-comparing-groups-r-exercise"><span class="toc-section-number">7.7</span> Comparing Groups R Exercise</a></li>
+<li><a href="the-questions.html#the-questions" id="toc-the-questions"><span class="toc-section-number">7.8</span> The Questions</a>
+<ul>
+<li><a href="the-questions.html#set-1" id="toc-set-1"><span class="toc-section-number">7.8.1</span> Set 1</a></li>
+<li><a href="the-questions.html#set-2" id="toc-set-2"><span class="toc-section-number">7.8.2</span> Set 2</a></li>
+<li><a href="the-questions.html#set-3" id="toc-set-3"><span class="toc-section-number">7.8.3</span> Set 3</a></li>
+</ul></li>
 </ul></li>
 <li><a href="ols-regression-estimates.html#ols-regression-estimates" id="toc-ols-regression-estimates"><span class="toc-section-number">8</span> OLS Regression Estimates</a>
 <ul>
@@ -498,18 +504,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Check into the help documentation.</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="optimization-in-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
-<span id="cb49-2"><a href="optimization-in-r.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
-<span id="cb49-3"><a href="optimization-in-r.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
-<span id="cb49-4"><a href="optimization-in-r.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="optimization-in-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="optimization-in-r.html#cb47-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
+<span id="cb47-2"><a href="optimization-in-r.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb47-3"><a href="optimization-in-r.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
+<span id="cb47-4"><a href="optimization-in-r.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="optimization-in-r.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 96</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="optimization-in-r.html#cb52-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb52-2"><a href="optimization-in-r.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
-<span id="cb52-3"><a href="optimization-in-r.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
-<span id="cb52-4"><a href="optimization-in-r.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
-<span id="cb52-5"><a href="optimization-in-r.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
-<span id="cb52-6"><a href="optimization-in-r.html#cb52-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="optimization-in-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb50-2"><a href="optimization-in-r.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
+<span id="cb50-3"><a href="optimization-in-r.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
+<span id="cb50-4"><a href="optimization-in-r.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
+<span id="cb50-5"><a href="optimization-in-r.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
+<span id="cb50-6"><a href="optimization-in-r.html#cb50-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
 <pre><code>## $maximum
 ## [1] 0.5
 ## 

@@ -1,12 +1,16 @@
 # Comparing Two Groups
 
+![](./images/goin_left.jpeg)
+
 ## Learning Objectives 
 
 This week, we introduce the idea of comparing two groups to evaluate whether the data that we have sampled lead us to believe that the population distribution of the random variables are different. Of course, because we don't get access to the function that describes the random variable, we can't *actually* know if the populations are different. It is for this reason that we call it statistical inference -- we are inferring from a sample some belief about the populations. 
 
-1. 
-2. 
-3. 
+At the conclusion of this week, students will be able to:
+
+1. *Recognize* the similarities between all frequentist hypothesis tests. 
+2. *Evaluate* the conditions that surround the data, and choose a test that is best-powered and justifiable.
+3. *Perform* and *Interpret* the results of the most common statistical tests.
 
 ## Class Announcements
 
@@ -42,6 +46,7 @@ This week, we introduce the idea of comparing two groups to evaluate whether the
 
 ## Teamwork Discussion
 ### Working on Data Science Teams
+
 Data science is a *beautiful* combination of team-work and individual-work. It provides the opportunity to work together on a data pipeline with people from all over the organization, to deal with technical, statistical, and social questions that are always interesting. While we expect that everyone on a team will be a professional, there is so much range within the pursuit of data science that projects are nearly always collaborative exercises. 
 
 Together as teams, we
@@ -143,11 +148,16 @@ You have a set of questions that you would like to answer with a statistical tes
 3. Conduct your test.
 4. Discuss statistical and practical significance.
 
-**The Questions**
+## The Questions 
 
+### Set 1 
+- Do economics majors watch more or less TV than computer science majors?
 - Do Americans with pets watch more or less TV than Americans without pets?
-- Do economics majors watch more or less tv than computer science majors?
-- Are Americans that own guns or Americans that don't own guns more likely to have pets?
+
+### Set 2
 - Do Americans spend more time emailing or using the web?
-- Are Americans with pets happier than Americans without pets?
 - Do Americans spend more evenings with neighbors or with relatives?
+
+### Set 3
+- Are Americans that own guns or Americans that don't own guns more likely to have pets?
+- Are Americans with pets happier than Americans without pets?

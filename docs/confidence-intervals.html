@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-09-13" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,6 +328,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="team-kick-off.html#team-kick-off" id="toc-team-kick-off"><span class="toc-section-number">7.5</span> Team Kick-Off</a></li>
 <li><a href="a-quick-review.html#a-quick-review" id="toc-a-quick-review"><span class="toc-section-number">7.6</span> A Quick Review</a></li>
 <li><a href="comparing-groups-r-exercise.html#comparing-groups-r-exercise" id="toc-comparing-groups-r-exercise"><span class="toc-section-number">7.7</span> Comparing Groups R Exercise</a></li>
+<li><a href="the-questions.html#the-questions" id="toc-the-questions"><span class="toc-section-number">7.8</span> The Questions</a>
+<ul>
+<li><a href="the-questions.html#set-1" id="toc-set-1"><span class="toc-section-number">7.8.1</span> Set 1</a></li>
+<li><a href="the-questions.html#set-2" id="toc-set-2"><span class="toc-section-number">7.8.2</span> Set 2</a></li>
+<li><a href="the-questions.html#set-3" id="toc-set-3"><span class="toc-section-number">7.8.3</span> Set 3</a></li>
+</ul></li>
 </ul></li>
 <li><a href="ols-regression-estimates.html#ols-regression-estimates" id="toc-ols-regression-estimates"><span class="toc-section-number">8</span> OLS Regression Estimates</a>
 <ul>
@@ -486,67 +492,67 @@ CI_{\alpha} = \overline{X} \pm t_{\alpha/2} \cdot \frac{s}{\sqrt{n}}
 <li><span class="math inline">\(t_{\alpha/2}\)</span> is your critical value (accessible through <code>qt</code>),</li>
 <li>and <span class="math inline">\(s\)</span> is your sample standard deviation. Notice that you’ll need each of these pieces in the code that you’re about to write.</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="confidence-intervals.html#cb61-1" aria-hidden="true" tabindex="-1"></a>sim_conf_int <span class="ot">&lt;-</span> <span class="cf">function</span>(n, alpha) {</span>
-<span id="cb61-2"><a href="confidence-intervals.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fill in your code to: </span></span>
-<span id="cb61-3"><a href="confidence-intervals.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. simulate n draws from a standard normal dist.</span></span>
-<span id="cb61-4"><a href="confidence-intervals.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. compute a confidence interval with confidence level alpha</span></span>
-<span id="cb61-5"><a href="confidence-intervals.html#cb61-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb61-6"><a href="confidence-intervals.html#cb61-6" aria-hidden="true" tabindex="-1"></a>  sample_draws <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb61-7"><a href="confidence-intervals.html#cb61-7" aria-hidden="true" tabindex="-1"></a>  sample_mean  <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb61-8"><a href="confidence-intervals.html#cb61-8" aria-hidden="true" tabindex="-1"></a>  sample_sd    <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb61-9"><a href="confidence-intervals.html#cb61-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb61-10"><a href="confidence-intervals.html#cb61-10" aria-hidden="true" tabindex="-1"></a>  critical_t <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb61-11"><a href="confidence-intervals.html#cb61-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb61-12"><a href="confidence-intervals.html#cb61-12" aria-hidden="true" tabindex="-1"></a>  ci_95 <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb61-13"><a href="confidence-intervals.html#cb61-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb61-14"><a href="confidence-intervals.html#cb61-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ci_95)  </span>
-<span id="cb61-15"><a href="confidence-intervals.html#cb61-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb61-16"><a href="confidence-intervals.html#cb61-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-17"><a href="confidence-intervals.html#cb61-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_conf_int</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="confidence-intervals.html#cb59-1" aria-hidden="true" tabindex="-1"></a>sim_conf_int <span class="ot">&lt;-</span> <span class="cf">function</span>(n, alpha) {</span>
+<span id="cb59-2"><a href="confidence-intervals.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fill in your code to: </span></span>
+<span id="cb59-3"><a href="confidence-intervals.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. simulate n draws from a standard normal dist.</span></span>
+<span id="cb59-4"><a href="confidence-intervals.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. compute a confidence interval with confidence level alpha</span></span>
+<span id="cb59-5"><a href="confidence-intervals.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-6"><a href="confidence-intervals.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  sample_draws <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb59-7"><a href="confidence-intervals.html#cb59-7" aria-hidden="true" tabindex="-1"></a>  sample_mean  <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb59-8"><a href="confidence-intervals.html#cb59-8" aria-hidden="true" tabindex="-1"></a>  sample_sd    <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb59-9"><a href="confidence-intervals.html#cb59-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-10"><a href="confidence-intervals.html#cb59-10" aria-hidden="true" tabindex="-1"></a>  critical_t <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb59-11"><a href="confidence-intervals.html#cb59-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-12"><a href="confidence-intervals.html#cb59-12" aria-hidden="true" tabindex="-1"></a>  ci_95 <span class="ot">&lt;-</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb59-13"><a href="confidence-intervals.html#cb59-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-14"><a href="confidence-intervals.html#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ci_95)  </span>
+<span id="cb59-15"><a href="confidence-intervals.html#cb59-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb59-16"><a href="confidence-intervals.html#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-17"><a href="confidence-intervals.html#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_conf_int</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;fill this in&quot;</code></pre>
 <p>When your function is complete, you can use the following code to run your function 100 times and plot the results.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="confidence-intervals.html#cb63-1" aria-hidden="true" tabindex="-1"></a>many_confidence_intervals <span class="ot">&lt;-</span> <span class="cf">function</span>(num_simulations, n, alpha) {</span>
-<span id="cb63-2"><a href="confidence-intervals.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## args: </span></span>
-<span id="cb63-3"><a href="confidence-intervals.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  - num_simulations: the number of simulated confidence intervals </span></span>
-<span id="cb63-4"><a href="confidence-intervals.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  - n: the number of observations in each simulation that will pass </span></span>
-<span id="cb63-5"><a href="confidence-intervals.html#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">##           into your `sim_conf_int` function</span></span>
-<span id="cb63-6"><a href="confidence-intervals.html#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  - alpha: the confidence interval that you will pass into </span></span>
-<span id="cb63-7"><a href="confidence-intervals.html#cb63-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">##           your `sim_conf_int` function</span></span>
-<span id="cb63-8"><a href="confidence-intervals.html#cb63-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-9"><a href="confidence-intervals.html#cb63-9" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb63-10"><a href="confidence-intervals.html#cb63-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
-<span id="cb63-11"><a href="confidence-intervals.html#cb63-11" aria-hidden="true" tabindex="-1"></a>    interval <span class="ot">=</span> <span class="fu">sim_conf_int</span>(n, alpha)</span>
-<span id="cb63-12"><a href="confidence-intervals.html#cb63-12" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">=</span> <span class="fu">rbind</span>(results, <span class="fu">c</span>(interval[<span class="dv">1</span>], interval[<span class="dv">2</span>], interval[<span class="dv">1</span>]<span class="sc">&lt;</span><span class="dv">0</span> <span class="sc">&amp;</span> interval[<span class="dv">2</span>]<span class="sc">&gt;</span><span class="dv">0</span>))</span>
-<span id="cb63-13"><a href="confidence-intervals.html#cb63-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb63-14"><a href="confidence-intervals.html#cb63-14" aria-hidden="true" tabindex="-1"></a>  resultsdf <span class="ot">=</span> <span class="fu">data.frame</span>(results)</span>
-<span id="cb63-15"><a href="confidence-intervals.html#cb63-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(resultsdf) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;captured&quot;</span>)</span>
-<span id="cb63-16"><a href="confidence-intervals.html#cb63-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resultsdf)</span>
-<span id="cb63-17"><a href="confidence-intervals.html#cb63-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb63-18"><a href="confidence-intervals.html#cb63-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-19"><a href="confidence-intervals.html#cb63-19" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
-<span id="cb63-20"><a href="confidence-intervals.html#cb63-20" aria-hidden="true" tabindex="-1"></a>confidence_intervals <span class="ot">=</span> <span class="fu">many_confidence_intervals</span>(<span class="dv">100</span>, n, .<span class="dv">05</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="confidence-intervals.html#cb64-1" aria-hidden="true" tabindex="-1"></a>plot_many_confidence_intervals <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
-<span id="cb64-2"><a href="confidence-intervals.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;n&quot;</span>,</span>
-<span id="cb64-3"><a href="confidence-intervals.html#cb64-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>), <span class="at">xlab =</span> <span class="st">&#39;Trial&#39;</span>,</span>
-<span id="cb64-4"><a href="confidence-intervals.html#cb64-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(c<span class="sc">$</span>low), <span class="fu">max</span>(c<span class="sc">$</span>high)), <span class="at">ylab=</span><span class="fu">expression</span>(mu),<span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb64-5"><a href="confidence-intervals.html#cb64-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-6"><a href="confidence-intervals.html#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>)</span>
-<span id="cb64-7"><a href="confidence-intervals.html#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(n), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>)</span>
-<span id="cb64-8"><a href="confidence-intervals.html#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, n<span class="dv">-1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(n), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>)</span>
-<span id="cb64-9"><a href="confidence-intervals.html#cb64-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb64-10"><a href="confidence-intervals.html#cb64-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(c<span class="sc">$</span>high, <span class="at">col =</span> <span class="dv">2</span><span class="sc">+</span>c<span class="sc">$</span>captured, <span class="at">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb64-11"><a href="confidence-intervals.html#cb64-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(c<span class="sc">$</span>low,  <span class="at">col =</span> <span class="dv">2</span><span class="sc">+</span>c<span class="sc">$</span>captured, <span class="at">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb64-12"><a href="confidence-intervals.html#cb64-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(c)) {</span>
-<span id="cb64-13"><a href="confidence-intervals.html#cb64-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(i,i), <span class="fu">c</span>(c<span class="sc">$</span>low[i],c<span class="sc">$</span>high[i]), <span class="at">col =</span> <span class="dv">2</span><span class="sc">+</span>c<span class="sc">$</span>captured[i], <span class="at">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb64-14"><a href="confidence-intervals.html#cb64-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb64-15"><a href="confidence-intervals.html#cb64-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb64-16"><a href="confidence-intervals.html#cb64-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">title</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Simulation of t-Confidence Intervals for &quot;</span>, mu,</span>
-<span id="cb64-17"><a href="confidence-intervals.html#cb64-17" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot; with Sample Size 20&quot;</span>)))</span>
-<span id="cb64-18"><a href="confidence-intervals.html#cb64-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-19"><a href="confidence-intervals.html#cb64-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">65</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(mu,<span class="st">&quot; Captured&quot;</span>)),</span>
-<span id="cb64-20"><a href="confidence-intervals.html#cb64-20" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">expression</span>(<span class="fu">paste</span>(mu,<span class="st">&quot; Not Captured&quot;</span>))), <span class="at">fill =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb64-21"><a href="confidence-intervals.html#cb64-21" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="confidence-intervals.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_many_confidence_intervals(confidence_intervals)</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="confidence-intervals.html#cb61-1" aria-hidden="true" tabindex="-1"></a>many_confidence_intervals <span class="ot">&lt;-</span> <span class="cf">function</span>(num_simulations, n, alpha) {</span>
+<span id="cb61-2"><a href="confidence-intervals.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## args: </span></span>
+<span id="cb61-3"><a href="confidence-intervals.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  - num_simulations: the number of simulated confidence intervals </span></span>
+<span id="cb61-4"><a href="confidence-intervals.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  - n: the number of observations in each simulation that will pass </span></span>
+<span id="cb61-5"><a href="confidence-intervals.html#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">##           into your `sim_conf_int` function</span></span>
+<span id="cb61-6"><a href="confidence-intervals.html#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  - alpha: the confidence interval that you will pass into </span></span>
+<span id="cb61-7"><a href="confidence-intervals.html#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">##           your `sim_conf_int` function</span></span>
+<span id="cb61-8"><a href="confidence-intervals.html#cb61-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb61-9"><a href="confidence-intervals.html#cb61-9" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb61-10"><a href="confidence-intervals.html#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
+<span id="cb61-11"><a href="confidence-intervals.html#cb61-11" aria-hidden="true" tabindex="-1"></a>    interval <span class="ot">=</span> <span class="fu">sim_conf_int</span>(n, alpha)</span>
+<span id="cb61-12"><a href="confidence-intervals.html#cb61-12" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">=</span> <span class="fu">rbind</span>(results, <span class="fu">c</span>(interval[<span class="dv">1</span>], interval[<span class="dv">2</span>], interval[<span class="dv">1</span>]<span class="sc">&lt;</span><span class="dv">0</span> <span class="sc">&amp;</span> interval[<span class="dv">2</span>]<span class="sc">&gt;</span><span class="dv">0</span>))</span>
+<span id="cb61-13"><a href="confidence-intervals.html#cb61-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb61-14"><a href="confidence-intervals.html#cb61-14" aria-hidden="true" tabindex="-1"></a>  resultsdf <span class="ot">=</span> <span class="fu">data.frame</span>(results)</span>
+<span id="cb61-15"><a href="confidence-intervals.html#cb61-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(resultsdf) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;captured&quot;</span>)</span>
+<span id="cb61-16"><a href="confidence-intervals.html#cb61-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resultsdf)</span>
+<span id="cb61-17"><a href="confidence-intervals.html#cb61-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb61-18"><a href="confidence-intervals.html#cb61-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-19"><a href="confidence-intervals.html#cb61-19" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb61-20"><a href="confidence-intervals.html#cb61-20" aria-hidden="true" tabindex="-1"></a>confidence_intervals <span class="ot">=</span> <span class="fu">many_confidence_intervals</span>(<span class="dv">100</span>, n, .<span class="dv">05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="confidence-intervals.html#cb62-1" aria-hidden="true" tabindex="-1"></a>plot_many_confidence_intervals <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
+<span id="cb62-2"><a href="confidence-intervals.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb62-3"><a href="confidence-intervals.html#cb62-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>), <span class="at">xlab =</span> <span class="st">&#39;Trial&#39;</span>,</span>
+<span id="cb62-4"><a href="confidence-intervals.html#cb62-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(c<span class="sc">$</span>low), <span class="fu">max</span>(c<span class="sc">$</span>high)), <span class="at">ylab=</span><span class="fu">expression</span>(mu),<span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb62-5"><a href="confidence-intervals.html#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="confidence-intervals.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>)</span>
+<span id="cb62-7"><a href="confidence-intervals.html#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n<span class="dv">-1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(n), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>)</span>
+<span id="cb62-8"><a href="confidence-intervals.html#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">qt</span>(<span class="fl">0.025</span>, n<span class="dv">-1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(n), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>)</span>
+<span id="cb62-9"><a href="confidence-intervals.html#cb62-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-10"><a href="confidence-intervals.html#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(c<span class="sc">$</span>high, <span class="at">col =</span> <span class="dv">2</span><span class="sc">+</span>c<span class="sc">$</span>captured, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb62-11"><a href="confidence-intervals.html#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(c<span class="sc">$</span>low,  <span class="at">col =</span> <span class="dv">2</span><span class="sc">+</span>c<span class="sc">$</span>captured, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb62-12"><a href="confidence-intervals.html#cb62-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(c)) {</span>
+<span id="cb62-13"><a href="confidence-intervals.html#cb62-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(i,i), <span class="fu">c</span>(c<span class="sc">$</span>low[i],c<span class="sc">$</span>high[i]), <span class="at">col =</span> <span class="dv">2</span><span class="sc">+</span>c<span class="sc">$</span>captured[i], <span class="at">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb62-14"><a href="confidence-intervals.html#cb62-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb62-15"><a href="confidence-intervals.html#cb62-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-16"><a href="confidence-intervals.html#cb62-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">title</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Simulation of t-Confidence Intervals for &quot;</span>, mu,</span>
+<span id="cb62-17"><a href="confidence-intervals.html#cb62-17" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot; with Sample Size 20&quot;</span>)))</span>
+<span id="cb62-18"><a href="confidence-intervals.html#cb62-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-19"><a href="confidence-intervals.html#cb62-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">65</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(mu,<span class="st">&quot; Captured&quot;</span>)),</span>
+<span id="cb62-20"><a href="confidence-intervals.html#cb62-20" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">expression</span>(<span class="fu">paste</span>(mu,<span class="st">&quot; Not Captured&quot;</span>))), <span class="at">fill =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb62-21"><a href="confidence-intervals.html#cb62-21" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="confidence-intervals.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_many_confidence_intervals(confidence_intervals)</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>How many of the simulated confidence intervals contain the true mean, zero?<br />
 </li>

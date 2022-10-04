@@ -1,6 +1,6 @@
 # Hypothesis Testing
 
-Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurt assumption. 
+Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurd assumption. 
 
 Like a petulant child, NHST essentially proclaims, 
 
@@ -165,7 +165,6 @@ voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
     
 **Testing the Home Team Advantage**
 
-
 The file athlet2.Rdata contains data on college football games.  The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project.  Football records and scores are from 1993 football season.
 
 ```{r}
@@ -208,5 +207,3 @@ For the following scenarios, what is the strongest argument against the validity
 - A nonprofit organization measures the percentage of students that pass an 8th grade reading test in 40 neighboring California counties.  You are interested in whether the percentage of students that pass in California is over 80%
 
 - You have survey data in which respondents assess their own opinion of corgis, with options ranging from "1 - extreme disgust" to "5 - affection so intense it threatens my career."  You want to know whether people on the average like corgis more than 3, representing neutrality.
-
-

@@ -145,6 +145,10 @@ we-all-belong
 team-kick-off
 a-quick-review
 comparing-groups-r-exercise
+the-questions
+set-1
+set-2
+set-3
 ols-regression-estimates
 learning-objectives-7
 class-announcements-6
