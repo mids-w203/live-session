@@ -50,8 +50,108 @@ theme_set(theme_minimal())
 | mg. melatonin |    0.52              |
 |               |   (0.31)             |
    
+## Understanding Uncertainty
 
-### Understanding Uncertainty
+Imagine three different regression models, each of the following form:
+
+$$
+  Y = 0 + 0 \cdot X + \epsilon
+$$
+
+The only difference is in the error term. The conditional distribution is given by:
+
+Model | Distribution of $\epsilon$ cond. on $X$
+------|----------------------------------------
+ A    | Uniform on $[-.5, +.5]$
+ B    | Uniform on $[ - |X|, |X| ]$
+ C    | Uniform on $[ -1 + |X|, 1- |X| ]$
+ 
+A is what we call a homoskedastic distribution. B and C are what we call heteroskedastic. Below, we define R functions that simulate draws from these three distributions.
+ 
+```{r}
+rA <- function(n, slope=0){
+  x       = runif(n, min=-1, max = 1)
+  epsilon = runif(n, min=-.5, max=.5)
+  y       = 0 + slope*x + epsilon
+  return( data.frame(x=x,y=y) )
+}
+
+rB <- function(n, slope=0){
+  x       = runif(n, min=-1, max = 1)
+  epsilon = runif(n, min=- abs(x), max=abs(x))
+  y       = 0 + slope*x + epsilon
+  return( data.frame(x=x,y=y) )
+}
+
+rC <- function(n, slope=0){
+  x       = runif(n, min=-1, max = 1)
+  epsilon = runif(n, min= -1 + abs(x), max=1 - abs(x))
+  y       = 0 + slope*x + epsilon
+  return( data.frame(x=x,y=y) )
+}
+```
+
+```{r}
+data <- rbind( 
+  data.frame( rA(200), label = 'A'),
+  data.frame( rB(200), label = 'B'),
+  data.frame( rC(200), label = 'C'))
+```
+
+```{r}
+data %>% 
+  ggplot(aes(x=x, y=y)) + 
+  geom_point() + 
+  lims(
+    x = c(-2,2), 
+    y = c(-1,1)) + 
+  labs(title = 'Samples Drawn from Three Distributions') + 
+  facet_grid(rows=vars(label))
+```
+
+### Question 1
+
+The following code draws a sample from distribution A, fits a regression line, and plots it. Run it a few times to see what happens. Now explain how you would visually estimate the standard error of the slope coefficient. Why is this standard error important?
+
+```{r, fig.height=2, fig.width=3, dpi=300}
+data <-  rA(10)
+data %>% 
+  ggplot(aes(x=x, y=y)) + 
+  geom_point() + 
+  geom_smooth(method='lm', formula = 'y ~ x', se=FALSE) + 
+  lims(
+    x = c(-2,2), 
+    y = c(-1,1)) + 
+  labs(title = 'Regression Fit to Distribution A')
+```
+
+```{r}
+base_plot <- rC(20) %>%  
+  ggplot() + 
+  aes(x=x, y=y) + 
+  geom_point() + 
+  stat_smooth(method='lm', se=FALSE, formula = 'y ~x')
+
+for(i in 1:100) { 
+    base_plot <- base_plot + rA(10) %>% 
+      stat_smooth(mapping = aes(x=x, y=y), method='lm', se=FALSE, formula='y~x', color = 'grey', size = 0.5, alpha = 0.5)
+  }
+
+base_plot
+```
+
+
+### Question 2 
+You have a sample from each distribution, A, B, and C and you fit a regression of Y on X. Which will have the highest standard error for the slope coefficient? Which will have the lowest standard error? Why? (You may want to try experimenting with the function defined above)
+
+### Question 3 
+For distribution A, perform a simulated experiment. Draw a large number of samples, and for each sample fit a linear regression. Store the slope coefficient from each regression in a vector. Finally, compute the standard deviation for the slope coefficients.
+
+Repeat this process for distributions B and C. Do the results match your intuition?
+   
+   
+
+## Understanding Uncertainty
 
 Under the relatively stricter assumptions of constant error variance, the variance of a slope coefficient is given by
 
@@ -91,9 +191,9 @@ model_one
 
 1. Estimate a new model (and save it into another object) that includes the size of the lot and whether the house is a colonial. This will estimate the model: 
 
-\[ 
-  price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
-\] 
+$$
+  dprice = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
+$$ 
 
 - *BUT BEFORE YOU DO*, make a prediction: What do you think is going to happen to the coefficient that relates square footage and price? 
   - Will the coefficient increase, decrease, or stay the same? 
