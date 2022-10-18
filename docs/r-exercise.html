@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.8 R Exercise | Statistics for Data Science</title>
+  <title>8.9 R Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.8 R Exercise | Statistics for Data Science" />
+  <meta property="og:title" content="8.9 R Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.8 R Exercise | Statistics for Data Science" />
+  <meta name="twitter:title" content="8.9 R Exercise | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2022-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
@@ -345,16 +346,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="visualizing-data.html#visualizing-data" id="toc-visualizing-data"><span class="toc-section-number">8.6</span> Visualizing Data</a>
 <ul>
 <li><a href="visualizing-data.html#discussion-questions-1" id="toc-discussion-questions-1"><span class="toc-section-number">8.6.1</span> Discussion Questions</a></li>
-<li><a href="visualizing-data.html#reasoning-by-analogies" id="toc-reasoning-by-analogies"><span class="toc-section-number">8.6.2</span> Reasoning by Analogies</a></li>
 </ul></li>
-<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.7</span> Coding Activity:R Cheat Sheet</a></li>
-<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.8</span> R Exercise</a>
+<li><a href="the-regression-anatomy-formula.html#the-regression-anatomy-formula" id="toc-the-regression-anatomy-formula"><span class="toc-section-number">8.7</span> The Regression Anatomy Formula</a></li>
+<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.8</span> Coding Activity:R Cheat Sheet</a></li>
+<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.9</span> R Exercise</a>
 <ul>
-<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</a></li>
+<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.9.1</span> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
-<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.9</span> Regression Plots and Discussion</a>
+<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.10</span> Regression Plots and Discussion</a>
 <ul>
-<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.9.1</span> Plot 1</a></li>
+<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.10.1</span> Plot 1</a></li>
 </ul></li>
 </ul></li>
 <li><a href="ols-regression-inference.html#ols-regression-inference" id="toc-ols-regression-inference"><span class="toc-section-number">9</span> OLS Regression Inference</a>
@@ -365,9 +366,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="uncertainty-in-ols.html#uncertainty-in-ols" id="toc-uncertainty-in-ols"><span class="toc-section-number">9.4</span> Uncertainty in OLS</a>
 <ul>
 <li><a href="uncertainty-in-ols.html#discussion-questions-2" id="toc-discussion-questions-2"><span class="toc-section-number">9.4.1</span> Discussion Questions</a></li>
-<li><a href="uncertainty-in-ols.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.4.2</span> Understanding Uncertainty</a></li>
 </ul></li>
-<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.5</span> R Exercise</a></li>
+<li><a href="understanding-uncertainty.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.5</span> Understanding Uncertainty</a>
+<ul>
+<li><a href="understanding-uncertainty.html#question-1" id="toc-question-1"><span class="toc-section-number">9.5.1</span> Question 1</a></li>
+<li><a href="understanding-uncertainty.html#question-2" id="toc-question-2"><span class="toc-section-number">9.5.2</span> Question 2</a></li>
+<li><a href="understanding-uncertainty.html#question-3" id="toc-question-3"><span class="toc-section-number">9.5.3</span> Question 3</a></li>
+</ul></li>
+<li><a href="understanding-uncertainty-1.html#understanding-uncertainty-1" id="toc-understanding-uncertainty-1"><span class="toc-section-number">9.6</span> Understanding Uncertainty</a></li>
+<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.7</span> R Exercise</a></li>
 </ul></li>
 <li><a href="descriptive-model-building.html#descriptive-model-building" id="toc-descriptive-model-building"><span class="toc-section-number">10</span> Descriptive Model Building</a>
 <ul>
@@ -472,12 +479,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-exercise" class="section level2" number="8.8">
-<h2><span class="header-section-number">8.8</span> R Exercise</h2>
+<div id="r-exercise" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> R Exercise</h2>
 <p><strong>Real Estate in Boston</strong></p>
 <p>The file <code>hprice1.Rdata</code> contains 88 observations of homes in the Boston area, taken from the real estate pages of the Boston Globe during 1990. This data was provided by Wooldridge.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-exercise.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-exercise.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="r-exercise.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="r-exercise.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##     price assess bdrms lotsize sqrft colonial   lprice  lassess llotsize   lsqrft
 ## 1 300.000  349.1     4    6126  2438        1 5.703783 5.855359 8.720297 7.798934
 ## 2 370.000  351.5     3    9903  2076        1 5.913503 5.862210 9.200593 7.638198
@@ -489,8 +496,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Are there variables that would <em>not</em> be valid outcomes for an OLS regression? If so, why?</li>
 <li>Are there variables that would <em>not</em> be valid inputs for an OLS regression? If so, why?</li>
 </ul>
-<div id="assess-the-relationship-between-price-and-square-footage" class="section level3" number="8.8.1">
-<h3><span class="header-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</h3>
+<div id="assess-the-relationship-between-price-and-square-footage" class="section level3" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Assess the Relationship between Price and Square Footage</h3>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="r-exercise.html#cb78-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="r-exercise.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb78-3"><a href="r-exercise.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>price) <span class="sc">+</span> </span>
+<span id="cb78-4"><a href="r-exercise.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 <p>Suppose that you’re interested in knowing the relationship between price and square footage.</p>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Assess the assumptions of the Large-Sample Linear Model.</p></li>
@@ -502,6 +514,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 price = \beta_{0} + \beta_{1} sqrft + e
 \]</span></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="r-exercise.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="do">## old estimate was 0.14</span></span>
+<span id="cb79-2"><a href="r-exercise.html#cb79-2" aria-hidden="true" tabindex="-1"></a>model_price <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize, <span class="at">data =</span> data)</span>
+<span id="cb79-3"><a href="r-exercise.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_price)</span></code></pre></div>
+<pre><code>## (Intercept)       sqrft     lotsize 
+## 5.932414240 0.133362017 0.002113495</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="r-exercise.html#cb81-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="r-exercise.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb81-3"><a href="r-exercise.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>lotsize) <span class="sc">+</span> </span>
+<span id="cb81-4"><a href="r-exercise.html#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Create a scatterplot that includes the fitted regression.</p></li>
 <li><p>Interpret what the coefficient means.</p></li>
@@ -581,7 +603,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "chapter",
+"collapse": "section",
 "scroll_highlight": true
 }
 });

@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2022-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
@@ -345,16 +346,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="visualizing-data.html#visualizing-data" id="toc-visualizing-data"><span class="toc-section-number">8.6</span> Visualizing Data</a>
 <ul>
 <li><a href="visualizing-data.html#discussion-questions-1" id="toc-discussion-questions-1"><span class="toc-section-number">8.6.1</span> Discussion Questions</a></li>
-<li><a href="visualizing-data.html#reasoning-by-analogies" id="toc-reasoning-by-analogies"><span class="toc-section-number">8.6.2</span> Reasoning by Analogies</a></li>
 </ul></li>
-<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.7</span> Coding Activity:R Cheat Sheet</a></li>
-<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.8</span> R Exercise</a>
+<li><a href="the-regression-anatomy-formula.html#the-regression-anatomy-formula" id="toc-the-regression-anatomy-formula"><span class="toc-section-number">8.7</span> The Regression Anatomy Formula</a></li>
+<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.8</span> Coding Activity:R Cheat Sheet</a></li>
+<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.9</span> R Exercise</a>
 <ul>
-<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</a></li>
+<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.9.1</span> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
-<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.9</span> Regression Plots and Discussion</a>
+<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.10</span> Regression Plots and Discussion</a>
 <ul>
-<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.9.1</span> Plot 1</a></li>
+<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.10.1</span> Plot 1</a></li>
 </ul></li>
 </ul></li>
 <li><a href="ols-regression-inference.html#ols-regression-inference" id="toc-ols-regression-inference"><span class="toc-section-number">9</span> OLS Regression Inference</a>
@@ -365,9 +366,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="uncertainty-in-ols.html#uncertainty-in-ols" id="toc-uncertainty-in-ols"><span class="toc-section-number">9.4</span> Uncertainty in OLS</a>
 <ul>
 <li><a href="uncertainty-in-ols.html#discussion-questions-2" id="toc-discussion-questions-2"><span class="toc-section-number">9.4.1</span> Discussion Questions</a></li>
-<li><a href="uncertainty-in-ols.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.4.2</span> Understanding Uncertainty</a></li>
 </ul></li>
-<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.5</span> R Exercise</a></li>
+<li><a href="understanding-uncertainty.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.5</span> Understanding Uncertainty</a>
+<ul>
+<li><a href="understanding-uncertainty.html#question-1" id="toc-question-1"><span class="toc-section-number">9.5.1</span> Question 1</a></li>
+<li><a href="understanding-uncertainty.html#question-2" id="toc-question-2"><span class="toc-section-number">9.5.2</span> Question 2</a></li>
+<li><a href="understanding-uncertainty.html#question-3" id="toc-question-3"><span class="toc-section-number">9.5.3</span> Question 3</a></li>
+</ul></li>
+<li><a href="understanding-uncertainty-1.html#understanding-uncertainty-1" id="toc-understanding-uncertainty-1"><span class="toc-section-number">9.6</span> Understanding Uncertainty</a></li>
+<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.7</span> R Exercise</a></li>
 </ul></li>
 <li><a href="descriptive-model-building.html#descriptive-model-building" id="toc-descriptive-model-building"><span class="toc-section-number">10</span> Descriptive Model Building</a>
 <ul>
@@ -474,26 +481,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-exercise-3" class="section level2" number="12.6">
 <h2><span class="header-section-number">12.6</span> R Exercise</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-exercise-3.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb44-2"><a href="r-exercise-3.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb44-3"><a href="r-exercise-3.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb44-4"><a href="r-exercise-3.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb44-5"><a href="r-exercise-3.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb44-6"><a href="r-exercise-3.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-exercise-3.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb96-2"><a href="r-exercise-3.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb96-3"><a href="r-exercise-3.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb96-4"><a href="r-exercise-3.html#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb96-5"><a href="r-exercise-3.html#cb96-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb96-6"><a href="r-exercise-3.html#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-exercise-3.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb45-2"><a href="r-exercise-3.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="r-exercise-3.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="r-exercise-3.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb97-2"><a href="r-exercise-3.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="r-exercise-3.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 <pre><code>## Rows: 32
 ## Columns: 11
-## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 3…
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4, 30.4, …
 ## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
-## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0…
-## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, …
-## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4…
-## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250…
-## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98…
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0, 460.0, 44…
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, 150, 245, 1…
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4.08, 4.93, …
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250, 5.424, 5.…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98, 17.82, 17…
 ## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1
 ## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
 ## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 4
@@ -572,7 +579,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "chapter",
+"collapse": "section",
 "scroll_highlight": true
 }
 });

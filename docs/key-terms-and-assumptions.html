@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2022-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
@@ -345,16 +346,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="visualizing-data.html#visualizing-data" id="toc-visualizing-data"><span class="toc-section-number">8.6</span> Visualizing Data</a>
 <ul>
 <li><a href="visualizing-data.html#discussion-questions-1" id="toc-discussion-questions-1"><span class="toc-section-number">8.6.1</span> Discussion Questions</a></li>
-<li><a href="visualizing-data.html#reasoning-by-analogies" id="toc-reasoning-by-analogies"><span class="toc-section-number">8.6.2</span> Reasoning by Analogies</a></li>
 </ul></li>
-<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.7</span> Coding Activity:R Cheat Sheet</a></li>
-<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.8</span> R Exercise</a>
+<li><a href="the-regression-anatomy-formula.html#the-regression-anatomy-formula" id="toc-the-regression-anatomy-formula"><span class="toc-section-number">8.7</span> The Regression Anatomy Formula</a></li>
+<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.8</span> Coding Activity:R Cheat Sheet</a></li>
+<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.9</span> R Exercise</a>
 <ul>
-<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</a></li>
+<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.9.1</span> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
-<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.9</span> Regression Plots and Discussion</a>
+<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.10</span> Regression Plots and Discussion</a>
 <ul>
-<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.9.1</span> Plot 1</a></li>
+<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.10.1</span> Plot 1</a></li>
 </ul></li>
 </ul></li>
 <li><a href="ols-regression-inference.html#ols-regression-inference" id="toc-ols-regression-inference"><span class="toc-section-number">9</span> OLS Regression Inference</a>
@@ -365,9 +366,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="uncertainty-in-ols.html#uncertainty-in-ols" id="toc-uncertainty-in-ols"><span class="toc-section-number">9.4</span> Uncertainty in OLS</a>
 <ul>
 <li><a href="uncertainty-in-ols.html#discussion-questions-2" id="toc-discussion-questions-2"><span class="toc-section-number">9.4.1</span> Discussion Questions</a></li>
-<li><a href="uncertainty-in-ols.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.4.2</span> Understanding Uncertainty</a></li>
 </ul></li>
-<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.5</span> R Exercise</a></li>
+<li><a href="understanding-uncertainty.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.5</span> Understanding Uncertainty</a>
+<ul>
+<li><a href="understanding-uncertainty.html#question-1" id="toc-question-1"><span class="toc-section-number">9.5.1</span> Question 1</a></li>
+<li><a href="understanding-uncertainty.html#question-2" id="toc-question-2"><span class="toc-section-number">9.5.2</span> Question 2</a></li>
+<li><a href="understanding-uncertainty.html#question-3" id="toc-question-3"><span class="toc-section-number">9.5.3</span> Question 3</a></li>
+</ul></li>
+<li><a href="understanding-uncertainty-1.html#understanding-uncertainty-1" id="toc-understanding-uncertainty-1"><span class="toc-section-number">9.6</span> Understanding Uncertainty</a></li>
+<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.7</span> R Exercise</a></li>
 </ul></li>
 <li><a href="descriptive-model-building.html#descriptive-model-building" id="toc-descriptive-model-building"><span class="toc-section-number">10</span> Descriptive Model Building</a>
 <ul>
@@ -553,7 +560,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "chapter",
+"collapse": "section",
 "scroll_highlight": true
 }
 });

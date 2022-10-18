@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-04" />
+<meta name="date" content="2022-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
 </head>
 
@@ -345,16 +346,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="visualizing-data.html#visualizing-data" id="toc-visualizing-data"><span class="toc-section-number">8.6</span> Visualizing Data</a>
 <ul>
 <li><a href="visualizing-data.html#discussion-questions-1" id="toc-discussion-questions-1"><span class="toc-section-number">8.6.1</span> Discussion Questions</a></li>
-<li><a href="visualizing-data.html#reasoning-by-analogies" id="toc-reasoning-by-analogies"><span class="toc-section-number">8.6.2</span> Reasoning by Analogies</a></li>
 </ul></li>
-<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.7</span> Coding Activity:R Cheat Sheet</a></li>
-<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.8</span> R Exercise</a>
+<li><a href="the-regression-anatomy-formula.html#the-regression-anatomy-formula" id="toc-the-regression-anatomy-formula"><span class="toc-section-number">8.7</span> The Regression Anatomy Formula</a></li>
+<li><a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" id="toc-coding-activityr-cheat-sheet"><span class="toc-section-number">8.8</span> Coding Activity:R Cheat Sheet</a></li>
+<li><a href="r-exercise.html#r-exercise" id="toc-r-exercise"><span class="toc-section-number">8.9</span> R Exercise</a>
 <ul>
-<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.8.1</span> Assess the Relationship between Price and Square Footage</a></li>
+<li><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" id="toc-assess-the-relationship-between-price-and-square-footage"><span class="toc-section-number">8.9.1</span> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
-<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.9</span> Regression Plots and Discussion</a>
+<li><a href="regression-plots-and-discussion.html#regression-plots-and-discussion" id="toc-regression-plots-and-discussion"><span class="toc-section-number">8.10</span> Regression Plots and Discussion</a>
 <ul>
-<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.9.1</span> Plot 1</a></li>
+<li><a href="regression-plots-and-discussion.html#plot-1" id="toc-plot-1"><span class="toc-section-number">8.10.1</span> Plot 1</a></li>
 </ul></li>
 </ul></li>
 <li><a href="ols-regression-inference.html#ols-regression-inference" id="toc-ols-regression-inference"><span class="toc-section-number">9</span> OLS Regression Inference</a>
@@ -365,9 +366,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="uncertainty-in-ols.html#uncertainty-in-ols" id="toc-uncertainty-in-ols"><span class="toc-section-number">9.4</span> Uncertainty in OLS</a>
 <ul>
 <li><a href="uncertainty-in-ols.html#discussion-questions-2" id="toc-discussion-questions-2"><span class="toc-section-number">9.4.1</span> Discussion Questions</a></li>
-<li><a href="uncertainty-in-ols.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.4.2</span> Understanding Uncertainty</a></li>
 </ul></li>
-<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.5</span> R Exercise</a></li>
+<li><a href="understanding-uncertainty.html#understanding-uncertainty" id="toc-understanding-uncertainty"><span class="toc-section-number">9.5</span> Understanding Uncertainty</a>
+<ul>
+<li><a href="understanding-uncertainty.html#question-1" id="toc-question-1"><span class="toc-section-number">9.5.1</span> Question 1</a></li>
+<li><a href="understanding-uncertainty.html#question-2" id="toc-question-2"><span class="toc-section-number">9.5.2</span> Question 2</a></li>
+<li><a href="understanding-uncertainty.html#question-3" id="toc-question-3"><span class="toc-section-number">9.5.3</span> Question 3</a></li>
+</ul></li>
+<li><a href="understanding-uncertainty-1.html#understanding-uncertainty-1" id="toc-understanding-uncertainty-1"><span class="toc-section-number">9.6</span> Understanding Uncertainty</a></li>
+<li><a href="r-exercise-1.html#r-exercise-1" id="toc-r-exercise-1"><span class="toc-section-number">9.7</span> R Exercise</a></li>
 </ul></li>
 <li><a href="descriptive-model-building.html#descriptive-model-building" id="toc-descriptive-model-building"><span class="toc-section-number">10</span> Descriptive Model Building</a>
 <ul>
@@ -483,27 +490,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 f(x;\lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
 \]</span></p>
 <p>Here is an example of a string of outcomes generated by a Poisson RV, with parameter <span class="math inline">\(\lambda = 2\)</span>.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="mle-for-poisson-random-variables.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##  [1] 1 1 3 2 5 1 5 6 1 0</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="mle-for-poisson-random-variables.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##  [1] 1 3 1 3 2 2 2 2 2 4</code></pre>
 <div id="mle-for-poisson-random-variables-data" class="section level3" number="14.8.1">
 <h3><span class="header-section-number">14.8.1</span> MLE for Poisson Random Variables: Data</h3>
 <ul>
 <li>Suppose that we conduct an iid sample, and gather the following number of accidents. (It is a busy street!)</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="mle-for-poisson-random-variables.html#cb54-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb54-2"><a href="mle-for-poisson-random-variables.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>,  <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, </span>
-<span id="cb54-3"><a href="mle-for-poisson-random-variables.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, </span>
-<span id="cb54-4"><a href="mle-for-poisson-random-variables.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, </span>
-<span id="cb54-5"><a href="mle-for-poisson-random-variables.html#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>,  <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>,  <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, </span>
-<span id="cb54-6"><a href="mle-for-poisson-random-variables.html#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>,  <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>, </span>
-<span id="cb54-7"><a href="mle-for-poisson-random-variables.html#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>,  <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, </span>
-<span id="cb54-8"><a href="mle-for-poisson-random-variables.html#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>,  <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>,  <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, </span>
-<span id="cb54-9"><a href="mle-for-poisson-random-variables.html#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">3</span>,  <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>,  <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, </span>
-<span id="cb54-10"><a href="mle-for-poisson-random-variables.html#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, </span>
-<span id="cb54-11"><a href="mle-for-poisson-random-variables.html#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">1</span>,  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span></span>
-<span id="cb54-12"><a href="mle-for-poisson-random-variables.html#cb54-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb54-13"><a href="mle-for-poisson-random-variables.html#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-14"><a href="mle-for-poisson-random-variables.html#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="mle-for-poisson-random-variables.html#cb106-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb106-2"><a href="mle-for-poisson-random-variables.html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>,  <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, </span>
+<span id="cb106-3"><a href="mle-for-poisson-random-variables.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, </span>
+<span id="cb106-4"><a href="mle-for-poisson-random-variables.html#cb106-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, </span>
+<span id="cb106-5"><a href="mle-for-poisson-random-variables.html#cb106-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>,  <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>,  <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, </span>
+<span id="cb106-6"><a href="mle-for-poisson-random-variables.html#cb106-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>,  <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>, </span>
+<span id="cb106-7"><a href="mle-for-poisson-random-variables.html#cb106-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>,  <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, </span>
+<span id="cb106-8"><a href="mle-for-poisson-random-variables.html#cb106-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>,  <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>,  <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, </span>
+<span id="cb106-9"><a href="mle-for-poisson-random-variables.html#cb106-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">3</span>,  <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>,  <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, </span>
+<span id="cb106-10"><a href="mle-for-poisson-random-variables.html#cb106-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, </span>
+<span id="cb106-11"><a href="mle-for-poisson-random-variables.html#cb106-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>,  <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">1</span>,  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span></span>
+<span id="cb106-12"><a href="mle-for-poisson-random-variables.html#cb106-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb106-13"><a href="mle-for-poisson-random-variables.html#cb106-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-14"><a href="mle-for-poisson-random-variables.html#cb106-14" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data)</span></code></pre></div>
 <pre><code>## data
 ##  1  2  3  4  5  6  7  9 10 24 
 ## 54 69 38 14 14  6  1  2  1  1</code></pre>
@@ -523,18 +530,18 @@ f(x;\lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
 <li>Comment on your answers from parts 4 and 5. Are you surprised or not by what you see?</li>
 </ol></li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="mle-for-poisson-random-variables.html#cb56-1" aria-hidden="true" tabindex="-1"></a>poisson_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(data, lambda) { </span>
-<span id="cb56-2"><a href="mle-for-poisson-random-variables.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fill this in:  </span></span>
-<span id="cb56-3"><a href="mle-for-poisson-random-variables.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  lambda <span class="co"># this is a placeholder, change this</span></span>
-<span id="cb56-4"><a href="mle-for-poisson-random-variables.html#cb56-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="mle-for-poisson-random-variables.html#cb57-1" aria-hidden="true" tabindex="-1"></a>search_space <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb57-2"><a href="mle-for-poisson-random-variables.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb57-3"><a href="mle-for-poisson-random-variables.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> search_space, <span class="at">xlab =</span> <span class="st">&#39;Search Space&#39;</span>,</span>
-<span id="cb57-4"><a href="mle-for-poisson-random-variables.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">poisson_ll</span>(<span class="at">data=</span>data, <span class="at">lambda=</span>search_space), <span class="at">ylab =</span> <span class="st">&#39;Log Likelihood&#39;</span>,</span>
-<span id="cb57-5"><a href="mle-for-poisson-random-variables.html#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;l&#39;</span></span>
-<span id="cb57-6"><a href="mle-for-poisson-random-variables.html#cb57-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="mle-for-poisson-random-variables.html#cb108-1" aria-hidden="true" tabindex="-1"></a>poisson_ll <span class="ot">&lt;-</span> <span class="cf">function</span>(data, lambda) { </span>
+<span id="cb108-2"><a href="mle-for-poisson-random-variables.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fill this in:  </span></span>
+<span id="cb108-3"><a href="mle-for-poisson-random-variables.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  lambda <span class="co"># this is a placeholder, change this</span></span>
+<span id="cb108-4"><a href="mle-for-poisson-random-variables.html#cb108-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="mle-for-poisson-random-variables.html#cb109-1" aria-hidden="true" tabindex="-1"></a>search_space <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb109-2"><a href="mle-for-poisson-random-variables.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb109-3"><a href="mle-for-poisson-random-variables.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> search_space, <span class="at">xlab =</span> <span class="st">&#39;Search Space&#39;</span>,</span>
+<span id="cb109-4"><a href="mle-for-poisson-random-variables.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">poisson_ll</span>(<span class="at">data=</span>data, <span class="at">lambda=</span>search_space), <span class="at">ylab =</span> <span class="st">&#39;Log Likelihood&#39;</span>,</span>
+<span id="cb109-5"><a href="mle-for-poisson-random-variables.html#cb109-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;l&#39;</span></span>
+<span id="cb109-6"><a href="mle-for-poisson-random-variables.html#cb109-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="203-live-session_files/figure-html/plot%20the%20likelihood-1.png" width="672" /></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="mle-for-poisson-random-variables.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># optimize(poisson_ll, lower = 0, upper = 100, data = data, maximum = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="mle-for-poisson-random-variables.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># optimize(poisson_ll, lower = 0, upper = 100, data = data, maximum = TRUE)</span></span></code></pre></div>
 </div>
 </div>
             </section>
@@ -591,7 +598,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "chapter",
+"collapse": "section",
 "scroll_highlight": true
 }
 });
