@@ -541,7 +541,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-6"><a href="understanding-uncertainty.html#cb85-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
 <span id="cb85-7"><a href="understanding-uncertainty.html#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Samples Drawn from Three Distributions&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb85-8"><a href="understanding-uncertainty.html#cb85-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(label))</span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <div id="question-1" class="section level3" number="9.5.1">
 <h3><span class="header-section-number">9.5.1</span> Question 1</h3>
 <p>The following code draws a sample from distribution A, fits a regression line, and plots it. Run it a few times to see what happens. Now explain how you would visually estimate the standard error of the slope coefficient. Why is this standard error important?</p>
@@ -554,7 +554,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-7"><a href="understanding-uncertainty.html#cb86-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>), </span>
 <span id="cb86-8"><a href="understanding-uncertainty.html#cb86-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
 <span id="cb86-9"><a href="understanding-uncertainty.html#cb86-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Regression Fit to Distribution A&#39;</span>)</span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-178-1.png" width="900" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-58-1.png" width="900" /></p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="understanding-uncertainty.html#cb87-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="ot">&lt;-</span> <span class="fu">rC</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span>  </span>
 <span id="cb87-2"><a href="understanding-uncertainty.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb87-3"><a href="understanding-uncertainty.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y) <span class="sc">+</span> </span>
@@ -567,7 +567,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb87-10"><a href="understanding-uncertainty.html#cb87-10" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb87-11"><a href="understanding-uncertainty.html#cb87-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-12"><a href="understanding-uncertainty.html#cb87-12" aria-hidden="true" tabindex="-1"></a>base_plot</span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 <div id="question-2" class="section level3" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> Question 2</h3>
