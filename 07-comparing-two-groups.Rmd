@@ -264,7 +264,6 @@ wilcox_test_data %>%
 With this plot created, we can ask if what we observe in the plot is the produce of what could just be sampling error, or if this is something that was unlikely to arise due if the null hypothesis were true. What is the null hypothesis? Well, lets suppose that if we didn't know anything about the data that we would expect there to be no difference between the amount of time spent with friends or families. 
 
 ```{r run the appropriate test}
-
 ## risky choice -- casting the factor to a numeric without checking what happens.
 wilcox_test_data %$% 
   wilcox.test(

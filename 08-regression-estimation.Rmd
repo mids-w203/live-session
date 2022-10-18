@@ -80,7 +80,7 @@ $$
 X_{1} = \hat\delta_{0} + \hat\delta_2X_2 + \hat\delta_3X_3 + r_{1}
 $$
 
-And then using the residuals, noted as $r_1$ above, in a second auxilary regression, 
+And then using the residuals, noted as $r_1$ above, in a second auxiliary regression, 
 
 $$ 
 Y = \gamma_0 + \gamma_1 r_1
@@ -105,7 +105,9 @@ d <- data.frame(
 ## using the following code: 
 
 d <- d %>% 
-  mutate(y = -3 + 1*x1 + 2*x2 + 3*x3 + rnorm(n=n(), mean=0, sd=3))
+  mutate(y = -3 + 1*x1 + 2*x2 + 3*x3 + rnorm(n=n(), mean=0, sd=1))
+
+head(d)
 ```
 
 Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other "things" in this universe that also affect $Y$, but that we don't have access to them. By assumption, what we *have* measured in this world, $X_1, X_2, X_3$ are uncorrelated with these other features. 
@@ -124,7 +126,7 @@ model_aux <- lm(x1 ~ x2 + x3, data = d)
 If we look into the structure of `model_aux` we can see that there are *a ton* of pieces in here. 
 
 ```{r model structure}
-## str(model_aux)
+coef(model_aux)
 ```
 
 To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, "residual" in this sense? 
@@ -222,6 +224,15 @@ head(data)
 
 ### Assess the Relationship between Price and Square Footage
 
+
+```{r}
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=price) + 
+  geom_point()
+```
+
+
 Suppose that you're interested in knowing the relationship between price and square footage. 
 
 0. Assess the assumptions of the Large-Sample Linear Model.
@@ -248,7 +259,18 @@ price = \beta_{0} + \beta_{1} sqrft + e
 
 
 ```{r}
+## old estimate was 0.14
+model_price <- lm(price ~ sqrft + lotsize, data = data)
+coef(model_price)
 ```
+
+```{r}
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=lotsize) + 
+  geom_point()
+```
+
 
 5. Create a scatterplot that includes the fitted regression.
 
