@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -541,33 +541,59 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-6"><a href="understanding-uncertainty.html#cb85-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
 <span id="cb85-7"><a href="understanding-uncertainty.html#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Samples Drawn from Three Distributions&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb85-8"><a href="understanding-uncertainty.html#cb85-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(label))</span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
 <div id="question-1" class="section level3" number="9.5.1">
 <h3><span class="header-section-number">9.5.1</span> Question 1</h3>
 <p>The following code draws a sample from distribution A, fits a regression line, and plots it. Run it a few times to see what happens. Now explain how you would visually estimate the standard error of the slope coefficient. Why is this standard error important?</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="understanding-uncertainty.html#cb86-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span>  <span class="fu">rA</span>(<span class="dv">10</span>)</span>
-<span id="cb86-2"><a href="understanding-uncertainty.html#cb86-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb86-3"><a href="understanding-uncertainty.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span> </span>
-<span id="cb86-4"><a href="understanding-uncertainty.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb86-5"><a href="understanding-uncertainty.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb86-6"><a href="understanding-uncertainty.html#cb86-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(</span>
-<span id="cb86-7"><a href="understanding-uncertainty.html#cb86-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>), </span>
-<span id="cb86-8"><a href="understanding-uncertainty.html#cb86-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb86-9"><a href="understanding-uncertainty.html#cb86-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Regression Fit to Distribution A&#39;</span>)</span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-58-1.png" width="900" /></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="understanding-uncertainty.html#cb87-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="ot">&lt;-</span> <span class="fu">rC</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span>  </span>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="understanding-uncertainty.html#cb86-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span>  <span class="fu">rA</span>(<span class="dv">10</span>, <span class="at">slope=</span><span class="dv">0</span>)</span>
+<span id="cb86-2"><a href="understanding-uncertainty.html#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="understanding-uncertainty.html#cb86-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb86-4"><a href="understanding-uncertainty.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb86-5"><a href="understanding-uncertainty.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y) <span class="sc">+</span> </span>
+<span id="cb86-6"><a href="understanding-uncertainty.html#cb86-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb86-7"><a href="understanding-uncertainty.html#cb86-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb86-8"><a href="understanding-uncertainty.html#cb86-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(</span>
+<span id="cb86-9"><a href="understanding-uncertainty.html#cb86-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>), </span>
+<span id="cb86-10"><a href="understanding-uncertainty.html#cb86-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb86-11"><a href="understanding-uncertainty.html#cb86-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Regression Fit to Distribution A&#39;</span>)</span></code></pre></div>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-164-1.png" width="900" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="understanding-uncertainty.html#cb87-1" aria-hidden="true" tabindex="-1"></a>base_plot_a <span class="ot">&lt;-</span> <span class="fu">rA</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span>  </span>
 <span id="cb87-2"><a href="understanding-uncertainty.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb87-3"><a href="understanding-uncertainty.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y) <span class="sc">+</span> </span>
 <span id="cb87-4"><a href="understanding-uncertainty.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb87-5"><a href="understanding-uncertainty.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">&#39;y ~x&#39;</span>)</span>
 <span id="cb87-6"><a href="understanding-uncertainty.html#cb87-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-7"><a href="understanding-uncertainty.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) { </span>
-<span id="cb87-8"><a href="understanding-uncertainty.html#cb87-8" aria-hidden="true" tabindex="-1"></a>    base_plot <span class="ot">&lt;-</span> base_plot <span class="sc">+</span> <span class="fu">rA</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-8"><a href="understanding-uncertainty.html#cb87-8" aria-hidden="true" tabindex="-1"></a>    base_plot_a <span class="ot">&lt;-</span> base_plot_a <span class="sc">+</span> <span class="fu">rA</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb87-9"><a href="understanding-uncertainty.html#cb87-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stat_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">formula=</span><span class="st">&#39;y~x&#39;</span>, <span class="at">color =</span> <span class="st">&#39;grey&#39;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
-<span id="cb87-10"><a href="understanding-uncertainty.html#cb87-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb87-10"><a href="understanding-uncertainty.html#cb87-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb87-11"><a href="understanding-uncertainty.html#cb87-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-12"><a href="understanding-uncertainty.html#cb87-12" aria-hidden="true" tabindex="-1"></a>base_plot</span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<span id="cb87-12"><a href="understanding-uncertainty.html#cb87-12" aria-hidden="true" tabindex="-1"></a>base_plot_b <span class="ot">&lt;-</span> <span class="fu">rB</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb87-13"><a href="understanding-uncertainty.html#cb87-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb87-14"><a href="understanding-uncertainty.html#cb87-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y) <span class="sc">+</span> </span>
+<span id="cb87-15"><a href="understanding-uncertainty.html#cb87-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb87-16"><a href="understanding-uncertainty.html#cb87-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">&#39;y ~x&#39;</span>)</span>
+<span id="cb87-17"><a href="understanding-uncertainty.html#cb87-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-18"><a href="understanding-uncertainty.html#cb87-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) { </span>
+<span id="cb87-19"><a href="understanding-uncertainty.html#cb87-19" aria-hidden="true" tabindex="-1"></a>    base_plot_b <span class="ot">&lt;-</span> base_plot_b <span class="sc">+</span> <span class="fu">rB</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-20"><a href="understanding-uncertainty.html#cb87-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stat_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">formula=</span><span class="st">&#39;y~x&#39;</span>, <span class="at">color =</span> <span class="st">&#39;grey&#39;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb87-21"><a href="understanding-uncertainty.html#cb87-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb87-22"><a href="understanding-uncertainty.html#cb87-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-23"><a href="understanding-uncertainty.html#cb87-23" aria-hidden="true" tabindex="-1"></a>base_plot_c <span class="ot">&lt;-</span> <span class="fu">rC</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb87-24"><a href="understanding-uncertainty.html#cb87-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb87-25"><a href="understanding-uncertainty.html#cb87-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y) <span class="sc">+</span> </span>
+<span id="cb87-26"><a href="understanding-uncertainty.html#cb87-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb87-27"><a href="understanding-uncertainty.html#cb87-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">&#39;y ~x&#39;</span>)</span>
+<span id="cb87-28"><a href="understanding-uncertainty.html#cb87-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-29"><a href="understanding-uncertainty.html#cb87-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) { </span>
+<span id="cb87-30"><a href="understanding-uncertainty.html#cb87-30" aria-hidden="true" tabindex="-1"></a>    base_plot_c <span class="ot">&lt;-</span> base_plot_c <span class="sc">+</span> <span class="fu">rC</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-31"><a href="understanding-uncertainty.html#cb87-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stat_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y), <span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">formula=</span><span class="st">&#39;y~x&#39;</span>, <span class="at">color =</span> <span class="st">&#39;grey&#39;</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb87-32"><a href="understanding-uncertainty.html#cb87-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb87-33"><a href="understanding-uncertainty.html#cb87-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-34"><a href="understanding-uncertainty.html#cb87-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-35"><a href="understanding-uncertainty.html#cb87-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-36"><a href="understanding-uncertainty.html#cb87-36" aria-hidden="true" tabindex="-1"></a>base_plot_a <span class="sc">|</span> base_plot_b  <span class="sc">|</span> base_plot_c</span></code></pre></div>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 </div>
 <div id="question-2" class="section level3" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> Question 2</h3>

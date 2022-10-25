@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -507,7 +507,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="the-questions.html#cb29-1" aria-hidden="true" tabindex="-1"></a>GSS <span class="sc">%&gt;%</span> </span>
 <span id="cb29-2"><a href="the-questions.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(major1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;computer science&#39;</span>, <span class="st">&#39;economics&#39;</span>)) <span class="sc">%$%</span> </span>
 <span id="cb29-3"><a href="the-questions.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(tvhours <span class="sc">~</span> major1)</span></code></pre></div>
-<pre><code>## Warning in wilcox.test.default(x = c(1L, 2L, 2L, 1L, 7L, 5L, 1L, 3L, 2L, : cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(x = c(1L, 2L, 2L, 1L, 7L, 5L, 1L, 3L, 2L, : cannot compute exact p-value
+## with ties</code></pre>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -522,7 +523,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-6"><a href="the-questions.html#cb32-6" aria-hidden="true" tabindex="-1"></a>    tvhours <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>)) <span class="sc">%$%</span></span>
 <span id="cb32-7"><a href="the-questions.html#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># t.test(tv_category ~ major1)</span></span>
 <span id="cb32-8"><a href="the-questions.html#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(tv_category <span class="sc">~</span> major1)</span></code></pre></div>
-<pre><code>## Warning in wilcox.test.default(x = c(1, 2, 2, 1, 3, 3, 1, 2, 2, 2), y = c(1, : cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(x = c(1, 2, 2, 1, 3, 3, 1, 2, 2, 2), y = c(1, : cannot compute exact p-
+## value with ties</code></pre>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -532,7 +534,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="the-questions.html#cb35-1" aria-hidden="true" tabindex="-1"></a>GSS <span class="sc">%&gt;%</span> </span>
 <span id="cb35-2"><a href="the-questions.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(major1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;computer science&#39;</span>, <span class="st">&#39;economics&#39;</span>)) <span class="sc">%$%</span> </span>
 <span id="cb35-3"><a href="the-questions.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(tvhours <span class="sc">~</span> major1)</span></code></pre></div>
-<pre><code>## Warning in wilcox.test.default(x = c(1L, 2L, 2L, 1L, 7L, 5L, 1L, 3L, 2L, : cannot compute exact p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(x = c(1L, 2L, 2L, 1L, 7L, 5L, 1L, 3L, 2L, : cannot compute exact p-value
+## with ties</code></pre>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -545,7 +548,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb38-4"><a href="the-questions.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>tvhours) <span class="sc">+</span> </span>
 <span id="cb38-5"><a href="the-questions.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 11 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <ul>
 <li>Do Americans with pets watch more or less TV than Americans without pets?</li>
 </ul>
@@ -578,7 +581,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: Removed 986 rows containing non-finite values (stat_bin).</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 929 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="the-questions.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
 <span id="cb47-2"><a href="the-questions.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> GSS<span class="sc">$</span>wwwhr, </span>
 <span id="cb47-3"><a href="the-questions.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> GSS<span class="sc">$</span>emailhr, </span>

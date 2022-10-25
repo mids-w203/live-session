@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -484,11 +484,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-visualization-trick" class="section level3" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> The Visualization Trick</h3>
 <p>Here is the true density function for a normal random variable.</p>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p><strong>Simulate Draws</strong></p>
 <p>There’s another way to get an <strong>approximate</strong> idea of what the distribution looks like. Here’s how we take a single draw from a normal distribution with a specific set of features:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="visualizing-distributions-via-simulation.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 1.991968</code></pre>
+<pre><code>## [1] 1.345552</code></pre>
 <p><strong>Repeating the Experiment</strong></p>
 <p>We want to rerun that experiment 10 times. We take a draw, then rewind time, clear our memory and start over with fresh randomness. To do this in R, an easy way is with the <code>replicate()</code> function. Change the code below so that it repeats the experiment above 10 times, then use <code>hist()</code> to display a plot of the result.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-distributions-via-simulation.html#cb5-1" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> <span class="fu">replicate</span>(</span>
@@ -515,7 +515,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-13"><a href="visualizing-distributions-via-simulation.html#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
 <span id="cb7-14"><a href="visualizing-distributions-via-simulation.html#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> short_simulation), <span class="at">fun =</span> true_density, <span class="at">color =</span> <span class="st">&#39;darkred&#39;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p><strong>Repeating the Experiment: Questions</strong></p>
 <ul>
 <li>What happens to your plot as you increase the number of draws from 10 to 100 to 1000…?</li>

@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -494,12 +494,39 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## Coefficients:
 ## (Intercept)        sqrft  
 ##     11.2041       0.1402</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="r-exercise-1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="do">## any frequentist test has what components: numerator and denominator? </span></span>
+<span id="cb91-2"><a href="r-exercise-1.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="r-exercise-1.html#cb91-3" aria-hidden="true" tabindex="-1"></a>numerator   <span class="ot">&lt;-</span> <span class="fl">0.14</span></span>
+<span id="cb91-4"><a href="r-exercise-1.html#cb91-4" aria-hidden="true" tabindex="-1"></a>denominator <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(<span class="fu">vcovHC</span>(model_one)))[<span class="st">&#39;sqrft&#39;</span>]</span></code></pre></div>
+<pre><code>## Warning in sqrt(vcovHC(model_one)): NaNs produced</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="r-exercise-1.html#cb93-1" aria-hidden="true" tabindex="-1"></a>test_stat <span class="ot">&lt;-</span> numerator <span class="sc">/</span> denominator</span>
+<span id="cb93-2"><a href="r-exercise-1.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="r-exercise-1.html#cb93-3" aria-hidden="true" tabindex="-1"></a>test_stat</span></code></pre></div>
+<pre><code>##    sqrft 
+## 6.631694</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="r-exercise-1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(test_stat, <span class="at">df =</span> <span class="dv">87</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>##      sqrft 
+## 2.6884e-09</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="r-exercise-1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="do">## we could do it by hand... or... let someone else do it for us</span></span>
+<span id="cb97-2"><a href="r-exercise-1.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="r-exercise-1.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_one, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(model_one))</span></code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##              Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept) 11.204145  39.450563  0.2840    0.7771    
+## sqrft        0.140211   0.021111  6.6417 2.673e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="r-exercise-1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data[<span class="st">&#39;sqrft&#39;</span>]) </span></code></pre></div>
+<pre><code>##          sqrft
+## sqrft 333150.1</code></pre>
 <p><strong>Questions</strong></p>
 <ol style="list-style-type: decimal">
 <li>Estimate a new model (and save it into another object) that includes the size of the lot and whether the house is a colonial. This will estimate the model:</li>
 </ol>
 <p><span class="math display">\[
-  dprice = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
+  price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
 \]</span></p>
 <ul>
 <li><em>BUT BEFORE YOU DO</em>, make a prediction: What do you think is going to happen to the coefficient that relates square footage and price?
@@ -516,30 +543,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Bootstrap.</strong> The book <em>very</em> quickly talks about bootstrapping which is the process of sampling <em>with replacement</em> and fitting a model. The idea behind the bootstrap is that since the data is generated via an iid sample from the population, that you can simulate re-running your analysis by drawing repeated samples from the data that you have.</p></li>
 </ol>
 <p>Below is code that will conduct a boostrapping estimator of the uncertainty of the <code>sqrft</code> variable when <code>lotsize</code> and <code>colonial</code> are included in the model.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="r-exercise-1.html#cb91-1" aria-hidden="true" tabindex="-1"></a>bootstrap_sqft <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>) { </span>
-<span id="cb91-2"><a href="r-exercise-1.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  number_of_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb91-3"><a href="r-exercise-1.html#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-4"><a href="r-exercise-1.html#cb91-4" aria-hidden="true" tabindex="-1"></a>    coef_sqft <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, number_of_bootstraps)</span>
-<span id="cb91-5"><a href="r-exercise-1.html#cb91-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-6"><a href="r-exercise-1.html#cb91-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_of_bootstraps) { </span>
-<span id="cb91-7"><a href="r-exercise-1.html#cb91-7" aria-hidden="true" tabindex="-1"></a>      bootstrap_data <span class="ot">&lt;-</span> d[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>number_of_rows, <span class="at">size=</span>number_of_rows, <span class="at">replace=</span><span class="cn">TRUE</span>), ]  </span>
-<span id="cb91-8"><a href="r-exercise-1.html#cb91-8" aria-hidden="true" tabindex="-1"></a>      estimated_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize <span class="sc">+</span> colonial, <span class="at">data =</span> bootstrap_data)</span>
-<span id="cb91-9"><a href="r-exercise-1.html#cb91-9" aria-hidden="true" tabindex="-1"></a>      coef_sqft[i]    <span class="ot">&lt;-</span> <span class="fu">coef</span>(estimated_model)[<span class="st">&#39;sqrft&#39;</span>]</span>
-<span id="cb91-10"><a href="r-exercise-1.html#cb91-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb91-11"><a href="r-exercise-1.html#cb91-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_sqft)</span>
-<span id="cb91-12"><a href="r-exercise-1.html#cb91-12" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="r-exercise-1.html#cb92-1" aria-hidden="true" tabindex="-1"></a>bootstrap_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="r-exercise-1.html#cb101-1" aria-hidden="true" tabindex="-1"></a>bootstrap_sqft <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>) { </span>
+<span id="cb101-2"><a href="r-exercise-1.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  number_of_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb101-3"><a href="r-exercise-1.html#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-4"><a href="r-exercise-1.html#cb101-4" aria-hidden="true" tabindex="-1"></a>    coef_sqft <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, number_of_bootstraps)</span>
+<span id="cb101-5"><a href="r-exercise-1.html#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="r-exercise-1.html#cb101-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_of_bootstraps) { </span>
+<span id="cb101-7"><a href="r-exercise-1.html#cb101-7" aria-hidden="true" tabindex="-1"></a>      bootstrap_data <span class="ot">&lt;-</span> d[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>number_of_rows, <span class="at">size=</span>number_of_rows, <span class="at">replace=</span><span class="cn">TRUE</span>), ]  </span>
+<span id="cb101-8"><a href="r-exercise-1.html#cb101-8" aria-hidden="true" tabindex="-1"></a>      estimated_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize <span class="sc">+</span> colonial, <span class="at">data =</span> bootstrap_data)</span>
+<span id="cb101-9"><a href="r-exercise-1.html#cb101-9" aria-hidden="true" tabindex="-1"></a>      coef_sqft[i]    <span class="ot">&lt;-</span> <span class="fu">coef</span>(estimated_model)[<span class="st">&#39;sqrft&#39;</span>]</span>
+<span id="cb101-10"><a href="r-exercise-1.html#cb101-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb101-11"><a href="r-exercise-1.html#cb101-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_sqft)</span>
+<span id="cb101-12"><a href="r-exercise-1.html#cb101-12" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="r-exercise-1.html#cb102-1" aria-hidden="true" tabindex="-1"></a>bootstrap_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <p>With this, it is possible to plot the distribution of these regression coefficients:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="r-exercise-1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb93-2"><a href="r-exercise-1.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_result) <span class="sc">+</span> </span>
-<span id="cb93-3"><a href="r-exercise-1.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb93-4"><a href="r-exercise-1.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb93-5"><a href="r-exercise-1.html#cb93-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Estimated Coefficient&#39;</span>, </span>
-<span id="cb93-6"><a href="r-exercise-1.html#cb93-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>, </span>
-<span id="cb93-7"><a href="r-exercise-1.html#cb93-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Bootstrap coefficients for square footage&#39;</span></span>
-<span id="cb93-8"><a href="r-exercise-1.html#cb93-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="r-exercise-1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb103-2"><a href="r-exercise-1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_result) <span class="sc">+</span> </span>
+<span id="cb103-3"><a href="r-exercise-1.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb103-4"><a href="r-exercise-1.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb103-5"><a href="r-exercise-1.html#cb103-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Estimated Coefficient&#39;</span>, </span>
+<span id="cb103-6"><a href="r-exercise-1.html#cb103-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>, </span>
+<span id="cb103-7"><a href="r-exercise-1.html#cb103-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Bootstrap coefficients for square footage&#39;</span></span>
+<span id="cb103-8"><a href="r-exercise-1.html#cb103-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 <p>Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?</p>
 
 </div>
