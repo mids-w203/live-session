@@ -2,6 +2,9 @@
 
 ```{r load packages unit 02, echo=FALSE}
 library(tidyverse)
+library(patchwork)
+
+theme_set(theme_minimal())
 ```
 
 ![yosemite valley](./images/yosemite.jpg)
@@ -142,7 +145,7 @@ The book defines *pmf* and *cmf* first as a way of developing intuition and a wa
 More importantly for this course, in **Definition 1.2.15** the book defines the relationship between *cdf* and *pdf* in the following way:
 
 ::: {.definition name="Probability Density Function (PDF)"}
-For a continous random variable $X$ with CDF $F$, the *probability density function* of $X$ is 
+For a continuous random variable $X$ with CDF $F$, the *probability density function* of $X$ is 
 
 $$
   f(x) = \left. \frac{d F(u)}{du} \right|_{u=x}, \forall x \in \mathbb{R}.
@@ -192,7 +195,7 @@ As a class, lets consider a few of these PDFs, beginning with this "triangle" di
 knitr::include_app('http://www.statistics.wtf/PDF_Explorer/', height="1000px")
 ```
 
-### Triangle Maths 
+### Triangle Math
 
 After considering the intuition for the triangle distribution, do the following: Write down the function that accords with the figure that you're seeing above.^[Notice, that in general, this kind of *curve fitting* isn't really a common data science task. Instead, this is just a learning task that lets the class assess their understanding of the definitions of random variables.] 
 
@@ -214,115 +217,15 @@ f_{X,Y}(x,y) =
   \end{cases}
 \]
 
+This joint pdf is similar to the pdf that you can visualize above, under the distribution called "saddle". The difference between this function and the image above is that the function bounds the with support of $x$ and $y$ on the range $[0,1]$. This is to make the math easier for us in the next step. 
+
 - Can you use these facts to determine the following? 
   - What value of $a$ makes this a valid joint pdf? 
   - What is the marginal pdf of $x$? That is, what is $f_{x}(x)$? 
-  - What is the conditional pdf of $X$ given $Y$? That is, what is $f_{x|y}(x,y)? 
+  - What is the conditional pdf of $X$ given $Y$? That is, what is $f_{x|y}(x,y)$? 
   - Given these facts, would you say that $X$ and $Y$ are dependent or independent? 
-
-## Visualizing Distributions Via Simulation
-
-### The Visualization Trick
-
-Here is the true density function for a normal random variable.
-
-```{r, echo = FALSE, fig.height=3}
-d <- data.frame(x = seq(from=0, to=4, by=0.01)) %>%  
-  mutate(y = dnorm(x=x, mean=2, sd=1))
-
-d %>%  
-  ggplot() + 
-  aes(x = x, y = y) + 
-  geom_line()
-```
-
-**Simulate Draws** 
-
-There's another way to get an **approximate** idea of what the distribution looks like.  Here's how we take a single draw from a normal distribution with a specific set of features:
-
-```{r}
-rnorm(n = 1, mean = 2, sd = 1)
-```
-
-**Repeating the Experiment**
-
-We want to rerun that experiment 10 times.  We take a draw, then rewind time, clear our memory and start over with fresh randomness.  To do this in R, an easy way is with the `replicate()` function.  Change the code below so that it repeats the experiment above 10 times, then use `hist()` to display a plot of the result. 
-
-```{r}
-simulation <- replicate(
-  n    = 10,      # should you change this line? 
-  expr = 1 + .2   # or this line? 
-  )
-
-simulation
-```
-
-**Better Visualization**
-
-Here's some fancy ggplot code to draw a nice histogram of the result, along with the true density.  Remove the first line to make it work with your simulation.
-
-
-```{r}
-short_simulation <-  c(1,2,3,2,4,2)
-
-true_density <- function(x) {
-  dnorm(x = x, mean = 2, sd = 1)
-  }
-
-dat_hist <- data.frame(short_simulation)
-
-dat_hist %>% 
-  ggplot() + 
-  geom_histogram(
-    aes(x = short_simulation, y = ..density..)) + 
-  stat_function(
-    aes(x = short_simulation), fun = true_density, color = 'darkred')
-```
-
-
-**Repeating the Experiment: Questions**
-
-- What happens to your plot as you increase the number of draws from 10 to 100 to 1000...?
-- In your own words, what is the difference between the distribution and the sample you are taking?
-
-**The Visualization Trick** 
-
-- This is a pretty useful *trick*.  
-- The repetition we're using has no analogue in the real world -- we don't get to shake up the world like a snow globe a number of times in a row to see what it does.
-- But, when we say "take a draw from the distribution" another way to say this is that we're *simulating* the random variable.
-
-### Apply the Visualization Trick
-
-**Part I** 
-
-- How can the visualization trick help us?  Here's a problem:
-
-  - Suppose $X$ and $Y$ are independent normal random variables, both with mean 2 and standard deviation 1.  Say $Z = X + Y$.  
-  - What is the distribution of $Z$?
-
-- We could do some math to compute the density function of $Z$, but it's actually quite messy.  Instead, let's use the visualization trick to get an approximate idea.
-
-**Part II**
-
-- First, write an R function to simulate a single draw from $Z$.  
-
-1. Simulate a draw for $X$.
-2. Simulate a draw $Y$. 
-3. Return the sum of the previous draws.
-
-```{r}
-rz <- function() {
-  2 # Replace with your code
-}
-```
-
-- Use the previous code to repeat this experiment 10,000 times and plot a histogram.
-- See if you can guess what the the distribution is, and plot your guess on the histogram.
-
-### How is simulation useful? 
-
-- Are there situations that you think simulation of this sort might be useful? 
-
+  - If the support for this joint distribution were instead $[0,4]$ (rather than $[0,1]$), how would the shape of the distribution change? 
+  
 ## Computing Different Distributions.
 
 Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
@@ -341,6 +244,154 @@ where $c$ is a constant.
 2. What is the constant $c$?
 3. Compute the marginal density function for $X$.  (Be sure to write a complete expression)
 4. Compute the conditional density function for $Y$, conditional on $X=x$.  (Be sure to specify for what values of $x$ this is defined)
+
+## Visualizing Distributions Via Simulation
+
+To this point in the course, we have focused on concepts in "the population" with no reference to samples. This is on purpose! We want to develop the theory that defines the **best possible** predictor if we knew **everything** (if we know formula of the function that maps from $\omega \rightarrow \mathbb{R}$, and we know the probability of each $\omega \in \Omega$ then we know everything). Beginning in week 5 of the course, we will talk about "approximating" (which we will call estimating) this best possible predictor with a limited sample of data. 
+
+However, at this point, to help build your working understanding, or intuition, for what is happening, we are going to work on a way to *simulate* draws from a population. In some places, people might refer to these as *Monte Carlo* methods -- this is because the method was developed by von Neumann \& Ulam during World War II, and they needed a way to talk about it using a code name. They chose *Monte Carlo* after a famous casino in Monaco. 
+
+### Example: The Uniform Distribution 
+
+> You: "Gosh. There sure are a lot of examples that use the uniform distribution. That must be a really important statistical distribution." 
+> 
+> Instructor: "Nah. Not really. We're just using the uniform a bunch so that we don't get too lost in doing math while we're working with these concepts." 
+
+We'll start with a simple uniform distribution, but then we'll make it a little more complex in a moment.
+
+We can use R to simulate draws from a probability distribution function by providing it with the name of the distribution that we're considering, the support of that distribution, or other features of the distribution. In the case of the uniform, the entire distribution is can be described just from it support. 
+
+So, suppose that you had a uniform distribution that had positive probability on the range $[1.1, 4.3]$. Why these? No particular reason. That is, suppose
+
+\[
+  f_{X}(x) = \begin{cases} 
+    a\cdot x & 1.1 \leq x \leq 4.3 \\ 
+    0 & otherwise
+  \end{cases}
+\]
+
+What does this distribution "look like"? Because it is a uniform, you might have a sense that it will be a horizontal line. But, what is the height of that line? Aha! We could do the math to figure it out, or we could generate an approximation using a simulation. 
+
+In the code below, we are going to create an object called `samples_uniform` that stores the results of the `runif` function call. 
+
+```{r create uniform samples}
+samples_uniform <- runif(n=1000, min=1.1, max=4.3)
+```
+
+What is happening inside `runif`? 
+
+When you're writing you own code, you can pull up the documentation for this (and any) function using a question mark, i.e. `?`, followed by the function name -- `?runif`. 
+
+But, we can speed this up slightly by simply telling you that `n` is the number of samples to take from the population; `min` is the low-end of the support, and `max` is the high-end of the support. 
+
+If we look into this object, we can see the results of the function call. Below, we will show the first $20$ elements of the `samples_uniform` object. 
+
+```{r show first 20 results}
+samples_uniform[1:20]
+```
+
+(Notice that R is a $1$ index language (python is a zero-index language).)
+
+With this object created, we can plot a histogram of the data and then learn from this histogram what the pdf looks like. 
+
+```{r plot uniform samples}
+ggplot() + 
+  aes(x=samples_uniform) + 
+  geom_density(bw=0.1)
+```
+
+Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we're using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are *very* explicit about the code that creates them. 
+
+```{r create more data}
+samples_uniform_moar <- runif(n=1000000, min=1.1, max=4.3)
+```
+
+```{r plot uniform distributions}
+plot_low_res <- ggplot()  + 
+  aes(x=samples_uniform)  + 
+  geom_density(bw=0.1)    + 
+  lims(y=c(0,0.4))        + 
+  labs(title = 'Low Res, Low Data')
+
+plot_high_res <- ggplot()     + 
+  aes(x=samples_uniform_moar) + 
+  geom_density(bw=0.01)       + 
+  lims(y=c(0,0.4))            + 
+  labs(title = 'High Res, More Data')
+
+plot_low_res | plot_high_res
+```
+
+### Example: The Normal Distribution 
+
+Folks might have some prior beliefs about the Normal distribution. Don't worry, we'll cover this later in the course. But, this is the distribution that you have in mind when you're thinking of a "bell curve". 
+
+We can use the same method to visualize a normal distribution as we did for a uniform distribution. In this case, we would issue the call `rnorm`, together with the population parameters that define the population. At this point in the course, we do not expect that you will know these (and, actually memorizing these facts are not a core focus of the course), but you can [look them up](https://en.wikipedia.org/wiki/Normal_distribution) if you like. Truthfully, statistics wikipedia is *very* good. 
+
+Do do you notice anything about the `runif` and the `rnorm` calls that we have identified? Both seem to name the distribution: $unif \approx uniform$ and $norm \approx normal$, but prepened with a `r`? This is for "random draw". 
+
+Base R is loaded with a *pile* of basic statistics distributions, which you can look into using `?distributions`. 
+
+```{r draw many samples from a normal distribution}
+samples_normal <- rnorm(n=100000, mean=18, sd=4)
+```
+
+Like before, we could look at the first $20$ of these samples. 
+
+```{r spot-check first 20} 
+samples_normal[1:20]
+```
+
+And, from here we could visualize this distribution. 
+
+```{r plot normal}
+ggplot() + 
+  aes(x=samples_normal) + 
+  geom_density() + 
+  labs(title='Visualization of this Normal Distribution')
+```
+
+#### Combining This Ability 
+
+::: {.discussion-question}
+Consider three random variables $A, B, C$. Suppose, 
+
+\[ 
+  \begin{aligned}
+    A & \sim Uniform(min=1.1, max=4.3) \\ 
+    B & \sim Normal(mean=18, sd=4)     \\ 
+    C = A + B
+  \end{aligned}
+\]
+
+And, suppose that $B$ is a random variable that is described by the normal density that we considered earlier. Suppose that $A$ and $B$ are independent of each other. 
+
+Finally, suppose that $C = A + 2B$. 
+
+What does $C$ look like? 
+::: 
+
+Although this is a simple function applied to a random variable -- a legal move -- the math would be tedious. What if, instead, one used this simulation method to get a sense for the distribution? 
+
+```{r create C}
+samples_A <- runif(n=10000, min=1.1, max=4.3)
+samples_B <- rnorm(n=10000, mean=18, sd=4)
+
+samples_C <- samples_A + samples_B
+```
+
+```{r plot C}
+plot_C <- ggplot() + 
+  aes(x=samples_C) + 
+  geom_density()
+
+plot_C_and_A_and_B <- ggplot()   + 
+  geom_density(aes(x=samples_A), color = '#003262') + 
+  geom_density(aes(x=samples_B), color = '#FDB515') + 
+  geom_density(aes(x=samples_C), color = 'darkred')
+
+plot_C_and_A_and_B
+```
 
 ## Review of Terms
 
