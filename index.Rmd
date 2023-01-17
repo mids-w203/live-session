@@ -17,7 +17,7 @@ description: "This is the live-session notebook for class discussion for the UC 
 tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
 ---
 
-# Live Session
+# Live Session {-}
 
 ![](./images/campus.jpeg)
 
@@ -29,5 +29,5 @@ source('./src/blank_lines.R')
 ```
 
 ```{r load packages}
-library(tidyverse)
+library(mids203)
 ```
