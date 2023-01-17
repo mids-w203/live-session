@@ -265,7 +265,7 @@ So, suppose that you had a uniform distribution that had positive probability on
 
 \[
   f_{X}(x) = \begin{cases} 
-    a\cdot x & 1.1 \leq x \leq 4.3 \\ 
+    a & 1.1 \leq x \leq 4.3 \\ 
     0 & otherwise
   \end{cases}
 \]
@@ -292,12 +292,27 @@ samples_uniform[1:20]
 
 (Notice that R is a $1$ index language (python is a zero-index language).)
 
-With this object created, we can plot a histogram of the data and then learn from this histogram what the pdf looks like. 
+With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like. 
 
 ```{r plot uniform samples}
-ggplot() + 
+plot_full_data <- ggplot() + 
+  aes(x=1:length(samples_uniform), y=samples_uniform) + 
+  geom_point()  + 
+  labs(
+    title = 'Showing the Data', 
+    y     = 'Sample Value', 
+    x     = 'Index')
+
+plot_density <- ggplot() + 
   aes(x=samples_uniform) + 
-  geom_density(bw=0.1)
+  geom_density(bw=0.1)   + 
+  labs(
+    title = 'Showing the PDF', 
+    y     = 'Probability of Drawing Value', 
+    x     = 'Sample Value')
+
+(plot_full_data | (plot_density + coord_flip())) / 
+  plot_density 
 ```
 
 Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we're using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are *very* explicit about the code that creates them. 
