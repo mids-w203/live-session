@@ -196,31 +196,6 @@ This is the live session work space for the course. Our goal with this repositor
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Loading required package: tidyverse
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in system("timedatectl", intern = TRUE): running command 'timedatectl' had status 1
-\end{verbatim}
-
-\begin{verbatim}
-## -- Attaching packages ------------------------------------------------------------------ tidyverse 1.3.1 --
-\end{verbatim}
-
-\begin{verbatim}
-## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.6     v dplyr   1.0.8
-## v tidyr   1.2.0     v stringr 1.4.0
-## v readr   2.1.2     v forcats 0.5.1
-\end{verbatim}
-
-\begin{verbatim}
-## -- Conflicts --------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-\end{verbatim}
-
 \hypertarget{probability-spaces}{%
 \chapter{Probability Spaces}\label{probability-spaces}}
 
@@ -636,7 +611,7 @@ At the end of this week's course of study (which includes the async, sync, and h
   \textbf{Apply} the appropriate mathematical transformations to move between joint, marginal, and conditional distributions.
 \end{enumerate}
 
-This week's materials are theoretical tooling to build toward one of the first notable results of the course, \textbf{conditional probability} that will get a full treatment next week.
+This week's materials are theoretical tooling to build toward one of the first notable results of the course, \textbf{conditional probability}. This is the idea that, if we know that one event has occurred, we can make a conditional statement about the probability distribution for another, dependent distribution.
 
 \hypertarget{introduction-to-the-materirals}{%
 \section{Introduction to the Materirals}\label{introduction-to-the-materirals}}
@@ -694,7 +669,7 @@ There are several resources to support your learning. A learning object last wee
 What is a random variable? Does this definition help you?
 
 \begin{definition}[Random Variable]
-A random variable is a function \(X : \Omega \rightarrow \mathbb{R},\) such that \(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\).
+A random variable is a function \(X : \Omega \rightarrow \mathbb{R},\) such that \(\forall r \in \mathbb{R}, \{\omega \in \Omega: X(\omega) \leq r\} \in S\).
 \end{definition}
 
 Someone, please, read that without using a single ``omega'', \(\mathbb{R}\), or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean.
@@ -720,11 +695,11 @@ The goal of writing with math symbols like this is to be \emph{absolutely} clear
 \hypertarget{pieces-of-a-random-variable}{%
 \section{Pieces of a Random Variable}\label{pieces-of-a-random-variable}}
 
-When you look at the definition of a random variable, there are two key pieces that must exist for every random variable. What are these pieces? As a hint, we actually developed one of these key pieces \emph{last} week when we were discussing elementary probability.
-
 \begin{definition}[Random Variable, Suite]
 A random variable is a function \(X : \Omega \rightarrow \mathbb{R},\) such that \(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\).
 \end{definition}
+
+There are two key pieces that must exist for every random variable. What are these pieces? The first of these pieces is provided to us in \textbf{Definition 1.2.1} \emph{Random Variable} (on page 16). The second is provided to us in \textbf{Definition 1.2.5} \emph{Probability Mass Function} (on page 18).
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -733,10 +708,27 @@ A random variable is a function \(X : \Omega \rightarrow \mathbb{R},\) such that
 \item
 \end{enumerate}
 
+Suppose that a random variable is simple and discrete. For concreteness, you could think of this random variable as the answer to the question, ``Is the grass wet outside?''.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What is the sample space?
+\item
+  What is a sensible function that you might use to map from the sample space to real values?
+\item
+  What is a insensible function that you might use to map from the sample space to real values? (A student well-seasoned in Maths might use (and define for the rest of the class) the concept of a \emph{bijective function}).
+\item
+  If you simply had the values that the random variable function maps to are you guaranteed to be able to describe the entire sample space? Why or why not?
+\item
+  How would you go about determining the probability mass function for this random variable?
+\end{enumerate}
+
 \hypertarget{functions-of-functions}{%
 \subsection{Functions of Functions}\label{functions-of-functions}}
 
-Why do we say that random variables are functions? Is there some useful property of these being functions rather than any other quantity?
+Why do we say that random variables are functions? Is there some useful property of these being functions rather than any other quantity? What else \emph{could} they be if not a function?
 
 What about a function of a random variable, which is a function of a function.
 
@@ -920,7 +912,7 @@ Suppose that we know that two variables, \(X\) and \(Y\) are jointly uniformly d
   \item
     How do you get from the joint density function, to a marginal density function for \(X\)?
   \item
-    How do you get form the joint density function, to a marginal denisty function for \(Y\)?
+    How do you get form the joint density function, to a marginal density function for \(Y\)?
   \item
     How do you get from these marginal density functions of \(X\) and \(Y\) back to the joint density? Is this always possible?
   \end{itemize}
@@ -938,10 +930,6 @@ As a class, lets consider a few of these PDFs, beginning with this ``triangle'' 
 \NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_app}\NormalTok{(}\StringTok{\textquotesingle{}http://www.statistics.wtf/PDF\_Explorer/\textquotesingle{}}\NormalTok{, }\AttributeTok{height=}\StringTok{"1000px"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-\end{verbatim}
 
 \hypertarget{triangle-math}{%
 \subsection{Triangle Math}\label{triangle-math}}
@@ -1025,6 +1013,25 @@ where \(c\) is a constant.
   Compute the conditional density function for \(Y\), conditional on \(X=x\). (Be sure to specify for what values of \(x\) this is defined)
 \end{enumerate}
 
+\hypertarget{conditional-probability}{%
+\section{Conditional Probability}\label{conditional-probability}}
+
+Conditional probability is \textbf{incredible}. In fact, without exaggeration, almost \textbf{all} of data science is an exercise in making statements about conditional probability distributions. \emph{Don't believe us?}
+
+\begin{itemize}
+\tightlist
+\item
+  What is the goal of a ``customer churn'' model or a conversion model?
+\item
+  What is the goal of a language-completion model?
+\item
+  What is the goal of flight-departures model?
+\end{itemize}
+
+\textbf{If} we possessed the whole information about a process; \textbf{if} we had the CDF that governed probability of occurrences, what kinds of statements would we be able to make? Would we even need data?
+
+Using the distribution above, produce a statement of conditional probability, \(f_{Y|X}(y|x)\).
+
 \hypertarget{visualizing-distributions-via-simulation}{%
 \section{Visualizing Distributions Via Simulation}\label{visualizing-distributions-via-simulation}}
 
@@ -1079,8 +1086,8 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4.254275 3.151961 2.299474 2.532431 2.721811 4.024763 4.110725 3.721030 2.263274 1.678010 2.490382
-## [12] 3.362415 3.684192 1.178847 3.517821 1.423669 1.367836 3.902267 2.340742 1.625701
+##  [1] 2.066562 2.011425 3.309678 1.344357 1.760204 4.136672 3.603350 1.657201 3.096724 2.120201 3.245458
+## [12] 2.069459 3.087195 2.838074 1.732300 1.183500 1.988982 3.980934 3.331974 1.609208
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1166,8 +1173,8 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 15.066881 18.287041 15.770173 20.639961 19.453191 23.003454 19.625041 16.347895 12.912235  2.931005
-## [11] 16.370950 16.517333 14.027502 14.585257 17.227794 14.994926 19.363650 19.760662 25.087077 22.293880
+##  [1] 22.115919 16.483990 22.410488 22.100870 12.543764 17.786928 19.138007 12.190335 13.530546 22.450998
+## [11] 16.761041 15.800745 20.773784 12.851562 23.500219 18.330674 17.632022  7.697596 18.466610 22.645725
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -3005,28 +3012,6 @@ You have a set of questions that you would like to answer with a statistical tes
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \FunctionTok{library}\NormalTok{(magrittr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'magrittr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggthemes)}
 
 \NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
@@ -3329,41 +3314,6 @@ With this plot created, we can ask if what we observe in the plot is the produce
 \FunctionTok{library}\NormalTok{(testthat)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'testthat'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:magrittr':
-## 
-##     equals, is_less_than, not
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:dplyr':
-## 
-##     matches
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     is_null
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:readr':
-## 
-##     edition_get, local_edition
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:tidyr':
-## 
-##     matches
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]

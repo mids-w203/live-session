@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.10 Visualizing Distributions Via Simulation | Statistics for Data Science</title>
+  <title>2.11 Visualizing Distributions Via Simulation | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.10 Visualizing Distributions Via Simulation | Statistics for Data Science" />
+  <meta property="og:title" content="2.11 Visualizing Distributions Via Simulation | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.10 Visualizing Distributions Via Simulation | Statistics for Data Science" />
+  <meta name="twitter:title" content="2.11 Visualizing Distributions Via Simulation | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="computing-different-distributions..html"/>
+<link rel="prev" href="conditional-probability.html"/>
 <link rel="next" href="review-of-terms.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -195,12 +195,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.4" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.8.4</b> Saddle Sores<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.<span></span></a></li>
-<li class="chapter" data-level="2.10" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.10</b> Visualizing Distributions Via Simulation<span></span></a>
+<li class="chapter" data-level="2.10" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>2.10</b> Conditional Probability<span></span></a></li>
+<li class="chapter" data-level="2.11" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.11</b> Visualizing Distributions Via Simulation<span></span></a>
 <ul>
-<li class="chapter" data-level="2.10.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-uniform-distribution"><i class="fa fa-check"></i><b>2.10.1</b> Example: The Uniform Distribution<span></span></a></li>
-<li class="chapter" data-level="2.10.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-normal-distribution"><i class="fa fa-check"></i><b>2.10.2</b> Example: The Normal Distribution<span></span></a></li>
+<li class="chapter" data-level="2.11.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-uniform-distribution"><i class="fa fa-check"></i><b>2.11.1</b> Example: The Uniform Distribution<span></span></a></li>
+<li class="chapter" data-level="2.11.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-normal-distribution"><i class="fa fa-check"></i><b>2.11.2</b> Example: The Normal Distribution<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2.11" data-path="review-of-terms.html"><a href="review-of-terms.html"><i class="fa fa-check"></i><b>2.11</b> Review of Terms<span></span></a></li>
+<li class="chapter" data-level="2.12" data-path="review-of-terms.html"><a href="review-of-terms.html"><i class="fa fa-check"></i><b>2.12</b> Review of Terms<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions<span></span></a>
 <ul>
@@ -481,12 +482,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visualizing-distributions-via-simulation" class="section level2 hasAnchor" number="2.10">
-<h2><span class="header-section-number">2.10</span> Visualizing Distributions Via Simulation<a href="visualizing-distributions-via-simulation.html#visualizing-distributions-via-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="visualizing-distributions-via-simulation" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> Visualizing Distributions Via Simulation<a href="visualizing-distributions-via-simulation.html#visualizing-distributions-via-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To this point in the course, we have focused on concepts in “the population” with no reference to samples. This is on purpose! We want to develop the theory that defines the <strong>best possible</strong> predictor if we knew <strong>everything</strong> (if we know formula of the function that maps from <span class="math inline">\(\omega \rightarrow \mathbb{R}\)</span>, and we know the probability of each <span class="math inline">\(\omega \in \Omega\)</span> then we know everything). Beginning in week 5 of the course, we will talk about “approximating” (which we will call estimating) this best possible predictor with a limited sample of data.</p>
 <p>However, at this point, to help build your working understanding, or intuition, for what is happening, we are going to work on a way to <em>simulate</em> draws from a population. In some places, people might refer to these as <em>Monte Carlo</em> methods – this is because the method was developed by von Neumann &amp; Ulam during World War II, and they needed a way to talk about it using a code name. They chose <em>Monte Carlo</em> after a famous casino in Monaco.</p>
-<div id="example-the-uniform-distribution" class="section level3 hasAnchor" number="2.10.1">
-<h3><span class="header-section-number">2.10.1</span> Example: The Uniform Distribution<a href="visualizing-distributions-via-simulation.html#example-the-uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-the-uniform-distribution" class="section level3 hasAnchor" number="2.11.1">
+<h3><span class="header-section-number">2.11.1</span> Example: The Uniform Distribution<a href="visualizing-distributions-via-simulation.html#example-the-uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p>You: “Gosh. There sure are a lot of examples that use the uniform distribution. That must be a really important statistical distribution.”</p>
 <p>Instructor: “Nah. Not really. We’re just using the uniform a bunch so that we don’t get too lost in doing math while we’re working with these concepts.”</p>
@@ -508,8 +509,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>But, we can speed this up slightly by simply telling you that <code>n</code> is the number of samples to take from the population; <code>min</code> is the low-end of the support, and <code>max</code> is the high-end of the support.</p>
 <p>If we look into this object, we can see the results of the function call. Below, we will show the first <span class="math inline">\(20\)</span> elements of the <code>samples_uniform</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-distributions-via-simulation.html#cb5-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
-<pre><code>##  [1] 1.158621 2.066562 2.011425 3.309678 1.344357 1.760204 4.136672 3.603350 1.657201 3.096724 2.120201
-## [12] 3.245458 2.069459 3.087195 2.838074 1.732300 1.183500 1.988982 3.980934 3.331974</code></pre>
+<pre><code>##  [1] 2.066562 2.011425 3.309678 1.344357 1.760204 4.136672 3.603350 1.657201 3.096724 2.120201 3.245458
+## [12] 2.069459 3.087195 2.838074 1.732300 1.183500 1.988982 3.980934 3.331974 1.609208</code></pre>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
 <p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-distributions-via-simulation.html#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
@@ -548,8 +549,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-13"><a href="visualizing-distributions-via-simulation.html#cb9-13" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="sc">|</span> plot_high_res</span></code></pre></div>
 <p><img src="203-live-session_files/figure-html/plot%20uniform%20distributions-1.png" width="672" /></p>
 </div>
-<div id="example-the-normal-distribution" class="section level3 hasAnchor" number="2.10.2">
-<h3><span class="header-section-number">2.10.2</span> Example: The Normal Distribution<a href="visualizing-distributions-via-simulation.html#example-the-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-the-normal-distribution" class="section level3 hasAnchor" number="2.11.2">
+<h3><span class="header-section-number">2.11.2</span> Example: The Normal Distribution<a href="visualizing-distributions-via-simulation.html#example-the-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Folks might have some prior beliefs about the Normal distribution. Don’t worry, we’ll cover this later in the course. But, this is the distribution that you have in mind when you’re thinking of a “bell curve”.</p>
 <p>We can use the same method to visualize a normal distribution as we did for a uniform distribution. In this case, we would issue the call <code>rnorm</code>, together with the population parameters that define the population. At this point in the course, we do not expect that you will know these (and, actually memorizing these facts are not a core focus of the course), but you can <a href="https://en.wikipedia.org/wiki/Normal_distribution">look them up</a> if you like. Truthfully, statistics wikipedia is <em>very</em> good.</p>
 <p>Do do you notice anything about the <code>runif</code> and the <code>rnorm</code> calls that we have identified? Both seem to name the distribution: <span class="math inline">\(unif \approx uniform\)</span> and <span class="math inline">\(norm \approx normal\)</span>, but prepened with a <code>r</code>? This is for “random draw”.</p>
@@ -557,16 +558,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizing-distributions-via-simulation.html#cb10-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">100000</span>, <span class="at">mean=</span><span class="dv">18</span>, <span class="at">sd=</span><span class="dv">4</span>)</span></code></pre></div>
 <p>Like before, we could look at the first <span class="math inline">\(20\)</span> of these samples.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizing-distributions-via-simulation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
-<pre><code>##  [1] 22.91721 23.17826 20.96518 14.14945 12.21532 18.02206 16.47445 19.57373 20.35221 16.33965 16.87499
-## [12] 17.30044 24.69597 19.99179 21.77321 23.18107 14.62144 27.61300 11.59963 13.74341</code></pre>
+<pre><code>##  [1] 22.115919 16.483990 22.410488 22.100870 12.543764 17.786928 19.138007 12.190335 13.530546 22.450998
+## [11] 16.761041 15.800745 20.773784 12.851562 23.500219 18.330674 17.632022  7.697596 18.466610 22.645725</code></pre>
 <p>And, from here we could visualize this distribution.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizing-distributions-via-simulation.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb13-2"><a href="visualizing-distributions-via-simulation.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_normal) <span class="sc">+</span> </span>
 <span id="cb13-3"><a href="visualizing-distributions-via-simulation.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
 <span id="cb13-4"><a href="visualizing-distributions-via-simulation.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&#39;Visualization of this Normal Distribution&#39;</span>)</span></code></pre></div>
 <p><img src="203-live-session_files/figure-html/plot%20normal-1.png" width="672" /></p>
-<div id="combining-this-ability" class="section level4 hasAnchor" number="2.10.2.1">
-<h4><span class="header-section-number">2.10.2.1</span> Combining This Ability<a href="visualizing-distributions-via-simulation.html#combining-this-ability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="combining-this-ability" class="section level4 hasAnchor" number="2.11.2.1">
+<h4><span class="header-section-number">2.11.2.1</span> Combining This Ability<a href="visualizing-distributions-via-simulation.html#combining-this-ability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="discussion-question">
 <p>Consider three random variables <span class="math inline">\(A, B, C\)</span>. Suppose,</p>
 <p><span class="math display">\[
@@ -604,7 +605,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="computing-different-distributions..html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conditional-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="review-of-terms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

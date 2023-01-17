@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.6 Expected Value by Code | Statistics for Data Science</title>
+  <title>2.10 Conditional Probability | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.6 Expected Value by Code | Statistics for Data Science" />
+  <meta property="og:title" content="2.10 Conditional Probability | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/coffee.jpeg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.6 Expected Value by Code | Statistics for Data Science" />
+  <meta name="twitter:title" content="2.10 Conditional Probability | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="computing-by-hand.html"/>
-<link rel="next" href="practice-computing.html"/>
+<link rel="prev" href="computing-different-distributions..html"/>
+<link rel="next" href="visualizing-distributions-via-simulation.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -482,49 +482,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="expected-value-by-code" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Expected Value by Code<a href="expected-value-by-code.html#expected-value-by-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="expected-value-of-a-six-sided-die" class="section level3 hasAnchor" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Expected Value of a Six-Sided Die<a href="expected-value-by-code.html#expected-value-of-a-six-sided-die" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die.</p>
+<div id="conditional-probability" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> Conditional Probability<a href="conditional-probability.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conditional probability is <strong>incredible</strong>. In fact, without exaggeration, almost <strong>all</strong> of data science is an exercise in making statements about conditional probability distributions. <em>Don’t believe us?</em></p>
 <ul>
-<li>Build an object to represent the whole sample space, <span class="math inline">\(\Omega\)</span> of a six sided die.</li>
-<li>Determine what probabilities to assign to each value of that object.</li>
-<li>Write the code to run the expectation algorithm that you just performed by hand.</li>
+<li>What is the goal of a “customer churn” model or a conversion model?</li>
+<li>What is the goal of a language-completion model?</li>
+<li>What is the goal of flight-departures model?</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="expected-value-by-code.html#cb16-1" aria-hidden="true" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb16-2"><a href="expected-value-by-code.html#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="st">&#39;fill this in&#39;</span>,</span>
-<span id="cb16-3"><a href="expected-value-by-code.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob  =</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb16-4"><a href="expected-value-by-code.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="discussion-question">
+<p><strong>If</strong> we possessed the whole information about a process; <strong>if</strong> we had the CDF that governed probability of occurrences, what kinds of statements would we be able to make? Would we even need data?</p>
 </div>
-<div id="variacne-of-a-six-sided-die" class="section level3 hasAnchor" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Variacne of a Six-Sided Die<a href="expected-value-by-code.html#variacne-of-a-six-sided-die" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die.</p>
-<ol start="5" style="list-style-type: decimal">
-<li>Using what you know about the definition of variance, write a function that will compute the variance of your <code>die</code> object.</li>
-</ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="expected-value-by-code.html#cb17-1" aria-hidden="true" tabindex="-1"></a>variance_function <span class="ot">&lt;-</span> <span class="cf">function</span>(die) { </span>
-<span id="cb17-2"><a href="expected-value-by-code.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fill this in</span></span>
-<span id="cb17-3"><a href="expected-value-by-code.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>   <span class="do">## you should index to the correct column</span></span>
-<span id="cb17-4"><a href="expected-value-by-code.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  var <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>  <span class="do">## for each, and use the correct function</span></span>
-<span id="cb17-5"><a href="expected-value-by-code.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-6"><a href="expected-value-by-code.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(var)</span>
-<span id="cb17-7"><a href="expected-value-by-code.html#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-8"><a href="expected-value-by-code.html#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="expected-value-by-code.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">variance_function</span>(die)</span></code></pre></div>
-<pre><code>## [1] &quot;fill this in&quot;</code></pre>
-<p>Suppose that you had to keep the values the same on the die, that is. That is the domain of the outcome still had to be the countable set of integers from one to six.</p>
-<ul>
-<li>How would you change the probability distribution to decrease the variance of this random variable?</li>
-<li>What is the smallest value that you can generate for this random variable? Use the <code>variance_function</code> from above to actually compute this variance.</li>
-<li>What is the largest value of variance that you can generate for this random variable? Use the <code>variance_function</code> from above to actually compute this variance.</li>
-</ul>
-<p>Now suppose that you again had an equal probability of every outcome, but you were to apply a function to the number of spots that are showing on the die. Rather that each dot contributing one value to the random variable, instead the random variable’s outcome is the square of the number of spots.</p>
-<ul>
-<li>How would this change the mean?<br />
-</li>
-<li>How would this change the variance?</li>
-</ul>
+<div class="discussion-question">
+<p>Using the distribution above, produce a statement of conditional probability, <span class="math inline">\(f_{Y|X}(y|x)\)</span>.</p>
 </div>
 </div>
             </section>
@@ -532,8 +502,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="computing-by-hand.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="practice-computing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="computing-different-distributions..html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-distributions-via-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
