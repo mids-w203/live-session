@@ -1,0 +1,564 @@
+0:msr <- mean(resid(model)^2)
+0:return(msr)
+0:}
+0:model_1_msr <- calculate_msr(model_1)
+0:model_2_msr <- calculate_msr(model_2)
+0:model_3_msr <- calculate_msr(model_3)
+0:model_4_msr <- calculate_msr(model_4)
+0:betas <- matrix(data = c(0.5, 1, 2.0, .25), nrow = 4) # create coefficients vector
+0:X     <- model.matrix(model_4)                        # pull matrix of data
+0:#
+0:model_4_predictions <- X %*% betas                    # produce predictions using matrix multiplication
+0:short_model <- lm(rem_any ~ 1, data = d[d$country == 3,])
+0:d
+0:head(d)
+0:d <- haven::read_dta(file = './karlan_data/analysis_dataallcountries.dta')
+0:glimpse(d)
+0:short_model <- lm(rem_any ~ 1, data = d[d$country == 3,])
+0:long_model  <- lm(
+0:rem_any ~ female + age + highschool_completed + wealthy +
+0:married + inc_7d + hyperbolic + spent_b4isaved + saved_asmuch +
+0:missing_female + missing_age + missing_highschool_completed + missing_wealthy +
+0:missing_married + missing_inc_7d + missing_hyperbolic + missing_spent_b4isaved + missing_saved_as_much,
+0:data = d[d$country == 3,])
+0:short_model <- lm(rem_any ~ 1, data = d[d$country == 3,])
+0:long_model  <- lm(
+0:rem_any ~ female + age + highschool_completed + wealthy +
+0:married + inc_7d + hyperbolic + spent_b4isaved + saved_asmuch +
+0:missing_female + missing_age + missing_highschool_completed + missing_wealthy +
+0:missing_married + missing_inc_7d + missing_hyperbolic + missing_spent_b4isaved + missing_saved_asmuch,
+0:data = d[d$country == 3,])
+0:anova(long_model, short_model, test = 'F')
+0:model_pooled_no_covariates <- lm(
+0:reached_b4goal ~ rem_any + highint + rewardint + joint +
+0:dc + joint_single + factor(country),
+0:data = d)
+0:model_pooled_with_covariates <- lm(
+0:reached_b4goal ~ rem_any + highint + rewardint + joint +
+0:dc + joint_single +
+0:female + age + highschool_completed + wealthy + married +
+0:saved_formal + inc_7d + saved_asmuch + spent_b4isaved +
+0:missing_female + missing_age + missing_highschool_completed +
+0:missing_married +  missing_saved_asmuch + missing_spent_b4isaved +
+0:factor(depart) + factor(provincia) + factor(marketer) + factor(branch) +
+0:factor(country),
+0:data = d)
+0:stargazer::stargazer(
+0:model_pooled_with_covariates, model_pooled_no_covariates,
+0:omit = c('depart', 'provincia', 'marketer', 'branch', 'country'),
+0:omit.labels = c(
+0:'Department Fixed Effects', 'Province Fixed Effects',
+0:'Marketer Fixed Effects',   'Branch Fixed Effects',
+0:'Country Fixed Effects'),
+0:single.row = TRUE,
+0:type = 'latex')
+0:stargazer::stargazer(
+0:model_pooled_with_covariates, model_pooled_no_covariates,
+0:omit = c('depart', 'provincia', 'marketer', 'branch', 'country'),
+0:omit.labels = c(
+0:'Department Fixed Effects', 'Province Fixed Effects',
+0:'Marketer Fixed Effects',   'Branch Fixed Effects',
+0:'Country Fixed Effects'),
+0:single.row = TRUE,
+0:type = 'latex',
+0:header = FALSE,
+0:title = 'Replication of Table 4')
+0:calculate_msr(model_pooled_no_covariates)
+0:calculate_msr(model_pooled_with_covariates)
+0:anova(model_pooled_with_covariates, model_pooled_no_covariates, test = 'F')
+0:The mean squared residuals of the short model are, **`r mean_squared_residual_no_covariates`**. The mean squared residuals of the long model are **`r mean_squared_residual_with_covariates`**. In the next chunk, we test whether the MSRs of the models are different using an F-test.
+0:The mean squared residuals of the short model are, **`r mean_squared_residual_no_covariates`**. The mean squared residuals of the long model are **`r mean_squared_residual_with_covariates`**. In the next chunk, we test whether the MSRs of the models are different using an F-test.
+0:The mean squared residuals of the short model are, **`r mean_squared_residual_no_covariates`**. The mean squared residuals of the long model are **`r mean_squared_residual_with_covariates`**. In the next chunk, we test whether the MSRs of the models are different using an F-test.
+0:##coeftest(model_pooled_no_covariates, vcov. = vcovHC(model_pooled_no_covariates, type = 'HC1'))
+0:coeftest(model_pooled_with_covariates, vcov. = vcovHC(model_pooled_with_covariates, type = 'HC1'))[1:16,]
+0:library(dplyr)
+0:library(broom)
+0:library(ggplot2)
+0:library(patchwork)
+0:library(sandwich)
+0:library(lmtest)
+0:create_homoskedastic_data <- function(n = 100) {
+0:d <- data.frame(id = 1:n) %>%
+0:mutate(
+0:x1 = runif(n=n, min=0, max=10),
+0:x2 = rnorm(n=n, mean=10, sd=2),
+0:x3 = rnorm(n=n, mean=0, sd=2),
+0:y  = .5 + 1*x1 + 2*x2 + .25*x3^2 + rnorm(n=n, mean=0, sd=1)
+0:)
+0:return(d)
+0:}
+0:d <- create_homoskedastic_data(n=100)
+0:outcome_histogram <- d %>%
+0:ggplot() + # fill in the rest of this chunk to create a plot
+0:aes(x = y) +
+0:geom_histogram(bins = 20) +
+0:labs(
+0:x = "Outcome Values",
+0:title = "Histogram of Outcomes",
+0:subtitle = "It looks like the CLT should work."
+0:)
+0:outcome_histogram
+0:# if you want to read about specifying statistical models, you can read
+0:# here: https://cran.r-project.org/doc/manuals/R-intro.html#Formulae-for-statistical-models'
+0:# note, using the I() function is preferred over using poly()
+0:model_1 <- lm(y ~ x1 + x3     , data = d)
+0:model_2 <- lm(y ~ x1 + x2 + x3, data = d)
+0:model_3 <- lm(y ~ x1 + x2 + I(x3^2), data = d)
+0:model_4 <- lm(y ~ x1 + x2 + x3 + I(x3^2), data = d)
+0:calculate_msr <- function(model) {
+0:# This function takes a model, and uses the `resid` function
+0:# together with the definition of the msr to produce
+0:# the MEAN of the squared residuals
+0:msr <- mean(resid(model)^2)
+0:return(msr)
+0:}
+0:model_1_msr <- calculate_msr(model_1)
+0:model_2_msr <- calculate_msr(model_2)
+0:model_3_msr <- calculate_msr(model_3)
+0:model_4_msr <- calculate_msr(model_4)
+0:model.matrix(model_4)                        # pull matrix of data
+0:betas <- matrix(data = c(0.5, 1, 2.0, 0.0, .25), nrow = 4) # create coefficients vector
+0:X     <- model.matrix(model_4)                        # pull matrix of data
+0:#
+0:model_4_predictions <- X %*% betas                    # produce predictions using matrix multiplication
+0:betas <- matrix(data = c(0.5, 1, 2.0, 0.0, .25), nrow = 5) # create coefficients vector
+0:X     <- model.matrix(model_4)                        # pull matrix of data
+0:#
+0:model_4_predictions <- X %*% betas                    # produce predictions using matrix multiplication
+0:model_4_residuals   <- d$y - model_4_predictions      # residuals are differences between truth and prediction
+0:model_4_msr_by_hand <- mean(model_4_residuals^2)      # literally mean of residuals squared
+0:theme_set(theme_minimal())
+0:options(digits = 3)
+0:source(file = 'src/blank_lines.R')
+0:getwd()
+0:bookdown::render_book()
+0:bookdown::render_book()
+0:bookdown::render_book()
+0:knitr::is_latex_output()
+0:knitr::is_html_output()
+0:bookdown::render_book()
+0:bookdown::render_book()
+0:bookdown::render_book(output_format = 'pdf_document')
+0:?bookdown::render_book()
+0:bookdown::render_book(output_format = 'pdf_document')
+0:bookdown::render_book(output_format = 'pdf_document')
+0:library(ggplot2)
+0:source(file = 'src/blank_lines.R')
+0:theme_set(theme_minimal())
+0:knitr::knit_engines$set(notes = function(options) {
+0:code <- paste(options$code, collapse = "\n")
+0:})
+0:ggplot() +
+0:geom_blank() +
+0:labs(
+0:title = 'Joint PDF of X,Y',
+0:x = 'x axis',
+0:y = latex2exp::TeX('$P_{X,Y}(x,y)$')
+0:)
+0:ggplot() +
+0:geom_blank() +
+0:labs(
+0:title = 'Joint PDF of X,Y',
+0:x = 'x axis',
+0:y = latex2exp::TeX('$P_{X,Y}(x,y)$')) +
+0:theme_bw()
+0:ggplot() +
+0:geom_blank() +
+0:labs(
+0:title = 'Joint PDF of X,Y',
+0:x = 'x axis',
+0:y = latex2exp::TeX('$P_{X,Y}(x,y)$')) +
+0:theme_light()
+0:getwd()
+0:bookdown::render_book(output_format = 'pdf_book')
+0:?bookdown::pdf_book()
+0:bookdown::render_book(output_format = 'pdf_book(keep_tex = TRUE)')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book(keep_tex = TRUE)')
+0:bookdown::render_book(output_format = 'pdf_book')
+0:bookdown::render_book(output_format = pdf_book)
+0:?bookdown::render_book()
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::html_book')
+0:bookdown::render_book(output_format = 'gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::pdfbook')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::pdfbook')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::pdf_book')
+0:bookdown::render_book(output_format = 'bookdown::gitbook')
+0:bookdown::render_book(output_format = 'bookdown::epub_book')
+0:((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+0:plot(((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2)))
+0:population_education <- sample(
+0:x    = 0:28,
+0:size = 2000,
+0:replace = TRUE,
+0:prob = ((c(1:10, rep(10, 8), 10:1))^2 / sum((29:1)^2))
+0:)
+0:population_education <- sample(
+0:x    = 0:28,
+0:size = 2000,
+0:replace = TRUE,
+0:prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+0:)
+0:ggplot() +
+0:aes(x=population_education) +
+0:geom_histogram(bins = 28, fill = '#003262') +
+0:labs(
+0:title = 'Years of Education',
+0:x     = 'Years',
+0:y     = 'Pr(Instances)')
+0:set.seed(1)
+0:population_education <- sample(
+0:x    = 0:28,
+0:size = 2000,
+0:replace = TRUE,
+0:prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+0:)
+0:ggplot() +
+0:aes(x=population_education) +
+0:geom_histogram(bins = 28, fill = '#003262') +
+0:labs(
+0:title = 'Years of Education',
+0:x     = 'Years',
+0:y     = 'Pr(Instances)')
+0:library(tidyverse)
+0:set.seed(1)
+0:population_education <- sample(
+0:x    = 0:28,
+0:size = 2000,
+0:replace = TRUE,
+0:prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+0:)
+0:ggplot() +
+0:aes(x=population_education) +
+0:geom_histogram(bins = 28, fill = '#003262') +
+0:labs(
+0:title = 'Years of Education',
+0:x     = 'Years',
+0:y     = 'Pr(Instances)')
+0:set.seed(1)
+0:population_education <- sample(
+0:x    = 0:28,
+0:size = 2000,
+0:replace = TRUE,
+0:prob = ((c(1:10, rep(10, 8), 11:1))^2 / sum((29:1)^2))
+0:)
+0:ggplot() +
+0:aes(x=population_education) +
+0:geom_histogram(bins = 28, fill = '#003262') +
+0:labs(
+0:title = 'Years of Education',
+0:x     = 'Years',
+0:y     = 'Pr(Instances)')
+0:variance_function <- function(values, probabilities) {
+0:## fill this in
+0:mu = values * probabilities
+0:return(mu)
+0:}
+0:variance_function(1:6, 1/6)
+0:variance_function <- function(values, probabilities) {
+0:## fill this in
+0:mu = sum(values * probabilities)
+0:return(mu)
+0:}
+0:variance_function(1:6, 1/6)
+0:mean(1:6)
+0:variance_function <- function(values, probabilities) {
+0:## fill this in
+0:mu = sum(values * probabilities)
+0:var = sum( (values - mu) * probabilities)
+0:return(var)
+0:}
+0:die <- data.frame(
+0:value = 'fill this in',
+0:prob  = 'fill this in'
+0:)
+0:die
+0:variance_function <- function(die) {
+0:## fill this in
+0:mu = sum(die['value'] * die['prob'])
+0:var = sum( (die['value'] - mu)^2 * die['prob'])
+0:return(var)
+0:}
+0:die <- data.frame(
+0:value = 1:6
+0:prob  = 1/6
+0:die <- data.frame(
+0:value = 1:6,
+0:prob  = 1/6
+0:)
+0:variance_function <- function(die) {
+0:## fill this in
+0:mu = sum(die['value'] * die['prob'])
+0:var = sum( (die['value'] - mu)^2 * die['prob'])
+0:return(var)
+0:}
+0:variance_function(die)
+0:variance_function <- function(die) {
+0:## fill this in
+0:mu = 'fill this in'
+0:var = 'fill this in'
+0:return(var)
+0:}
+0:variance_function(die)
+0:bookdown::render_book(input = '.', output_format = 'bookdown::gitbook')
+0:bookdown::render_book(input = '.', output_format = 'bookdown::gitbook')
+0:bookdown::render_book(input = '.', output_format = 'bookdown::gitbook')
+0:bookdown::render_book(input = '.', output_format = 'bookdown::gitbook')
+0:bookdown::render_book(input = '.', output_format = 'bookdown::gitbook')
+0:library(data.table)
+0:library(magrittr)
+0:d <- data.table(
+0:Z = rep(1:0, each = 10),
+0:Y = c(500, 100, 100, 50, 25, 25, 0, 0, 0, 0,
+0:25,  20,  15,  15, 10, 5,  5, 0, 0, )
+0:)
+0:d <- data.table(
+0:Z = rep(1:0, each = 10),
+0:Y = c(500, 100, 100, 50, 25, 25, 0, 0, 0, 0,
+0:25,  20,  15,  15, 10, 5,  5, 0, 0, 0)
+0:)
+0:d
+0:d[ , .(mean(Y)), groupby = .(Z) ]
+0:d[ , .(mean(Y)), by = .(Z) ]
+0:d <- data.table(
+0:Z = rep(1:0, each = 10),
+0:Y = c(500, 100, 100, 50, 25, 25, 0, 0, 0, 0,
+0:25,  20,  15,  15, 10, 5,  5, 5, 0, 0)
+0:)
+0:ate <- d[ , .(mean(Y)), by = .(Z) ]
+0:ate
+0:d[ , .(mean(Y)), by = .(Z) ][ , diff(V1)]
+0:d[ , .(mean(Y)), by = .(Z) ]
+0:d[ , .(mean(Y)), keyby = .(Z) ][ , diff(V1)]
+0:ate <- d[ , .(mean(Y)), keyby = .(Z) ][ , diff(V1)]
+0:sample(1:10)
+0:d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:for(i in 1:1000) {
+0:d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:result
+0:library(ggplot2)
+0:ggplot() +
+0:geom(x = result) +
+0:geom_histogram()
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), by = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:library(ggplot2)
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:library(ggplot2)
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:d[ , mean(Y)]
+0:d[ , .(Y)]
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , abs(diff(V1))]
+0:}
+0:library(ggplot2)
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:d[1:20 , .Y]
+0:d[1:20 , Y]
+0:d[2:20, sum(Y)]
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:library(ggplot2)
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:ggplot() +
+0:aes(x = d$Y) +
+0:geom_hist()
+0:ggplot() +
+0:aes(x = d$Y) +
+0:geom_histogram()
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:result > 70
+0:(result > 70) + (result < -70)
+0:mean((result > 70) + (result < -70))
+0:t.test(Y ~ Z, data = d)
+0:d2 <- rbind(d, d, d, d, d, d, d, d)
+0:d2
+0:d2[ , .N]
+0:ate <- d2[ , mean(Y), keyby = .Z]
+0:ate <- d2[ , mean(Y), keyby = .(Z)]
+0:ate
+0:print(ate)
+0:ate <- d2[ , mean(Y), keyby = .(Z)][ , diff(V1)]
+0:ate
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d2[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:mean((result > 70) + (result < -70))
+0:mean((result > 70) + (result < -70))
+0:ggplot() +
+0:aes(x = result) +
+0:geom_histogram()
+0:mean((result > 70) + (result < -70))
+0:choose(160, 80)
+0:t.test(Y ~ Z, data = d2)
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:mean((result > 70) + (result < -70))
+0:result <- NA
+0:for(i in 1:100000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:result <- NA
+0:for(i in 1:10000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:mean((result > 70) + (result < -70))
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(mean(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:mean((result > 70) + (result < -70))
+0:mte <- d[ , median(Y), keyby = .(Z)][ , diff(V1)]
+0:mte
+0:mte <- d[ , median(Y), keyby = .(Z)][ , diff(V1)]
+0:result <- NA
+0:for(i in 1:1000) {
+0:result[i] <- d[ , .(median(Y)), keyby = .(sample(Z)) ][ , diff(V1)]
+0:}
+0:mean((result > 70) + (result < -70))
+1673911205486:library(bookdown)
+1673911210901:install.packages('bookdown')
+1673911235021:install.packages("rmarkdown")
+1673911245444:install.packages("rmarkdown")
+1673911249906:install.packages("rmarkdown")
+1673911263874:bookdown::render_book()
+1673911306564:?bookdown::render_book
+1673911472536:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::git_book")
+1673911482916:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911513314:install.packages("HistData")
+1673911519862:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911530234:install.packages("ellipse")
+1673911536070:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911546456:install.packages("latex2exp")
+1673911554219:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911562918:install.packages('lmtest')
+1673911573199:install.packages('sandwich')
+1673911578144:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911600690:install.packages("wooldridge")
+1673911606393:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911623130:install.packages('car')
+1673911654988:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911676245:install.packages('stargazer')
+1673911681716:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook")
+1673911915852:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook", clean = TRUE)
+1673912209185:?knitr::include_app
+1673912652517:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook", clean = TRUE)
+1673912682732:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook", clean = TRUE)
+1673913339043:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook", clean = TRUE)
+1673914186095:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook", clean = TRUE)
+1673914308195:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::gitbook", clean = TRUE)
+1673915337250:bookdown::render_book(input = "./index.Rmd", output_format = "bookdown::pdf_book", clean = TRUE)
+1673916986989:bookdown::render_book(input = "./index.Rmd", clean=TRUE)
+1673917061571:bookdown::render_book(input = "./index.Rmd", clean=TRUE)
+1673917232835:bookdown::render_book(input='.')
+1673917273260:install.packages('latex2exp')
+1673917279600:bookdown::render_book(input='.')
+1673917290914:install.packages('lmtest')
+1673917297667:bookdown::render_book(input='.')
+1673917307869:install.packages('sandwich')
+1673917313808:bookdown::render_book(input='.')
+1673917334277:install.packages('wooldridge')
+1673917340609:bookdown::render_book(input='.')
+1673917360137:install.packages('car')
+1673917391706:bookdown::render_book(input='.')
+1673917413041:install.packages('stargazer')
+1673917417512:bookdown::render_book(input='.')
+1673917452425:bookdown::render_book(input='.', output_format = 'bookdown::pdf_book')
+1673917554139:library(knitr)
+1673917558822:library(rmarkdown)
+1673917671479:library(tinytex)
+1673917676816:bookdown::render_book(input='.', output_format = 'bookdown::pdf_book')

@@ -153,8 +153,8 @@ Let $X$ represent the result of one roll of a 6 sided die.
 ```{r}
 variance_function <- function(die) { 
   ## fill this in
-  mu = 'fill this in'
-  var = 'fill this in'
+  mu = 'fill this in'   ## you should index to the correct column
+  var = 'fill this in'  ## for each, and use the correct function
   
   return(var)
 }

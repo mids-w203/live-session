@@ -1,5 +1,9 @@
 ```{r load unit 09 packages, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 library(tidyverse)
+
+library(lmtest)
+library(sandwich)
+
 theme_set(theme_minimal())
 ```
 
@@ -105,6 +109,27 @@ model_one
 
 ```{r}
 
+data$sqrft_two <- data$sqrft + rnorm(n=88, mean=0, sd=0.1)
+
+data[ , c('sqrft', 'sqrft_two')]
+
+
+model_two <- lm(price ~ sqrft + lotsize, data = data)
+model_two
+
+model_three <- lm(sqrft ~ lotsize, data = data)
+model_three
+
+model_four <- lm(price ~ sqrft + sqrft_two, data = data)
+coeftest(model_four, vcovHC)
+
+coeftest(model_three, vcovHC)
+
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=lotsize) + 
+  geom_point()
+
 ```
 
 3. Perform a hypothesis test to check whether the population relationship between `sqrft` and `price` is zero. Use `coeftest()` with the robust standard errors computed above. 
@@ -119,6 +144,14 @@ model_one
 
 Below is code that will conduct a boostrapping estimator of the uncertainty of the `sqrft` variable when `lotsize` and `colonial` are included in the model. 
 
+```{r}
+model_one <- lm(price ~ sqrft, data = data)
+coeftest(model_one, vcovHC)
+
+coefci(model_one, level = 0.95, vcov. = vcovHC)
+```
+
+
 ```{r conduct a boostrap}
 bootstrap_sqft <- function(d = data, number_of_bootstraps = 1000) { 
   number_of_rows <- nrow(d)
@@ -127,15 +160,15 @@ bootstrap_sqft <- function(d = data, number_of_bootstraps = 1000) {
 
     for(i in 1:number_of_bootstraps) { 
       bootstrap_data <- d[sample(x=1:number_of_rows, size=number_of_rows, replace=TRUE), ]  
-      estimated_model <- lm(price ~ sqrft + lotsize + colonial, data = bootstrap_data)
+      estimated_model <- lm(price ~ sqrft, data = bootstrap_data)
       coef_sqft[i]    <- coef(estimated_model)['sqrft']
     }
   return(coef_sqft)
-  }
+}
 ```
 
 ```{r}
-bootstrap_result <- bootstrap_sqft(number_of_bootstraps = 1000)
+bootstrap_result <- bootstrap_sqft(d = data, number_of_bootstraps = 10000)
 ```
 
 With this, it is possible to plot the distribution of these regression coefficients: 
@@ -152,3 +185,33 @@ ggplot() +
 ```
 
 Compute the standard deviation of the bootstrapped regression coefficients.  How does this compare to the robust standard errors you computed above?
+
+```{r}
+mean(bootstrap_result < 0.10)
+```
+
+```{r}
+data
+
+wilcox.test(bdrms ~ colonial, data = data)
+t.test(bdrms ~ colonial, data = data)
+
+data %>% 
+  ggplot() + 
+  aes(x=bdrms, fill = as.factor(colonial)) + 
+  geom_histogram(position = 'dodge')
+
+
+data_adam <- data[sample(1:88, size=10), ]
+
+lm(price ~ sqrft, data = data_adam)
+
+bs2 <- bootstrap_sqft(d = data_adam, 1000)
+
+ggplot() + 
+  aes(x=bs2) + 
+  geom_histogram()
+
+data_adam
+```
+

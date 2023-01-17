@@ -17,15 +17,17 @@ description: "This is the live-session notebook for class discussion for the UC 
 tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
 ---
 
-```{r load global functions, echo=FALSE, warning=FALSE, message=FALSE}
-source('./src/blank_lines.R')
-```
-
-
-# Live Session {-}
+# Live Session
 
 ![](./images/campus.jpeg)
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate *ahead of time* our aims for each week, and that you can prepare accordingly. 
 
 
+```{r load global functions, echo=FALSE, warning=FALSE, message=FALSE}
+source('./src/blank_lines.R')
+```
+
+```{r load packages}
+library(tidyverse)
+```
