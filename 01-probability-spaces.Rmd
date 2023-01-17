@@ -1,5 +1,10 @@
 # Probability Spaces
 
+```{r}
+source('./src/blank_lines.R')
+```
+
+
 Probability is a system of reasoning about the world in the face of incomplete information. In this course, we're going to develop an understanding of the implications of core parts of this theory, how this theory was developed, and how these implications relate to every other part of the practice of data science. 
 
 ![probability, the final frontier](./images/webb.jpg)

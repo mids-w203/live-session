@@ -1,7 +1,12 @@
 # Conditional Expectation and The BLP
 
+![mt. tamalpais](./images/tam-view.jpeg)
+
 ```{r package loads 04, echo=FALSE, message=FALSE}
 library(ggplot2)
+```
+
+```{r session information 04, echo=FALSE, message=FALSE}
 source(file = 'src/blank_lines.R')
 
 theme_set(theme_minimal())
@@ -10,7 +15,6 @@ knitr::knit_engines$set(notes = function(options) {
   code <- paste(options$code, collapse = "\n")
 })
 ```
-
 
 One of our most fundamental goals as data scientists is to produce predictions that are *good*. In this week's async, we make a statement of performance that we can use to evaluate how good a job a predictor is doing, choosing Mean Squared Error. 
 
@@ -61,7 +65,8 @@ The first test is releasing today. There are review sessions scheduled for this 
     - It is also the basis for many other models in classical stats and machine learning
 - The target that OLS estimates is exactly the BLP, which we're learning about this week.
 
-## Conditional Expectation Function (CEF), part one
+## Conditional Expectation Function (CEF), 
+### Part I
 
 Think back to remember the definition of the expectation of $Y$:
 
@@ -75,16 +80,17 @@ $$
   E[Y|X=x] =  \int_{-\infty}^\infty y \cdot f_{Y|X}(y|x) dy
 $$
 
-## Conditional Expectation Function (CEF), part two 
+### Part II 
 
-1. What desirable properties of a predictor does the expectation possess? Why is this desirable? 
-2. How, if at all, does the conditional expectation improve on these desirable properties? 
+1. What desirable properties of a predictor does the expectation possess (note, this is thinking *back* by a week)?  What makes these properties desirable? 
+2. Turning to the content from this week, how, if at all, does the conditional expectation improve on these desirable properties? 
 
-## Conditional Expectation Function (CEF), part three
+### Part III 
 
-- Compare and contrast $E[Y]$ and $E[Y|X]$. For example, when you look at how these operators are "shaped", how are their components similar or different? 
+- Compare and contrast $E[Y]$ and $E[Y|X]$. For example, when you look at how these operators are "shaped", how are their components similar or different?^[Note, when we say "shaped" here, we're referring to the deeper concept of a statistical functional. A statistical functional is a function of a function that maps to a real number. So, if $T$ is the functional that we're thinking of, $\mathcal{F}$ is a family of functions that it might operate on, and $\mathbb{R}$ is the set of real numbers, a statistical functional is just $T: \mathcal{F} \rightarrow \mathbb{R}$. The Expectation statistical functional, $E[X]$ always has the form $\int x f_{X}(x)dx$.)]
+
 - What is $E[Y|X]$ a function of? What are "input" variables to this function?
-- What is $E[E[Y|X]]$ a function of? 
+- What, if anything, is $E[E[Y|X]]$ a function of? 
 
 ```{notes, include = FALSE} 
 
@@ -117,16 +123,24 @@ What does the joint PDF of this function look like?
 ```{r create blank plot for pdf, echo = FALSE}
 ggplot() + 
   geom_blank() + 
+  geom_segment(aes(x=0, y=0, xend=1,   yend=0)) + 
+  geom_segment(aes(x=0, y=0, xend=0,   yend=1)) + 
+  geom_segment(aes(x=0, y=0, xend=.5, yend=.66)) + 
   labs(
     title = 'Joint PDF of X,Y', 
     x = 'x axis', 
     y = latex2exp::TeX('$P_{X,Y}(x,y)$')) + 
-  theme_light()
+  theme_void()
 ```
+
+To begin with, let's compute the simplest quantities: 
 
 - What is the expectation of $X$? 
 - What is the expectation of $Y$? 
 - How would you compute the variance of $X$? (We're not going to do it live). 
+
+And then, let's think about how to compute the conditional quantites: 
+
 - What is the conditional expectation of $Y$, given that $X=x=0$? 
 - What is the conditional expectation of $Y$, given that $X=x=0.5$? 
 - What is the conditional expectation of $X$, given that $Y=y=0.5$? 
@@ -135,7 +149,7 @@ ggplot() +
   - $V[Y|X=0.75]$. 
 - How does $V[Y]$ compare to $V[Y|X=1]$? Which is larger? 
 
-## Conditional Density Functions
+## Conditional Functionals
 
 Suppose that you were told that $X$ and $Y$ are jointly distributed according to the following joint density function: 
 
@@ -147,44 +161,32 @@ $$
     \end{cases}
 $$ 
 
-Show that the conditional distribution for $Y$ give $X$ is equal to: 
+### Conditional Expectation
+
+**What is the conditional expectation function?** To get started, you can use the fact that in week two, we already computed the conditional probability density function: 
+
+$$
+f_{Y|X}(y|x) = \begin{cases}
+  \frac{1}{x}, & 0 \leq y \leq x \\ 
+  0,           & \text{otherwise.}
+\end{cases}
+$$
+```{notes, include = FALSE} 
+\begin{aligned} 
+  E[Y|X=x] &= \int_{0}^{x} y \cdot f_{Y|X}(y|x) dy \\ 
+         &= \int_{0}^{x} y \cdot \frac{1}{x} dy \\ 
+         &= \left. \frac{1}{2x}y^{2} \right \rvert^{x}_{0} \\ 
+         &= \frac{x}{2}
+\end{aligned}         
+```
 
 ```{r, echo = FALSE, results = 'asis'}
 blank_lines(n=10)
 ```
 
-Then put more after. 
+### Conditional Variance
 
-
-
-
-
-
-
-
-
-## Conditional Distribution to Conditional Expectation
-
-$$
-f_{Y|X}(y|x) = 
-  \begin{cases}
-    \frac{1}{x}, & 0 \leq y \leq x \\ 
-    0, & \text{otherwise}
-  \end{cases}
-$$
-
-- What is the conditional expectation function? 
-
-```{notes, include = FALSE} 
-\begin{align*} 
-  E[Y|X=x] &= \int_{0}^{x} y \cdot f_{Y|X}(y|x) dy \\ 
-         &= \int_{0}^{x} y \cdot \frac{1}{x} dy \\ 
-         &= \left. \frac{1}{2x}y^{2} \right \rvert^{x}_{0} \\ 
-         &= \frac{x}{2}
-\end{align*}         
-```
-
-- What is the conditional variance function? 
+- What is the conditional variance function?^[Take a moment to strategize just a little bit before you get going on this one. There is a way to compute this value that is easier than another way to compute this value.]
 
 ```{notes, include = FALSE}
 
@@ -203,29 +205,43 @@ So, we can combine these pieces!
   V[Y|X] = \frac{x^2}{3} - \left(\frac{x}{2}\right)^2 = \frac{x^2}{12}
 
 
-The curious among you might want to compare this value to the $V[Y]$. To do so, youd go back to the joint distribution that started this question, solve for the marginal distribution of $Y$, and then compute the variance of $Y$ from that marginal. 
+The curious among you might want to compare this value to the $V[Y]$. To do so, you would go back to the joint distribution that started this question, solve for the marginal distribution of $Y$, and then compute the variance of $Y$ from that marginal. 
 
 - Would you expect the variance will be positive or negative for these two quantities, $V[Y]$ and $V[Y|X]$.
 ```
 
+```{r, echo=FALSE, results='asis'}
+blank_lines(20)
+```
 
 ## Breakout Activity
 
 ### Minimizing MSE
 
-- Theorem 2.2.20 states: 
+:::{.breakout }
+
+Theorem 2.2.20 states, 
 
 > The CEF $E[Y|X]$ is the "best" predictor of $Y$ given $X$, where "best" means it has the smallest mean squared error (MSE).
 
-- **Task:** Justify every transition ("=" sign) of the proof below using earlier FOAS concepts, definitions, theorems, calculus, and algebraic operations. 
+Oh yeah? As a breakout group, *ride shotgun* with us as we prove that the conditional expectation is the function that produces the smallest possible Mean Squared Error. 
 
-- **Proof:** 
-  - We need to find such function $g: R \to R$ that gives the smallest $E[(Y-g(X))^2]$. 
-  - It should turn out that $g(X)$ is actually $E[Y|X]$.
+Specifically, **you group's task** is to justify every transition from one line to the next using concepts that we have learned in the course:  definitions, theorems, calculus, and algebraic operations. 
+::: 
+
+### The pudding (aka: "Where the proof is")
+
+We need to find such function $g(X): \mathbb{R} \to \mathbb{R}$ that gives the smallest mean squared error. 
+
+First, let MSE be defined as it is in **Definition 2.1.22**. 
+
+> For a random variable $X$ and constant $c \in \mathbb{R}$, the *mean squared error* of $X$ about $c$ is $E[(x-c)^2]$.
+
+Second, let us note that since $g(X)$ is just a function that maps onto $\mathbb{R}$, that for some particular value of $X=x$, $g(X)$ maps onto a constant value. 
 
 - Deriving a Function to Minimize MSE
 
-\[ 
+$$
 \begin{aligned}
   E[(Y - g(X))^2|X]
       &= E[Y^2 - 2Yg(X) + g^2(X)|X]                                \\
@@ -235,24 +251,26 @@ The curious among you might want to compare this value to the $V[Y]$. To do so, 
       &= V[Y|X] + (E^2[Y|X] - 2g(X)E[Y|X] + g^2(X))                \\
       &= V[Y|X] + (E[Y|X] - g(X))^2                                \\
 \end{aligned} 
-\]
+$$ 
 
-- Then we have: 
+Notice too that we can use the *Law of Iterated Expectations* to do something useful. (This is a good point to talk about how this theorem works in your breakout groups.) 
 
-\[
+$$
 \begin{aligned}
   E[(Y-g(X))^2] &= E\big[E[(Y-g(X))^2|X]\big]     \\ 
     &=E\big[V[Y|X]+(E[Y|X]-g(X))^2\big]           \\
     &=E\big[V[Y|X]\big]+E\big[(E[Y|X]-g(X))^2\big]\\
 \end{aligned}
-\]
+$$
 
 - $E[V[Y|X]]$ doesn't depend on $g$; and, 
-- $E[(E[Y|X]-g(X))^2]\ge 0$.
+- $E[(E[Y|X]-g(X))^2] \geq 0$.
 
 $\therefore g(X) = E[Y|X]$ gives the smallest $E[(Y-g(X))^2]$
 
-- **Implication:** If you are choosing some $g$, you can't do better than $g(x) = E[Y|X=x]$.
+### The Implication 
+
+If you are choosing some $g$, you can't do better than $g(x) = E[Y|X=x]$.
 
 ## Working with the BLP
 
@@ -267,7 +285,7 @@ Why Linear?
 - And, many times, linear predictors (which might seem trivially simple) actually do a very good job of producing predictions that are 'close' or useful. 
 ```
 
-###Joint Distribution Practice
+##Joint Distribution Practice
 
 ### Professorial Mistakes (Discrete RVs)
 
@@ -279,9 +297,4 @@ Why Linear?
 - **Questions:** 
   - Compute the expectation of $Y$, conditional on $X$, $E[Y|X]$ 
   - Using the law of iterated expectations, compute $E[Y] = E\big[E[Y|X]\big]$. 
-
-#### (Bonus Questions) 
-- Working with the same question from the last slide: 
-  - Compute the expectation of the product of $X$ and $Y$, $E(XY)$
-  - Using the previous result, compute $\text{cov}(X,Y)$.
 

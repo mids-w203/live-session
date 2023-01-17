@@ -1,6 +1,18 @@
 # OLS Regression Estimates
 ![](./images/linear_regression.png)
 
+```{r load packages for unit 08}
+library(tidyverse)
+library(broom)
+library(testthat)
+```
+
+```{r set themes for unit 08}
+theme_set(theme_minimal())
+```
+
+
+
 ## Learning Objectives 
 
 1. 
@@ -55,17 +67,107 @@ Suppose we have random variables $X$ and $Y$.
 - What assumptions are needed for OLS to consistently estimate the BLP?
 - What assumptions are needed in terms of causality ($X$ causes $Y$, $Y$ causes $X$, etc.) in order to compute the regression of $Y$ on $X$?
 
-### Reasoning by Analogies
+## The Regression Anatomy Formula 
 
-Here are some phrases about regression "in the population."  Convert each of them to its sample counterpart.
+We make the claim in live session that we can re-represent a coefficient that we're interested in as a function of all the other variable in a regression. That is, suppose that we were interested, initially, in estimating the model: 
 
-- Population :: Sample 
-- Error $\epsilon$ :: residuals :: $e_{i}$
-- The BLP is the predictor that minimizes expected squared error.
-- $\beta_1 = \frac{Cov[X,Y]}{V[X]}$.
-- $Cov[X, \epsilon] = 0$
-- $E[\epsilon] = 0$
-- The population moment conditions uniquely specify one line, which is the BLP.
+$$ 
+Y = \hat\beta_{0} + \hat\beta_{1} X_{1} + \hat\beta_{2} X_{2} + \hat\beta_{3}X_{3} + e
+$$ 
+that we can produce an estimate for $\hat\beta_{1}$ by fitting this auxiliary regression, 
+
+$$
+X_{1} = \hat\delta_{0} + \hat\delta_2X_2 + \hat\delta_3X_3 + r_{1}
+$$
+
+And then using the residuals, noted as $r_1$ above, in a second auxiliary regression, 
+
+$$ 
+Y = \gamma_0 + \gamma_1 r_1
+$$
+
+The claim that we make in the live session is that there is a guarantee that $\beta_1 = \gamma_1$. Here, we are first going to show that this is true, and then we're going to reason about what this means, and why this feature is interesting (or at least useful) when we are estimating a regression. 
+
+Suppose that the population model is the following: 
+
+$$
+Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
+$$
+
+```{r make simulation data} 
+d <- data.frame(
+  x1 = runif(n=100, min=0, max=10), 
+  x2 = runif(n=100, min=0, max=10), 
+  x3 = runif(n=100, min=0, max=10)
+)
+
+## because we know the population model, we can produce a single sample from it 
+## using the following code: 
+
+d <- d %>% 
+  mutate(y = -3 + 1*x1 + 2*x2 + 3*x3 + rnorm(n=n(), mean=0, sd=1))
+
+head(d)
+```
+
+Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other "things" in this universe that also affect $Y$, but that we don't have access to them. By assumption, what we *have* measured in this world, $X_1, X_2, X_3$ are uncorrelated with these other features. 
+
+```{r}
+model_main <- lm(y ~ x1 + x2 + x3, data = d)
+coef(model_main)
+```
+
+The claim is that we can produce an estimate of $\beta_1$ using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression. 
+
+```{r estiamte auxilary regression}
+model_aux <- lm(x1 ~ x2 + x3, data = d)
+```
+
+If we look into the structure of `model_aux` we can see that there are *a ton* of pieces in here. 
+
+```{r model structure}
+coef(model_aux)
+```
+
+To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, "residual" in this sense? 
+
+To make talking about these easier, here is a plot that might be useful. 
+
+```{r plot x1 and y and line}
+d %>% 
+  ggplot() + 
+  aes(x=x1, y=y) + 
+  geom_point() + 
+  geom_segment(aes(x=0, xend=10, y=0, yend=50), color = 'steelblue')
+```
+
+In order to access these residuals, we can "augment" the dataframe that we used in the model, using the `broom::augment` function call. 
+
+```{r}
+d_augmented <- augment(model_aux)
+d_augmented$y <- d$y
+d_augmented
+```
+
+And finally, with this augmented data that has information from the model, we can estimate the model that includes only the residuals as predictors of $Y$. 
+
+```{r}
+model_two <- lm(y ~ .resid, data = d_augmented)
+coef(model_two)
+```
+
+Our claim was that the coefficients from `model_main` and `model_two` should be the same. 
+
+```{r}
+test_that(
+  'the model coefficients are equal', 
+  expect_equal(
+    as.numeric(coef(model_main)['x1']), 
+    as.numeric(coef(model_two)['.resid']))
+)
+```
+
+But, why is this an interesting, or at least useful, feature to appreciate? 
 
 ## Coding Activity:R Cheat Sheet
 
@@ -122,6 +224,15 @@ head(data)
 
 ### Assess the Relationship between Price and Square Footage
 
+
+```{r}
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=price) + 
+  geom_point()
+```
+
+
 Suppose that you're interested in knowing the relationship between price and square footage. 
 
 0. Assess the assumptions of the Large-Sample Linear Model.
@@ -148,7 +259,18 @@ price = \beta_{0} + \beta_{1} sqrft + e
 
 
 ```{r}
+## old estimate was 0.14
+model_price <- lm(price ~ sqrft + lotsize, data = data)
+coef(model_price)
 ```
+
+```{r}
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=lotsize) + 
+  geom_point()
+```
+
 
 5. Create a scatterplot that includes the fitted regression.
 

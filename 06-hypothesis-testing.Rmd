@@ -1,73 +1,74 @@
 # Hypothesis Testing
 
-Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurt assumption. 
+Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurd assumption.
 
-Like a petulant child, NHST essentially proclaims, 
+Like a petulant child, NHST essentially proclaims,
 
-> "Oh yeah? Well, if you actually loved me then you would buy me an iPad!" 
+> "Oh yeah? Well, if you actually loved me then you would buy me an iPad!"
 
-Which is to say, it says, "Oh yeah? If this absurd thing isn't true, prove it to me!" 
+Which is to say, it says, "Oh yeah? If this absurd thing isn't true, prove it to me!"
 
 ![update!](./images/frequentists_vs_bayesians.png)
 
-### What is Frequentist testing doing? {-}
+### What is Frequentist testing doing? {.unnumbered}
 
-This testing framework works on **samples** of data, and applies **estimators** to produce **estimates** of **population parameters** that are fundamentally unknown and unknowable. Despite this unknown and unknowable population target, with some carefully written down estimators we can rely on the convergence characteristics of some estimators to produce *useful*, *reliable* results. 
+This testing framework works on **samples** of data, and applies **estimators** to produce **estimates** of **population parameters** that are fundamentally unknown and unknowable. Despite this unknown and unknowable population target, with some carefully written down estimators we can rely on the convergence characteristics of some estimators to produce *useful*, *reliable* results.
 
-We begin with the one-sample t-test. The one-sample t-test relies on the sample average as an estimator of a population expectation. In doing so, it relies on the effectiveness of the **Weak Law of Large Numbers** and the **Central Limit Theorem** to guarantee that the estimator that **converges in probability** to the population expectation, while also **converging in distribution** to a Gaussian distribution. 
+We begin with the one-sample t-test. The one-sample t-test relies on the sample average as an estimator of a population expectation. In doing so, it relies on the effectiveness of the **Weak Law of Large Numbers** and the **Central Limit Theorem** to guarantee that the estimator that **converges in probability** to the population expectation, while also **converging in distribution** to a Gaussian distribution.
 
-These two convergences permit a data scientist to make several **inferences** based on data: 
+These two convergences permit a data scientist to make several **inferences** based on data:
 
-1. The probability of generating data that *"looks like what is observed"*, if the null-hypothesis were true. This is often referred to as the **p-value** of a test, and is the petulant statement identified above.
-2. An interval of values that, with some stated probability (e.g. 95%), contains the true population parameter. 
+1.  The probability of generating data that *"looks like what is observed"*, if the null-hypothesis were true. This is often referred to as the **p-value** of a test, and is the petulant statement identified above.
+2.  An interval of values that, with some stated probability (e.g. 95%), contains the true population parameter.
 
+This framework begins a **exceedingly important** task that we must understand, and undertake when we are working as data scientists: Producing our best-estimate, communicating how we arrived at that estimate, what (if any) guarantees that estimate provides, and *crucially* all **limitations** of our estimate.
 
+## Learning Objectives
 
-This framework begins a **exceedingly important** task that we must understand, and undertake when we are working as data scientists: Producing our best-estimate, communicating how we arrived at that estimate, what (if any) guarantees that estimate provides, and *crucially* all **limitations** of our estimate. 
-
-## Learning Objectives 
-
-1. **Understand** the connection between random variables, sampling, and statistical tests.
-2. **Apply** the Frenquentist testing framework in a simple test -- the one-sample t-test. 
-3. **Anticipate** that every additional Frequentist test is a closely related variant of this test. 
-
+1.  **Understand** the connection between random variables, sampling, and statistical tests.
+2.  **Apply** the Frequentist testing framework in a simple test -- the one-sample t-test.
+3.  **Anticipate** that every additional Frequentist test is a closely related variant of this test.
 
 ## Class Announcements
 
-1. You will be taking your second test this week. The test follows the same format as the first test, which we will discuss in live session. The test will cover *Unit 4: Conditional Expectation and the Best Linear Predictor* and *Unit 5: Learning from Random Samples.* 
-  - Like the first test, our goal is to communicate to you what concepts we think are important, and then to test those concepts directly, and fairly. The purpose of the test is to give you an incentive to review what you have learned through probability theory, and then to demonstrate that you can produce work based on that knowledge. 
-  - There is another practice test on Gradescope, and in the GitHub repository. 
-2. In rosier news, we're moving out of the *only* pencil and paper section of this course, and bringing what we have learned out into the dirty world of data. This means a few things: 
-  - If you haven't yet worked through the **R Bridge Course** that is available to you, working on this bridge course will be useful for you (after you complete your test). The goal of the course is to get you up and running with reasonably successful code and workflows for the data-based portion of the course. 
-3. We will assign teams, and begin our work on **Lab 1** in Live Session next week. This is a two-week, group lab that you will work on with three total team-mates. The lab will cover some of the fundamentals of hypothesis tests, 
-    
+1.  You will be taking your second test this week. The test follows the same format as the first test, which we will discuss in live session. The test will cover *Unit 4: Conditional Expectation and the Best Linear Predictor* and *Unit 5: Learning from Random Samples.*
+
+-   Like the first test, our goal is to communicate to you what concepts we think are important, and then to test those concepts directly, and fairly. The purpose of the test is to give you an incentive to review what you have learned through probability theory, and then to demonstrate that you can produce work based on that knowledge.
+-   There is another practice test on Gradescope, and in the GitHub repository.
+
+2.  In rosier news, we're moving out of the *only* pencil and paper section of this course, and bringing what we have learned out into the dirty world of data. This means a few things:
+
+-   If you haven't yet worked through the **R Bridge Course** that is available to you, working on this bridge course will be useful for you (after you complete your test). The goal of the course is to get you up and running with reasonably successful code and workflows for the data-based portion of the course.
+
+3.  We will assign teams, and begin our work on **Lab 1** in Live Session next week. This is a two-week, group lab that you will work on with three total team-mates. The lab will cover some of the fundamentals of hypothesis tests,
+
 ## Roadmap
 
 **Looking Backwards**
 
-- Statisticians create a model to represent the world
-- We saw examples of estimators, which approximate model parameters we're interested in.
-- By itself, an estimate isn't much good; we need to capture the uncertainty in the estimate.
-- We've seen two ways to express uncertainty in an estimator: standard errors and confidence intervals.
+-   Statisticians create a model to represent the world
+-   We saw examples of estimators, which approximate model parameters we're interested in.
+-   By itself, an estimate isn't much good; we need to capture the uncertainty in the estimate.
+-   We've seen two ways to express uncertainty in an estimator: standard errors and confidence intervals.
 
 **Today**
 
-- We introduce hypothesis testing
-  - A hypothesis test also captures uncertainty, but in relation to a specific hypothesis.
+-   We introduce hypothesis testing
+    -   A hypothesis test also captures uncertainty, but in relation to a specific hypothesis.
 
 **Looking Ahead**
 
-- We'll build on the one-sample t-test, to introduce several other statistical tests.
-- We'll see how to choose a test from different alternatives, with an eye on meeting the required assumptions, and maximizing power.
+-   We'll build on the one-sample t-test, to introduce several other statistical tests.
+-   We'll see how to choose a test from different alternatives, with an eye on meeting the required assumptions, and maximizing power.
 
-## What does a hypothesis test do? 
+## What does a hypothesis test do?
 
-- What are the two possible outcomes of a hypothesis test?
-- What are the four-possible combinations of (a) hypothesis test rest; and (b) state of the world? 
-- Does a hypothesis test always have to report a result that is consistent with the state of the world? What does it mean if it *does*, and what does it mean if it *does not*. 
-- What if you made up your own testing framework, called the {Your Last Name's} Groundhog test. Which is literally a groundhog looking to see its shadow. Because you made the test, suppose that you know that it is *totally random* whether a groundhog sees its shadow. *How useful would this test be at separating states of the world?*  
-- What guarantee do you get if you follow the decision rules properly?
-- Why do we standardize the mean to create a test statistic?
+-   What are the two possible outcomes of a hypothesis test?
+-   What are the four-possible combinations of (a) hypothesis test rest; and (b) state of the world?
+-   Does a hypothesis test always have to report a result that is consistent with the state of the world? What does it mean if it *does*, and what does it mean if it *does not*.
+-   What if you made up your own testing framework, called the {Your Last Name's} Groundhog test. Which is literally a groundhog looking to see its shadow. Because you made the test, suppose that you know that it is *totally random* whether a groundhog sees its shadow. *How useful would this test be at separating states of the world?*\
+-   What guarantee do you get if you follow the decision rules properly?
+-   Why do we standardize the mean to create a test statistic?
 
 $$ 
   t = \frac{ \overline{X}_n - \mu}{\sqrt{\frac{s^2}{n}}}
@@ -87,68 +88,66 @@ vessel            <- 'bowl'
 thing_found_in_compost <- 'bannana peel'
 ```
 
-## Madlib completed 
-Suppose that a classmate comes to you, and, in a `r tone_of_voice` voice `r mode_of_speech`, "Hey, I've got something that is `r superlative` for statistics. All you've got to do to get `r score_on_test` on Test 2 and make `r name_of_classmate` `r emotion` is `r eating_verb` this `r vessel` of `r thing_found_in_compost`. 
+## Madlib completed
 
-You're skeptical, but also curious because that last test was tough. Good. 
+Suppose that a classmate comes to you, and, in a `r tone_of_voice` voice `r mode_of_speech`, "Hey, I've got something that is `r superlative` for statistics. All you've got to do to get `r score_on_test` on Test 2 and make `r name_of_classmate` `r emotion` is `r eating_verb` this `r vessel` of `r thing_found_in_compost`.
+
+You're skeptical, but also curious because that last test was tough. Good.
 
 Acknowledging that we're only 40% of the way through the course, you decide to hire a hungry, underpaid PhD student the School to conduct the experiment to evaluate this claim. They report back, no details about the test, but they do tell you, "We're sure there's no effect of `r thing_found_in_compost`."
 
-- Do you believe them? 
-- What, if any, reasons can you imagine not to believe this conclusion? 
+-   Do you believe them?
+-   What, if any, reasons can you imagine not to believe this conclusion?
 
-## All joking aside 
+## All joking aside
+
 Explain this joke:
 
 ![har har har](./images/null_hypothesis.png)
 
 ## Manual Computation of a t-Test
 
-In a warehouse full of power packs labeled as 12 volts we randomly measured the voltage of 7.  Here is the data:
+In a warehouse full of power packs labeled as 12 volts we randomly measured the voltage of 7. Here is the data:
 
 ```{r}
 voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
 ```
 
-1. Find the mean and the standard deviation. 
+1.  Find the mean and the standard deviation.
 
 ```{r calculate sample mean and standard deviation}
 
 ```
 
-2. Using `qt()`, compute the t critical value for a hypothesis test for this sample. 
+2.  Using `qt()`, compute the t critical value for a hypothesis test for this sample.
 
 ```{r}
 
 ```
 
-3. Define a test statistic, $t$, for testing whether the population mean is 12. 
+3.  Define a test statistic, $t$, for testing whether the population mean is 12.
 
 ```{r}
 
 ```
 
-4. Calculate the p-value using the t statistic.
+4.  Calculate the p-value using the t statistic.
 
 ```{r}
 
 ```
 
-5. Should you reject the null?  Argue this in two different ways. (Following convention, set $\alpha = .05$.)
+5.  Should you reject the null? Argue this in two different ways. (Following convention, set $\alpha = .05$.)
 
-> 
-
-6. Suppose you were to use a normal distribution instead of a t-distribution to test your hypothesis.  What would your p-value be for the z-test?
+6.  Suppose you were to use a normal distribution instead of a t-distribution to test your hypothesis. What would your p-value be for the z-test?
 
 ```{r}
 
 ```
 
-7. Without actually computing it, say whether a 95% confidence interval for the mean would include 12 volts.
+7.  Without actually computing it, say whether a 95% confidence interval for the mean would include 12 volts.
 
-> 
-
-8. Compute a 95% confidence interval for the mean.
+8.  Compute a 95% confidence interval for the mean.
 
 ```{r}
 
@@ -158,55 +157,51 @@ voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
 
 **t-Test Micro Cheat Sheet**
 
-- Key t-Test Assumptions
-    - Metric variable
-    - IID
-    - No major deviations from normality, considering sample size
-    
+-   Key t-Test Assumptions
+    -   Metric variable
+    -   IID
+    -   No major deviations from normality, considering sample size
+
 **Testing the Home Team Advantage**
 
-
-The file athlet2.Rdata contains data on college football games.  The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project.  Football records and scores are from 1993 football season.
+The file athlet2.Rdata contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
 
 ```{r}
 load("data/athlet2.RData")
 data
 ```
 
-We are especially interested in the variable, dscore, which represents the score differential, home team score - visiting team score.  We would like to test whether a home team really has an advantage over the visiting team.
+We are especially interested in the variable, dscore, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.
 
-
-1. The instructor will assign you to one of two teams.  Team 1 will argue that the t-test is appropriate to this scenario.  Team 2 will argue that the t-test is invalid.  Take a few minutes to examine the data, then formulate your best argument.
-
-```{r}
-
-```
-
-2. Should you perform a one-tailed test or a two-tailed test?  What is the strongest argument for your answer?
+1.  The instructor will assign you to one of two teams. Team 1 will argue that the t-test is appropriate to this scenario. Team 2 will argue that the t-test is invalid. Take a few minutes to examine the data, then formulate your best argument.
 
 ```{r}
 
 ```
 
-3. Execute the t-test and interpret every component of the output.
-
-```{r}
-```
-
-4. Based on your output, suggest a different hypothesis that would have led to a different test result.  Try executing the test to confirm that you are correct.
+2.  Should you perform a one-tailed test or a two-tailed test? What is the strongest argument for your answer?
 
 ```{r}
 
 ```
 
-##  Assumptions Behind the t-test
+3.  Execute the t-test and interpret every component of the output.
+
+```{r}
+```
+
+4.  Based on your output, suggest a different hypothesis that would have led to a different test result. Try executing the test to confirm that you are correct.
+
+```{r}
+
+```
+
+## Assumptions Behind the t-test
 
 For the following scenarios, what is the strongest argument against the validity of a t-test?
 
-- You have a sample of 50 CEO salaries, and you want to know whether the mean salary is greater than $1 million.
+-   You have a sample of 50 CEO salaries, and you want to know whether the mean salary is greater than \$1 million.
 
-- A nonprofit organization measures the percentage of students that pass an 8th grade reading test in 40 neighboring California counties.  You are interested in whether the percentage of students that pass in California is over 80%
+-   A nonprofit organization measures the percentage of students that pass an 8th grade reading test in 40 neighboring California counties. You are interested in whether the percentage of students that pass in California is over 80%
 
-- You have survey data in which respondents assess their own opinion of corgis, with options ranging from "1 - extreme disgust" to "5 - affection so intense it threatens my career."  You want to know whether people on the average like corgis more than 3, representing neutrality.
-
-
+-   You have survey data in which respondents assess their own opinion of corgis, with options ranging from "1 - extreme disgust" to "5 - affection so intense it threatens my career." You want to know whether people on the average like corgis more than 3, representing neutrality.

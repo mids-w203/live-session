@@ -1,12 +1,16 @@
 # Comparing Two Groups
 
+![](./images/goin_left.jpeg)
+
 ## Learning Objectives 
 
 This week, we introduce the idea of comparing two groups to evaluate whether the data that we have sampled lead us to believe that the population distribution of the random variables are different. Of course, because we don't get access to the function that describes the random variable, we can't *actually* know if the populations are different. It is for this reason that we call it statistical inference -- we are inferring from a sample some belief about the populations. 
 
-1. 
-2. 
-3. 
+At the conclusion of this week, students will be able to:
+
+1. *Recognize* the similarities between all frequentist hypothesis tests. 
+2. *Evaluate* the conditions that surround the data, and choose a test that is best-powered and justifiable.
+3. *Perform* and *Interpret* the results of the most common statistical tests.
 
 ## Class Announcements
 
@@ -42,6 +46,7 @@ This week, we introduce the idea of comparing two groups to evaluate whether the
 
 ## Teamwork Discussion
 ### Working on Data Science Teams
+
 Data science is a *beautiful* combination of team-work and individual-work. It provides the opportunity to work together on a data pipeline with people from all over the organization, to deal with technical, statistical, and social questions that are always interesting. While we expect that everyone on a team will be a professional, there is so much range within the pursuit of data science that projects are nearly always collaborative exercises. 
 
 Together as teams, we
@@ -143,11 +148,131 @@ You have a set of questions that you would like to answer with a statistical tes
 3. Conduct your test.
 4. Discuss statistical and practical significance.
 
-**The Questions**
+## The Questions 
+
+### Set 1 
+- Do economics majors watch more or less TV than computer science majors?
+
+```{r}
+library(tidyverse)
+library(magrittr)
+library(ggthemes)
+
+GSS %>% 
+  filter(major1 %in% c('computer science', 'economics')) %$% 
+  t.test(tvhours ~ major1)
+
+GSS %>% 
+  filter(major1 %in% c('computer science', 'economics')) %$% 
+  wilcox.test(tvhours ~ major1)
+  
+GSS %>% 
+  filter(major1 %in% c('computer science', 'economics')) %>% 
+  mutate(tv_category = case_when(
+    tvhours < 2 ~ 1,
+    tvhours >= 2 & tvhours < 5 ~ 2,
+    tvhours >= 5 ~ 3)) %$%
+  # t.test(tv_category ~ major1)
+  wilcox.test(tv_category ~ major1)
+
+GSS %>% 
+  filter(major1 %in% c('computer science', 'economics')) %$% 
+  wilcox.test(tvhours ~ major1)
+
+
+
+
+
+
+GSS %>% 
+  filter(major1 %in% c('computer science', 'economics')) %>% 
+  ggplot() + 
+  aes(x=tvhours) + 
+  geom_histogram(bins=10)
+```
+
 
 - Do Americans with pets watch more or less TV than Americans without pets?
-- Do economics majors watch more or less tv than computer science majors?
-- Are Americans that own guns or Americans that don't own guns more likely to have pets?
+
+### Set 2
 - Do Americans spend more time emailing or using the web?
-- Are Americans with pets happier than Americans without pets?
+
+```{r}
+GSS %>% 
+  select(wwwhr, emailhr) %>% 
+  drop_na() %$% 
+  t.test(x=wwwhr, y=emailhr, paired=TRUE)
+
+GSS %>% 
+  ggplot() + 
+  geom_histogram(aes(x=wwwhr), fill = 'blue') + 
+  geom_histogram(aes(x=emailhr, fill = 'red'))
+
+t.test(
+  x = GSS$wwwhr, 
+  y = GSS$emailhr, 
+  paired = FALSE
+)
+
+```
+
+
 - Do Americans spend more evenings with neighbors or with relatives?
+
+What a great question this is... so glad for the chance to answer it, and to deal with this data that someone else has coded for me. Thank you universe. 
+
+```{r start by building data}
+wilcox_test_data <- GSS %>% 
+  select(socrel, socommun) %>%
+  mutate(
+    family_ordered = factor(
+      x      = socrel, 
+      levels = c('almost daily', 'sev times a week', 
+                 'sev times a mnth', 'once a month',
+                 'sev times a year', 'once a year', 'never')),
+    friends_ordered = factor(
+      x      = socommun, 
+      levels = c('almost daily', 'sev times a week', 
+                 'sev times a mnth', 'once a month',
+                 'sev times a year', 'once a year', 'never'))) 
+```
+
+To begin this investigation, we've got to look at the data and see what is in it. If you look below, you'll note that it sure seems that people are spending more time with their family... erp, actually no. They're "hanging out" with their friends rather than taking their mother out to dinner. 
+
+```{r produce descriptive plot}
+wilcox_test_data %>% 
+  select(friends_ordered, family_ordered) %>% 
+  rename(
+    Friends = friends_ordered, 
+    Family  = family_ordered
+  ) %>% 
+  drop_na() %>% 
+  pivot_longer(cols = c(Friends, Family)) %>%   
+  ggplot() + 
+    aes(x=value, fill=name) + 
+    geom_histogram(stat='count', position='dodge') + 
+  scale_fill_manual(values = c('#003262', '#FDB515')) + 
+  labs(
+    title = 'Do Americans Spend Times With Friends or Family?',
+    subtitle = 'A cutting analysis.', 
+    fill = 'Friends or Family', 
+    x = 'Amount of Time Spent') + 
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
+  theme_fivethirtyeight()
+```
+
+With this plot created, we can ask if what we observe in the plot is the produce of what could just be sampling error, or if this is something that was unlikely to arise due if the null hypothesis were true. What is the null hypothesis? Well, lets suppose that if we didn't know anything about the data that we would expect there to be no difference between the amount of time spent with friends or families. 
+
+```{r run the appropriate test}
+## risky choice -- casting the factor to a numeric without checking what happens.
+wilcox_test_data %$% 
+  wilcox.test(
+    x=as.numeric(family_ordered), 
+    y=as.numeric(friends_ordered),
+    paired=FALSE
+  )
+```
+
+### Set 3
+- Are Americans that own guns or Americans that don't own guns more likely to have pets?
+- Are Americans with pets happier than Americans without pets?
