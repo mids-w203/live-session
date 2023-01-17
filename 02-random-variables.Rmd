@@ -17,7 +17,7 @@ At the end of this week's course of study (which includes the async, sync, and h
 2. **Understand** that the intuition developed by the use of set-theory probability maps into the more expressive space of random variables
 3. **Apply** the appropriate mathematical transformations to move between joint, marginal, and conditional distributions.
 
-This week's materials are theoretical tooling to build toward one of the first notable results of the course, **conditional probability** that will get a full treatment next week.
+This week's materials are theoretical tooling to build toward one of the first notable results of the course, **conditional probability**. This is the idea that, if we know that one event has occurred, we can make a conditional statement about the probability distribution for another, dependent distribution. 
 
 ## Introduction to the Materirals
 
@@ -53,7 +53,7 @@ There are several resources to support your learning. A learning object last wee
 What is a random variable? Does this definition help you? 
 
 ::: {.definition name="Random Variable"}
-A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S$. 
+A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $\forall r \in \mathbb{R}, \{\omega \in \Omega: X(\omega) \leq r\} \in S$. 
 :::
 
 Someone, please, read that without using a single "omega", $\mathbb{R}$, or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean. 
@@ -69,19 +69,29 @@ The goal of writing with math symbols like this is to be *absolutely* clear what
 
 ## Pieces of a Random Variable 
 
-When you look at the definition of a random variable, there are two key pieces that must exist for every random variable. What are these pieces? As a hint, we actually developed one of these key pieces *last* week when we were discussing elementary probability. 
-
 ::: {.definition name="Random Variable, Suite"}
 A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S$. 
 :::
 
+There are two key pieces that must exist for every random variable. What are these pieces? The first of these pieces is provided to us in **Definition 1.2.1** *Random Variable* (on page 16). The second is provided to us in **Definition 1.2.5** *Probability Mass Function* (on page 18). 
+
 1. 
 2. 
+
+::: {.discussion-question} 
+Suppose that a random variable is simple and discrete. For concreteness, you could think of this random variable as the answer to the question, "Is the grass wet outside?". 
+
+1. What is the sample space? 
+2. What is a sensible function that you might use to map from the sample space to real values? 
+3. What is a insensible function that you might use to map from the sample space to real values? (A student well-seasoned in Maths might use (and define for the rest of the class) the concept of a *bijective function*). 
+4. If you simply had the values that the random variable function maps to are you guaranteed to be able to describe the entire sample space? Why or why not? 
+5. How would you go about determining the probability mass function for this random variable? 
+::: 
 
 ### Functions of Functions
 
 ::: {.discussion-question name="Why Functions?"}
-Why do we say that random variables are functions? Is there some useful property of these being functions rather than any other quantity?
+Why do we say that random variables are functions? Is there some useful property of these being functions rather than any other quantity? What else *could* they be if not a function? 
 :::
 
 What about a function of a random variable, which is a function of a function. 
@@ -182,7 +192,7 @@ Suppose that we know that two variables, $X$ and $Y$ are jointly uniformly distr
   - What is the specific function that describes this shape? 
   - If you draw this shape on three axes, and $X$, and $Y$, and a $P(X,Y)$, what does this plot look like? 
   - How do you get from the joint density function, to a marginal density function for $X$? 
-  - How do you get form the joint density function, to a marginal denisty function for $Y$? 
+  - How do you get form the joint density function, to a marginal density function for $Y$? 
   - How do you get from these marginal density functions of $X$ and $Y$ back to the joint density? Is this always possible? 
   
 ### Examples: Thinking Through Many Plots 
@@ -244,6 +254,22 @@ where $c$ is a constant.
 2. What is the constant $c$?
 3. Compute the marginal density function for $X$.  (Be sure to write a complete expression)
 4. Compute the conditional density function for $Y$, conditional on $X=x$.  (Be sure to specify for what values of $x$ this is defined)
+
+## Conditional Probability 
+
+Conditional probability is **incredible**. In fact, without exaggeration, almost **all** of data science is an exercise in making statements about conditional probability distributions. *Don't believe us?*
+
+- What is the goal of a "customer churn" model or a conversion model? 
+- What is the goal of a language-completion model? 
+- What is the goal of flight-departures model? 
+
+::: {.discussion-question}
+**If** we possessed the whole information about a process; **if** we had the CDF that governed probability of occurrences, what kinds of statements would we be able to make? Would we even need data?
+:::
+
+::: {.discussion-question}
+Using the distribution above, produce a statement of conditional probability, $f_{Y|X}(y|x)$. 
+::: 
 
 ## Visualizing Distributions Via Simulation
 
