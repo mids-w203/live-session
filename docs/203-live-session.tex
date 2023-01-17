@@ -183,7 +183,8 @@
 \tableofcontents
 }
 \hypertarget{live-session}{%
-\chapter{Live Session}\label{live-session}}
+\chapter*{Live Session}\label{live-session}}
+\addcontentsline{toc}{chapter}{Live Session}
 
 \includegraphics{./images/campus.jpeg}
 
@@ -191,9 +192,34 @@ This is the live session work space for the course. Our goal with this repositor
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(mids203)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Loading required package: tidyverse
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in system("timedatectl", intern = TRUE): running command 'timedatectl' had status 1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching packages ------------------------------------------------------------------ tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts --------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
 
 \hypertarget{probability-spaces}{%
 \chapter{Probability Spaces}\label{probability-spaces}}
@@ -913,6 +939,10 @@ As a class, lets consider a few of these PDFs, beginning with this ``triangle'' 
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+\end{verbatim}
+
 \hypertarget{triangle-math}{%
 \subsection{Triangle Math}\label{triangle-math}}
 
@@ -1019,7 +1049,7 @@ So, suppose that you had a uniform distribution that had positive probability on
 
 \[
   f_{X}(x) = \begin{cases} 
-    a\cdot x & 1.1 \leq x \leq 4.3 \\ 
+    a & 1.1 \leq x \leq 4.3 \\ 
     0 & otherwise
   \end{cases}
 \]
@@ -1049,19 +1079,34 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 2.066562 2.011425 3.309678 1.344357 1.760204 4.136672 3.603350 1.657201 3.096724 2.120201 3.245458
-## [12] 2.069459 3.087195 2.838074 1.732300 1.183500 1.988982 3.980934 3.331974 1.609208
+##  [1] 4.254275 3.151961 2.299474 2.532431 2.721811 4.024763 4.110725 3.721030 2.263274 1.678010 2.490382
+## [12] 3.362415 3.684192 1.178847 3.517821 1.423669 1.367836 3.902267 2.340742 1.625701
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
 
-With this object created, we can plot a histogram of the data and then learn from this histogram what the pdf looks like.
+With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+\NormalTok{plot\_full\_data }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(samples\_uniform), }\AttributeTok{y=}\NormalTok{samples\_uniform) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{()  }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{\textquotesingle{}Showing the Data\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{y     =} \StringTok{\textquotesingle{}Sample Value\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{x     =} \StringTok{\textquotesingle{}Index\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{plot\_density }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
   \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{samples\_uniform) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{bw=}\FloatTok{0.1}\NormalTok{)}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{bw=}\FloatTok{0.1}\NormalTok{)   }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{\textquotesingle{}Showing the PDF\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{y     =} \StringTok{\textquotesingle{}Probability of Drawing Value\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{x     =} \StringTok{\textquotesingle{}Sample Value\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{(plot\_full\_data }\SpecialCharTok{|}\NormalTok{ (plot\_density }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{())) }\SpecialCharTok{/} 
+\NormalTok{  plot\_density }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1121,8 +1166,8 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 22.115919 16.483990 22.410488 22.100870 12.543764 17.786928 19.138007 12.190335 13.530546 22.450998
-## [11] 16.761041 15.800745 20.773784 12.851562 23.500219 18.330674 17.632022  7.697596 18.466610 22.645725
+##  [1] 15.066881 18.287041 15.770173 20.639961 19.453191 23.003454 19.625041 16.347895 12.912235  2.931005
+## [11] 16.370950 16.517333 14.027502 14.585257 17.227794 14.994926 19.363650 19.760662 25.087077 22.293880
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -2960,6 +3005,28 @@ You have a set of questions that you would like to answer with a statistical tes
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \FunctionTok{library}\NormalTok{(magrittr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'magrittr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     set_names
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggthemes)}
 
 \NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
@@ -3018,8 +3085,8 @@ You have a set of questions that you would like to answer with a statistical tes
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in wilcox.test.default(x = c(1, 2, 2, 1, 3, 3, 1, 2, 2, 2), y = c(1, : cannot compute exact p-
-## value with ties
+## Warning in wilcox.test.default(x = c(1, 2, 2, 1, 3, 3, 1, 2, 2, 2), y = c(1, : cannot compute exact p-value
+## with ties
 \end{verbatim}
 
 \begin{verbatim}
@@ -3262,6 +3329,41 @@ With this plot created, we can ask if what we observe in the plot is the produce
 \FunctionTok{library}\NormalTok{(testthat)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'testthat'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:magrittr':
+## 
+##     equals, is_less_than, not
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     matches
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     is_null
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:readr':
+## 
+##     edition_get, local_edition
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tidyr':
+## 
+##     matches
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5410,17 +5512,17 @@ In this analysis, we will use the mtcars dataset which is a dataset that was ext
 \begin{verbatim}
 ## Rows: 32
 ## Columns: 11
-## $ mpg  <dbl> 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 1~
-## $ cyl  <dbl> 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8~
-## $ disp <dbl> 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, ~
-## $ hp   <dbl> 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 6~
-## $ drat <dbl> 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3~
-## $ wt   <dbl> 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, ~
-## $ qsec <dbl> 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, ~
-## $ vs   <dbl> 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0~
-## $ am   <dbl> 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1~
-## $ gear <dbl> 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5~
-## $ carb <dbl> 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2, 2, 4, 2, 1, 2, 2, 4, 6, 8~
+## $ mpg  <dbl> 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10~
+## $ cyl  <dbl> 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8,~
+## $ disp <dbl> 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 2~
+## $ hp   <dbl> 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65~
+## $ drat <dbl> 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.~
+## $ wt   <dbl> 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3~
+## $ qsec <dbl> 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 1~
+## $ vs   <dbl> 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0,~
+## $ am   <dbl> 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,~
+## $ gear <dbl> 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5,~
+## $ carb <dbl> 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2, 2, 4, 2, 1, 2, 2, 4, 6, 8,~
 \end{verbatim}
 
 \textbf{Questions:}

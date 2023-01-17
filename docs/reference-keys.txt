@@ -10,7 +10,6 @@ exm:unlabeled-div-9
 exm:unlabeled-div-10
 def:unlabeled-div-11
 exm:unlabeled-div-12
-live-session
 probability-spaces
 learning-objectives
 course-learning-objectives
