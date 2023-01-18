@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-17" />
+<meta name="date" content="2023-01-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -486,8 +486,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.9</span> R Exercise<a href="r-exercise.html#r-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Real Estate in Boston</strong></p>
 <p>The file <code>hprice1.Rdata</code> contains 88 observations of homes in the Boston area, taken from the real estate pages of the Boston Globe during 1990. This data was provided by Wooldridge.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="r-exercise.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="r-exercise.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="r-exercise.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="r-exercise.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##     price assess bdrms lotsize sqrft colonial   lprice  lassess llotsize   lsqrft
 ## 1 300.000  349.1     4    6126  2438        1 5.703783 5.855359 8.720297 7.798934
 ## 2 370.000  351.5     3    9903  2076        1 5.913503 5.862210 9.200593 7.638198
@@ -501,10 +501,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="assess-the-relationship-between-price-and-square-footage" class="section level3 hasAnchor" number="8.9.1">
 <h3><span class="header-section-number">8.9.1</span> Assess the Relationship between Price and Square Footage<a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="r-exercise.html#cb83-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb83-2"><a href="r-exercise.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb83-3"><a href="r-exercise.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>price) <span class="sc">+</span> </span>
-<span id="cb83-4"><a href="r-exercise.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="r-exercise.html#cb93-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb93-2"><a href="r-exercise.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb93-3"><a href="r-exercise.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>price) <span class="sc">+</span> </span>
+<span id="cb93-4"><a href="r-exercise.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Suppose that you’re interested in knowing the relationship between price and square footage.</p>
 <ol start="0" style="list-style-type: decimal">
@@ -517,15 +517,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 price = \beta_{0} + \beta_{1} sqrft + e
 \]</span></p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="r-exercise.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="do">## old estimate was 0.14</span></span>
-<span id="cb84-2"><a href="r-exercise.html#cb84-2" aria-hidden="true" tabindex="-1"></a>model_price <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize, <span class="at">data =</span> data)</span>
-<span id="cb84-3"><a href="r-exercise.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_price)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="r-exercise.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="do">## old estimate was 0.14</span></span>
+<span id="cb94-2"><a href="r-exercise.html#cb94-2" aria-hidden="true" tabindex="-1"></a>model_price <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize, <span class="at">data =</span> data)</span>
+<span id="cb94-3"><a href="r-exercise.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_price)</span></code></pre></div>
 <pre><code>## (Intercept)       sqrft     lotsize 
 ## 5.932414240 0.133362017 0.002113495</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="r-exercise.html#cb86-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb86-2"><a href="r-exercise.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb86-3"><a href="r-exercise.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>lotsize) <span class="sc">+</span> </span>
-<span id="cb86-4"><a href="r-exercise.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-exercise.html#cb96-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb96-2"><a href="r-exercise.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb96-3"><a href="r-exercise.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>lotsize) <span class="sc">+</span> </span>
+<span id="cb96-4"><a href="r-exercise.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Create a scatterplot that includes the fitted regression.</p></li>
