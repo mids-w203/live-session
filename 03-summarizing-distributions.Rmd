@@ -1,5 +1,30 @@
 # Summarizing Distributions
 
+In the last live session, we introduced random variables; probability density and cumulative density; and, made the connection between joint, marginal, and conditional distributions. All of these concepts work with the **entire** distribution. 
+
+Take, for example, the idea of conditional probability. We noted that conditional probability is defined to be: 
+
+\[
+  f_{Y|X}(y|x) = \frac{f_{Y,X}(y,x)}{f_{X}(x)}
+\]
+
+This is a powerful concept that shows a lot of the range of the reasoning system that we've built to this point! The probability distribution of $Y$ might change as a result of changes in $X$. If you unpack that just a little bit more, we might say that $f_{Y}(y)$ -- the probability density of $Y$ -- which is itself a function, is *also* a function of $X$. To say it again, to be very explicit: the function is a function of another input. That might sound wild, but it is all perfectly consistent with the world that we've built to this point. 
+
+This concept is **very** expressive. Knowing $f_{Y}(y)$ gives a full information representation of a variable; knowing $f_{Y|X}(y|x)$ lets you update that information to make an even more informative statement about $Y$. In *Foundations* and at this point in the class, we deal only with conditional probability conditioning on a single variable, but the process generalizes. So, if there were four random variables, $A, B, C, D$, we could make a statement about $A$ that conditions on $B, C, D$: 
+
+\[
+  f_{A|\{B,C,D\}}(a|\{b,c,d\}) = \frac{f_{A,B,C,D}(a,b,c,d)}{f_{B,C,D}(b,c,d)}
+\]
+
+In this week's materials we are going to go in the *opposite* direction: Rather than producing a very expressive system of probabilities, we're going to attempt to summarize all of the information contained in a pdf into lower-dimensional representations. Our first task will be summarizing a single random variable in two ways: 
+
+1. Where is the "center" of the random variable; and, 
+2. How dispersed, "on average" is the random variable from this center. 
+
+After developing the concepts of *expectation* and *variance* (which are 1 & 2 above, respectively), we will develop a summary of a joint distribution: the *covariance*. The particular definitions that we choose to call expectation, variance, and covariance require justification. Why should we use these *particular* formulae as measures of the "center" and "dispersion"?
+
+We ground these summaries in the **Mean Squared Error** evaluative metric, as well as justifying this metric.
+
 ```{r load unit 03 packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
@@ -8,13 +33,13 @@ library(tidyverse)
 
 ## Learning Objectives 
 
-At the end of the live session and homework this week, students will be able to
+At the end of the live session and homework this week, students will be able to: 
 
 1. **Understand** the importance of thinking in terms of random variables, while; 
-2. **Appreciating** that it is not typically possible to fully model the world with a single function. 
+2. Being able to **appreciate** that it is not typically possible to fully model the world with a single function. 
 3. **Articulate** why we need a target for a model, and propose several possible such targets.
+4. **Justify** why expectation is a good model, why variance is a reasonable model, and how covariance relates two-random variables with a common joint distribution.
 4. **Produce** summaries of location and relationship given a particular functional form for a random variable.
-
 
 ## Class Announcements 
 
@@ -22,6 +47,7 @@ Where have we come from, and where are we going?
 
 ### What is in the rearview mirror? 
 
+::: {.slide}
 - Statisticians create a population model to represent the world; random variables are the building blocks of such a model.
 - We can describe the distribution of a random variable using:
     - A *CDF* for all random variables
@@ -30,11 +56,12 @@ Where have we come from, and where are we going?
 - When we have multiple random variables,
     - The joint PMF/PDF describes how they behave together
     - The marginal PMF/PDF describes one variable in isolation
-    - The conditonal PMF/PDF describes one variable given the value of another
+    - The conditional PMF/PDF describes one variable given the value of another
+:::    
 
 ### Today's Lesson
 
-What might seem frustrating about this probability theory system of reasoning is that we are building a castle in the sky -- a fiction. We're supposing that there is some function that describes the probability that values are generated. In reality, there is no such generative function; it is *extremely unlikely* (though we'll acknowledge that it is possible) that the physical reality we belive we exist within is just a complex simulation that has been programmed with functions by some unknown designer. 
+What might seem frustrating about this probability theory system of reasoning is that we are building a castle in the sky -- a fiction. We're supposing that there is some function that describes the probability that values are generated. In reality, there is no such generative function; it is *extremely unlikely* (though we'll acknowledge that it is possible) that the physical reality we believe we exist within is just a complex simulation that has been programmed with functions by some unknown designer. 
 
 Especially frustrating is that we're supposing this function, and then we're further saying, 
 
@@ -50,7 +77,7 @@ In particular, in one specific usage of the term *best* we will prove that the E
 
 #### Single number summaries of relationships between random variables
 
-Although the single number summaries are **incredibly** powerful, that's not enough for today's lesson! We're also going to suggest that we can create a measure of linear dependence between two variables that we call the "covariance", and a related, rescaled version of this relationship that is called the correlation. 
+Although the single number summaries are **incredibly** powerful, that's not enough for today's lesson! We're also going to suggest that we can create a measure of linear dependence between two variables that we call the "covariance", and a related, re-scaled version of this relationship that is called the correlation. 
 
 ### Future Attractions 
 
@@ -60,21 +87,23 @@ Although the single number summaries are **incredibly** powerful, that's not eno
 
 ## Discussion of Terms 
 
-Together with your instructor, you will talk about what each of the following definitions mean in your own words, for the key concepts, you might also formalize this intuition into a formula that can be computed. 
+::: {.discussion-question} 
+With your instructor, talk about what each of the following definitions mean in your own words. For key concepts, you might also formalize this intuition into a formula that can be computed. 
 
 - Expected Value, or Expectation 
 - Central Moments $\rightarrow$ Variance $\rightarrow$ Standard Deviation
 - Set aside for later: Chebyshev's Inequality and the Normal Distribution 
 - Mean Squared Error and its alternative formula 
 - Covariance and Correlation
-
+:::
 
 ## Computing Examples 
 
-### Expected Value of a Die [discrete random variable]
+### Expected Value of Education [discrete random variable]
 
-- The expected value (or population mean) of a discrete random variable $X$ is the weighted average of the values in the range of $X$.
-- Suppose that $X$ represents the number of years of education that someone has completed, and so has a support that ranges from $0$ years of education, up to $28$ years of education. (Incidentally, Mark Labovitz has about 28 years of education). 
+- The expected value of a discrete random variable $X$ is the weighted average of the values in the range of $X$.
+- Suppose that $X$ represents the number of years of education that someone has completed, and so has a support that ranges from $0$ years of education, up to $28$ years of education. (Incidentally, Mark Labovitz has about 28 years of education.) 
+- You can then think of 
 
 ```{r, echo = FALSE}
 set.seed(1)
@@ -102,9 +131,12 @@ without using specific numbers, describe the process you would use to calculate 
 
 How does the following formula match with your concept of expectation from that last section?
 
-$$
-  E(X) = \sum_{x \in \{years\}} x \cdot P(X=x)
-$$
+\[
+  \begin{aligned}
+  E[X] &= \sum_{x \in \{years\ of\ edu\}} x \cdot f(x) \\ 
+       &= \sum_{x=0}^{x=28} x\cdot P(X=x)
+  \end{aligned}
+\]
 
 ## Computing by Hand
 ### Compute the Expected Value 
@@ -197,3 +229,112 @@ Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y$ for $0 < y 
 - Find $E[X]$
 - Find $E[EY]$
 - Find $\rho[X,Y]$
+
+## Write Code 
+
+Suppose that you have a random variable with a **gnarly** probability distribution function: 
+
+\[ 
+  f_{X}(x) = \frac{3*\left(x - 2x^2 + x^3\right)}{2}, 0\leq x\leq 2
+\]
+
+If you had to pick a single value that minimizes the MSE of this function, what would it be? 
+
+- First, how would you approach this problem *analytically*. By this, we mean, "how would you solve this with the closed form answer? 
+- Second, how might you approach this problem *computationally*. By this, we mean, "how might you write code that would produce a numeric approximation of the closed form solution?" 
+
+```{r}
+pdf_func <- function(x) { 
+  3*(x - (2*x^2) + x^3)/2
+}
+```
+
+```{r}
+input_range <- seq(from=0, to=2, by=0.01)
+
+mean_absolute_error <- Vectorize(
+  function(c) { 
+    x_values <- pdf_func(input_range)
+    mae_     <- mean(abs(x_values - c))
+    }
+)
+
+mean_square_error <- Vectorize(
+  function(c) { 
+    x_values <- pdf_func(input_range)
+    mse_     <- mean((x_values - c)^2)
+    return(mse_)
+  }
+)
+
+mean_cubic_error <- Vectorize(
+  function(c) { 
+    x_values <- pdf_func(input_range) 
+    mce_     <- mean((x_values - c)^3)
+    }
+)
+
+mean_quadratic_error <- Vectorize(
+  function(c) { 
+    x_values <- pdf_func(input_range)
+    mqe_     <- mean((x_values - c)^4)
+    return(mqe_)
+  }
+)
+
+mean_power_error <- Vectorize(
+  function(c, power) { 
+    x_values <- pdf_func(input_range)
+    m_power_e_     <- mean((x_values - c)^power)
+    return(m_power_e_)
+    }
+)
+
+mae_ <- mean_absolute_error(
+  c = input_range
+)
+mse_ <- mean_square_error(
+  c = input_range
+  )
+mce_ <- mean_cubic_error(
+  c = input_range
+)
+mqe_ <- mean_quadratic_error(
+  c = input_range
+)
+
+plot(
+  x = input_range,
+  y = mse_,
+  type = 'l'
+)
+lines(
+  x = input_range, 
+  y = mae_, 
+  type = 'l', 
+  col = '#003262'
+)
+lines(
+  x = input_range, 
+  y = mqe_, 
+  type = 'l', 
+  col = '#FDB515'
+)
+# lines(
+#   x = input_range, 
+#   y = mce_, 
+#   type = 'l', 
+#   col = '#FDB515'
+# )
+abline(v=1.5, col = 'darkred')
+```
+
+```{r}
+optim(
+  par = 0, 
+  fn = mean_square_error, 
+  method = 'Brent', 
+  lower = 0, upper = 2
+)
+```
+
