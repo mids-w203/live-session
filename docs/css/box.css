@@ -34,3 +34,10 @@
   color #DDD5C7; 
   border-radius: 10px;
 }
+
+.slide{
+  padding: 1em; 
+  color: #584F29;
+  border-radius: 10px;
+  border: 2px solid #584F29;
+}

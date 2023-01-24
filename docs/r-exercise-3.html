@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-18" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,24 +215,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms<span></span></a></li>
 <li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples<span></span></a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]<span></span></a></li>
 <li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand<span></span></a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.2</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1<span></span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code<span></span></a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variacne of a Six-Sided Die<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing<span></span></a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable<span></span></a></li>
 <li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP<span></span></a>
 <ul>
@@ -484,26 +487,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-exercise-3" class="section level2 hasAnchor" number="12.6">
 <h2><span class="header-section-number">12.6</span> R Exercise<a href="r-exercise-3.html#r-exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="r-exercise-3.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb152-2"><a href="r-exercise-3.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb152-3"><a href="r-exercise-3.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb152-4"><a href="r-exercise-3.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb152-5"><a href="r-exercise-3.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb152-6"><a href="r-exercise-3.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="r-exercise-3.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb169-2"><a href="r-exercise-3.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb169-3"><a href="r-exercise-3.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb169-4"><a href="r-exercise-3.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb169-5"><a href="r-exercise-3.html#cb169-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb169-6"><a href="r-exercise-3.html#cb169-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="r-exercise-3.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb153-2"><a href="r-exercise-3.html#cb153-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-3"><a href="r-exercise-3.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="r-exercise-3.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb170-2"><a href="r-exercise-3.html#cb170-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-3"><a href="r-exercise-3.html#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 <pre><code>## Rows: 32
 ## Columns: 11
-## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4, 30.4, 33.9, …
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8, 16.4, 17.3, 15.2, 10.4, 10.4, 14.7, 32.4, 30.4, 33.9, 21.5, 15.5, 15.2, 13.3, 19.2, 2…
 ## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8, 8, 8, 8, 4, 4, 4, 8, 6, 8, 4
-## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0, 460.0, 440.0, 7…
-## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, 150, 245, 175, 66…
-## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4.08, 4.93, 4.22, …
-## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250, 5.424, 5.345, 2…
-## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98, 17.82, 17.42, 1…
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 167.6, 167.6, 275.8, 275.8, 275.8, 472.0, 460.0, 440.0, 78.7, 75.7, 71.1, 120.1, 318.0, …
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180, 205, 215, 230, 66, 52, 65, 97, 150, 150, 245, 175, 66, 91, 113, 264, 175, 335, 109
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92, 3.07, 3.07, 3.07, 2.93, 3.00, 3.23, 4.08, 4.93, 4.22, 3.70, 2.76, 3.15, 3.73, 3.08, 4…
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.440, 3.440, 4.070, 3.730, 3.780, 5.250, 5.424, 5.345, 2.200, 1.615, 1.835, 2.465, 3.52…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18.30, 18.90, 17.40, 17.60, 18.00, 17.98, 17.82, 17.42, 19.47, 18.52, 19.90, 20.01, 16.8…
 ## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1
 ## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1
 ## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 5, 4

@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-18" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,24 +215,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms<span></span></a></li>
 <li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples<span></span></a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]<span></span></a></li>
 <li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand<span></span></a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.2</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1<span></span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code<span></span></a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variacne of a Six-Sided Die<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing<span></span></a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable<span></span></a></li>
 <li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP<span></span></a>
 <ul>
@@ -492,39 +495,39 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Determine what probabilities to assign to each value of that object.</li>
 <li>Write the code to run the expectation algorithm that you just performed by hand.</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="expected-value-by-code.html#cb16-1" aria-hidden="true" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb16-2"><a href="expected-value-by-code.html#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="st">&#39;fill this in&#39;</span>,</span>
-<span id="cb16-3"><a href="expected-value-by-code.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob  =</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb16-4"><a href="expected-value-by-code.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="expected-value-by-code.html#cb24-1" aria-hidden="true" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-2"><a href="expected-value-by-code.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="st">&#39;fill this in&#39;</span>,</span>
+<span id="cb24-3"><a href="expected-value-by-code.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob  =</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb24-4"><a href="expected-value-by-code.html#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="variacne-of-a-six-sided-die" class="section level3 hasAnchor" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Variacne of a Six-Sided Die<a href="expected-value-by-code.html#variacne-of-a-six-sided-die" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die.</p>
-<ol start="5" style="list-style-type: decimal">
-<li>Using what you know about the definition of variance, write a function that will compute the variance of your <code>die</code> object.</li>
-</ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="expected-value-by-code.html#cb17-1" aria-hidden="true" tabindex="-1"></a>variance_function <span class="ot">&lt;-</span> <span class="cf">function</span>(die) { </span>
-<span id="cb17-2"><a href="expected-value-by-code.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fill this in</span></span>
-<span id="cb17-3"><a href="expected-value-by-code.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>   <span class="do">## you should index to the correct column</span></span>
-<span id="cb17-4"><a href="expected-value-by-code.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  var <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>  <span class="do">## for each, and use the correct function</span></span>
-<span id="cb17-5"><a href="expected-value-by-code.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-6"><a href="expected-value-by-code.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(var)</span>
-<span id="cb17-7"><a href="expected-value-by-code.html#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-8"><a href="expected-value-by-code.html#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="expected-value-by-code.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">variance_function</span>(die)</span></code></pre></div>
+<div id="variance-of-a-six-sided-die" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Variance of a Six-Sided Die<a href="expected-value-by-code.html#variance-of-a-six-sided-die" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die. Using what you know about the definition of variance, write a function that will compute the variance of your <code>die</code> object.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="expected-value-by-code.html#cb25-1" aria-hidden="true" tabindex="-1"></a>variance_function <span class="ot">&lt;-</span> <span class="cf">function</span>(die) { </span>
+<span id="cb25-2"><a href="expected-value-by-code.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fill this in</span></span>
+<span id="cb25-3"><a href="expected-value-by-code.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>   <span class="do">## you should index to the correct column</span></span>
+<span id="cb25-4"><a href="expected-value-by-code.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  var <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>  <span class="do">## for each, and use the correct function</span></span>
+<span id="cb25-5"><a href="expected-value-by-code.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-6"><a href="expected-value-by-code.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(var)</span>
+<span id="cb25-7"><a href="expected-value-by-code.html#cb25-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-8"><a href="expected-value-by-code.html#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="expected-value-by-code.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">variance_function</span>(die)</span></code></pre></div>
 <pre><code>## [1] &quot;fill this in&quot;</code></pre>
-<p>Suppose that you had to keep the values the same on the die, that is. That is the domain of the outcome still had to be the countable set of integers from one to six.</p>
+<div class="discussion-question">
+<p>Suppose that you had to keep the values the same on the die (that is the domain of the outcome still had to be the countable set of integers from one to six), but that you could modify the actual random process. Maybe you could sand off some of the corners on the die, or you could place weights on one side so that the side is less likely to come up. In this case, <span class="math inline">\(\omega \in \{1,2,3,4,5,6\}\)</span>, but you’re able to make a new <span class="math inline">\(f_{D}(d)\)</span>.</p>
 <ul>
 <li>How would you change the probability distribution to decrease the variance of this random variable?</li>
 <li>What is the smallest value that you can generate for this random variable? Use the <code>variance_function</code> from above to actually compute this variance.</li>
 <li>What is the largest value of variance that you can generate for this random variable? Use the <code>variance_function</code> from above to actually compute this variance.</li>
 </ul>
+</div>
+<div class="discussion-question">
 <p>Now suppose that you again had an equal probability of every outcome, but you were to apply a function to the number of spots that are showing on the die. Rather that each dot contributing one value to the random variable, instead the random variable’s outcome is the square of the number of spots.</p>
 <ul>
-<li>How would this change the mean?<br />
-</li>
+<li>How would this change the mean?</li>
 <li>How would this change the variance?</li>
 </ul>
+</div>
 </div>
 </div>
             </section>

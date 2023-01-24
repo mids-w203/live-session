@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-18" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,24 +215,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms<span></span></a></li>
 <li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples<span></span></a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]<span></span></a></li>
 <li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand<span></span></a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.2</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1<span></span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code<span></span></a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variacne of a Six-Sided Die<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing<span></span></a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable<span></span></a></li>
 <li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP<span></span></a>
 <ul>
@@ -488,6 +491,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <img src="images/yosemite.jpg" alt="" />
 <p class="caption">a majestic valley</p>
 </div>
+<p>In the last live session, we introduced random variables; probability density and cumulative density; and, made the connection between joint, marginal, and conditional distributions. All of these concepts work with the <strong>entire</strong> distribution.</p>
+<p>Take, for example, the idea of conditional probability. We noted that conditional probability is defined to be:</p>
+<p><span class="math display">\[
+  f_{Y|X}(y|x) = \frac{f_{Y,X}(y,x)}{f_{X}(x)}
+\]</span></p>
+<p>This is a powerful concept that shows a lot of the range of the reasoning system that we’ve built to this point! The probability distribution of <span class="math inline">\(Y\)</span> might change as a result of changes in <span class="math inline">\(X\)</span>. If you unpack that just a little bit more, we might say that <span class="math inline">\(f_{Y|X}(y|x)\)</span> – the probability density of <span class="math inline">\(Y\)</span> – which is itself a function, is <em>also</em> a function of <span class="math inline">\(X\)</span>. To say it again, to be very explicit: the function is a function of another input. That might sound wild, but it is all perfectly consistent with the world that we’ve built to this point.</p>
+<p>This concept is <strong>very</strong> expressive. Knowing <span class="math inline">\(f_{Y}(y)\)</span> gives a full information representation of a variable; knowing <span class="math inline">\(f_{Y|X}(y|x)\)</span> lets you update that information to make an even more informative statement about <span class="math inline">\(Y\)</span>. In <em>Foundations</em> and at this point in the class, we deal only with conditional probability conditioning on a single variable, but the process generalizes.</p>
+<p>For example, if there were four random variables, <span class="math inline">\(A, B, C, D\)</span>, we could make a statement about <span class="math inline">\(A\)</span> that conditions on <span class="math inline">\(B, C, D\)</span>:</p>
+<p><span class="math display">\[
+  f_{A|\{B,C,D\}}(a|\{b,c,d\}) = \frac{f_{A,B,C,D}(a,b,c,d)}{f_{B,C,D}(b,c,d)}
+\]</span></p>
+<p>In this week’s materials we are going to go in the <em>opposite</em> direction: Rather than producing a very expressive system of probabilities, we’re going to attempt to summarize all of the information contained in a pdf into lower-dimensional representations. Our first task will be summarizing a single random variable in two ways:</p>
+<ol style="list-style-type: decimal">
+<li>Where is the “center” of the random variable; and,</li>
+<li>How dispersed, “on average” is the random variable from this center.</li>
+</ol>
+<p>After developing the concepts of <em>expectation</em> and <em>variance</em> (which are 1 &amp; 2 above, respectively), we will develop a summary of a joint distribution: the <em>covariance</em>. The particular definitions that we choose to call expectation, variance, and covariance require justification. Why should we use these <em>particular</em> formulae as measures of the “center” and “dispersion”?</p>
+<p>We ground these summaries in the <strong>Mean Squared Error</strong> evaluative metric, as well as justifying this metric.</p>
 </div>
             </section>
 

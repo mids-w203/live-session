@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-18" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,24 +215,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms<span></span></a></li>
 <li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples<span></span></a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]<span></span></a></li>
 <li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand<span></span></a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.2</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1<span></span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code<span></span></a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variacne of a Six-Sided Die<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing<span></span></a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable<span></span></a></li>
 <li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP<span></span></a>
 <ul>
@@ -486,24 +489,24 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.7</span> Comparing Groups R Exercise<a href="comparing-groups-r-exercise.html#comparing-groups-r-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The General Social Survey (GSS) is one of the longest running and extensive survey projects in the US. The full dataset includes over 1000 variables spanning demographics, attitudes, and behaviors. The file <code>GSS_w203.RData</code> contains a small selection of a variables from the 2018 GSS.</p>
 <p>To learn about each variable, you can enter it into the search bar at the <a href="https://gssdataexplorer.norc.org/variables/vfilter">GSS data explorer</a></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="comparing-groups-r-exercise.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/GSS_w203.RData&#39;</span>)</span>
-<span id="cb30-2"><a href="comparing-groups-r-exercise.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GSS)</span></code></pre></div>
-<pre><code>##            rincome               happy                           sexnow        wwwhr           emailhr                     socrel   
-##  $25000 or more: 851   very happy   : 701   women                   :758   Min.   :  0.00   Min.   :  0.000   sev times a week:382  
-##  $20000 - 24999: 107   pretty happy :1307   man                     :640   1st Qu.:  3.00   1st Qu.:  0.000   sev times a mnth:287  
-##  $10000 - 14999:  94   not too happy: 336   transgender             :  2   Median :  8.00   Median :  2.000   once a month    :259  
-##  $15000 - 19999:  61   DK           :   0   a gender not listed here:  1   Mean   : 13.91   Mean   :  7.152   sev times a year:240  
-##  lt $1000      :  33   IAP          :   0   Don&#39;t know              :  0   3rd Qu.: 20.00   3rd Qu.: 10.000   almost daily    :217  
-##  (Other)       : 169   NA           :   0   (Other)                 :  0   Max.   :140.00   Max.   :100.000   (Other)         :171  
-##  NA&#39;s          :1033   NA&#39;s         :   4   NA&#39;s                    :947   NA&#39;s   :986      NA&#39;s   :929       NA&#39;s            :792  
-##              socommun      numpets          tvhours                           major1         owngun   
-##  never           :510   Min.   : 0.000   Min.   : 0.000   business administration: 138   yes    :537  
-##  once a month    :243   1st Qu.: 0.000   1st Qu.: 1.000   education              :  79   no     :993  
-##  sev times a week:219   Median : 1.000   Median : 2.000   engineering            :  54   refused: 39  
-##  sev times a year:196   Mean   : 1.718   Mean   : 2.938   nursing                :  51   DK     :  0  
-##  sev times a mnth:174   3rd Qu.: 2.000   3rd Qu.: 4.000   health                 :  42   IAP    :  0  
-##  (Other)         :215   Max.   :20.000   Max.   :24.000   (Other)                : 546   NA     :  0  
-##  NA&#39;s            :791   NA&#39;s   :1201     NA&#39;s   :793      NA&#39;s                   :1438   NA&#39;s   :779</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="comparing-groups-r-exercise.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/GSS_w203.RData&#39;</span>)</span>
+<span id="cb47-2"><a href="comparing-groups-r-exercise.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GSS)</span></code></pre></div>
+<pre><code>##            rincome               happy                           sexnow        wwwhr           emailhr                     socrel                socommun  
+##  $25000 or more: 851   very happy   : 701   women                   :758   Min.   :  0.00   Min.   :  0.000   sev times a week:382   never           :510  
+##  $20000 - 24999: 107   pretty happy :1307   man                     :640   1st Qu.:  3.00   1st Qu.:  0.000   sev times a mnth:287   once a month    :243  
+##  $10000 - 14999:  94   not too happy: 336   transgender             :  2   Median :  8.00   Median :  2.000   once a month    :259   sev times a week:219  
+##  $15000 - 19999:  61   DK           :   0   a gender not listed here:  1   Mean   : 13.91   Mean   :  7.152   sev times a year:240   sev times a year:196  
+##  lt $1000      :  33   IAP          :   0   Don&#39;t know              :  0   3rd Qu.: 20.00   3rd Qu.: 10.000   almost daily    :217   sev times a mnth:174  
+##  (Other)       : 169   NA           :   0   (Other)                 :  0   Max.   :140.00   Max.   :100.000   (Other)         :171   (Other)         :215  
+##  NA&#39;s          :1033   NA&#39;s         :   4   NA&#39;s                    :947   NA&#39;s   :986      NA&#39;s   :929       NA&#39;s            :792   NA&#39;s            :791  
+##     numpets          tvhours                           major1         owngun   
+##  Min.   : 0.000   Min.   : 0.000   business administration: 138   yes    :537  
+##  1st Qu.: 0.000   1st Qu.: 1.000   education              :  79   no     :993  
+##  Median : 1.000   Median : 2.000   engineering            :  54   refused: 39  
+##  Mean   : 1.718   Mean   : 2.938   nursing                :  51   DK     :  0  
+##  3rd Qu.: 2.000   3rd Qu.: 4.000   health                 :  42   IAP    :  0  
+##  Max.   :20.000   Max.   :24.000   (Other)                : 546   NA     :  0  
+##  NA&#39;s   :1201     NA&#39;s   :793      NA&#39;s                   :1438   NA&#39;s   :779</code></pre>
 <p>You have a set of questions that you would like to answer with a statistical test. <strong>For each question</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>Choose the most appropriate test.</li>

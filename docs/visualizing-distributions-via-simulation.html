@@ -24,7 +24,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-18" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,24 +215,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms<span></span></a></li>
 <li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples<span></span></a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-a-die-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of a Die [discrete random variable]<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]<span></span></a></li>
 <li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand<span></span></a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.2</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1<span></span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance<span></span></a></li>
+<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code<span></span></a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variacne-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variacne of a Six-Sided Die<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing<span></span></a>
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable<span></span></a></li>
 <li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP<span></span></a>
 <ul>
@@ -509,8 +512,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>But, we can speed this up slightly by simply telling you that <code>n</code> is the number of samples to take from the population; <code>min</code> is the low-end of the support, and <code>max</code> is the high-end of the support.</p>
 <p>If we look into this object, we can see the results of the function call. Below, we will show the first <span class="math inline">\(20\)</span> elements of the <code>samples_uniform</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-distributions-via-simulation.html#cb5-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
-<pre><code>##  [1] 4.215746 2.635914 4.213891 2.641486 2.365334 2.879419 3.718120 3.555751 3.763525 3.264678 4.125250 3.611000 3.209280 3.727918
-## [15] 2.249801 3.282331 3.187835 4.211611 2.957040 2.519272</code></pre>
+<pre><code>##  [1] 3.889776 4.195031 3.874132 2.500689 1.714201 1.363342 2.967045 1.325157 2.788520 2.611323 1.254212 3.002531 3.632068 3.016380 1.189331 2.366325 1.439981 1.177156
+## [19] 3.790873 2.144480</code></pre>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
 <p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-distributions-via-simulation.html#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
@@ -558,8 +561,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizing-distributions-via-simulation.html#cb10-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">100000</span>, <span class="at">mean=</span><span class="dv">18</span>, <span class="at">sd=</span><span class="dv">4</span>)</span></code></pre></div>
 <p>Like before, we could look at the first <span class="math inline">\(20\)</span> of these samples.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizing-distributions-via-simulation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
-<pre><code>##  [1] 16.81166 20.38086 15.57776 15.64389 20.21407 18.01708 17.52014 17.83761 20.22760 17.08060 17.37409 23.36864 14.59691 14.47746
-## [15] 21.50123 23.35356 21.26067 24.65082 15.37435 16.24400</code></pre>
+<pre><code>##  [1] 18.79615 21.40044 17.54783 21.44845 19.56193 14.46485 16.92359 19.01529 20.26668 18.09284 16.33645 17.03276 14.36506 13.73886 10.95760 16.36648 15.21418 18.57312
+## [19] 18.49654 21.43022</code></pre>
 <p>And, from here we could visualize this distribution.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizing-distributions-via-simulation.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb13-2"><a href="visualizing-distributions-via-simulation.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_normal) <span class="sc">+</span> </span>
