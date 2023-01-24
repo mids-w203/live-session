@@ -151,7 +151,7 @@ Let $X$ represent the result of one roll of a 6 sided die where the events $\ome
 - Calculating by hand, what is the expected value $X$, which we write as $E[X]$?
 - After you have calculated $E[X]$: Is it possible that the result of a roll is this value?
 
-```{r}
+```{r, results='asis'}
 blank_lines(20)
 ```
 
@@ -175,7 +175,7 @@ blank_lines(20)
 ```
 :::
 
-```{r}
+```{r, results='asis'}
 blank_lines(20)
 ```
 
@@ -185,7 +185,7 @@ Let $X$ represent the result of one roll of a 6 sided die.
 
 -   Calculating by hand, what is the variance of $X$?
 
-```{r}
+```{r, results='asis'}
 blank_lines(20)
 ```
 
@@ -195,7 +195,7 @@ blank_lines(20)
 - How much do you expect to make on any particular time that you play the game with the best strategy? 
 :::
 
-```{r}
+```{r, results='asis'}
 blank_lines(20)
 ```
 
