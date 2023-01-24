@@ -1,6 +1,0 @@
-latex2exp
-lmtest
-sandwich
-wooldridge
-car
-stargazer
