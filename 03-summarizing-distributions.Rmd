@@ -299,7 +299,7 @@ support <- seq(from=0, to=2, by=0.01)
 
 ```{r}
 ggplot() + 
-  geom_function(fun = pdf_func) + 
+  geom_function(fun = pdf_fun) + 
   xlim(min(support), max(support))
 ```
 
@@ -311,14 +311,14 @@ expected_value <- function(value, prob){
 mse <- function(c) { 
   expected_value(
     value = (support - c)^2, 
-    prob  = pdf_func(support)
+    prob  = pdf_fun(support)
   )  
 }
 
 mpe <- function(c, power) { 
   expected_value(
     value = (support - c)^power, 
-    prob  = pdf_func(support)
+    prob  = pdf_fun(support)
   )
 }
 
@@ -330,7 +330,7 @@ optim(
 ```
 
 
-```{r}
+```{r,include=FALSE, eval=FALSE}
 mean_absolute_error <- Vectorize(
   function(c) { 
     x_values <- pdf_func(input_range)
@@ -408,7 +408,7 @@ lines(
 abline(v=1.5, col = 'darkred')
 ```
 
-```{r}
+```{r, include=FALSE, eval=FALSE}
 optim(
   par = 0, 
   fn = mean_square_error, 
