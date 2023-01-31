@@ -265,6 +265,38 @@ Suppose that $X$ has the following density function:
 ::: 
 
 ### Joint Density
+#### What's the covariance, meow? [discrete]
+
+In the reading, you saw that we define **covariance** to be: 
+
+\begin{aligned}
+Cov[X,Y]    &= E[(E[X] - X)^{2}(E[Y] - Y)^{2}] \\ 
+            &= E[XY] - E[X]E[Y]
+\end{aligned} 
+
+And, **correlation** to be a rescaled version of *covariance*: 
+
+\[
+\begin{aligned}
+Cor[X,Y]    & \equiv \rho[X,Y] \\ 
+            & = \frac{Cov[X,Y]}{\sigma_{X}\sigma_{Y}} \\
+\end{aligned}            
+\]
+
+::: {.discussion-question} 
+Suppose that $X$ and $Y$ are discrete random variables, where $X$ represents number of office hours attended, and $Y$ represents owning a cat. Furthermore, suppose that $X$ and $Y$ have the joint pmf,
+
+f(x,y)   y=0    y=1   
+------- ------ ------ 
+    x=0  0.10   0.35   
+    x=1  0.05   0.05 
+    x=2  0.10   0.35  
+      
+1.  Calculate the covariance of $X$ and $Y$.
+2.  Are X and Y independent? Why or why not?
+::: 
+
+#### 
 
 ::: {.discussion-question}
 Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y$ for $0 < y \leq x \leq 1. $
