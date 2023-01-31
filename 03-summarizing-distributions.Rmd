@@ -352,12 +352,6 @@ mpe <- function(c, power) {
     prob  = pdf_fun(support)
   )
 }
-
-optim(
-  par = 1, 
-  fn = mpe, 
-  power = 4
-)
 ```
 
 ```{r,include=FALSE, eval=FALSE}
