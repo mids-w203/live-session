@@ -361,46 +361,45 @@ optim(
 )
 ```
 
-
 ```{r,include=FALSE, eval=FALSE}
-mean_absolute_error <- Vectorize(
-  function(c) { 
-    x_values <- pdf_func(input_range)
-    mae_     <- mean(abs(x_values - c))
-    }
-)
+mean_absolute_error <- function(c) { 
+  x_values <- pdf_func(input_range)
+  mae_     <- mean(abs(x_values - c))
+}
 
-mean_square_error <- Vectorize(
-  function(c) { 
-    x_values <- pdf_func(input_range)
-    mse_     <- sum(((input_range - c)^2) * x_values)
-    return(mse_)
-  }
-)
+mean_square_error <- function(c) { 
+  x_values <- pdf_func(input_range)
+  mse_     <- sum(((input_range - c)^2) * x_values)
+  return(mse_)
+}
 
-mean_cubic_error <- Vectorize(
-  function(c) { 
-    x_values <- pdf_func(input_range) 
-    mce_     <- mean((x_values - c)^3)
-    }
-)
+mean_cubic_error <- function(c) { 
+  x_values <- pdf_func(input_range) 
+  mce_     <- mean((x_values - c)^3)
+}
 
-mean_quadratic_error <- Vectorize(
-  function(c) { 
-    x_values <- pdf_func(input_range)
-    mqe_     <- mean((x_values - c)^4)
-    return(mqe_)
-  }
-)
+mean_quadratic_error <- function(c) { 
+  x_values <- pdf_func(input_range)
+  mqe_     <- mean((x_values - c)^4)
+  return(mqe_)
+}
 
-mean_power_error <- Vectorize(
-  function(c, power) { 
-    x_values <- pdf_func(input_range)
-    m_power_e_     <- mean((x_values - c)^power)
-    return(m_power_e_)
-    }
-)
+mean_power_error <- function(c, power) { 
+  x_values <- pdf_func(input_range)
+  m_power_e_     <- mean((x_values - c)^power)
+  return(m_power_e_)
+}
+```
 
+```{r vectorize functions} 
+mean_absolute_error  <- Vectorize(mean_absolute_error)
+mean_square_error    <- Vectorize(mean_square_error)
+mean_cubic_error     <- Vectorize(mean_cubic_error)
+mean_quadratic_error <- Vectorize(mean_quadratic_error)
+mean_power_error     <- Vectorize(mean_power_error)
+```
+
+```{r}
 mae_ <- mean_absolute_error(
   c = input_range
 )
@@ -413,7 +412,9 @@ mce_ <- mean_cubic_error(
 mqe_ <- mean_quadratic_error(
   c = input_range
 )
+```
 
+```{r}
 plot(
   x = input_range,
   y = mse_,
@@ -431,12 +432,6 @@ lines(
   type = 'l', 
   col = '#FDB515'
 )
-# lines(
-#   x = input_range, 
-#   y = mce_, 
-#   type = 'l', 
-#   col = '#FDB515'
-# )
 abline(v=1.5, col = 'darkred')
 ```
 
