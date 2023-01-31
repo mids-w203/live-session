@@ -307,17 +307,16 @@ Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y$ for $0 < y 
 :::
 
 ## Write Code
-
 Suppose that you have a random variable with a **gnarly** probability distribution function:
 
 $$ 
   f_{X}(x) = \frac{3*\left(x - 2x^2 + x^3\right)}{2}, 0\leq x\leq 2
 $$
 
-If you had to pick a single value that minimizes the MSE of this function, what would it be?
+If you had to pick a single value that minimizes the $MSE$ of this function, what would it be?
 
 -   First, how would you approach this problem *analytically*. By this, we mean, "how would you solve this with the closed form answer?
--   Second, how might you approach this problem *computationally*. By this, we mean, "how might you write code that would produce a numeric approximation of the closed form solution?"
+-   Second, how might you approach this problem *computationally*. By this, we mean, "how might you write code that would produce a numeric approximation of the closed form solution?" Don't worry about actually writing the code -- we'll have done that for you, but what is the *process* (called in our world, *algorithm*) that you would use to determine the value that produces the smallest $MSE$? 
 
 ```{r}
 pdf_fun <- function(x) { 
