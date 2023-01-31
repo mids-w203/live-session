@@ -18,7 +18,9 @@ knitr::knit_engines$set(notes = function(options) {
 
 One of our most fundamental goals as data scientists is to produce predictions that are *good*. In this week's async, we make a statement of performance that we can use to evaluate how good a job a predictor is doing, choosing Mean Squared Error. 
 
-With the goal of minimizing MSE, then we then present, justify, and prove that the conditional expectation function (*the CEF*) is the globally best possible predictor. This is an incredible powerful result, and one that serves as the backstop for **every** other predictor that you will ever fit, whether that predictor is a "simple" regression, or that predictor is a machine learning algorithms (e.g. a random forest) or a deep learning algorithm. Read that again -- even the most technologically advanced algorithms *cannot possibly* perform better than the conditional expectation function. 
+With the goal of minimizing $MSE$, then we then present, justify, and prove that the conditional expectation function (*the CEF*) is the globally best possible predictor. This is an incredibly powerful result, and one that serves as the backstop for **every** other predictor that you will ever fit, whether that predictor is a "simple" regression, or that predictor is a machine learning algorithms (e.g. a random forest) or a deep learning algorithm. Read that again:
+
+> Even the most technologically advanced machine learning algorithms *cannot possibly* perform better than the conditional expectation function at making a prediction. 
 
 Why does the CEF do so well? Because it can contain a *vast* amount of complex information and relationships; in fact, the complexity of the CEF is a product of the complexity of the underlying probability space. If that is the case, then why don't we just use the CEF as our predictor every time? 
 
@@ -133,37 +135,19 @@ ggplot() +
   theme_void()
 ```
 
+### Simple Quantities 
+
 To begin with, let's compute the simplest quantities: 
 
 - What is the expectation of $X$? 
 - What is the expectation of $Y$? 
-- How would you compute the variance of $X$? (We're not going to do it live). 
+- How would you compute the variance of $X$? (We're not going to do it live).
 
-And then, let's think about how to compute the conditional quantites: 
+### Conditional Quantities
 
-- What is the conditional expectation of $Y$, given that $X=x=0$? 
-- What is the conditional expectation of $Y$, given that $X=x=0.5$? 
-- What is the conditional expectation of $X$, given that $Y=y=0.5$? 
-- Which of the two of these has a lower conditional variances? 
-  - $V[Y|X=0.25]$; or, 
-  - $V[Y|X=0.75]$. 
-- How does $V[Y]$ compare to $V[Y|X=1]$? Which is larger? 
+#### Conditional Expectaiton 
 
-## Conditional Functionals
-
-Suppose that you were told that $X$ and $Y$ are jointly distributed according to the following joint density function: 
-
-$$ 
-  f_{X,Y}(x,y) = 
-    \begin{cases}
-      2 & 0 \leq x \leq 1, 0 \leq y \leq x \\ 
-      0 & otherwise
-    \end{cases}
-$$ 
-
-### Conditional Expectation
-
-**What is the conditional expectation function?** To get started, you can use the fact that in week two, we already computed the conditional probability density function: 
+And then, let's think about how to compute the conditional quantities. To get started, you can use the fact that in week two, we already computed the conditional probability density function: 
 
 $$
 f_{Y|X}(y|x) = \begin{cases}
@@ -171,6 +155,9 @@ f_{Y|X}(y|x) = \begin{cases}
   0,           & \text{otherwise.}
 \end{cases}
 $$
+
+With this knowledge on hand, compute the $CEF[Y|X]$. 
+
 ```{notes, include = FALSE} 
 \begin{aligned} 
   E[Y|X=x] &= \int_{0}^{x} y \cdot f_{Y|X}(y|x) dy \\ 
@@ -184,7 +171,13 @@ $$
 blank_lines(n=10)
 ```
 
-### Conditional Variance
+Once you have computed the $CEF[Y|X]$, use this function to answer the following questions: 
+
+- What is the conditional expectation of $Y$, given that $X=x=0$? 
+- What is the conditional expectation of $Y$, given that $X=x=0.5$? 
+- What is the conditional expectation of $X$, given that $Y=y=0.5$? 
+
+#### Conditional Variance 
 
 - What is the conditional variance function?^[Take a moment to strategize just a little bit before you get going on this one. There is a way to compute this value that is easier than another way to compute this value.]
 
@@ -214,7 +207,15 @@ The curious among you might want to compare this value to the $V[Y]$. To do so, 
 blank_lines(20)
 ```
 
-## Breakout Activity
+- Which of the two of these has a lower conditional variances? 
+  - $V[Y|X=0.25]$; or, 
+  - $V[Y|X=0.75]$. 
+
+- How does $V[Y]$ compare to $V[Y|X=1]$? Which is larger? 
+
+### Conditional Expectation
+
+## Minimizing the MSE 
 
 ### Minimizing MSE
 
@@ -297,4 +298,33 @@ Why Linear?
 - **Questions:** 
   - Compute the expectation of $Y$, conditional on $X$, $E[Y|X]$ 
   - Using the law of iterated expectations, compute $E[Y] = E\big[E[Y|X]\big]$. 
+
+### Continuous BLP
+
+- Recall the PDF that we worked with earlier to produce the $CEF[Y|X]. 
+
+$$
+f(x,y) = 
+  \begin{cases}
+    2, & 0 \leq x \leq 1, 0 \leq y \leq x \\
+    0, & otherwise
+\end{cases}
+$$
+
+Find the $BLP$ for $Y$ as a function of $X$. What, if anything, do you notice about this $BLP$ and the $CEF$? 
+
+```{r, echo = FALSE}
+blank_lines(20)
+```
+
+```{notes, include = FALSE} 
+- BLP = Cov[X,Y]/V[X] = (E[XY] - E[X]E[Y]) / (E[XX] - E[X]E[Y])
+- f_{X}(x) = 2x
+- f_{Y}(y) = 2(1-y)
+- E[X] = 2/3
+- E[Y] = 1/3
+- E[XY] = 1/4
+- E[XX] = 1/2
+- BLP = 1/2 
+```
 
