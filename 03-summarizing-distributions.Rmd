@@ -136,12 +136,12 @@ ggplot() +
 
 -   Does the following formula match with your intuitive description of the *expected value*? Why, or why not?
 
-$$
+\[
   \begin{aligned}
   E[X] &= \sum_{x \in \{EDU\}} x \cdot f(x) \\ 
        &= \sum_{x=0}^{x=28} x\cdot P(X=x)
   \end{aligned}
-$$
+\]
 
 ## Computing by Hand
 ### Compute the Expected Value
@@ -269,10 +269,12 @@ Suppose that $X$ has the following density function:
 
 In the reading, you saw that we define **covariance** to be: 
 
+\[
 \begin{aligned}
 Cov[X,Y]    &= E[(E[X] - X)^{2}(E[Y] - Y)^{2}] \\ 
             &= E[XY] - E[X]E[Y]
 \end{aligned} 
+\]
 
 And, **correlation** to be a rescaled version of *covariance*: 
 
@@ -299,7 +301,7 @@ f(x,y)   y=0    y=1
 #### 
 
 ::: {.discussion-question}
-Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y$ for $0 < y \leq x \leq 1. $
+Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y, 0 < y \leq x \leq 1.$
 
 -   Find $E[X]$
 -   Find $E[EY]$
