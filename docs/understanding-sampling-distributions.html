@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.3 Understanding Sampling Distributions | Statistics for Data Science</title>
+  <title>5.6 Understanding Sampling Distributions | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.3 Understanding Sampling Distributions | Statistics for Data Science" />
+  <meta property="og:title" content="5.6 Understanding Sampling Distributions | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.3 Understanding Sampling Distributions | Statistics for Data Science" />
+  <meta name="twitter:title" content="5.6 Understanding Sampling Distributions | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,15 +23,15 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-06" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="key-terms-and-assumptions.html"/>
-<link rel="next" href="uncertainty.html"/>
+<link rel="prev" href="estimator-property-consistency.html"/>
+<link rel="next" href="write-code-to-demo-the-central-limit-theorem-clt.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -284,21 +284,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.2</b> Key Terms and Assumptions</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#iid"><i class="fa fa-check"></i><b>5.2.1</b> IID</a></li>
-<li class="chapter" data-level="5.2.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.2.2</b> Definitions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Understanding Sampling Distributions</a></li>
-<li class="chapter" data-level="5.4" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.4</b> Uncertainty</a></li>
-<li class="chapter" data-level="5.5" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.5</b> Standard Errors</a></li>
-<li class="chapter" data-level="5.6" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.6</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<li class="chapter" data-level="5.3" data-path="estimators.html"><a href="estimators.html"><i class="fa fa-check"></i><b>5.3</b> Estimators</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.6.1</b> Motivating the Central Limit Theorem (CLT)</a></li>
-<li class="chapter" data-level="5.6.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.6.2</b> Sampling from the Bernoulli Distribution in R</a></li>
-<li class="chapter" data-level="5.6.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.6.3</b> Useful R Commands</a></li>
+<li class="chapter" data-level="5.3.1" data-path="estimators.html"><a href="estimators.html#three-properties-of-estimators"><i class="fa fa-check"></i><b>5.3.1</b> Three properties of estimators</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.7</b> Exercise</a>
+<li class="chapter" data-level="5.4" data-path="estimator-property-biased-or-unbiased.html"><a href="estimator-property-biased-or-unbiased.html"><i class="fa fa-check"></i><b>5.4</b> Estimator Property: Biased or Unbiased?</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.7.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="5.4.1" data-path="estimator-property-biased-or-unbiased.html"><a href="estimator-property-biased-or-unbiased.html#is-it-unbiased-with-data"><i class="fa fa-check"></i><b>5.4.1</b> Is it unbiased, with data?</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="estimator-property-consistency.html"><a href="estimator-property-consistency.html"><i class="fa fa-check"></i><b>5.5</b> Estimator Property: Consistency</a></li>
+<li class="chapter" data-level="5.6" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.6</b> Understanding Sampling Distributions</a></li>
+<li class="chapter" data-level="5.7" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.7</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-1"><i class="fa fa-check"></i><b>5.7.1</b> Part 1</a></li>
+<li class="chapter" data-level="5.7.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-2"><i class="fa fa-check"></i><b>5.7.2</b> Part 2</a></li>
+<li class="chapter" data-level="5.7.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-3"><i class="fa fa-check"></i><b>5.7.3</b> Part 3</a></li>
+<li class="chapter" data-level="5.7.4" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#discussion-questions-about-the-clt"><i class="fa fa-check"></i><b>5.7.4</b> Discussion Questions About the CLT</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="errors-with-standard-errors.html"><a href="errors-with-standard-errors.html"><i class="fa fa-check"></i><b>5.8</b> Errors with Standard Errors</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
 <ul>
@@ -350,7 +354,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="working-on-math.html"><a href="working-on-math.html"><i class="fa fa-check"></i><b>8.5</b> Working on Math</a></li>
 <li class="chapter" data-level="8.6" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>8.6</b> Visualizing Data</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions-1"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html"><i class="fa fa-check"></i><b>8.7</b> The Regression Anatomy Formula</a></li>
 <li class="chapter" data-level="8.8" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.8</b> Coding Activity:R Cheat Sheet</a></li>
@@ -370,7 +374,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap</a></li>
 <li class="chapter" data-level="9.4" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html"><i class="fa fa-check"></i><b>9.4</b> Uncertainty in OLS</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-2"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-1"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html"><i class="fa fa-check"></i><b>9.5</b> Understanding Uncertainty</a>
 <ul>
@@ -484,28 +488,78 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="understanding-sampling-distributions" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Understanding Sampling Distributions<a href="understanding-sampling-distributions.html#understanding-sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="understanding-sampling-distributions" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Understanding Sampling Distributions<a href="understanding-sampling-distributions.html#understanding-sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How do sampling distributions change as we add data to them? This is going to both motivate convergence, and also play forward into the Central Limit Theorem.
+Let’s work through an example that begins with a case that we can think through and draw ourselves. Once we feel pretty good about the <em>very</em> small sample, then we will rely on R to do the work when we expand the example beyond what we can draw ourselves.</p>
+<div class="discussion-question">
+<p>Suppose that <span class="math inline">\(X\)</span> is a Bernoulli random variable representing an unfair coin. Suppose that the coin has a 70% chance of coming up heads: <span class="math inline">\(P(X=1) = 0.7\)</span>.</p>
 <ul>
-<li>Let <span class="math inline">\(X\)</span> be a Bernoulli random variable representing an unfair coin with <span class="math inline">\(P(X=1) = 0.7\)</span>.</li>
-<li>You have an iid sample of size 2, <span class="math inline">\((X_1,X_2)\)</span>.</li>
-<li>Compute the sampling distribution of <span class="math inline">\(\overline X = \frac{X_1+X_2}{2}\)</span>.</li>
+<li>To begin, suppose that you take that coin, and you toss it two times: you have an iid sample of size 2, <span class="math inline">\((X_1,X_2)\)</span>.</li>
+<li><em>What is the sampling distribution of the sample average, of this sample of size two?</em></li>
+<li>On the axes below, draw the probability distribution of <span class="math inline">\(\overline X = \frac{X_1+X_2}{2}\)</span>.</li>
 </ul>
+</div>
 <p><img src="203-live-session_files/figure-html/make%20axes-1.png" width="672" /></p>
-<p><strong>Questions:</strong></p>
+<div class="discussion-question">
 <ul>
+<li>What if you took four samples? What would the sampling distribution of <span class="math inline">\(\overline{X}\)</span> look like? <em>Draw this onto the axis above.</em></li>
 <li>Explain the difference between a population distribution and the sampling distribution of a statistic.</li>
-<li>As we toss more and more coins, <span class="math inline">\(\overline X_{(100)} \rightarrow \overline X_{(10000)}\)</span> what will the value of <span class="math inline">\(\overline X\)</span> get closer to? What law generates this, and why does this law generate this result?</li>
 <li>Why do we want to know things about the sampling distribution of a statistic?</li>
 </ul>
+</div>
+<p>We are going to write a function that, essentially, just wraps a built-in function with a new name and new function arguments. This is, generally, bad coding practice – because it is changing the default lexicon than a collaborator needs to be aware of – but it is useful for teaching purposes here.</p>
+<ul>
+<li>The <code>number_of_simulations</code> argument to the <code>toss_coin</code> function basically just adjusts the precision of our simulation study.</li>
+<li>Let’s set, and keep this at <span class="math inline">\(1000\)</span> simulations. But, if you’re curious, you could set this to be <span class="math inline">\(5\)</span>, or <span class="math inline">\(10\)</span> and evaluate what happens.</li>
+</ul>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="understanding-sampling-distributions.html#cb40-1" aria-hidden="true" tabindex="-1"></a>toss_coin <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb40-2"><a href="understanding-sampling-distributions.html#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_simulations=</span><span class="dv">1000</span>, </span>
+<span id="cb40-3"><a href="understanding-sampling-distributions.html#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_tosses=</span><span class="dv">2</span>, </span>
+<span id="cb40-4"><a href="understanding-sampling-distributions.html#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob_heads=</span><span class="fl">0.7</span>) { </span>
+<span id="cb40-5"><a href="understanding-sampling-distributions.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-6"><a href="understanding-sampling-distributions.html#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## number of simulations is just how many times we want to re-run the experiment</span></span>
+<span id="cb40-7"><a href="understanding-sampling-distributions.html#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## number of tosses is the number of coins we&#39;re going to toss.</span></span>
+<span id="cb40-8"><a href="understanding-sampling-distributions.html#cb40-8" aria-hidden="true" tabindex="-1"></a>  number_of_heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n=</span>number_of_simulations, <span class="at">size=</span>number_of_tosses, <span class="at">prob=</span>prob_heads)</span>
+<span id="cb40-9"><a href="understanding-sampling-distributions.html#cb40-9" aria-hidden="true" tabindex="-1"></a>  sample_average  <span class="ot">&lt;-</span> number_of_heads <span class="sc">/</span> number_of_tosses</span>
+<span id="cb40-10"><a href="understanding-sampling-distributions.html#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sample_average)</span>
+<span id="cb40-11"><a href="understanding-sampling-distributions.html#cb40-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-12"><a href="understanding-sampling-distributions.html#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="understanding-sampling-distributions.html#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>)</span></code></pre></div>
+</details>
+<pre><code>##  [1] 1.0 1.0 0.5 1.0 1.0 0.5 1.0 1.0 1.0 1.0</code></pre>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="understanding-sampling-distributions.html#cb42-1" aria-hidden="true" tabindex="-1"></a>coin_result <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
+<span id="cb42-2"><a href="understanding-sampling-distributions.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">1000</span>,</span>
+<span id="cb42-3"><a href="understanding-sampling-distributions.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> <span class="dv">2</span>, </span>
+<span id="cb42-4"><a href="understanding-sampling-distributions.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.7</span></span>
+<span id="cb42-5"><a href="understanding-sampling-distributions.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb42-6"><a href="understanding-sampling-distributions.html#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="understanding-sampling-distributions.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb42-8"><a href="understanding-sampling-distributions.html#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result) <span class="sc">+</span> </span>
+<span id="cb42-9"><a href="understanding-sampling-distributions.html#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb42-10"><a href="understanding-sampling-distributions.html#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">1</span>, <span class="at">by=</span><span class="fl">0.1</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>)) <span class="sc">+</span> </span>
+<span id="cb42-11"><a href="understanding-sampling-distributions.html#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.7</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span></code></pre></div>
+</details>
+<p><img src="203-live-session_files/figure-html/toss%20coins%20and%20plot-1.png" width="672" /></p>
+<div class="discussion-question">
+<p>In the plot that you have drawn above, pick some value, <span class="math inline">\(\epsilon\)</span> that is the distance away from the true expected value of this distribution.</p>
+<ul>
+<li>What proportion of the sampling distribution is further away than <span class="math inline">\(E[X] \pm \epsilon\)</span>?</li>
+<li>When we toss the coin only two times, we can quickly draw out the distribution of <span class="math inline">\(\overline{X}\)</span>, and can form a statement about the <span class="math inline">\(P(E[X] - \epsilon \leq \overline{X} \leq E[X] + \epsilon)\)</span>.</li>
+<li>What if we toss the coin ten times? We can still use the IID nature of the coin to figure out the <em>true</em> <span class="math inline">\(P(\overline{X} = 0), P(\overline{X} = 1), \dots, P(\overline{X} = 10)\)</span>, but it is going to start to take some time. This is where we rely on the simulation to start speeding up our learning.</li>
+<li>As we toss more and more coins, <span class="math inline">\(\overline X_{(100)} \rightarrow \overline X_{(10000)}\)</span> what will the value of <span class="math inline">\(\overline X\)</span> get closer to? What law generates this, and why does this law generate this result?</li>
+</ul>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="key-terms-and-assumptions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="uncertainty.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estimator-property-consistency.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="write-code-to-demo-the-central-limit-theorem-clt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

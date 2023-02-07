@@ -88,7 +88,7 @@ Every one of the instructors shares a core identity as an empathetic educator th
 
 In a breakout room of between three and four students introduce yourself! 
 
-::: {.breakout data-latex=""}
+::: {.breakout}
 **Breakout One.** A *name story* is the unique, and individual story that describes how you came to have the name that you do. While there may be many people are called the same thing, each of their name stories is unique. 
 
 Please share: *What is your name story?*
@@ -99,7 +99,7 @@ Please share: *What is your name story?*
 
 In the same breakout room: 
 
-::: {.breakout data-latex=""}
+::: {.breakout}
 **Breakout Two.**
 Like our names, the reasons that we joined this program, our goals and our histories are different. 
 
@@ -134,7 +134,7 @@ The second additional aim that we have for this course is that it can serve as e
 
 The book makes a point of defining our axioms of probability, calling them them
 
-::: {.definition data-latex=""}
+::: {.definition }
 *Kolmogorov Axioms*
 
 Let $\Omega$ be a sample space, $S$ be an event space, and $P$ be a probability measure. Then, $(\Omega, S, P)$ is a *probability space* if it satisfies the following: 
@@ -162,19 +162,19 @@ In many ways, these axioms are the fundamental particles that hold our system of
 
 What is the difference between a definition and a theorem? On pages 10 and 11 of the textbook, there is a rapid fire collection of pink boxes. We reproduce them here (notice that they may have different index numbers than the book -- this live session book autoindexes and we're not including every theorem and definition in this live session discussion guide). 
 
-::: {.definition data-latex=""}
+::: {.definition }
 *Conditional Probability* For $A, B \in S$ with $P(B) > 0$, the *conditional probablity* of $A$ given $B$ is $$P(A|B) = \frac{P(A\cap B)}{P(B)}.$$
 :::
 
-::: {.theorem data-latex=""}
+::: {.theorem }
 *Multiplicative Law of Probability* For $A, B \in S$ with $P(B) > 0$, $$P(A|B)P(B) = P(A \cap B)$$
 :::
 
-::: {.theorem data-latex=""}
+::: {.theorem }
 *Baye's Rule* For $A, B \in S$ with $P(A) > 0$ and $P(B) > 0$, $$P(A|B) = \frac{P(B|A)P(A)}{P(B)}.$$
 :::
 
-::: {.discussion-question data-latex=""}
+::: {.discussion-question }
 - What would happen to the statement of the *Multiplicative Law of Probability* if we did not have the definition of *Conditional Probability*? 
 - How does one get from the definition, to the law? 
 - Can one get to *Baye's Rule* wihtout using the *Multiplicative Law of Probability*? 
@@ -184,7 +184,7 @@ What is the difference between a definition and a theorem? On pages 10 and 11 of
 
 As a way to begin lets define terms that we will use for the next activities. 
 
-::: {.discussion-question data-latex=""}
+::: {.discussion-question }
 **Group Discussion Question** 
 
 - What is the definition of a sample space? 
@@ -224,7 +224,7 @@ The book provides a (characteristically) terse statement of what it means for tw
 *Independence of Events* Events $A, B \in S$ are *independent* if $$P(A \cap B) = P(A)P(B)$$. 
 ::: 
 
-::: {.dicussion-question} 
+::: {.discussion-question} 
 In your own words: 
 
 - What does it mean for two events to be independent of one another? 

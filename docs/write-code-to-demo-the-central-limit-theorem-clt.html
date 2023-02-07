@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.6 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science</title>
+  <title>5.7 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.6 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science" />
+  <meta property="og:title" content="5.7 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.6 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science" />
+  <meta name="twitter:title" content="5.7 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,15 +23,15 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-06" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="standard-errors.html"/>
-<link rel="next" href="exercise.html"/>
+<link rel="prev" href="understanding-sampling-distributions.html"/>
+<link rel="next" href="errors-with-standard-errors.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -284,21 +284,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.2</b> Key Terms and Assumptions</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#iid"><i class="fa fa-check"></i><b>5.2.1</b> IID</a></li>
-<li class="chapter" data-level="5.2.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.2.2</b> Definitions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Understanding Sampling Distributions</a></li>
-<li class="chapter" data-level="5.4" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.4</b> Uncertainty</a></li>
-<li class="chapter" data-level="5.5" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.5</b> Standard Errors</a></li>
-<li class="chapter" data-level="5.6" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.6</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<li class="chapter" data-level="5.3" data-path="estimators.html"><a href="estimators.html"><i class="fa fa-check"></i><b>5.3</b> Estimators</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.6.1</b> Motivating the Central Limit Theorem (CLT)</a></li>
-<li class="chapter" data-level="5.6.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.6.2</b> Sampling from the Bernoulli Distribution in R</a></li>
-<li class="chapter" data-level="5.6.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.6.3</b> Useful R Commands</a></li>
+<li class="chapter" data-level="5.3.1" data-path="estimators.html"><a href="estimators.html#three-properties-of-estimators"><i class="fa fa-check"></i><b>5.3.1</b> Three properties of estimators</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.7</b> Exercise</a>
+<li class="chapter" data-level="5.4" data-path="estimator-property-biased-or-unbiased.html"><a href="estimator-property-biased-or-unbiased.html"><i class="fa fa-check"></i><b>5.4</b> Estimator Property: Biased or Unbiased?</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.7.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="5.4.1" data-path="estimator-property-biased-or-unbiased.html"><a href="estimator-property-biased-or-unbiased.html#is-it-unbiased-with-data"><i class="fa fa-check"></i><b>5.4.1</b> Is it unbiased, with data?</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="estimator-property-consistency.html"><a href="estimator-property-consistency.html"><i class="fa fa-check"></i><b>5.5</b> Estimator Property: Consistency</a></li>
+<li class="chapter" data-level="5.6" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.6</b> Understanding Sampling Distributions</a></li>
+<li class="chapter" data-level="5.7" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.7</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-1"><i class="fa fa-check"></i><b>5.7.1</b> Part 1</a></li>
+<li class="chapter" data-level="5.7.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-2"><i class="fa fa-check"></i><b>5.7.2</b> Part 2</a></li>
+<li class="chapter" data-level="5.7.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-3"><i class="fa fa-check"></i><b>5.7.3</b> Part 3</a></li>
+<li class="chapter" data-level="5.7.4" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#discussion-questions-about-the-clt"><i class="fa fa-check"></i><b>5.7.4</b> Discussion Questions About the CLT</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="errors-with-standard-errors.html"><a href="errors-with-standard-errors.html"><i class="fa fa-check"></i><b>5.8</b> Errors with Standard Errors</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
 <ul>
@@ -350,7 +354,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="working-on-math.html"><a href="working-on-math.html"><i class="fa fa-check"></i><b>8.5</b> Working on Math</a></li>
 <li class="chapter" data-level="8.6" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>8.6</b> Visualizing Data</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions-1"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html"><i class="fa fa-check"></i><b>8.7</b> The Regression Anatomy Formula</a></li>
 <li class="chapter" data-level="8.8" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.8</b> Coding Activity:R Cheat Sheet</a></li>
@@ -370,7 +374,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap</a></li>
 <li class="chapter" data-level="9.4" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html"><i class="fa fa-check"></i><b>9.4</b> Uncertainty in OLS</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-2"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-1"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html"><i class="fa fa-check"></i><b>9.5</b> Understanding Uncertainty</a>
 <ul>
@@ -484,60 +488,63 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="write-code-to-demo-the-central-limit-theorem-clt" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Write Code to Demo the Central Limit Theorem (CLT)<a href="write-code-to-demo-the-central-limit-theorem-clt.html#write-code-to-demo-the-central-limit-theorem-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="motivating-the-central-limit-theorem-clt" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Motivating the Central Limit Theorem (CLT)<a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Standard Errors tell us a lot about the uncertainty in our statistics</li>
-<li>But we want to say more:
-<ul>
-<li>How confident are we that this vitamin has a positive effect?</li>
-<li>How plausible is a mean income $1000 below our estimate?</li>
-</ul></li>
-<li>For these questions, we need to know the sampling distribution of our statistic.</li>
-<li>How is this possible when we don’t know the population distribution?</li>
-</ul>
+<div id="write-code-to-demo-the-central-limit-theorem-clt" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Write Code to Demo the Central Limit Theorem (CLT)<a href="write-code-to-demo-the-central-limit-theorem-clt.html#write-code-to-demo-the-central-limit-theorem-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you were reading for this week, did you sense the palpable <em>joy</em> of the authors when they were writing about the central limit theorem?</p>
+<blockquote>
+<p>We now preset what is often considered the most profound and important theorem in statistics.</p>
+</blockquote>
+<p>Wow. What excitement.</p>
+<p>On its own, the result that <em>across a broad range of generative functions the distribution of sample averages converges in distribution to follow a normal distribution</em> would be a statistical curiosity. Along the lines of “did you know that dinosaurs might have had feathers,” or, “avocado trees reproduce using ’protogynous dichogamy”. While these factoids might be useful on your quiz-bowl team, they don’t get us very far down the line as practicing data scientists.</p>
+<p>However, there is a <strong>very</strong> useful consequence of this convergence in distribution that we will explore in detail over the coming two weeks: because <em>so many</em> distributions produce sample averages that converge in distribution to a normal distribution, we can put together a testing framework for sample averages that works for an <em>agnostic</em> set of random variables. Wait for that next week, but know that there’s a reason that we’re as excited about this statement as we are.</p>
+<div id="part-1" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Part 1<a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To begin with, we will use fair coins that have an equal probability landing heads and tails.</p>
+<div class="discussion-question">
+<ol style="list-style-type: decimal">
+<li>Modify the function argument below so that it conduct <strong>one</strong> simulations, and in each simulation tosses <strong>ten</strong> coins, each with an <strong>equal</strong> probability of landing heads and tails. Look into the <code>toss_coin</code> function: is there a point that this function is producing a sample average? If so, where?</li>
+<li>Save values from the <code>toss_coin</code> function into an object, called <code>sample_mean</code>.</li>
+</ol>
 </div>
-<div id="sampling-from-the-bernoulli-distribution-in-r" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Sampling from the Bernoulli Distribution in R<a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>To demonstrate the CLT, we chose a Bernoulli distribution with parameter <span class="math inline">\(p\)</span>.
-<ul>
-<li>This distribution is very simple</li>
-<li>This distribution is non-normal, and can be very skewed depending on <span class="math inline">\(p\)</span>.</li>
-</ul></li>
-<li>First, set <code>p=0.5</code> so your population distribution is symmetric. Use a variable <code>n</code> to represent your sample size. Initially, set <code>n=3</code>.</li>
-</ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb34-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb34-2"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb34-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span></code></pre></div>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toss_coin()</span></span></code></pre></div>
+</details>
+<div class="discussion-question">
+<p>The sample mean is a random variable – it is a function that maps from a random generative process’ sample space (the number of heads shown on dice) to the real numbers. To try to make this clear, visualize a larger number of simulations on the <code>toss_coin</code> function. That is, increase the <code>number_of_simulations</code> to be 10, or 100. and plot a histogram of the results. This is quite similar to what we have done earlier.</p>
 </div>
-<div id="useful-r-commands" class="section level3 hasAnchor" number="5.6.3">
-<h3><span class="header-section-number">5.6.3</span> Useful R Commands<a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>sample() or rbinom()</strong></p>
-<ul>
-<li>R doesn’t have a <code>bernoulli</code> function.</li>
-<li>To simulate draws from a Bernoulli variable, you can either:
-<ul>
-<li>Use <code>sample</code></li>
-<li>Or, use <code>rbinom</code> (the Bernoulli distribution is a special case of a binomial distribution. In this function, <code>size</code> refers to a distribution parameter, not the number of draws.)</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size=</span>n, <span class="at">replace=</span><span class="cn">TRUE</span>, <span class="at">prob=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">-</span>p, p))</span>
-<span id="cb35-2"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n=</span>n, <span class="at">size=</span><span class="dv">1</span>, <span class="at">prob=</span>p)</span></code></pre></div>
-<pre><code>## [1] 0 0 0
-## [1] 0 0 0</code></pre>
-<p><strong>replicate()</strong></p>
-<ul>
-<li>To repeat an action, you can use <code>replicate</code></li>
-</ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">replicate</span>(<span class="dv">10</span>, <span class="fu">log</span>(<span class="dv">10</span>))</span></code></pre></div>
-<pre><code>##  [1] 2.302585 2.302585 2.302585 2.302585 2.302585 2.302585 2.302585 2.302585
-##  [9] 2.302585 2.302585</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb39-2"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">+</span> </span>
-<span id="cb39-3"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="st">&#39;8&#39;</span>) </span></code></pre></div>
-<p><img src="203-live-session_files/figure-html/ggplot%20histogram-1.png" width="672" /></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toss_coin()</span></span></code></pre></div>
+</details>
+<div class="discussion-question">
+<p>If you replicate the simulation with <strong>ten</strong> coins enough times, will the distribution ever look normal? Why or why not?</p>
+</div>
+</div>
+<div id="part-2" class="section level3 hasAnchor" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Part 2<a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For this part, we’ll continue to study a fair coin.</p>
+<div class="discussion-question">
+<p>What happens if you change the number of coins that you’re tossing? Here, set <code>number_of_simulations=1000</code>, and examine what happens if you alter the number of coins that you’re tossing? Is there a point where this distribution starts to “look normal” to you? (Later in the semester, we’ll formalize a test for this “looks normal” concept).</p>
+</div>
+</div>
+<div id="part-3" class="section level3 hasAnchor" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span> Part 3<a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="discussion-question">
+<p>What would happen if the coin was very, very unfair? For this part, study a coin that has a <code>prob_heads=0.01</code>. This is an example of a highly skewed random variable.</p>
+<p>Start your study here tossing three coins, <code>number_of_coins=3</code>. What does this distribution look like?</p>
+</div>
+<div class="discussion-question">
+<p>What happens as you increase the number of coins that you’re tossing? Is there a point that the distribution starts to look normal?</p>
+</div>
+</div>
+<div id="discussion-questions-about-the-clt" class="section level3 hasAnchor" number="5.7.4">
+<h3><span class="header-section-number">5.7.4</span> Discussion Questions About the CLT<a href="write-code-to-demo-the-central-limit-theorem-clt.html#discussion-questions-about-the-clt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="discussion-question">
+<ol style="list-style-type: decimal">
+<li>How does the skewness of the population distribution affect the applicability of the Central Limit Theorem? What lesson can you take for your practice of statistics?</li>
+<li>Name a variable you would be interested in measuring that has a substantially skewed distribution.</li>
+<li>One definition of a heavy tailed distribution is one with infinite variance. For example, you can use the <code>rcauchy</code> command in R to take draws from a Cauchy distribution, which has heavy tails. Do you think a “heavy tails” distribution will follow the CLT? What leads you to this intuition?</li>
+</ol>
+</div>
 </div>
 </div>
             </section>
@@ -545,8 +552,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="standard-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="understanding-sampling-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="errors-with-standard-errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

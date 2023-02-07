@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.4 Uncertainty | Statistics for Data Science</title>
+  <title>5.10 Uncertainty | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.4 Uncertainty | Statistics for Data Science" />
+  <meta property="og:title" content="5.10 Uncertainty | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.4 Uncertainty | Statistics for Data Science" />
+  <meta name="twitter:title" content="5.10 Uncertainty | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,15 +23,15 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-06" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="understanding-sampling-distributions.html"/>
-<link rel="next" href="standard-errors.html"/>
+<link rel="prev" href="standard-errors.html"/>
+<link rel="next" href="hypothesis-testing.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -284,21 +284,32 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.2</b> Key Terms and Assumptions</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#iid"><i class="fa fa-check"></i><b>5.2.1</b> IID</a></li>
-<li class="chapter" data-level="5.2.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.2.2</b> Definitions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Understanding Sampling Distributions</a></li>
-<li class="chapter" data-level="5.4" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.4</b> Uncertainty</a></li>
-<li class="chapter" data-level="5.5" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.5</b> Standard Errors</a></li>
-<li class="chapter" data-level="5.6" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.6</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<li class="chapter" data-level="5.3" data-path="estimators.html"><a href="estimators.html"><i class="fa fa-check"></i><b>5.3</b> Estimators</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.6.1</b> Motivating the Central Limit Theorem (CLT)</a></li>
-<li class="chapter" data-level="5.6.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.6.2</b> Sampling from the Bernoulli Distribution in R</a></li>
-<li class="chapter" data-level="5.6.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.6.3</b> Useful R Commands</a></li>
+<li class="chapter" data-level="5.3.1" data-path="estimators.html"><a href="estimators.html#three-properties-of-estimators"><i class="fa fa-check"></i><b>5.3.1</b> Three properties of estimators</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.7</b> Exercise</a>
+<li class="chapter" data-level="5.4" data-path="estimator-property-biased-or-unbiased.html"><a href="estimator-property-biased-or-unbiased.html"><i class="fa fa-check"></i><b>5.4</b> Estimator Property: Biased or Unbiased?</a>
 <ul>
-<li class="chapter" data-level="5.7.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.7.1</b> Discussion Questions</a></li>
+<li class="chapter" data-level="5.4.1" data-path="estimator-property-biased-or-unbiased.html"><a href="estimator-property-biased-or-unbiased.html#is-it-unbiased-with-data"><i class="fa fa-check"></i><b>5.4.1</b> Is it unbiased, with data?</a></li>
 </ul></li>
+<li class="chapter" data-level="5.5" data-path="estimator-property-consistency.html"><a href="estimator-property-consistency.html"><i class="fa fa-check"></i><b>5.5</b> Estimator Property: Consistency</a></li>
+<li class="chapter" data-level="5.6" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.6</b> Understanding Sampling Distributions</a></li>
+<li class="chapter" data-level="5.7" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.7</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.7.1</b> Motivating the Central Limit Theorem (CLT)</a></li>
+<li class="chapter" data-level="5.7.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.7.2</b> Sampling from the Bernoulli Distribution in R</a></li>
+<li class="chapter" data-level="5.7.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.7.3</b> Useful R Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.8</b> Exercise</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.8.1</b> Discussion Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.9</b> Standard Errors</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="standard-errors.html"><a href="standard-errors.html#definitions"><i class="fa fa-check"></i><b>5.9.1</b> Definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.10</b> Uncertainty</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
 <ul>
@@ -484,8 +495,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="uncertainty" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Uncertainty<a href="uncertainty.html#uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="uncertainty" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Uncertainty<a href="uncertainty.html#uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Which Result is Better?</strong></p>
 <ul>
 <li>Suppose that you measure salary data among individuals who try different strategies</li>
@@ -522,14 +533,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><em>(Standard errors in parentheses when available)</em></p>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="understanding-sampling-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="standard-errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="standard-errors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
