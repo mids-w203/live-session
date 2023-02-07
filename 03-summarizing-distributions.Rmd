@@ -2,6 +2,7 @@
 
 ```{r load unit 03 packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
+source('~/MIDS/w203/live-session/src/blank_lines.R')
 ```
 
 ![a majestic valley](./images/yosemite.jpg)
@@ -356,31 +357,31 @@ mpe <- function(c, power) {
 }
 ```
 
-```{r,include=FALSE, eval=FALSE}
+```{r}
 mean_absolute_error <- function(c) { 
-  x_values <- pdf_func(input_range)
+  x_values <- pdf_fun(support)
   mae_     <- mean(abs(x_values - c))
 }
 
 mean_square_error <- function(c) { 
-  x_values <- pdf_func(input_range)
-  mse_     <- sum(((input_range - c)^2) * x_values)
+  x_values <- pdf_fun(support)
+  mse_     <- sum(((x_values - c)^2) * x_values)
   return(mse_)
 }
 
 mean_cubic_error <- function(c) { 
-  x_values <- pdf_func(input_range) 
+  x_values <- pdf_fun(support) 
   mce_     <- mean((x_values - c)^3)
 }
 
 mean_quadratic_error <- function(c) { 
-  x_values <- pdf_func(input_range)
+  x_values <- pdf_fun(support)
   mqe_     <- mean((x_values - c)^4)
   return(mqe_)
 }
 
 mean_power_error <- function(c, power) { 
-  x_values <- pdf_func(input_range)
+  x_values <- pdf_fun(support)
   m_power_e_     <- mean((x_values - c)^power)
   return(m_power_e_)
 }
@@ -396,33 +397,33 @@ mean_power_error     <- Vectorize(mean_power_error)
 
 ```{r}
 mae_ <- mean_absolute_error(
-  c = input_range
+  c = support
 )
 mse_ <- mean_square_error(
-  c = input_range
+  c = support
   )
 mce_ <- mean_cubic_error(
-  c = input_range
+  c = support
 )
 mqe_ <- mean_quadratic_error(
-  c = input_range
+  c = support
 )
 ```
 
 ```{r}
 plot(
-  x = input_range,
+  x = support,
   y = mse_,
   type = 'l'
 )
 lines(
-  x = input_range, 
+  x = support, 
   y = mae_, 
   type = 'l', 
   col = '#003262'
 )
 lines(
-  x = input_range, 
+  x = support, 
   y = mqe_, 
   type = 'l', 
   col = '#FDB515'

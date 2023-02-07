@@ -7,39 +7,68 @@ theme_set(theme_minimal())
 
 ![south hall](./images/south_hall.jpeg)
 
+This week, we're coming into the big turn in the class, from probability theory to sampling theory. 
+
+In the probability theory section of the course, we developed the *theoretically* **best** possible set of models. Namely, we said that if our goal is to produce a model that minimizes the Mean Squared Error that *expectation* and *conditional expectation* are as good as it gets. That is, if we only have the outcome series, $Y$, we cannot possibly improve upon $E[Y]$, the expectation of the random variable $Y$. If we have additional data on hand, say $X$ and $Y$, then the best model of $Y$ given $X$ is the conditional expectation, $E[Y|X]$.
+
+We have also said that because this conditional expectation function might be complex, and hard to inform with data, that we might also be interested in a principled simplification of the conditional expectation function -- the simplification that requires our model be a line. 
+
+With this simplification in mind, we derived the linear system that produces the minimum MSE:  the ratio of covariance between variables to variance of the predictor: 
+
+$$
+  \beta_{BLP} = \frac{Cov[Y,X]}{V[X]}. 
+$$ 
+
+We noted, quickly, that the simple case of only two variables -- an outcome and a single predictor -- generalizes nicely into the (potentially very) many dimensional case. If the many-dimensional $BLP$ is denoted as $g(\mathbf{X}) = b_{0} + b_{1}X_{1} + \dots + b_{k}X_{k}$, then we can arrive at the sloped between one particular predictor, $X_{k}$, and the outcome, $Y$, as: 
+
+$$
+  b_{k} = \frac{\partial g(\mathbf{X})}{\partial X_{k}}. 
+$$
+
+
+
+
+, toward the use of data to actually estimate approximations of the best models. 
+
+
+
 
 ## Goals, Framework, and Learning Objectives 
 
 ### Class Announcements
 
-- You're done with probability theory. Congrats!
-- You're also done with your first test. Congrats! 
-- We're going to have a second test in a few weeks; then we're done testing for the semester
+::: {.slide}
+- You're done with probability theory. **Yay!**
+- You're also done with your first test. **Double Yay!**
+- We're going to have a second test in a few weeks. Then we're done testing for the semester **Yay?**
+::: 
 
 ### Learning Objectives 
+
+::: {.slide}
 At the end of this week, students will be able to 
 
 1. **Understand** what iid sampling is, and evaluate whether the assumption of iid sampling is sufficiently plausible to engage in frequentist modeling.
 2. **Appreciate** that with iid sampling, summarizing functions of random variables are, themselves, random variables with probability distributions and values that they obtain.
-2. **Recall** the definition of an estimator, 
-2. **Recall** definition of an estimator, **state** and **understand** the desirable properties of estimators, and **evaluate** whether an estimator possesses those desirable properties. 
-3. **Distinguish** between the concepts of {expectation & sample mean}, {variance & unbiased sample variance estimator, sampling-based variance in the sample mean}. 
+3. **Recall** the definition of an estimator, 
+4. **Recall** definition of an estimator, **state** and **understand** the desirable properties of estimators, and **evaluate** whether an estimator possesses those desirable properties. 
+5. **Distinguish** between the concepts of {expectation & sample mean}, {variance & unbiased sample variance estimator, sampling-based variance in the sample mean}. 
+:::
 
 ### Roadmap 
 
 #### Where We're Going -- Coming Attractions
 
+::: {.slide}
 - We're going to start bringing data into our work 
-- First, we're going to develop a testing framework that is built on sampling theory and reference distributions -- `t.tests`, `wilcox.test` and the like
-- Second, we're going to show that OLS regression is the sample estimator of the BLP 
-- Third, we're going to use the testing distribution to test regression coefficients 
+- First, we're going to develop a testing framework that is built on sampling theory and reference distributions: these are the **frequentist tests**.
+- Second, we're going to show that OLS regression is the sample estimator of the BLP. This means that OLS regression produces estimates of the BLP that have known convergence properties. 
+- Third, we're going combine the frequentist testing framework with OLS estimation to produce a full regression testing framework.
+::: 
 
 #### Where We've Been -- Random Variables and Probability Theory
 
-- Statisticians create a model (A.K.A. population) to represent the world.
-- That model can be described by parameters like expecation, covariance.
-- So far, these parameter values have come from our imaginations
-
+Statisticians create a model (also known as the population model) to represent the world. This model exists as joint probability densities that govern the probabilities that any series of events occurs at the same time. This joint probability of outcomes can be summarized and described with lower-dimensional summaries like the expectation, variance, covariance. While the expectation is a summary that contains information on about one marginal distribution (i.e. the outcome we are interested in) we can produce predictive models that update, or *condition* the expectation based on other random variables. This summary, the **conditional expectation** is the best possible (measured in terms of minimizing mean squared error) predictor of an outcome. We might simplify this conditional expectation predictor in many ways; the most common is to simplify to the point that the predictor is constrained to be a line or plane. This is known as the Best Linear Predictor. 
 
 #### Where we Are
 

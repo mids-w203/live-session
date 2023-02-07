@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.8 Working with the BLP | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.8 Working with the BLP | Statistics for Data Science" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
@@ -24,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-01-31" />
+<meta name="date" content="2023-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="minimizing-the-mse.html"/>
 <link rel="next" href="learning-from-random-samples.html"/>
-<script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -135,339 +133,339 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="index.html#live-session">Live Session<span></span></a></li>
-<li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Live Session</a></li>
+<li class="chapter" data-level="1" data-path="probability-spaces.html"><a href="probability-spaces.html"><i class="fa fa-check"></i><b>1</b> Probability Spaces</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives<span></span></a>
+<li class="chapter" data-level="1.1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html"><i class="fa fa-check"></i><b>1.2</b> Course Learning Objectives</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models<span></span></a></li>
-<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations<span></span></a></li>
-<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework<span></span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience<span></span></a></li>
-<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.<span></span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models"><i class="fa fa-check"></i><b>1.2.1</b> Understand the building blocks of probability theory that prepare learners for the study of statistical models</a></li>
+<li class="chapter" data-level="1.2.2" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#understand-and-apply-statistical-models-in-common-situations"><i class="fa fa-check"></i><b>1.2.2</b> Understand and apply statistical models in common situations</a></li>
+<li class="chapter" data-level="1.2.3" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#analyze-a-research-question-using-a-linear-regression-framework"><i class="fa fa-check"></i><b>1.2.3</b> Analyze a research question using a linear regression framework</a></li>
+<li class="chapter" data-level="1.2.4" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience"><i class="fa fa-check"></i><b>1.2.4</b> Interpret the results of a model and communicate them in manner appropriate to the audience</a></li>
+<li class="chapter" data-level="1.2.5" data-path="course-learning-objectives.html"><a href="course-learning-objectives.html#contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team."><i class="fa fa-check"></i><b>1.2.5</b> Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions<span></span></a>
+<li class="chapter" data-level="1.3" data-path="introductions.html"><a href="introductions.html"><i class="fa fa-check"></i><b>1.3</b> Introductions</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions<span></span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!<span></span></a></li>
+<li class="chapter" data-level="1.3.1" data-path="introductions.html"><a href="introductions.html#instructor-introductions"><i class="fa fa-check"></i><b>1.3.1</b> Instructor Introductions</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introductions.html"><a href="introductions.html#what-does-a-statistician-look-like-you"><i class="fa fa-check"></i><b>1.3.2</b> What does a statistician look like? You!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]<span></span></a></li>
-<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]<span></span></a></li>
-<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory<span></span></a></li>
-<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability<span></span></a></li>
-<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem<span></span></a></li>
-<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space<span></span></a>
+<li class="chapter" data-level="1.4" data-path="student-introductions-breakout-one.html"><a href="student-introductions-breakout-one.html"><i class="fa fa-check"></i><b>1.4</b> Student Introductions [Breakout One]</a></li>
+<li class="chapter" data-level="1.5" data-path="student-introductions-breakout-two.html"><a href="student-introductions-breakout-two.html"><i class="fa fa-check"></i><b>1.5</b> Student Introductions [Breakout Two]</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.6</b> Probability Theory</a></li>
+<li class="chapter" data-level="1.7" data-path="axiomatic-probability.html"><a href="axiomatic-probability.html"><i class="fa fa-check"></i><b>1.7</b> Axiomatic Probability</a></li>
+<li class="chapter" data-level="1.8" data-path="definition-vs.-theorem.html"><a href="definition-vs.-theorem.html"><i class="fa fa-check"></i><b>1.8</b> Definition vs. Theorem</a></li>
+<li class="chapter" data-level="1.9" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html"><i class="fa fa-check"></i><b>1.9</b> Working with a Sample Space</a>
 <ul>
-<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I<span></span></a></li>
-<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II<span></span></a></li>
+<li class="chapter" data-level="1.9.1" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-i"><i class="fa fa-check"></i><b>1.9.1</b> Working with a Sample Space, Part I</a></li>
+<li class="chapter" data-level="1.9.2" data-path="working-with-a-sample-space.html"><a href="working-with-a-sample-space.html#working-with-a-sample-space-part-ii"><i class="fa fa-check"></i><b>1.9.2</b> Working with a Sample Space, Part II</a></li>
 </ul></li>
-<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence<span></span></a></li>
-<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem<span></span></a></li>
-<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete<span></span></a></li>
+<li class="chapter" data-level="1.10" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>1.10</b> Independence</a></li>
+<li class="chapter" data-level="1.11" data-path="a-practice-problem.html"><a href="a-practice-problem.html"><i class="fa fa-check"></i><b>1.11</b> A practice problem</a></li>
+<li class="chapter" data-level="1.12" data-path="student-tasks-to-complete.html"><a href="student-tasks-to-complete.html"><i class="fa fa-check"></i><b>1.12</b> Student Tasks to Complete</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables<span></span></a>
+<li class="chapter" data-level="2" data-path="defining-random-variables.html"><a href="defining-random-variables.html"><i class="fa fa-check"></i><b>2</b> Defining Random Variables</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="2.2" data-path="introduction-to-the-materirals.html"><a href="introduction-to-the-materirals.html"><i class="fa fa-check"></i><b>2.2</b> Introduction to the Materirals<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="class-announcements.html"><a href="class-announcements.html"><i class="fa fa-check"></i><b>2.3</b> Class Announcements<span></span></a>
+<li class="chapter" data-level="2.1" data-path="learning-objectives-1.html"><a href="learning-objectives-1.html"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-the-materirals.html"><a href="introduction-to-the-materirals.html"><i class="fa fa-check"></i><b>2.2</b> Introduction to the Materirals</a></li>
+<li class="chapter" data-level="2.3" data-path="class-announcements.html"><a href="class-announcements.html"><i class="fa fa-check"></i><b>2.3</b> Class Announcements</a>
 <ul>
-<li><a href="class-announcements.html#homework">Homework<span></span></a></li>
-<li><a href="class-announcements.html#study-groups">Study Groups<span></span></a></li>
-<li><a href="class-announcements.html#course-resources">Course Resources<span></span></a></li>
+<li class="chapter" data-level="" data-path="class-announcements.html"><a href="class-announcements.html#homework"><i class="fa fa-check"></i>Homework</a></li>
+<li class="chapter" data-level="" data-path="class-announcements.html"><a href="class-announcements.html#study-groups"><i class="fa fa-check"></i>Study Groups</a></li>
+<li class="chapter" data-level="" data-path="class-announcements.html"><a href="class-announcements.html#course-resources"><i class="fa fa-check"></i>Course Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html"><i class="fa fa-check"></i><b>2.4</b> Using Definitions of Random Variables<span></span></a>
+<li class="chapter" data-level="2.4" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html"><i class="fa fa-check"></i><b>2.4</b> Using Definitions of Random Variables</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html#random-varaible"><i class="fa fa-check"></i><b>2.4.1</b> Random Varaible<span></span></a></li>
+<li class="chapter" data-level="2.4.1" data-path="using-definitions-of-random-variables.html"><a href="using-definitions-of-random-variables.html#random-varaible"><i class="fa fa-check"></i><b>2.4.1</b> Random Varaible</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html"><i class="fa fa-check"></i><b>2.5</b> Pieces of a Random Variable<span></span></a>
+<li class="chapter" data-level="2.5" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html"><i class="fa fa-check"></i><b>2.5</b> Pieces of a Random Variable</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#functions-of-functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions of Functions<span></span></a></li>
-<li class="chapter" data-level="2.5.2" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions"><i class="fa fa-check"></i><b>2.5.2</b> Probability Density Functions and Cumulative Density Functions<span></span></a></li>
+<li class="chapter" data-level="2.5.1" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#functions-of-functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions of Functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions"><i class="fa fa-check"></i><b>2.5.2</b> Probability Density Functions and Cumulative Density Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.6</b> Discrete &amp; Continuous Random Variables<span></span></a></li>
-<li class="chapter" data-level="2.7" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.7</b> Moving Between PDF and CDF<span></span></a></li>
-<li class="chapter" data-level="2.8" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.8</b> Joint Density<span></span></a>
+<li class="chapter" data-level="2.6" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.6</b> Discrete &amp; Continuous Random Variables</a></li>
+<li class="chapter" data-level="2.7" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.7</b> Moving Between PDF and CDF</a></li>
+<li class="chapter" data-level="2.8" data-path="joint-density.html"><a href="joint-density.html"><i class="fa fa-check"></i><b>2.8</b> Joint Density</a>
 <ul>
-<li class="chapter" data-level="2.8.1" data-path="joint-density.html"><a href="joint-density.html#example-uniform-joint-density"><i class="fa fa-check"></i><b>2.8.1</b> Example: Uniform Joint Density<span></span></a></li>
-<li class="chapter" data-level="2.8.2" data-path="joint-density.html"><a href="joint-density.html#examples-thinking-through-many-plots"><i class="fa fa-check"></i><b>2.8.2</b> Examples: Thinking Through Many Plots<span></span></a></li>
-<li class="chapter" data-level="2.8.3" data-path="joint-density.html"><a href="joint-density.html#triangle-math"><i class="fa fa-check"></i><b>2.8.3</b> Triangle Math<span></span></a></li>
-<li class="chapter" data-level="2.8.4" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.8.4</b> Saddle Sores<span></span></a></li>
+<li class="chapter" data-level="2.8.1" data-path="joint-density.html"><a href="joint-density.html#example-uniform-joint-density"><i class="fa fa-check"></i><b>2.8.1</b> Example: Uniform Joint Density</a></li>
+<li class="chapter" data-level="2.8.2" data-path="joint-density.html"><a href="joint-density.html#examples-thinking-through-many-plots"><i class="fa fa-check"></i><b>2.8.2</b> Examples: Thinking Through Many Plots</a></li>
+<li class="chapter" data-level="2.8.3" data-path="joint-density.html"><a href="joint-density.html#triangle-math"><i class="fa fa-check"></i><b>2.8.3</b> Triangle Math</a></li>
+<li class="chapter" data-level="2.8.4" data-path="joint-density.html"><a href="joint-density.html#saddle-sores"><i class="fa fa-check"></i><b>2.8.4</b> Saddle Sores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.<span></span></a></li>
-<li class="chapter" data-level="2.10" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>2.10</b> Conditional Probability<span></span></a></li>
-<li class="chapter" data-level="2.11" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.11</b> Visualizing Distributions Via Simulation<span></span></a>
+<li class="chapter" data-level="2.9" data-path="computing-different-distributions..html"><a href="computing-different-distributions..html"><i class="fa fa-check"></i><b>2.9</b> Computing Different Distributions.</a></li>
+<li class="chapter" data-level="2.10" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>2.10</b> Conditional Probability</a></li>
+<li class="chapter" data-level="2.11" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html"><i class="fa fa-check"></i><b>2.11</b> Visualizing Distributions Via Simulation</a>
 <ul>
-<li class="chapter" data-level="2.11.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-uniform-distribution"><i class="fa fa-check"></i><b>2.11.1</b> Example: The Uniform Distribution<span></span></a></li>
-<li class="chapter" data-level="2.11.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-normal-distribution"><i class="fa fa-check"></i><b>2.11.2</b> Example: The Normal Distribution<span></span></a></li>
+<li class="chapter" data-level="2.11.1" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-uniform-distribution"><i class="fa fa-check"></i><b>2.11.1</b> Example: The Uniform Distribution</a></li>
+<li class="chapter" data-level="2.11.2" data-path="visualizing-distributions-via-simulation.html"><a href="visualizing-distributions-via-simulation.html#example-the-normal-distribution"><i class="fa fa-check"></i><b>2.11.2</b> Example: The Normal Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="2.12" data-path="review-of-terms.html"><a href="review-of-terms.html"><i class="fa fa-check"></i><b>2.12</b> Review of Terms<span></span></a></li>
+<li class="chapter" data-level="2.12" data-path="review-of-terms.html"><a href="review-of-terms.html"><i class="fa fa-check"></i><b>2.12</b> Review of Terms</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions<span></span></a>
+<li class="chapter" data-level="3" data-path="summarizing-distributions.html"><a href="summarizing-distributions.html"><i class="fa fa-check"></i><b>3</b> Summarizing Distributions</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="3.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html"><i class="fa fa-check"></i><b>3.2</b> Class Announcements<span></span></a>
+<li class="chapter" data-level="3.1" data-path="learning-objectives-2.html"><a href="learning-objectives-2.html"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html"><i class="fa fa-check"></i><b>3.2</b> Class Announcements</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="class-announcements-1.html"><a href="class-announcements-1.html#what-is-in-the-rearview-mirror"><i class="fa fa-check"></i><b>3.2.1</b> What is in the rearview mirror?<span></span></a></li>
-<li class="chapter" data-level="3.2.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html#todays-lesson"><i class="fa fa-check"></i><b>3.2.2</b> Today’s Lesson<span></span></a></li>
-<li class="chapter" data-level="3.2.3" data-path="class-announcements-1.html"><a href="class-announcements-1.html#future-attractions"><i class="fa fa-check"></i><b>3.2.3</b> Future Attractions<span></span></a></li>
+<li class="chapter" data-level="3.2.1" data-path="class-announcements-1.html"><a href="class-announcements-1.html#what-is-in-the-rearview-mirror"><i class="fa fa-check"></i><b>3.2.1</b> What is in the rearview mirror?</a></li>
+<li class="chapter" data-level="3.2.2" data-path="class-announcements-1.html"><a href="class-announcements-1.html#todays-lesson"><i class="fa fa-check"></i><b>3.2.2</b> Today’s Lesson</a></li>
+<li class="chapter" data-level="3.2.3" data-path="class-announcements-1.html"><a href="class-announcements-1.html#future-attractions"><i class="fa fa-check"></i><b>3.2.3</b> Future Attractions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples<span></span></a>
+<li class="chapter" data-level="3.3" data-path="discussion-of-terms.html"><a href="discussion-of-terms.html"><i class="fa fa-check"></i><b>3.3</b> Discussion of Terms</a></li>
+<li class="chapter" data-level="3.4" data-path="computing-examples.html"><a href="computing-examples.html"><i class="fa fa-check"></i><b>3.4</b> Computing Examples</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]<span></span></a></li>
-<li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="computing-examples.html"><a href="computing-examples.html#expected-value-of-education-discrete-random-variable"><i class="fa fa-check"></i><b>3.4.1</b> Expected Value of Education [discrete random variable]</a></li>
+<li class="chapter" data-level="3.4.2" data-path="computing-examples.html"><a href="computing-examples.html#using-a-formula"><i class="fa fa-check"></i><b>3.4.2</b> Using a formula</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand<span></span></a>
+<li class="chapter" data-level="3.5" data-path="computing-by-hand.html"><a href="computing-by-hand.html"><i class="fa fa-check"></i><b>3.5</b> Computing by Hand</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1<span></span></a></li>
-<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance<span></span></a></li>
-<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2<span></span></a></li>
+<li class="chapter" data-level="3.5.1" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-expected-value"><i class="fa fa-check"></i><b>3.5.1</b> Compute the Expected Value</a></li>
+<li class="chapter" data-level="3.5.2" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-1"><i class="fa fa-check"></i><b>3.5.2</b> Playing a Gnome Game, Part 1</a></li>
+<li class="chapter" data-level="3.5.3" data-path="computing-by-hand.html"><a href="computing-by-hand.html#compute-the-variance"><i class="fa fa-check"></i><b>3.5.3</b> Compute the Variance</a></li>
+<li class="chapter" data-level="3.5.4" data-path="computing-by-hand.html"><a href="computing-by-hand.html#playing-a-gnome-game-part-2"><i class="fa fa-check"></i><b>3.5.4</b> Playing a Gnome Game, Part 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code<span></span></a>
+<li class="chapter" data-level="3.6" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html"><i class="fa fa-check"></i><b>3.6</b> Expected Value by Code</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die<span></span></a></li>
+<li class="chapter" data-level="3.6.1" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#expected-value-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.1</b> Expected Value of a Six-Sided Die</a></li>
+<li class="chapter" data-level="3.6.2" data-path="expected-value-by-code.html"><a href="expected-value-by-code.html#variance-of-a-six-sided-die"><i class="fa fa-check"></i><b>3.6.2</b> Variance of a Six-Sided Die</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing<span></span></a>
+<li class="chapter" data-level="3.7" data-path="practice-computing.html"><a href="practice-computing.html"><i class="fa fa-check"></i><b>3.7</b> Practice Computing</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable<span></span></a></li>
-<li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density<span></span></a></li>
+<li class="chapter" data-level="3.7.1" data-path="practice-computing.html"><a href="practice-computing.html#single-variable"><i class="fa fa-check"></i><b>3.7.1</b> Single Variable</a></li>
+<li class="chapter" data-level="3.7.2" data-path="practice-computing.html"><a href="practice-computing.html#joint-density-1"><i class="fa fa-check"></i><b>3.7.2</b> Joint Density</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code<span></span></a></li>
+<li class="chapter" data-level="3.8" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>3.8</b> Write Code</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP<span></span></a>
+<li class="chapter" data-level="4" data-path="conditional-expectation-and-the-blp.html"><a href="conditional-expectation-and-the-blp.html"><i class="fa fa-check"></i><b>4</b> Conditional Expectation and The BLP</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="thunder-struck.html"><a href="thunder-struck.html"><i class="fa fa-check"></i><b>4.1</b> Thunder Struck<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.2</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="4.3" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.3</b> Class Announcements<span></span></a>
+<li class="chapter" data-level="4.1" data-path="thunder-struck.html"><a href="thunder-struck.html"><i class="fa fa-check"></i><b>4.1</b> Thunder Struck</a></li>
+<li class="chapter" data-level="4.2" data-path="learning-objectives-3.html"><a href="learning-objectives-3.html"><i class="fa fa-check"></i><b>4.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.3" data-path="class-announcements-2.html"><a href="class-announcements-2.html"><i class="fa fa-check"></i><b>4.3</b> Class Announcements</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="class-announcements-2.html"><a href="class-announcements-2.html#test-1-is-releasing-to-you-today."><i class="fa fa-check"></i><b>4.3.1</b> Test 1 is releasing to you today.<span></span></a></li>
+<li class="chapter" data-level="4.3.1" data-path="class-announcements-2.html"><a href="class-announcements-2.html#test-1-is-releasing-to-you-today."><i class="fa fa-check"></i><b>4.3.1</b> Test 1 is releasing to you today.</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>4.4</b> Roadmap<span></span></a>
+<li class="chapter" data-level="4.4" data-path="roadmap.html"><a href="roadmap.html"><i class="fa fa-check"></i><b>4.4</b> Roadmap</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="roadmap.html"><a href="roadmap.html#rearview-mirror"><i class="fa fa-check"></i><b>4.4.1</b> Rearview Mirror<span></span></a></li>
-<li class="chapter" data-level="4.4.2" data-path="roadmap.html"><a href="roadmap.html#this-week"><i class="fa fa-check"></i><b>4.4.2</b> This week<span></span></a></li>
-<li class="chapter" data-level="4.4.3" data-path="roadmap.html"><a href="roadmap.html#coming-attractions"><i class="fa fa-check"></i><b>4.4.3</b> Coming Attractions<span></span></a></li>
+<li class="chapter" data-level="4.4.1" data-path="roadmap.html"><a href="roadmap.html#rearview-mirror"><i class="fa fa-check"></i><b>4.4.1</b> Rearview Mirror</a></li>
+<li class="chapter" data-level="4.4.2" data-path="roadmap.html"><a href="roadmap.html#this-week"><i class="fa fa-check"></i><b>4.4.2</b> This week</a></li>
+<li class="chapter" data-level="4.4.3" data-path="roadmap.html"><a href="roadmap.html#coming-attractions"><i class="fa fa-check"></i><b>4.4.3</b> Coming Attractions</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html"><i class="fa fa-check"></i><b>4.5</b> Conditional Expectation Function (CEF),<span></span></a>
+<li class="chapter" data-level="4.5" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html"><i class="fa fa-check"></i><b>4.5</b> Conditional Expectation Function (CEF),</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html#part-i"><i class="fa fa-check"></i><b>4.5.1</b> Part I<span></span></a></li>
-<li class="chapter" data-level="4.5.2" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html#part-ii"><i class="fa fa-check"></i><b>4.5.2</b> Part II<span></span></a></li>
-<li class="chapter" data-level="4.5.3" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html#part-iii"><i class="fa fa-check"></i><b>4.5.3</b> Part III<span></span></a></li>
+<li class="chapter" data-level="4.5.1" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html#part-i"><i class="fa fa-check"></i><b>4.5.1</b> Part I</a></li>
+<li class="chapter" data-level="4.5.2" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html#part-ii"><i class="fa fa-check"></i><b>4.5.2</b> Part II</a></li>
+<li class="chapter" data-level="4.5.3" data-path="conditional-expectation-function-cef.html"><a href="conditional-expectation-function-cef.html#part-iii"><i class="fa fa-check"></i><b>4.5.3</b> Part III</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.6</b> Computing the CEF<span></span></a>
+<li class="chapter" data-level="4.6" data-path="computing-the-cef.html"><a href="computing-the-cef.html"><i class="fa fa-check"></i><b>4.6</b> Computing the CEF</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="computing-the-cef.html"><a href="computing-the-cef.html#simple-quantities"><i class="fa fa-check"></i><b>4.6.1</b> Simple Quantities<span></span></a></li>
-<li class="chapter" data-level="4.6.2" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-quantities"><i class="fa fa-check"></i><b>4.6.2</b> Conditional Quantities<span></span></a></li>
-<li class="chapter" data-level="4.6.3" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-expectation"><i class="fa fa-check"></i><b>4.6.3</b> Conditional Expectation<span></span></a></li>
+<li class="chapter" data-level="4.6.1" data-path="computing-the-cef.html"><a href="computing-the-cef.html#simple-quantities"><i class="fa fa-check"></i><b>4.6.1</b> Simple Quantities</a></li>
+<li class="chapter" data-level="4.6.2" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-quantities"><i class="fa fa-check"></i><b>4.6.2</b> Conditional Quantities</a></li>
+<li class="chapter" data-level="4.6.3" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-expectation"><i class="fa fa-check"></i><b>4.6.3</b> Conditional Expectation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html"><i class="fa fa-check"></i><b>4.7</b> Minimizing the MSE<span></span></a>
+<li class="chapter" data-level="4.7" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html"><i class="fa fa-check"></i><b>4.7</b> Minimizing the MSE</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html#minimizing-mse"><i class="fa fa-check"></i><b>4.7.1</b> Minimizing MSE<span></span></a></li>
-<li class="chapter" data-level="4.7.2" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html#the-pudding-aka-where-the-proof-is"><i class="fa fa-check"></i><b>4.7.2</b> The pudding (aka: “Where the proof is”)<span></span></a></li>
-<li class="chapter" data-level="4.7.3" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html#the-implication"><i class="fa fa-check"></i><b>4.7.3</b> The Implication<span></span></a></li>
+<li class="chapter" data-level="4.7.1" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html#minimizing-mse"><i class="fa fa-check"></i><b>4.7.1</b> Minimizing MSE</a></li>
+<li class="chapter" data-level="4.7.2" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html#the-pudding-aka-where-the-proof-is"><i class="fa fa-check"></i><b>4.7.2</b> The pudding (aka: “Where the proof is”)</a></li>
+<li class="chapter" data-level="4.7.3" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html#the-implication"><i class="fa fa-check"></i><b>4.7.3</b> The Implication</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html"><i class="fa fa-check"></i><b>4.8</b> Working with the BLP<span></span></a>
+<li class="chapter" data-level="4.8" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html"><i class="fa fa-check"></i><b>4.8</b> Working with the BLP</a>
 <ul>
-<li class="chapter" data-level="4.8.1" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html#professorial-mistakes-discrete-rvs"><i class="fa fa-check"></i><b>4.8.1</b> Professorial Mistakes (Discrete RVs)<span></span></a></li>
-<li class="chapter" data-level="4.8.2" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html#continuous-blp"><i class="fa fa-check"></i><b>4.8.2</b> Continuous BLP<span></span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="learning-from-random-samples.html"><a href="learning-from-random-samples.html"><i class="fa fa-check"></i><b>5</b> Learning from Random Samples<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html"><i class="fa fa-check"></i><b>5.1</b> Goals, Framework, and Learning Objectives<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#class-announcements-3"><i class="fa fa-check"></i><b>5.1.1</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="5.1.2" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1.2</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="5.1.3" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#roadmap-1"><i class="fa fa-check"></i><b>5.1.3</b> Roadmap<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.2</b> Key Terms and Assumptions<span></span></a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#iid"><i class="fa fa-check"></i><b>5.2.1</b> IID<span></span></a></li>
-<li class="chapter" data-level="5.2.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.2.2</b> Definitions<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Understanding Sampling Distributions<span></span></a></li>
-<li class="chapter" data-level="5.4" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.4</b> Uncertainty<span></span></a></li>
-<li class="chapter" data-level="5.5" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.5</b> Standard Errors<span></span></a></li>
-<li class="chapter" data-level="5.6" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.6</b> Write Code to Demo the Central Limit Theorem (CLT)<span></span></a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.6.1</b> Motivating the Central Limit Theorem (CLT)<span></span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.6.2</b> Sampling from the Bernoulli Distribution in R<span></span></a></li>
-<li class="chapter" data-level="5.6.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.6.3</b> Useful R Commands<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.7</b> Exercise<span></span></a>
-<ul>
-<li class="chapter" data-level="5.7.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.7.1</b> Discussion Questions<span></span></a></li>
+<li class="chapter" data-level="4.8.1" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html#professorial-mistakes-discrete-rvs"><i class="fa fa-check"></i><b>4.8.1</b> Professorial Mistakes (Discrete RVs)</a></li>
+<li class="chapter" data-level="4.8.2" data-path="working-with-the-blp.html"><a href="working-with-the-blp.html#continuous-blp"><i class="fa fa-check"></i><b>4.8.2</b> Continuous BLP</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing<span></span></a>
+<li class="chapter" data-level="5" data-path="learning-from-random-samples.html"><a href="learning-from-random-samples.html"><i class="fa fa-check"></i><b>5</b> Learning from Random Samples</a>
 <ul>
-<li><a href="hypothesis-testing.html#what-is-frequentist-testing-doing">What is Frequentist testing doing?<span></span></a></li>
-<li class="chapter" data-level="6.1" data-path="learning-objectives-5.html"><a href="learning-objectives-5.html"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="class-announcements-4.html"><a href="class-announcements-4.html"><i class="fa fa-check"></i><b>6.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="6.3" data-path="roadmap-2.html"><a href="roadmap-2.html"><i class="fa fa-check"></i><b>6.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?<span></span></a></li>
-<li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt<span></span></a></li>
-<li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed<span></span></a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside<span></span></a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test<span></span></a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise<span></span></a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test<span></span></a></li>
+<li class="chapter" data-level="5.1" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html"><i class="fa fa-check"></i><b>5.1</b> Goals, Framework, and Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#class-announcements-3"><i class="fa fa-check"></i><b>5.1.1</b> Class Announcements</a></li>
+<li class="chapter" data-level="5.1.2" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.1.3" data-path="goals-framework-and-learning-objectives.html"><a href="goals-framework-and-learning-objectives.html#roadmap-1"><i class="fa fa-check"></i><b>5.1.3</b> Roadmap</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups<span></span></a>
+<li class="chapter" data-level="5.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html"><i class="fa fa-check"></i><b>5.2</b> Key Terms and Assumptions</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="class-announcements-5.html"><a href="class-announcements-5.html"><i class="fa fa-check"></i><b>7.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="7.3" data-path="roadmap-3.html"><a href="roadmap-3.html"><i class="fa fa-check"></i><b>7.3</b> Roadmap<span></span></a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="roadmap-3.html"><a href="roadmap-3.html#rearview-mirror-1"><i class="fa fa-check"></i><b>7.3.1</b> Rearview Mirror<span></span></a></li>
-<li class="chapter" data-level="7.3.2" data-path="roadmap-3.html"><a href="roadmap-3.html#today"><i class="fa fa-check"></i><b>7.3.2</b> Today<span></span></a></li>
-<li class="chapter" data-level="7.3.3" data-path="roadmap-3.html"><a href="roadmap-3.html#looking-ahead"><i class="fa fa-check"></i><b>7.3.3</b> Looking ahead<span></span></a></li>
+<li class="chapter" data-level="5.2.1" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#iid"><i class="fa fa-check"></i><b>5.2.1</b> IID</a></li>
+<li class="chapter" data-level="5.2.2" data-path="key-terms-and-assumptions.html"><a href="key-terms-and-assumptions.html#definitions"><i class="fa fa-check"></i><b>5.2.2</b> Definitions</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html"><i class="fa fa-check"></i><b>7.4</b> Teamwork Discussion<span></span></a>
+<li class="chapter" data-level="5.3" data-path="understanding-sampling-distributions.html"><a href="understanding-sampling-distributions.html"><i class="fa fa-check"></i><b>5.3</b> Understanding Sampling Distributions</a></li>
+<li class="chapter" data-level="5.4" data-path="uncertainty.html"><a href="uncertainty.html"><i class="fa fa-check"></i><b>5.4</b> Uncertainty</a></li>
+<li class="chapter" data-level="5.5" data-path="standard-errors.html"><a href="standard-errors.html"><i class="fa fa-check"></i><b>5.5</b> Standard Errors</a></li>
+<li class="chapter" data-level="5.6" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html"><i class="fa fa-check"></i><b>5.6</b> Write Code to Demo the Central Limit Theorem (CLT)</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#working-on-data-science-teams"><i class="fa fa-check"></i><b>7.4.1</b> Working on Data Science Teams<span></span></a></li>
-<li class="chapter" data-level="7.4.2" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#the-problematic-psychology-of-data-science"><i class="fa fa-check"></i><b>7.4.2</b> The Problematic Psychology of Data Science<span></span></a></li>
-<li class="chapter" data-level="7.4.3" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#what-makes-an-effective-team"><i class="fa fa-check"></i><b>7.4.3</b> What Makes an Effective Team?<span></span></a></li>
-<li class="chapter" data-level="7.4.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#we-all-belong"><i class="fa fa-check"></i><b>7.4.4</b> We All Belong<span></span></a></li>
+<li class="chapter" data-level="5.6.1" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#motivating-the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.6.1</b> Motivating the Central Limit Theorem (CLT)</a></li>
+<li class="chapter" data-level="5.6.2" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#sampling-from-the-bernoulli-distribution-in-r"><i class="fa fa-check"></i><b>5.6.2</b> Sampling from the Bernoulli Distribution in R</a></li>
+<li class="chapter" data-level="5.6.3" data-path="write-code-to-demo-the-central-limit-theorem-clt.html"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#useful-r-commands"><i class="fa fa-check"></i><b>5.6.3</b> Useful R Commands</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="team-kick-off.html"><a href="team-kick-off.html"><i class="fa fa-check"></i><b>7.5</b> Team Kick-Off<span></span></a></li>
-<li class="chapter" data-level="7.6" data-path="a-quick-review.html"><a href="a-quick-review.html"><i class="fa fa-check"></i><b>7.6</b> A Quick Review<span></span></a></li>
-<li class="chapter" data-level="7.7" data-path="comparing-groups-r-exercise.html"><a href="comparing-groups-r-exercise.html"><i class="fa fa-check"></i><b>7.7</b> Comparing Groups R Exercise<span></span></a></li>
-<li class="chapter" data-level="7.8" data-path="the-questions.html"><a href="the-questions.html"><i class="fa fa-check"></i><b>7.8</b> The Questions<span></span></a>
+<li class="chapter" data-level="5.7" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>5.7</b> Exercise</a>
 <ul>
-<li class="chapter" data-level="7.8.1" data-path="the-questions.html"><a href="the-questions.html#set-1"><i class="fa fa-check"></i><b>7.8.1</b> Set 1<span></span></a></li>
-<li class="chapter" data-level="7.8.2" data-path="the-questions.html"><a href="the-questions.html#set-2"><i class="fa fa-check"></i><b>7.8.2</b> Set 2<span></span></a></li>
-<li class="chapter" data-level="7.8.3" data-path="the-questions.html"><a href="the-questions.html#set-3"><i class="fa fa-check"></i><b>7.8.3</b> Set 3<span></span></a></li>
+<li class="chapter" data-level="5.7.1" data-path="exercise.html"><a href="exercise.html#discussion-questions"><i class="fa fa-check"></i><b>5.7.1</b> Discussion Questions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ols-regression-estimates.html"><a href="ols-regression-estimates.html"><i class="fa fa-check"></i><b>8</b> OLS Regression Estimates<span></span></a>
+<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="8.2" data-path="class-announcements-6.html"><a href="class-announcements-6.html"><i class="fa fa-check"></i><b>8.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="8.3" data-path="roadmap-4.html"><a href="roadmap-4.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="8.4" data-path="regression-discussion.html"><a href="regression-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Regression Discussion<span></span></a></li>
-<li class="chapter" data-level="8.5" data-path="working-on-math.html"><a href="working-on-math.html"><i class="fa fa-check"></i><b>8.5</b> Working on Math<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>8.6</b> Visualizing Data<span></span></a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions-1"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions<span></span></a></li>
+<li class="chapter" data-level="" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#what-is-frequentist-testing-doing"><i class="fa fa-check"></i>What is Frequentist testing doing?</a></li>
+<li class="chapter" data-level="6.1" data-path="learning-objectives-5.html"><a href="learning-objectives-5.html"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="class-announcements-4.html"><a href="class-announcements-4.html"><i class="fa fa-check"></i><b>6.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="6.3" data-path="roadmap-2.html"><a href="roadmap-2.html"><i class="fa fa-check"></i><b>6.3</b> Roadmap</a></li>
+<li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
+<li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
+<li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
+<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
+<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html"><i class="fa fa-check"></i><b>8.7</b> The Regression Anatomy Formula<span></span></a></li>
-<li class="chapter" data-level="8.8" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.8</b> Coding Activity:R Cheat Sheet<span></span></a></li>
-<li class="chapter" data-level="8.9" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.9</b> R Exercise<span></span></a>
+<li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.9.1</b> Assess the Relationship between Price and Square Footage<span></span></a></li>
+<li class="chapter" data-level="7.1" data-path="learning-objectives-6.html"><a href="learning-objectives-6.html"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="class-announcements-5.html"><a href="class-announcements-5.html"><i class="fa fa-check"></i><b>7.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="7.3" data-path="roadmap-3.html"><a href="roadmap-3.html"><i class="fa fa-check"></i><b>7.3</b> Roadmap</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="roadmap-3.html"><a href="roadmap-3.html#rearview-mirror-1"><i class="fa fa-check"></i><b>7.3.1</b> Rearview Mirror</a></li>
+<li class="chapter" data-level="7.3.2" data-path="roadmap-3.html"><a href="roadmap-3.html#today"><i class="fa fa-check"></i><b>7.3.2</b> Today</a></li>
+<li class="chapter" data-level="7.3.3" data-path="roadmap-3.html"><a href="roadmap-3.html#looking-ahead"><i class="fa fa-check"></i><b>7.3.3</b> Looking ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="8.10" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html"><i class="fa fa-check"></i><b>8.10</b> Regression Plots and Discussion<span></span></a>
+<li class="chapter" data-level="7.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html"><i class="fa fa-check"></i><b>7.4</b> Teamwork Discussion</a>
 <ul>
-<li class="chapter" data-level="8.10.1" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html#plot-1"><i class="fa fa-check"></i><b>8.10.1</b> Plot 1<span></span></a></li>
+<li class="chapter" data-level="7.4.1" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#working-on-data-science-teams"><i class="fa fa-check"></i><b>7.4.1</b> Working on Data Science Teams</a></li>
+<li class="chapter" data-level="7.4.2" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#the-problematic-psychology-of-data-science"><i class="fa fa-check"></i><b>7.4.2</b> The Problematic Psychology of Data Science</a></li>
+<li class="chapter" data-level="7.4.3" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#what-makes-an-effective-team"><i class="fa fa-check"></i><b>7.4.3</b> What Makes an Effective Team?</a></li>
+<li class="chapter" data-level="7.4.4" data-path="teamwork-discussion.html"><a href="teamwork-discussion.html#we-all-belong"><i class="fa fa-check"></i><b>7.4.4</b> We All Belong</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="ols-regression-inference.html"><a href="ols-regression-inference.html"><i class="fa fa-check"></i><b>9</b> OLS Regression Inference<span></span></a>
+<li class="chapter" data-level="7.5" data-path="team-kick-off.html"><a href="team-kick-off.html"><i class="fa fa-check"></i><b>7.5</b> Team Kick-Off</a></li>
+<li class="chapter" data-level="7.6" data-path="a-quick-review.html"><a href="a-quick-review.html"><i class="fa fa-check"></i><b>7.6</b> A Quick Review</a></li>
+<li class="chapter" data-level="7.7" data-path="comparing-groups-r-exercise.html"><a href="comparing-groups-r-exercise.html"><i class="fa fa-check"></i><b>7.7</b> Comparing Groups R Exercise</a></li>
+<li class="chapter" data-level="7.8" data-path="the-questions.html"><a href="the-questions.html"><i class="fa fa-check"></i><b>7.8</b> The Questions</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="learning-objectives-8.html"><a href="learning-objectives-8.html"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="class-announcements-7.html"><a href="class-announcements-7.html"><i class="fa fa-check"></i><b>9.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="9.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html"><i class="fa fa-check"></i><b>9.4</b> Uncertainty in OLS<span></span></a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-2"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html"><i class="fa fa-check"></i><b>9.5</b> Understanding Uncertainty<span></span></a>
-<ul>
-<li class="chapter" data-level="9.5.1" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html#question-1"><i class="fa fa-check"></i><b>9.5.1</b> Question 1<span></span></a></li>
-<li class="chapter" data-level="9.5.2" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html#question-2"><i class="fa fa-check"></i><b>9.5.2</b> Question 2<span></span></a></li>
-<li class="chapter" data-level="9.5.3" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html#question-3"><i class="fa fa-check"></i><b>9.5.3</b> Question 3<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="understanding-uncertainty-1.html"><a href="understanding-uncertainty-1.html"><i class="fa fa-check"></i><b>9.6</b> Understanding Uncertainty<span></span></a></li>
-<li class="chapter" data-level="9.7" data-path="r-exercise-1.html"><a href="r-exercise-1.html"><i class="fa fa-check"></i><b>9.7</b> R Exercise<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="descriptive-model-building.html"><a href="descriptive-model-building.html"><i class="fa fa-check"></i><b>10</b> Descriptive Model Building<span></span></a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="learning-objectives-9.html"><a href="learning-objectives-9.html"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="10.2" data-path="class-announcements-8.html"><a href="class-announcements-8.html"><i class="fa fa-check"></i><b>10.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="10.3" data-path="roadmap-6.html"><a href="roadmap-6.html"><i class="fa fa-check"></i><b>10.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="10.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>10.4</b> Discussion<span></span></a>
-<ul>
-<li class="chapter" data-level="10.4.1" data-path="discussion.html"><a href="discussion.html#three-modes-of-model-building"><i class="fa fa-check"></i><b>10.4.1</b> Three modes of model building<span></span></a></li>
-<li class="chapter" data-level="10.4.2" data-path="discussion.html"><a href="discussion.html#the-statistical-modeling-process-in-different-modes"><i class="fa fa-check"></i><b>10.4.2</b> The statistical modeling process in different modes<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10.5" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html"><i class="fa fa-check"></i><b>10.5</b> R Activity: Measuring the return to education<span></span></a>
-<ul>
-<li class="chapter" data-level="10.5.1" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html#transformations"><i class="fa fa-check"></i><b>10.5.1</b> Transformations<span></span></a></li>
-<li class="chapter" data-level="10.5.2" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html#estimation"><i class="fa fa-check"></i><b>10.5.2</b> Estimation<span></span></a></li>
+<li class="chapter" data-level="7.8.1" data-path="the-questions.html"><a href="the-questions.html#set-1"><i class="fa fa-check"></i><b>7.8.1</b> Set 1</a></li>
+<li class="chapter" data-level="7.8.2" data-path="the-questions.html"><a href="the-questions.html#set-2"><i class="fa fa-check"></i><b>7.8.2</b> Set 2</a></li>
+<li class="chapter" data-level="7.8.3" data-path="the-questions.html"><a href="the-questions.html#set-3"><i class="fa fa-check"></i><b>7.8.3</b> Set 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="explanatory-model-building.html"><a href="explanatory-model-building.html"><i class="fa fa-check"></i><b>11</b> Explanatory Model Building<span></span></a>
+<li class="chapter" data-level="8" data-path="ols-regression-estimates.html"><a href="ols-regression-estimates.html"><i class="fa fa-check"></i><b>8</b> OLS Regression Estimates</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="class-announcements-9.html"><a href="class-announcements-9.html"><i class="fa fa-check"></i><b>11.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="roadmap-7.html"><a href="roadmap-7.html"><i class="fa fa-check"></i><b>11.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="discussion-1.html"><a href="discussion-1.html"><i class="fa fa-check"></i><b>11.4</b> Discussion<span></span></a>
+<li class="chapter" data-level="8.1" data-path="learning-objectives-7.html"><a href="learning-objectives-7.html"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="class-announcements-6.html"><a href="class-announcements-6.html"><i class="fa fa-check"></i><b>8.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="8.3" data-path="roadmap-4.html"><a href="roadmap-4.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap</a></li>
+<li class="chapter" data-level="8.4" data-path="regression-discussion.html"><a href="regression-discussion.html"><i class="fa fa-check"></i><b>8.4</b> Regression Discussion</a></li>
+<li class="chapter" data-level="8.5" data-path="working-on-math.html"><a href="working-on-math.html"><i class="fa fa-check"></i><b>8.5</b> Working on Math</a></li>
+<li class="chapter" data-level="8.6" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>8.6</b> Visualizing Data</a>
 <ul>
-<li class="chapter" data-level="11.4.1" data-path="discussion-1.html"><a href="discussion-1.html#path-diagrams"><i class="fa fa-check"></i><b>11.4.1</b> Path Diagrams<span></span></a></li>
-<li class="chapter" data-level="11.4.2" data-path="discussion-1.html"><a href="discussion-1.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.4.2</b> Omitted Variable Bias<span></span></a></li>
+<li class="chapter" data-level="8.6.1" data-path="visualizing-data.html"><a href="visualizing-data.html#discussion-questions-1"><i class="fa fa-check"></i><b>8.6.1</b> Discussion Questions</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.5</b> R Exercise<span></span></a></li>
-<li class="chapter" data-level="11.6" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.6</b> Discussion<span></span></a></li>
+<li class="chapter" data-level="8.7" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html"><i class="fa fa-check"></i><b>8.7</b> The Regression Anatomy Formula</a></li>
+<li class="chapter" data-level="8.8" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.8</b> Coding Activity:R Cheat Sheet</a></li>
+<li class="chapter" data-level="8.9" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.9</b> R Exercise</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.9.1</b> Assess the Relationship between Price and Square Footage</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="the-classical-linear-model.html"><a href="the-classical-linear-model.html"><i class="fa fa-check"></i><b>12</b> The Classical Linear Model<span></span></a>
+<li class="chapter" data-level="8.10" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html"><i class="fa fa-check"></i><b>8.10</b> Regression Plots and Discussion</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="class-announcements-10.html"><a href="class-announcements-10.html"><i class="fa fa-check"></i><b>12.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model<span></span></a>
-<ul>
-<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="problems-with-the-clm-requirements.html"><a href="problems-with-the-clm-requirements.html"><i class="fa fa-check"></i><b>12.5</b> Problems with the CLM Requirements<span></span></a></li>
-<li class="chapter" data-level="12.6" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.6</b> R Exercise<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>13</b> Reproducible Research<span></span></a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="learning-objectives-12.html"><a href="learning-objectives-12.html"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="13.2" data-path="class-announcements-11.html"><a href="class-announcements-11.html"><i class="fa fa-check"></i><b>13.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="13.3" data-path="roadmap-9.html"><a href="roadmap-9.html"><i class="fa fa-check"></i><b>13.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="13.4" data-path="what-data-science-hopes-to-accomplish.html"><a href="what-data-science-hopes-to-accomplish.html"><i class="fa fa-check"></i><b>13.4</b> What data science hopes to accomplish<span></span></a></li>
-<li class="chapter" data-level="13.5" data-path="learning-from-data.html"><a href="learning-from-data.html"><i class="fa fa-check"></i><b>13.5</b> Learning from Data<span></span></a></li>
-<li class="chapter" data-level="13.6" data-path="data-science-and-statistics.html"><a href="data-science-and-statistics.html"><i class="fa fa-check"></i><b>13.6</b> Data Science and Statistics<span></span></a></li>
-<li class="chapter" data-level="13.7" data-path="why-statistics-a-closing-argument-for-statistics.html"><a href="why-statistics-a-closing-argument-for-statistics.html"><i class="fa fa-check"></i><b>13.7</b> Why Statistics?: A Closing Argument for Statistics<span></span></a></li>
-<li class="chapter" data-level="13.8" data-path="course-goals.html"><a href="course-goals.html"><i class="fa fa-check"></i><b>13.8</b> Course Goals<span></span></a>
-<ul>
-<li class="chapter" data-level="13.8.1" data-path="course-goals.html"><a href="course-goals.html#course-section-iii-purpose-driven-models"><i class="fa fa-check"></i><b>13.8.1</b> Course Section III: Purpose-Driven Models<span></span></a></li>
-<li class="chapter" data-level="13.8.2" data-path="course-goals.html"><a href="course-goals.html#course-section-ii-sampling-theory-and-testing"><i class="fa fa-check"></i><b>13.8.2</b> Course Section II: Sampling Theory and Testing<span></span></a></li>
-<li class="chapter" data-level="13.8.3" data-path="course-goals.html"><a href="course-goals.html#course-section-i-probability-theory"><i class="fa fa-check"></i><b>13.8.3</b> Course Section I: Probability Theory<span></span></a></li>
-<li class="chapter" data-level="13.8.4" data-path="course-goals.html"><a href="course-goals.html#statistics-as-a-foundation-for-mids"><i class="fa fa-check"></i><b>13.8.4</b> Statistics as a Foundation for MIDS<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="13.9" data-path="reproducibility-discussion.html"><a href="reproducibility-discussion.html"><i class="fa fa-check"></i><b>13.9</b> Reproducibility Discussion<span></span></a>
-<ul>
-<li class="chapter" data-level="13.9.1" data-path="reproducibility-discussion.html"><a href="reproducibility-discussion.html#discussion-3"><i class="fa fa-check"></i><b>13.9.1</b> Discussion<span></span></a></li>
+<li class="chapter" data-level="8.10.1" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html#plot-1"><i class="fa fa-check"></i><b>8.10.1</b> Plot 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14</b> Maximum Likelihood Estimation<span></span></a>
+<li class="chapter" data-level="9" data-path="ols-regression-inference.html"><a href="ols-regression-inference.html"><i class="fa fa-check"></i><b>9</b> OLS Regression Inference</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="learning-objectives-13.html"><a href="learning-objectives-13.html"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="class-announcements-12.html"><a href="class-announcements-12.html"><i class="fa fa-check"></i><b>14.2</b> Class Announcements<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="roadmap-10.html"><a href="roadmap-10.html"><i class="fa fa-check"></i><b>14.3</b> Roadmap<span></span></a></li>
-<li class="chapter" data-level="14.4" data-path="what-is-a-model.html"><a href="what-is-a-model.html"><i class="fa fa-check"></i><b>14.4</b> What is a model?<span></span></a></li>
-<li class="chapter" data-level="14.5" data-path="estimation-1.html"><a href="estimation-1.html"><i class="fa fa-check"></i><b>14.5</b> Estimation<span></span></a></li>
-<li class="chapter" data-level="14.6" data-path="discussion-of-maximum-likelihood-estimation.html"><a href="discussion-of-maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14.6</b> Discussion of Maximum Likelihood Estimation<span></span></a></li>
-<li class="chapter" data-level="14.7" data-path="optimization-in-r.html"><a href="optimization-in-r.html"><i class="fa fa-check"></i><b>14.7</b> Optimization in R<span></span></a>
+<li class="chapter" data-level="9.1" data-path="learning-objectives-8.html"><a href="learning-objectives-8.html"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="class-announcements-7.html"><a href="class-announcements-7.html"><i class="fa fa-check"></i><b>9.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="9.3" data-path="roadmap-5.html"><a href="roadmap-5.html"><i class="fa fa-check"></i><b>9.3</b> Roadmap</a></li>
+<li class="chapter" data-level="9.4" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html"><i class="fa fa-check"></i><b>9.4</b> Uncertainty in OLS</a>
 <ul>
-<li class="chapter" data-level="14.7.1" data-path="optimization-in-r.html"><a href="optimization-in-r.html#optimization-example-optimum-price"><i class="fa fa-check"></i><b>14.7.1</b> Optimization Example: Optimum Price<span></span></a></li>
+<li class="chapter" data-level="9.4.1" data-path="uncertainty-in-ols.html"><a href="uncertainty-in-ols.html#discussion-questions-2"><i class="fa fa-check"></i><b>9.4.1</b> Discussion Questions</a></li>
 </ul></li>
-<li class="chapter" data-level="14.8" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html"><i class="fa fa-check"></i><b>14.8</b> MLE for Poisson Random Variables<span></span></a>
+<li class="chapter" data-level="9.5" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html"><i class="fa fa-check"></i><b>9.5</b> Understanding Uncertainty</a>
 <ul>
-<li class="chapter" data-level="14.8.1" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html#mle-for-poisson-random-variables-data"><i class="fa fa-check"></i><b>14.8.1</b> MLE for Poisson Random Variables: Data<span></span></a></li>
-<li class="chapter" data-level="14.8.2" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html#mle-estimation"><i class="fa fa-check"></i><b>14.8.2</b> MLE Estimation<span></span></a></li>
+<li class="chapter" data-level="9.5.1" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html#question-1"><i class="fa fa-check"></i><b>9.5.1</b> Question 1</a></li>
+<li class="chapter" data-level="9.5.2" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html#question-2"><i class="fa fa-check"></i><b>9.5.2</b> Question 2</a></li>
+<li class="chapter" data-level="9.5.3" data-path="understanding-uncertainty.html"><a href="understanding-uncertainty.html#question-3"><i class="fa fa-check"></i><b>9.5.3</b> Question 3</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals<span></span></a></li>
-<li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers<span></span></a></li>
+<li class="chapter" data-level="9.6" data-path="understanding-uncertainty-1.html"><a href="understanding-uncertainty-1.html"><i class="fa fa-check"></i><b>9.6</b> Understanding Uncertainty</a></li>
+<li class="chapter" data-level="9.7" data-path="r-exercise-1.html"><a href="r-exercise-1.html"><i class="fa fa-check"></i><b>9.7</b> R Exercise</a></li>
 </ul></li>
-<li><a href="appendix.html#appendix">Appendix<span></span></a>
+<li class="chapter" data-level="10" data-path="descriptive-model-building.html"><a href="descriptive-model-building.html"><i class="fa fa-check"></i><b>10</b> Descriptive Model Building</a>
 <ul>
-<li><a href="blooms-taxonomy.html#blooms-taxonomy">Bloom’s Taxonomy<span></span></a></li>
+<li class="chapter" data-level="10.1" data-path="learning-objectives-9.html"><a href="learning-objectives-9.html"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="class-announcements-8.html"><a href="class-announcements-8.html"><i class="fa fa-check"></i><b>10.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="10.3" data-path="roadmap-6.html"><a href="roadmap-6.html"><i class="fa fa-check"></i><b>10.3</b> Roadmap</a></li>
+<li class="chapter" data-level="10.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>10.4</b> Discussion</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="discussion.html"><a href="discussion.html#three-modes-of-model-building"><i class="fa fa-check"></i><b>10.4.1</b> Three modes of model building</a></li>
+<li class="chapter" data-level="10.4.2" data-path="discussion.html"><a href="discussion.html#the-statistical-modeling-process-in-different-modes"><i class="fa fa-check"></i><b>10.4.2</b> The statistical modeling process in different modes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html"><i class="fa fa-check"></i><b>10.5</b> R Activity: Measuring the return to education</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html#transformations"><i class="fa fa-check"></i><b>10.5.1</b> Transformations</a></li>
+<li class="chapter" data-level="10.5.2" data-path="r-activity-measuring-the-return-to-education.html"><a href="r-activity-measuring-the-return-to-education.html#estimation"><i class="fa fa-check"></i><b>10.5.2</b> Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="explanatory-model-building.html"><a href="explanatory-model-building.html"><i class="fa fa-check"></i><b>11</b> Explanatory Model Building</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="learning-objectives-10.html"><a href="learning-objectives-10.html"><i class="fa fa-check"></i><b>11.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="11.2" data-path="class-announcements-9.html"><a href="class-announcements-9.html"><i class="fa fa-check"></i><b>11.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="11.3" data-path="roadmap-7.html"><a href="roadmap-7.html"><i class="fa fa-check"></i><b>11.3</b> Roadmap</a></li>
+<li class="chapter" data-level="11.4" data-path="discussion-1.html"><a href="discussion-1.html"><i class="fa fa-check"></i><b>11.4</b> Discussion</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="discussion-1.html"><a href="discussion-1.html#path-diagrams"><i class="fa fa-check"></i><b>11.4.1</b> Path Diagrams</a></li>
+<li class="chapter" data-level="11.4.2" data-path="discussion-1.html"><a href="discussion-1.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.4.2</b> Omitted Variable Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.5</b> R Exercise</a></li>
+<li class="chapter" data-level="11.6" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.6</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="the-classical-linear-model.html"><a href="the-classical-linear-model.html"><i class="fa fa-check"></i><b>12</b> The Classical Linear Model</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="learning-objectives-11.html"><a href="learning-objectives-11.html"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="class-announcements-10.html"><a href="class-announcements-10.html"><i class="fa fa-check"></i><b>12.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="12.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
+<li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="problems-with-the-clm-requirements.html"><a href="problems-with-the-clm-requirements.html"><i class="fa fa-check"></i><b>12.5</b> Problems with the CLM Requirements</a></li>
+<li class="chapter" data-level="12.6" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.6</b> R Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>13</b> Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="learning-objectives-12.html"><a href="learning-objectives-12.html"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="class-announcements-11.html"><a href="class-announcements-11.html"><i class="fa fa-check"></i><b>13.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="13.3" data-path="roadmap-9.html"><a href="roadmap-9.html"><i class="fa fa-check"></i><b>13.3</b> Roadmap</a></li>
+<li class="chapter" data-level="13.4" data-path="what-data-science-hopes-to-accomplish.html"><a href="what-data-science-hopes-to-accomplish.html"><i class="fa fa-check"></i><b>13.4</b> What data science hopes to accomplish</a></li>
+<li class="chapter" data-level="13.5" data-path="learning-from-data.html"><a href="learning-from-data.html"><i class="fa fa-check"></i><b>13.5</b> Learning from Data</a></li>
+<li class="chapter" data-level="13.6" data-path="data-science-and-statistics.html"><a href="data-science-and-statistics.html"><i class="fa fa-check"></i><b>13.6</b> Data Science and Statistics</a></li>
+<li class="chapter" data-level="13.7" data-path="why-statistics-a-closing-argument-for-statistics.html"><a href="why-statistics-a-closing-argument-for-statistics.html"><i class="fa fa-check"></i><b>13.7</b> Why Statistics?: A Closing Argument for Statistics</a></li>
+<li class="chapter" data-level="13.8" data-path="course-goals.html"><a href="course-goals.html"><i class="fa fa-check"></i><b>13.8</b> Course Goals</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="course-goals.html"><a href="course-goals.html#course-section-iii-purpose-driven-models"><i class="fa fa-check"></i><b>13.8.1</b> Course Section III: Purpose-Driven Models</a></li>
+<li class="chapter" data-level="13.8.2" data-path="course-goals.html"><a href="course-goals.html#course-section-ii-sampling-theory-and-testing"><i class="fa fa-check"></i><b>13.8.2</b> Course Section II: Sampling Theory and Testing</a></li>
+<li class="chapter" data-level="13.8.3" data-path="course-goals.html"><a href="course-goals.html#course-section-i-probability-theory"><i class="fa fa-check"></i><b>13.8.3</b> Course Section I: Probability Theory</a></li>
+<li class="chapter" data-level="13.8.4" data-path="course-goals.html"><a href="course-goals.html#statistics-as-a-foundation-for-mids"><i class="fa fa-check"></i><b>13.8.4</b> Statistics as a Foundation for MIDS</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="reproducibility-discussion.html"><a href="reproducibility-discussion.html"><i class="fa fa-check"></i><b>13.9</b> Reproducibility Discussion</a>
+<ul>
+<li class="chapter" data-level="13.9.1" data-path="reproducibility-discussion.html"><a href="reproducibility-discussion.html#discussion-3"><i class="fa fa-check"></i><b>13.9.1</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14</b> Maximum Likelihood Estimation</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="learning-objectives-13.html"><a href="learning-objectives-13.html"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="14.2" data-path="class-announcements-12.html"><a href="class-announcements-12.html"><i class="fa fa-check"></i><b>14.2</b> Class Announcements</a></li>
+<li class="chapter" data-level="14.3" data-path="roadmap-10.html"><a href="roadmap-10.html"><i class="fa fa-check"></i><b>14.3</b> Roadmap</a></li>
+<li class="chapter" data-level="14.4" data-path="what-is-a-model.html"><a href="what-is-a-model.html"><i class="fa fa-check"></i><b>14.4</b> What is a model?</a></li>
+<li class="chapter" data-level="14.5" data-path="estimation-1.html"><a href="estimation-1.html"><i class="fa fa-check"></i><b>14.5</b> Estimation</a></li>
+<li class="chapter" data-level="14.6" data-path="discussion-of-maximum-likelihood-estimation.html"><a href="discussion-of-maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>14.6</b> Discussion of Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="14.7" data-path="optimization-in-r.html"><a href="optimization-in-r.html"><i class="fa fa-check"></i><b>14.7</b> Optimization in R</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="optimization-in-r.html"><a href="optimization-in-r.html#optimization-example-optimum-price"><i class="fa fa-check"></i><b>14.7.1</b> Optimization Example: Optimum Price</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html"><i class="fa fa-check"></i><b>14.8</b> MLE for Poisson Random Variables</a>
+<ul>
+<li class="chapter" data-level="14.8.1" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html#mle-for-poisson-random-variables-data"><i class="fa fa-check"></i><b>14.8.1</b> MLE for Poisson Random Variables: Data</a></li>
+<li class="chapter" data-level="14.8.2" data-path="mle-for-poisson-random-variables.html"><a href="mle-for-poisson-random-variables.html#mle-estimation"><i class="fa fa-check"></i><b>14.8.2</b> MLE Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14.9</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="14.10" data-path="maximum-likelihood-example-printers.html"><a href="maximum-likelihood-example-printers.html"><i class="fa fa-check"></i><b>14.10</b> Maximum Likelihood Example: Printers</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="blooms-taxonomy.html"><a href="blooms-taxonomy.html"><i class="fa fa-check"></i>Bloom’s Taxonomy</a></li>
 </ul></li>
 </ul>
 
@@ -519,7 +517,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Recall the PDF that we worked with earlier to produce the $CEF[Y|X].</li>
 </ul>
 <p><span class="math display">\[
-f(x,y) =
+f(x,y) = 
   \begin{cases}
     2, &amp; 0 \leq x \leq 1, 0 \leq y \leq x \\
     0, &amp; otherwise
@@ -617,7 +615,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
