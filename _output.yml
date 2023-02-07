@@ -12,7 +12,7 @@ bookdown::gitbook:
   highlight: tango
   download: null
   css: [css/style.css, css/box.css]
-  cold_folding: 'hide'
+  code_folding: 'hide'
 bookdown::pdf_book:
   keep_tex: TRUE
   includes:
