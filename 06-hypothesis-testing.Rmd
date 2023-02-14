@@ -154,8 +154,11 @@ voltage <- c(11.77, 11.90, 11.64, 11.84, 12.13, 11.99,  11.77)
 
 ```
 
-## Falling Ill 
+## Falling Ill (The General Form of a Hypothesis Test)
 
+In the async content for the week, we're really, *really* clear that we're only working with the *t-distribution*. But, the general "form" of a frequentist hypothesis test is always the same: produce a test statistic; produce a distribution of that test statistic if the null hypothesis *were* true; then compare the two. Let's stretch this application a little bit.
+
+::: discussion-question
 There is a theory that upcoming tests cause students to fall ill. We have been collecting wellness data from our students for several years (not really...) and we have found the following distribution of illnesses (Notice that this does not tell you anything about how many students we have enrolled over the years):
 
 -   20 students have reported being ill in the week *before* Test 2
@@ -163,6 +166,7 @@ There is a theory that upcoming tests cause students to fall ill. We have been c
 -   10 students have reported being ill in the week *after* Test 2
 
 Think of wellness/illness as a dichotomous statement.
+:::
 
 -   **State an appropriate null hypothesis.** After you have stated this null hypothesis, can you think about (or, even better) can you produce a distribution of the probability of {0, 1, 2, 3, ... 30} of the illnesses reported before the test?
 
@@ -182,21 +186,32 @@ ggplot() +
 
 **t-Test Micro Cheat Sheet**
 
--   Key t-Test Assumptions
-    -   Metric variable
-    -   IID
-    -   No major deviations from normality, considering sample size
+In order for a t-test to produce valid results, a set of conditions must be satisfied. While the literature refers to these as *assumptions*, you might do better to refer to these for yourselves as *requirements*. Meaning, if these requirements for the data generating process are not satisfied, the test does not produce results that hold any statistical guarantees.
+
+-   **Metric variable**: The data needs to be numeric
+-   **IID**: The data needs to be sampled using an independent, identically distributed sampling process.
+-   **Well-behaved**: The data need to demonstate no major deviations from normality, considering sample size
 
 **Testing the Home Team Advantage**
 
-The file athlet2.Rdata contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
+The file `./data/home_team.csv` contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
 
 ```{r}
-load("data/athlet2.RData")
-data
+home_team <- read_csv('./data/home_team.csv') %>% 
+  select(dscore, dinstt, doutstt) %>% 
+  rename(
+    score_diff               = dscore, 
+    in_state_tuition_diff    = dinstt, 
+    out_state_tuition_diff   = doutstt
+  )
+
+glimpse(home_team)
+
+t.test(home_team$out_state_tuition_diff)
+
 ```
 
-We are especially interested in the variable, dscore, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.
+We are especially interested in the variable, `score_diff`, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.
 
 1.  The instructor will assign you to one of two teams. Team 1 will argue that the t-test is appropriate to this scenario. Team 2 will argue that the t-test is invalid. Take a few minutes to examine the data, then formulate your best argument.
 
@@ -220,6 +235,8 @@ We are especially interested in the variable, dscore, which represents the score
 ```{r}
 
 ```
+
+Stretch consideration:
 
 ## Assumptions Behind the t-test
 
