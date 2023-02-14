@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="accepting-the-null.html"><a href="accepting-the-null.html"><i class="fa fa-check"></i><b>6.7</b> “Accepting the Null”</a></li>
+<li class="chapter" data-level="6.8" data-path="manually-computing-a-t-test.html"><a href="manually-computing-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manually Computing a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="falling-ill-the-general-form-of-a-hypothesis-test.html"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.9</b> Falling Ill (The General Form of a Hypothesis Test)</a></li>
+<li class="chapter" data-level="6.10" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.10</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.11" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.11</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -501,7 +502,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Suppose that a firm’s profit from selling a product is related to price, <span class="math inline">\(p\)</span>, and cost, <span class="math inline">\(c\)</span>, as follows:</li>
 </ul>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
 \text{profit} = (p - p^2) - c + 100
 \]</span></p>
 <ol style="list-style-type: decimal">
@@ -521,22 +522,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="optimization-in-r.html#cb176-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
-<span id="cb176-2"><a href="optimization-in-r.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
-<span id="cb176-3"><a href="optimization-in-r.html#cb176-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
-<span id="cb176-4"><a href="optimization-in-r.html#cb176-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="optimization-in-r.html#cb163-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
+<span id="cb163-2"><a href="optimization-in-r.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb163-3"><a href="optimization-in-r.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
+<span id="cb163-4"><a href="optimization-in-r.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="optimization-in-r.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="optimization-in-r.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
 </details>
 <pre><code>## [1] 96</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="optimization-in-r.html#cb179-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb179-2"><a href="optimization-in-r.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
-<span id="cb179-3"><a href="optimization-in-r.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
-<span id="cb179-4"><a href="optimization-in-r.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
-<span id="cb179-5"><a href="optimization-in-r.html#cb179-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
-<span id="cb179-6"><a href="optimization-in-r.html#cb179-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="optimization-in-r.html#cb166-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb166-2"><a href="optimization-in-r.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
+<span id="cb166-3"><a href="optimization-in-r.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
+<span id="cb166-4"><a href="optimization-in-r.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
+<span id="cb166-5"><a href="optimization-in-r.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
+<span id="cb166-6"><a href="optimization-in-r.html#cb166-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
 </details>
 <pre><code>## $maximum
 ## [1] 0.5

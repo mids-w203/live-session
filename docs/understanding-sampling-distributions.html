@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="accepting-the-null.html"><a href="accepting-the-null.html"><i class="fa fa-check"></i><b>6.7</b> “Accepting the Null”</a></li>
+<li class="chapter" data-level="6.8" data-path="manually-computing-a-t-test.html"><a href="manually-computing-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manually Computing a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="falling-ill-the-general-form-of-a-hypothesis-test.html"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.9</b> Falling Ill (The General Form of a Hypothesis Test)</a></li>
+<li class="chapter" data-level="6.10" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.10</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.11" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.11</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -514,33 +515,33 @@ Let’s work through an example that begins with a case that we can think throug
 <li>Let’s set, and keep this at <span class="math inline">\(1000\)</span> simulations. But, if you’re curious, you could set this to be <span class="math inline">\(5\)</span>, or <span class="math inline">\(10\)</span> and evaluate what happens.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="understanding-sampling-distributions.html#cb40-1" aria-hidden="true" tabindex="-1"></a>toss_coin <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb40-2"><a href="understanding-sampling-distributions.html#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_simulations=</span><span class="dv">1000</span>, </span>
-<span id="cb40-3"><a href="understanding-sampling-distributions.html#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_tosses=</span><span class="dv">2</span>, </span>
-<span id="cb40-4"><a href="understanding-sampling-distributions.html#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob_heads=</span><span class="fl">0.7</span>) { </span>
-<span id="cb40-5"><a href="understanding-sampling-distributions.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-6"><a href="understanding-sampling-distributions.html#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## number of simulations is just how many times we want to re-run the experiment</span></span>
-<span id="cb40-7"><a href="understanding-sampling-distributions.html#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## number of tosses is the number of coins we&#39;re going to toss.</span></span>
-<span id="cb40-8"><a href="understanding-sampling-distributions.html#cb40-8" aria-hidden="true" tabindex="-1"></a>  number_of_heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n=</span>number_of_simulations, <span class="at">size=</span>number_of_tosses, <span class="at">prob=</span>prob_heads)</span>
-<span id="cb40-9"><a href="understanding-sampling-distributions.html#cb40-9" aria-hidden="true" tabindex="-1"></a>  sample_average  <span class="ot">&lt;-</span> number_of_heads <span class="sc">/</span> number_of_tosses</span>
-<span id="cb40-10"><a href="understanding-sampling-distributions.html#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sample_average)</span>
-<span id="cb40-11"><a href="understanding-sampling-distributions.html#cb40-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb40-12"><a href="understanding-sampling-distributions.html#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-13"><a href="understanding-sampling-distributions.html#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="understanding-sampling-distributions.html#cb38-1" aria-hidden="true" tabindex="-1"></a>toss_coin <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb38-2"><a href="understanding-sampling-distributions.html#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_simulations=</span><span class="dv">1000</span>, </span>
+<span id="cb38-3"><a href="understanding-sampling-distributions.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_tosses=</span><span class="dv">2</span>, </span>
+<span id="cb38-4"><a href="understanding-sampling-distributions.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob_heads=</span><span class="fl">0.7</span>) { </span>
+<span id="cb38-5"><a href="understanding-sampling-distributions.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-6"><a href="understanding-sampling-distributions.html#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## number of simulations is just how many times we want to re-run the experiment</span></span>
+<span id="cb38-7"><a href="understanding-sampling-distributions.html#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## number of tosses is the number of coins we&#39;re going to toss.</span></span>
+<span id="cb38-8"><a href="understanding-sampling-distributions.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  number_of_heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n=</span>number_of_simulations, <span class="at">size=</span>number_of_tosses, <span class="at">prob=</span>prob_heads)</span>
+<span id="cb38-9"><a href="understanding-sampling-distributions.html#cb38-9" aria-hidden="true" tabindex="-1"></a>  sample_average  <span class="ot">&lt;-</span> number_of_heads <span class="sc">/</span> number_of_tosses</span>
+<span id="cb38-10"><a href="understanding-sampling-distributions.html#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sample_average)</span>
+<span id="cb38-11"><a href="understanding-sampling-distributions.html#cb38-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-12"><a href="understanding-sampling-distributions.html#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="understanding-sampling-distributions.html#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>)</span></code></pre></div>
 </details>
 <pre><code>##  [1] 1.0 1.0 0.5 1.0 1.0 0.5 1.0 1.0 1.0 1.0</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="understanding-sampling-distributions.html#cb42-1" aria-hidden="true" tabindex="-1"></a>coin_result <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
-<span id="cb42-2"><a href="understanding-sampling-distributions.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">1000</span>,</span>
-<span id="cb42-3"><a href="understanding-sampling-distributions.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> <span class="dv">2</span>, </span>
-<span id="cb42-4"><a href="understanding-sampling-distributions.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.7</span></span>
-<span id="cb42-5"><a href="understanding-sampling-distributions.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb42-6"><a href="understanding-sampling-distributions.html#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="understanding-sampling-distributions.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb42-8"><a href="understanding-sampling-distributions.html#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result) <span class="sc">+</span> </span>
-<span id="cb42-9"><a href="understanding-sampling-distributions.html#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
-<span id="cb42-10"><a href="understanding-sampling-distributions.html#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">1</span>, <span class="at">by=</span><span class="fl">0.1</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>)) <span class="sc">+</span> </span>
-<span id="cb42-11"><a href="understanding-sampling-distributions.html#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.7</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="understanding-sampling-distributions.html#cb40-1" aria-hidden="true" tabindex="-1"></a>coin_result <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
+<span id="cb40-2"><a href="understanding-sampling-distributions.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">1000</span>,</span>
+<span id="cb40-3"><a href="understanding-sampling-distributions.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> <span class="dv">2</span>, </span>
+<span id="cb40-4"><a href="understanding-sampling-distributions.html#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.7</span></span>
+<span id="cb40-5"><a href="understanding-sampling-distributions.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-6"><a href="understanding-sampling-distributions.html#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="understanding-sampling-distributions.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb40-8"><a href="understanding-sampling-distributions.html#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result) <span class="sc">+</span> </span>
+<span id="cb40-9"><a href="understanding-sampling-distributions.html#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb40-10"><a href="understanding-sampling-distributions.html#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">1</span>, <span class="at">by=</span><span class="fl">0.1</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>)) <span class="sc">+</span> </span>
+<span id="cb40-11"><a href="understanding-sampling-distributions.html#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.7</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span></code></pre></div>
 </details>
 <p><img src="203-live-session_files/figure-html/toss%20coins%20and%20plot-1.png" width="672" /></p>
 <div class="discussion-question">

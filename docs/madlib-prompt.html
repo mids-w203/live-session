@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="accepting-the-null.html"><a href="accepting-the-null.html"><i class="fa fa-check"></i><b>6.7</b> “Accepting the Null”</a></li>
+<li class="chapter" data-level="6.8" data-path="manually-computing-a-t-test.html"><a href="manually-computing-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manually Computing a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="falling-ill-the-general-form-of-a-hypothesis-test.html"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.9</b> Falling Ill (The General Form of a Hypothesis Test)</a></li>
+<li class="chapter" data-level="6.10" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.10</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.11" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.11</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -491,15 +492,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="madlib-prompt" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Madlib prompt<a href="madlib-prompt.html#madlib-prompt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="madlib-prompt.html#cb45-1" aria-hidden="true" tabindex="-1"></a>tone_of_voice     <span class="ot">&lt;-</span> <span class="st">&#39;yell&#39;</span></span>
-<span id="cb45-2"><a href="madlib-prompt.html#cb45-2" aria-hidden="true" tabindex="-1"></a>mode_of_speech    <span class="ot">&lt;-</span> <span class="st">&#39;call&#39;</span></span>
-<span id="cb45-3"><a href="madlib-prompt.html#cb45-3" aria-hidden="true" tabindex="-1"></a>superlative       <span class="ot">&lt;-</span> <span class="st">&#39;worst&#39;</span></span>
-<span id="cb45-4"><a href="madlib-prompt.html#cb45-4" aria-hidden="true" tabindex="-1"></a>score_on_test     <span class="ot">&lt;-</span> <span class="st">&#39;70&#39;</span></span>
-<span id="cb45-5"><a href="madlib-prompt.html#cb45-5" aria-hidden="true" tabindex="-1"></a>name_of_classmate <span class="ot">&lt;-</span> <span class="st">&#39;victor&#39;</span></span>
-<span id="cb45-6"><a href="madlib-prompt.html#cb45-6" aria-hidden="true" tabindex="-1"></a>emotion           <span class="ot">&lt;-</span> <span class="st">&#39;ennui&#39;</span></span>
-<span id="cb45-7"><a href="madlib-prompt.html#cb45-7" aria-hidden="true" tabindex="-1"></a>eating_verb       <span class="ot">&lt;-</span> <span class="st">&#39;smack&#39;</span> <span class="co">#slurp</span></span>
-<span id="cb45-8"><a href="madlib-prompt.html#cb45-8" aria-hidden="true" tabindex="-1"></a>vessel            <span class="ot">&lt;-</span> <span class="st">&#39;bowl&#39;</span></span>
-<span id="cb45-9"><a href="madlib-prompt.html#cb45-9" aria-hidden="true" tabindex="-1"></a>thing_found_in_compost <span class="ot">&lt;-</span> <span class="st">&#39;bannana peel&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="madlib-prompt.html#cb43-1" aria-hidden="true" tabindex="-1"></a>tone_of_voice     <span class="ot">&lt;-</span> <span class="st">&#39;irritating&#39;</span></span>
+<span id="cb43-2"><a href="madlib-prompt.html#cb43-2" aria-hidden="true" tabindex="-1"></a>mode_of_speech    <span class="ot">&lt;-</span> <span class="st">&#39;yell&#39;</span></span>
+<span id="cb43-3"><a href="madlib-prompt.html#cb43-3" aria-hidden="true" tabindex="-1"></a>superlative       <span class="ot">&lt;-</span> <span class="st">&#39;most&#39;</span></span>
+<span id="cb43-4"><a href="madlib-prompt.html#cb43-4" aria-hidden="true" tabindex="-1"></a>score_on_test     <span class="ot">&lt;-</span> <span class="st">&#39;90 percent&#39;</span> <span class="co"># should end with percent</span></span>
+<span id="cb43-5"><a href="madlib-prompt.html#cb43-5" aria-hidden="true" tabindex="-1"></a>name_of_classmate <span class="ot">&lt;-</span> <span class="st">&#39;bob&#39;</span></span>
+<span id="cb43-6"><a href="madlib-prompt.html#cb43-6" aria-hidden="true" tabindex="-1"></a>emotion           <span class="ot">&lt;-</span> <span class="st">&#39;angry&#39;</span></span>
+<span id="cb43-7"><a href="madlib-prompt.html#cb43-7" aria-hidden="true" tabindex="-1"></a>eating_verb       <span class="ot">&lt;-</span> <span class="st">&#39;chug&#39;</span> <span class="co">#slurp</span></span>
+<span id="cb43-8"><a href="madlib-prompt.html#cb43-8" aria-hidden="true" tabindex="-1"></a>vessel            <span class="ot">&lt;-</span> <span class="st">&#39;kettle&#39;</span></span>
+<span id="cb43-9"><a href="madlib-prompt.html#cb43-9" aria-hidden="true" tabindex="-1"></a>thing_found_in_compost <span class="ot">&lt;-</span> <span class="st">&#39;melon rind&#39;</span></span></code></pre></div>
 </details>
 </div>
             </section>

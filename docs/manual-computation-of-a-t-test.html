@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.8 Manual Computation of a t-Test | Statistics for Data Science</title>
+  <title>6.7 Manual Computation of a t-Test | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.8 Manual Computation of a t-Test | Statistics for Data Science" />
+  <meta property="og:title" content="6.7 Manual Computation of a t-Test | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.8 Manual Computation of a t-Test | Statistics for Data Science" />
+  <meta name="twitter:title" content="6.7 Manual Computation of a t-Test | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,14 +23,14 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="all-joking-aside.html"/>
+<link rel="prev" href="madlib-completed.html"/>
 <link rel="next" href="data-exercise.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -313,10 +313,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.7</b> Manual Computation of a t-Test</a></li>
+<li class="chapter" data-level="6.8" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.8</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.9" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.9</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -488,11 +487,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="manual-computation-of-a-t-test" class="section level2 hasAnchor" number="6.8">
-<h2><span class="header-section-number">6.8</span> Manual Computation of a t-Test<a href="manual-computation-of-a-t-test.html#manual-computation-of-a-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="manual-computation-of-a-t-test" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Manual Computation of a t-Test<a href="manual-computation-of-a-t-test.html#manual-computation-of-a-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In a warehouse full of power packs labeled as 12 volts we randomly measured the voltage of 7. Here is the data:</p>
-<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="manual-computation-of-a-t-test.html#cb46-1" aria-hidden="true" tabindex="-1"></a>voltage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">11.77</span>, <span class="fl">11.90</span>, <span class="fl">11.64</span>, <span class="fl">11.84</span>, <span class="fl">12.13</span>, <span class="fl">11.99</span>,  <span class="fl">11.77</span>)</span></code></pre></div>
+<details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb44-1"><a href="manual-computation-of-a-t-test.html#cb44-1" aria-hidden="true" tabindex="-1"></a>voltage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">11.77</span>, <span class="fl">11.90</span>, <span class="fl">11.64</span>, <span class="fl">11.84</span>, <span class="fl">12.13</span>, <span class="fl">11.99</span>,  <span class="fl">11.77</span>)</span></code></pre></div>
 </details>
 <ol style="list-style-type: decimal">
 <li><p>Find the mean and the standard deviation.</p></li>
@@ -510,7 +509,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="all-joking-aside.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="madlib-completed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="data-exercise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

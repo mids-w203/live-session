@@ -8,7 +8,7 @@ Like a petulant child, NHST essentially proclaims,
 
 > "If you really loved me, you would let me watch this screen one-hundred hours every day."
 
-Here the absurdity is that a parent might not love their child, and the criteria to overturn that assertion is noted to be "buy me an ipad"'.
+Here the absurdity is that a parent might not love their child, and the criteria to overturn that assertion is noted to be "buy me an iPad"'.
 
 ### What is Frequentist testing doing? {.unnumbered}
 
@@ -80,20 +80,20 @@ $$
 ## Madlib prompt
 
 ```{r}
-tone_of_voice     <- 'irritating'
-mode_of_speech    <- 'yell'
-superlative       <- 'most'
-score_on_test     <- '90 percent' # should end with percent
-name_of_classmate <- 'bob'
-emotion           <- 'angry'
-eating_verb       <- 'chug' #slurp
-vessel            <- 'kettle'
-thing_found_in_compost <- 'melon rind'
+tone_of_voice     <- ''
+mode_of_speech    <- ''
+superlative       <- ''
+score_on_test     <- 'percent' # should end with percent
+name_of_classmate <- ''
+emotion           <- ''
+eating_verb       <- '' #slurp
+vessel            <- '' 
+thing_found_in_compost <- ''
 ```
 
 ## Madlib completed
 
-Suppose that a classmate comes to you, and, in a `r tone_of_voice` voice `r mode_of_speech`, "Hey, I've got something that is `r superlative` for statistics test prep. All you've got to do to get `r score_on_test` on Test 2 and make `r name_of_classmate` `r emotion` is `r eating_verb` this `r vessel` of `r thing_found_in_compost`.
+Suppose that a classmate comes to you, and, in a `r tone_of_voice` voice `r mode_of_speech`, "Hey, I've got something that is `r superlative` for statistics test preperation. All you've got to do to get `r score_on_test` on Test 2 and make `r name_of_classmate` `r emotion` is to `r eating_verb` this `r vessel` of `r thing_found_in_compost`.
 
 You're skeptical, but also curious because that last test was tough. Good.
 
@@ -197,7 +197,7 @@ In order for a t-test to produce valid results, a set of conditions must be sati
 The file `./data/home_team.csv` contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
 
 ```{r}
-home_team <- read_csv('./data/home_team.csv') %>% 
+home_team <- read.csv('./data/home_team.csv') %>% 
   select(dscore, dinstt, doutstt) %>% 
   rename(
     score_diff               = dscore, 
@@ -205,10 +205,7 @@ home_team <- read_csv('./data/home_team.csv') %>%
     out_state_tuition_diff   = doutstt
   )
 
-glimpse(home_team)
-
-t.test(home_team$out_state_tuition_diff)
-
+glimpse(home_team, width = 80)
 ```
 
 We are especially interested in the variable, `score_diff`, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.
@@ -235,8 +232,6 @@ We are especially interested in the variable, `score_diff`, which represents the
 ```{r}
 
 ```
-
-Stretch consideration:
 
 ## Assumptions Behind the t-test
 

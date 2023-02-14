@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="accepting-the-null.html"><a href="accepting-the-null.html"><i class="fa fa-check"></i><b>6.7</b> “Accepting the Null”</a></li>
+<li class="chapter" data-level="6.8" data-path="manually-computing-a-t-test.html"><a href="manually-computing-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manually Computing a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="falling-ill-the-general-form-of-a-hypothesis-test.html"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.9</b> Falling Ill (The General Form of a Hypothesis Test)</a></li>
+<li class="chapter" data-level="6.10" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.10</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.11" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.11</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -493,12 +494,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Real Estate in Boston</strong></p>
 <p>The file <code>hprice1.RData</code> contains 88 observations of homes in the Boston area, taken from the real estate pages of the Boston Globe during 1990. This data was provided by Wooldridge.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r-exercise-1.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="r-exercise-1.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/hprice1.RData&#39;</span>) <span class="co"># provides 3 objects </span></span></code></pre></div>
 </details>
 <p>Last week, we fit a regression of price on square feet.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="r-exercise-1.html#cb125-1" aria-hidden="true" tabindex="-1"></a>model_one <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data)</span>
-<span id="cb125-2"><a href="r-exercise-1.html#cb125-2" aria-hidden="true" tabindex="-1"></a>model_one</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="r-exercise-1.html#cb112-1" aria-hidden="true" tabindex="-1"></a>model_one <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data)</span>
+<span id="cb112-2"><a href="r-exercise-1.html#cb112-2" aria-hidden="true" tabindex="-1"></a>model_one</span></code></pre></div>
 </details>
 <pre><code>## 
 ## Call:
@@ -508,28 +509,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)        sqrft  
 ##     11.2041       0.1402</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="r-exercise-1.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="do">## any frequentist test has what components: numerator and denominator? </span></span>
-<span id="cb127-2"><a href="r-exercise-1.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-3"><a href="r-exercise-1.html#cb127-3" aria-hidden="true" tabindex="-1"></a>numerator   <span class="ot">&lt;-</span> <span class="fl">0.14</span></span>
-<span id="cb127-4"><a href="r-exercise-1.html#cb127-4" aria-hidden="true" tabindex="-1"></a>denominator <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(<span class="fu">vcovHC</span>(model_one)))[<span class="st">&#39;sqrft&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="r-exercise-1.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="do">## any frequentist test has what components: numerator and denominator? </span></span>
+<span id="cb114-2"><a href="r-exercise-1.html#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-3"><a href="r-exercise-1.html#cb114-3" aria-hidden="true" tabindex="-1"></a>numerator   <span class="ot">&lt;-</span> <span class="fl">0.14</span></span>
+<span id="cb114-4"><a href="r-exercise-1.html#cb114-4" aria-hidden="true" tabindex="-1"></a>denominator <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(<span class="fu">vcovHC</span>(model_one)))[<span class="st">&#39;sqrft&#39;</span>]</span></code></pre></div>
 </details>
 <pre><code>## Warning in sqrt(vcovHC(model_one)): NaNs produced</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-exercise-1.html#cb129-1" aria-hidden="true" tabindex="-1"></a>test_stat <span class="ot">&lt;-</span> numerator <span class="sc">/</span> denominator</span>
-<span id="cb129-2"><a href="r-exercise-1.html#cb129-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb129-3"><a href="r-exercise-1.html#cb129-3" aria-hidden="true" tabindex="-1"></a>test_stat</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="r-exercise-1.html#cb116-1" aria-hidden="true" tabindex="-1"></a>test_stat <span class="ot">&lt;-</span> numerator <span class="sc">/</span> denominator</span>
+<span id="cb116-2"><a href="r-exercise-1.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="r-exercise-1.html#cb116-3" aria-hidden="true" tabindex="-1"></a>test_stat</span></code></pre></div>
 </details>
 <pre><code>##    sqrft 
 ## 6.631694</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-exercise-1.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(test_stat, <span class="at">df =</span> <span class="dv">87</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="r-exercise-1.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(test_stat, <span class="at">df =</span> <span class="dv">87</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 </details>
 <pre><code>##      sqrft 
 ## 2.6884e-09</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="r-exercise-1.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="do">## we could do it by hand... or... let someone else do it for us</span></span>
-<span id="cb133-2"><a href="r-exercise-1.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb133-3"><a href="r-exercise-1.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_one, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(model_one))</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="r-exercise-1.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="do">## we could do it by hand... or... let someone else do it for us</span></span>
+<span id="cb120-2"><a href="r-exercise-1.html#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-3"><a href="r-exercise-1.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_one, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(model_one))</span></code></pre></div>
 </details>
 <pre><code>## 
 ## t test of coefficients:
@@ -540,7 +541,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-exercise-1.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data[<span class="st">&#39;sqrft&#39;</span>]) </span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="r-exercise-1.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(data[<span class="st">&#39;sqrft&#39;</span>]) </span></code></pre></div>
 </details>
 <pre><code>##          sqrft
 ## sqrft 333150.1</code></pre>
@@ -563,9 +564,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Use the function <code>vcovHC</code> from the <code>sandwich</code> package to estimate (a) the the heteroskedastic consistent (i.e. “robust”) variance covariance matrix; and (b) the robust standard errors for the intercept and slope of this regression. Recall, what is the relationship between the VCOV and SE in a regression?</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="r-exercise-1.html#cb137-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>sqrft_two <span class="ot">&lt;-</span> data<span class="sc">$</span>sqrft <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">88</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">0.1</span>)</span>
-<span id="cb137-2"><a href="r-exercise-1.html#cb137-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-3"><a href="r-exercise-1.html#cb137-3" aria-hidden="true" tabindex="-1"></a>data[ , <span class="fu">c</span>(<span class="st">&#39;sqrft&#39;</span>, <span class="st">&#39;sqrft_two&#39;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r-exercise-1.html#cb124-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>sqrft_two <span class="ot">&lt;-</span> data<span class="sc">$</span>sqrft <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">88</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="fl">0.1</span>)</span>
+<span id="cb124-2"><a href="r-exercise-1.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="r-exercise-1.html#cb124-3" aria-hidden="true" tabindex="-1"></a>data[ , <span class="fu">c</span>(<span class="st">&#39;sqrft&#39;</span>, <span class="st">&#39;sqrft_two&#39;</span>)]</span></code></pre></div>
 </details>
 <pre><code>##    sqrft sqrft_two
 ## 1   2438  2438.078
@@ -657,8 +658,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 87  1185  1184.952
 ## 88  1774  1774.153</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-exercise-1.html#cb139-1" aria-hidden="true" tabindex="-1"></a>model_two <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize, <span class="at">data =</span> data)</span>
-<span id="cb139-2"><a href="r-exercise-1.html#cb139-2" aria-hidden="true" tabindex="-1"></a>model_two</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="r-exercise-1.html#cb126-1" aria-hidden="true" tabindex="-1"></a>model_two <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> lotsize, <span class="at">data =</span> data)</span>
+<span id="cb126-2"><a href="r-exercise-1.html#cb126-2" aria-hidden="true" tabindex="-1"></a>model_two</span></code></pre></div>
 </details>
 <pre><code>## 
 ## Call:
@@ -668,8 +669,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)        sqrft      lotsize  
 ##    5.932414     0.133362     0.002113</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="r-exercise-1.html#cb141-1" aria-hidden="true" tabindex="-1"></a>model_three <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrft <span class="sc">~</span> lotsize, <span class="at">data =</span> data)</span>
-<span id="cb141-2"><a href="r-exercise-1.html#cb141-2" aria-hidden="true" tabindex="-1"></a>model_three</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-exercise-1.html#cb128-1" aria-hidden="true" tabindex="-1"></a>model_three <span class="ot">&lt;-</span> <span class="fu">lm</span>(sqrft <span class="sc">~</span> lotsize, <span class="at">data =</span> data)</span>
+<span id="cb128-2"><a href="r-exercise-1.html#cb128-2" aria-hidden="true" tabindex="-1"></a>model_three</span></code></pre></div>
 </details>
 <pre><code>## 
 ## Call:
@@ -679,8 +680,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)      lotsize  
 ##   1.920e+03    1.043e-02</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="r-exercise-1.html#cb143-1" aria-hidden="true" tabindex="-1"></a>model_four <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> sqrft_two, <span class="at">data =</span> data)</span>
-<span id="cb143-2"><a href="r-exercise-1.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_four, vcovHC)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="r-exercise-1.html#cb130-1" aria-hidden="true" tabindex="-1"></a>model_four <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft <span class="sc">+</span> sqrft_two, <span class="at">data =</span> data)</span>
+<span id="cb130-2"><a href="r-exercise-1.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_four, vcovHC)</span></code></pre></div>
 </details>
 <pre><code>## 
 ## t test of coefficients:
@@ -690,7 +691,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## sqrft        50.2543    67.3099  0.7466   0.4574
 ## sqrft_two   -50.1129    67.3058 -0.7446   0.4586</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="r-exercise-1.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_three, vcovHC)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="r-exercise-1.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_three, vcovHC)</span></code></pre></div>
 </details>
 <pre><code>## 
 ## t test of coefficients:
@@ -701,12 +702,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="r-exercise-1.html#cb147-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb147-2"><a href="r-exercise-1.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb147-3"><a href="r-exercise-1.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>lotsize) <span class="sc">+</span> </span>
-<span id="cb147-4"><a href="r-exercise-1.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="r-exercise-1.html#cb134-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb134-2"><a href="r-exercise-1.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb134-3"><a href="r-exercise-1.html#cb134-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sqrft, <span class="at">y=</span>lotsize) <span class="sc">+</span> </span>
+<span id="cb134-4"><a href="r-exercise-1.html#cb134-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 </details>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Perform a hypothesis test to check whether the population relationship between <code>sqrft</code> and <code>price</code> is zero. Use <code>coeftest()</code> with the robust standard errors computed above.</p></li>
 <li><p>Use the robust standard error and <code>qt</code> to compute a 95% confidence interval for the coefficient <code>sqrft</code> in the second model that you estimated. <span class="math inline">\(price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial\)</span>.</p></li>
@@ -714,8 +715,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Below is code that will conduct a boostrapping estimator of the uncertainty of the <code>sqrft</code> variable when <code>lotsize</code> and <code>colonial</code> are included in the model.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="r-exercise-1.html#cb148-1" aria-hidden="true" tabindex="-1"></a>model_one <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data)</span>
-<span id="cb148-2"><a href="r-exercise-1.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_one, vcovHC)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-exercise-1.html#cb135-1" aria-hidden="true" tabindex="-1"></a>model_one <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data)</span>
+<span id="cb135-2"><a href="r-exercise-1.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_one, vcovHC)</span></code></pre></div>
 </details>
 <pre><code>## 
 ## t test of coefficients:
@@ -726,229 +727,229 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="r-exercise-1.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coefci</span>(model_one, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">vcov. =</span> vcovHC)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="r-exercise-1.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coefci</span>(model_one, <span class="at">level =</span> <span class="fl">0.95</span>, <span class="at">vcov. =</span> vcovHC)</span></code></pre></div>
 </details>
 <pre><code>##                   2.5 %     97.5 %
 ## (Intercept) -67.2209785 89.6292686
 ## sqrft         0.0982442  0.1821778</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="r-exercise-1.html#cb152-1" aria-hidden="true" tabindex="-1"></a>bootstrap_sqft <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>) { </span>
-<span id="cb152-2"><a href="r-exercise-1.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  number_of_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb152-3"><a href="r-exercise-1.html#cb152-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-4"><a href="r-exercise-1.html#cb152-4" aria-hidden="true" tabindex="-1"></a>    coef_sqft <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, number_of_bootstraps)</span>
-<span id="cb152-5"><a href="r-exercise-1.html#cb152-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-6"><a href="r-exercise-1.html#cb152-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_of_bootstraps) { </span>
-<span id="cb152-7"><a href="r-exercise-1.html#cb152-7" aria-hidden="true" tabindex="-1"></a>      bootstrap_data <span class="ot">&lt;-</span> d[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>number_of_rows, <span class="at">size=</span>number_of_rows, <span class="at">replace=</span><span class="cn">TRUE</span>), ]  </span>
-<span id="cb152-8"><a href="r-exercise-1.html#cb152-8" aria-hidden="true" tabindex="-1"></a>      estimated_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> bootstrap_data)</span>
-<span id="cb152-9"><a href="r-exercise-1.html#cb152-9" aria-hidden="true" tabindex="-1"></a>      coef_sqft[i]    <span class="ot">&lt;-</span> <span class="fu">coef</span>(estimated_model)[<span class="st">&#39;sqrft&#39;</span>]</span>
-<span id="cb152-10"><a href="r-exercise-1.html#cb152-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb152-11"><a href="r-exercise-1.html#cb152-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_sqft)</span>
-<span id="cb152-12"><a href="r-exercise-1.html#cb152-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-exercise-1.html#cb139-1" aria-hidden="true" tabindex="-1"></a>bootstrap_sqft <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">1000</span>) { </span>
+<span id="cb139-2"><a href="r-exercise-1.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  number_of_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb139-3"><a href="r-exercise-1.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-4"><a href="r-exercise-1.html#cb139-4" aria-hidden="true" tabindex="-1"></a>    coef_sqft <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, number_of_bootstraps)</span>
+<span id="cb139-5"><a href="r-exercise-1.html#cb139-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-6"><a href="r-exercise-1.html#cb139-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_of_bootstraps) { </span>
+<span id="cb139-7"><a href="r-exercise-1.html#cb139-7" aria-hidden="true" tabindex="-1"></a>      bootstrap_data <span class="ot">&lt;-</span> d[<span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>number_of_rows, <span class="at">size=</span>number_of_rows, <span class="at">replace=</span><span class="cn">TRUE</span>), ]  </span>
+<span id="cb139-8"><a href="r-exercise-1.html#cb139-8" aria-hidden="true" tabindex="-1"></a>      estimated_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> bootstrap_data)</span>
+<span id="cb139-9"><a href="r-exercise-1.html#cb139-9" aria-hidden="true" tabindex="-1"></a>      coef_sqft[i]    <span class="ot">&lt;-</span> <span class="fu">coef</span>(estimated_model)[<span class="st">&#39;sqrft&#39;</span>]</span>
+<span id="cb139-10"><a href="r-exercise-1.html#cb139-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb139-11"><a href="r-exercise-1.html#cb139-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_sqft)</span>
+<span id="cb139-12"><a href="r-exercise-1.html#cb139-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="r-exercise-1.html#cb153-1" aria-hidden="true" tabindex="-1"></a>bootstrap_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="r-exercise-1.html#cb140-1" aria-hidden="true" tabindex="-1"></a>bootstrap_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">d =</span> data, <span class="at">number_of_bootstraps =</span> <span class="dv">10000</span>)</span></code></pre></div>
 </details>
 <p>With this, it is possible to plot the distribution of these regression coefficients:</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="r-exercise-1.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb154-2"><a href="r-exercise-1.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_result) <span class="sc">+</span> </span>
-<span id="cb154-3"><a href="r-exercise-1.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb154-4"><a href="r-exercise-1.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb154-5"><a href="r-exercise-1.html#cb154-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Estimated Coefficient&#39;</span>, </span>
-<span id="cb154-6"><a href="r-exercise-1.html#cb154-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>, </span>
-<span id="cb154-7"><a href="r-exercise-1.html#cb154-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Bootstrap coefficients for square footage&#39;</span></span>
-<span id="cb154-8"><a href="r-exercise-1.html#cb154-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="r-exercise-1.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb141-2"><a href="r-exercise-1.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_result) <span class="sc">+</span> </span>
+<span id="cb141-3"><a href="r-exercise-1.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb141-4"><a href="r-exercise-1.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb141-5"><a href="r-exercise-1.html#cb141-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Estimated Coefficient&#39;</span>, </span>
+<span id="cb141-6"><a href="r-exercise-1.html#cb141-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Count&#39;</span>, </span>
+<span id="cb141-7"><a href="r-exercise-1.html#cb141-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;Bootstrap coefficients for square footage&#39;</span></span>
+<span id="cb141-8"><a href="r-exercise-1.html#cb141-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="r-exercise-1.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bootstrap_result <span class="sc">&lt;</span> <span class="fl">0.10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="r-exercise-1.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bootstrap_result <span class="sc">&lt;</span> <span class="fl">0.10</span>)</span></code></pre></div>
 </details>
 <pre><code>## [1] 0.017</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="r-exercise-1.html#cb158-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="r-exercise-1.html#cb145-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
 </details>
-<pre><code>##      price assess bdrms lotsize sqrft colonial   lprice  lassess  llotsize
-## 1  300.000  349.1     4    6126  2438        1 5.703783 5.855359  8.720297
-## 2  370.000  351.5     3    9903  2076        1 5.913503 5.862210  9.200593
-## 3  191.000  217.7     3    5200  1374        0 5.252274 5.383118  8.556414
-## 4  195.000  231.8     3    4600  1448        1 5.273000 5.445875  8.433811
-## 5  373.000  319.1     4    6095  2514        1 5.921578 5.765504  8.715224
-## 6  466.275  414.5     5    8566  2754        1 6.144775 6.027073  9.055556
-## 7  332.500  367.8     3    9000  2067        1 5.806640 5.907539  9.104980
-## 8  315.000  300.2     3    6210  1731        1 5.752573 5.704449  8.733916
-## 9  206.000  236.1     3    6000  1767        0 5.327876 5.464255  8.699514
-## 10 240.000  256.3     3    2892  1890        0 5.480639 5.546349  7.969704
-## 11 285.000  314.0     4    6000  2336        1 5.652489 5.749393  8.699514
-## 12 300.000  416.5     5    7047  2634        1 5.703783 6.031887  8.860357
-## 13 405.000  434.0     3   12237  3375        1 6.003887 6.073044  9.412219
-## 14 212.000  279.3     3    6460  1899        0 5.356586 5.632287  8.773385
-## 15 265.000  287.5     3    6519  2312        1 5.579730 5.661223  8.782476
-## 16 227.400  232.9     4    3597  1760        1 5.426711 5.450609  8.187856
-## 17 240.000  303.8     4    5922  2000        0 5.480639 5.716370  8.686430
-## 18 285.000  305.6     3    7123  1774        1 5.652489 5.722277  8.871084
-## 19 268.000  266.7     3    5642  1376        1 5.590987 5.586124  8.637994
-## 20 310.000  326.0     4    8602  1835        1 5.736572 5.786897  9.059750
-## 21 266.000  294.3     3    5494  2048        1 5.583496 5.684599  8.611412
-## 22 270.000  318.8     3    7800  2124        1 5.598422 5.764564  8.961879
-## 23 225.000  294.2     3    6003  1768        0 5.416101 5.684260  8.700015
-## 24 150.000  208.0     4    5218  1732        0 5.010635 5.337538  8.559870
-## 25 247.000  239.7     3    9425  1440        1 5.509388 5.479388  9.151121
-## 26 275.000  294.1     3    6114  1932        0 5.616771 5.683920  8.718336
-## 27 230.000  267.4     3    6710  1932        0 5.438079 5.588746  8.811355
-## 28 343.000  359.9     3    8577  2106        1 5.837730 5.885826  9.056840
-## 29 477.500  478.1     7    8400  3529        1 6.168564 6.169820  9.035987
-## 30 350.000  355.3     4    9773  2051        1 5.857933 5.872962  9.187379
-## 31 230.000  217.8     4    4806  1573        1 5.438079 5.383577  8.477620
-## 32 335.000  385.0     4   15086  2829        0 5.814130 5.953243  9.621523
-## 33 251.000  224.3     3    5763  1630        1 5.525453 5.412984  8.659213
-## 34 235.000  251.9     4    6383  1840        1 5.459586 5.529032  8.761394
-## 35 361.000  354.9     4    9000  2066        1 5.888878 5.871836  9.104980
-## 36 190.000  212.5     4    3500  1702        0 5.247024 5.358942  8.160519
-## 37 360.000  452.4     4   10892  2750        1 5.886104 6.114567  9.295784
-## 38 575.000  518.1     5   15634  3880        1 6.354370 6.250168  9.657204
-## 39 209.001  289.4     4    6400  1854        1 5.342339 5.667810  8.764053
-## 40 225.000  268.1     2    8880  1421        0 5.416101 5.591360  9.091557
-## 41 246.000  278.5     3    6314  1662        1 5.505332 5.629418  8.750525
-## 42 713.500  655.4     5   28231  3331        1 6.570182 6.485246 10.248176
-## 43 248.000  273.3     4    7050  1656        1 5.513429 5.610570  8.860783
-## 44 230.000  212.1     3    5305  1171        0 5.438079 5.357058  8.576406
-## 45 375.000  354.0     5    6637  2293        1 5.926926 5.869297  8.800415
-## 46 265.000  252.1     3    7834  1764        1 5.579730 5.529826  8.966228
-## 47 313.000  324.0     3    1000  2768        0 5.746203 5.780744  6.907755
-## 48 417.500  475.5     4    8112  3733        0 6.034285 6.164367  9.001100
-## 49 253.000  256.8     3    5850  1536        1 5.533390 5.548297  8.674197
-## 50 315.000  279.2     4    6660  1638        1 5.752573 5.631928  8.803875
-## 51 264.000  313.9     3    6637  1972        1 5.575949 5.749074  8.800415
-## 52 255.000  279.8     2   15267  1478        0 5.541264 5.634075  9.633449
-## 53 210.000  198.7     3    5146  1408        1 5.347107 5.291796  8.545975
-## 54 180.000  221.5     3    6017  1812        1 5.192957 5.400423  8.702344
-## 55 250.000  268.4     3    8410  1722        1 5.521461 5.592478  9.037177
-## 56 250.000  282.3     4    5625  1780        1 5.521461 5.642970  8.634976
-## 57 209.000  230.7     4    5600  1674        1 5.342334 5.441118  8.630522
-## 58 258.000  287.0     4    6525  1850        1 5.552959 5.659482  8.783396
-## 59 289.000  298.7     3    6060  1925        1 5.666427 5.699440  8.709465
-## 60 316.000  314.6     4    5539  2343        0 5.755742 5.751302  8.619569
-## 61 225.000  291.0     3    7566  1567        0 5.416101 5.673323  8.931419
-## 62 266.000  286.4     4    5484  1664        1 5.583496 5.657390  8.609590
-## 63 310.000  253.6     6    5348  1386        1 5.736572 5.535758  8.584478
-## 64 471.250  482.0     5   15834  2617        1 6.155389 6.177944  9.669915
-## 65 335.000  384.3     4    8022  2321        1 5.814130 5.951424  8.989944
-## 66 495.000  543.6     4   11966  2638        1 6.204558 6.298213  9.389825
-## 67 279.500  336.5     4    8460  1915        1 5.633002 5.818598  9.043104
-## 68 380.000  515.1     4   15105  2589        1 5.940171 6.244361  9.622781
-## 69 325.000  437.0     4   10859  2709        0 5.783825 6.079933  9.292749
-## 70 220.000  263.4     3    6300  1587        1 5.393628 5.573674  8.748305
-## 71 215.000  300.4     3   11554  1694        0 5.370638 5.705115  9.354787
-## 72 240.000  250.7     3    6000  1536        1 5.480639 5.524257  8.699514
-## 73 725.000  708.6     5   31000  3662        0 6.586172 6.563291 10.341743
-## 74 230.000  276.3     3    4054  1736        1 5.438079 5.621487  8.307459
-## 75 306.000  388.6     2   20700  2205        0 5.723585 5.962551  9.937889
-## 76 425.000  252.5     3    5525  1502        0 6.052089 5.531411  8.617039
-## 77 318.000  295.2     4   92681  1696        1 5.762052 5.687653 11.436919
-## 78 330.000  359.5     3    8178  2186        1 5.799093 5.884714  9.009203
-## 79 246.000  276.2     4    5944  1928        1 5.505332 5.621125  8.690138
-## 80 225.000  249.8     3   18838  1294        0 5.416101 5.520660  9.843632
-## 81 111.000  202.4     4    4315  1535        1 4.709530 5.310246  8.369853
-## 82 268.125  254.0     3    5167  1980        1 5.591453 5.537334  8.550048
-## 83 244.000  306.8     4    7893  2090        1 5.497168 5.726196  8.973732
-## 84 295.000  318.3     3    6056  1837        1 5.686975 5.762994  8.708805
-## 85 236.000  259.4     3    5828  1715        0 5.463832 5.558371  8.670429
-## 86 202.500  258.1     3    6341  1574        0 5.310740 5.553347  8.754792
-## 87 219.000  232.0     2    6362  1185        0 5.389072 5.446737  8.758098
-## 88 242.000  252.0     4    4950  1774        1 5.488938 5.529429  8.507143
-##      lsqrft sqrft_two
-## 1  7.798934  2438.078
-## 2  7.638198  2075.877
-## 3  7.225482  1373.894
-## 4  7.277938  1448.021
-## 5  7.829630  2514.006
-## 6  7.920810  2753.868
-## 7  7.633853  2066.943
-## 8  7.456455  1730.988
-## 9  7.477038  1767.064
-## 10 7.544332  1889.889
-## 11 7.756196  2336.175
-## 12 7.876259  2634.010
-## 13 8.124150  3375.082
-## 14 7.549083  1898.993
-## 15 7.745868  2312.119
-## 16 7.473069  1759.984
-## 17 7.600903  1999.973
-## 18 7.480992  1773.929
-## 19 7.226936  1376.000
-## 20 7.514800  1835.151
-## 21 7.624619  2048.061
-## 22 7.661057  2123.972
-## 23 7.477604  1767.972
-## 24 7.457032  1732.037
-## 25 7.272398  1439.960
-## 26 7.566311  1932.060
-## 27 7.566311  1931.941
-## 28 7.652546  2106.079
-## 29 8.168770  3529.017
-## 30 7.626083  2051.176
-## 31 7.360740  1572.987
-## 32 7.947679  2829.039
-## 33 7.396335  1629.961
-## 34 7.517521  1839.935
-## 35 7.633369  2066.070
-## 36 7.439559  1701.985
-## 37 7.919356  2750.174
-## 38 8.263591  3880.048
-## 39 7.525101  1853.926
-## 40 7.259116  1420.731
-## 41 7.415777  1662.046
-## 42 8.111028  3331.034
-## 43 7.412160  1656.117
-## 44 7.065613  1171.107
-## 45 7.737616  2293.091
-## 46 7.475339  1763.868
-## 47 7.925880  2768.090
-## 48 8.224967  3732.858
-## 49 7.336937  1535.799
-## 50 7.401231  1638.044
-## 51 7.586803  1971.886
-## 52 7.298445  1477.996
-## 53 7.249926  1408.218
-## 54 7.502186  1811.938
-## 55 7.451241  1721.917
-## 56 7.484369  1780.074
-## 57 7.422971  1674.155
-## 58 7.522941  1850.079
-## 59 7.562681  1925.175
-## 60 7.759187  2343.038
-## 61 7.356918  1566.745
-## 62 7.416980  1664.061
-## 63 7.234177  1385.944
-## 64 7.869784  2617.102
-## 65 7.749753  2320.892
-## 66 7.877776  2637.802
-## 67 7.557473  1915.133
-## 68 7.859027  2589.033
-## 69 7.904335  2709.086
-## 70 7.369601  1587.050
-## 71 7.434848  1693.972
-## 72 7.336937  1535.979
-## 73 8.205765  3662.031
-## 74 7.459339  1735.863
-## 75 7.698483  2205.148
-## 76 7.314553  1501.833
-## 77 7.436028  1695.963
-## 78 7.689829  2185.970
-## 79 7.564239  1927.922
-## 80 7.165493  1294.082
-## 81 7.336286  1534.982
-## 82 7.590852  1979.899
-## 83 7.644919  2089.862
-## 84 7.515889  1836.963
-## 85 7.447168  1715.025
-## 86 7.361375  1573.937
-## 87 7.077498  1184.952
-## 88 7.480992  1774.153</code></pre>
+<pre><code>##      price assess bdrms lotsize sqrft colonial   lprice  lassess  llotsize   lsqrft
+## 1  300.000  349.1     4    6126  2438        1 5.703783 5.855359  8.720297 7.798934
+## 2  370.000  351.5     3    9903  2076        1 5.913503 5.862210  9.200593 7.638198
+## 3  191.000  217.7     3    5200  1374        0 5.252274 5.383118  8.556414 7.225482
+## 4  195.000  231.8     3    4600  1448        1 5.273000 5.445875  8.433811 7.277938
+## 5  373.000  319.1     4    6095  2514        1 5.921578 5.765504  8.715224 7.829630
+## 6  466.275  414.5     5    8566  2754        1 6.144775 6.027073  9.055556 7.920810
+## 7  332.500  367.8     3    9000  2067        1 5.806640 5.907539  9.104980 7.633853
+## 8  315.000  300.2     3    6210  1731        1 5.752573 5.704449  8.733916 7.456455
+## 9  206.000  236.1     3    6000  1767        0 5.327876 5.464255  8.699514 7.477038
+## 10 240.000  256.3     3    2892  1890        0 5.480639 5.546349  7.969704 7.544332
+## 11 285.000  314.0     4    6000  2336        1 5.652489 5.749393  8.699514 7.756196
+## 12 300.000  416.5     5    7047  2634        1 5.703783 6.031887  8.860357 7.876259
+## 13 405.000  434.0     3   12237  3375        1 6.003887 6.073044  9.412219 8.124150
+## 14 212.000  279.3     3    6460  1899        0 5.356586 5.632287  8.773385 7.549083
+## 15 265.000  287.5     3    6519  2312        1 5.579730 5.661223  8.782476 7.745868
+## 16 227.400  232.9     4    3597  1760        1 5.426711 5.450609  8.187856 7.473069
+## 17 240.000  303.8     4    5922  2000        0 5.480639 5.716370  8.686430 7.600903
+## 18 285.000  305.6     3    7123  1774        1 5.652489 5.722277  8.871084 7.480992
+## 19 268.000  266.7     3    5642  1376        1 5.590987 5.586124  8.637994 7.226936
+## 20 310.000  326.0     4    8602  1835        1 5.736572 5.786897  9.059750 7.514800
+## 21 266.000  294.3     3    5494  2048        1 5.583496 5.684599  8.611412 7.624619
+## 22 270.000  318.8     3    7800  2124        1 5.598422 5.764564  8.961879 7.661057
+## 23 225.000  294.2     3    6003  1768        0 5.416101 5.684260  8.700015 7.477604
+## 24 150.000  208.0     4    5218  1732        0 5.010635 5.337538  8.559870 7.457032
+## 25 247.000  239.7     3    9425  1440        1 5.509388 5.479388  9.151121 7.272398
+## 26 275.000  294.1     3    6114  1932        0 5.616771 5.683920  8.718336 7.566311
+## 27 230.000  267.4     3    6710  1932        0 5.438079 5.588746  8.811355 7.566311
+## 28 343.000  359.9     3    8577  2106        1 5.837730 5.885826  9.056840 7.652546
+## 29 477.500  478.1     7    8400  3529        1 6.168564 6.169820  9.035987 8.168770
+## 30 350.000  355.3     4    9773  2051        1 5.857933 5.872962  9.187379 7.626083
+## 31 230.000  217.8     4    4806  1573        1 5.438079 5.383577  8.477620 7.360740
+## 32 335.000  385.0     4   15086  2829        0 5.814130 5.953243  9.621523 7.947679
+## 33 251.000  224.3     3    5763  1630        1 5.525453 5.412984  8.659213 7.396335
+## 34 235.000  251.9     4    6383  1840        1 5.459586 5.529032  8.761394 7.517521
+## 35 361.000  354.9     4    9000  2066        1 5.888878 5.871836  9.104980 7.633369
+## 36 190.000  212.5     4    3500  1702        0 5.247024 5.358942  8.160519 7.439559
+## 37 360.000  452.4     4   10892  2750        1 5.886104 6.114567  9.295784 7.919356
+## 38 575.000  518.1     5   15634  3880        1 6.354370 6.250168  9.657204 8.263591
+## 39 209.001  289.4     4    6400  1854        1 5.342339 5.667810  8.764053 7.525101
+## 40 225.000  268.1     2    8880  1421        0 5.416101 5.591360  9.091557 7.259116
+## 41 246.000  278.5     3    6314  1662        1 5.505332 5.629418  8.750525 7.415777
+## 42 713.500  655.4     5   28231  3331        1 6.570182 6.485246 10.248176 8.111028
+## 43 248.000  273.3     4    7050  1656        1 5.513429 5.610570  8.860783 7.412160
+## 44 230.000  212.1     3    5305  1171        0 5.438079 5.357058  8.576406 7.065613
+## 45 375.000  354.0     5    6637  2293        1 5.926926 5.869297  8.800415 7.737616
+## 46 265.000  252.1     3    7834  1764        1 5.579730 5.529826  8.966228 7.475339
+## 47 313.000  324.0     3    1000  2768        0 5.746203 5.780744  6.907755 7.925880
+## 48 417.500  475.5     4    8112  3733        0 6.034285 6.164367  9.001100 8.224967
+## 49 253.000  256.8     3    5850  1536        1 5.533390 5.548297  8.674197 7.336937
+## 50 315.000  279.2     4    6660  1638        1 5.752573 5.631928  8.803875 7.401231
+## 51 264.000  313.9     3    6637  1972        1 5.575949 5.749074  8.800415 7.586803
+## 52 255.000  279.8     2   15267  1478        0 5.541264 5.634075  9.633449 7.298445
+## 53 210.000  198.7     3    5146  1408        1 5.347107 5.291796  8.545975 7.249926
+## 54 180.000  221.5     3    6017  1812        1 5.192957 5.400423  8.702344 7.502186
+## 55 250.000  268.4     3    8410  1722        1 5.521461 5.592478  9.037177 7.451241
+## 56 250.000  282.3     4    5625  1780        1 5.521461 5.642970  8.634976 7.484369
+## 57 209.000  230.7     4    5600  1674        1 5.342334 5.441118  8.630522 7.422971
+## 58 258.000  287.0     4    6525  1850        1 5.552959 5.659482  8.783396 7.522941
+## 59 289.000  298.7     3    6060  1925        1 5.666427 5.699440  8.709465 7.562681
+## 60 316.000  314.6     4    5539  2343        0 5.755742 5.751302  8.619569 7.759187
+## 61 225.000  291.0     3    7566  1567        0 5.416101 5.673323  8.931419 7.356918
+## 62 266.000  286.4     4    5484  1664        1 5.583496 5.657390  8.609590 7.416980
+## 63 310.000  253.6     6    5348  1386        1 5.736572 5.535758  8.584478 7.234177
+## 64 471.250  482.0     5   15834  2617        1 6.155389 6.177944  9.669915 7.869784
+## 65 335.000  384.3     4    8022  2321        1 5.814130 5.951424  8.989944 7.749753
+## 66 495.000  543.6     4   11966  2638        1 6.204558 6.298213  9.389825 7.877776
+## 67 279.500  336.5     4    8460  1915        1 5.633002 5.818598  9.043104 7.557473
+## 68 380.000  515.1     4   15105  2589        1 5.940171 6.244361  9.622781 7.859027
+## 69 325.000  437.0     4   10859  2709        0 5.783825 6.079933  9.292749 7.904335
+## 70 220.000  263.4     3    6300  1587        1 5.393628 5.573674  8.748305 7.369601
+## 71 215.000  300.4     3   11554  1694        0 5.370638 5.705115  9.354787 7.434848
+## 72 240.000  250.7     3    6000  1536        1 5.480639 5.524257  8.699514 7.336937
+## 73 725.000  708.6     5   31000  3662        0 6.586172 6.563291 10.341743 8.205765
+## 74 230.000  276.3     3    4054  1736        1 5.438079 5.621487  8.307459 7.459339
+## 75 306.000  388.6     2   20700  2205        0 5.723585 5.962551  9.937889 7.698483
+## 76 425.000  252.5     3    5525  1502        0 6.052089 5.531411  8.617039 7.314553
+## 77 318.000  295.2     4   92681  1696        1 5.762052 5.687653 11.436919 7.436028
+## 78 330.000  359.5     3    8178  2186        1 5.799093 5.884714  9.009203 7.689829
+## 79 246.000  276.2     4    5944  1928        1 5.505332 5.621125  8.690138 7.564239
+## 80 225.000  249.8     3   18838  1294        0 5.416101 5.520660  9.843632 7.165493
+## 81 111.000  202.4     4    4315  1535        1 4.709530 5.310246  8.369853 7.336286
+## 82 268.125  254.0     3    5167  1980        1 5.591453 5.537334  8.550048 7.590852
+## 83 244.000  306.8     4    7893  2090        1 5.497168 5.726196  8.973732 7.644919
+## 84 295.000  318.3     3    6056  1837        1 5.686975 5.762994  8.708805 7.515889
+## 85 236.000  259.4     3    5828  1715        0 5.463832 5.558371  8.670429 7.447168
+## 86 202.500  258.1     3    6341  1574        0 5.310740 5.553347  8.754792 7.361375
+## 87 219.000  232.0     2    6362  1185        0 5.389072 5.446737  8.758098 7.077498
+## 88 242.000  252.0     4    4950  1774        1 5.488938 5.529429  8.507143 7.480992
+##    sqrft_two
+## 1   2438.078
+## 2   2075.877
+## 3   1373.894
+## 4   1448.021
+## 5   2514.006
+## 6   2753.868
+## 7   2066.943
+## 8   1730.988
+## 9   1767.064
+## 10  1889.889
+## 11  2336.175
+## 12  2634.010
+## 13  3375.082
+## 14  1898.993
+## 15  2312.119
+## 16  1759.984
+## 17  1999.973
+## 18  1773.929
+## 19  1376.000
+## 20  1835.151
+## 21  2048.061
+## 22  2123.972
+## 23  1767.972
+## 24  1732.037
+## 25  1439.960
+## 26  1932.060
+## 27  1931.941
+## 28  2106.079
+## 29  3529.017
+## 30  2051.176
+## 31  1572.987
+## 32  2829.039
+## 33  1629.961
+## 34  1839.935
+## 35  2066.070
+## 36  1701.985
+## 37  2750.174
+## 38  3880.048
+## 39  1853.926
+## 40  1420.731
+## 41  1662.046
+## 42  3331.034
+## 43  1656.117
+## 44  1171.107
+## 45  2293.091
+## 46  1763.868
+## 47  2768.090
+## 48  3732.858
+## 49  1535.799
+## 50  1638.044
+## 51  1971.886
+## 52  1477.996
+## 53  1408.218
+## 54  1811.938
+## 55  1721.917
+## 56  1780.074
+## 57  1674.155
+## 58  1850.079
+## 59  1925.175
+## 60  2343.038
+## 61  1566.745
+## 62  1664.061
+## 63  1385.944
+## 64  2617.102
+## 65  2320.892
+## 66  2637.802
+## 67  1915.133
+## 68  2589.033
+## 69  2709.086
+## 70  1587.050
+## 71  1693.972
+## 72  1535.979
+## 73  3662.031
+## 74  1735.863
+## 75  2205.148
+## 76  1501.833
+## 77  1695.963
+## 78  2185.970
+## 79  1927.922
+## 80  1294.082
+## 81  1534.982
+## 82  1979.899
+## 83  2089.862
+## 84  1836.963
+## 85  1715.025
+## 86  1573.937
+## 87  1184.952
+## 88  1774.153</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="r-exercise-1.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bdrms <span class="sc">~</span> colonial, <span class="at">data =</span> data)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="r-exercise-1.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bdrms <span class="sc">~</span> colonial, <span class="at">data =</span> data)</span></code></pre></div>
 </details>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
@@ -957,7 +958,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## W = 538.5, p-value = 0.004926
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="r-exercise-1.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bdrms <span class="sc">~</span> colonial, <span class="at">data =</span> data)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="r-exercise-1.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bdrms <span class="sc">~</span> colonial, <span class="at">data =</span> data)</span></code></pre></div>
 </details>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -971,17 +972,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## mean in group 0 mean in group 1 
 ##        3.185185        3.737705</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="r-exercise-1.html#cb164-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb164-2"><a href="r-exercise-1.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb164-3"><a href="r-exercise-1.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>bdrms, <span class="at">fill =</span> <span class="fu">as.factor</span>(colonial)) <span class="sc">+</span> </span>
-<span id="cb164-4"><a href="r-exercise-1.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="r-exercise-1.html#cb151-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb151-2"><a href="r-exercise-1.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb151-3"><a href="r-exercise-1.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>bdrms, <span class="at">fill =</span> <span class="fu">as.factor</span>(colonial)) <span class="sc">+</span> </span>
+<span id="cb151-4"><a href="r-exercise-1.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
 </details>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="r-exercise-1.html#cb166-1" aria-hidden="true" tabindex="-1"></a>data_adam <span class="ot">&lt;-</span> data[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">88</span>, <span class="at">size=</span><span class="dv">10</span>), ]</span>
-<span id="cb166-2"><a href="r-exercise-1.html#cb166-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-3"><a href="r-exercise-1.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data_adam)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="r-exercise-1.html#cb153-1" aria-hidden="true" tabindex="-1"></a>data_adam <span class="ot">&lt;-</span> data[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">88</span>, <span class="at">size=</span><span class="dv">10</span>), ]</span>
+<span id="cb153-2"><a href="r-exercise-1.html#cb153-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-3"><a href="r-exercise-1.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(price <span class="sc">~</span> sqrft, <span class="at">data =</span> data_adam)</span></code></pre></div>
 </details>
 <pre><code>## 
 ## Call:
@@ -991,39 +992,39 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)        sqrft  
 ##   -141.0339       0.2009</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="r-exercise-1.html#cb168-1" aria-hidden="true" tabindex="-1"></a>bs2 <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">d =</span> data_adam, <span class="dv">1000</span>)</span>
-<span id="cb168-2"><a href="r-exercise-1.html#cb168-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-3"><a href="r-exercise-1.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb168-4"><a href="r-exercise-1.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>bs2) <span class="sc">+</span> </span>
-<span id="cb168-5"><a href="r-exercise-1.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="r-exercise-1.html#cb155-1" aria-hidden="true" tabindex="-1"></a>bs2 <span class="ot">&lt;-</span> <span class="fu">bootstrap_sqft</span>(<span class="at">d =</span> data_adam, <span class="dv">1000</span>)</span>
+<span id="cb155-2"><a href="r-exercise-1.html#cb155-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-3"><a href="r-exercise-1.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb155-4"><a href="r-exercise-1.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>bs2) <span class="sc">+</span> </span>
+<span id="cb155-5"><a href="r-exercise-1.html#cb155-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 </details>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-79-2.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-93-2.png" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="r-exercise-1.html#cb170-1" aria-hidden="true" tabindex="-1"></a>data_adam</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="r-exercise-1.html#cb157-1" aria-hidden="true" tabindex="-1"></a>data_adam</span></code></pre></div>
 </details>
-<pre><code>##    price assess bdrms lotsize sqrft colonial   lprice  lassess  llotsize
-## 38 575.0  518.1     5   15634  3880        1 6.354370 6.250168  9.657204
-## 74 230.0  276.3     3    4054  1736        1 5.438079 5.621487  8.307459
-## 24 150.0  208.0     4    5218  1732        0 5.010635 5.337538  8.559870
-## 21 266.0  294.3     3    5494  2048        1 5.583496 5.684599  8.611412
-## 51 264.0  313.9     3    6637  1972        1 5.575949 5.749074  8.800415
-## 16 227.4  232.9     4    3597  1760        1 5.426711 5.450609  8.187856
-## 29 477.5  478.1     7    8400  3529        1 6.168564 6.169820  9.035987
-## 42 713.5  655.4     5   28231  3331        1 6.570182 6.485246 10.248176
-## 54 180.0  221.5     3    6017  1812        1 5.192957 5.400423  8.702344
-## 26 275.0  294.1     3    6114  1932        0 5.616771 5.683920  8.718336
-##      lsqrft sqrft_two
-## 38 8.263591  3880.048
-## 74 7.459339  1735.863
-## 24 7.457032  1732.037
-## 21 7.624619  2048.061
-## 51 7.586803  1971.886
-## 16 7.473069  1759.984
-## 29 8.168770  3529.017
-## 42 8.111028  3331.034
-## 54 7.502186  1811.938
-## 26 7.566311  1932.060</code></pre>
+<pre><code>##    price assess bdrms lotsize sqrft colonial   lprice  lassess  llotsize   lsqrft
+## 38 575.0  518.1     5   15634  3880        1 6.354370 6.250168  9.657204 8.263591
+## 74 230.0  276.3     3    4054  1736        1 5.438079 5.621487  8.307459 7.459339
+## 24 150.0  208.0     4    5218  1732        0 5.010635 5.337538  8.559870 7.457032
+## 21 266.0  294.3     3    5494  2048        1 5.583496 5.684599  8.611412 7.624619
+## 51 264.0  313.9     3    6637  1972        1 5.575949 5.749074  8.800415 7.586803
+## 16 227.4  232.9     4    3597  1760        1 5.426711 5.450609  8.187856 7.473069
+## 29 477.5  478.1     7    8400  3529        1 6.168564 6.169820  9.035987 8.168770
+## 42 713.5  655.4     5   28231  3331        1 6.570182 6.485246 10.248176 8.111028
+## 54 180.0  221.5     3    6017  1812        1 5.192957 5.400423  8.702344 7.502186
+## 26 275.0  294.1     3    6114  1932        0 5.616771 5.683920  8.718336 7.566311
+##    sqrft_two
+## 38  3880.048
+## 74  1735.863
+## 24  1732.037
+## 21  2048.061
+## 51  1971.886
+## 16  1759.984
+## 29  3529.017
+## 42  3331.034
+## 54  1811.938
+## 26  1932.060</code></pre>
 
 </div>
 <!-- </div> -->

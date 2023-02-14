@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="accepting-the-null.html"><a href="accepting-the-null.html"><i class="fa fa-check"></i><b>6.7</b> “Accepting the Null”</a></li>
+<li class="chapter" data-level="6.8" data-path="manually-computing-a-t-test.html"><a href="manually-computing-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manually Computing a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="falling-ill-the-general-form-of-a-hypothesis-test.html"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.9</b> Falling Ill (The General Form of a Hypothesis Test)</a></li>
+<li class="chapter" data-level="6.10" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.10</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.11" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.11</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -490,21 +491,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="hypothesis-testing" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Unit 6</span> Hypothesis Testing<a href="hypothesis-testing.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurd assumption.</p>
+<div class="figure">
+<img src="images/winter_tahoe.jpg" alt="" />
+<p class="caption">more lake</p>
+</div>
+<p>Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing (NHST), this framework essentially makes an absurd assertion and asks the data to overturn that assertion.</p>
 <p>Like a petulant child, NHST essentially proclaims,</p>
 <blockquote>
-<p>“Oh yeah? Well, if you actually loved me then you would buy me an iPad!”</p>
+<p>“If you really loved me, you would let me watch this screen one-hundred hours every day.”</p>
 </blockquote>
-<p>Which is to say, it says, “Oh yeah? If this absurd thing isn’t true, prove it to me!”</p>
-<div class="figure">
-<img src="images/frequentists_vs_bayesians.png" alt="" />
-<p class="caption">update!</p>
-</div>
+<p>Here the absurdity is that a parent might not love their child, and the criteria to overturn that assertion is noted to be “buy me an ipad”’.</p>
 <div id="what-is-frequentist-testing-doing" class="section level3 unnumbered hasAnchor">
 <h3>What is Frequentist testing doing?<a href="hypothesis-testing.html#what-is-frequentist-testing-doing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This testing framework works on <strong>samples</strong> of data, and applies <strong>estimators</strong> to produce <strong>estimates</strong> of <strong>population parameters</strong> that are fundamentally unknown and unknowable. Despite this unknown and unknowable population target, with some carefully written down estimators we can rely on the convergence characteristics of some estimators to produce <em>useful</em>, <em>reliable</em> results.</p>
 <p>We begin with the one-sample t-test. The one-sample t-test relies on the sample average as an estimator of a population expectation. In doing so, it relies on the effectiveness of the <strong>Weak Law of Large Numbers</strong> and the <strong>Central Limit Theorem</strong> to guarantee that the estimator that <strong>converges in probability</strong> to the population expectation, while also <strong>converging in distribution</strong> to a Gaussian distribution.</p>
-<p>These two convergences permit a data scientist to make several <strong>inferences</strong> based on data:</p>
+<p>These two convergence concepts permit a data scientist to make several <strong>inferences</strong> based on data:</p>
 <ol style="list-style-type: decimal">
 <li>The probability of generating data that <em>“looks like what is observed”</em>, if the null-hypothesis were true. This is often referred to as the <strong>p-value</strong> of a test, and is the petulant statement identified above.</li>
 <li>An interval of values that, with some stated probability (e.g. 95%), contains the true population parameter.</li>

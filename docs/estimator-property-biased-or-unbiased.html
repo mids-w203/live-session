@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="what-does-a-hypothesis-test-do.html"><a href="what-does-a-hypothesis-test-do.html"><i class="fa fa-check"></i><b>6.4</b> What does a hypothesis test do?</a></li>
 <li class="chapter" data-level="6.5" data-path="madlib-prompt.html"><a href="madlib-prompt.html"><i class="fa fa-check"></i><b>6.5</b> Madlib prompt</a></li>
 <li class="chapter" data-level="6.6" data-path="madlib-completed.html"><a href="madlib-completed.html"><i class="fa fa-check"></i><b>6.6</b> Madlib completed</a></li>
-<li class="chapter" data-level="6.7" data-path="all-joking-aside.html"><a href="all-joking-aside.html"><i class="fa fa-check"></i><b>6.7</b> All joking aside</a></li>
-<li class="chapter" data-level="6.8" data-path="manual-computation-of-a-t-test.html"><a href="manual-computation-of-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manual Computation of a t-Test</a></li>
-<li class="chapter" data-level="6.9" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.9</b> Data Exercise</a></li>
-<li class="chapter" data-level="6.10" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.10</b> Assumptions Behind the t-test</a></li>
+<li class="chapter" data-level="6.7" data-path="accepting-the-null.html"><a href="accepting-the-null.html"><i class="fa fa-check"></i><b>6.7</b> “Accepting the Null”</a></li>
+<li class="chapter" data-level="6.8" data-path="manually-computing-a-t-test.html"><a href="manually-computing-a-t-test.html"><i class="fa fa-check"></i><b>6.8</b> Manually Computing a t-Test</a></li>
+<li class="chapter" data-level="6.9" data-path="falling-ill-the-general-form-of-a-hypothesis-test.html"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html"><i class="fa fa-check"></i><b>6.9</b> Falling Ill (The General Form of a Hypothesis Test)</a></li>
+<li class="chapter" data-level="6.10" data-path="data-exercise.html"><a href="data-exercise.html"><i class="fa fa-check"></i><b>6.10</b> Data Exercise</a></li>
+<li class="chapter" data-level="6.11" data-path="assumptions-behind-the-t-test.html"><a href="assumptions-behind-the-t-test.html"><i class="fa fa-check"></i><b>6.11</b> Assumptions Behind the t-test</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="comparing-two-groups.html"><a href="comparing-two-groups.html"><i class="fa fa-check"></i><b>7</b> Comparing Two Groups</a>
 <ul>
@@ -502,28 +503,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.4.1</span> Is it unbiased, with data?<a href="estimator-property-biased-or-unbiased.html#is-it-unbiased-with-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose that you’re getting data from the following process:</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="estimator-property-biased-or-unbiased.html#cb34-1" aria-hidden="true" tabindex="-1"></a>random_distribution <span class="ot">&lt;-</span> <span class="cf">function</span>(number_samples) { </span>
-<span id="cb34-2"><a href="estimator-property-biased-or-unbiased.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb34-3"><a href="estimator-property-biased-or-unbiased.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  d1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.0</span>, <span class="fl">2.0</span>)</span>
-<span id="cb34-4"><a href="estimator-property-biased-or-unbiased.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  d2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">2.1</span>)</span>
-<span id="cb34-5"><a href="estimator-property-biased-or-unbiased.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  d3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb34-6"><a href="estimator-property-biased-or-unbiased.html#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="estimator-property-biased-or-unbiased.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  distribution_chooser <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">size=</span><span class="dv">1</span>)</span>
-<span id="cb34-8"><a href="estimator-property-biased-or-unbiased.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb34-9"><a href="estimator-property-biased-or-unbiased.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(distribution_chooser <span class="sc">==</span> <span class="dv">1</span>) { </span>
-<span id="cb34-10"><a href="estimator-property-biased-or-unbiased.html#cb34-10" aria-hidden="true" tabindex="-1"></a>    x_ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>number_samples, <span class="at">min=</span>d1[<span class="dv">1</span>], <span class="at">max=</span>d1[<span class="dv">2</span>])  </span>
-<span id="cb34-11"><a href="estimator-property-biased-or-unbiased.html#cb34-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(distribution_chooser <span class="sc">==</span> <span class="dv">2</span>) { </span>
-<span id="cb34-12"><a href="estimator-property-biased-or-unbiased.html#cb34-12" aria-hidden="true" tabindex="-1"></a>    x_ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>number_samples, <span class="at">min=</span>d2[<span class="dv">1</span>], <span class="at">max=</span>d2[<span class="dv">2</span>]) </span>
-<span id="cb34-13"><a href="estimator-property-biased-or-unbiased.html#cb34-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(distribution_chooser <span class="sc">==</span> <span class="dv">3</span>) { </span>
-<span id="cb34-14"><a href="estimator-property-biased-or-unbiased.html#cb34-14" aria-hidden="true" tabindex="-1"></a>    x_ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>number_samples, <span class="at">min=</span>d3[<span class="dv">1</span>], <span class="at">max=</span>d3[<span class="dv">2</span>])</span>
-<span id="cb34-15"><a href="estimator-property-biased-or-unbiased.html#cb34-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb34-16"><a href="estimator-property-biased-or-unbiased.html#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x_)</span>
-<span id="cb34-17"><a href="estimator-property-biased-or-unbiased.html#cb34-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-18"><a href="estimator-property-biased-or-unbiased.html#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="estimator-property-biased-or-unbiased.html#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="estimator-property-biased-or-unbiased.html#cb32-1" aria-hidden="true" tabindex="-1"></a>random_distribution <span class="ot">&lt;-</span> <span class="cf">function</span>(number_samples) { </span>
+<span id="cb32-2"><a href="estimator-property-biased-or-unbiased.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-3"><a href="estimator-property-biased-or-unbiased.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  d1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.0</span>, <span class="fl">2.0</span>)</span>
+<span id="cb32-4"><a href="estimator-property-biased-or-unbiased.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  d2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">2.1</span>)</span>
+<span id="cb32-5"><a href="estimator-property-biased-or-unbiased.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  d3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb32-6"><a href="estimator-property-biased-or-unbiased.html#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="estimator-property-biased-or-unbiased.html#cb32-7" aria-hidden="true" tabindex="-1"></a>  distribution_chooser <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">size=</span><span class="dv">1</span>)</span>
+<span id="cb32-8"><a href="estimator-property-biased-or-unbiased.html#cb32-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-9"><a href="estimator-property-biased-or-unbiased.html#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(distribution_chooser <span class="sc">==</span> <span class="dv">1</span>) { </span>
+<span id="cb32-10"><a href="estimator-property-biased-or-unbiased.html#cb32-10" aria-hidden="true" tabindex="-1"></a>    x_ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>number_samples, <span class="at">min=</span>d1[<span class="dv">1</span>], <span class="at">max=</span>d1[<span class="dv">2</span>])  </span>
+<span id="cb32-11"><a href="estimator-property-biased-or-unbiased.html#cb32-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(distribution_chooser <span class="sc">==</span> <span class="dv">2</span>) { </span>
+<span id="cb32-12"><a href="estimator-property-biased-or-unbiased.html#cb32-12" aria-hidden="true" tabindex="-1"></a>    x_ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>number_samples, <span class="at">min=</span>d2[<span class="dv">1</span>], <span class="at">max=</span>d2[<span class="dv">2</span>]) </span>
+<span id="cb32-13"><a href="estimator-property-biased-or-unbiased.html#cb32-13" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(distribution_chooser <span class="sc">==</span> <span class="dv">3</span>) { </span>
+<span id="cb32-14"><a href="estimator-property-biased-or-unbiased.html#cb32-14" aria-hidden="true" tabindex="-1"></a>    x_ <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>number_samples, <span class="at">min=</span>d3[<span class="dv">1</span>], <span class="at">max=</span>d3[<span class="dv">2</span>])</span>
+<span id="cb32-15"><a href="estimator-property-biased-or-unbiased.html#cb32-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-16"><a href="estimator-property-biased-or-unbiased.html#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x_)</span>
+<span id="cb32-17"><a href="estimator-property-biased-or-unbiased.html#cb32-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-18"><a href="estimator-property-biased-or-unbiased.html#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="estimator-property-biased-or-unbiased.html#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10</span>)</span></code></pre></div>
 </details>
-<pre><code>##  [1] 2.467197 2.366916 1.937715 1.691938 1.582294 2.083452 1.570361 2.027663
-##  [9] 1.972288 1.548191</code></pre>
+<pre><code>##  [1] 2.467197 2.366916 1.937715 1.691938 1.582294 2.083452 1.570361 2.027663 1.972288
+## [10] 1.548191</code></pre>
 <p>Notice that, there are two forms of inherent uncertainty in this function:</p>
 <ol style="list-style-type: decimal">
 <li>There is uncertainty about the distribution that we are getting draws from; and,</li>
@@ -532,13 +533,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>This class of function, the <code>r*</code> functions, are the implementation of random generative processes within the R language. Look into <code>?distributions</code> as a class to see more about this process.</p>
 <p>Suppose that you chose to use the same sample average estimator as a means of producing an estimate of the population expected value, <span class="math inline">\(E[X]\)</span>. Suppose that you get the following draws:</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="estimator-property-biased-or-unbiased.html#cb36-1" aria-hidden="true" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10</span>)</span>
-<span id="cb36-2"><a href="estimator-property-biased-or-unbiased.html#cb36-2" aria-hidden="true" tabindex="-1"></a>draws</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="estimator-property-biased-or-unbiased.html#cb34-1" aria-hidden="true" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10</span>)</span>
+<span id="cb34-2"><a href="estimator-property-biased-or-unbiased.html#cb34-2" aria-hidden="true" tabindex="-1"></a>draws</span></code></pre></div>
 </details>
-<pre><code>##  [1] 1.598869 1.027916 1.395727 1.106244 1.024111 1.840898 1.326400 1.294298
-##  [9] 1.822898 1.414347</code></pre>
+<pre><code>##  [1] 1.598869 1.027916 1.395727 1.106244 1.024111 1.840898 1.326400 1.294298 1.822898
+## [10] 1.414347</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="estimator-property-biased-or-unbiased.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(draws)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="estimator-property-biased-or-unbiased.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(draws)</span></code></pre></div>
 </details>
 <pre><code>## [1] 1.385171</code></pre>
 <div class="discussion-question">
