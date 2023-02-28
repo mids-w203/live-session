@@ -1,0 +1,50 @@
+---
+title: "Model Hack"
+author: "203 Teaching Team"
+date: "2023-02-28"
+output: github_document
+---
+
+```{r load packages}
+library(tidyverse)
+```
+
+```{r load data}
+data         <- read.csv('data/housing_data.csv')
+descriptions <- read.csv('data/housing_description.csv')
+```
+
+```{r print description of data}
+descriptions
+```
+
+
+```{r create model evaluator}
+evaluate_model <- function(model) { 
+  ## takes in a model whose target is the 'price' variables
+  ## returns mse
+  
+  mse <- function(predictions, truth) { 
+    mean((predictions - truth)^2)
+  }
+  
+  predictions_ <- model$fitted.values
+  truth_       <- model$model$price
+  
+  mse_ <- mse(predictions=predictions_, truth=truth_)
+  
+  return(mse_)
+  }
+```
+
+
+
+```{r fit models}
+model_one <- lm(price ~ assess, data = data)
+```
+
+```{r evaluate models}
+evaluate_model(model_one)
+```
+
+
