@@ -156,7 +156,7 @@
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2023-02-07}
+\date{2023-02-28}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -201,12 +201,12 @@ This is the live session work space for the course. Our goal with this repositor
 \end{verbatim}
 
 \begin{verbatim}
-## -- Attaching packages ------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.3.2 --
+## -- Attaching packages ------------------------------------------------------------------------------------------------------------------------------------------------------ tidyverse 1.3.2 --
 ## v ggplot2 3.4.0     v purrr   1.0.1
 ## v tibble  3.1.8     v dplyr   1.1.0
 ## v tidyr   1.3.0     v stringr 1.5.0
 ## v readr   2.1.3     v forcats 1.0.0
-## -- Conflicts ---------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## -- Conflicts --------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 \end{verbatim}
@@ -1087,9 +1087,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3.967669 2.870455 1.927021 2.368763 2.670295 2.115647 2.630725 1.112939
-##  [9] 2.478000 1.962417 1.267569 3.605439 3.397242 1.566656 1.756422 3.465819
-## [17] 3.266455 3.842101 4.249985 1.273602
+##  [1] 3.893532 2.444956 1.102592 2.365511 1.240872 2.902134 4.230599 4.115073
+##  [9] 1.816932 3.402032 2.203202 3.909199 2.571416 2.824312 2.391661 1.542982
+## [17] 3.995045 1.910241 2.220523 3.256417
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1175,9 +1175,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 16.36274 14.36236 14.28343 21.64647 18.79646 25.51789 18.73735 18.65538
-##  [9] 13.72075 13.49780 12.20360 13.83283 18.32698 20.84902 20.01796 23.68029
-## [17] 14.23572 14.43913 20.57399 14.60517
+##  [1] 22.54562 19.22510 14.32273 11.93558 13.98879 14.48016 17.46315 15.70642
+##  [9] 22.27320 19.91713 15.89445 17.17870 25.68848 14.20238 20.19354 14.31534
+## [17] 17.13697 16.38759 19.84318 23.05206
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -2483,6 +2483,16 @@ Suppose that you're getting data from the following process:
 ##  [9] 1.972288 1.548191
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\FunctionTok{random\_distribution}\NormalTok{(}\AttributeTok{number\_samples=}\DecValTok{10000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.501582
+\end{verbatim}
+
 Notice that, there are two forms of inherent uncertainty in this function:
 
 \begin{enumerate}
@@ -2506,8 +2516,8 @@ Suppose that you chose to use the same sample average estimator as a means of pr
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1.598869 1.027916 1.395727 1.106244 1.024111 1.840898 1.326400 1.294298
-##  [9] 1.822898 1.414347
+##  [1] 1.946123 1.913084 1.711113 1.768129 1.573630 1.916366 1.149307 1.556135
+##  [9] 1.358160 1.889717
 \end{verbatim}
 
 \begin{Shaded}
@@ -2517,7 +2527,7 @@ Suppose that you chose to use the same sample average estimator as a means of pr
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.385171
+## [1] 1.678176
 \end{verbatim}
 
 Is this sample average an unbiased estimator for the population expected value? How do you know?
@@ -2616,27 +2626,42 @@ We are going to write a function that, essentially, just wraps a built-in functi
   \FunctionTok{return}\NormalTok{(sample\_average)}
 \NormalTok{\}}
 
-\FunctionTok{toss\_coin}\NormalTok{(}\AttributeTok{number\_of\_simulations=}\DecValTok{10}\NormalTok{)}
+\FunctionTok{toss\_coin}\NormalTok{(}\AttributeTok{number\_of\_simulations=}\DecValTok{10}\NormalTok{, }\AttributeTok{number\_of\_tosses=}\DecValTok{2}\NormalTok{, }\AttributeTok{prob\_heads=}\FloatTok{0.7}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1.0 1.0 0.5 1.0 1.0 0.5 1.0 1.0 1.0 1.0
+##  [1] 1.0 0.5 1.0 0.5 0.5 0.5 0.5 0.5 1.0 1.0
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{coin\_result }\OtherTok{\textless{}{-}} \FunctionTok{toss\_coin}\NormalTok{(}
-  \AttributeTok{number\_of\_simulations =} \DecValTok{1000}\NormalTok{,}
-  \AttributeTok{number\_of\_tosses =} \DecValTok{2}\NormalTok{, }
-  \AttributeTok{prob\_heads =} \FloatTok{0.7}
+\NormalTok{ncoins }\OtherTok{\textless{}{-}} \DecValTok{10}
+
+\NormalTok{coin\_result\_005 }\OtherTok{\textless{}{-}} \FunctionTok{toss\_coin}\NormalTok{(}
+  \AttributeTok{number\_of\_simulations =} \DecValTok{10000}\NormalTok{,}
+  \AttributeTok{number\_of\_tosses =}\NormalTok{ ncoins, }
+  \AttributeTok{prob\_heads =} \FloatTok{0.005}
 \NormalTok{  )}
 
-\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{coin\_result) }\SpecialCharTok{+} 
-    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{30}\NormalTok{) }\SpecialCharTok{+} 
-    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{0}\NormalTok{, }\AttributeTok{to=}\DecValTok{1}\NormalTok{, }\AttributeTok{by=}\FloatTok{0.1}\NormalTok{), }\AttributeTok{limits=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{1.1}\NormalTok{)) }\SpecialCharTok{+} 
-    \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept=}\FloatTok{0.7}\NormalTok{, }\AttributeTok{color=}\StringTok{\textquotesingle{}\#003262\textquotesingle{}}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{2}\NormalTok{)}
+\NormalTok{coin\_result\_05 }\OtherTok{\textless{}{-}} \FunctionTok{toss\_coin}\NormalTok{(}
+  \AttributeTok{number\_of\_simulations =} \DecValTok{10000}\NormalTok{,}
+  \AttributeTok{number\_of\_tosses =}\NormalTok{ ncoins, }
+  \AttributeTok{prob\_heads =} \FloatTok{0.5}
+\NormalTok{  )}
+
+\NormalTok{plot\_005 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{coin\_result\_005) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{50}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept=}\FloatTok{0.005}\NormalTok{, }\AttributeTok{color=}\StringTok{\textquotesingle{}\#003262\textquotesingle{}}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{plot\_05 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{coin\_result\_05) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{50}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept=}\FloatTok{0.5}\NormalTok{, }\AttributeTok{color=}\StringTok{\textquotesingle{}\#003262\textquotesingle{}}\NormalTok{, }\AttributeTok{linewidth=}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{plot\_005 }\SpecialCharTok{/} 
+\NormalTok{  plot\_05}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2776,21 +2801,21 @@ BLP & & & & & \\
 \hypertarget{hypothesis-testing}{%
 \chapter{Hypothesis Testing}\label{hypothesis-testing}}
 
-Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing, this framework essentially makes an absurd assumption and asks the data to overturn that absurd assumption.
+\begin{figure}
+\centering
+\includegraphics{images/winter_tahoe.jpg}
+\caption{more lake}
+\end{figure}
+
+Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing (NHST), this framework essentially makes an absurd assertion and asks the data to overturn that assertion.
 
 Like a petulant child, NHST essentially proclaims,
 
 \begin{quote}
-``Oh yeah? Well, if you actually loved me then you would buy me an iPad!''
+``If you really loved me, you would let me watch this screen one-hundred hours every day.''
 \end{quote}
 
-Which is to say, it says, ``Oh yeah? If this absurd thing isn't true, prove it to me!''
-
-\begin{figure}
-\centering
-\includegraphics{./images/frequentists_vs_bayesians.png}
-\caption{update!}
-\end{figure}
+Here the absurdity is that a parent might not love their child, and the criteria to overturn that assertion is noted to be ``buy me an iPad'''.
 
 \hypertarget{what-is-frequentist-testing-doing}{%
 \subsection*{What is Frequentist testing doing?}\label{what-is-frequentist-testing-doing}}
@@ -2800,7 +2825,7 @@ This testing framework works on \textbf{samples} of data, and applies \textbf{es
 
 We begin with the one-sample t-test. The one-sample t-test relies on the sample average as an estimator of a population expectation. In doing so, it relies on the effectiveness of the \textbf{Weak Law of Large Numbers} and the \textbf{Central Limit Theorem} to guarantee that the estimator that \textbf{converges in probability} to the population expectation, while also \textbf{converging in distribution} to a Gaussian distribution.
 
-These two convergences permit a data scientist to make several \textbf{inferences} based on data:
+These two convergence concepts permit a data scientist to make several \textbf{inferences} based on data:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2834,7 +2859,15 @@ This framework begins a \textbf{exceedingly important} task that we must underst
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  You will be taking your second test this week. The test follows the same format as the first test, which we will discuss in live session. The test will cover \emph{Unit 4: Conditional Expectation and the Best Linear Predictor} and \emph{Unit 5: Learning from Random Samples.}
+  You will be taking your second test this week. The test follows the same format as the first test, which we will discuss in live session. The test will cover:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    \emph{\textbf{Unit 4}: Conditional Expectation and the Best Linear Predictor;} and,
+  \item
+    \emph{\textbf{Unit 5}: Learning from Random Samples.}
+  \end{enumerate}
 \end{enumerate}
 
 \begin{itemize}
@@ -2916,7 +2949,7 @@ This framework begins a \textbf{exceedingly important} task that we must underst
 \item
   What are the two possible outcomes of a hypothesis test?
 \item
-  What are the four-possible combinations of (a) hypothesis test rest; and (b) state of the world?
+  What are the four-possible combinations of (a) hypothesis test result; and (b) state of the world?
 \item
   Does a hypothesis test always have to report a result that is consistent with the state of the world? What does it mean if it \emph{does}, and what does it mean if it \emph{does not}.
 \item
@@ -2936,26 +2969,31 @@ This framework begins a \textbf{exceedingly important} task that we must underst
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tone\_of\_voice     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}yell\textquotesingle{}}
-\NormalTok{mode\_of\_speech    }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}call\textquotesingle{}}
-\NormalTok{superlative       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}worst\textquotesingle{}}
-\NormalTok{score\_on\_test     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}70\textquotesingle{}}
-\NormalTok{name\_of\_classmate }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}victor\textquotesingle{}}
-\NormalTok{emotion           }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}ennui\textquotesingle{}}
-\NormalTok{eating\_verb       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}smack\textquotesingle{}} \CommentTok{\#slurp}
-\NormalTok{vessel            }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}bowl\textquotesingle{}}
-\NormalTok{thing\_found\_in\_compost }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}bannana peel\textquotesingle{}}
+\NormalTok{tone\_of\_voice     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{mode\_of\_speech    }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{superlative       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{score\_on\_test     }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}percent\textquotesingle{}} \CommentTok{\# should end with percent}
+\NormalTok{name\_of\_classmate }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{emotion           }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{eating\_verb       }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}} \CommentTok{\#slurp}
+\NormalTok{vessel            }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}} 
+\NormalTok{thing\_found\_in\_compost }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{madlib-completed}{%
 \section{Madlib completed}\label{madlib-completed}}
 
-Suppose that a classmate comes to you, and, in a yell voice call, ``Hey, I've got something that is worst for statistics. All you've got to do to get 70 on Test 2 and make victor ennui is smack this bowl of bannana peel.
+Suppose that a classmate comes to you, and, in a voice , ``Hey, I've got something that is for statistics test preperation. All you've got to do to get percent on Test 2 and make is to this of .
 
 You're skeptical, but also curious because that last test was tough. Good.
 
-Acknowledging that we're only 40\% of the way through the course, you decide to hire a hungry, underpaid PhD student the School to conduct the experiment to evaluate this claim. They report back, no details about the test, but they do tell you, ``We're sure there's no effect of bannana peel.''
+\hypertarget{accepting-the-null}{%
+\section{``Accepting the Null''}\label{accepting-the-null}}
+
+(For the purposes of this class, and while you're talking about testing after the class: the preferred language is to either (a) \emph{Reject the null hypothesis}, or (b) \emph{Fail to reject the null hypothesis}.
+
+Acknowledging that we're only 40\% of the way through the course, you decide to hire a hungry, underpaid PhD student the School to conduct the experiment to evaluate this claim. They report back, no details about the test, but they do tell you, ``We're sure there's no effect of .''
 
 \begin{itemize}
 \tightlist
@@ -2965,21 +3003,10 @@ Acknowledging that we're only 40\% of the way through the course, you decide to 
   What, if any, reasons can you imagine not to believe this conclusion?
 \end{itemize}
 
-\hypertarget{all-joking-aside}{%
-\section{All joking aside}\label{all-joking-aside}}
+\hypertarget{manually-computing-a-t-test}{%
+\section{Manually Computing a t-Test}\label{manually-computing-a-t-test}}
 
-Explain this joke:
-
-\begin{figure}
-\centering
-\includegraphics{./images/null_hypothesis.png}
-\caption{har har har}
-\end{figure}
-
-\hypertarget{manual-computation-of-a-t-test}{%
-\section{Manual Computation of a t-Test}\label{manual-computation-of-a-t-test}}
-
-In a warehouse full of power packs labeled as 12 volts we randomly measured the voltage of 7. Here is the data:
+In a warehouse full of power packs labeled as 12 volts we randomly measure the voltage of 7. Here is the data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3007,73 +3034,91 @@ In a warehouse full of power packs labeled as 12 volts we randomly measured the 
   Compute a 95\% confidence interval for the mean.
 \end{enumerate}
 
+\hypertarget{falling-ill-the-general-form-of-a-hypothesis-test}{%
+\section{Falling Ill (The General Form of a Hypothesis Test)}\label{falling-ill-the-general-form-of-a-hypothesis-test}}
+
+In the async content for the week, we're really, \emph{really} clear that we're only working with the \emph{t-distribution}. But, the general ``form'' of a frequentist hypothesis test is always the same: produce a test statistic; produce a distribution of that test statistic if the null hypothesis \emph{were} true; then compare the two. Let's stretch this application a little bit.
+
+There is a theory that upcoming tests cause students to fall ill.~We have been collecting wellness data from our students for several years (not really\ldots) and we have found the following distribution of illnesses (Notice that this does not tell you anything about how many students we have enrolled over the years):
+
+\begin{itemize}
+\item
+  20 students have reported being ill in the week \emph{before} Test 2
+\item
+  10 students have reported being ill in the week \emph{after} Test 2
+\end{itemize}
+
+Think of wellness/illness as a dichotomous statement.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{State an appropriate null hypothesis.} After you have stated this null hypothesis, can you think about (or, even better) can you produce a distribution of the probability of \{0, 1, 2, 3, \ldots{} 30\} of the illnesses reported before the test?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{null\_distribution }\OtherTok{\textless{}{-}} \FunctionTok{dbinom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{30}\NormalTok{, }\DecValTok{30}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\SpecialCharTok{:}\DecValTok{30}\NormalTok{, }\AttributeTok{y=}\NormalTok{null\_distribution) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{itemize}
+\item
+  \textbf{State a rejection criteria}. What occurrence in the data would cause you do doubt the plausibility of your null hypothesis?
+\item
+  \textbf{What do you conclude?} Given the data that is presented to you and the null hypothesis, what do you conclude?
+\end{itemize}
+
 \hypertarget{data-exercise}{%
 \section{Data Exercise}\label{data-exercise}}
 
 \textbf{t-Test Micro Cheat Sheet}
 
+In order for a t-test to produce valid results, a set of conditions must be satisfied. While the literature refers to these as \emph{assumptions}, you might do better to refer to these for yourselves as \emph{requirements}. Meaning, if these requirements for the data generating process are not satisfied, the test does not produce results that hold any statistical guarantees.
+
 \begin{itemize}
 \tightlist
 \item
-  Key t-Test Assumptions
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Metric variable
-  \item
-    IID
-  \item
-    No major deviations from normality, considering sample size
-  \end{itemize}
+  \textbf{Metric variable}: The data needs to be numeric
+\item
+  \textbf{IID}: The data needs to be sampled using an independent, identically distributed sampling process.
+\item
+  \textbf{Well-behaved}: The data need to demonstate no major deviations from normality, considering sample size
 \end{itemize}
 
 \textbf{Testing the Home Team Advantage}
 
-The file athlet2.Rdata contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
+The file \texttt{./data/home\_team.csv} contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{load}\NormalTok{(}\StringTok{"data/athlet2.RData"}\NormalTok{)}
-\NormalTok{data}
+\NormalTok{home\_team }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}./data/home\_team.csv\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(dscore, dinstt, doutstt) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}
+    \AttributeTok{score\_diff               =}\NormalTok{ dscore, }
+    \AttributeTok{in\_state\_tuition\_diff    =}\NormalTok{ dinstt, }
+    \AttributeTok{out\_state\_tuition\_diff   =}\NormalTok{ doutstt}
+\NormalTok{  )}
+
+\FunctionTok{glimpse}\NormalTok{(home\_team, }\AttributeTok{width =} \DecValTok{80}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    dscore dinstt doutstt htpriv vtpriv dapps htwrd vtwrd dwinrec dpriv
-## 1      10   -409   -4679      0      0 -1038     1     1       0     0
-## 2     -14     NA     -66      0      0 -7051     1     1       0     0
-## 3      23   -654    -637      0      0  6209     1     0       1     0
-## 4       8   -222     456      0      0  -129     1     1       0     0
-## 5     -12    -10     208      0      0   794     1     1       0     0
-## 6       7    494      17      0      0   411     0     0       0     0
-## 7     -21      2       2      0      0 -4363     1     1       0     0
-## 8      -5     96    -333      0      0  1144     1     0       1     0
-## 9      -3    223    2526      0      0  3956     0     0       0     0
-## 10    -32    -20       0      0      0  -641     0     1      -1     0
-## 11      9     66       0      0      0  -278     1     0       1     0
-## 12      1     56    -346      0      0 -2223     1     0       1     0
-## 13      7    556     717      0      0 -5217     1     0       1     0
-## 14    -20    169    -461      0      0  1772     0     1      -1     0
-## 15     35   -135     396      0      0    85     1     0       1     0
-## 16     35    -40       0      0      0  -988     1     0       1     0
-## 17    -25     24       0      0      0 -8140     1     1       0     0
-## 18     -9     90       0      0      0  8418     0     1      -1     0
-## 19    -33     27     900      0      0 -3273     0     0       0     0
-## 20      7    -89     -31      0      0  1906     1     0       1     0
-## 21     -3    536    2352      0      0  -151     1     1       0     0
-## 22     -6  13261    9111      1      0 -9936     1     1       0     1
-## 23    -29  13809   10076      1      0 -6265     0     1      -1     1
-## 24     14 -17631  -10589      0      1  1252     1     0       1    -1
-## 25    -18  14885    9983      1      0 -4529     1     1       0     1
-## 26     48 -15220  -11400      0      1  -318     1     0       1    -1
-## 27     -3     99     -29      0      0  -797     0     1      -1     0
-## 28     -3    -54     -88      0      0  -372     0     1      -1     0
-## 29     -3    -98   -4175      1      0  2460     1     1       0     1
-## 30      2   -304    2987      0      1 -3035     1     1       0    -1
+## Rows: 30
+## Columns: 3
+## $ score_diff             <int> 10, -14, 23, 8, -12, 7, -21, -5, -3, -32, 9, 1,~
+## $ in_state_tuition_diff  <int> -409, NA, -654, -222, -10, 494, 2, 96, 223, -20~
+## $ out_state_tuition_diff <int> -4679, -66, -637, 456, 208, 17, 2, -333, 2526, ~
 \end{verbatim}
 
-We are especially interested in the variable, dscore, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.
+We are especially interested in the variable, \texttt{score\_diff}, which represents the score differential, home team score - visiting team score. We would like to test whether a home team really has an advantage over the visiting team.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3585,7 +3630,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 11 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -3650,7 +3695,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 929 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-48-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-50-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3769,6 +3814,338 @@ With this plot created, we can ask if what we observe in the plot is the produce
   Are Americans with pets happier than Americans without pets?
 \end{itemize}
 
+\hypertarget{simulating-the-effects-of-test-choices}{%
+\section{Simulating the Effects of Test Choices}\label{simulating-the-effects-of-test-choices}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_minimal}\NormalTok{())}
+
+\NormalTok{berkeley\_blue   }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\#003262\textquotesingle{}}
+\NormalTok{berkeley\_gold   }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\#FDB515\textquotesingle{}}
+\NormalTok{berkeley\_sather }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}\#B9D3B6\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{should-we-use-a-t-test-or-a-wilcox-sign-rank}{%
+\subsection{Should we use a t-test or a wilcox sign-rank?}\label{should-we-use-a-t-test-or-a-wilcox-sign-rank}}
+
+There is some open discussion in the applied statistics literature about whether we should \emph{ever} be using a t-test. In particular, if the underlying distribution that generates the data is \textbf{not} normal, than the assumptions of a t-test are not, technically satisfied and the test does not produce results that have nominal p-value coverage. This is both \emph{technically} and \emph{theoretically} true; and yet, researchers, data scientists, your instructors, and the entire world runs t-tests as ``test of first recourse.''
+
+What is the alternative to conducting a t-test as the test of first recourse? It might be the Wilcox test. The Wilcox test makes a weaker assumption -- of symmetry around the mean or median -- which is weaker than the assumption of normality.
+
+Additional points of argument, which you will investigate in this worksheet:
+
+\begin{itemize}
+\tightlist
+\item
+  If the underlying data \textbf{is} normal, then the Wilcox test is \emph{nearly} as well powered as the t-test.
+\item
+  If the underlying data \textbf{is not} normal, then the Wilcox test still maintains nominal p-value coverage, whereas the t-test might lose this guarantee.
+\end{itemize}
+
+\hypertarget{the-poisson-distribution}{%
+\subsection{The Poisson Distribution}\label{the-poisson-distribution}}
+
+The poisson distribution has the following PDF:
+
+\[
+f_X(x) = \frac{\lambda^n e^{-\lambda}}{n!}
+\]
+
+The key shape parameter for a poisson function is \(\lambda\); we show three different distributions, setting this shape parameter to be 1, 3, and 30 respectively. Notice that the limits on these plots are not set to be the same; for example, the range in the third plot is considerably larger than the first.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pois\_lambda\_1  }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(}\AttributeTok{n=}\DecValTok{1000}\NormalTok{, }\AttributeTok{lambda=}\DecValTok{1}\NormalTok{)}
+\NormalTok{pois\_lambda\_3  }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(}\AttributeTok{n=}\DecValTok{1000}\NormalTok{, }\AttributeTok{lambda=}\DecValTok{3}\NormalTok{)}
+\NormalTok{pois\_lambda\_30 }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(}\AttributeTok{n=}\DecValTok{1000}\NormalTok{, }\AttributeTok{lambda=}\DecValTok{30}\NormalTok{)}
+
+\NormalTok{plot\_1  }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{pois\_lambda\_1) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{6}\NormalTok{, }\AttributeTok{fill =}\NormalTok{ berkeley\_blue)}
+\NormalTok{plot\_3  }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{pois\_lambda\_3) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{10}\NormalTok{, }\AttributeTok{fill =}\NormalTok{ berkeley\_gold)}
+\NormalTok{plot\_30 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{pois\_lambda\_30) }\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{30}\NormalTok{, }\AttributeTok{fill =}\NormalTok{ berkeley\_sather)}
+
+\NormalTok{plot\_1 }\SpecialCharTok{/}\NormalTok{ plot\_3 }\SpecialCharTok{/}\NormalTok{ plot\_30}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/show some from poisson distribution-1.pdf}
+
+What does this changing distribution do to the p-values?
+
+\hypertarget{write-a-simulation}{%
+\subsection{Write a Simulation}\label{write-a-simulation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pois\_sim }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(num\_observations, lambda\_one, lambda\_two) \{ }
+  
+\NormalTok{  t\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\DecValTok{10000}\NormalTok{)}
+\NormalTok{  wilcox\_result }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\DecValTok{10000}\NormalTok{)}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10000}\NormalTok{) \{ }
+\NormalTok{    group\_one }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(}\AttributeTok{n=}\NormalTok{num\_observations, }\AttributeTok{lambda=}\NormalTok{lambda\_one)}
+\NormalTok{    group\_two }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(}\AttributeTok{n=}\NormalTok{num\_observations, }\AttributeTok{lambda=}\NormalTok{lambda\_two)}
+  
+\NormalTok{    t\_test\_result[i] }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(group\_one, group\_two)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{    wilcox\_result[i] }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{group\_one, }\AttributeTok{y=}\NormalTok{group\_two)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{  \}}
+  
+\NormalTok{  df }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+    \AttributeTok{p\_value =} \FunctionTok{c}\NormalTok{(t\_test\_result, wilcox\_result), }
+    \AttributeTok{test    =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}t\_test\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}wilcox\_test\textquotesingle{}}\NormalTok{), }\AttributeTok{each =} \DecValTok{10000}\NormalTok{)}
+\NormalTok{  )}
+  
+  \FunctionTok{return}\NormalTok{(df)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo }\OtherTok{\textless{}{-}} \FunctionTok{pois\_sim}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{2.0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/plot results of simulation-1.pdf}
+
+And so, the simulation rejects the null at the following rates:
+
+\begin{itemize}
+\tightlist
+\item
+  For the t-test, at a rate of 0.0670385
+\item
+  For the Wilcox test, at a rate of 0.0765554
+\end{itemize}
+
+\hypertarget{what-if-a-distribution-is-much-more-skewed}{%
+\subsection{\texorpdfstring{What if a distribution is much \emph{more} skewed?}{What if a distribution is much more skewed?}}\label{what-if-a-distribution-is-much-more-skewed}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{skewed\_sim }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{num\_sims=}\DecValTok{1000}\NormalTok{, num\_observations, alpha\_1, beta\_1, alpha\_2, beta\_2) \{}
+  
+\NormalTok{  t\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, num\_sims)}
+\NormalTok{  wilcox\_result }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, num\_sims)}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{num\_sims) \{ }
+\NormalTok{    group\_one }\OtherTok{\textless{}{-}} \FunctionTok{rbeta}\NormalTok{(}\AttributeTok{n=}\NormalTok{num\_observations, }\AttributeTok{shape1 =}\NormalTok{ alpha\_1, }\AttributeTok{shape2 =}\NormalTok{ beta\_1)}
+\NormalTok{    group\_two }\OtherTok{\textless{}{-}} \FunctionTok{rbeta}\NormalTok{(}\AttributeTok{n=}\NormalTok{num\_observations, }\AttributeTok{shape1 =}\NormalTok{ alpha\_2, }\AttributeTok{shape2 =}\NormalTok{ beta\_2)}
+  
+\NormalTok{    t\_test\_result[i] }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(group\_one, group\_two)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{    wilcox\_result[i] }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{group\_one, }\AttributeTok{y=}\NormalTok{group\_two)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{  \}}
+  
+\NormalTok{  dt }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+    \AttributeTok{p\_value =} \FunctionTok{c}\NormalTok{(t\_test\_result, wilcox\_result), }
+    \AttributeTok{test    =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}t\_test\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}wilcox\_test\textquotesingle{}}\NormalTok{), }\AttributeTok{each =}\NormalTok{ num\_sims)}
+\NormalTok{  )}
+  
+  \FunctionTok{return}\NormalTok{(dt)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{false-rejection-rates}{%
+\subsection{False Rejection Rates}\label{false-rejection-rates}}
+
+Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)), }\FunctionTok{aes}\NormalTok{(x)) }\SpecialCharTok{+} 
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dbeta, }\AttributeTok{n=}\DecValTok{100}\NormalTok{, }\AttributeTok{args=}\FunctionTok{list}\NormalTok{(}\AttributeTok{shape1=}\DecValTok{2}\NormalTok{, }\AttributeTok{shape2=}\DecValTok{7}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{same\_dist\_small\_data }\OtherTok{\textless{}{-}} \FunctionTok{skewed\_sim}\NormalTok{(}
+  \AttributeTok{num\_observations=}\DecValTok{10}\NormalTok{, }
+  \AttributeTok{alpha\_1=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_1=}\DecValTok{7}\NormalTok{, }
+  \AttributeTok{alpha\_2=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_2=}\DecValTok{7}
+\NormalTok{  )}
+\NormalTok{same\_dist\_med\_data }\OtherTok{\textless{}{-}} \FunctionTok{skewed\_sim}\NormalTok{(}
+  \AttributeTok{num\_observations=}\DecValTok{50}\NormalTok{, }
+  \AttributeTok{alpha\_1=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_1=}\DecValTok{7}\NormalTok{, }
+  \AttributeTok{alpha\_2=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_2=}\DecValTok{7}
+\NormalTok{  )}
+\NormalTok{same\_dist\_big\_data }\OtherTok{\textless{}{-}} \FunctionTok{skewed\_sim}\NormalTok{( }\CommentTok{\# haha, "big data"}
+  \AttributeTok{num\_observations=}\DecValTok{100}\NormalTok{, }
+  \AttributeTok{alpha\_1=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_1=}\DecValTok{7}\NormalTok{, }
+  \AttributeTok{alpha\_2=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_2=}\DecValTok{7}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot\_1 }\OtherTok{\textless{}{-}}\NormalTok{ same\_dist\_small\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test), }\AttributeTok{bounds=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+\NormalTok{plot\_2 }\OtherTok{\textless{}{-}}\NormalTok{ same\_dist\_med\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test), }\AttributeTok{bounds=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+\NormalTok{plot\_3 }\OtherTok{\textless{}{-}}\NormalTok{ same\_dist\_big\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test), }\AttributeTok{bounds=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+
+\NormalTok{plot\_1 }\SpecialCharTok{/}\NormalTok{ plot\_2 }\SpecialCharTok{/}\NormalTok{ plot\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  T-tests
+
+  \begin{itemize}
+  \tightlist
+  \item
+    0.056
+  \item
+    0.045
+  \item
+    0.054
+  \end{itemize}
+\item
+  Wilcox Tests
+
+  \begin{itemize}
+  \tightlist
+  \item
+    0.056
+  \item
+    0.055
+  \item
+    0.05
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{what-about-power-to-reject}{%
+\subsection{What about Power to Reject}\label{what-about-power-to-reject}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{small\_diff\_small\_data }\OtherTok{\textless{}{-}} \FunctionTok{skewed\_sim}\NormalTok{(}
+  \AttributeTok{num\_observations=}\DecValTok{10}\NormalTok{, }
+  \AttributeTok{alpha\_1=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_1=}\DecValTok{7}\NormalTok{, }
+  \AttributeTok{alpha\_2=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_2=}\DecValTok{5}
+\NormalTok{  )}
+\NormalTok{small\_diff\_med\_data }\OtherTok{\textless{}{-}} \FunctionTok{skewed\_sim}\NormalTok{(}
+  \AttributeTok{num\_observations=}\DecValTok{50}\NormalTok{, }
+  \AttributeTok{alpha\_1=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_1=}\DecValTok{7}\NormalTok{, }
+  \AttributeTok{alpha\_2=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_2=}\DecValTok{5}
+\NormalTok{  )}
+\NormalTok{small\_diff\_big\_data }\OtherTok{\textless{}{-}} \FunctionTok{skewed\_sim}\NormalTok{( }\CommentTok{\# haha, "big data"}
+  \AttributeTok{num\_observations=}\DecValTok{100}\NormalTok{, }
+  \AttributeTok{alpha\_1=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_1=}\DecValTok{7}\NormalTok{, }
+  \AttributeTok{alpha\_2=}\DecValTok{2}\NormalTok{, }\AttributeTok{beta\_2=}\DecValTok{5}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot\_1 }\OtherTok{\textless{}{-}}\NormalTok{ small\_diff\_small\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test), }\AttributeTok{bounds=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+\NormalTok{plot\_2 }\OtherTok{\textless{}{-}}\NormalTok{ small\_diff\_med\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test), }\AttributeTok{bounds=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+\NormalTok{plot\_3 }\OtherTok{\textless{}{-}}\NormalTok{ small\_diff\_big\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test), }\AttributeTok{bounds=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(berkeley\_blue, berkeley\_gold))}
+
+\NormalTok{plot\_1 }\SpecialCharTok{/}\NormalTok{ plot\_2 }\SpecialCharTok{/}\NormalTok{ plot\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\hypertarget{paired-compared-to-unpaired-tests}{%
+\subsection{Paired compared to unpaired tests}\label{paired-compared-to-unpaired-tests}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_sim }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{num\_sims=}\DecValTok{10000}\NormalTok{, num\_observations, mean\_one, mean\_two, paired\_diff, sd\_one, sd\_two) \{ }
+  
+\NormalTok{  unpaired\_test\_unpaired\_data }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, num\_sims)}
+\NormalTok{  unpaired\_test\_paired\_data   }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, num\_sims)}
+\NormalTok{  paired\_test\_unpaired\_data   }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, num\_sims)}
+\NormalTok{  paired\_test\_paired\_data     }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\ConstantTok{NA}\NormalTok{, num\_sims)}
+  
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{num\_sims) \{ }
+\NormalTok{    observation\_a1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ num\_observations, }\AttributeTok{mean =}\NormalTok{ mean\_one, }\AttributeTok{sd =}\NormalTok{ sd\_one) }
+    \DocumentationTok{\#\# first create unpaired data }
+\NormalTok{    observation\_b }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ num\_observations, }\AttributeTok{mean =}\NormalTok{ mean\_two, }\AttributeTok{sd =}\NormalTok{ sd\_two)}
+    \DocumentationTok{\#\# then, create paired data }
+\NormalTok{    observation\_a2 }\OtherTok{\textless{}{-}}\NormalTok{ observation\_a1 }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ num\_observations, }\AttributeTok{mean =}\NormalTok{ paired\_diff, }\AttributeTok{sd=}\NormalTok{sd\_two)}
+    
+    \DocumentationTok{\#\# run tests}
+\NormalTok{    unpaired\_test\_unpaired\_data[i] }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{observation\_a1, }\AttributeTok{y=}\NormalTok{observation\_b,  }\AttributeTok{paired=}\ConstantTok{FALSE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{    unpaired\_test\_paired\_data[i]   }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{observation\_a1, }\AttributeTok{y=}\NormalTok{observation\_a2,  }\AttributeTok{paired=}\ConstantTok{FALSE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{    paired\_test\_unpaired\_data[i]   }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{observation\_a1, }\AttributeTok{y=}\NormalTok{observation\_b,  }\AttributeTok{paired=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{    paired\_test\_paired\_data[i]     }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{observation\_a1, }\AttributeTok{y=}\NormalTok{observation\_a2, }\AttributeTok{paired=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{p.value}
+\NormalTok{  \}}
+  
+\NormalTok{  dt }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+    \AttributeTok{p\_value =} \FunctionTok{c}\NormalTok{(unpaired\_test\_unpaired\_data, unpaired\_test\_paired\_data, }
+\NormalTok{                paired\_test\_unpaired\_data,   paired\_test\_paired\_data), }
+    \AttributeTok{test    =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}unpaired data, unpaired test\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}paired data, unpaired test\textquotesingle{}}\NormalTok{, }
+                    \StringTok{\textquotesingle{}unpaired data, paired test\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}paired data, paired test\textquotesingle{}}\NormalTok{), }\AttributeTok{each =}\NormalTok{ num\_sims)}
+\NormalTok{  )}
+  
+  \FunctionTok{return}\NormalTok{(dt)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bar }\OtherTok{\textless{}{-}} \FunctionTok{paired\_sim}\NormalTok{(}\AttributeTok{num\_observations =} \DecValTok{30}\NormalTok{,  }\AttributeTok{mean\_one =} \DecValTok{10}\NormalTok{, }\AttributeTok{mean\_two =} \DecValTok{11}\NormalTok{, }\AttributeTok{paired\_diff =} \DecValTok{1}\NormalTok{, }\AttributeTok{sd\_one =} \DecValTok{4}\NormalTok{, }\AttributeTok{sd\_two =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{paired\_data\_plot }\OtherTok{\textless{}{-}}\NormalTok{ bar[}\FunctionTok{grep}\NormalTok{(}\StringTok{\textquotesingle{}unpaired data\textquotesingle{}}\NormalTok{, test, }\AttributeTok{invert=}\ConstantTok{TRUE}\NormalTok{)] }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test, }\AttributeTok{fill =}\NormalTok{ test) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.25}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Paired Data\textquotesingle{}}\NormalTok{)}
+\NormalTok{unpaired\_data\_plot }\OtherTok{\textless{}{-}}\NormalTok{ bar[}\FunctionTok{grep}\NormalTok{(}\StringTok{\textquotesingle{}unpaired data\textquotesingle{}}\NormalTok{, test, }\AttributeTok{invert=}\ConstantTok{FALSE}\NormalTok{)] }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{p\_value, }\AttributeTok{color =}\NormalTok{ test, }\AttributeTok{fill =}\NormalTok{ test) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha=}\FloatTok{0.25}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Unpaired Data\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{paired\_data\_plot }\SpecialCharTok{/}\NormalTok{ unpaired\_data\_plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/plot results of paired simulation-1.pdf}
+
 \hypertarget{ols-regression-estimates}{%
 \chapter{OLS Regression Estimates}\label{ols-regression-estimates}}
 
@@ -3885,21 +4262,8 @@ With this plot created, we can ask if what we observe in the plot is the produce
   The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
 \end{itemize}
 
-\hypertarget{regression-discussion}{%
-\section{Regression Discussion}\label{regression-discussion}}
-
-\hypertarget{working-on-math}{%
-\section{Working on Math}\label{working-on-math}}
-
-Meet us over at this \href{https://miro.com/welcomeonboard/OWZ3SHlpeVBMYjdnc2xXUFhzQVNWaFpnTkg2dmF1Z3I1UUJBWVZobWFOeVduSHJNTTRSQUt3akVyQUt0MnAyM3wzNDU4NzY0NTE4MDA4MjA1NTc3?invite_link_id=319921528710}{link} to work on some math together.
-
-\hypertarget{visualizing-data}{%
-\section{Visualizing Data}\label{visualizing-data}}
-
-Consider that you have two variables, \(X_{1}\) and \(X_{2}\) that are predicting \(Y\).
-
 \hypertarget{discussion-questions}{%
-\subsection{Discussion Questions}\label{discussion-questions}}
+\section{Discussion Questions}\label{discussion-questions}}
 
 Suppose we have random variables \(X\) and \(Y\).
 
@@ -3960,13 +4324,13 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 \end{Shaded}
 
 \begin{verbatim}
-##           x1       x2       x3        y
-## 1 4.63501590 8.135665 8.663509 43.44315
-## 2 8.29269655 6.682952 2.094980 24.65987
-## 3 3.59094253 2.977042 4.898573 21.50536
-## 4 4.38799046 8.531798 4.656265 31.70070
-## 5 0.07259715 8.462503 5.320636 29.48497
-## 6 9.68147911 3.774766 9.435650 42.41340
+##          x1        x2        x3         y
+## 1 0.3416502 0.7912937 6.0006823 17.794577
+## 2 1.8439180 3.1209309 1.2547957  8.179917
+## 3 8.9836342 5.5705346 4.7984000 30.284766
+## 4 5.3823456 8.7452644 0.3928139 20.186430
+## 5 0.4936049 9.9378938 8.8837140 44.277600
+## 6 9.8624064 9.9830178 2.3737502 34.694755
 \end{verbatim}
 
 Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other ``things'' in this universe that also affect \(Y\), but that we don't have access to them. By assumption, what we \emph{have} measured in this world, \(X_1, X_2, X_3\) are uncorrelated with these other features.
@@ -3980,7 +4344,7 @@ Notice that when we made this data, we included a set of random noise at the end
 
 \begin{verbatim}
 ## (Intercept)          x1          x2          x3 
-##   -2.466535    1.024813    1.971678    2.915168
+##   -3.171335    1.021295    2.057920    2.979041
 \end{verbatim}
 
 The claim is that we can produce an estimate of \(\beta_1\) using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression.
@@ -4000,8 +4364,8 @@ If we look into the structure of \texttt{model\_aux} we can see that there are \
 \end{Shaded}
 
 \begin{verbatim}
-##  (Intercept)           x2           x3 
-##  5.257164473 -0.001060895 -0.038308370
+## (Intercept)          x2          x3 
+##  3.95679209  0.15306227 -0.01896362
 \end{verbatim}
 
 To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, ``residual'' in this sense?
@@ -4032,18 +4396,18 @@ In order to access these residuals, we can ``augment'' the dataframe that we use
 
 \begin{verbatim}
 ## # A tibble: 100 x 10
-##        x1    x2    x3 .fitted .resid   .hat .sigma  .cooksd .std.resid     y
-##     <dbl> <dbl> <dbl>   <dbl>  <dbl>  <dbl>  <dbl>    <dbl>      <dbl> <dbl>
-##  1 4.64   8.14   8.66    4.92 -0.282 0.0369   3.11 0.000110    -0.0929  43.4
-##  2 8.29   6.68   2.09    5.17  3.12  0.0217   3.09 0.00773      1.02    24.7
-##  3 3.59   2.98   4.90    5.07 -1.48  0.0160   3.10 0.00125     -0.481   21.5
-##  4 4.39   8.53   4.66    5.07 -0.682 0.0231   3.10 0.000393    -0.223   31.7
-##  5 0.0726 8.46   5.32    5.04 -4.97  0.0228   3.06 0.0206      -1.63    29.5
-##  6 9.68   3.77   9.44    4.89  4.79  0.0339   3.07 0.0291       1.58    42.4
-##  7 3.37   8.68   5.36    5.04 -1.67  0.0246   3.10 0.00251     -0.547   32.8
-##  8 0.284  5.37   5.40    5.04 -4.76  0.0102   3.07 0.00825     -1.55    26.2
-##  9 3.57   5.78   6.39    5.01 -1.44  0.0127   3.10 0.000941    -0.469   29.5
-## 10 6.40   0.157  5.59    5.04  1.36  0.0403   3.10 0.00283      0.449   21.4
+##       x1    x2    x3 .fitted  .resid   .hat .sigma   .cooksd .std.resid     y
+##    <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>  <dbl>     <dbl>      <dbl> <dbl>
+##  1 0.342 0.791 6.00     3.96 -3.62   0.0319   2.68 0.0206       -1.37   17.8 
+##  2 1.84  3.12  1.25     4.41 -2.57   0.0312   2.69 0.0101       -0.969   8.18
+##  3 8.98  5.57  4.80     4.72  4.27   0.0105   2.67 0.00899       1.59   30.3 
+##  4 5.38  8.75  0.393    5.29  0.0944 0.0509   2.70 0.0000232     0.0360 20.2 
+##  5 0.494 9.94  8.88     5.31 -4.82   0.0661   2.66 0.0810       -1.85   44.3 
+##  6 9.86  9.98  2.37     5.44  4.42   0.0467   2.66 0.0462        1.68   34.7 
+##  7 6.37  3.52  6.30     4.38  1.99   0.0154   2.70 0.00289       0.745  27.8 
+##  8 9.84  7.63  4.22     5.04  4.79   0.0190   2.66 0.0208        1.80   36.3 
+##  9 2.64  8.19  6.90     5.08 -2.44   0.0300   2.69 0.00873      -0.920  37.7 
+## 10 7.06  1.64  7.86     4.06  3.00   0.0348   2.69 0.0154        1.13   30.7 
 ## # ... with 90 more rows
 \end{verbatim}
 
@@ -4058,7 +4422,7 @@ And finally, with this augmented data that has information from the model, we ca
 
 \begin{verbatim}
 ## (Intercept)      .resid 
-##   27.601096    1.024813
+##   25.811284    1.021295
 \end{verbatim}
 
 Our claim was that the coefficients from \texttt{model\_main} and \texttt{model\_two} should be the same.
@@ -4182,7 +4546,7 @@ The file \texttt{hprice1.Rdata} contains 88 observations of homes in the Boston 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-63-1.pdf}
 
 Suppose that you're interested in knowing the relationship between price and square footage.
 
@@ -4202,21 +4566,8 @@ Suppose that you're interested in knowing the relationship between price and squ
 \end{enumerate}
 
 \[ 
-price = \beta_{0} + \beta_{1} sqrft + e
+  price = \beta_{0} + \beta_{1} sqrft + e
 \]
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\# old estimate was 0.14}
-\NormalTok{model\_price }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sqrft }\SpecialCharTok{+}\NormalTok{ lotsize, }\AttributeTok{data =}\NormalTok{ data)}
-\FunctionTok{coef}\NormalTok{(model\_price)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (Intercept)       sqrft     lotsize 
-## 5.932414240 0.133362017 0.002113495
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4227,7 +4578,7 @@ price = \beta_{0} + \beta_{1} sqrft + e
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-60-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4298,7 +4649,7 @@ From this population, you might consider taking a sample of 100 observations, an
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_app}\NormalTok{(}\AttributeTok{url =}\StringTok{"http://www.statistics.wtf/minibeta\_l01/"}\NormalTok{)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_app}\NormalTok{(}\AttributeTok{url =}\StringTok{"http://www.statistics.wtf/minibeta01/"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4497,7 +4848,7 @@ A is what we call a homoskedastic distribution. B and C are what we call heteros
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-73-1.pdf}
 
 \hypertarget{question-1}{%
 \subsection{Question 1}\label{question-1}}
@@ -4520,7 +4871,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-74-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4572,7 +4923,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-68-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 \hypertarget{question-2}{%
 \subsection{Question 2}\label{question-2}}
@@ -4759,94 +5110,94 @@ Last week, we fit a regression of price on square feet.
 
 \begin{verbatim}
 ##    sqrft sqrft_two
-## 1   2438  2438.075
-## 2   2076  2075.883
-## 3   1374  1373.986
-## 4   1448  1447.898
-## 5   2514  2513.972
-## 6   2754  2754.079
-## 7   2067  2067.166
-## 8   1731  1731.152
-## 9   1767  1766.954
-## 10  1890  1890.099
-## 11  2336  2336.029
-## 12  2634  2634.210
-## 13  3375  3374.908
-## 14  1899  1899.122
-## 15  2312  2312.162
-## 16  1760  1759.937
-## 17  2000  1999.788
-## 18  1774  1773.958
-## 19  1376  1376.030
-## 20  1835  1834.864
-## 21  2048  2047.938
-## 22  2124  2123.852
-## 23  1768  1767.849
-## 24  1732  1731.786
-## 25  1440  1439.922
-## 26  1932  1932.014
-## 27  1932  1932.042
-## 28  2106  2105.996
-## 29  3529  3529.002
-## 30  2051  2050.964
-## 31  1573  1573.033
-## 32  2829  2828.791
-## 33  1630  1629.878
-## 34  1840  1839.935
-## 35  2066  2065.941
-## 36  1702  1701.982
-## 37  2750  2750.013
-## 38  3880  3880.280
-## 39  1854  1853.955
-## 40  1421  1420.920
-## 41  1662  1661.930
-## 42  3331  3331.055
-## 43  1656  1655.768
-## 44  1171  1170.969
-## 45  2293  2293.140
-## 46  1764  1763.995
-## 47  2768  2768.071
-## 48  3733  3733.047
-## 49  1536  1535.921
-## 50  1638  1637.967
-## 51  1972  1971.824
-## 52  1478  1477.877
-## 53  1408  1407.792
-## 54  1812  1811.989
-## 55  1722  1721.744
-## 56  1780  1779.829
-## 57  1674  1673.887
-## 58  1850  1850.144
-## 59  1925  1925.093
-## 60  2343  2342.961
-## 61  1567  1567.024
-## 62  1664  1664.015
-## 63  1386  1385.796
-## 64  2617  2617.055
-## 65  2321  2320.906
-## 66  2638  2637.993
-## 67  1915  1914.912
-## 68  2589  2588.944
-## 69  2709  2709.071
-## 70  1587  1587.084
-## 71  1694  1693.960
-## 72  1536  1536.021
-## 73  3662  3661.997
-## 74  1736  1735.829
-## 75  2205  2205.026
-## 76  1502  1501.953
-## 77  1696  1696.149
-## 78  2186  2185.972
-## 79  1928  1928.096
-## 80  1294  1294.027
-## 81  1535  1534.830
-## 82  1980  1979.851
-## 83  2090  2089.879
-## 84  1837  1837.043
-## 85  1715  1715.157
-## 86  1574  1574.092
-## 87  1185  1185.011
-## 88  1774  1774.224
+## 1   2438  2438.071
+## 2   2076  2075.911
+## 3   1374  1374.013
+## 4   1448  1448.044
+## 5   2514  2514.083
+## 6   2754  2753.964
+## 7   2067  2066.822
+## 8   1731  1731.047
+## 9   1767  1767.002
+## 10  1890  1889.873
+## 11  2336  2335.996
+## 12  2634  2634.154
+## 13  3375  3374.978
+## 14  1899  1898.938
+## 15  2312  2312.084
+## 16  1760  1759.948
+## 17  2000  1999.877
+## 18  1774  1773.984
+## 19  1376  1376.076
+## 20  1835  1834.992
+## 21  2048  2047.910
+## 22  2124  2123.736
+## 23  1768  1767.987
+## 24  1732  1732.063
+## 25  1440  1439.849
+## 26  1932  1931.906
+## 27  1932  1931.949
+## 28  2106  2106.065
+## 29  3529  3528.902
+## 30  2051  2051.006
+## 31  1573  1573.000
+## 32  2829  2829.112
+## 33  1630  1629.993
+## 34  1840  1840.244
+## 35  2066  2066.274
+## 36  1702  1701.832
+## 37  2750  2750.081
+## 38  3880  3880.017
+## 39  1854  1854.011
+## 40  1421  1421.183
+## 41  1662  1661.969
+## 42  3331  3331.095
+## 43  1656  1655.978
+## 44  1171  1170.896
+## 45  2293  2293.026
+## 46  1764  1763.965
+## 47  2768  2768.083
+## 48  3733  3733.211
+## 49  1536  1536.077
+## 50  1638  1638.085
+## 51  1972  1971.961
+## 52  1478  1477.965
+## 53  1408  1407.923
+## 54  1812  1812.015
+## 55  1722  1721.985
+## 56  1780  1780.075
+## 57  1674  1674.113
+## 58  1850  1850.121
+## 59  1925  1924.873
+## 60  2343  2343.039
+## 61  1567  1567.119
+## 62  1664  1663.970
+## 63  1386  1386.094
+## 64  2617  2617.138
+## 65  2321  2320.821
+## 66  2638  2638.073
+## 67  1915  1914.985
+## 68  2589  2588.995
+## 69  2709  2708.959
+## 70  1587  1586.932
+## 71  1694  1693.984
+## 72  1536  1535.835
+## 73  3662  3661.831
+## 74  1736  1736.080
+## 75  2205  2205.036
+## 76  1502  1502.093
+## 77  1696  1696.022
+## 78  2186  2186.050
+## 79  1928  1927.945
+## 80  1294  1293.892
+## 81  1535  1535.089
+## 82  1980  1979.982
+## 83  2090  2089.849
+## 84  1837  1837.029
+## 85  1715  1715.043
+## 86  1574  1574.048
+## 87  1185  1184.965
+## 88  1774  1774.043
 \end{verbatim}
 
 \begin{Shaded}
@@ -4895,9 +5246,9 @@ Last week, we fit a regression of price on square feet.
 ## t test of coefficients:
 ## 
 ##             Estimate Std. Error t value Pr(>|t|)
-## (Intercept)   16.547     40.917  0.4044   0.6869
-## sqrft        -42.487     54.137 -0.7848   0.4348
-## sqrft_two     42.624     54.131  0.7874   0.4332
+## (Intercept)  11.2997    41.1995  0.2743   0.7845
+## sqrft        -3.6096    88.9933 -0.0406   0.9677
+## sqrft_two     3.7498    88.9884  0.0421   0.9665
 \end{verbatim}
 
 \begin{Shaded}
@@ -4926,7 +5277,7 @@ Last week, we fit a regression of price on square feet.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5013,7 +5364,7 @@ With this, it is possible to plot the distribution of these regression coefficie
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-84-1.pdf}
 
 Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?
 
@@ -5024,7 +5375,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0162
+## [1] 0.0156
 \end{verbatim}
 
 \begin{Shaded}
@@ -5124,94 +5475,94 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## 87 219.000  232.0     2    6362  1185        0 5.389072 5.446737  8.758098
 ## 88 242.000  252.0     4    4950  1774        1 5.488938 5.529429  8.507143
 ##      lsqrft sqrft_two
-## 1  7.798934  2438.075
-## 2  7.638198  2075.883
-## 3  7.225482  1373.986
-## 4  7.277938  1447.898
-## 5  7.829630  2513.972
-## 6  7.920810  2754.079
-## 7  7.633853  2067.166
-## 8  7.456455  1731.152
-## 9  7.477038  1766.954
-## 10 7.544332  1890.099
-## 11 7.756196  2336.029
-## 12 7.876259  2634.210
-## 13 8.124150  3374.908
-## 14 7.549083  1899.122
-## 15 7.745868  2312.162
-## 16 7.473069  1759.937
-## 17 7.600903  1999.788
-## 18 7.480992  1773.958
-## 19 7.226936  1376.030
-## 20 7.514800  1834.864
-## 21 7.624619  2047.938
-## 22 7.661057  2123.852
-## 23 7.477604  1767.849
-## 24 7.457032  1731.786
-## 25 7.272398  1439.922
-## 26 7.566311  1932.014
-## 27 7.566311  1932.042
-## 28 7.652546  2105.996
-## 29 8.168770  3529.002
-## 30 7.626083  2050.964
-## 31 7.360740  1573.033
-## 32 7.947679  2828.791
-## 33 7.396335  1629.878
-## 34 7.517521  1839.935
-## 35 7.633369  2065.941
-## 36 7.439559  1701.982
-## 37 7.919356  2750.013
-## 38 8.263591  3880.280
-## 39 7.525101  1853.955
-## 40 7.259116  1420.920
-## 41 7.415777  1661.930
-## 42 8.111028  3331.055
-## 43 7.412160  1655.768
-## 44 7.065613  1170.969
-## 45 7.737616  2293.140
-## 46 7.475339  1763.995
-## 47 7.925880  2768.071
-## 48 8.224967  3733.047
-## 49 7.336937  1535.921
-## 50 7.401231  1637.967
-## 51 7.586803  1971.824
-## 52 7.298445  1477.877
-## 53 7.249926  1407.792
-## 54 7.502186  1811.989
-## 55 7.451241  1721.744
-## 56 7.484369  1779.829
-## 57 7.422971  1673.887
-## 58 7.522941  1850.144
-## 59 7.562681  1925.093
-## 60 7.759187  2342.961
-## 61 7.356918  1567.024
-## 62 7.416980  1664.015
-## 63 7.234177  1385.796
-## 64 7.869784  2617.055
-## 65 7.749753  2320.906
-## 66 7.877776  2637.993
-## 67 7.557473  1914.912
-## 68 7.859027  2588.944
-## 69 7.904335  2709.071
-## 70 7.369601  1587.084
-## 71 7.434848  1693.960
-## 72 7.336937  1536.021
-## 73 8.205765  3661.997
-## 74 7.459339  1735.829
-## 75 7.698483  2205.026
-## 76 7.314553  1501.953
-## 77 7.436028  1696.149
-## 78 7.689829  2185.972
-## 79 7.564239  1928.096
-## 80 7.165493  1294.027
-## 81 7.336286  1534.830
-## 82 7.590852  1979.851
-## 83 7.644919  2089.879
-## 84 7.515889  1837.043
-## 85 7.447168  1715.157
-## 86 7.361375  1574.092
-## 87 7.077498  1185.011
-## 88 7.480992  1774.224
+## 1  7.798934  2438.071
+## 2  7.638198  2075.911
+## 3  7.225482  1374.013
+## 4  7.277938  1448.044
+## 5  7.829630  2514.083
+## 6  7.920810  2753.964
+## 7  7.633853  2066.822
+## 8  7.456455  1731.047
+## 9  7.477038  1767.002
+## 10 7.544332  1889.873
+## 11 7.756196  2335.996
+## 12 7.876259  2634.154
+## 13 8.124150  3374.978
+## 14 7.549083  1898.938
+## 15 7.745868  2312.084
+## 16 7.473069  1759.948
+## 17 7.600903  1999.877
+## 18 7.480992  1773.984
+## 19 7.226936  1376.076
+## 20 7.514800  1834.992
+## 21 7.624619  2047.910
+## 22 7.661057  2123.736
+## 23 7.477604  1767.987
+## 24 7.457032  1732.063
+## 25 7.272398  1439.849
+## 26 7.566311  1931.906
+## 27 7.566311  1931.949
+## 28 7.652546  2106.065
+## 29 8.168770  3528.902
+## 30 7.626083  2051.006
+## 31 7.360740  1573.000
+## 32 7.947679  2829.112
+## 33 7.396335  1629.993
+## 34 7.517521  1840.244
+## 35 7.633369  2066.274
+## 36 7.439559  1701.832
+## 37 7.919356  2750.081
+## 38 8.263591  3880.017
+## 39 7.525101  1854.011
+## 40 7.259116  1421.183
+## 41 7.415777  1661.969
+## 42 8.111028  3331.095
+## 43 7.412160  1655.978
+## 44 7.065613  1170.896
+## 45 7.737616  2293.026
+## 46 7.475339  1763.965
+## 47 7.925880  2768.083
+## 48 8.224967  3733.211
+## 49 7.336937  1536.077
+## 50 7.401231  1638.085
+## 51 7.586803  1971.961
+## 52 7.298445  1477.965
+## 53 7.249926  1407.923
+## 54 7.502186  1812.015
+## 55 7.451241  1721.985
+## 56 7.484369  1780.075
+## 57 7.422971  1674.113
+## 58 7.522941  1850.121
+## 59 7.562681  1924.873
+## 60 7.759187  2343.039
+## 61 7.356918  1567.119
+## 62 7.416980  1663.970
+## 63 7.234177  1386.094
+## 64 7.869784  2617.138
+## 65 7.749753  2320.821
+## 66 7.877776  2638.073
+## 67 7.557473  1914.985
+## 68 7.859027  2588.995
+## 69 7.904335  2708.959
+## 70 7.369601  1586.932
+## 71 7.434848  1693.984
+## 72 7.336937  1535.835
+## 73 8.205765  3661.831
+## 74 7.459339  1736.080
+## 75 7.698483  2205.036
+## 76 7.314553  1502.093
+## 77 7.436028  1696.022
+## 78 7.689829  2186.050
+## 79 7.564239  1927.945
+## 80 7.165493  1293.892
+## 81 7.336286  1535.089
+## 82 7.590852  1979.982
+## 83 7.644919  2089.849
+## 84 7.515889  1837.029
+## 85 7.447168  1715.043
+## 86 7.361375  1574.048
+## 87 7.077498  1184.965
+## 88 7.480992  1774.043
 \end{verbatim}
 
 \begin{Shaded}
@@ -5262,7 +5613,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-86-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5279,7 +5630,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## 
 ## Coefficients:
 ## (Intercept)        sqrft  
-##      -149.4          0.2
+##     83.5596       0.1045
 \end{verbatim}
 
 \begin{Shaded}
@@ -5296,7 +5647,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-79-2.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-86-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5305,28 +5656,28 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \end{Shaded}
 
 \begin{verbatim}
-##    price assess bdrms lotsize sqrft colonial   lprice  lassess  llotsize
-## 69 325.0  437.0     4   10859  2709        0 5.783825 6.079933  9.292749
-## 38 575.0  518.1     5   15634  3880        1 6.354370 6.250168  9.657204
-## 74 230.0  276.3     3    4054  1736        1 5.438079 5.621487  8.307459
-## 24 150.0  208.0     4    5218  1732        0 5.010635 5.337538  8.559870
-## 21 266.0  294.3     3    5494  2048        1 5.583496 5.684599  8.611412
-## 51 264.0  313.9     3    6637  1972        1 5.575949 5.749074  8.800415
-## 16 227.4  232.9     4    3597  1760        1 5.426711 5.450609  8.187856
-## 29 477.5  478.1     7    8400  3529        1 6.168564 6.169820  9.035987
-## 42 713.5  655.4     5   28231  3331        1 6.570182 6.485246 10.248176
-## 54 180.0  221.5     3    6017  1812        1 5.192957 5.400423  8.702344
+##    price assess bdrms lotsize sqrft colonial   lprice  lassess llotsize
+## 11 285.0  314.0     4    6000  2336        1 5.652489 5.749393 8.699514
+## 52 255.0  279.8     2   15267  1478        0 5.541264 5.634075 9.633449
+## 45 375.0  354.0     5    6637  2293        1 5.926926 5.869297 8.800415
+## 29 477.5  478.1     7    8400  3529        1 6.168564 6.169820 9.035987
+## 46 265.0  252.1     3    7834  1764        1 5.579730 5.529826 8.966228
+## 8  315.0  300.2     3    6210  1731        1 5.752573 5.704449 8.733916
+## 15 265.0  287.5     3    6519  2312        1 5.579730 5.661223 8.782476
+## 85 236.0  259.4     3    5828  1715        0 5.463832 5.558371 8.670429
+## 25 247.0  239.7     3    9425  1440        1 5.509388 5.479388 9.151121
+## 51 264.0  313.9     3    6637  1972        1 5.575949 5.749074 8.800415
 ##      lsqrft sqrft_two
-## 69 7.904335  2709.071
-## 38 8.263591  3880.280
-## 74 7.459339  1735.829
-## 24 7.457032  1731.786
-## 21 7.624619  2047.938
-## 51 7.586803  1971.824
-## 16 7.473069  1759.937
-## 29 8.168770  3529.002
-## 42 8.111028  3331.055
-## 54 7.502186  1811.989
+## 11 7.756196  2335.996
+## 52 7.298445  1477.965
+## 45 7.737616  2293.026
+## 29 8.168770  3528.902
+## 46 7.475339  1763.965
+## 8  7.456455  1731.047
+## 15 7.745868  2312.084
+## 85 7.447168  1715.043
+## 25 7.272398  1439.849
+## 51 7.586803  1971.961
 \end{verbatim}
 
 \hypertarget{descriptive-model-building}{%
@@ -6570,7 +6921,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4 3 1 2 2 1 3 0 1 3
+##  [1] 1 1 0 2 1 6 3 2 2 1
 \end{verbatim}
 
 \hypertarget{mle-for-poisson-random-variables-data}{%
