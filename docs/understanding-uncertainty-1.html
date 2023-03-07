@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-28" />
+<meta name="date" content="2023-03-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -500,10 +500,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
   V(\hat{\beta_j}) = \frac{\sigma^2}{SST_j (1-R_j^2)}
 \]</span></p>
-<p>A similar formulation is given in <em>FOAS</em> as definition 4.2.3,</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-14" class="definition"><strong>Definition 9.1  </strong></span>A similar formulation is given in <em>FOAS</em> as definition 4.2.3,</p>
 <p><span class="math display">\[
-  \hat{V}_{C}[\hat{\beta}] = \hat{\sigma}^2 \left( X^{T} X \right)^{-1} \rightsquigarrow \frac{\hat{\sigma}^{2}}{\left( X^{T}X\right)}
-\]</span></p>
+  \hat{V}_{C}[\hat{\beta}] = \hat{\sigma}^2 \left( X^{T} X \right)^{-1} \rightsquigarrow \hat{\sigma}^{2}{\left(\mathbb{X}^{T}\mathbb{X}\right)}, 
+\]</span>
+where <span class="math inline">\(\hat{\sigma}^{2} = V[\hat{epsilon}]\)</span></p>
+</div>
 <p>Explain why each term makes the variance higher or lower:</p>
 <ul>
 <li><span class="math inline">\(\sigma^2\)</span> is the variance of the error <span class="math inline">\(\epsilon\)</span></li>

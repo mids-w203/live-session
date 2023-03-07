@@ -4,12 +4,6 @@ date: "2023-02-21"
 output: github_document
 ---
 
-```{r load packages}
-library(tidyverse)
-library(data.table)
-library(patchwork)
-```
-
 ```{r set colors}
 theme_set(theme_minimal())
 

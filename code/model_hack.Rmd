@@ -9,9 +9,14 @@ output: github_document
 library(tidyverse)
 ```
 
+This is in the printed page. 
+
+
 ```{r load data}
-data         <- read.csv('data/housing_data.csv')
-descriptions <- read.csv('data/housing_description.csv')
+getwd() # pwd 
+data         <- read.csv('~/MIDS/w203/live-session/data/housing_data.csv')
+descriptions <- read.csv('~/MIDS/w203/live-session/data/housing_description.csv')
+test_data    <- read.csv('~/MIDS/w203/live-session/data/boston_data.csv')
 ```
 
 ```{r print description of data}
@@ -37,14 +42,21 @@ evaluate_model <- function(model) {
   }
 ```
 
+```{r lookat data}
+data %>% 
+  select(price, assess, bdrms, lotsize, sqrft) %>%
+  pairs(pch = '.')
+```
 
 
 ```{r fit models}
-model_one <- lm(price ~ assess, data = data)
+model_one <- lm(price ~ assess + assess, data = data)
+model_two <- lm(price ~ assess + I(assess^2), data = data)
 ```
 
 ```{r evaluate models}
 evaluate_model(model_one)
+evaluate_model(model_two)
 ```
 
 

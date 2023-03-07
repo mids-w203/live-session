@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-02-28" />
+<meta name="date" content="2023-03-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -525,9 +525,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-distributions-via-simulation.html#cb7-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 </details>
-<pre><code>##  [1] 1.313091 3.616380 1.542971 3.573623 1.296822 1.955053 1.455819 2.783846
-##  [9] 3.235346 2.327857 2.152287 3.283246 3.881422 1.322069 1.470398 3.248777
-## [17] 3.183140 1.732502 1.130729 2.593520</code></pre>
+<pre><code>##  [1] 2.249509 2.976483 1.881704 3.417365 3.514625 2.142838 3.458699 4.131749
+##  [9] 1.591658 2.258658 2.400075 1.659197 3.987031 1.791369 1.446923 1.804129
+## [17] 2.672095 3.073280 3.637225 2.661655</code></pre>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
 <p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -585,9 +585,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizing-distributions-via-simulation.html#cb13-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 </details>
-<pre><code>##  [1] 17.60951 19.39482 20.56251 18.94166 20.24816 15.07695 20.05333 20.50811
-##  [9] 21.82435 22.11506 10.51072 15.46990 18.12419 16.13761 19.58669 17.79142
-## [17] 18.13259 11.37170 17.53727 15.45181</code></pre>
+<pre><code>##  [1] 22.269041 16.119632 16.350152 12.170054 11.575929 23.935775 13.664913
+##  [8] 19.390727 13.241865 21.794327 19.498632 14.682459 21.365911 14.487425
+## [15] 13.147893 13.454640  9.420579 16.579180 17.996234 24.254668</code></pre>
 <p>And, from here we could visualize this distribution.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="visualizing-distributions-via-simulation.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
