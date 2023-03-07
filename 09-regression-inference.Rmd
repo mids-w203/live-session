@@ -221,12 +221,12 @@ A similar formulation is given in *FOAS* as definition 4.2.3,
 $$
   \hat{V}_{C}[\hat{\beta}] = \hat{\sigma}^2 \left( X^{T} X \right)^{-1} \rightsquigarrow \hat{\sigma}^{2}{\left(\mathbb{X}^{T}\mathbb{X}\right)}, 
 $$
-where $\hat{\sigma}^{2} = V[\hat{epsilon}]$
+where $\hat{\sigma}^{2} = V[\hat{\epsilon}]$
 :::
 
 Explain why each term makes the variance higher or lower:
 
-- $\sigma^2$ is the variance of the error $\epsilon$
+- $\hat{\sigma}^2$ is the variance of the error $\hat{\epsilon}$
 - $SST_j$ is (unscaled) variance of $X_j$
 - $R_j^2$ is $R^2$ for a regression of $X_j$ on the other $X$'s
 

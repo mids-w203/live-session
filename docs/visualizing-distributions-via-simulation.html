@@ -525,9 +525,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-distributions-via-simulation.html#cb7-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 </details>
-<pre><code>##  [1] 2.249509 2.976483 1.881704 3.417365 3.514625 2.142838 3.458699 4.131749
-##  [9] 1.591658 2.258658 2.400075 1.659197 3.987031 1.791369 1.446923 1.804129
-## [17] 2.672095 3.073280 3.637225 2.661655</code></pre>
+<pre><code>##  [1] 3.655431 3.660760 1.937587 1.501463 3.486696 2.264815 1.207443 3.377524
+##  [9] 2.245844 1.748059 2.826830 1.258931 1.737215 1.425522 1.946467 4.168429
+## [17] 3.212803 3.629033 2.801406 4.086752</code></pre>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
 <p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -585,9 +585,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizing-distributions-via-simulation.html#cb13-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 </details>
-<pre><code>##  [1] 22.269041 16.119632 16.350152 12.170054 11.575929 23.935775 13.664913
-##  [8] 19.390727 13.241865 21.794327 19.498632 14.682459 21.365911 14.487425
-## [15] 13.147893 13.454640  9.420579 16.579180 17.996234 24.254668</code></pre>
+<pre><code>##  [1] 21.498152 20.614272 24.856500 23.515343 19.192075 16.296775 21.693958
+##  [8]  8.336408 13.369535 21.077061 18.232470 15.591104 14.554411  4.794755
+## [15] 17.287527 22.423099 17.653521 12.450706 18.610229 22.009884</code></pre>
 <p>And, from here we could visualize this distribution.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="visualizing-distributions-via-simulation.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>

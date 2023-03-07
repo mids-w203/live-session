@@ -1087,9 +1087,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4.238243 2.334288 3.442271 2.955471 3.415268 1.286789 1.849113 2.609129
-##  [9] 2.357251 1.351768 3.010319 1.365413 3.198495 3.411380 3.715130 2.339712
-## [17] 2.238844 3.237959 3.681011 3.153053
+##  [1] 1.188260 1.954226 2.703194 2.981440 2.348158 2.560293 2.905949 2.986076
+##  [9] 3.849043 2.402811 1.178979 4.018517 3.343907 3.746423 3.497112 1.933262
+## [17] 2.975479 2.055554 2.448638 1.442845
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1175,9 +1175,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 19.27253 19.69897 13.41568 12.16256 23.23452 23.94518 18.04598 16.48859
-##  [9] 17.08321 19.27052 13.27942 16.24993 18.90372 19.53659 20.44844 20.65534
-## [17] 18.50533 24.33197  9.22619 13.06350
+##  [1] 17.88681 19.97541 21.04729 13.30836 21.98226 17.40480 18.40729 23.51066
+##  [9] 18.48063 18.39208 22.41414 18.39537 17.98003 14.61639 24.93019 14.35188
+## [17] 15.56163 21.98791 16.11688 14.63405
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -4970,7 +4970,7 @@ A similar formulation is given in \emph{FOAS} as definition 4.2.3,
 \[
   \hat{V}_{C}[\hat{\beta}] = \hat{\sigma}^2 \left( X^{T} X \right)^{-1} \rightsquigarrow \hat{\sigma}^{2}{\left(\mathbb{X}^{T}\mathbb{X}\right)}, 
 \]
-where \(\hat{\sigma}^{2} = V[\hat{epsilon}]\)
+where \(\hat{\sigma}^{2} = V[\hat{\epsilon}]\)
 \end{definition}
 
 Explain why each term makes the variance higher or lower:
@@ -4978,7 +4978,7 @@ Explain why each term makes the variance higher or lower:
 \begin{itemize}
 \tightlist
 \item
-  \(\sigma^2\) is the variance of the error \(\epsilon\)
+  \(\hat{\sigma}^2\) is the variance of the error \(\hat{\epsilon}\)
 \item
   \(SST_j\) is (unscaled) variance of \(X_j\)
 \item
