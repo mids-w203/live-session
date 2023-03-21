@@ -156,7 +156,7 @@
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2023-03-07}
+\date{2023-03-21}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -201,12 +201,12 @@ This is the live session work space for the course. Our goal with this repositor
 \end{verbatim}
 
 \begin{verbatim}
-## -- Attaching packages ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.3.2 --
+## -- Attaching packages ------------------------------------------------------------------------------------------ tidyverse 1.3.2 --
 ## v ggplot2 3.4.0     v purrr   1.0.1
 ## v tibble  3.1.8     v dplyr   1.1.0
 ## v tidyr   1.3.0     v stringr 1.5.0
 ## v readr   2.1.3     v forcats 1.0.0
-## -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## -- Conflicts --------------------------------------------------------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 \end{verbatim}
@@ -1087,9 +1087,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1.188260 1.954226 2.703194 2.981440 2.348158 2.560293 2.905949 2.986076
-##  [9] 3.849043 2.402811 1.178979 4.018517 3.343907 3.746423 3.497112 1.933262
-## [17] 2.975479 2.055554 2.448638 1.442845
+##  [1] 3.854474 2.832742 1.570090 2.093191 2.974489 3.916891 3.512102 3.316427
+##  [9] 1.736819 3.831242 3.659080 3.343226 2.837598 2.550544 3.869618 2.326397
+## [17] 2.144541 4.154922 3.194006 3.016666
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1175,9 +1175,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 17.88681 19.97541 21.04729 13.30836 21.98226 17.40480 18.40729 23.51066
-##  [9] 18.48063 18.39208 22.41414 18.39537 17.98003 14.61639 24.93019 14.35188
-## [17] 15.56163 21.98791 16.11688 14.63405
+##  [1] 19.39382 24.62950 19.31876 20.53823 24.86542 21.15271 15.31885 11.32233
+##  [9] 10.83077 18.26325 20.12373 15.15393 18.50319 18.97709 15.30491 22.83413
+## [17] 14.06874 18.57054 20.87625 18.00757
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -5447,17 +5447,32 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \hypertarget{explanatory-model-building}{%
 \chapter{Explanatory Model Building}\label{explanatory-model-building}}
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{./images/correlation.png}
+\begin{figure}
+\centering
+\includegraphics{./images/duck.png}
+\caption{duck yeah}
+\end{figure}
+
+What does it mean for \textbf{this} to cause \textbf{that}? This question has flummoxed the discipline of statistics for a \emph{very} long time; but, more than statistics, it has also flummoxed philosophers for even longer!
+
+Why is something that seems so natural to us in our limited, daily lives, so difficult to formalize? If it is difficult for us to formalize in conversation, how can we hope to formalize this so that a model can \emph{discover} and \emph{evluate} causal effects from data?
+
+Of all the weeks in this class, this is perhaps the most conceptually challening.
 
 \hypertarget{learning-objectives-10}{%
 \section{Learning Objectives}\label{learning-objectives-10}}
+
+At the end of this week's learning, students will be able to
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  \textbf{Remember} that most interesting questions in their data analysis are actually causal questions.
 \item
+  \textbf{Articulate} a particular causal model that describes the world, and \textbf{evaluate} whether a research design and a statistical analysis does an adequate job answering a question about a causal model.
 \item
+  \textbf{Appreciate} the deep difficulty of causal questions, and how research design guides data collection.
 \end{enumerate}
 
 \hypertarget{class-announcements-9}{%
@@ -5508,7 +5523,7 @@ Deliverable Name & Week Due & Grade Weight \\
 \midrule
 \endhead
 Research Proposal & Week 12 & 10\% \\
-Within-Team Review & Week 12 & 5\% \\
+Within-Team Review & Week 14 & 5\% \\
 Final Presentation & Week 14 & 10\% \\
 Final Report & Week 14 & 75\% \\
 \bottomrule
@@ -5632,6 +5647,11 @@ Final Report & Week 14 & 75\% \\
   \end{enumerate}
 \end{itemize}
 
+\hypertarget{an-interlude}{%
+\section{An Interlude}\label{an-interlude}}
+
+\includegraphics[width=0.8\textwidth,height=\textheight]{./images/correlation.png}
+
 \hypertarget{omitted-variable-bias}{%
 \subsection{Omitted Variable Bias}\label{omitted-variable-bias}}
 
@@ -5652,46 +5672,133 @@ Final Report & Week 14 & 75\% \\
 \hypertarget{r-exercise-2}{%
 \section{R Exercise}\label{r-exercise-2}}
 
-\textbf{Omitted Variable Bias in R}
+\hypertarget{omitted-variable-bias-in-r}{%
+\subsection{Omitted Variable Bias in R}\label{omitted-variable-bias-in-r}}
 
 The file \texttt{htv.RData} contains data from the 1991 National Longitudinal Survey of Youth, provided by Wooldridge. All people in the sample are males age 26 to 34. The data is interesting here, because it includes education, stored in the variable \texttt{educ}, and also a score on an ability test, stored in the variable \texttt{abil}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{\textquotesingle{}./data/htv.RData\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}
+    \AttributeTok{ability    =}\NormalTok{ abil, }
+    \AttributeTok{education  =}\NormalTok{ educ, }
+    \AttributeTok{north\_east =}\NormalTok{ ne, }
+    \AttributeTok{north\_cent =}\NormalTok{ nc, }
+    \AttributeTok{potential\_experience =}\NormalTok{ exper, }
+    \AttributeTok{edu\_mother =}\NormalTok{ motheduc, }
+    \AttributeTok{edu\_father =}\NormalTok{ fatheduc, }
+    \AttributeTok{divorce\_14 =}\NormalTok{ brkhme14, }
+    \AttributeTok{siblings   =}\NormalTok{ sibs, }
+    \AttributeTok{tuition\_17 =}\NormalTok{ tuit17, }
+    \AttributeTok{tuition\_18 =}\NormalTok{ tuit18) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{education\_f =} \FunctionTok{cut}\NormalTok{(education, }\AttributeTok{breaks =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{100}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(ctuit, expersq, lwage))}
+  
+\FunctionTok{glimpse}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1,230
+## Columns: 21
+## $ wage                 <dbl> 12.019231, 8.912656, 15.514334, 13.333333, 11.070~
+## $ ability              <dbl> 5.0277381, 2.0371704, 2.4758952, 3.6092398, 2.636~
+## $ education            <int> 15, 13, 15, 15, 13, 18, 13, 12, 13, 12, 12, 12, 1~
+## $ north_east           <int> 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1~
+## $ north_cent           <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
+## $ west                 <int> 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0~
+## $ south                <int> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0~
+## $ potential_experience <int> 9, 8, 11, 6, 15, 8, 13, 14, 9, 9, 13, 14, 4, 8, 7~
+## $ edu_mother           <int> 12, 12, 12, 12, 12, 12, 13, 12, 10, 14, 9, 12, 17~
+## $ edu_father           <int> 12, 10, 16, 12, 15, 12, 12, 12, 12, 12, 10, 16, 1~
+## $ divorce_14           <int> 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0~
+## $ siblings             <int> 1, 4, 2, 1, 2, 2, 5, 4, 3, 1, 2, 1, 1, 3, 2, 2, 1~
+## $ urban                <int> 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1~
+## $ ne18                 <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ nc18                 <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
+## $ south18              <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
+## $ west18               <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
+## $ urban18              <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+## $ tuition_17           <dbl> 7.582914, 8.595144, 7.311346, 9.499537, 7.311346,~
+## $ tuition_18           <dbl> 7.260242, 9.499537, 7.311346, 10.162070, 7.311346~
+## $ education_f          <fct> "(12,16]", "(12,16]", "(12,16]", "(12,16]", "(12,~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wage\_plot }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{wage, }\AttributeTok{fill=}\NormalTok{education\_f) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{30}\NormalTok{)}
+\NormalTok{ability\_plot }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ability, }\AttributeTok{fill=}\NormalTok{education\_f) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{30}\NormalTok{)}
+\NormalTok{wage\_by\_ability\_plot }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ability, }\AttributeTok{y=}\NormalTok{wage, }\AttributeTok{color=}\NormalTok{education\_f) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{()}
+  
+
+\NormalTok{(wage\_plot }\SpecialCharTok{|}\NormalTok{ ability\_plot) }\SpecialCharTok{/} 
+\NormalTok{  wage\_by\_ability\_plot }\SpecialCharTok{+} 
+  \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{guides =} \StringTok{\textquotesingle{}collect\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 Assume that the true model is,
 
 \includegraphics[width=0.8\textwidth,height=\textheight]{images/wage_system.png}
 
-\textbf{Questions:}
+\hypertarget{questions}{%
+\subsection{Questions:}\label{questions}}
 
-1- Are we able to \emph{directly} measure ability? If so, how would you propose to measure it?
-
-2- If not, what \emph{do} we measure and how is this measurement related to ability? And there is a lot of evidence to suggest that standardized tests are not a very good proxy. But for now, let's pretend that we really are measuring ability.
-
-3- Using R, estimate (a) the true model, and (b) the regression of ability on education.
-
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Write down the expression for what omitted variable bias would be if you couldn't measure ability.
+  Are we able to \emph{directly} measure ability? If so, how would you propose to measure it?
+\item
+  If not, what \emph{do} we measure and how is this measurement related to ability? And there is a lot of evidence to suggest that standardized tests are not a very good proxy. But for now, let's pretend that we really are measuring ability.
+\item
+  Using R, estimate (a) the true model, and (b) the regression of ability on education.
+\item
+  Write down the expression for what omitted variable bias would be if you couldn't measure ability.\\
 \item
   Add this omitted variable bias to the coefficient for education to see what it would be.
-\end{itemize}
-
-4- Now evaluate your previous result by fitting the model, \[wage = \alpha_0 + \alpha_1 educ + w\]
-
-\begin{itemize}
+\item
+  Now evaluate your previous result by fitting the model, \[wage = \alpha_0 + \alpha_1 educ + w\]
 \item
   Does the coefficient for the relationship between education and wages match what you estimated earlier?
 \item
   Why or why not?
-\end{itemize}
-
-5- Reflect on your results:
-
-\begin{itemize}
 \item
-  What does the direction of omitted variable bias suggest about OLS estimates of returns to education?
+  Reflect on your results:
+\item
+  What does the direction of omitted variable bias suggest about OLS estimates of returns to education?\\
 \item
   What does this suggest about the reported statistical significance of education?
-\end{itemize}
+\end{enumerate}
+
+\hypertarget{research-design-strategies}{%
+\section{Research Design Strategies}\label{research-design-strategies}}
+
+Hopefully you feel like, ``Golly. It would be really, \emph{really} hard to assert some causal model and \emph{know that it is actually true}.'' How does this lead you to think about the role of research design in setting up your data collection?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  If you could \textbf{do the experiment} to determine the effect of education on wages, how would you do it?
+\item
+  If you cannot \textbf{do the experiment} to determine the effect of education on wages, what are some options for where to look for data? What would you hope these areas provide to you?
+\end{enumerate}
 
 \hypertarget{discussion-2}{%
 \section{Discussion}\label{discussion-2}}

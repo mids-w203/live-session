@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-03-07" />
+<meta name="date" content="2023-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -415,10 +415,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="discussion-1.html"><a href="discussion-1.html"><i class="fa fa-check"></i><b>11.4</b> Discussion</a>
 <ul>
 <li class="chapter" data-level="11.4.1" data-path="discussion-1.html"><a href="discussion-1.html#path-diagrams"><i class="fa fa-check"></i><b>11.4.1</b> Path Diagrams</a></li>
-<li class="chapter" data-level="11.4.2" data-path="discussion-1.html"><a href="discussion-1.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.4.2</b> Omitted Variable Bias</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.5</b> R Exercise</a></li>
-<li class="chapter" data-level="11.6" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.6</b> Discussion</a></li>
+<li class="chapter" data-level="11.5" data-path="an-interlude.html"><a href="an-interlude.html"><i class="fa fa-check"></i><b>11.5</b> An Interlude</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="an-interlude.html"><a href="an-interlude.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.5.1</b> Omitted Variable Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.6</b> R Exercise</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="r-exercise-2.html"><a href="r-exercise-2.html#omitted-variable-bias-in-r"><i class="fa fa-check"></i><b>11.6.1</b> Omitted Variable Bias in R</a></li>
+<li class="chapter" data-level="11.6.2" data-path="r-exercise-2.html"><a href="r-exercise-2.html#questions"><i class="fa fa-check"></i><b>11.6.2</b> Questions:</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="research-design-strategies.html"><a href="research-design-strategies.html"><i class="fa fa-check"></i><b>11.7</b> Research Design Strategies</a></li>
+<li class="chapter" data-level="11.8" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.8</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="the-classical-linear-model.html"><a href="the-classical-linear-model.html"><i class="fa fa-check"></i><b>12</b> The Classical Linear Model</a>
 <ul>
@@ -497,19 +505,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-exercise-3" class="section level2 hasAnchor" number="12.6">
 <h2><span class="header-section-number">12.6</span> R Exercise<a href="r-exercise-3.html#r-exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="r-exercise-3.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb156-2"><a href="r-exercise-3.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb156-3"><a href="r-exercise-3.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb156-4"><a href="r-exercise-3.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb156-5"><a href="r-exercise-3.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb156-6"><a href="r-exercise-3.html#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="r-exercise-3.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb159-2"><a href="r-exercise-3.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb159-3"><a href="r-exercise-3.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb159-4"><a href="r-exercise-3.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb159-5"><a href="r-exercise-3.html#cb159-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb159-6"><a href="r-exercise-3.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 </details>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="r-exercise-3.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb157-2"><a href="r-exercise-3.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-3"><a href="r-exercise-3.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="r-exercise-3.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb160-2"><a href="r-exercise-3.html#cb160-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-3"><a href="r-exercise-3.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 </details>
 <pre><code>## Rows: 32
 ## Columns: 11

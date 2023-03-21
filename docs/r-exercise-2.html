@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11.5 R Exercise | Statistics for Data Science</title>
+  <title>11.6 R Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11.5 R Exercise | Statistics for Data Science" />
+  <meta property="og:title" content="11.6 R Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11.5 R Exercise | Statistics for Data Science" />
+  <meta name="twitter:title" content="11.6 R Exercise | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,15 +23,15 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-03-07" />
+<meta name="date" content="2023-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="discussion-1.html"/>
-<link rel="next" href="discussion-2.html"/>
+<link rel="prev" href="an-interlude.html"/>
+<link rel="next" href="research-design-strategies.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -415,10 +415,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="discussion-1.html"><a href="discussion-1.html"><i class="fa fa-check"></i><b>11.4</b> Discussion</a>
 <ul>
 <li class="chapter" data-level="11.4.1" data-path="discussion-1.html"><a href="discussion-1.html#path-diagrams"><i class="fa fa-check"></i><b>11.4.1</b> Path Diagrams</a></li>
-<li class="chapter" data-level="11.4.2" data-path="discussion-1.html"><a href="discussion-1.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.4.2</b> Omitted Variable Bias</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.5</b> R Exercise</a></li>
-<li class="chapter" data-level="11.6" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.6</b> Discussion</a></li>
+<li class="chapter" data-level="11.5" data-path="an-interlude.html"><a href="an-interlude.html"><i class="fa fa-check"></i><b>11.5</b> An Interlude</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="an-interlude.html"><a href="an-interlude.html#omitted-variable-bias"><i class="fa fa-check"></i><b>11.5.1</b> Omitted Variable Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="r-exercise-2.html"><a href="r-exercise-2.html"><i class="fa fa-check"></i><b>11.6</b> R Exercise</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="r-exercise-2.html"><a href="r-exercise-2.html#omitted-variable-bias-in-r"><i class="fa fa-check"></i><b>11.6.1</b> Omitted Variable Bias in R</a></li>
+<li class="chapter" data-level="11.6.2" data-path="r-exercise-2.html"><a href="r-exercise-2.html#questions"><i class="fa fa-check"></i><b>11.6.2</b> Questions:</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="research-design-strategies.html"><a href="research-design-strategies.html"><i class="fa fa-check"></i><b>11.7</b> Research Design Strategies</a></li>
+<li class="chapter" data-level="11.8" data-path="discussion-2.html"><a href="discussion-2.html"><i class="fa fa-check"></i><b>11.8</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="the-classical-linear-model.html"><a href="the-classical-linear-model.html"><i class="fa fa-check"></i><b>12</b> The Classical Linear Model</a>
 <ul>
@@ -494,38 +502,105 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-exercise-2" class="section level2 hasAnchor" number="11.5">
-<h2><span class="header-section-number">11.5</span> R Exercise<a href="r-exercise-2.html#r-exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Omitted Variable Bias in R</strong></p>
+<div id="r-exercise-2" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> R Exercise<a href="r-exercise-2.html#r-exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="omitted-variable-bias-in-r" class="section level3 hasAnchor" number="11.6.1">
+<h3><span class="header-section-number">11.6.1</span> Omitted Variable Bias in R<a href="r-exercise-2.html#omitted-variable-bias-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The file <code>htv.RData</code> contains data from the 1991 National Longitudinal Survey of Youth, provided by Wooldridge. All people in the sample are males age 26 to 34. The data is interesting here, because it includes education, stored in the variable <code>educ</code>, and also a score on an ability test, stored in the variable <code>abil</code>.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="r-exercise-2.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;./data/htv.RData&#39;</span>)</span>
+<span id="cb156-2"><a href="r-exercise-2.html#cb156-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-3"><a href="r-exercise-2.html#cb156-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb156-4"><a href="r-exercise-2.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb156-5"><a href="r-exercise-2.html#cb156-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ability    =</span> abil, </span>
+<span id="cb156-6"><a href="r-exercise-2.html#cb156-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">education  =</span> educ, </span>
+<span id="cb156-7"><a href="r-exercise-2.html#cb156-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">north_east =</span> ne, </span>
+<span id="cb156-8"><a href="r-exercise-2.html#cb156-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">north_cent =</span> nc, </span>
+<span id="cb156-9"><a href="r-exercise-2.html#cb156-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">potential_experience =</span> exper, </span>
+<span id="cb156-10"><a href="r-exercise-2.html#cb156-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_mother =</span> motheduc, </span>
+<span id="cb156-11"><a href="r-exercise-2.html#cb156-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_father =</span> fatheduc, </span>
+<span id="cb156-12"><a href="r-exercise-2.html#cb156-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">divorce_14 =</span> brkhme14, </span>
+<span id="cb156-13"><a href="r-exercise-2.html#cb156-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">siblings   =</span> sibs, </span>
+<span id="cb156-14"><a href="r-exercise-2.html#cb156-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuition_17 =</span> tuit17, </span>
+<span id="cb156-15"><a href="r-exercise-2.html#cb156-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuition_18 =</span> tuit18) <span class="sc">%&gt;%</span> </span>
+<span id="cb156-16"><a href="r-exercise-2.html#cb156-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb156-17"><a href="r-exercise-2.html#cb156-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">education_f =</span> <span class="fu">cut</span>(education, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>,<span class="dv">16</span>,<span class="dv">100</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb156-18"><a href="r-exercise-2.html#cb156-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(ctuit, expersq, lwage))</span>
+<span id="cb156-19"><a href="r-exercise-2.html#cb156-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb156-20"><a href="r-exercise-2.html#cb156-20" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div>
+</details>
+<pre><code>## Rows: 1,230
+## Columns: 21
+## $ wage                 &lt;dbl&gt; 12.019231, 8.912656, 15.514334, 13.333333, 11.070…
+## $ ability              &lt;dbl&gt; 5.0277381, 2.0371704, 2.4758952, 3.6092398, 2.636…
+## $ education            &lt;int&gt; 15, 13, 15, 15, 13, 18, 13, 12, 13, 12, 12, 12, 1…
+## $ north_east           &lt;int&gt; 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1…
+## $ north_cent           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ west                 &lt;int&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0…
+## $ south                &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ potential_experience &lt;int&gt; 9, 8, 11, 6, 15, 8, 13, 14, 9, 9, 13, 14, 4, 8, 7…
+## $ edu_mother           &lt;int&gt; 12, 12, 12, 12, 12, 12, 13, 12, 10, 14, 9, 12, 17…
+## $ edu_father           &lt;int&gt; 12, 10, 16, 12, 15, 12, 12, 12, 12, 12, 10, 16, 1…
+## $ divorce_14           &lt;int&gt; 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0…
+## $ siblings             &lt;int&gt; 1, 4, 2, 1, 2, 2, 5, 4, 3, 1, 2, 1, 1, 3, 2, 2, 1…
+## $ urban                &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1…
+## $ ne18                 &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ nc18                 &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ south18              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ west18               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ urban18              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ tuition_17           &lt;dbl&gt; 7.582914, 8.595144, 7.311346, 9.499537, 7.311346,…
+## $ tuition_18           &lt;dbl&gt; 7.260242, 9.499537, 7.311346, 10.162070, 7.311346…
+## $ education_f          &lt;fct&gt; &quot;(12,16]&quot;, &quot;(12,16]&quot;, &quot;(12,16]&quot;, &quot;(12,16]&quot;, &quot;(12,…</code></pre>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="r-exercise-2.html#cb158-1" aria-hidden="true" tabindex="-1"></a>wage_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb158-2"><a href="r-exercise-2.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb158-3"><a href="r-exercise-2.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>wage, <span class="at">fill=</span>education_f) <span class="sc">+</span> </span>
+<span id="cb158-4"><a href="r-exercise-2.html#cb158-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
+<span id="cb158-5"><a href="r-exercise-2.html#cb158-5" aria-hidden="true" tabindex="-1"></a>ability_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb158-6"><a href="r-exercise-2.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb158-7"><a href="r-exercise-2.html#cb158-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">fill=</span>education_f) <span class="sc">+</span> </span>
+<span id="cb158-8"><a href="r-exercise-2.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
+<span id="cb158-9"><a href="r-exercise-2.html#cb158-9" aria-hidden="true" tabindex="-1"></a>wage_by_ability_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb158-10"><a href="r-exercise-2.html#cb158-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb158-11"><a href="r-exercise-2.html#cb158-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">y=</span>wage, <span class="at">color=</span>education_f) <span class="sc">+</span> </span>
+<span id="cb158-12"><a href="r-exercise-2.html#cb158-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb158-13"><a href="r-exercise-2.html#cb158-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb158-14"><a href="r-exercise-2.html#cb158-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-15"><a href="r-exercise-2.html#cb158-15" aria-hidden="true" tabindex="-1"></a>(wage_plot <span class="sc">|</span> ability_plot) <span class="sc">/</span> </span>
+<span id="cb158-16"><a href="r-exercise-2.html#cb158-16" aria-hidden="true" tabindex="-1"></a>  wage_by_ability_plot <span class="sc">+</span> </span>
+<span id="cb158-17"><a href="r-exercise-2.html#cb158-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
+</details>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
 <p>Assume that the true model is,</p>
 <p><img src="images/wage_system.png" style="width:80.0%" /></p>
-<p><strong>Questions:</strong></p>
-<p>1- Are we able to <em>directly</em> measure ability? If so, how would you propose to measure it?</p>
-<p>2- If not, what <em>do</em> we measure and how is this measurement related to ability? And there is a lot of evidence to suggest that standardized tests are not a very good proxy. But for now, let’s pretend that we really are measuring ability.</p>
-<p>3- Using R, estimate (a) the true model, and (b) the regression of ability on education.</p>
-<ul>
-<li><p>Write down the expression for what omitted variable bias would be if you couldn’t measure ability.</p></li>
-<li><p>Add this omitted variable bias to the coefficient for education to see what it would be.</p></li>
-</ul>
-<p>4- Now evaluate your previous result by fitting the model, <span class="math display">\[wage = \alpha_0 + \alpha_1 educ + w\]</span></p>
-<ul>
-<li><p>Does the coefficient for the relationship between education and wages match what you estimated earlier?</p></li>
-<li><p>Why or why not?</p></li>
-</ul>
-<p>5- Reflect on your results:</p>
-<ul>
-<li><p>What does the direction of omitted variable bias suggest about OLS estimates of returns to education?</p></li>
-<li><p>What does this suggest about the reported statistical significance of education?</p></li>
-</ul>
+</div>
+<div id="questions" class="section level3 hasAnchor" number="11.6.2">
+<h3><span class="header-section-number">11.6.2</span> Questions:<a href="r-exercise-2.html#questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Are we able to <em>directly</em> measure ability? If so, how would you propose to measure it?</li>
+<li>If not, what <em>do</em> we measure and how is this measurement related to ability? And there is a lot of evidence to suggest that standardized tests are not a very good proxy. But for now, let’s pretend that we really are measuring ability.</li>
+<li>Using R, estimate (a) the true model, and (b) the regression of ability on education.</li>
+<li>Write down the expression for what omitted variable bias would be if you couldn’t measure ability.<br />
+</li>
+<li>Add this omitted variable bias to the coefficient for education to see what it would be.</li>
+<li>Now evaluate your previous result by fitting the model, <span class="math display">\[wage = \alpha_0 + \alpha_1 educ + w\]</span></li>
+<li>Does the coefficient for the relationship between education and wages match what you estimated earlier?</li>
+<li>Why or why not?</li>
+<li>Reflect on your results:</li>
+<li>What does the direction of omitted variable bias suggest about OLS estimates of returns to education?<br />
+</li>
+<li>What does this suggest about the reported statistical significance of education?</li>
+</ol>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="discussion-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="discussion-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="an-interlude.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="research-design-strategies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
