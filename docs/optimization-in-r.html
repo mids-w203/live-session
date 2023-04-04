@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-03-21" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -435,10 +435,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
 <li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model</a>
 <ul>
-<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM</a></li>
+<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-1-1"><i class="fa fa-check"></i><b>12.4.1</b> Part 1</a></li>
+<li class="chapter" data-level="12.4.2" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-2-1"><i class="fa fa-check"></i><b>12.4.2</b> Part 2</a></li>
+<li class="chapter" data-level="12.4.3" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-3-1"><i class="fa fa-check"></i><b>12.4.3</b> Part 3</a></li>
+<li class="chapter" data-level="12.4.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-4"><i class="fa fa-check"></i><b>12.4.4</b> Part 4</a></li>
+<li class="chapter" data-level="12.4.5" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-5"><i class="fa fa-check"></i><b>12.4.5</b> Part 5</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="problems-with-the-clm-requirements.html"><a href="problems-with-the-clm-requirements.html"><i class="fa fa-check"></i><b>12.5</b> Problems with the CLM Requirements</a></li>
-<li class="chapter" data-level="12.6" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.6</b> R Exercise</a></li>
+<li class="chapter" data-level="12.5" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.5</b> R Exercise</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="r-exercise-3.html"><a href="r-exercise-3.html#questions-1"><i class="fa fa-check"></i><b>12.5.1</b> Questions:</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>13</b> Reproducible Research</a>
 <ul>
@@ -535,22 +541,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="optimization-in-r.html#cb162-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
-<span id="cb162-2"><a href="optimization-in-r.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
-<span id="cb162-3"><a href="optimization-in-r.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
-<span id="cb162-4"><a href="optimization-in-r.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="optimization-in-r.html#cb171-1" aria-hidden="true" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
+<span id="cb171-2"><a href="optimization-in-r.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb171-3"><a href="optimization-in-r.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
+<span id="cb171-4"><a href="optimization-in-r.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  } </span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="optimization-in-r.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="optimization-in-r.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
 </details>
 <pre><code>## [1] 96</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="optimization-in-r.html#cb165-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb165-2"><a href="optimization-in-r.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
-<span id="cb165-3"><a href="optimization-in-r.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
-<span id="cb165-4"><a href="optimization-in-r.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
-<span id="cb165-5"><a href="optimization-in-r.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
-<span id="cb165-6"><a href="optimization-in-r.html#cb165-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="optimization-in-r.html#cb174-1" aria-hidden="true" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb174-2"><a href="optimization-in-r.html#cb174-2" aria-hidden="true" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
+<span id="cb174-3"><a href="optimization-in-r.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
+<span id="cb174-4"><a href="optimization-in-r.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
+<span id="cb174-5"><a href="optimization-in-r.html#cb174-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
+<span id="cb174-6"><a href="optimization-in-r.html#cb174-6" aria-hidden="true" tabindex="-1"></a>best_price</span></code></pre></div>
 </details>
 <pre><code>## $maximum
 ## [1] 0.5

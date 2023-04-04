@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-03-21" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -435,10 +435,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
 <li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model</a>
 <ul>
-<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM</a></li>
+<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-1-1"><i class="fa fa-check"></i><b>12.4.1</b> Part 1</a></li>
+<li class="chapter" data-level="12.4.2" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-2-1"><i class="fa fa-check"></i><b>12.4.2</b> Part 2</a></li>
+<li class="chapter" data-level="12.4.3" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-3-1"><i class="fa fa-check"></i><b>12.4.3</b> Part 3</a></li>
+<li class="chapter" data-level="12.4.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-4"><i class="fa fa-check"></i><b>12.4.4</b> Part 4</a></li>
+<li class="chapter" data-level="12.4.5" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-5"><i class="fa fa-check"></i><b>12.4.5</b> Part 5</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="problems-with-the-clm-requirements.html"><a href="problems-with-the-clm-requirements.html"><i class="fa fa-check"></i><b>12.5</b> Problems with the CLM Requirements</a></li>
-<li class="chapter" data-level="12.6" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.6</b> R Exercise</a></li>
+<li class="chapter" data-level="12.5" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.5</b> R Exercise</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="r-exercise-3.html"><a href="r-exercise-3.html#questions-1"><i class="fa fa-check"></i><b>12.5.1</b> Questions:</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>13</b> Reproducible Research</a>
 <ul>
@@ -515,9 +521,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>We will use wage1 dataset in the wooldridge package in the following sections.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="r-activity-measuring-the-return-to-education.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co">#?wage1</span></span>
-<span id="cb155-2"><a href="r-activity-measuring-the-return-to-education.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="co">#names(wage1)</span></span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="r-activity-measuring-the-return-to-education.html#cb155-1" aria-hidden="true" tabindex="-1"></a>wage1 <span class="ot">&lt;-</span> wooldridge<span class="sc">::</span>wage1</span>
+<span id="cb155-2"><a href="r-activity-measuring-the-return-to-education.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="co">#names(wage1)</span></span>
+<span id="cb155-3"><a href="r-activity-measuring-the-return-to-education.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="r-activity-measuring-the-return-to-education.html#cb155-4" aria-hidden="true" tabindex="-1"></a>wage1 <span class="sc">%&gt;%</span> </span>
+<span id="cb155-5"><a href="r-activity-measuring-the-return-to-education.html#cb155-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb155-6"><a href="r-activity-measuring-the-return-to-education.html#cb155-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>wage) <span class="sc">+</span> </span>
+<span id="cb155-7"><a href="r-activity-measuring-the-return-to-education.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 </details>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <div id="transformations" class="section level3 hasAnchor" number="10.5.1">
 <h3><span class="header-section-number">10.5.1</span> Transformations<a href="r-activity-measuring-the-return-to-education.html#transformations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="applying-and-interpreting-logarithms" class="section level4 hasAnchor" number="10.5.1.1">

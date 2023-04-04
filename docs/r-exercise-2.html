@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-03-21" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -435,10 +435,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3" data-path="roadmap-8.html"><a href="roadmap-8.html"><i class="fa fa-check"></i><b>12.3</b> Roadmap</a></li>
 <li class="chapter" data-level="12.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html"><i class="fa fa-check"></i><b>12.4</b> The Classical Linear Model</a>
 <ul>
-<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#comparing-the-large-sample-model-and-the-clm"><i class="fa fa-check"></i><b>12.4.1</b> Comparing the Large Sample Model and the CLM</a></li>
+<li class="chapter" data-level="12.4.1" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-1-1"><i class="fa fa-check"></i><b>12.4.1</b> Part 1</a></li>
+<li class="chapter" data-level="12.4.2" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-2-1"><i class="fa fa-check"></i><b>12.4.2</b> Part 2</a></li>
+<li class="chapter" data-level="12.4.3" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-3-1"><i class="fa fa-check"></i><b>12.4.3</b> Part 3</a></li>
+<li class="chapter" data-level="12.4.4" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-4"><i class="fa fa-check"></i><b>12.4.4</b> Part 4</a></li>
+<li class="chapter" data-level="12.4.5" data-path="the-classical-linear-model-1.html"><a href="the-classical-linear-model-1.html#part-5"><i class="fa fa-check"></i><b>12.4.5</b> Part 5</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="problems-with-the-clm-requirements.html"><a href="problems-with-the-clm-requirements.html"><i class="fa fa-check"></i><b>12.5</b> Problems with the CLM Requirements</a></li>
-<li class="chapter" data-level="12.6" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.6</b> R Exercise</a></li>
+<li class="chapter" data-level="12.5" data-path="r-exercise-3.html"><a href="r-exercise-3.html"><i class="fa fa-check"></i><b>12.5</b> R Exercise</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="r-exercise-3.html"><a href="r-exercise-3.html#questions-1"><i class="fa fa-check"></i><b>12.5.1</b> Questions:</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i><b>13</b> Reproducible Research</a>
 <ul>
@@ -508,26 +514,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">11.6.1</span> Omitted Variable Bias in R<a href="r-exercise-2.html#omitted-variable-bias-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The file <code>htv.RData</code> contains data from the 1991 National Longitudinal Survey of Youth, provided by Wooldridge. All people in the sample are males age 26 to 34. The data is interesting here, because it includes education, stored in the variable <code>educ</code>, and also a score on an ability test, stored in the variable <code>abil</code>.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="r-exercise-2.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;./data/htv.RData&#39;</span>)</span>
-<span id="cb156-2"><a href="r-exercise-2.html#cb156-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-3"><a href="r-exercise-2.html#cb156-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb156-4"><a href="r-exercise-2.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb156-5"><a href="r-exercise-2.html#cb156-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ability    =</span> abil, </span>
-<span id="cb156-6"><a href="r-exercise-2.html#cb156-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">education  =</span> educ, </span>
-<span id="cb156-7"><a href="r-exercise-2.html#cb156-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">north_east =</span> ne, </span>
-<span id="cb156-8"><a href="r-exercise-2.html#cb156-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">north_cent =</span> nc, </span>
-<span id="cb156-9"><a href="r-exercise-2.html#cb156-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">potential_experience =</span> exper, </span>
-<span id="cb156-10"><a href="r-exercise-2.html#cb156-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_mother =</span> motheduc, </span>
-<span id="cb156-11"><a href="r-exercise-2.html#cb156-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_father =</span> fatheduc, </span>
-<span id="cb156-12"><a href="r-exercise-2.html#cb156-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">divorce_14 =</span> brkhme14, </span>
-<span id="cb156-13"><a href="r-exercise-2.html#cb156-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">siblings   =</span> sibs, </span>
-<span id="cb156-14"><a href="r-exercise-2.html#cb156-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuition_17 =</span> tuit17, </span>
-<span id="cb156-15"><a href="r-exercise-2.html#cb156-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuition_18 =</span> tuit18) <span class="sc">%&gt;%</span> </span>
-<span id="cb156-16"><a href="r-exercise-2.html#cb156-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb156-17"><a href="r-exercise-2.html#cb156-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">education_f =</span> <span class="fu">cut</span>(education, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>,<span class="dv">16</span>,<span class="dv">100</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb156-18"><a href="r-exercise-2.html#cb156-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(ctuit, expersq, lwage))</span>
-<span id="cb156-19"><a href="r-exercise-2.html#cb156-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb156-20"><a href="r-exercise-2.html#cb156-20" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="r-exercise-2.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;./data/htv.RData&#39;</span>)</span>
+<span id="cb157-2"><a href="r-exercise-2.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-3"><a href="r-exercise-2.html#cb157-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb157-4"><a href="r-exercise-2.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb157-5"><a href="r-exercise-2.html#cb157-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ability    =</span> abil, </span>
+<span id="cb157-6"><a href="r-exercise-2.html#cb157-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">education  =</span> educ, </span>
+<span id="cb157-7"><a href="r-exercise-2.html#cb157-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">north_east =</span> ne, </span>
+<span id="cb157-8"><a href="r-exercise-2.html#cb157-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">north_cent =</span> nc, </span>
+<span id="cb157-9"><a href="r-exercise-2.html#cb157-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">potential_experience =</span> exper, </span>
+<span id="cb157-10"><a href="r-exercise-2.html#cb157-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_mother =</span> motheduc, </span>
+<span id="cb157-11"><a href="r-exercise-2.html#cb157-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_father =</span> fatheduc, </span>
+<span id="cb157-12"><a href="r-exercise-2.html#cb157-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">divorce_14 =</span> brkhme14, </span>
+<span id="cb157-13"><a href="r-exercise-2.html#cb157-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">siblings   =</span> sibs, </span>
+<span id="cb157-14"><a href="r-exercise-2.html#cb157-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuition_17 =</span> tuit17, </span>
+<span id="cb157-15"><a href="r-exercise-2.html#cb157-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuition_18 =</span> tuit18) <span class="sc">%&gt;%</span> </span>
+<span id="cb157-16"><a href="r-exercise-2.html#cb157-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb157-17"><a href="r-exercise-2.html#cb157-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">education_f =</span> <span class="fu">cut</span>(education, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>,<span class="dv">16</span>,<span class="dv">100</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb157-18"><a href="r-exercise-2.html#cb157-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(ctuit, expersq, lwage))</span>
+<span id="cb157-19"><a href="r-exercise-2.html#cb157-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb157-20"><a href="r-exercise-2.html#cb157-20" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div>
 </details>
 <pre><code>## Rows: 1,230
 ## Columns: 21
@@ -553,23 +559,23 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## $ tuition_18           &lt;dbl&gt; 7.260242, 9.499537, 7.311346, 10.162070, 7.311346…
 ## $ education_f          &lt;fct&gt; &quot;(12,16]&quot;, &quot;(12,16]&quot;, &quot;(12,16]&quot;, &quot;(12,16]&quot;, &quot;(12,…</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="r-exercise-2.html#cb158-1" aria-hidden="true" tabindex="-1"></a>wage_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb158-2"><a href="r-exercise-2.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb158-3"><a href="r-exercise-2.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>wage, <span class="at">fill=</span>education_f) <span class="sc">+</span> </span>
-<span id="cb158-4"><a href="r-exercise-2.html#cb158-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
-<span id="cb158-5"><a href="r-exercise-2.html#cb158-5" aria-hidden="true" tabindex="-1"></a>ability_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb158-6"><a href="r-exercise-2.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb158-7"><a href="r-exercise-2.html#cb158-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">fill=</span>education_f) <span class="sc">+</span> </span>
-<span id="cb158-8"><a href="r-exercise-2.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
-<span id="cb158-9"><a href="r-exercise-2.html#cb158-9" aria-hidden="true" tabindex="-1"></a>wage_by_ability_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb158-10"><a href="r-exercise-2.html#cb158-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb158-11"><a href="r-exercise-2.html#cb158-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">y=</span>wage, <span class="at">color=</span>education_f) <span class="sc">+</span> </span>
-<span id="cb158-12"><a href="r-exercise-2.html#cb158-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb158-13"><a href="r-exercise-2.html#cb158-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb158-14"><a href="r-exercise-2.html#cb158-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-15"><a href="r-exercise-2.html#cb158-15" aria-hidden="true" tabindex="-1"></a>(wage_plot <span class="sc">|</span> ability_plot) <span class="sc">/</span> </span>
-<span id="cb158-16"><a href="r-exercise-2.html#cb158-16" aria-hidden="true" tabindex="-1"></a>  wage_by_ability_plot <span class="sc">+</span> </span>
-<span id="cb158-17"><a href="r-exercise-2.html#cb158-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="r-exercise-2.html#cb159-1" aria-hidden="true" tabindex="-1"></a>wage_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb159-2"><a href="r-exercise-2.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb159-3"><a href="r-exercise-2.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>wage, <span class="at">fill=</span>education_f) <span class="sc">+</span> </span>
+<span id="cb159-4"><a href="r-exercise-2.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
+<span id="cb159-5"><a href="r-exercise-2.html#cb159-5" aria-hidden="true" tabindex="-1"></a>ability_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb159-6"><a href="r-exercise-2.html#cb159-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb159-7"><a href="r-exercise-2.html#cb159-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">fill=</span>education_f) <span class="sc">+</span> </span>
+<span id="cb159-8"><a href="r-exercise-2.html#cb159-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>)</span>
+<span id="cb159-9"><a href="r-exercise-2.html#cb159-9" aria-hidden="true" tabindex="-1"></a>wage_by_ability_plot <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb159-10"><a href="r-exercise-2.html#cb159-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb159-11"><a href="r-exercise-2.html#cb159-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ability, <span class="at">y=</span>wage, <span class="at">color=</span>education_f) <span class="sc">+</span> </span>
+<span id="cb159-12"><a href="r-exercise-2.html#cb159-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb159-13"><a href="r-exercise-2.html#cb159-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb159-14"><a href="r-exercise-2.html#cb159-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-15"><a href="r-exercise-2.html#cb159-15" aria-hidden="true" tabindex="-1"></a>(wage_plot <span class="sc">|</span> ability_plot) <span class="sc">/</span> </span>
+<span id="cb159-16"><a href="r-exercise-2.html#cb159-16" aria-hidden="true" tabindex="-1"></a>  wage_by_ability_plot <span class="sc">+</span> </span>
+<span id="cb159-17"><a href="r-exercise-2.html#cb159-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
 </details>
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
 <p>Assume that the true model is,</p>

@@ -156,7 +156,7 @@
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2023-03-21}
+\date{2023-04-04}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -201,12 +201,12 @@ This is the live session work space for the course. Our goal with this repositor
 \end{verbatim}
 
 \begin{verbatim}
-## -- Attaching packages ------------------------------------------------------------------------------------------ tidyverse 1.3.2 --
+## -- Attaching packages --------------------------------------------------------------------------- tidyverse 1.3.2 --
 ## v ggplot2 3.4.0     v purrr   1.0.1
 ## v tibble  3.1.8     v dplyr   1.1.0
 ## v tidyr   1.3.0     v stringr 1.5.0
 ## v readr   2.1.3     v forcats 1.0.0
-## -- Conflicts --------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## -- Conflicts ------------------------------------------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 \end{verbatim}
@@ -1087,9 +1087,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3.854474 2.832742 1.570090 2.093191 2.974489 3.916891 3.512102 3.316427
-##  [9] 1.736819 3.831242 3.659080 3.343226 2.837598 2.550544 3.869618 2.326397
-## [17] 2.144541 4.154922 3.194006 3.016666
+##  [1] 3.546095 1.242970 1.401334 2.965027 3.519299 2.359399 1.353646 1.560780
+##  [9] 3.075875 3.922551 3.501882 1.965840 1.479368 1.752018 1.439539 2.159989
+## [17] 1.785515 2.057680 1.119091 1.423272
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1175,9 +1175,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 19.39382 24.62950 19.31876 20.53823 24.86542 21.15271 15.31885 11.32233
-##  [9] 10.83077 18.26325 20.12373 15.15393 18.50319 18.97709 15.30491 22.83413
-## [17] 14.06874 18.57054 20.87625 18.00757
+##  [1] 17.840759 21.316220 23.715706 21.461290 19.059648 17.698893 24.045603
+##  [8] 19.360981 16.171121 21.388547 22.795192 16.645993 19.527051 14.697504
+## [15] 16.499925  9.511249 22.164179 19.588974 24.507411 17.823247
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -5340,10 +5340,21 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#?wage1}
+\NormalTok{wage1 }\OtherTok{\textless{}{-}}\NormalTok{ wooldridge}\SpecialCharTok{::}\NormalTok{wage1}
 \CommentTok{\#names(wage1)}
+
+\NormalTok{wage1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{wage) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-87-1.pdf}
 
 \hypertarget{transformations}{%
 \subsection{Transformations}\label{transformations}}
@@ -5834,15 +5845,26 @@ Omitted Variable
 \hypertarget{the-classical-linear-model}{%
 \chapter{The Classical Linear Model}\label{the-classical-linear-model}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages("corrgram")}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{learning-objectives-11}{%
 \section{Learning Objectives}\label{learning-objectives-11}}
+
+At the end of this week's learning students will be able to
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  \textbf{Describe} the assumptions of the classical linear model (sometimes referred to as the Gauss-Markov Assumptions) and what each assumption contributes to the estimator.
 \item
+  \textbf{Evaluate} using empirical methods, whether each of the assumptions are likely to be true of the population data generating function.
 \item
+  \textbf{Assess} whether the guarantees that are provided by the classical linear model's requirements are likely to \emph{ever} be true, including within data the student is likely to encounter.
 \end{enumerate}
 
 \hypertarget{class-announcements-10}{%
@@ -5858,7 +5880,7 @@ Omitted Variable
   \item
     Research Proposal (Today)
   \item
-    Within-Team Review (Today)
+    Within-Team Review (Week 14)
   \item
     Final Report (Week 14)
   \item
@@ -5916,10 +5938,10 @@ Omitted Variable
 \hypertarget{the-classical-linear-model-1}{%
 \section{The Classical Linear Model}\label{the-classical-linear-model-1}}
 
-\hypertarget{comparing-the-large-sample-model-and-the-clm}{%
-\subsection{Comparing the Large Sample Model and the CLM}\label{comparing-the-large-sample-model-and-the-clm}}
+Comparing the Large Sample Model and the CLM
 
-\textbf{Part I}
+\hypertarget{part-1-1}{%
+\subsection{Part 1}\label{part-1-1}}
 
 \begin{itemize}
 \tightlist
@@ -5943,38 +5965,40 @@ Omitted Variable
   \end{itemize}
 \end{itemize}
 
-\textbf{Part II}
+\hypertarget{part-2-1}{%
+\subsection{Part 2}\label{part-2-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  Suppose that you're interested in understanding how subsidized school meals benefit under-resourced students.
+  Suppose that you're interested in understanding how subsidized school meals benefit under-resourced students in San Francisco East Bay region.
 
   \begin{itemize}
   \tightlist
   \item
-    Using the tools from 201, refine this question to a data science question.
+    Using the tools from DATASCI 201, refine this question to a data science question.
   \item
-    Suppose that to answer the question you have identified, there are two data sources:
+    Suppose that there exists two possible data sources to answer the question you have formed:
 
     \begin{itemize}
     \tightlist
     \item
-      Individual-level data about income, nutrition and test scores, self-reported by individual families who have opted in to the study.\\
+      A large amount (e.g.~10,000 data points) of individual-level data about income, nutrition and test scores, self-reported by individual families who have opted in to the study.\\
     \item
-      Government data about school district characteristics, including district-level college achievement; county-level home prices, and state-level tax receipts.
+      A relatively smaller amount (e.g.~500 data points) of Government data about school district characteristics, including district-level college achievement; county-level home prices, and state-level tax receipts.
     \end{itemize}
-  \item
-    What are the tradeoffs to these different sources?
   \end{itemize}
+\item
+  \textbf{What are the tradeoffs to using one or the other data source?}\\
 \end{itemize}
 
-\textbf{Part III}
+\hypertarget{part-3-1}{%
+\subsection{Part 3}\label{part-3-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  Suppose you use individual-level data (you have a large sample).
+  Suppose you elect to use the relatively larger sample of individual-level data.
 
   \begin{itemize}
   \tightlist
@@ -5982,7 +6006,7 @@ Omitted Variable
     Which of the large-sample assumptions do you expect are valid, and which are problematic?
   \end{itemize}
 \item
-  Say you use school-district-level data (you have a small sample).
+  Or, suppose that you elect to use the relatively smaller sample of school-district-level data.
 
   \begin{itemize}
   \tightlist
@@ -5990,11 +6014,24 @@ Omitted Variable
     Which of the CLM assumptions do you expect are valid, and which do you expect are most problematic?
   \end{itemize}
 \item
-  Which dataset do you think will give you more precise estimates?
+  \textbf{What was the research question that you identified?}
+\item
+  \textbf{What would a successful answer accomplish?}
 \end{itemize}
 
-\hypertarget{problems-with-the-clm-requirements}{%
-\section{Problems with the CLM Requirements}\label{problems-with-the-clm-requirements}}
+\hypertarget{part-4}{%
+\subsection{Part 4}\label{part-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Which data source, the individual or the district-level, do you think is more likely to produce a successful answer?}
+\end{itemize}
+
+\hypertarget{part-5}{%
+\subsection{Part 5}\label{part-5}}
+
+Problems with the CLM Requirements
 
 \begin{itemize}
 \item
@@ -6044,12 +6081,13 @@ Omitted Variable
 
 If you haven't used the \texttt{mtcars} dataset, you haven't been through an intro applied stats class!
 
-In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R. For more information about the dataset, use the R command: help(mtcars)
+In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R.
+
+For more information about the dataset, use the R command: \texttt{help(mtcars)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{data}\NormalTok{(mtcars)}
-
 \FunctionTok{glimpse}\NormalTok{(mtcars)}
 \end{Highlighting}
 \end{Shaded}
@@ -6070,12 +6108,53 @@ In this analysis, we will use the mtcars dataset which is a dataset that was ext
 ## $ carb <dbl> 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,~
 \end{verbatim}
 
-\textbf{Questions:}
+\hypertarget{questions-1}{%
+\subsection{Questions:}\label{questions-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{-1}
+\tightlist
 \item
-  Using the mtcars data, run a multiple linear regression to find the relationship between displacement (\texttt{disp}), gross horsepower (\texttt{hp}), weight (\texttt{wt}), and rear axle ratio (\texttt{drat}) on the miles per gallon (\texttt{mpg}).
+  Using the \texttt{mtcars} data, quickly reason about the variables that we're interested in studying:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{mpg) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(mpg, disp, hp, wt, drat) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pairs}\NormalTok{(}\AttributeTok{pch=}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-91-2.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using the \texttt{mtcars} data, run a linear regression to find the relationship between miles per gallon (\texttt{mpg}) on the left-hand-side as a function of displacement (\texttt{disp}), gross horsepower (\texttt{hp}), weight (\texttt{wt}), and rear axle ratio (\texttt{drat}) on the right-hand-side. That is, fit a regression of the following form:
+\end{enumerate}
+
+\[
+\widehat{mpg} = \hat{\beta_{0}} + \hat{\beta}_{1} disp + \hat{\beta}_{2}horse\_power + \hat{\beta}_{3}weight + \hat{\beta}_{4}drive\_ratio
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
   For \textbf{each} of the following CLM assumptions, assess whether the assumption holds. Where possible, demonstrate multiple ways of assessing an assumption. When an assumption appears violated, state what steps you would take in response.
 
@@ -6092,6 +6171,46 @@ In this analysis, we will use the mtcars dataset which is a dataset that was ext
   \item
     Normally distributed errors
   \end{itemize}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# goal:}
+\CommentTok{\# consequence if violated:}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# goal:}
+\CommentTok{\# consequence if violated:}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# goal:}
+\CommentTok{\# consequence if violated:}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# goal:}
+\CommentTok{\# consequence if violated:}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# goal:}
+\CommentTok{\# consequence if violated:}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
 \item
   In addition to the above, assess to what extent (imperfect) collinearity is affecting your inference.
 \item

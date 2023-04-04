@@ -73,8 +73,13 @@
     - Then we will estimate the different models to answer this question.
 - We will use wage1 dataset in the wooldridge package in the following sections.
 ```{r}
-#?wage1
+wage1 <- wooldridge::wage1
 #names(wage1)
+
+wage1 %>% 
+  ggplot() + 
+  aes(x=wage) + 
+  geom_histogram()
 ```
 
 ### Transformations
