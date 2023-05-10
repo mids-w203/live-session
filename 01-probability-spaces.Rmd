@@ -241,7 +241,7 @@ Try using this idea of independent in two places:
 
 The last task for us to complete today is working through a practice problem on the course practice problem website. Please, click the link below, and follow us over to the the course's practice problem website. 
 
-[link here](https://w203.herokuapp.com/problems/106)
+[link here](https://mids-w203.github.io/practice_problems/)
 
 ## Student Tasks to Complete 
 
