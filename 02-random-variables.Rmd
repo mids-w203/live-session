@@ -116,7 +116,7 @@ However, suppose that rather than having good clean indicators for whether a pix
 2. Is it possible to "blur" events that are in the outcome space? Does this "blurring" meet the requirements of a function of a random variable, as provided above? 
 :::
 
-### Probability Density Functions and Cumulative Density Functions 
+### Probability Density Functions and Cumulative Distribution Functions 
 
 - What is a probability mass function? 
 - What do the **Kolmogorov Axioms** mean must be true about any probability mass function (*pmf*)? 
@@ -150,7 +150,7 @@ What, if anything is fundamentally different between discrete and continuous ran
 
 ## Moving Between PDF and CDF 
 
-The book defines *pmf* and *cmf* first as a way of developing intuition and a way of reasoning about these concepts. It then moves to defining continuous density functions, which is many ways are easier to work with although they lack the means of reasoning about them intuitively. Continuous distributions are defined in the book, and more generally, in terms of the *cdf*, which is the cumulative density function. There are technical reasons for this choice of definition, some of which are signed in the footnotes on the page where the book presents it. 
+The book defines *pmf* and *cmf* first as a way of developing intuition and a way of reasoning about these concepts. It then moves to defining continuous density functions, which is many ways are easier to work with although they lack the means of reasoning about them intuitively. Continuous distributions are defined in the book, and more generally, in terms of the *cdf*, which is the cumulative distribution function. There are technical reasons for this choice of definition, some of which are signed in the footnotes on the page where the book presents it. 
 
 More importantly for this course, in **Definition 1.2.15** the book defines the relationship between *cdf* and *pdf* in the following way:
 
