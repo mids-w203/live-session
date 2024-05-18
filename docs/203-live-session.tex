@@ -5,16 +5,19 @@
 \documentclass[
 ]{book}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -33,14 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Statistics for Data Science},
-  pdfauthor={D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -66,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -75,7 +70,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -153,10 +148,18 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Statistics for Data Science},
+  pdfauthor={D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2023-05-09}
+\date{2024-05-18}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -189,27 +192,6 @@
 \includegraphics{./images/campus.jpeg}
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(mids203)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: tidyverse
-\end{verbatim}
-
-\begin{verbatim}
-## -- Attaching packages ----------------------------------------------------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.4.0     v purrr   1.0.1
-## v tibble  3.1.8     v dplyr   1.1.0
-## v tidyr   1.3.0     v stringr 1.5.0
-## v readr   2.1.3     v forcats 1.0.0
-## -- Conflicts -------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-\end{verbatim}
 
 \hypertarget{probability-spaces}{%
 \chapter{Probability Spaces}\label{probability-spaces}}
@@ -590,6 +572,19 @@ The \emph{applied} homework will be marked either \texttt{Correct} or \texttt{In
 \hypertarget{defining-random-variables}{%
 \chapter{Defining Random Variables}\label{defining-random-variables}}
 
+\begin{verbatim}
+## -- Attaching core tidyverse packages ----------------------------------------------------------------------------- tidyverse 2.0.0 --
+## v dplyr     1.1.3     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.4     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.0
+## v purrr     1.0.2     
+## -- Conflicts ----------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
 \begin{figure}
 \centering
 \includegraphics{./images/yosemite.jpg}
@@ -770,8 +765,8 @@ However, suppose that rather than having good clean indicators for whether a pix
 
 \end{example}
 
-\hypertarget{probability-density-functions-and-cumulative-density-functions}{%
-\subsection{Probability Density Functions and Cumulative Density Functions}\label{probability-density-functions-and-cumulative-density-functions}}
+\hypertarget{probability-density-functions-and-cumulative-distribution-functions}{%
+\subsection{Probability Density Functions and Cumulative Distribution Functions}\label{probability-density-functions-and-cumulative-distribution-functions}}
 
 \begin{itemize}
 \tightlist
@@ -842,7 +837,7 @@ What, if anything is fundamentally different between discrete and continuous ran
 \hypertarget{moving-between-pdf-and-cdf}{%
 \section{Moving Between PDF and CDF}\label{moving-between-pdf-and-cdf}}
 
-The book defines \emph{pmf} and \emph{cmf} first as a way of developing intuition and a way of reasoning about these concepts. It then moves to defining continuous density functions, which is many ways are easier to work with although they lack the means of reasoning about them intuitively. Continuous distributions are defined in the book, and more generally, in terms of the \emph{cdf}, which is the cumulative density function. There are technical reasons for this choice of definition, some of which are signed in the footnotes on the page where the book presents it.
+The book defines \emph{pmf} and \emph{cmf} first as a way of developing intuition and a way of reasoning about these concepts. It then moves to defining continuous density functions, which is many ways are easier to work with although they lack the means of reasoning about them intuitively. Continuous distributions are defined in the book, and more generally, in terms of the \emph{cdf}, which is the cumulative distribution function. There are technical reasons for this choice of definition, some of which are signed in the footnotes on the page where the book presents it.
 
 More importantly for this course, in \textbf{Definition 1.2.15} the book defines the relationship between \emph{cdf} and \emph{pdf} in the following way:
 
@@ -931,6 +926,10 @@ As a class, lets consider a few of these PDFs, beginning with this ``triangle'' 
 \NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_app}\NormalTok{(}\StringTok{\textquotesingle{}http://www.statistics.wtf/PDF\_Explorer/\textquotesingle{}}\NormalTok{, }\AttributeTok{height=}\StringTok{"1000px"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+\end{verbatim}
 
 \hypertarget{triangle-math}{%
 \subsection{Triangle Math}\label{triangle-math}}
@@ -1087,9 +1086,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1.535191 3.608116 1.638106 3.403703 3.418586 1.868008 3.469084 4.294669
-##  [9] 2.493095 3.982954 3.860538 3.437210 3.666677 1.527403 2.578261 3.926962
-## [17] 4.276862 1.625022 3.925284 3.465140
+##  [1] 3.455597 3.657351 3.389433 3.957790 1.165108 3.775154 4.237339 1.300914
+##  [9] 1.557432 3.531531 3.196249 1.248628 4.106191 2.765632 1.851746 1.650859
+## [17] 2.290597 1.579931 3.603027 1.367001
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1175,9 +1174,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 17.15235 12.80525 16.29763 24.75761 22.67128 20.37014 21.91282 17.96165
-##  [9] 15.79435 17.87712 14.93377 22.08886 24.50732 16.99420 15.25253 20.55018
-## [17] 18.87905 21.63241 18.04398 19.65720
+##  [1] 22.688077 15.170347 15.348346 22.427165  9.834771 15.907469 19.031537
+##  [8] 19.230166 16.163079 15.621337 15.982542 24.111160 16.430800 15.590761
+## [15] 20.730931 20.261778 17.181247 16.562596 16.517419 19.946979
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -1673,14 +1672,15 @@ Cor[X,Y]    & \equiv \rho[X,Y] \\
 Suppose that \(X\) and \(Y\) are discrete random variables, where \(X\) represents number of office hours attended, and \(Y\) represents owning a cat. Furthermore, suppose that \(X\) and \(Y\) have the joint pmf,
 
 \begin{longtable}[]{@{}lcc@{}}
-\toprule
+\toprule\noalign{}
 f(x,y) & y=0 & y=1 \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 x=0 & 0.10 & 0.35 \\
 x=1 & 0.05 & 0.05 \\
 x=2 & 0.10 & 0.35 \\
-\bottomrule
 \end{longtable}
 
 \begin{enumerate}
@@ -2774,7 +2774,7 @@ For the \textbf{Estimator Properties} column, here we're considering, principall
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1278}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1654}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2932}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Population Concept
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -2788,14 +2788,15 @@ Estimator Properties
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Sampling Variance of Sample Estimator
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Expected Value & & & & & \\
 Population Variance & & & & & \\
 Population Covariance & & & & & \\
 CEF & & & & & \\
 BLP & & & & & \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{hypothesis-testing}{%
@@ -3011,21 +3012,148 @@ In a warehouse full of power packs labeled as 12 volts we randomly measure the v
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{voltage }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{11.77}\NormalTok{, }\FloatTok{11.90}\NormalTok{, }\FloatTok{11.64}\NormalTok{, }\FloatTok{11.84}\NormalTok{, }\FloatTok{12.13}\NormalTok{, }\FloatTok{11.99}\NormalTok{,  }\FloatTok{11.77}\NormalTok{)}
+\NormalTok{voltage}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## [1] 11.77 11.90 11.64 11.84 12.13 11.99 11.77
+\end{verbatim}
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Find the mean and the standard deviation.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(voltage)}
+\NormalTok{sample\_sd   }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(voltage)}
+\NormalTok{n           }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(voltage)}
+
+\NormalTok{test\_statistic }\OtherTok{\textless{}{-}}\NormalTok{ (sample\_mean }\SpecialCharTok{{-}} \DecValTok{12}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (sample\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+\NormalTok{test\_statistic}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.247806
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
   Using \texttt{qt()}, compute the t critical value for a hypothesis test for this sample.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\NormalTok{n}\DecValTok{{-}1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.446912
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
 \item
   Define a test statistic, \(t\), for testing whether the population mean is 12.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test\_statistic}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.247806
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
 \item
   Calculate the p-value using the t statistic.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pt}\NormalTok{(test\_statistic, }\AttributeTok{df=}\NormalTok{n}\DecValTok{{-}1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03281943
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
 \item
   Should you reject the null? Argue this in two different ways. (Following convention, set \(\alpha = .05\).)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test\_stat\_function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, null\_hypothesis) \{ }
+\NormalTok{  sample\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(data)}
+\NormalTok{  sample\_sd   }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(data)}
+\NormalTok{  n           }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(data)}
+  
+\NormalTok{  test\_statistic }\OtherTok{\textless{}{-}}\NormalTok{ (sample\_mean }\SpecialCharTok{{-}}\NormalTok{ null\_hypothesis) }\SpecialCharTok{/}\NormalTok{ (sample\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+  \FunctionTok{return}\NormalTok{(test\_statistic)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{test\_stat\_function}\NormalTok{(}\AttributeTok{data=}\NormalTok{voltage, }\AttributeTok{null\_hypothesis=}\DecValTok{12}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pt}\NormalTok{(}\AttributeTok{df=}\FunctionTok{length}\NormalTok{(voltage)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{) }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06563885
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}
+  \AttributeTok{x           =}\NormalTok{ voltage, }
+  \AttributeTok{alternative =} \StringTok{\textquotesingle{}two.sided\textquotesingle{}}\NormalTok{, }
+  \AttributeTok{mu          =} \DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  voltage
+## t = -2.2478, df = 6, p-value = 0.06564
+## alternative hypothesis: true mean is not equal to 12
+## 95 percent confidence interval:
+##  11.71357 12.01215
+## sample estimates:
+## mean of x 
+##  11.86286
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
 \item
   Suppose you were to use a normal distribution instead of a t-distribution to test your hypothesis. What would your p-value be for the z-test?
 \item
@@ -3066,7 +3194,7 @@ Think of wellness/illness as a dichotomous statement.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 \begin{itemize}
 \item
@@ -3126,8 +3254,95 @@ We are especially interested in the variable, \texttt{score\_diff}, which repres
   The instructor will assign you to one of two teams. Team 1 will argue that the t-test is appropriate to this scenario. Team 2 will argue that the t-test is invalid. Take a few minutes to examine the data, then formulate your best argument.
 \item
   Should you perform a one-tailed test or a two-tailed test? What is the strongest argument for your answer?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# I\textquotesingle{}m going two{-}tailed. }
+\DocumentationTok{\#\# H0 : No effect of being home or away}
+\DocumentationTok{\#\# HA : There IS some effect. }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
 \item
   Execute the t-test and interpret every component of the output.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{home\_team}\SpecialCharTok{$}\NormalTok{score\_diff, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{alternative =} \StringTok{\textquotesingle{}two.sided\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  home_team$score_diff
+## t = -0.30781, df = 29, p-value = 0.7604
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -8.408919  6.208919
+## sample estimates:
+## mean of x 
+##      -1.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10000}\NormalTok{) \{}
+\NormalTok{  res[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{7}\NormalTok{, }\AttributeTok{sd=}\FunctionTok{sd}\NormalTok{(home\_team}\SpecialCharTok{$}\NormalTok{score\_diff)))}
+\NormalTok{\}}
+
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{res) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept=}\FunctionTok{mean}\NormalTok{(home\_team}\SpecialCharTok{$}\NormalTok{score\_diff))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{home\_team }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FunctionTok{abs}\NormalTok{(score\_diff)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-49-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(home\_team}\SpecialCharTok{$}\NormalTok{score\_diff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{((res }\SpecialCharTok{\textless{}} \FunctionTok{mean}\NormalTok{(home\_team}\SpecialCharTok{$}\NormalTok{score\_diff))) }\SpecialCharTok{+} \FunctionTok{mean}\NormalTok{(res }\SpecialCharTok{\textgreater{}} \FunctionTok{abs}\NormalTok{(}\FunctionTok{mean}\NormalTok{(home\_team}\SpecialCharTok{$}\NormalTok{score\_diff)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.881
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
 \item
   Based on your output, suggest a different hypothesis that would have led to a different test result. Try executing the test to confirm that you are correct.
 \end{enumerate}
@@ -3406,7 +3621,7 @@ Take a moment to recall the tests you learned this week. Here is a quick cheat-s
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1097}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5226}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3677}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 paired/unpaired
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -3414,11 +3629,12 @@ parametric
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 non-parametric
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal & \textbf{Wilcoxon rank-sum} ordinal var i.i.d.  \\
 paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wilcoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{comparing-groups-r-exercise}{%
@@ -3630,7 +3846,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 11 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-49-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -3695,7 +3911,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 929 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-50-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-54-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3923,9 +4139,9 @@ And so, the simulation rejects the null at the following rates:
 \begin{itemize}
 \tightlist
 \item
-  For the t-test, at a rate of 0.0670385
+  For the t-test, at a rate of 0.0650033
 \item
-  For the Wilcox test, at a rate of 0.0765554
+  For the Wilcox test, at a rate of 0.0748107
 \end{itemize}
 
 \hypertarget{what-if-a-distribution-is-much-more-skewed}{%
@@ -3968,7 +4184,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-52-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4009,7 +4225,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-54-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-58-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -4019,11 +4235,11 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
   \begin{itemize}
   \tightlist
   \item
+    0.055
+  \item
+    0.046
+  \item
     0.056
-  \item
-    0.045
-  \item
-    0.054
   \end{itemize}
 \item
   Wilcox Tests
@@ -4031,11 +4247,11 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
   \begin{itemize}
   \tightlist
   \item
-    0.056
+    0.046
   \item
-    0.055
+    0.048
   \item
-    0.05
+    0.061
   \end{itemize}
 \end{itemize}
 
@@ -4081,7 +4297,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 \hypertarget{paired-compared-to-unpaired-tests}{%
 \subsection{Paired compared to unpaired tests}\label{paired-compared-to-unpaired-tests}}
@@ -4324,13 +4540,13 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 \end{Shaded}
 
 \begin{verbatim}
-##          x1        x2        x3         y
-## 1 0.3416502 0.7912937 6.0006823 17.794577
-## 2 1.8439180 3.1209309 1.2547957  8.179917
-## 3 8.9836342 5.5705346 4.7984000 30.284766
-## 4 5.3823456 8.7452644 0.3928139 20.186430
-## 5 0.4936049 9.9378938 8.8837140 44.277600
-## 6 9.8624064 9.9830178 2.3737502 34.694755
+##         x1       x2       x3        y
+## 1 2.627549 6.111438 9.461474 39.71841
+## 2 7.586222 5.339518 3.055064 24.80873
+## 3 3.187276 8.444794 6.609802 35.97645
+## 4 1.547751 3.650995 4.952615 19.91845
+## 5 3.060822 1.922273 2.994374 11.68472
+## 6 4.496636 3.194693 2.985301 16.76039
 \end{verbatim}
 
 Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other ``things'' in this universe that also affect \(Y\), but that we don't have access to them. By assumption, what we \emph{have} measured in this world, \(X_1, X_2, X_3\) are uncorrelated with these other features.
@@ -4344,7 +4560,7 @@ Notice that when we made this data, we included a set of random noise at the end
 
 \begin{verbatim}
 ## (Intercept)          x1          x2          x3 
-##   -3.171335    1.021295    2.057920    2.979041
+##   -3.488590    1.062987    2.033696    3.012998
 \end{verbatim}
 
 The claim is that we can produce an estimate of \(\beta_1\) using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression.
@@ -4365,7 +4581,7 @@ If we look into the structure of \texttt{model\_aux} we can see that there are \
 
 \begin{verbatim}
 ## (Intercept)          x2          x3 
-##  3.95679209  0.15306227 -0.01896362
+##  5.37777970  0.04654908 -0.11105934
 \end{verbatim}
 
 To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, ``residual'' in this sense?
@@ -4396,19 +4612,19 @@ In order to access these residuals, we can ``augment'' the dataframe that we use
 
 \begin{verbatim}
 ## # A tibble: 100 x 10
-##       x1    x2    x3 .fitted  .resid   .hat .sigma   .cooksd .std.resid     y
-##    <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>  <dbl>     <dbl>      <dbl> <dbl>
-##  1 0.342 0.791 6.00     3.96 -3.62   0.0319   2.68 0.0206       -1.37   17.8 
-##  2 1.84  3.12  1.25     4.41 -2.57   0.0312   2.69 0.0101       -0.969   8.18
-##  3 8.98  5.57  4.80     4.72  4.27   0.0105   2.67 0.00899       1.59   30.3 
-##  4 5.38  8.75  0.393    5.29  0.0944 0.0509   2.70 0.0000232     0.0360 20.2 
-##  5 0.494 9.94  8.88     5.31 -4.82   0.0661   2.66 0.0810       -1.85   44.3 
-##  6 9.86  9.98  2.37     5.44  4.42   0.0467   2.66 0.0462        1.68   34.7 
-##  7 6.37  3.52  6.30     4.38  1.99   0.0154   2.70 0.00289       0.745  27.8 
-##  8 9.84  7.63  4.22     5.04  4.79   0.0190   2.66 0.0208        1.80   36.3 
-##  9 2.64  8.19  6.90     5.08 -2.44   0.0300   2.69 0.00873      -0.920  37.7 
-## 10 7.06  1.64  7.86     4.06  3.00   0.0348   2.69 0.0154        1.13   30.7 
-## # ... with 90 more rows
+##       x1    x2    x3 .fitted .resid   .hat .sigma  .cooksd .std.resid     y
+##    <dbl> <dbl> <dbl>   <dbl>  <dbl>  <dbl>  <dbl>    <dbl>      <dbl> <dbl>
+##  1 2.63   6.11  9.46    4.61 -1.98  0.0380   2.82 0.00679      -0.718 39.7 
+##  2 7.59   5.34  3.06    5.29  2.30  0.0161   2.82 0.00370       0.823 24.8 
+##  3 3.19   8.44  6.61    5.04 -1.85  0.0256   2.83 0.00388      -0.665 36.0 
+##  4 1.55   3.65  4.95    5.00 -3.45  0.0127   2.81 0.00652      -1.23  19.9 
+##  5 3.06   1.92  2.99    5.13 -2.07  0.0276   2.82 0.00527      -0.747 11.7 
+##  6 4.50   3.19  2.99    5.19 -0.698 0.0202   2.83 0.000430     -0.250 16.8 
+##  7 1.94   2.75  4.24    5.03 -3.10  0.0176   2.81 0.00736      -1.11  17.1 
+##  8 0.146  3.68  1.38    5.40 -5.25  0.0314   2.78 0.0388       -1.89   8.04
+##  9 0.544  3.87  5.99    4.89 -4.35  0.0134   2.80 0.0109       -1.55  24.4 
+## 10 0.989  6.61  1.67    5.50 -4.51  0.0307   2.79 0.0279       -1.63  16.2 
+## # i 90 more rows
 \end{verbatim}
 
 And finally, with this augmented data that has information from the model, we can estimate the model that includes only the residuals as predictors of \(Y\).
@@ -4422,7 +4638,7 @@ And finally, with this augmented data that has information from the model, we ca
 
 \begin{verbatim}
 ## (Intercept)      .resid 
-##   25.811284    1.021295
+##   27.667081    1.062987
 \end{verbatim}
 
 Our claim was that the coefficients from \texttt{model\_main} and \texttt{model\_two} should be the same.
@@ -4546,7 +4762,7 @@ The file \texttt{hprice1.Rdata} contains 88 observations of homes in the Boston 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-63-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 Suppose that you're interested in knowing the relationship between price and square footage.
 
@@ -4578,7 +4794,7 @@ Suppose that you're interested in knowing the relationship between price and squ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4768,13 +4984,14 @@ After this week's learning, student will be able to
 \end{itemize}
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule
+\toprule\noalign{}
 & outcome: sleep hours \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 mg. melatonin & 0.52 \\
 & (0.31) \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{understanding-uncertainty}{%
@@ -4789,14 +5006,15 @@ Imagine three different regression models, each of the following form:
 The only difference is in the error term. The conditional distribution is given by:
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule
+\toprule\noalign{}
 Model & Distribution of \(\epsilon\) cond. on \(X\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 A & Uniform on \([-.5, +.5]\) \\
 B & Uniform on \([ - |X|, |X| ]\) \\
 C & Uniform on \([ -1 + |X|, 1- |X| ]\) \\
-\bottomrule
 \end{longtable}
 
 A is what we call a homoskedastic distribution. B and C are what we call heteroskedastic. Below, we define R functions that simulate draws from these three distributions.
@@ -4848,7 +5066,7 @@ A is what we call a homoskedastic distribution. B and C are what we call heteros
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}
 
 \hypertarget{question-1}{%
 \subsection{Question 1}\label{question-1}}
@@ -4871,7 +5089,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-74-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-78-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4899,6 +5117,8 @@ The following code draws a sample from distribution A, fits a regression line, a
 \begin{verbatim}
 ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## i Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 \end{verbatim}
 
 \begin{Shaded}
@@ -4941,7 +5161,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-75-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-79-1.pdf}
 
 \hypertarget{question-2}{%
 \subsection{Question 2}\label{question-2}}
@@ -5168,7 +5388,7 @@ With this, it is possible to plot the distribution of these regression coefficie
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-84-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?
 
@@ -5196,7 +5416,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01961181
+## [1] 0.01947353
 \end{verbatim}
 
 \hypertarget{descriptive-model-building}{%
@@ -5354,7 +5574,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-87-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}
 
 \hypertarget{transformations}{%
 \subsection{Transformations}\label{transformations}}
@@ -5529,15 +5749,16 @@ At the end of this week's learning, students will be able to
 - Writing for a collaborating data scientist, what research question have you asked, what answers have you found, and how did you find them?
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule
+\toprule\noalign{}
 Deliverable Name & Week Due & Grade Weight \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Research Proposal & Week 12 & 10\% \\
 Within-Team Review & Week 14 & 5\% \\
 Final Presentation & Week 14 & 10\% \\
 Final Report & Week 14 & 75\% \\
-\bottomrule
 \end{longtable}
 
 \textbf{Team Work Evaluation}
@@ -5761,7 +5982,7 @@ The file \texttt{htv.RData} contains data from the 1991 National Longitudinal Su
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 Assume that the true model is,
 
@@ -5825,21 +6046,22 @@ Hopefully you feel like, ``Golly. It would be really, \emph{really} hard to asse
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5976}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4024}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Regression Output
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Omitted Variable
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(\widehat{grade} = 72.1 + 0.4\ attendance\) & \(time\_studying\) \\
 \(\widehat{lifespan} = 87.4 - 1.2\ cigarettes\) & \(exercise\) \\
 \(\widehat{lifespan} = 87.4 - 1.2\ cigarettes\) & \(time\_socializing\) \\
 \(\widehat{wage} = 14.0 + 2.1\ grad\_education\) & \(experience\) \\
 \(\widehat{wage} = 14.0 + 2.1\ grad\_education\) & desire to effect \(social\_good\) \\
 \(\widehat{literacy} = 54 + 12\ network\_access\) & \(wealth\) \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{the-classical-linear-model}{%
@@ -6128,7 +6350,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6138,7 +6360,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-91-2.pdf}
+\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-95-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6666,7 +6888,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0 0 0 2 2 3 2 1 3 0
+##  [1] 2 2 2 1 2 1 2 2 2 2
 \end{verbatim}
 
 \hypertarget{mle-for-poisson-random-variables-data}{%

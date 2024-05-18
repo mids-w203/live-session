@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.10 Data Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.10 Data Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2024-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -90,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -103,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -118,6 +119,10 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
@@ -181,7 +186,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html"><i class="fa fa-check"></i><b>2.5</b> Pieces of a Random Variable</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#functions-of-functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions of Functions</a></li>
-<li class="chapter" data-level="2.5.2" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions"><i class="fa fa-check"></i><b>2.5.2</b> Probability Density Functions and Cumulative Density Functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-distribution-functions"><i class="fa fa-check"></i><b>2.5.2</b> Probability Density Functions and Cumulative Distribution Functions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.6</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.7" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.7</b> Moving Between PDF and CDF</a></li>
@@ -520,15 +525,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Testing the Home Team Advantage</strong></p>
 <p>The file <code>./data/home_team.csv</code> contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-exercise.html#cb50-1" aria-hidden="true" tabindex="-1"></a>home_team <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;./data/home_team.csv&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="data-exercise.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dscore, dinstt, doutstt) <span class="sc">%&gt;%</span> </span>
-<span id="cb50-3"><a href="data-exercise.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb50-4"><a href="data-exercise.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">score_diff               =</span> dscore, </span>
-<span id="cb50-5"><a href="data-exercise.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">in_state_tuition_diff    =</span> dinstt, </span>
-<span id="cb50-6"><a href="data-exercise.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">out_state_tuition_diff   =</span> doutstt</span>
-<span id="cb50-7"><a href="data-exercise.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-8"><a href="data-exercise.html#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-9"><a href="data-exercise.html#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(home_team, <span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="data-exercise.html#cb62-1" tabindex="-1"></a>home_team <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;./data/home_team.csv&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="data-exercise.html#cb62-2" tabindex="-1"></a>  <span class="fu">select</span>(dscore, dinstt, doutstt) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-3"><a href="data-exercise.html#cb62-3" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb62-4"><a href="data-exercise.html#cb62-4" tabindex="-1"></a>    <span class="at">score_diff               =</span> dscore, </span>
+<span id="cb62-5"><a href="data-exercise.html#cb62-5" tabindex="-1"></a>    <span class="at">in_state_tuition_diff    =</span> dinstt, </span>
+<span id="cb62-6"><a href="data-exercise.html#cb62-6" tabindex="-1"></a>    <span class="at">out_state_tuition_diff   =</span> doutstt</span>
+<span id="cb62-7"><a href="data-exercise.html#cb62-7" tabindex="-1"></a>  )</span>
+<span id="cb62-8"><a href="data-exercise.html#cb62-8" tabindex="-1"></a></span>
+<span id="cb62-9"><a href="data-exercise.html#cb62-9" tabindex="-1"></a><span class="fu">glimpse</span>(home_team, <span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div>
 </details>
 <pre><code>## Rows: 30
 ## Columns: 3
@@ -539,8 +544,58 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>The instructor will assign you to one of two teams. Team 1 will argue that the t-test is appropriate to this scenario. Team 2 will argue that the t-test is invalid. Take a few minutes to examine the data, then formulate your best argument.</p></li>
 <li><p>Should you perform a one-tailed test or a two-tailed test? What is the strongest argument for your answer?</p></li>
-<li><p>Execute the t-test and interpret every component of the output.</p></li>
-<li><p>Based on your output, suggest a different hypothesis that would have led to a different test result. Try executing the test to confirm that you are correct.</p></li>
+</ol>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="data-exercise.html#cb64-1" tabindex="-1"></a><span class="do">## I&#39;m going two-tailed. </span></span>
+<span id="cb64-2"><a href="data-exercise.html#cb64-2" tabindex="-1"></a><span class="do">## H0 : No effect of being home or away</span></span>
+<span id="cb64-3"><a href="data-exercise.html#cb64-3" tabindex="-1"></a><span class="do">## HA : There IS some effect. </span></span></code></pre></div>
+</details>
+<ol start="3" style="list-style-type: decimal">
+<li>Execute the t-test and interpret every component of the output.</li>
+</ol>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="data-exercise.html#cb65-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span>home_team<span class="sc">$</span>score_diff, <span class="at">mu=</span><span class="dv">0</span>, <span class="at">alternative =</span> <span class="st">&#39;two.sided&#39;</span>)</span></code></pre></div>
+</details>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  home_team$score_diff
+## t = -0.30781, df = 29, p-value = 0.7604
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -8.408919  6.208919
+## sample estimates:
+## mean of x 
+##      -1.1</code></pre>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="data-exercise.html#cb67-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb67-2"><a href="data-exercise.html#cb67-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb67-3"><a href="data-exercise.html#cb67-3" tabindex="-1"></a>  res[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">7</span>, <span class="at">sd=</span><span class="fu">sd</span>(home_team<span class="sc">$</span>score_diff)))</span>
+<span id="cb67-4"><a href="data-exercise.html#cb67-4" tabindex="-1"></a>}</span>
+<span id="cb67-5"><a href="data-exercise.html#cb67-5" tabindex="-1"></a></span>
+<span id="cb67-6"><a href="data-exercise.html#cb67-6" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb67-7"><a href="data-exercise.html#cb67-7" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>res) <span class="sc">+</span> </span>
+<span id="cb67-8"><a href="data-exercise.html#cb67-8" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb67-9"><a href="data-exercise.html#cb67-9" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(home_team<span class="sc">$</span>score_diff))</span></code></pre></div>
+</details>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="data-exercise.html#cb68-1" tabindex="-1"></a>home_team <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href="data-exercise.html#cb68-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb68-3"><a href="data-exercise.html#cb68-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(score_diff)) <span class="sc">+</span> </span>
+<span id="cb68-4"><a href="data-exercise.html#cb68-4" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+</details>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="data-exercise.html#cb69-1" tabindex="-1"></a><span class="fu">mean</span>(home_team<span class="sc">$</span>score_diff)</span></code></pre></div>
+</details>
+<pre><code>## [1] -1.1</code></pre>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="data-exercise.html#cb71-1" tabindex="-1"></a><span class="fu">mean</span>((res <span class="sc">&lt;</span> <span class="fu">mean</span>(home_team<span class="sc">$</span>score_diff))) <span class="sc">+</span> <span class="fu">mean</span>(res <span class="sc">&gt;</span> <span class="fu">abs</span>(<span class="fu">mean</span>(home_team<span class="sc">$</span>score_diff)))</span></code></pre></div>
+</details>
+<pre><code>## [1] 0.881</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Based on your output, suggest a different hypothesis that would have led to a different test result. Try executing the test to confirm that you are correct.</li>
 </ol>
 </div>
             </section>

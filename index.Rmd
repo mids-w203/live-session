@@ -27,7 +27,3 @@ This is the live session work space for the course. Our goal with this repositor
 ```{r load global functions, echo=FALSE, warning=FALSE, message=FALSE}
 source('./src/blank_lines.R')
 ```
-
-```{r load packages}
-library(mids203)
-```
