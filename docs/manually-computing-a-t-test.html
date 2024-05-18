@@ -517,66 +517,66 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.8</span> Manually Computing a t-Test<a href="manually-computing-a-t-test.html#manually-computing-a-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In a warehouse full of power packs labeled as 12 volts we randomly measure the voltage of 7. Here is the data:</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb46-1"><a href="manually-computing-a-t-test.html#cb46-1" tabindex="-1"></a>voltage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">11.77</span>, <span class="fl">11.90</span>, <span class="fl">11.64</span>, <span class="fl">11.84</span>, <span class="fl">12.13</span>, <span class="fl">11.99</span>,  <span class="fl">11.77</span>)</span>
-<span id="cb46-2"><a href="manually-computing-a-t-test.html#cb46-2" tabindex="-1"></a>voltage</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb48-1"><a href="manually-computing-a-t-test.html#cb48-1" tabindex="-1"></a>voltage <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">11.77</span>, <span class="fl">11.90</span>, <span class="fl">11.64</span>, <span class="fl">11.84</span>, <span class="fl">12.13</span>, <span class="fl">11.99</span>,  <span class="fl">11.77</span>)</span>
+<span id="cb48-2"><a href="manually-computing-a-t-test.html#cb48-2" tabindex="-1"></a>voltage</span></code></pre></div>
 </details>
 <pre><code>## [1] 11.77 11.90 11.64 11.84 12.13 11.99 11.77</code></pre>
 <ol style="list-style-type: decimal">
 <li>Find the mean and the standard deviation.</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="manually-computing-a-t-test.html#cb48-1" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(voltage)</span>
-<span id="cb48-2"><a href="manually-computing-a-t-test.html#cb48-2" tabindex="-1"></a>sample_sd   <span class="ot">&lt;-</span> <span class="fu">sd</span>(voltage)</span>
-<span id="cb48-3"><a href="manually-computing-a-t-test.html#cb48-3" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="fu">length</span>(voltage)</span>
-<span id="cb48-4"><a href="manually-computing-a-t-test.html#cb48-4" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="manually-computing-a-t-test.html#cb48-5" tabindex="-1"></a>test_statistic <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> <span class="dv">12</span>) <span class="sc">/</span> (sample_sd <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
-<span id="cb48-6"><a href="manually-computing-a-t-test.html#cb48-6" tabindex="-1"></a>test_statistic</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="manually-computing-a-t-test.html#cb50-1" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(voltage)</span>
+<span id="cb50-2"><a href="manually-computing-a-t-test.html#cb50-2" tabindex="-1"></a>sample_sd   <span class="ot">&lt;-</span> <span class="fu">sd</span>(voltage)</span>
+<span id="cb50-3"><a href="manually-computing-a-t-test.html#cb50-3" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="fu">length</span>(voltage)</span>
+<span id="cb50-4"><a href="manually-computing-a-t-test.html#cb50-4" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="manually-computing-a-t-test.html#cb50-5" tabindex="-1"></a>test_statistic <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> <span class="dv">12</span>) <span class="sc">/</span> (sample_sd <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb50-6"><a href="manually-computing-a-t-test.html#cb50-6" tabindex="-1"></a>test_statistic</span></code></pre></div>
 </details>
 <pre><code>## [1] -2.247806</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Using <code>qt()</code>, compute the t critical value for a hypothesis test for this sample.</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="manually-computing-a-t-test.html#cb50-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span>n<span class="dv">-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="manually-computing-a-t-test.html#cb52-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span>n<span class="dv">-1</span>)</span></code></pre></div>
 </details>
 <pre><code>## [1] -2.446912</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Define a test statistic, <span class="math inline">\(t\)</span>, for testing whether the population mean is 12.</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="manually-computing-a-t-test.html#cb52-1" tabindex="-1"></a>test_statistic</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="manually-computing-a-t-test.html#cb54-1" tabindex="-1"></a>test_statistic</span></code></pre></div>
 </details>
 <pre><code>## [1] -2.247806</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Calculate the p-value using the t statistic.</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="manually-computing-a-t-test.html#cb54-1" tabindex="-1"></a><span class="fu">pt</span>(test_statistic, <span class="at">df=</span>n<span class="dv">-1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="manually-computing-a-t-test.html#cb56-1" tabindex="-1"></a><span class="fu">pt</span>(test_statistic, <span class="at">df=</span>n<span class="dv">-1</span>)</span></code></pre></div>
 </details>
 <pre><code>## [1] 0.03281943</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Should you reject the null? Argue this in two different ways. (Following convention, set <span class="math inline">\(\alpha = .05\)</span>.)</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="manually-computing-a-t-test.html#cb56-1" tabindex="-1"></a>test_stat_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data, null_hypothesis) { </span>
-<span id="cb56-2"><a href="manually-computing-a-t-test.html#cb56-2" tabindex="-1"></a>  sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data)</span>
-<span id="cb56-3"><a href="manually-computing-a-t-test.html#cb56-3" tabindex="-1"></a>  sample_sd   <span class="ot">&lt;-</span> <span class="fu">sd</span>(data)</span>
-<span id="cb56-4"><a href="manually-computing-a-t-test.html#cb56-4" tabindex="-1"></a>  n           <span class="ot">&lt;-</span> <span class="fu">length</span>(data)</span>
-<span id="cb56-5"><a href="manually-computing-a-t-test.html#cb56-5" tabindex="-1"></a>  </span>
-<span id="cb56-6"><a href="manually-computing-a-t-test.html#cb56-6" tabindex="-1"></a>  test_statistic <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> null_hypothesis) <span class="sc">/</span> (sample_sd <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
-<span id="cb56-7"><a href="manually-computing-a-t-test.html#cb56-7" tabindex="-1"></a>  <span class="fu">return</span>(test_statistic)</span>
-<span id="cb56-8"><a href="manually-computing-a-t-test.html#cb56-8" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="manually-computing-a-t-test.html#cb58-1" tabindex="-1"></a>test_stat_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data, null_hypothesis) { </span>
+<span id="cb58-2"><a href="manually-computing-a-t-test.html#cb58-2" tabindex="-1"></a>  sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data)</span>
+<span id="cb58-3"><a href="manually-computing-a-t-test.html#cb58-3" tabindex="-1"></a>  sample_sd   <span class="ot">&lt;-</span> <span class="fu">sd</span>(data)</span>
+<span id="cb58-4"><a href="manually-computing-a-t-test.html#cb58-4" tabindex="-1"></a>  n           <span class="ot">&lt;-</span> <span class="fu">length</span>(data)</span>
+<span id="cb58-5"><a href="manually-computing-a-t-test.html#cb58-5" tabindex="-1"></a>  </span>
+<span id="cb58-6"><a href="manually-computing-a-t-test.html#cb58-6" tabindex="-1"></a>  test_statistic <span class="ot">&lt;-</span> (sample_mean <span class="sc">-</span> null_hypothesis) <span class="sc">/</span> (sample_sd <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb58-7"><a href="manually-computing-a-t-test.html#cb58-7" tabindex="-1"></a>  <span class="fu">return</span>(test_statistic)</span>
+<span id="cb58-8"><a href="manually-computing-a-t-test.html#cb58-8" tabindex="-1"></a>}</span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="manually-computing-a-t-test.html#cb57-1" tabindex="-1"></a><span class="fu">test_stat_function</span>(<span class="at">data=</span>voltage, <span class="at">null_hypothesis=</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a href="manually-computing-a-t-test.html#cb57-2" tabindex="-1"></a>  <span class="fu">pt</span>(<span class="at">df=</span><span class="fu">length</span>(voltage)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="manually-computing-a-t-test.html#cb59-1" tabindex="-1"></a><span class="fu">test_stat_function</span>(<span class="at">data=</span>voltage, <span class="at">null_hypothesis=</span><span class="dv">12</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-2"><a href="manually-computing-a-t-test.html#cb59-2" tabindex="-1"></a>  <span class="fu">pt</span>(<span class="at">df=</span><span class="fu">length</span>(voltage)<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 </details>
 <pre><code>## [1] 0.06563885</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="manually-computing-a-t-test.html#cb59-1" tabindex="-1"></a><span class="fu">t.test</span>(</span>
-<span id="cb59-2"><a href="manually-computing-a-t-test.html#cb59-2" tabindex="-1"></a>  <span class="at">x           =</span> voltage, </span>
-<span id="cb59-3"><a href="manually-computing-a-t-test.html#cb59-3" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&#39;two.sided&#39;</span>, </span>
-<span id="cb59-4"><a href="manually-computing-a-t-test.html#cb59-4" tabindex="-1"></a>  <span class="at">mu          =</span> <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="manually-computing-a-t-test.html#cb61-1" tabindex="-1"></a><span class="fu">t.test</span>(</span>
+<span id="cb61-2"><a href="manually-computing-a-t-test.html#cb61-2" tabindex="-1"></a>  <span class="at">x           =</span> voltage, </span>
+<span id="cb61-3"><a href="manually-computing-a-t-test.html#cb61-3" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&#39;two.sided&#39;</span>, </span>
+<span id="cb61-4"><a href="manually-computing-a-t-test.html#cb61-4" tabindex="-1"></a>  <span class="at">mu          =</span> <span class="dv">12</span>)</span></code></pre></div>
 </details>
 <pre><code>## 
 ##  One Sample t-test

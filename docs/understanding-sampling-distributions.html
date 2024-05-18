@@ -539,48 +539,48 @@ Let’s work through an example that begins with a case that we can think throug
 <li>Let’s set, and keep this at <span class="math inline">\(1000\)</span> simulations. But, if you’re curious, you could set this to be <span class="math inline">\(5\)</span>, or <span class="math inline">\(10\)</span> and evaluate what happens.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="understanding-sampling-distributions.html#cb40-1" tabindex="-1"></a>toss_coin <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb40-2"><a href="understanding-sampling-distributions.html#cb40-2" tabindex="-1"></a>    <span class="at">number_of_simulations=</span><span class="dv">1000</span>, </span>
-<span id="cb40-3"><a href="understanding-sampling-distributions.html#cb40-3" tabindex="-1"></a>    <span class="at">number_of_tosses=</span><span class="dv">2</span>, </span>
-<span id="cb40-4"><a href="understanding-sampling-distributions.html#cb40-4" tabindex="-1"></a>    <span class="at">prob_heads=</span><span class="fl">0.7</span>) { </span>
-<span id="cb40-5"><a href="understanding-sampling-distributions.html#cb40-5" tabindex="-1"></a>  </span>
-<span id="cb40-6"><a href="understanding-sampling-distributions.html#cb40-6" tabindex="-1"></a>  <span class="do">## number of simulations is just how many times we want to re-run the experiment</span></span>
-<span id="cb40-7"><a href="understanding-sampling-distributions.html#cb40-7" tabindex="-1"></a>  <span class="do">## number of tosses is the number of coins we&#39;re going to toss.</span></span>
-<span id="cb40-8"><a href="understanding-sampling-distributions.html#cb40-8" tabindex="-1"></a>  number_of_heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n=</span>number_of_simulations, <span class="at">size=</span>number_of_tosses, <span class="at">prob=</span>prob_heads)</span>
-<span id="cb40-9"><a href="understanding-sampling-distributions.html#cb40-9" tabindex="-1"></a>  sample_average  <span class="ot">&lt;-</span> number_of_heads <span class="sc">/</span> number_of_tosses</span>
-<span id="cb40-10"><a href="understanding-sampling-distributions.html#cb40-10" tabindex="-1"></a>  <span class="fu">return</span>(sample_average)</span>
-<span id="cb40-11"><a href="understanding-sampling-distributions.html#cb40-11" tabindex="-1"></a>}</span>
-<span id="cb40-12"><a href="understanding-sampling-distributions.html#cb40-12" tabindex="-1"></a></span>
-<span id="cb40-13"><a href="understanding-sampling-distributions.html#cb40-13" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>, <span class="at">number_of_tosses=</span><span class="dv">2</span>, <span class="at">prob_heads=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="understanding-sampling-distributions.html#cb42-1" tabindex="-1"></a>toss_coin <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb42-2"><a href="understanding-sampling-distributions.html#cb42-2" tabindex="-1"></a>    <span class="at">number_of_simulations=</span><span class="dv">1000</span>, </span>
+<span id="cb42-3"><a href="understanding-sampling-distributions.html#cb42-3" tabindex="-1"></a>    <span class="at">number_of_tosses=</span><span class="dv">2</span>, </span>
+<span id="cb42-4"><a href="understanding-sampling-distributions.html#cb42-4" tabindex="-1"></a>    <span class="at">prob_heads=</span><span class="fl">0.7</span>) { </span>
+<span id="cb42-5"><a href="understanding-sampling-distributions.html#cb42-5" tabindex="-1"></a>  </span>
+<span id="cb42-6"><a href="understanding-sampling-distributions.html#cb42-6" tabindex="-1"></a>  <span class="do">## number of simulations is just how many times we want to re-run the experiment</span></span>
+<span id="cb42-7"><a href="understanding-sampling-distributions.html#cb42-7" tabindex="-1"></a>  <span class="do">## number of tosses is the number of coins we&#39;re going to toss.</span></span>
+<span id="cb42-8"><a href="understanding-sampling-distributions.html#cb42-8" tabindex="-1"></a>  number_of_heads <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n=</span>number_of_simulations, <span class="at">size=</span>number_of_tosses, <span class="at">prob=</span>prob_heads)</span>
+<span id="cb42-9"><a href="understanding-sampling-distributions.html#cb42-9" tabindex="-1"></a>  sample_average  <span class="ot">&lt;-</span> number_of_heads <span class="sc">/</span> number_of_tosses</span>
+<span id="cb42-10"><a href="understanding-sampling-distributions.html#cb42-10" tabindex="-1"></a>  <span class="fu">return</span>(sample_average)</span>
+<span id="cb42-11"><a href="understanding-sampling-distributions.html#cb42-11" tabindex="-1"></a>}</span>
+<span id="cb42-12"><a href="understanding-sampling-distributions.html#cb42-12" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="understanding-sampling-distributions.html#cb42-13" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>, <span class="at">number_of_tosses=</span><span class="dv">2</span>, <span class="at">prob_heads=</span><span class="fl">0.7</span>)</span></code></pre></div>
 </details>
 <pre><code>##  [1] 1.0 0.5 1.0 0.5 0.5 0.5 0.5 0.5 1.0 1.0</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="understanding-sampling-distributions.html#cb42-1" tabindex="-1"></a>ncoins <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb42-2"><a href="understanding-sampling-distributions.html#cb42-2" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="understanding-sampling-distributions.html#cb42-3" tabindex="-1"></a>coin_result_005 <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
-<span id="cb42-4"><a href="understanding-sampling-distributions.html#cb42-4" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">10000</span>,</span>
-<span id="cb42-5"><a href="understanding-sampling-distributions.html#cb42-5" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> ncoins, </span>
-<span id="cb42-6"><a href="understanding-sampling-distributions.html#cb42-6" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.005</span></span>
-<span id="cb42-7"><a href="understanding-sampling-distributions.html#cb42-7" tabindex="-1"></a>  )</span>
-<span id="cb42-8"><a href="understanding-sampling-distributions.html#cb42-8" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="understanding-sampling-distributions.html#cb42-9" tabindex="-1"></a>coin_result_05 <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
-<span id="cb42-10"><a href="understanding-sampling-distributions.html#cb42-10" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">10000</span>,</span>
-<span id="cb42-11"><a href="understanding-sampling-distributions.html#cb42-11" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> ncoins, </span>
-<span id="cb42-12"><a href="understanding-sampling-distributions.html#cb42-12" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.5</span></span>
-<span id="cb42-13"><a href="understanding-sampling-distributions.html#cb42-13" tabindex="-1"></a>  )</span>
-<span id="cb42-14"><a href="understanding-sampling-distributions.html#cb42-14" tabindex="-1"></a></span>
-<span id="cb42-15"><a href="understanding-sampling-distributions.html#cb42-15" tabindex="-1"></a>plot_005 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb42-16"><a href="understanding-sampling-distributions.html#cb42-16" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result_005) <span class="sc">+</span> </span>
-<span id="cb42-17"><a href="understanding-sampling-distributions.html#cb42-17" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span> </span>
-<span id="cb42-18"><a href="understanding-sampling-distributions.html#cb42-18" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.005</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span>
-<span id="cb42-19"><a href="understanding-sampling-distributions.html#cb42-19" tabindex="-1"></a></span>
-<span id="cb42-20"><a href="understanding-sampling-distributions.html#cb42-20" tabindex="-1"></a>plot_05 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb42-21"><a href="understanding-sampling-distributions.html#cb42-21" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result_05) <span class="sc">+</span> </span>
-<span id="cb42-22"><a href="understanding-sampling-distributions.html#cb42-22" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span> </span>
-<span id="cb42-23"><a href="understanding-sampling-distributions.html#cb42-23" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span>
-<span id="cb42-24"><a href="understanding-sampling-distributions.html#cb42-24" tabindex="-1"></a></span>
-<span id="cb42-25"><a href="understanding-sampling-distributions.html#cb42-25" tabindex="-1"></a>plot_005 <span class="sc">/</span> </span>
-<span id="cb42-26"><a href="understanding-sampling-distributions.html#cb42-26" tabindex="-1"></a>  plot_05</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="understanding-sampling-distributions.html#cb44-1" tabindex="-1"></a>ncoins <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb44-2"><a href="understanding-sampling-distributions.html#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="understanding-sampling-distributions.html#cb44-3" tabindex="-1"></a>coin_result_005 <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
+<span id="cb44-4"><a href="understanding-sampling-distributions.html#cb44-4" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">10000</span>,</span>
+<span id="cb44-5"><a href="understanding-sampling-distributions.html#cb44-5" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> ncoins, </span>
+<span id="cb44-6"><a href="understanding-sampling-distributions.html#cb44-6" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.005</span></span>
+<span id="cb44-7"><a href="understanding-sampling-distributions.html#cb44-7" tabindex="-1"></a>  )</span>
+<span id="cb44-8"><a href="understanding-sampling-distributions.html#cb44-8" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="understanding-sampling-distributions.html#cb44-9" tabindex="-1"></a>coin_result_05 <span class="ot">&lt;-</span> <span class="fu">toss_coin</span>(</span>
+<span id="cb44-10"><a href="understanding-sampling-distributions.html#cb44-10" tabindex="-1"></a>  <span class="at">number_of_simulations =</span> <span class="dv">10000</span>,</span>
+<span id="cb44-11"><a href="understanding-sampling-distributions.html#cb44-11" tabindex="-1"></a>  <span class="at">number_of_tosses =</span> ncoins, </span>
+<span id="cb44-12"><a href="understanding-sampling-distributions.html#cb44-12" tabindex="-1"></a>  <span class="at">prob_heads =</span> <span class="fl">0.5</span></span>
+<span id="cb44-13"><a href="understanding-sampling-distributions.html#cb44-13" tabindex="-1"></a>  )</span>
+<span id="cb44-14"><a href="understanding-sampling-distributions.html#cb44-14" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="understanding-sampling-distributions.html#cb44-15" tabindex="-1"></a>plot_005 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb44-16"><a href="understanding-sampling-distributions.html#cb44-16" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result_005) <span class="sc">+</span> </span>
+<span id="cb44-17"><a href="understanding-sampling-distributions.html#cb44-17" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span> </span>
+<span id="cb44-18"><a href="understanding-sampling-distributions.html#cb44-18" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.005</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span>
+<span id="cb44-19"><a href="understanding-sampling-distributions.html#cb44-19" tabindex="-1"></a></span>
+<span id="cb44-20"><a href="understanding-sampling-distributions.html#cb44-20" tabindex="-1"></a>plot_05 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb44-21"><a href="understanding-sampling-distributions.html#cb44-21" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>coin_result_05) <span class="sc">+</span> </span>
+<span id="cb44-22"><a href="understanding-sampling-distributions.html#cb44-22" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>) <span class="sc">+</span> </span>
+<span id="cb44-23"><a href="understanding-sampling-distributions.html#cb44-23" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&#39;#003262&#39;</span>, <span class="at">linewidth=</span><span class="dv">2</span>)</span>
+<span id="cb44-24"><a href="understanding-sampling-distributions.html#cb44-24" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="understanding-sampling-distributions.html#cb44-25" tabindex="-1"></a>plot_005 <span class="sc">/</span> </span>
+<span id="cb44-26"><a href="understanding-sampling-distributions.html#cb44-26" tabindex="-1"></a>  plot_05</span></code></pre></div>
 </details>
 <p><img src="203-live-session_files/figure-html/toss%20coins%20and%20plot-1.png" width="672" /></p>
 <div class="discussion-question">

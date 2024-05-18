@@ -524,25 +524,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Write the code to run the expectation algorithm that you just performed by hand.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="expected-value-by-code.html#cb20-1" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb20-2"><a href="expected-value-by-code.html#cb20-2" tabindex="-1"></a>  <span class="at">value =</span> <span class="st">&#39;fill this in&#39;</span>,</span>
-<span id="cb20-3"><a href="expected-value-by-code.html#cb20-3" tabindex="-1"></a>  <span class="at">prob  =</span> <span class="st">&#39;fill this in&#39;</span></span>
-<span id="cb20-4"><a href="expected-value-by-code.html#cb20-4" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="expected-value-by-code.html#cb22-1" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-2"><a href="expected-value-by-code.html#cb22-2" tabindex="-1"></a>  <span class="at">value =</span> <span class="st">&#39;fill this in&#39;</span>,</span>
+<span id="cb22-3"><a href="expected-value-by-code.html#cb22-3" tabindex="-1"></a>  <span class="at">prob  =</span> <span class="st">&#39;fill this in&#39;</span></span>
+<span id="cb22-4"><a href="expected-value-by-code.html#cb22-4" tabindex="-1"></a>)</span></code></pre></div>
 </details>
 </div>
 <div id="variance-of-a-six-sided-die" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Variance of a Six-Sided Die<a href="expected-value-by-code.html#variance-of-a-six-sided-die" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die. Using what you know about the definition of variance, write a function that will compute the variance of your <code>die</code> object.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="expected-value-by-code.html#cb21-1" tabindex="-1"></a>variance_function <span class="ot">&lt;-</span> <span class="cf">function</span>(die) { </span>
-<span id="cb21-2"><a href="expected-value-by-code.html#cb21-2" tabindex="-1"></a>  <span class="do">## fill this in</span></span>
-<span id="cb21-3"><a href="expected-value-by-code.html#cb21-3" tabindex="-1"></a>  mu <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>   <span class="do">## you should index to the correct column</span></span>
-<span id="cb21-4"><a href="expected-value-by-code.html#cb21-4" tabindex="-1"></a>  var <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>  <span class="do">## for each, and use the correct function</span></span>
-<span id="cb21-5"><a href="expected-value-by-code.html#cb21-5" tabindex="-1"></a>  </span>
-<span id="cb21-6"><a href="expected-value-by-code.html#cb21-6" tabindex="-1"></a>  <span class="fu">return</span>(var)</span>
-<span id="cb21-7"><a href="expected-value-by-code.html#cb21-7" tabindex="-1"></a>}</span>
-<span id="cb21-8"><a href="expected-value-by-code.html#cb21-8" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="expected-value-by-code.html#cb21-9" tabindex="-1"></a><span class="fu">variance_function</span>(die)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="expected-value-by-code.html#cb23-1" tabindex="-1"></a>variance_function <span class="ot">&lt;-</span> <span class="cf">function</span>(die) { </span>
+<span id="cb23-2"><a href="expected-value-by-code.html#cb23-2" tabindex="-1"></a>  <span class="do">## fill this in</span></span>
+<span id="cb23-3"><a href="expected-value-by-code.html#cb23-3" tabindex="-1"></a>  mu <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>   <span class="do">## you should index to the correct column</span></span>
+<span id="cb23-4"><a href="expected-value-by-code.html#cb23-4" tabindex="-1"></a>  var <span class="ot">=</span> <span class="st">&#39;fill this in&#39;</span>  <span class="do">## for each, and use the correct function</span></span>
+<span id="cb23-5"><a href="expected-value-by-code.html#cb23-5" tabindex="-1"></a>  </span>
+<span id="cb23-6"><a href="expected-value-by-code.html#cb23-6" tabindex="-1"></a>  <span class="fu">return</span>(var)</span>
+<span id="cb23-7"><a href="expected-value-by-code.html#cb23-7" tabindex="-1"></a>}</span>
+<span id="cb23-8"><a href="expected-value-by-code.html#cb23-8" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="expected-value-by-code.html#cb23-9" tabindex="-1"></a><span class="fu">variance_function</span>(die)</span></code></pre></div>
 </details>
 <pre><code>## [1] &quot;fill this in&quot;</code></pre>
 <div class="discussion-question">

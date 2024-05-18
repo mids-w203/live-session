@@ -193,6 +193,29 @@
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(mids203)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: tidyverse
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ----------------------------------------------------------------------------- tidyverse 2.0.0 --
+## v dplyr     1.1.3     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.4     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.0
+## v purrr     1.0.2     
+## -- Conflicts ----------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
 \hypertarget{probability-spaces}{%
 \chapter{Probability Spaces}\label{probability-spaces}}
 
@@ -572,19 +595,6 @@ The \emph{applied} homework will be marked either \texttt{Correct} or \texttt{In
 \hypertarget{defining-random-variables}{%
 \chapter{Defining Random Variables}\label{defining-random-variables}}
 
-\begin{verbatim}
-## -- Attaching core tidyverse packages ----------------------------------------------------------------------------- tidyverse 2.0.0 --
-## v dplyr     1.1.3     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.4     v tibble    3.2.1
-## v lubridate 1.9.3     v tidyr     1.3.0
-## v purrr     1.0.2     
-## -- Conflicts ----------------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
 \begin{figure}
 \centering
 \includegraphics{./images/yosemite.jpg}
@@ -927,10 +937,6 @@ As a class, lets consider a few of these PDFs, beginning with this ``triangle'' 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-\end{verbatim}
-
 \hypertarget{triangle-math}{%
 \subsection{Triangle Math}\label{triangle-math}}
 
@@ -1086,9 +1092,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3.455597 3.657351 3.389433 3.957790 1.165108 3.775154 4.237339 1.300914
-##  [9] 1.557432 3.531531 3.196249 1.248628 4.106191 2.765632 1.851746 1.650859
-## [17] 2.290597 1.579931 3.603027 1.367001
+##  [1] 3.364324 1.475805 2.606021 1.391679 1.306617 2.791750 2.589989 2.884854
+##  [9] 2.883895 1.299344 1.666103 2.767430 1.210614 1.731251 1.955217 2.548318
+## [17] 3.625166 4.060489 2.379518 2.230303
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1174,9 +1180,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 22.688077 15.170347 15.348346 22.427165  9.834771 15.907469 19.031537
-##  [8] 19.230166 16.163079 15.621337 15.982542 24.111160 16.430800 15.590761
-## [15] 20.730931 20.261778 17.181247 16.562596 16.517419 19.946979
+##  [1] 18.30852 20.50374 19.29779 19.73275 12.35959 19.23473 11.91159 25.21434
+##  [9] 26.36888 23.71131 15.36111 15.06384 16.55203 17.20036 19.65222 16.72306
+## [17] 17.06671 24.99154 25.31345 21.58895
 \end{verbatim}
 
 And, from here we could visualize this distribution.

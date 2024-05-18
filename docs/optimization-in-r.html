@@ -546,22 +546,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="optimization-in-r.html#cb192-1" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
-<span id="cb192-2"><a href="optimization-in-r.html#cb192-2" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
-<span id="cb192-3"><a href="optimization-in-r.html#cb192-3" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
-<span id="cb192-4"><a href="optimization-in-r.html#cb192-4" tabindex="-1"></a>  } </span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="optimization-in-r.html#cb194-1" tabindex="-1"></a>profit <span class="ot">&lt;-</span> <span class="cf">function</span>(p, c) { </span>
+<span id="cb194-2"><a href="optimization-in-r.html#cb194-2" tabindex="-1"></a>  r <span class="ot">=</span> (p <span class="sc">-</span> p<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> c <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb194-3"><a href="optimization-in-r.html#cb194-3" tabindex="-1"></a>  <span class="fu">return</span>(r) </span>
+<span id="cb194-4"><a href="optimization-in-r.html#cb194-4" tabindex="-1"></a>  } </span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="optimization-in-r.html#cb193-1" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="optimization-in-r.html#cb195-1" tabindex="-1"></a><span class="fu">profit</span>(<span class="at">p=</span><span class="dv">2</span>, <span class="at">c=</span><span class="dv">2</span>)</span></code></pre></div>
 </details>
 <pre><code>## [1] 96</code></pre>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="optimization-in-r.html#cb195-1" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb195-2"><a href="optimization-in-r.html#cb195-2" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
-<span id="cb195-3"><a href="optimization-in-r.html#cb195-3" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
-<span id="cb195-4"><a href="optimization-in-r.html#cb195-4" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
-<span id="cb195-5"><a href="optimization-in-r.html#cb195-5" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
-<span id="cb195-6"><a href="optimization-in-r.html#cb195-6" tabindex="-1"></a>best_price</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="optimization-in-r.html#cb197-1" tabindex="-1"></a>best_price <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
+<span id="cb197-2"><a href="optimization-in-r.html#cb197-2" tabindex="-1"></a>  profit,                    <span class="co"># profit is the function</span></span>
+<span id="cb197-3"><a href="optimization-in-r.html#cb197-3" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1000</span>,   <span class="co"># this is the low and high we consider</span></span>
+<span id="cb197-4"><a href="optimization-in-r.html#cb197-4" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">2</span>,                     <span class="co"># here, we&#39;re passing cost into profit</span></span>
+<span id="cb197-5"><a href="optimization-in-r.html#cb197-5" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span>)            <span class="co"># we&#39;d like to maximize, not minimize</span></span>
+<span id="cb197-6"><a href="optimization-in-r.html#cb197-6" tabindex="-1"></a>best_price</span></code></pre></div>
 </details>
 <pre><code>## $maximum
 ## [1] 0.5
