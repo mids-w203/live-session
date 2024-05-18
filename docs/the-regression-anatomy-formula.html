@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.5 The Regression Anatomy Formula | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.5 The Regression Anatomy Formula | Statistics for Data Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2024-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,6 +49,7 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -90,11 +91,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -103,14 +104,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -118,6 +119,10 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <link rel="stylesheet" href="css/box.css" type="text/css" />
@@ -181,7 +186,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html"><i class="fa fa-check"></i><b>2.5</b> Pieces of a Random Variable</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#functions-of-functions"><i class="fa fa-check"></i><b>2.5.1</b> Functions of Functions</a></li>
-<li class="chapter" data-level="2.5.2" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-density-functions"><i class="fa fa-check"></i><b>2.5.2</b> Probability Density Functions and Cumulative Density Functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="pieces-of-a-random-variable.html"><a href="pieces-of-a-random-variable.html#probability-density-functions-and-cumulative-distribution-functions"><i class="fa fa-check"></i><b>2.5.2</b> Probability Density Functions and Cumulative Distribution Functions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="discrete-continuous-random-variables.html"><a href="discrete-continuous-random-variables.html"><i class="fa fa-check"></i><b>2.6</b> Discrete &amp; Continuous Random Variables</a></li>
 <li class="chapter" data-level="2.7" data-path="moving-between-pdf-and-cdf.html"><a href="moving-between-pdf-and-cdf.html"><i class="fa fa-check"></i><b>2.7</b> Moving Between PDF and CDF</a></li>
@@ -511,7 +516,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-regression-anatomy-formula" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> The Regression Anatomy Formula<a href="the-regression-anatomy-formula.html#the-regression-anatomy-formula" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We make the claim in live session that we can re-represent a coefficient that we’re interested in as a function of all the other variable in a regression. That is, suppose that we were interested, initially, in estimating the model:</p>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
 Y = \hat\beta_{0} + \hat\beta_{1} X_{1} + \hat\beta_{2} X_{2} + \hat\beta_{3}X_{3} + e
 \]</span>
 that we can produce an estimate for <span class="math inline">\(\hat\beta_{1}\)</span> by fitting this auxiliary regression,</p>
@@ -519,7 +524,7 @@ that we can produce an estimate for <span class="math inline">\(\hat\beta_{1}\)<
 X_{1} = \hat\delta_{0} + \hat\delta_2X_2 + \hat\delta_3X_3 + r_{1}
 \]</span></p>
 <p>And then using the residuals, noted as <span class="math inline">\(r_1\)</span> above, in a second auxiliary regression,</p>
-<p><span class="math display">\[ 
+<p><span class="math display">\[
 Y = \gamma_0 + \gamma_1 r_1
 \]</span></p>
 <p>The claim that we make in the live session is that there is a guarantee that <span class="math inline">\(\beta_1 = \gamma_1\)</span>. Here, we are first going to show that this is true, and then we’re going to reason about what this means, and why this feature is interesting (or at least useful) when we are estimating a regression.</p>
@@ -528,91 +533,91 @@ Y = \gamma_0 + \gamma_1 r_1
 Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 \]</span></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="the-regression-anatomy-formula.html#cb107-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb107-2"><a href="the-regression-anatomy-formula.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>), </span>
-<span id="cb107-3"><a href="the-regression-anatomy-formula.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>), </span>
-<span id="cb107-4"><a href="the-regression-anatomy-formula.html#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>)</span>
-<span id="cb107-5"><a href="the-regression-anatomy-formula.html#cb107-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb107-6"><a href="the-regression-anatomy-formula.html#cb107-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-7"><a href="the-regression-anatomy-formula.html#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="do">## because we know the population model, we can produce a single sample from it </span></span>
-<span id="cb107-8"><a href="the-regression-anatomy-formula.html#cb107-8" aria-hidden="true" tabindex="-1"></a><span class="do">## using the following code: </span></span>
-<span id="cb107-9"><a href="the-regression-anatomy-formula.html#cb107-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-10"><a href="the-regression-anatomy-formula.html#cb107-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
-<span id="cb107-11"><a href="the-regression-anatomy-formula.html#cb107-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="sc">-</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>x1 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="fu">n</span>(), <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>))</span>
-<span id="cb107-12"><a href="the-regression-anatomy-formula.html#cb107-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-13"><a href="the-regression-anatomy-formula.html#cb107-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="the-regression-anatomy-formula.html#cb130-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb130-2"><a href="the-regression-anatomy-formula.html#cb130-2" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>), </span>
+<span id="cb130-3"><a href="the-regression-anatomy-formula.html#cb130-3" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>), </span>
+<span id="cb130-4"><a href="the-regression-anatomy-formula.html#cb130-4" tabindex="-1"></a>  <span class="at">x3 =</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">10</span>)</span>
+<span id="cb130-5"><a href="the-regression-anatomy-formula.html#cb130-5" tabindex="-1"></a>)</span>
+<span id="cb130-6"><a href="the-regression-anatomy-formula.html#cb130-6" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="the-regression-anatomy-formula.html#cb130-7" tabindex="-1"></a><span class="do">## because we know the population model, we can produce a single sample from it </span></span>
+<span id="cb130-8"><a href="the-regression-anatomy-formula.html#cb130-8" tabindex="-1"></a><span class="do">## using the following code: </span></span>
+<span id="cb130-9"><a href="the-regression-anatomy-formula.html#cb130-9" tabindex="-1"></a></span>
+<span id="cb130-10"><a href="the-regression-anatomy-formula.html#cb130-10" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb130-11"><a href="the-regression-anatomy-formula.html#cb130-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="sc">-</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>x1 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="fu">n</span>(), <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>))</span>
+<span id="cb130-12"><a href="the-regression-anatomy-formula.html#cb130-12" tabindex="-1"></a></span>
+<span id="cb130-13"><a href="the-regression-anatomy-formula.html#cb130-13" tabindex="-1"></a><span class="fu">head</span>(d)</span></code></pre></div>
 </details>
-<pre><code>##          x1        x2        x3         y
-## 1 0.3416502 0.7912937 6.0006823 17.794577
-## 2 1.8439180 3.1209309 1.2547957  8.179917
-## 3 8.9836342 5.5705346 4.7984000 30.284766
-## 4 5.3823456 8.7452644 0.3928139 20.186430
-## 5 0.4936049 9.9378938 8.8837140 44.277600
-## 6 9.8624064 9.9830178 2.3737502 34.694755</code></pre>
+<pre><code>##         x1       x2       x3        y
+## 1 2.627549 6.111438 9.461474 39.71841
+## 2 7.586222 5.339518 3.055064 24.80873
+## 3 3.187276 8.444794 6.609802 35.97645
+## 4 1.547751 3.650995 4.952615 19.91845
+## 5 3.060822 1.922273 2.994374 11.68472
+## 6 4.496636 3.194693 2.985301 16.76039</code></pre>
 <p>Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other “things” in this universe that also affect <span class="math inline">\(Y\)</span>, but that we don’t have access to them. By assumption, what we <em>have</em> measured in this world, <span class="math inline">\(X_1, X_2, X_3\)</span> are uncorrelated with these other features.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="the-regression-anatomy-formula.html#cb109-1" aria-hidden="true" tabindex="-1"></a>model_main <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> d)</span>
-<span id="cb109-2"><a href="the-regression-anatomy-formula.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_main)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="the-regression-anatomy-formula.html#cb132-1" tabindex="-1"></a>model_main <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> d)</span>
+<span id="cb132-2"><a href="the-regression-anatomy-formula.html#cb132-2" tabindex="-1"></a><span class="fu">coef</span>(model_main)</span></code></pre></div>
 </details>
 <pre><code>## (Intercept)          x1          x2          x3 
-##   -3.171335    1.021295    2.057920    2.979041</code></pre>
+##   -3.488590    1.062987    2.033696    3.012998</code></pre>
 <p>The claim is that we can produce an estimate of <span class="math inline">\(\beta_1\)</span> using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="the-regression-anatomy-formula.html#cb111-1" aria-hidden="true" tabindex="-1"></a>model_aux <span class="ot">&lt;-</span> <span class="fu">lm</span>(x1 <span class="sc">~</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> d)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="the-regression-anatomy-formula.html#cb134-1" tabindex="-1"></a>model_aux <span class="ot">&lt;-</span> <span class="fu">lm</span>(x1 <span class="sc">~</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> d)</span></code></pre></div>
 </details>
 <p>If we look into the structure of <code>model_aux</code> we can see that there are <em>a ton</em> of pieces in here.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="the-regression-anatomy-formula.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_aux)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="the-regression-anatomy-formula.html#cb135-1" tabindex="-1"></a><span class="fu">coef</span>(model_aux)</span></code></pre></div>
 </details>
 <pre><code>## (Intercept)          x2          x3 
-##  3.95679209  0.15306227 -0.01896362</code></pre>
+##  5.37777970  0.04654908 -0.11105934</code></pre>
 <p>To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, “residual” in this sense?</p>
 <p>To make talking about these easier, here is a plot that might be useful.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="the-regression-anatomy-formula.html#cb114-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span> </span>
-<span id="cb114-2"><a href="the-regression-anatomy-formula.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb114-3"><a href="the-regression-anatomy-formula.html#cb114-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x1, <span class="at">y=</span>y) <span class="sc">+</span> </span>
-<span id="cb114-4"><a href="the-regression-anatomy-formula.html#cb114-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb114-5"><a href="the-regression-anatomy-formula.html#cb114-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span><span class="dv">10</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">yend=</span><span class="dv">50</span>), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="the-regression-anatomy-formula.html#cb137-1" tabindex="-1"></a>d <span class="sc">%&gt;%</span> </span>
+<span id="cb137-2"><a href="the-regression-anatomy-formula.html#cb137-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb137-3"><a href="the-regression-anatomy-formula.html#cb137-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>x1, <span class="at">y=</span>y) <span class="sc">+</span> </span>
+<span id="cb137-4"><a href="the-regression-anatomy-formula.html#cb137-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb137-5"><a href="the-regression-anatomy-formula.html#cb137-5" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span><span class="dv">10</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">yend=</span><span class="dv">50</span>), <span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>)</span></code></pre></div>
 </details>
 <p><img src="203-live-session_files/figure-html/plot%20x1%20and%20y%20and%20line-1.png" width="672" /></p>
 <p>In order to access these residuals, we can “augment” the dataframe that we used in the model, using the <code>broom::augment</code> function call.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="the-regression-anatomy-formula.html#cb115-1" aria-hidden="true" tabindex="-1"></a>d_augmented <span class="ot">&lt;-</span> <span class="fu">augment</span>(model_aux)</span>
-<span id="cb115-2"><a href="the-regression-anatomy-formula.html#cb115-2" aria-hidden="true" tabindex="-1"></a>d_augmented<span class="sc">$</span>y <span class="ot">&lt;-</span> d<span class="sc">$</span>y</span>
-<span id="cb115-3"><a href="the-regression-anatomy-formula.html#cb115-3" aria-hidden="true" tabindex="-1"></a>d_augmented</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="the-regression-anatomy-formula.html#cb138-1" tabindex="-1"></a>d_augmented <span class="ot">&lt;-</span> <span class="fu">augment</span>(model_aux)</span>
+<span id="cb138-2"><a href="the-regression-anatomy-formula.html#cb138-2" tabindex="-1"></a>d_augmented<span class="sc">$</span>y <span class="ot">&lt;-</span> d<span class="sc">$</span>y</span>
+<span id="cb138-3"><a href="the-regression-anatomy-formula.html#cb138-3" tabindex="-1"></a>d_augmented</span></code></pre></div>
 </details>
 <pre><code>## # A tibble: 100 × 10
-##       x1    x2    x3 .fitted  .resid   .hat .sigma   .cooksd .std.resid     y
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
-##  1 0.342 0.791 6.00     3.96 -3.62   0.0319   2.68 0.0206       -1.37   17.8 
-##  2 1.84  3.12  1.25     4.41 -2.57   0.0312   2.69 0.0101       -0.969   8.18
-##  3 8.98  5.57  4.80     4.72  4.27   0.0105   2.67 0.00899       1.59   30.3 
-##  4 5.38  8.75  0.393    5.29  0.0944 0.0509   2.70 0.0000232     0.0360 20.2 
-##  5 0.494 9.94  8.88     5.31 -4.82   0.0661   2.66 0.0810       -1.85   44.3 
-##  6 9.86  9.98  2.37     5.44  4.42   0.0467   2.66 0.0462        1.68   34.7 
-##  7 6.37  3.52  6.30     4.38  1.99   0.0154   2.70 0.00289       0.745  27.8 
-##  8 9.84  7.63  4.22     5.04  4.79   0.0190   2.66 0.0208        1.80   36.3 
-##  9 2.64  8.19  6.90     5.08 -2.44   0.0300   2.69 0.00873      -0.920  37.7 
-## 10 7.06  1.64  7.86     4.06  3.00   0.0348   2.69 0.0154        1.13   30.7 
-## # … with 90 more rows</code></pre>
+##       x1    x2    x3 .fitted .resid   .hat .sigma  .cooksd .std.resid     y
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+##  1 2.63   6.11  9.46    4.61 -1.98  0.0380   2.82 0.00679      -0.718 39.7 
+##  2 7.59   5.34  3.06    5.29  2.30  0.0161   2.82 0.00370       0.823 24.8 
+##  3 3.19   8.44  6.61    5.04 -1.85  0.0256   2.83 0.00388      -0.665 36.0 
+##  4 1.55   3.65  4.95    5.00 -3.45  0.0127   2.81 0.00652      -1.23  19.9 
+##  5 3.06   1.92  2.99    5.13 -2.07  0.0276   2.82 0.00527      -0.747 11.7 
+##  6 4.50   3.19  2.99    5.19 -0.698 0.0202   2.83 0.000430     -0.250 16.8 
+##  7 1.94   2.75  4.24    5.03 -3.10  0.0176   2.81 0.00736      -1.11  17.1 
+##  8 0.146  3.68  1.38    5.40 -5.25  0.0314   2.78 0.0388       -1.89   8.04
+##  9 0.544  3.87  5.99    4.89 -4.35  0.0134   2.80 0.0109       -1.55  24.4 
+## 10 0.989  6.61  1.67    5.50 -4.51  0.0307   2.79 0.0279       -1.63  16.2 
+## # ℹ 90 more rows</code></pre>
 <p>And finally, with this augmented data that has information from the model, we can estimate the model that includes only the residuals as predictors of <span class="math inline">\(Y\)</span>.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="the-regression-anatomy-formula.html#cb117-1" aria-hidden="true" tabindex="-1"></a>model_two <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> .resid, <span class="at">data =</span> d_augmented)</span>
-<span id="cb117-2"><a href="the-regression-anatomy-formula.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_two)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="the-regression-anatomy-formula.html#cb140-1" tabindex="-1"></a>model_two <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> .resid, <span class="at">data =</span> d_augmented)</span>
+<span id="cb140-2"><a href="the-regression-anatomy-formula.html#cb140-2" tabindex="-1"></a><span class="fu">coef</span>(model_two)</span></code></pre></div>
 </details>
 <pre><code>## (Intercept)      .resid 
-##   25.811284    1.021295</code></pre>
+##   27.667081    1.062987</code></pre>
 <p>Our claim was that the coefficients from <code>model_main</code> and <code>model_two</code> should be the same.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="the-regression-anatomy-formula.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(</span>
-<span id="cb119-2"><a href="the-regression-anatomy-formula.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;the model coefficients are equal&#39;</span>, </span>
-<span id="cb119-3"><a href="the-regression-anatomy-formula.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(</span>
-<span id="cb119-4"><a href="the-regression-anatomy-formula.html#cb119-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>(<span class="fu">coef</span>(model_main)[<span class="st">&#39;x1&#39;</span>]), </span>
-<span id="cb119-5"><a href="the-regression-anatomy-formula.html#cb119-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>(<span class="fu">coef</span>(model_two)[<span class="st">&#39;.resid&#39;</span>]))</span>
-<span id="cb119-6"><a href="the-regression-anatomy-formula.html#cb119-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="the-regression-anatomy-formula.html#cb142-1" tabindex="-1"></a><span class="fu">test_that</span>(</span>
+<span id="cb142-2"><a href="the-regression-anatomy-formula.html#cb142-2" tabindex="-1"></a>  <span class="st">&#39;the model coefficients are equal&#39;</span>, </span>
+<span id="cb142-3"><a href="the-regression-anatomy-formula.html#cb142-3" tabindex="-1"></a>  <span class="fu">expect_equal</span>(</span>
+<span id="cb142-4"><a href="the-regression-anatomy-formula.html#cb142-4" tabindex="-1"></a>    <span class="fu">as.numeric</span>(<span class="fu">coef</span>(model_main)[<span class="st">&#39;x1&#39;</span>]), </span>
+<span id="cb142-5"><a href="the-regression-anatomy-formula.html#cb142-5" tabindex="-1"></a>    <span class="fu">as.numeric</span>(<span class="fu">coef</span>(model_two)[<span class="st">&#39;.resid&#39;</span>]))</span>
+<span id="cb142-6"><a href="the-regression-anatomy-formula.html#cb142-6" tabindex="-1"></a>)</span></code></pre></div>
 </details>
-<pre><code>## Test passed 🎉</code></pre>
+<pre><code>## Test passed 🌈</code></pre>
 <p>But, why is this an interesting, or at least useful, feature to appreciate?</p>
 </div>
             </section>

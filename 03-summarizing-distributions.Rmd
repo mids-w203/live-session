@@ -2,7 +2,7 @@
 
 ```{r load unit 03 packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-source('~/MIDS/w203/live-session/src/blank_lines.R')
+source('./src/blank_lines.R')
 ```
 
 ![a majestic valley](./images/yosemite.jpg)
