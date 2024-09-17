@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.7 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science</title>
+  <title>3.4 Expected Value | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.7 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science" />
+  <meta property="og:title" content="3.4 Expected Value | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.7 Write Code to Demo the Central Limit Theorem (CLT) | Statistics for Data Science" />
+  <meta name="twitter:title" content="3.4 Expected Value | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="understanding-sampling-distributions.html"/>
-<link rel="next" href="errors-with-standard-errors.html"/>
+<link rel="prev" href="discussion-of-terms.html"/>
+<link rel="next" href="computing-examples.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -517,62 +517,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="write-code-to-demo-the-central-limit-theorem-clt" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Write Code to Demo the Central Limit Theorem (CLT)<a href="write-code-to-demo-the-central-limit-theorem-clt.html#write-code-to-demo-the-central-limit-theorem-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When you were reading for this week, did you sense the palpable <em>joy</em> of the authors when they were writing about the central limit theorem?</p>
-<blockquote>
-<p>We now preset what is often considered the most profound and important theorem in statistics.</p>
-</blockquote>
-<p>Wow. What excitement.</p>
-<p>On its own, the result that <em>across a broad range of generative functions the distribution of sample averages converges in distribution to follow a normal distribution</em> would be a statistical curiosity. Along the lines of “did you know that dinosaurs might have had feathers,” or, “avocado trees reproduce using ’protogynous dichogamy”. While these factoids might be useful on your quiz-bowl team, they don’t get us very far down the line as practicing data scientists.</p>
-<p>However, there is a <strong>very</strong> useful consequence of this convergence in distribution that we will explore in detail over the coming two weeks: because <em>so many</em> distributions produce sample averages that converge in distribution to a normal distribution, we can put together a testing framework for sample averages that works for an <em>agnostic</em> set of random variables. Wait for that next week, but know that there’s a reason that we’re as excited about this statement as we are.</p>
-<div id="part-1" class="section level3 hasAnchor" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> Part 1<a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To begin with, we will use fair coins that have an equal probability landing heads and tails.</p>
-<div class="discussion-question">
+<div id="expected-value-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Expected Value<a href="expected-value-1.html#expected-value-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For a continuous random variable <span class="math inline">\(X\)</span> with PDF <span class="math inline">\(f\)</span>, the <em>expected value</em> of <span class="math inline">\(X\)</span>, written <span class="math inline">\(E[X]\)</span> is</p>
+<p><span class="math display">\[
+E[X] = \int_{-\infty}^{\infty}xf_{X}(x) dx
+\]</span></p>
+</div>
+</div>
+<p>Oh, ok. If you say so. (We do…).</p>
+<p>There are two really important things to grasp here:</p>
 <ol style="list-style-type: decimal">
-<li>Modify the function argument below so that it conduct <strong>one</strong> simulations, and in each simulation tosses <strong>ten</strong> coins, each with an <strong>equal</strong> probability of landing heads and tails. Look into the <code>toss_coin</code> function: is there a point that this function is producing a sample average? If so, where?</li>
-<li>Save values from the <code>toss_coin</code> function into an object, called <code>sample_mean</code>.</li>
+<li>What does this mean about a particular PDF?</li>
+<li>What is the justification for this <em>particualar</em> definition?</li>
 </ol>
-</div>
-<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb43-1" tabindex="-1"></a><span class="co"># toss_coin()</span></span></code></pre></div>
-</details>
 <div class="discussion-question">
-<p>The sample mean is a random variable – it is a function that maps from a random generative process’ sample space (the number of heads shown on dice) to the real numbers. To try to make this clear, visualize a larger number of simulations on the <code>toss_coin</code> function. That is, increase the <code>number_of_simulations</code> to be 10, or 100. and plot a histogram of the results. This is quite similar to what we have done earlier.</p>
-</div>
-<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="write-code-to-demo-the-central-limit-theorem-clt.html#cb44-1" tabindex="-1"></a><span class="co"># toss_coin()</span></span></code></pre></div>
-</details>
-<div class="discussion-question">
-<p>If you replicate the simulation with <strong>ten</strong> coins enough times, will the distribution ever look normal? Why or why not?</p>
-</div>
-</div>
-<div id="part-2" class="section level3 hasAnchor" number="5.7.2">
-<h3><span class="header-section-number">5.7.2</span> Part 2<a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For this part, we’ll continue to study a fair coin.</p>
-<div class="discussion-question">
-<p>What happens if you change the number of coins that you’re tossing? Here, set <code>number_of_simulations=1000</code>, and examine what happens if you alter the number of coins that you’re tossing? Is there a point where this distribution starts to “look normal” to you? (Later in the semester, we’ll formalize a test for this “looks normal” concept).</p>
-</div>
-</div>
-<div id="part-3" class="section level3 hasAnchor" number="5.7.3">
-<h3><span class="header-section-number">5.7.3</span> Part 3<a href="write-code-to-demo-the-central-limit-theorem-clt.html#part-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="discussion-question">
-<p>What would happen if the coin was very, very unfair? For this part, study a coin that has a <code>prob_heads=0.01</code>. This is an example of a highly skewed random variable.</p>
-<p>Start your study here tossing three coins, <code>number_of_coins=3</code>. What does this distribution look like?</p>
-</div>
-<div class="discussion-question">
-<p>What happens as you increase the number of coins that you’re tossing? Is there a point that the distribution starts to look normal?</p>
-</div>
-</div>
-<div id="discussion-questions-about-the-clt" class="section level3 hasAnchor" number="5.7.4">
-<h3><span class="header-section-number">5.7.4</span> Discussion Questions About the CLT<a href="write-code-to-demo-the-central-limit-theorem-clt.html#discussion-questions-about-the-clt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="discussion-question">
-<ol style="list-style-type: decimal">
-<li>How does the skewness of the population distribution affect the applicability of the Central Limit Theorem? What lesson can you take for your practice of statistics?</li>
-<li>Name a variable you would be interested in measuring that has a substantially skewed distribution.</li>
-<li>One definition of a heavy tailed distribution is one with infinite variance. For example, you can use the <code>rcauchy</code> command in R to take draws from a Cauchy distribution, which has heavy tails. Do you think a “heavy tails” distribution will follow the CLT? What leads you to this intuition?</li>
-</ol>
+<p>With your instructor, talk about what each of the following definitions mean in your own words. For key concepts, you might also formalize this intuition into a formula that can be computed.</p>
+<ul>
+<li>Expected Value, or Expectation</li>
+<li>Central Moments <span class="math inline">\(\rightarrow\)</span> Variance <span class="math inline">\(\rightarrow\)</span> Standard Deviation</li>
+<li>Set aside for later: Chebyshev’s Inequality and the Normal Distribution</li>
+<li>Mean Squared Error and its alternative formula</li>
+<li>Covariance and Correlation</li>
+</ul>
 </div>
 </div>
 </div>
@@ -581,8 +548,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="understanding-sampling-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="errors-with-standard-errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="discussion-of-terms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="computing-examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -29,5 +29,5 @@ source('./src/blank_lines.R')
 ```
 
 ```{r load packages}
-library(mids203)
+# library(mids203)
 ```

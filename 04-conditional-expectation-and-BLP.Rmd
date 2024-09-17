@@ -161,9 +161,9 @@ With this knowledge on hand, compute the $CEF[Y|X]$.
 ```{notes, include = FALSE} 
 \begin{aligned} 
   E[Y|X=x] &= \int_{0}^{x} y \cdot f_{Y|X}(y|x) dy \\ 
-         &= \int_{0}^{x} y \cdot \frac{1}{x} dy \\ 
-         &= \left. \frac{1}{2x}y^{2} \right \rvert^{x}_{0} \\ 
-         &= \frac{x}{2}
+           &= \int_{0}^{x} y \cdot \frac{1}{x} dy \\ 
+           &= \left. \frac{1}{2x}y^{2} \right \rvert^{x}_{0} \\ 
+           &= \frac{x}{2}
 \end{aligned}         
 ```
 
@@ -286,7 +286,7 @@ Why Linear?
 - And, many times, linear predictors (which might seem trivially simple) actually do a very good job of producing predictions that are 'close' or useful. 
 ```
 
-##Joint Distribution Practice
+## Joint Distribution Practice
 
 ### Professorial Mistakes (Discrete RVs)
 
@@ -313,7 +313,7 @@ $$
 
 Find the $BLP$ for $Y$ as a function of $X$. What, if anything, do you notice about this $BLP$ and the $CEF$? 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results='asis'}
 blank_lines(20)
 ```
 

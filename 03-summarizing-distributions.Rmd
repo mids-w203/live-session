@@ -90,6 +90,27 @@ Although the single number summaries are **incredibly** powerful, that's not eno
 
 ## Discussion of Terms
 
+### Expected Value 
+
+We define the expected value to be the following for a continuous random variable: 
+
+::: definition
+## Expected Value
+For a continuous random variable $X$ with PDF $f$, the *expected value* of $X$, written $E[X]$ is
+
+$$
+E[X] = \int_{-\infty}^{\infty}xf_{X}(x) dx
+$$
+:::
+
+Oh, ok. If you say so. (We do...). 
+
+There are two really important things to grasp here: 
+
+1. What does this mean about a particular PDF? 
+2. What is the justification for this *particualar* definition? 
+
+
 ::: discussion-question
 With your instructor, talk about what each of the following definitions mean in your own words. For key concepts, you might also formalize this intuition into a formula that can be computed.
 

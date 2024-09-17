@@ -88,15 +88,17 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -145,10 +147,7 @@
 %   boxsep=5pt,
 %   arc=4pt
 % }
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -159,7 +158,7 @@
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2024-05-18}
+\date{2024-09-17}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -185,39 +184,20 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{live-session}{%
-\chapter*{Live Session}\label{live-session}}
+\chapter*{Live Session}\label{live-session}
 \addcontentsline{toc}{chapter}{Live Session}
 
-\includegraphics{./images/campus.jpeg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/campus.jpeg}}
 
 This is the live session work space for the course. Our goal with this repository, is that we're able to communicate \emph{ahead of time} our aims for each week, and that you can prepare accordingly.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(mids203)}
+\CommentTok{\# library(mids203)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Loading required package: tidyverse
-\end{verbatim}
-
-\begin{verbatim}
-## -- Attaching core tidyverse packages ----------------------------------------------------------------------------- tidyverse 2.0.0 --
-## v dplyr     1.1.3     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.4     v tibble    3.2.1
-## v lubridate 1.9.3     v tidyr     1.3.0
-## v purrr     1.0.2     
-## -- Conflicts ----------------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
-\hypertarget{probability-spaces}{%
-\chapter{Probability Spaces}\label{probability-spaces}}
+\chapter{Probability Spaces}\label{probability-spaces}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -229,12 +209,11 @@ Probability is a system of reasoning about the world in the face of incomplete i
 
 \begin{figure}
 \centering
-\includegraphics{./images/webb.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/webb.jpg}}
 \caption{probability, the final frontier}
 \end{figure}
 
-\hypertarget{learning-objectives}{%
-\section{Learning Objectives}\label{learning-objectives}}
+\section{Learning Objectives}\label{learning-objectives}
 
 At the end of this week's learning, student will be able to:
 
@@ -251,8 +230,7 @@ At the end of this week's learning, student will be able to:
   \textbf{Solve} word problems through the \emph{application} of probability and math rules.
 \end{enumerate}
 
-\hypertarget{course-learning-objectives}{%
-\section{Course Learning Objectives}\label{course-learning-objectives}}
+\section{Course Learning Objectives}\label{course-learning-objectives}
 
 At this point in the course, there is so much that is before us! As we settle in to study for the semester, it is useful to have a point of view of where we're trying to go, and what we are going to see along the way.
 
@@ -270,8 +248,7 @@ At the beginning of the program, we're teaching these core, fundamental skills. 
 
 At the end of this course, students will be able to:
 
-\hypertarget{understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models}{%
-\subsection{Understand the building blocks of probability theory that prepare learners for the study of statistical models}\label{understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models}}
+\subsection{Understand the building blocks of probability theory that prepare learners for the study of statistical models}\label{understand-the-building-blocks-of-probability-theory-that-prepare-learners-for-the-study-of-statistical-models}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -284,8 +261,7 @@ At the end of this course, students will be able to:
   Translate between problems that are defined in business or research terms into problems that can be solved with math.
 \end{enumerate}
 
-\hypertarget{understand-and-apply-statistical-models-in-common-situations}{%
-\subsection{Understand and apply statistical models in common situations}\label{understand-and-apply-statistical-models-in-common-situations}}
+\subsection{Understand and apply statistical models in common situations}\label{understand-and-apply-statistical-models-in-common-situations}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -302,8 +278,7 @@ At the end of this course, students will be able to:
   Recognize limitations of the Neyman-Pearson hypothesis testing framework and be a conscientious participant in the scientific process
 \end{enumerate}
 
-\hypertarget{analyze-a-research-question-using-a-linear-regression-framework}{%
-\subsection{Analyze a research question using a linear regression framework}\label{analyze-a-research-question-using-a-linear-regression-framework}}
+\subsection{Analyze a research question using a linear regression framework}\label{analyze-a-research-question-using-a-linear-regression-framework}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -316,8 +291,7 @@ At the end of this course, students will be able to:
   Build a model that achieves the goals of an analysis
 \end{enumerate}
 
-\hypertarget{interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience}{%
-\subsection{Interpret the results of a model and communicate them in manner appropriate to the audience}\label{interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience}}
+\subsection{Interpret the results of a model and communicate them in manner appropriate to the audience}\label{interpret-the-results-of-a-model-and-communicate-them-in-manner-appropriate-to-the-audience}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -332,23 +306,19 @@ At the end of this course, students will be able to:
   Read, understand, and assess the claims that are made in technical, regression oriented reports
 \end{enumerate}
 
-\hypertarget{contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team.}{%
-\subsection{Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.}\label{contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team.}}
+\subsection{Contribute proficient, basic work, using industry standard tools and coding practices to a modern data science team.}\label{contribute-proficient-basic-work-using-industry-standard-tools-and-coding-practices-to-a-modern-data-science-team.}
 
 Demonstrate programming proficiency by translating statistical problems into code.
 1. Understand and incorporate best practices for coding style and data carpentry
 2. Utilize industry standard tooling for collaboration
 
-\hypertarget{introductions}{%
-\section{Introductions}\label{introductions}}
+\section{Introductions}\label{introductions}
 
-\hypertarget{instructor-introductions}{%
-\subsection{Instructor Introductions}\label{instructor-introductions}}
+\subsection{Instructor Introductions}\label{instructor-introductions}
 
 The instructors for the course come to the program, and to statistics from different backgrounds. Instructors hold PhDs in statistics, astrophysics, biology, political science, computer science, and information.
 
-\hypertarget{what-does-a-statistician-look-like-you}{%
-\subsection{What does a statistician look like? You!}\label{what-does-a-statistician-look-like-you}}
+\subsection{What does a statistician look like? You!}\label{what-does-a-statistician-look-like-you}
 
 Identity shapes how people approach and understand their world.
 
@@ -366,8 +336,7 @@ Every one of the instructors shares a core identity as an empathetic educator th
   The color of your skin doesn't matter; nor does whether you identify as a woman or a man or trans or non-binary; neither does your sexual orientation. There are legacies of exclusion and discrimination against people due to these identities. We will not continue to propagate those legacies and instead will work to controvert those discriminations to build a diverse community of learning in line with the University's \href{https://diversity.berkeley.edu/principles-community}{Principles of Community}.
 \end{itemize}
 
-\hypertarget{student-introductions-breakout-one}{%
-\section{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one}}
+\section{Student Introductions {[}Breakout One{]}}\label{student-introductions-breakout-one}
 
 In a breakout room of between three and four students introduce yourself!
 
@@ -375,8 +344,7 @@ In a breakout room of between three and four students introduce yourself!
 
 Please share: \emph{What is your name story?}
 
-\hypertarget{student-introductions-breakout-two}{%
-\section{Student Introductions {[}Breakout Two{]}}\label{student-introductions-breakout-two}}
+\section{Student Introductions {[}Breakout Two{]}}\label{student-introductions-breakout-two}
 
 In the same breakout room:
 
@@ -385,8 +353,7 @@ Like our names, the reasons that we joined this program, our goals and our histo
 
 Please share: \emph{What is your data science story? How did you wind up here, in this room today?}
 
-\hypertarget{probability-theory}{%
-\section{Probability Theory}\label{probability-theory}}
+\section{Probability Theory}\label{probability-theory}
 
 \textbf{Probability}
 
@@ -394,7 +361,7 @@ Probability is a system of reasoning that we use to model the world under incomp
 
 \begin{figure}
 \centering
-\includegraphics{./images/picard.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/picard.jpg}}
 \caption{told you this would be spacey}
 \end{figure}
 
@@ -416,8 +383,7 @@ In the way that we are approaching this course, we hope that you're able to lear
 
 The second additional aim that we have for this course is that it can serve as either an introduction or a re-introduction to reading and making arguments using the language of math. For some, this will be a new language; for others, it may have been some years since they have worked with the language; for some, this will feel quite familiar. New algorithms and data science model advancements \emph{nearly always} developed in the math first, and then applied into algorithms second. In our view, being a literate reader of graduate- and professional-level math is a necessary skill for any data scientist that is going to keep astride of the field as it continues to develop and these first weeks of the course are designed to bring everyone back into reading and reasoning in the language.
 
-\hypertarget{axiomatic-probability}{%
-\section{Axiomatic Probability}\label{axiomatic-probability}}
+\section{Axiomatic Probability}\label{axiomatic-probability}
 
 The book makes a point of defining our axioms of probability, calling them them
 
@@ -451,8 +417,7 @@ Second, and importantly, from these axioms there are a \emph{very large} set of 
 
 In many ways, these axioms are the fundamental particles that hold our system of probabilistic reasoning together. These are to probability what the \emph{fermions} and and \emph{bosons} are to physics.
 
-\hypertarget{definition-vs.-theorem}{%
-\section{Definition vs.~Theorem}\label{definition-vs.-theorem}}
+\section{Definition vs.~Theorem}\label{definition-vs.-theorem}
 
 What is the difference between a definition and a theorem? On pages 10 and 11 of the textbook, there is a rapid fire collection of pink boxes. We reproduce them here (notice that they may have different index numbers than the book -- this live session book autoindexes and we're not including every theorem and definition in this live session discussion guide).
 
@@ -478,8 +443,7 @@ What is the difference between a definition and a theorem? On pages 10 and 11 of
   Can one get to \emph{Baye's Rule} wihtout using the \emph{Multiplicative Law of Probability}?
 \end{itemize}
 
-\hypertarget{working-with-a-sample-space}{%
-\section{Working with a Sample Space}\label{working-with-a-sample-space}}
+\section{Working with a Sample Space}\label{working-with-a-sample-space}
 
 As a way to begin lets define terms that we will use for the next activities.
 
@@ -495,8 +459,7 @@ As a way to begin lets define terms that we will use for the next activities.
   How are sample spaces, and event spaces related?
 \end{itemize}
 
-\hypertarget{working-with-a-sample-space-part-i}{%
-\subsection{Working with a Sample Space, Part I}\label{working-with-a-sample-space-part-i}}
+\subsection{Working with a Sample Space, Part I}\label{working-with-a-sample-space-part-i}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -520,8 +483,7 @@ As a way to begin lets define terms that we will use for the next activities.
 
 \vspace{5cm}
 
-\hypertarget{working-with-a-sample-space-part-ii}{%
-\subsection{Working with a Sample Space, Part II}\label{working-with-a-sample-space-part-ii}}
+\subsection{Working with a Sample Space, Part II}\label{working-with-a-sample-space-part-ii}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -546,8 +508,7 @@ As a way to begin lets define terms that we will use for the next activities.
 
 \vspace{5cm}
 
-\hypertarget{independence}{%
-\section{Independence}\label{independence}}
+\section{Independence}\label{independence}
 
 The book provides a (characteristically) terse statement of what it means for two events to be independent of one another.
 
@@ -578,31 +539,41 @@ Try using this idea of independent in two places:
   If two events, \(A\) and \(B\) are independent, then what happens if you work through a statement of conditional probability, \(P(A|B)\)?
 \end{enumerate}
 
-\hypertarget{a-practice-problem}{%
-\section{A practice problem}\label{a-practice-problem}}
+\section{A practice problem}\label{a-practice-problem}
 
 The last task for us to complete today is working through a practice problem on the course practice problem website. Please, click the link below, and follow us over to the the course's practice problem website.
 
 \href{https://mids-w203.github.io/practice_problems/}{link here}
 
-\hypertarget{student-tasks-to-complete}{%
-\section{Student Tasks to Complete}\label{student-tasks-to-complete}}
+\section{Student Tasks to Complete}\label{student-tasks-to-complete}
 
 Before next live session, please complete the homework that builds on this unit. There are two parts, an \emph{applied} and a \emph{proof} part. You can submit these homework as many times as you like before the due date (you will not receive feedback), and you can access this homework through bCourses.
 
 The \emph{applied} homework will be marked either \texttt{Correct} or \texttt{Incorrect} without partial credit applied. These are meant to be problems that you solve, and that have a single straightforward solution concept. The \emph{proof} homework will be marked for partial credit (out of three points) that evaluates your argument for your solution concept.
 
-\hypertarget{defining-random-variables}{%
-\chapter{Defining Random Variables}\label{defining-random-variables}}
+\chapter{Defining Random Variables}\label{defining-random-variables}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.3     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.4     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.0
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------------------ tidyverse_conflicts() --
+## x purrr::%||%()   masks base::%||%()
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
 
 \begin{figure}
 \centering
-\includegraphics{./images/yosemite.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/yosemite.jpg}}
 \caption{yosemite valley}
 \end{figure}
 
-\hypertarget{learning-objectives-1}{%
-\section{Learning Objectives}\label{learning-objectives-1}}
+\section{Learning Objectives}\label{learning-objectives-1}
 
 At the end of this week's course of study (which includes the async, sync, and homework) students should be able to
 
@@ -619,8 +590,7 @@ At the end of this week's course of study (which includes the async, sync, and h
 
 This week's materials are theoretical tooling to build toward one of the first notable results of the course, \textbf{conditional probability}. This is the idea that, if we know that one event has occurred, we can make a conditional statement about the probability distribution for another, dependent distribution.
 
-\hypertarget{introduction-to-the-materirals}{%
-\section{Introduction to the Materirals}\label{introduction-to-the-materirals}}
+\section{Introduction to the Materirals}\label{introduction-to-the-materirals}
 
 From the axioms of probability, it is possible to build a whole, expressive modeling system (that need not be grounded \textbf{at all} in the minutia of the world). With this probability model in place, we can describe how frequently events in the random variable will occur. When variable are dependent upon each other, we can utilize information that is encoded in this dependence in order to make predictions that are \emph{closer to the truth} than predictions made without this information.
 
@@ -630,11 +600,9 @@ The \textbf{beauty} is that by reasoning with such general objects -- the defini
 
 The \textbf{tragedy} is that in the ``real world'', the world where we are going to eventually going to train and deploy our models, we are never provided with this joint density function. Perhaps this is the creation myth for probability theory: in a perfect world, we can produce a perfect result. But, in the ``fallen'' world of data, we will only be able to produce approximations.
 
-\hypertarget{class-announcements}{%
-\section{Class Announcements}\label{class-announcements}}
+\section{Class Announcements}\label{class-announcements}
 
-\hypertarget{homework}{%
-\subsection*{Homework}\label{homework}}
+\subsection*{Homework}\label{homework}
 \addcontentsline{toc}{subsection}{Homework}
 
 \begin{enumerate}
@@ -646,14 +614,12 @@ The \textbf{tragedy} is that in the ``real world'', the world where we are going
   You can start working on your second homework when we are out of this class.
 \end{enumerate}
 
-\hypertarget{study-groups}{%
-\subsection*{Study Groups}\label{study-groups}}
+\subsection*{Study Groups}\label{study-groups}
 \addcontentsline{toc}{subsection}{Study Groups}
 
 It is a \textbf{very} good idea for you to create a recurring time to work with a set of your classmates. Working together will help you solve questions more effectively, quickly, and will also help you to learn how to communicate what you do and do not understand about a problem to a group of collaborating data scientists. And, working together with a group will help you to find people who share data science interests with you.
 
-\hypertarget{course-resources}{%
-\subsection*{Course Resources}\label{course-resources}}
+\subsection*{Course Resources}\label{course-resources}
 \addcontentsline{toc}{subsection}{Course Resources}
 
 There are several resources to support your learning. A learning object last week was that you would be introduced to each of these systems. Please continue to make sure that you have access to the:
@@ -666,11 +632,9 @@ There are several resources to support your learning. A learning object last wee
   \href{https://www.bcourses.berkeley.edu}{Course LMS Page}
 \end{itemize}
 
-\hypertarget{using-definitions-of-random-variables}{%
-\section{Using Definitions of Random Variables}\label{using-definitions-of-random-variables}}
+\section{Using Definitions of Random Variables}\label{using-definitions-of-random-variables}
 
-\hypertarget{random-varaible}{%
-\subsection{Random Varaible}\label{random-varaible}}
+\subsection{Random Varaible}\label{random-varaible}
 
 What is a random variable? Does this definition help you?
 
@@ -698,8 +662,7 @@ The goal of writing with math symbols like this is to be \emph{absolutely} clear
   \end{itemize}
 \end{itemize}
 
-\hypertarget{pieces-of-a-random-variable}{%
-\section{Pieces of a Random Variable}\label{pieces-of-a-random-variable}}
+\section{Pieces of a Random Variable}\label{pieces-of-a-random-variable}
 
 \begin{definition}[Random Variable, Suite]
 A random variable is a function \(X : \Omega \rightarrow \mathbb{R},\) such that \(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\).
@@ -731,8 +694,7 @@ Suppose that a random variable is simple and discrete. For concreteness, you cou
   How would you go about determining the probability mass function for this random variable?
 \end{enumerate}
 
-\hypertarget{functions-of-functions}{%
-\subsection{Functions of Functions}\label{functions-of-functions}}
+\subsection{Functions of Functions}\label{functions-of-functions}
 
 Why do we say that random variables are functions? Is there some useful property of these being functions rather than any other quantity? What else \emph{could} they be if not a function?
 
@@ -775,8 +737,7 @@ However, suppose that rather than having good clean indicators for whether a pix
 
 \end{example}
 
-\hypertarget{probability-density-functions-and-cumulative-distribution-functions}{%
-\subsection{Probability Density Functions and Cumulative Distribution Functions}\label{probability-density-functions-and-cumulative-distribution-functions}}
+\subsection{Probability Density Functions and Cumulative Distribution Functions}\label{probability-density-functions-and-cumulative-distribution-functions}
 
 \begin{itemize}
 \tightlist
@@ -813,8 +774,7 @@ Finally, campus provides you with the safety reports from last year, and reports
 
 \end{example}
 
-\hypertarget{discrete-continuous-random-variables}{%
-\section{Discrete \& Continuous Random Variables}\label{discrete-continuous-random-variables}}
+\section{Discrete \& Continuous Random Variables}\label{discrete-continuous-random-variables}
 
 What, if anything is fundamentally different between discrete and continuous random variables? As a way of starting the conversation, consider the following cases:
 
@@ -844,8 +804,7 @@ What, if anything is fundamentally different between discrete and continuous ran
   \end{itemize}
 \end{itemize}
 
-\hypertarget{moving-between-pdf-and-cdf}{%
-\section{Moving Between PDF and CDF}\label{moving-between-pdf-and-cdf}}
+\section{Moving Between PDF and CDF}\label{moving-between-pdf-and-cdf}
 
 The book defines \emph{pmf} and \emph{cmf} first as a way of developing intuition and a way of reasoning about these concepts. It then moves to defining continuous density functions, which is many ways are easier to work with although they lack the means of reasoning about them intuitively. Continuous distributions are defined in the book, and more generally, in terms of the \emph{cdf}, which is the cumulative distribution function. There are technical reasons for this choice of definition, some of which are signed in the footnotes on the page where the book presents it.
 
@@ -888,8 +847,7 @@ Suppose that you learn than a particular random variable, \(X\) has the followin
 
 \end{example}
 
-\hypertarget{joint-density}{%
-\section{Joint Density}\label{joint-density}}
+\section{Joint Density}\label{joint-density}
 
 Working with a single random variable helps to develop our understanding of how to relate the different features of a \emph{pdf} and a \emph{cdf} through differentiation and integration. However, there's not really \emph{that} much else that we can do; and, there is probably very little in our professional worlds that would look like a single random variable in isolation.
 
@@ -897,8 +855,7 @@ We really start to get to something useful when we consider joint density functi
 
 In this course, we might typically write this joint density function as \(f_{X,Y}(x,y) = f(\cdot)\) where \(f(\cdot)\) is the actual function that represents the joint probability. The \(f(\cdot)\) means, essentially, ``some function'' where we just have not designated the specifics of the function; you might think of this as a generic function.
 
-\hypertarget{example-uniform-joint-density}{%
-\subsection{Example: Uniform Joint Density}\label{example-uniform-joint-density}}
+\subsection{Example: Uniform Joint Density}\label{example-uniform-joint-density}
 
 Suppose that we know that two variables, \(X\) and \(Y\) are jointly uniformly distributed within the the \emph{support} \(x \in [0,4], y \in [0,4]\). We have a requirement, imposed by the \emph{Kolmogorov Axioms} that all probabilities must be non-zero, and that the total probability across the whole support must be one.
 
@@ -924,8 +881,7 @@ Suppose that we know that two variables, \(X\) and \(Y\) are jointly uniformly d
   \end{itemize}
 \end{itemize}
 
-\hypertarget{examples-thinking-through-many-plots}{%
-\subsection{Examples: Thinking Through Many Plots}\label{examples-thinking-through-many-plots}}
+\subsection{Examples: Thinking Through Many Plots}\label{examples-thinking-through-many-plots}
 
 An alumni of the MIDS program, and a former instructor of this course, \href{https://www.linkedin.com/in/dtoddyoung/}{Todd Young} built this nifty tool that lets us consider several different joint probability functions.
 
@@ -937,8 +893,7 @@ As a class, lets consider a few of these PDFs, beginning with this ``triangle'' 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{triangle-math}{%
-\subsection{Triangle Math}\label{triangle-math}}
+\subsection{Triangle Math}\label{triangle-math}
 
 After considering the intuition for the triangle distribution, do the following: Write down the function that accords with the figure that you're seeing above.\footnote{Notice, that in general, this kind of \emph{curve fitting} isn't really a common data science task. Instead, this is just a learning task that lets the class assess their understanding of the definitions of random variables.}
 
@@ -956,8 +911,7 @@ After considering the intuition for the triangle distribution, do the following:
   What is the CDF of \(X\), \(F_{X}(x)\)?
 \end{itemize}
 
-\hypertarget{saddle-sores}{%
-\subsection{Saddle Sores}\label{saddle-sores}}
+\subsection{Saddle Sores}\label{saddle-sores}
 
 Suppose that you know that two random variables, \(X\) and \(Y\) are jointly distributed with the following \emph{pdf}:
 
@@ -991,8 +945,7 @@ This joint pdf is similar to the pdf that you can visualize above, under the dis
   \end{itemize}
 \end{itemize}
 
-\hypertarget{computing-different-distributions.}{%
-\section{Computing Different Distributions.}\label{computing-different-distributions.}}
+\section{Computing Different Distributions.}\label{computing-different-distributions.}
 
 Suppose that random variables \(X\) and \(Y\) are jointly continuous, with joint density function given by,
 
@@ -1019,8 +972,7 @@ where \(c\) is a constant.
   Compute the conditional density function for \(Y\), conditional on \(X=x\). (Be sure to specify for what values of \(x\) this is defined)
 \end{enumerate}
 
-\hypertarget{conditional-probability}{%
-\section{Conditional Probability}\label{conditional-probability}}
+\section{Conditional Probability}\label{conditional-probability}
 
 Conditional probability is \textbf{incredible}. In fact, without exaggeration, almost \textbf{all} of data science is an exercise in making statements about conditional probability distributions. \emph{Don't believe us?}
 
@@ -1038,15 +990,13 @@ Conditional probability is \textbf{incredible}. In fact, without exaggeration, a
 
 Using the distribution above, produce a statement of conditional probability, \(f_{Y|X}(y|x)\).
 
-\hypertarget{visualizing-distributions-via-simulation}{%
-\section{Visualizing Distributions Via Simulation}\label{visualizing-distributions-via-simulation}}
+\section{Visualizing Distributions Via Simulation}\label{visualizing-distributions-via-simulation}
 
 To this point in the course, we have focused on concepts in ``the population'' with no reference to samples. This is on purpose! We want to develop the theory that defines the \textbf{best possible} predictor if we knew \textbf{everything} (if we know formula of the function that maps from \(\omega \rightarrow \mathbb{R}\), and we know the probability of each \(\omega \in \Omega\) then we know everything). Beginning in week 5 of the course, we will talk about ``approximating'' (which we will call estimating) this best possible predictor with a limited sample of data.
 
 However, at this point, to help build your working understanding, or intuition, for what is happening, we are going to work on a way to \emph{simulate} draws from a population. In some places, people might refer to these as \emph{Monte Carlo} methods -- this is because the method was developed by von Neumann \& Ulam during World War II, and they needed a way to talk about it using a code name. They chose \emph{Monte Carlo} after a famous casino in Monaco.
 
-\hypertarget{example-the-uniform-distribution}{%
-\subsection{Example: The Uniform Distribution}\label{example-the-uniform-distribution}}
+\subsection{Example: The Uniform Distribution}\label{example-the-uniform-distribution}
 
 \begin{quote}
 You: ``Gosh. There sure are a lot of examples that use the uniform distribution. That must be a really important statistical distribution.''
@@ -1092,9 +1042,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3.364324 1.475805 2.606021 1.391679 1.306617 2.791750 2.589989 2.884854
-##  [9] 2.883895 1.299344 1.666103 2.767430 1.210614 1.731251 1.955217 2.548318
-## [17] 3.625166 4.060489 2.379518 2.230303
+##  [1] 2.348914 1.330618 3.237766 2.601114 2.572662 3.472285 3.044980 1.764262
+##  [9] 3.651572 1.184387 2.567567 4.127483 2.367027 1.222441 3.648449 1.302789
+## [17] 2.939004 1.992432 1.217852 2.304866
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1124,7 +1074,7 @@ With this object created, we can plot a density of the data and then learn from 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot uniform samples-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot uniform samples-1.pdf}}
 
 Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we're using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are \emph{very} explicit about the code that creates them.
 
@@ -1152,10 +1102,9 @@ Interesting. From what we can see here, there does not appear to be any discerni
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot uniform distributions-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot uniform distributions-1.pdf}}
 
-\hypertarget{example-the-normal-distribution}{%
-\subsection{Example: The Normal Distribution}\label{example-the-normal-distribution}}
+\subsection{Example: The Normal Distribution}\label{example-the-normal-distribution}
 
 Folks might have some prior beliefs about the Normal distribution. Don't worry, we'll cover this later in the course. But, this is the distribution that you have in mind when you're thinking of a ``bell curve''.
 
@@ -1180,9 +1129,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 18.30852 20.50374 19.29779 19.73275 12.35959 19.23473 11.91159 25.21434
-##  [9] 26.36888 23.71131 15.36111 15.06384 16.55203 17.20036 19.65222 16.72306
-## [17] 17.06671 24.99154 25.31345 21.58895
+##  [1] 11.02089 11.08026 18.20869 14.76926 11.43253 15.08656 15.43093 21.06176
+##  [9] 15.01055 19.86403 18.18031 17.39067  9.91332 17.40641 11.74591 18.12543
+## [17] 14.16544 27.54657 16.17258 14.82605
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -1196,10 +1145,9 @@ And, from here we could visualize this distribution.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot normal-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot normal-1.pdf}}
 
-\hypertarget{combining-this-ability}{%
-\subsubsection{Combining This Ability}\label{combining-this-ability}}
+\subsubsection{Combining This Ability}\label{combining-this-ability}
 
 Consider three random variables \(A, B, C\). Suppose,
 
@@ -1243,10 +1191,9 @@ Although this is a simple function applied to a random variable -- a legal move 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot C-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot C-1.pdf}}
 
-\hypertarget{review-of-terms}{%
-\section{Review of Terms}\label{review-of-terms}}
+\section{Review of Terms}\label{review-of-terms}
 
 Remember some of the key terms we learned in the async:
 
@@ -1262,12 +1209,11 @@ Remember some of the key terms we learned in the async:
 
 Explain each of these three in terms of the cake metaphor.
 
-\hypertarget{summarizing-distributions}{%
-\chapter{Summarizing Distributions}\label{summarizing-distributions}}
+\chapter{Summarizing Distributions}\label{summarizing-distributions}
 
 \begin{figure}
 \centering
-\includegraphics{./images/yosemite.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/yosemite.jpg}}
 \caption{a majestic valley}
 \end{figure}
 
@@ -1304,8 +1250,7 @@ After developing the concepts of \emph{expectation} and \emph{variance} (which a
 
 We ground these summaries in the \textbf{Mean Squared Error} evaluative metric, as well as justifying this metric.
 
-\hypertarget{learning-objectives-2}{%
-\section{Learning Objectives}\label{learning-objectives-2}}
+\section{Learning Objectives}\label{learning-objectives-2}
 
 At the end of the live session and homework this week, students will be able to:
 
@@ -1324,13 +1269,11 @@ At the end of the live session and homework this week, students will be able to:
   \textbf{Produce} summaries of location and relationship given a particular functional form for a random variable.
 \end{enumerate}
 
-\hypertarget{class-announcements-1}{%
-\section{Class Announcements}\label{class-announcements-1}}
+\section{Class Announcements}\label{class-announcements-1}
 
 Where have we come from, and where are we going?
 
-\hypertarget{what-is-in-the-rearview-mirror}{%
-\subsection{What is in the rearview mirror?}\label{what-is-in-the-rearview-mirror}}
+\subsection{What is in the rearview mirror?}\label{what-is-in-the-rearview-mirror}
 
 \begin{itemize}
 \tightlist
@@ -1362,8 +1305,7 @@ Where have we come from, and where are we going?
   \end{itemize}
 \end{itemize}
 
-\hypertarget{todays-lesson}{%
-\subsection{Today's Lesson}\label{todays-lesson}}
+\subsection{Today's Lesson}\label{todays-lesson}
 
 What might seem frustrating about this probability theory system of reasoning is that we are building a castle in the sky -- a fiction. We're supposing that there is some function that describes the probability that values are generated. In reality, there is no such generative function; it is \emph{extremely unlikely} (though we'll acknowledge that it is possible) that the physical reality we believe we exist within is just a complex simulation that has been programmed with functions by some unknown designer.
 
@@ -1373,8 +1315,7 @@ Especially frustrating is that we're supposing this function, and then we're fur
 ``If only we had this impossible function; and if only we also had the ability to take an impossible derivative of this impossible function, then we could\ldots{}''
 \end{quote}
 
-\hypertarget{single-number-summaries-of-a-single-random-variable}{%
-\subsubsection{Single number summaries of a single random variable}\label{single-number-summaries-of-a-single-random-variable}}
+\subsubsection{Single number summaries of a single random variable}\label{single-number-summaries-of-a-single-random-variable}
 
 But, here's the upshot!
 
@@ -1382,13 +1323,11 @@ But, here's the upshot!
 
 In particular, in one specific usage of the term \emph{best} we will prove that the Expectation operation is the best one-number summary of any distribution. To do so, we will define a term, \emph{variance}, which is the squared deviations from the expectation of a variable that describes how ``spread out'' is a variable. Then, we will define a concept that is the \emph{mean squared error} that is the square of the distance between a model prediction and a random variable's realization. The key realization is that when the model predicts the expectation, then the MSE is equal to the variance of the random variable, which is the smallest possible value it could realize.
 
-\hypertarget{single-number-summaries-of-relationships-between-random-variables}{%
-\subsubsection{Single number summaries of relationships between random variables}\label{single-number-summaries-of-relationships-between-random-variables}}
+\subsubsection{Single number summaries of relationships between random variables}\label{single-number-summaries-of-relationships-between-random-variables}
 
 Although the single number summaries are \textbf{incredibly} powerful, that's not enough for today's lesson! We're also going to suggest that we can create a measure of linear dependence between two variables that we call the ``covariance'', and a related, re-scaled version of this relationship that is called the correlation.
 
-\hypertarget{future-attractions}{%
-\subsection{Future Attractions}\label{future-attractions}}
+\subsection{Future Attractions}\label{future-attractions}
 
 \begin{itemize}
 \tightlist
@@ -1400,8 +1339,37 @@ Although the single number summaries are \textbf{incredibly} powerful, that's no
   This is a basis for linear regression
 \end{itemize}
 
-\hypertarget{discussion-of-terms}{%
-\section{Discussion of Terms}\label{discussion-of-terms}}
+\section{Discussion of Terms}\label{discussion-of-terms}
+
+\subsection{Expected Value}\label{expected-value}
+
+We define the expected value to be the following for a continuous random variable:
+
+\begin{definition}
+\leavevmode
+
+\section{Expected Value}\label{expected-value-1}
+
+For a continuous random variable \(X\) with PDF \(f\), the \emph{expected value} of \(X\), written \(E[X]\) is
+
+\[
+E[X] = \int_{-\infty}^{\infty}xf_{X}(x) dx
+\]
+
+\end{definition}
+
+Oh, ok. If you say so. (We do\ldots).
+
+There are two really important things to grasp here:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What does this mean about a particular PDF?
+\item
+  What is the justification for this \emph{particualar} definition?
+\end{enumerate}
 
 With your instructor, talk about what each of the following definitions mean in your own words. For key concepts, you might also formalize this intuition into a formula that can be computed.
 
@@ -1419,11 +1387,9 @@ With your instructor, talk about what each of the following definitions mean in 
   Covariance and Correlation
 \end{itemize}
 
-\hypertarget{computing-examples}{%
-\section{Computing Examples}\label{computing-examples}}
+\section{Computing Examples}\label{computing-examples}
 
-\hypertarget{expected-value-of-education-discrete-random-variable}{%
-\subsection{Expected Value of Education {[}discrete random variable{]}}\label{expected-value-of-education-discrete-random-variable}}
+\subsection{Expected Value of Education {[}discrete random variable{]}}\label{expected-value-of-education-discrete-random-variable}
 
 \begin{itemize}
 \tightlist
@@ -1435,7 +1401,7 @@ With your instructor, talk about what each of the following definitions mean in 
   You can then think of
 \end{itemize}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-5-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-5-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -1443,8 +1409,7 @@ With your instructor, talk about what each of the following definitions mean in 
   Without using specific numbers, describe the process you would use to calculate the expected value of this distribution.
 \end{itemize}
 
-\hypertarget{using-a-formula}{%
-\subsection{Using a formula}\label{using-a-formula}}
+\subsection{Using a formula}\label{using-a-formula}
 
 \begin{itemize}
 \tightlist
@@ -1459,11 +1424,9 @@ With your instructor, talk about what each of the following definitions mean in 
   \end{aligned}
 \]
 
-\hypertarget{computing-by-hand}{%
-\section{Computing by Hand}\label{computing-by-hand}}
+\section{Computing by Hand}\label{computing-by-hand}
 
-\hypertarget{compute-the-expected-value}{%
-\subsection{Compute the Expected Value}\label{compute-the-expected-value}}
+\subsection{Compute the Expected Value}\label{compute-the-expected-value}
 
 Let \(X\) represent the result of one roll of a 6 sided die where the events \(\omega \in \Omega\) are mapped using a straightforward function: \(X(\omega):\) is a function that counts the number of spots that are showing, and maps the number of dots to the corresponding integer, \(\mathbb{Z}\).
 
@@ -1483,8 +1446,7 @@ Let \(X\) represent the result of one roll of a 6 sided die where the events \(\
 
 \vspace{20cm}
 
-\hypertarget{playing-a-gnome-game-part-1}{%
-\subsection{Playing a Gnome Game, Part 1}\label{playing-a-gnome-game-part-1}}
+\subsection{Playing a Gnome Game, Part 1}\label{playing-a-gnome-game-part-1}
 
 \begin{itemize}
 \tightlist
@@ -1518,8 +1480,7 @@ Fill this in by hand.
 
 \vspace{20cm}
 
-\hypertarget{compute-the-variance}{%
-\subsection{Compute the Variance}\label{compute-the-variance}}
+\subsection{Compute the Variance}\label{compute-the-variance}
 
 Let \(X\) represent the result of one roll of a 6 sided die.
 
@@ -1537,8 +1498,7 @@ Let \(X\) represent the result of one roll of a 6 sided die.
 
 \vspace{20cm}
 
-\hypertarget{playing-a-gnome-game-part-2}{%
-\subsection{Playing a Gnome Game, Part 2}\label{playing-a-gnome-game-part-2}}
+\subsection{Playing a Gnome Game, Part 2}\label{playing-a-gnome-game-part-2}
 
 \begin{itemize}
 \tightlist
@@ -1554,11 +1514,9 @@ Let \(X\) represent the result of one roll of a 6 sided die.
 
 \vspace{20cm}
 
-\hypertarget{expected-value-by-code}{%
-\section{Expected Value by Code}\label{expected-value-by-code}}
+\section{Expected Value by Code}\label{expected-value-by-code}
 
-\hypertarget{expected-value-of-a-six-sided-die}{%
-\subsection{Expected Value of a Six-Sided Die}\label{expected-value-of-a-six-sided-die}}
+\subsection{Expected Value of a Six-Sided Die}\label{expected-value-of-a-six-sided-die}
 
 Let \(X\) represent the result of one roll of a 6 sided die.
 
@@ -1581,8 +1539,7 @@ Let \(X\) represent the result of one roll of a 6 sided die.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{variance-of-a-six-sided-die}{%
-\subsection{Variance of a Six-Sided Die}\label{variance-of-a-six-sided-die}}
+\subsection{Variance of a Six-Sided Die}\label{variance-of-a-six-sided-die}
 
 Let \(X\) represent the result of one roll of a 6 sided die. Using what you know about the definition of variance, write a function that will compute the variance of your \texttt{die} object.
 
@@ -1626,11 +1583,9 @@ Now suppose that you again had an equal probability of every outcome, but you we
   How would this change the variance?
 \end{itemize}
 
-\hypertarget{practice-computing}{%
-\section{Practice Computing}\label{practice-computing}}
+\section{Practice Computing}\label{practice-computing}
 
-\hypertarget{single-variable}{%
-\subsection{Single Variable}\label{single-variable}}
+\subsection{Single Variable}\label{single-variable}
 
 Suppose that \(X\) has the following density function:
 
@@ -1651,11 +1606,9 @@ Suppose that \(X\) has the following density function:
   Find \(V[X]\).
 \end{itemize}
 
-\hypertarget{joint-density-1}{%
-\subsection{Joint Density}\label{joint-density-1}}
+\subsection{Joint Density}\label{joint-density-1}
 
-\hypertarget{whats-the-covariance-meow-discrete}{%
-\subsubsection{What's the covariance, meow? {[}discrete{]}}\label{whats-the-covariance-meow-discrete}}
+\subsubsection{What's the covariance, meow? {[}discrete{]}}\label{whats-the-covariance-meow-discrete}
 
 In the reading, you saw that we define \textbf{covariance} to be:
 
@@ -1698,8 +1651,7 @@ x=2 & 0.10 & 0.35 \\
   Are X and Y independent? Why or why not?
 \end{enumerate}
 
-\hypertarget{section}{%
-\subsubsection{}\label{section}}
+\subsubsection{}\label{section}
 
 Suppose that \(X\) and \(Y\) have joint density \(f_{X,Y}(x,y) = 10 x^2y, 0 < y \leq x \leq 1.\)
 
@@ -1713,8 +1665,7 @@ Suppose that \(X\) and \(Y\) have joint density \(f_{X,Y}(x,y) = 10 x^2y, 0 < y 
   Find \(\rho[X,Y]\)
 \end{itemize}
 
-\hypertarget{write-code}{%
-\section{Write Code}\label{write-code}}
+\section{Write Code}\label{write-code}
 
 Suppose that you have a random variable with a \textbf{gnarly} probability distribution function:
 
@@ -1754,7 +1705,7 @@ If you had to pick a single value that minimizes the \(MSE\) of this function, w
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-14-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1860,14 +1811,13 @@ If you had to pick a single value that minimizes the \(MSE\) of this function, w
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-18-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-18-1.pdf}}
 
-\hypertarget{conditional-expectation-and-the-blp}{%
-\chapter{Conditional Expectation and The BLP}\label{conditional-expectation-and-the-blp}}
+\chapter{Conditional Expectation and The BLP}\label{conditional-expectation-and-the-blp}
 
 \begin{figure}
 \centering
-\includegraphics{./images/tam-view.jpeg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/tam-view.jpeg}}
 \caption{mt. tamalpais}
 \end{figure}
 
@@ -1885,17 +1835,15 @@ Well, this is one of the core problems of applied data science work: we are neve
 
 Why should we make such a strong restriction? After all, the conditional expectation function might be a fantastically complex combination of input features, why should we entertain functions that are only linear combinations? Essentially, this is because we're limited in our ability to reason about anything more complex than a linear combination.
 
-\hypertarget{thunder-struck}{%
-\section{Thunder Struck}\label{thunder-struck}}
+\section{Thunder Struck}\label{thunder-struck}
 
 \begin{figure}
 \centering
-\includegraphics{./images/conditional_risk.png}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/conditional_risk.png}}
 \caption{thunder struck}
 \end{figure}
 
-\hypertarget{learning-objectives-3}{%
-\section{Learning Objectives}\label{learning-objectives-3}}
+\section{Learning Objectives}\label{learning-objectives-3}
 
 At the end of this weeks learning, which includes the asynchronous lectures, reading the textbook, this live session, and the homework associated with the concepts, student should be able to
 
@@ -1912,19 +1860,15 @@ At the end of this weeks learning, which includes the asynchronous lectures, rea
   \textbf{Appreciate} that the best linear predictor, which is a restriction of predictors to include only those that are linear combinations of variables, can produce reasonable predictions, and \textbf{anticipate} that the BLP forms the target of inquiry for regression.
 \end{enumerate}
 
-\hypertarget{class-announcements-2}{%
-\section{Class Announcements}\label{class-announcements-2}}
+\section{Class Announcements}\label{class-announcements-2}
 
-\hypertarget{test-1-is-releasing-to-you-today.}{%
-\subsection{Test 1 is releasing to you today.}\label{test-1-is-releasing-to-you-today.}}
+\subsection{Test 1 is releasing to you today.}\label{test-1-is-releasing-to-you-today.}
 
 The first test is releasing today. There are review sessions scheduled for this week, practice tests available, and practice problems available. The format for the test is posted in the course discussion channel. In addition to your test, your instructor will describe your responsibilities that are due next week.
 
-\hypertarget{roadmap}{%
-\section{Roadmap}\label{roadmap}}
+\section{Roadmap}\label{roadmap}
 
-\hypertarget{rearview-mirror}{%
-\subsection{Rearview Mirror}\label{rearview-mirror}}
+\subsection{Rearview Mirror}\label{rearview-mirror}
 
 \begin{itemize}
 \tightlist
@@ -1936,8 +1880,7 @@ The first test is releasing today. There are review sessions scheduled for this 
   They also have useful properties -- for example, \(E[X + Y] = E[X] + E[Y]\).
 \end{itemize}
 
-\hypertarget{this-week}{%
-\subsection{This week}\label{this-week}}
+\subsection{This week}\label{this-week}
 
 \begin{itemize}
 \tightlist
@@ -1951,8 +1894,7 @@ The first test is releasing today. There are review sessions scheduled for this 
   The best linear predictor (BLP) summarizes a relationship using a line / linear function.
 \end{itemize}
 
-\hypertarget{coming-attractions}{%
-\subsection{Coming Attractions}\label{coming-attractions}}
+\subsection{Coming Attractions}\label{coming-attractions}
 
 \begin{itemize}
 \tightlist
@@ -1968,11 +1910,9 @@ The first test is releasing today. There are review sessions scheduled for this 
   The target that OLS estimates is exactly the BLP, which we're learning about this week.
 \end{itemize}
 
-\hypertarget{conditional-expectation-function-cef}{%
-\section{Conditional Expectation Function (CEF),}\label{conditional-expectation-function-cef}}
+\section{Conditional Expectation Function (CEF),}\label{conditional-expectation-function-cef}
 
-\hypertarget{part-i}{%
-\subsection{Part I}\label{part-i}}
+\subsection{Part I}\label{part-i}
 
 Think back to remember the definition of the expectation of \(Y\):
 
@@ -1986,8 +1926,7 @@ This week, in the async reading and lectures we added a new concept, the conditi
   E[Y|X=x] =  \int_{-\infty}^\infty y \cdot f_{Y|X}(y|x) dy
 \]
 
-\hypertarget{part-ii}{%
-\subsection{Part II}\label{part-ii}}
+\subsection{Part II}\label{part-ii}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1998,8 +1937,7 @@ This week, in the async reading and lectures we added a new concept, the conditi
   Turning to the content from this week, how, if at all, does the conditional expectation improve on these desirable properties?
 \end{enumerate}
 
-\hypertarget{part-iii}{%
-\subsection{Part III}\label{part-iii}}
+\subsection{Part III}\label{part-iii}
 
 \begin{itemize}
 \item
@@ -2010,8 +1948,7 @@ This week, in the async reading and lectures we added a new concept, the conditi
   What, if anything, is \(E[E[Y|X]]\) a function of?
 \end{itemize}
 
-\hypertarget{computing-the-cef}{%
-\section{Computing the CEF}\label{computing-the-cef}}
+\section{Computing the CEF}\label{computing-the-cef}
 
 \begin{itemize}
 \tightlist
@@ -2029,10 +1966,9 @@ f(x,y) =
 
 What does the joint PDF of this function look like?
 
-\includegraphics{203-live-session_files/figure-latex/create blank plot for pdf-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/create blank plot for pdf-1.pdf}}
 
-\hypertarget{simple-quantities}{%
-\subsection{Simple Quantities}\label{simple-quantities}}
+\subsection{Simple Quantities}\label{simple-quantities}
 
 To begin with, let's compute the simplest quantities:
 
@@ -2046,11 +1982,9 @@ To begin with, let's compute the simplest quantities:
   How would you compute the variance of \(X\)? (We're not going to do it live).
 \end{itemize}
 
-\hypertarget{conditional-quantities}{%
-\subsection{Conditional Quantities}\label{conditional-quantities}}
+\subsection{Conditional Quantities}\label{conditional-quantities}
 
-\hypertarget{conditional-expectaiton}{%
-\subsubsection{Conditional Expectaiton}\label{conditional-expectaiton}}
+\subsubsection{Conditional Expectaiton}\label{conditional-expectaiton}
 
 And then, let's think about how to compute the conditional quantities. To get started, you can use the fact that in week two, we already computed the conditional probability density function:
 
@@ -2077,8 +2011,7 @@ Once you have computed the \(CEF[Y|X]\), use this function to answer the followi
   What is the conditional expectation of \(X\), given that \(Y=y=0.5\)?
 \end{itemize}
 
-\hypertarget{conditional-variance}{%
-\subsubsection{Conditional Variance}\label{conditional-variance}}
+\subsubsection{Conditional Variance}\label{conditional-variance}
 
 \begin{itemize}
 \tightlist
@@ -2104,14 +2037,11 @@ Once you have computed the \(CEF[Y|X]\), use this function to answer the followi
   How does \(V[Y]\) compare to \(V[Y|X=1]\)? Which is larger?
 \end{itemize}
 
-\hypertarget{conditional-expectation}{%
-\subsection{Conditional Expectation}\label{conditional-expectation}}
+\subsection{Conditional Expectation}\label{conditional-expectation}
 
-\hypertarget{minimizing-the-mse}{%
-\section{Minimizing the MSE}\label{minimizing-the-mse}}
+\section{Minimizing the MSE}\label{minimizing-the-mse}
 
-\hypertarget{minimizing-mse}{%
-\subsection{Minimizing MSE}\label{minimizing-mse}}
+\subsection{Minimizing MSE}\label{minimizing-mse}
 
 Theorem 2.2.20 states,
 
@@ -2123,8 +2053,7 @@ Oh yeah? As a breakout group, \emph{ride shotgun} with us as we prove that the c
 
 Specifically, \textbf{you group's task} is to justify every transition from one line to the next using concepts that we have learned in the course: definitions, theorems, calculus, and algebraic operations.
 
-\hypertarget{the-pudding-aka-where-the-proof-is}{%
-\subsection{The pudding (aka: ``Where the proof is'')}\label{the-pudding-aka-where-the-proof-is}}
+\subsection{The pudding (aka: ``Where the proof is'')}\label{the-pudding-aka-where-the-proof-is}
 
 We need to find such function \(g(X): \mathbb{R} \to \mathbb{R}\) that gives the smallest mean squared error.
 
@@ -2174,13 +2103,11 @@ Notice too that we can use the \emph{Law of Iterated Expectations} to do somethi
 
 \(\therefore g(X) = E[Y|X]\) gives the smallest \(E[(Y-g(X))^2]\)
 
-\hypertarget{the-implication}{%
-\subsection{The Implication}\label{the-implication}}
+\subsection{The Implication}\label{the-implication}
 
 If you are choosing some \(g\), you can't do better than \(g(x) = E[Y|X=x]\).
 
-\hypertarget{working-with-the-blp}{%
-\section{Working with the BLP}\label{working-with-the-blp}}
+\section{Working with the BLP}\label{working-with-the-blp}
 
 Why Linear?
 
@@ -2197,10 +2124,9 @@ Why Linear?
   And, many times, linear predictors (which might seem trivially simple) actually do a very good job of producing predictions that are `close' or useful.
 \end{itemize}
 
-\#\#Joint Distribution Practice
+\section{Joint Distribution Practice}\label{joint-distribution-practice}
 
-\hypertarget{professorial-mistakes-discrete-rvs}{%
-\subsection{Professorial Mistakes (Discrete RVs)}\label{professorial-mistakes-discrete-rvs}}
+\subsection{Professorial Mistakes (Discrete RVs)}\label{professorial-mistakes-discrete-rvs}
 
 \begin{itemize}
 \item
@@ -2223,8 +2149,7 @@ Why Linear?
   \end{itemize}
 \end{itemize}
 
-\hypertarget{continuous-blp}{%
-\subsection{Continuous BLP}\label{continuous-blp}}
+\subsection{Continuous BLP}\label{continuous-blp}
 
 \begin{itemize}
 \tightlist
@@ -2242,16 +2167,13 @@ f(x,y) =
 
 Find the \(BLP\) for \(Y\) as a function of \(X\). What, if anything, do you notice about this \(BLP\) and the \(CEF\)?
 
-\begin{verbatim}
-## \vspace{20cm}
-\end{verbatim}
+\vspace{20cm}
 
-\hypertarget{learning-from-random-samples}{%
-\chapter{Learning from Random Samples}\label{learning-from-random-samples}}
+\chapter{Learning from Random Samples}\label{learning-from-random-samples}
 
 \begin{figure}
 \centering
-\includegraphics{./images/south_hall.jpeg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/south_hall.jpeg}}
 \caption{south hall}
 \end{figure}
 
@@ -2273,11 +2195,9 @@ We noted, quickly, that the simple case of only two variables -- an outcome and 
   b_{k} = \frac{\partial g(\mathbf{X})}{\partial X_{k}}. 
 \]
 
-\hypertarget{goals-framework-and-learning-objectives}{%
-\section{Goals, Framework, and Learning Objectives}\label{goals-framework-and-learning-objectives}}
+\section{Goals, Framework, and Learning Objectives}\label{goals-framework-and-learning-objectives}
 
-\hypertarget{class-announcements-3}{%
-\subsection{Class Announcements}\label{class-announcements-3}}
+\subsection{Class Announcements}\label{class-announcements-3}
 
 \begin{itemize}
 \tightlist
@@ -2289,8 +2209,7 @@ We noted, quickly, that the simple case of only two variables -- an outcome and 
   We're going to have a second test in a few weeks. Then we're done testing for the semester \textbf{Yay?}
 \end{itemize}
 
-\hypertarget{learning-objectives-4}{%
-\subsection{Learning Objectives}\label{learning-objectives-4}}
+\subsection{Learning Objectives}\label{learning-objectives-4}
 
 At the end of this week, students will be able to
 
@@ -2309,11 +2228,9 @@ At the end of this week, students will be able to
   \textbf{Distinguish} between the concepts of \{expectation \& sample mean\}, \{variance \& unbiased sample variance estimator, sampling-based variance in the sample mean\}.
 \end{enumerate}
 
-\hypertarget{roadmap-1}{%
-\subsection{Roadmap}\label{roadmap-1}}
+\subsection{Roadmap}\label{roadmap-1}
 
-\hypertarget{where-were-going-coming-attractions}{%
-\subsubsection{Where We're Going -- Coming Attractions}\label{where-were-going-coming-attractions}}
+\subsubsection{Where We're Going -- Coming Attractions}\label{where-were-going-coming-attractions}
 
 \begin{itemize}
 \tightlist
@@ -2327,13 +2244,11 @@ At the end of this week, students will be able to
   Third, we're going combine the frequentist testing framework with OLS estimation to produce a full regression testing framework.
 \end{itemize}
 
-\hypertarget{where-weve-been-random-variables-and-probability-theory}{%
-\subsubsection{Where We've Been -- Random Variables and Probability Theory}\label{where-weve-been-random-variables-and-probability-theory}}
+\subsubsection{Where We've Been -- Random Variables and Probability Theory}\label{where-weve-been-random-variables-and-probability-theory}
 
 Statisticians create a model (also known as the population model) to represent the world. This model exists as joint probability densities that govern the probabilities that any series of events occurs at the same time. This joint probability of outcomes can be summarized and described with lower-dimensional summaries like the expectation, variance, covariance. While the expectation is a summary that contains information on about one marginal distribution (i.e.~the outcome we are interested in) we can produce predictive models that update, or \emph{condition} the expectation based on other random variables. This summary, the \textbf{conditional expectation} is the best possible (measured in terms of minimizing mean squared error) predictor of an outcome. We might simplify this conditional expectation predictor in many ways; the most common is to simplify to the point that the predictor is constrained to be a line or plane. This is known as the Best Linear Predictor.
 
-\hypertarget{where-we-are}{%
-\subsubsection{Where we Are}\label{where-we-are}}
+\subsubsection{Where we Are}\label{where-we-are}
 
 \begin{itemize}
 \tightlist
@@ -2355,11 +2270,9 @@ Statisticians create a model (also known as the population model) to represent t
   \end{itemize}
 \end{itemize}
 
-\hypertarget{key-terms-and-assumptions}{%
-\section{Key Terms and Assumptions}\label{key-terms-and-assumptions}}
+\section{Key Terms and Assumptions}\label{key-terms-and-assumptions}
 
-\hypertarget{iid}{%
-\subsection{IID}\label{iid}}
+\subsection{IID}\label{iid}
 
 We use an abbreviation for the sampling process that under girds our frequentist statistics. That abbreviation, \textbf{IID}, while short, contains two powerful requirements of our data sampling process.
 
@@ -2401,8 +2314,7 @@ Notice that these violations of the IID requirements only arise because our refe
   How, or why, can a change in the reference population make an identical sampling process move from one that we can consider IID to one that we cannot consider IID?
 \end{itemize}
 
-\hypertarget{it-this-iid}{%
-\subsubsection{It this IID?}\label{it-this-iid}}
+\subsubsection{It this IID?}\label{it-this-iid}
 
 For each of the following scenarios, is the IID assumption plausible?
 
@@ -2419,13 +2331,11 @@ For each of the following scenarios, is the IID assumption plausible?
   Measure net exports per GDP for all 195 countries recognized by the UN.
 \end{enumerate}
 
-\hypertarget{estimators}{%
-\section{Estimators}\label{estimators}}
+\section{Estimators}\label{estimators}
 
 In our presentation of this week's materials, we choose to switch the presentation of statistics and estimators, electing to discuss properties that we would like estimators to posses, before we actually introduce any specific estimators.
 
-\hypertarget{three-properties-of-estimators}{%
-\subsection{Three properties of estimators}\label{three-properties-of-estimators}}
+\subsection{Three properties of estimators}\label{three-properties-of-estimators}
 
 What are the three desirable properties of estimators?
 
@@ -2439,8 +2349,7 @@ What are the three desirable properties of estimators?
 
 Is one these properties \emph{more} important than another? If you had to force-rank these properties in terms of their importance, which is the most, and which the least important? Why?
 
-\hypertarget{estimator-property-biased-or-unbiased}{%
-\section{Estimator Property: Biased or Unbiased?}\label{estimator-property-biased-or-unbiased}}
+\section{Estimator Property: Biased or Unbiased?}\label{estimator-property-biased-or-unbiased}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2455,8 +2364,7 @@ Is one these properties \emph{more} important than another? If you had to force-
   Fourth (harder): Define the geometric mean to be \[\left(\prod_{i=1}^{N}x_{i}\right)^{\frac{1}{N}}\]. Prove that the geometric mean is a biased estimator of \(E[X]\).
 \end{enumerate}
 
-\hypertarget{is-it-unbiased-with-data}{%
-\subsection{Is it unbiased, with data?}\label{is-it-unbiased-with-data}}
+\subsection{Is it unbiased, with data?}\label{is-it-unbiased-with-data}
 
 Suppose that you're getting data from the following process:
 
@@ -2538,8 +2446,7 @@ Suppose that you chose to use the same sample average estimator as a means of pr
 
 Is this sample average an unbiased estimator for the population expected value? How do you know?
 
-\hypertarget{estimator-property-consistency}{%
-\section{Estimator Property: Consistency}\label{estimator-property-consistency}}
+\section{Estimator Property: Consistency}\label{estimator-property-consistency}
 
 \emph{Foundations} makes another of their jokes when they write, on page 105,
 
@@ -2578,8 +2485,7 @@ What is the sampling variance of the sample average?
 
 Using the statement that you have just produced, would you say that the sample average is a consistent estimator for the population expectation of a random variable?
 
-\hypertarget{understanding-sampling-distributions}{%
-\section{Understanding Sampling Distributions}\label{understanding-sampling-distributions}}
+\section{Understanding Sampling Distributions}\label{understanding-sampling-distributions}
 
 How do sampling distributions change as we add data to them? This is going to both motivate convergence, and also play forward into the Central Limit Theorem.
 Let's work through an example that begins with a case that we can think through and draw ourselves. Once we feel pretty good about the \emph{very} small sample, then we will rely on R to do the work when we expand the example beyond what we can draw ourselves.
@@ -2596,7 +2502,7 @@ Suppose that \(X\) is a Bernoulli random variable representing an unfair coin. S
   On the axes below, draw the probability distribution of \(\overline X = \frac{X_1+X_2}{2}\).
 \end{itemize}
 
-\includegraphics{203-live-session_files/figure-latex/make axes-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/make axes-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -2671,7 +2577,7 @@ We are going to write a function that, essentially, just wraps a built-in functi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/toss coins and plot-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/toss coins and plot-1.pdf}}
 
 In the plot that you have drawn above, pick some value, \(\epsilon\) that is the distance away from the true expected value of this distribution.
 
@@ -2680,15 +2586,14 @@ In the plot that you have drawn above, pick some value, \(\epsilon\) that is the
 \item
   What proportion of the sampling distribution is further away than \(E[X] \pm \epsilon\)?
 \item
-  When we toss the coin only two times, we can quickly draw out the distribution of \(\overline{X}\), and can form a statement about the \(P(E[X] - \epsilon \leq \overline{X} \leq E[X] + \epsilon)\).
+  When we toss the coin only two times, we can quickly draw out the distribution of \(\overline{X}\), and can form a statement about the \(P(E[X] - \epsilon \leq  \overline{X} \leq E[X] + \epsilon)\).
 \item
   What if we toss the coin ten times? We can still use the IID nature of the coin to figure out the \emph{true} \(P(\overline{X} = 0), P(\overline{X} = 1), \dots, P(\overline{X} = 10)\), but it is going to start to take some time. This is where we rely on the simulation to start speeding up our learning.
 \item
   As we toss more and more coins, \(\overline X_{(100)} \rightarrow \overline X_{(10000)}\) what will the value of \(\overline X\) get closer to? What law generates this, and why does this law generate this result?
 \end{itemize}
 
-\hypertarget{write-code-to-demo-the-central-limit-theorem-clt}{%
-\section{Write Code to Demo the Central Limit Theorem (CLT)}\label{write-code-to-demo-the-central-limit-theorem-clt}}
+\section{Write Code to Demo the Central Limit Theorem (CLT)}\label{write-code-to-demo-the-central-limit-theorem-clt}
 
 When you were reading for this week, did you sense the palpable \emph{joy} of the authors when they were writing about the central limit theorem?
 
@@ -2702,8 +2607,7 @@ On its own, the result that \emph{across a broad range of generative functions t
 
 However, there is a \textbf{very} useful consequence of this convergence in distribution that we will explore in detail over the coming two weeks: because \emph{so many} distributions produce sample averages that converge in distribution to a normal distribution, we can put together a testing framework for sample averages that works for an \emph{agnostic} set of random variables. Wait for that next week, but know that there's a reason that we're as excited about this statement as we are.
 
-\hypertarget{part-1}{%
-\subsection{Part 1}\label{part-1}}
+\subsection{Part 1}\label{part-1}
 
 To begin with, we will use fair coins that have an equal probability landing heads and tails.
 
@@ -2732,15 +2636,13 @@ The sample mean is a random variable -- it is a function that maps from a random
 
 If you replicate the simulation with \textbf{ten} coins enough times, will the distribution ever look normal? Why or why not?
 
-\hypertarget{part-2}{%
-\subsection{Part 2}\label{part-2}}
+\subsection{Part 2}\label{part-2}
 
 For this part, we'll continue to study a fair coin.
 
 What happens if you change the number of coins that you're tossing? Here, set \texttt{number\_of\_simulations=1000}, and examine what happens if you alter the number of coins that you're tossing? Is there a point where this distribution starts to ``look normal'' to you? (Later in the semester, we'll formalize a test for this ``looks normal'' concept).
 
-\hypertarget{part-3}{%
-\subsection{Part 3}\label{part-3}}
+\subsection{Part 3}\label{part-3}
 
 What would happen if the coin was very, very unfair? For this part, study a coin that has a \texttt{prob\_heads=0.01}. This is an example of a highly skewed random variable.
 
@@ -2748,8 +2650,7 @@ Start your study here tossing three coins, \texttt{number\_of\_coins=3}. What do
 
 What happens as you increase the number of coins that you're tossing? Is there a point that the distribution starts to look normal?
 
-\hypertarget{discussion-questions-about-the-clt}{%
-\subsection{Discussion Questions About the CLT}\label{discussion-questions-about-the-clt}}
+\subsection{Discussion Questions About the CLT}\label{discussion-questions-about-the-clt}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2762,8 +2663,7 @@ What happens as you increase the number of coins that you're tossing? Is there a
   One definition of a heavy tailed distribution is one with infinite variance. For example, you can use the \texttt{rcauchy} command in R to take draws from a Cauchy distribution, which has heavy tails. Do you think a ``heavy tails'' distribution will follow the CLT? What leads you to this intuition?
 \end{enumerate}
 
-\hypertarget{errors-with-standard-errors}{%
-\section{Errors with Standard Errors}\label{errors-with-standard-errors}}
+\section{Errors with Standard Errors}\label{errors-with-standard-errors}
 
 Talking about variance and sampling variance is hard, because the terms sound \textbf{very} similar, but have important distinctions in what they mean. For example, the ``variance'' is not the same as the ``unbiased sample variance'' which is also not the same as the ``sampling variance of the sample average''. :sob:
 
@@ -2774,12 +2674,12 @@ How are each of these concepts related to one another, and how can we keep them 
 For the \textbf{Estimator Properties} column, here we're considering, principally biased/unbiased and consistent/inconsistent.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1729}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1053}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1353}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1278}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1654}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2932}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1729}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1053}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1278}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1654}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2932}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Population Concept
@@ -2805,12 +2705,11 @@ CEF & & & & & \\
 BLP & & & & & \\
 \end{longtable}
 
-\hypertarget{hypothesis-testing}{%
-\chapter{Hypothesis Testing}\label{hypothesis-testing}}
+\chapter{Hypothesis Testing}\label{hypothesis-testing}
 
 \begin{figure}
 \centering
-\includegraphics{images/winter_tahoe.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{images/winter_tahoe.jpg}}
 \caption{more lake}
 \end{figure}
 
@@ -2822,10 +2721,9 @@ Like a petulant child, NHST essentially proclaims,
 ``If you really loved me, you would let me watch this screen one-hundred hours every day.''
 \end{quote}
 
-Here the absurdity is that a parent might not love their child, and the criteria to overturn that assertion is noted to be ``buy me an iPad'''.
+Here the absurdity is that a parent might not love their child, and the criteria to overturn that assertion is noted to be ``buy me an iPad''\,'.
 
-\hypertarget{what-is-frequentist-testing-doing}{%
-\subsection*{What is Frequentist testing doing?}\label{what-is-frequentist-testing-doing}}
+\subsection*{What is Frequentist testing doing?}\label{what-is-frequentist-testing-doing}
 \addcontentsline{toc}{subsection}{What is Frequentist testing doing?}
 
 This testing framework works on \textbf{samples} of data, and applies \textbf{estimators} to produce \textbf{estimates} of \textbf{population parameters} that are fundamentally unknown and unknowable. Despite this unknown and unknowable population target, with some carefully written down estimators we can rely on the convergence characteristics of some estimators to produce \emph{useful}, \emph{reliable} results.
@@ -2845,8 +2743,7 @@ These two convergence concepts permit a data scientist to make several \textbf{i
 
 This framework begins a \textbf{exceedingly important} task that we must understand, and undertake when we are working as data scientists: Producing our best-estimate, communicating how we arrived at that estimate, what (if any) guarantees that estimate provides, and \emph{crucially} all \textbf{limitations} of our estimate.
 
-\hypertarget{learning-objectives-5}{%
-\section{Learning Objectives}\label{learning-objectives-5}}
+\section{Learning Objectives}\label{learning-objectives-5}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2859,8 +2756,7 @@ This framework begins a \textbf{exceedingly important} task that we must underst
   \textbf{Anticipate} that every additional Frequentist test is a closely related variant of this test.
 \end{enumerate}
 
-\hypertarget{class-announcements-4}{%
-\section{Class Announcements}\label{class-announcements-4}}
+\section{Class Announcements}\label{class-announcements-4}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2907,8 +2803,7 @@ This framework begins a \textbf{exceedingly important} task that we must underst
   We will assign teams, and begin our work on \textbf{Lab 1} in Live Session next week. This is a two-week, group lab that you will work on with three total team-mates. The lab will cover some of the fundamentals of hypothesis tests,
 \end{enumerate}
 
-\hypertarget{roadmap-2}{%
-\section{Roadmap}\label{roadmap-2}}
+\section{Roadmap}\label{roadmap-2}
 
 \textbf{Looking Backwards}
 
@@ -2948,8 +2843,7 @@ This framework begins a \textbf{exceedingly important} task that we must underst
   We'll see how to choose a test from different alternatives, with an eye on meeting the required assumptions, and maximizing power.
 \end{itemize}
 
-\hypertarget{what-does-a-hypothesis-test-do}{%
-\section{What does a hypothesis test do?}\label{what-does-a-hypothesis-test-do}}
+\section{What does a hypothesis test do?}\label{what-does-a-hypothesis-test-do}
 
 \begin{itemize}
 \tightlist
@@ -2971,8 +2865,7 @@ This framework begins a \textbf{exceedingly important} task that we must underst
   t = \frac{ \overline{X}_n - \mu}{\sqrt{\frac{s^2}{n}}}
 \]
 
-\hypertarget{madlib-prompt}{%
-\section{Madlib prompt}\label{madlib-prompt}}
+\section{Madlib prompt}\label{madlib-prompt}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2988,15 +2881,13 @@ This framework begins a \textbf{exceedingly important} task that we must underst
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{madlib-completed}{%
-\section{Madlib completed}\label{madlib-completed}}
+\section{Madlib completed}\label{madlib-completed}
 
 Suppose that a classmate comes to you, and, in a voice , ``Hey, I've got something that is for statistics test preperation. All you've got to do to get percent on Test 2 and make is to this of .
 
 You're skeptical, but also curious because that last test was tough. Good.
 
-\hypertarget{accepting-the-null}{%
-\section{``Accepting the Null''}\label{accepting-the-null}}
+\section{``Accepting the Null''}\label{accepting-the-null}
 
 (For the purposes of this class, and while you're talking about testing after the class: the preferred language is to either (a) \emph{Reject the null hypothesis}, or (b) \emph{Fail to reject the null hypothesis}.
 
@@ -3010,8 +2901,7 @@ Acknowledging that we're only 40\% of the way through the course, you decide to 
   What, if any, reasons can you imagine not to believe this conclusion?
 \end{itemize}
 
-\hypertarget{manually-computing-a-t-test}{%
-\section{Manually Computing a t-Test}\label{manually-computing-a-t-test}}
+\section{Manually Computing a t-Test}\label{manually-computing-a-t-test}
 
 In a warehouse full of power packs labeled as 12 volts we randomly measure the voltage of 7. Here is the data:
 
@@ -3168,8 +3058,7 @@ In a warehouse full of power packs labeled as 12 volts we randomly measure the v
   Compute a 95\% confidence interval for the mean.
 \end{enumerate}
 
-\hypertarget{falling-ill-the-general-form-of-a-hypothesis-test}{%
-\section{Falling Ill (The General Form of a Hypothesis Test)}\label{falling-ill-the-general-form-of-a-hypothesis-test}}
+\section{Falling Ill (The General Form of a Hypothesis Test)}\label{falling-ill-the-general-form-of-a-hypothesis-test}
 
 In the async content for the week, we're really, \emph{really} clear that we're only working with the \emph{t-distribution}. But, the general ``form'' of a frequentist hypothesis test is always the same: produce a test statistic; produce a distribution of that test statistic if the null hypothesis \emph{were} true; then compare the two. Let's stretch this application a little bit.
 
@@ -3200,7 +3089,7 @@ Think of wellness/illness as a dichotomous statement.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-45-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-45-1.pdf}}
 
 \begin{itemize}
 \item
@@ -3209,8 +3098,7 @@ Think of wellness/illness as a dichotomous statement.
   \textbf{What do you conclude?} Given the data that is presented to you and the null hypothesis, what do you conclude?
 \end{itemize}
 
-\hypertarget{data-exercise}{%
-\section{Data Exercise}\label{data-exercise}}
+\section{Data Exercise}\label{data-exercise}
 
 \textbf{t-Test Micro Cheat Sheet}
 
@@ -3312,7 +3200,7 @@ We are especially interested in the variable, \texttt{score\_diff}, which repres
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-49-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-49-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3323,7 +3211,7 @@ We are especially interested in the variable, \texttt{score\_diff}, which repres
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-49-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-49-2.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3353,8 +3241,7 @@ We are especially interested in the variable, \texttt{score\_diff}, which repres
   Based on your output, suggest a different hypothesis that would have led to a different test result. Try executing the test to confirm that you are correct.
 \end{enumerate}
 
-\hypertarget{assumptions-behind-the-t-test}{%
-\section{Assumptions Behind the t-test}\label{assumptions-behind-the-t-test}}
+\section{Assumptions Behind the t-test}\label{assumptions-behind-the-t-test}
 
 For the following scenarios, what is the strongest argument against the validity of a t-test?
 
@@ -3367,13 +3254,11 @@ For the following scenarios, what is the strongest argument against the validity
   You have survey data in which respondents assess their own opinion of corgis, with options ranging from ``1 - extreme disgust'' to ``5 - affection so intense it threatens my career.'' You want to know whether people on the average like corgis more than 3, representing neutrality.
 \end{itemize}
 
-\hypertarget{comparing-two-groups}{%
-\chapter{Comparing Two Groups}\label{comparing-two-groups}}
+\chapter{Comparing Two Groups}\label{comparing-two-groups}
 
-\includegraphics{./images/goin_left.jpeg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/goin_left.jpeg}}
 
-\hypertarget{learning-objectives-6}{%
-\section{Learning Objectives}\label{learning-objectives-6}}
+\section{Learning Objectives}\label{learning-objectives-6}
 
 This week, we introduce the idea of comparing two groups to evaluate whether the data that we have sampled lead us to believe that the population distribution of the random variables are different. Of course, because we don't get access to the function that describes the random variable, we can't \emph{actually} know if the populations are different. It is for this reason that we call it statistical inference -- we are inferring from a sample some belief about the populations.
 
@@ -3390,8 +3275,7 @@ At the conclusion of this week, students will be able to:
   \emph{Perform} and \emph{Interpret} the results of the most common statistical tests.
 \end{enumerate}
 
-\hypertarget{class-announcements-5}{%
-\section{Class Announcements}\label{class-announcements-5}}
+\section{Class Announcements}\label{class-announcements-5}
 
 \begin{itemize}
 \tightlist
@@ -3419,11 +3303,9 @@ At the conclusion of this week, students will be able to:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{roadmap-3}{%
-\section{Roadmap}\label{roadmap-3}}
+\section{Roadmap}\label{roadmap-3}
 
-\hypertarget{rearview-mirror-1}{%
-\subsection{Rearview Mirror}\label{rearview-mirror-1}}
+\subsection{Rearview Mirror}\label{rearview-mirror-1}
 
 \begin{itemize}
 \tightlist
@@ -3449,8 +3331,7 @@ At the conclusion of this week, students will be able to:
   A hypothesis test is a procedure for rejecting or not rejecting a null, such the probability of a type 1 error is constrained.
 \end{itemize}
 
-\hypertarget{today}{%
-\subsection{Today}\label{today}}
+\subsection{Today}\label{today}
 
 \begin{itemize}
 \tightlist
@@ -3462,8 +3343,7 @@ At the conclusion of this week, students will be able to:
   Secondarily, we want to maximize power.
 \end{itemize}
 
-\hypertarget{looking-ahead}{%
-\subsection{Looking ahead}\label{looking-ahead}}
+\subsection{Looking ahead}\label{looking-ahead}
 
 \begin{itemize}
 \tightlist
@@ -3473,11 +3353,9 @@ At the conclusion of this week, students will be able to:
   We will see how hypothesis testing is also used for regression parameters.
 \end{itemize}
 
-\hypertarget{teamwork-discussion}{%
-\section{Teamwork Discussion}\label{teamwork-discussion}}
+\section{Teamwork Discussion}\label{teamwork-discussion}
 
-\hypertarget{working-on-data-science-teams}{%
-\subsection{Working on Data Science Teams}\label{working-on-data-science-teams}}
+\subsection{Working on Data Science Teams}\label{working-on-data-science-teams}
 
 Data science is a \emph{beautiful} combination of team-work and individual-work. It provides the opportunity to work together on a data pipeline with people from all over the organization, to deal with technical, statistical, and social questions that are always interesting. While we expect that everyone on a team will be a professional, there is so much range within the pursuit of data science that projects are nearly always collaborative exercises.
 
@@ -3499,8 +3377,7 @@ What is your instructor \emph{uniquely} capable of? Let them tell you! But, at t
 
 See, the thing is, because there is so much that has to be done, there literally are very, very few people who are one-stop data science shops. Instead, teams rely on collaboration and joint expertise in order to get good work done.
 
-\hypertarget{the-problematic-psychology-of-data-science}{%
-\subsection{The Problematic Psychology of Data Science}\label{the-problematic-psychology-of-data-science}}
+\subsection{The Problematic Psychology of Data Science}\label{the-problematic-psychology-of-data-science}
 
 People talk about the \emph{impostor syndrome}: a feeling of inadequacy or interloping that is sometimes also associated with a fear of under-performing relative to the expectation of others on the team. These emotions are common through data science, academics, computer science. But, these types of emotions are also commonplace in journalism, film-making, and public speaking.
 
@@ -3508,10 +3385,9 @@ Has anybody ever had the dream that they're late to a test? Or, that that they'v
 
 What are the feelings associated with those events? What might be generating these feelings?
 
-\includegraphics[width=0.25\textwidth,height=\textheight]{images/among_us.jpeg}
+\includegraphics[width=0.25\linewidth,height=\textheight,keepaspectratio]{images/among_us.jpeg}
 
-\hypertarget{what-makes-an-effective-team}{%
-\subsection{What Makes an Effective Team?}\label{what-makes-an-effective-team}}
+\subsection{What Makes an Effective Team?}\label{what-makes-an-effective-team}
 
 \begin{itemize}
 \tightlist
@@ -3541,8 +3417,7 @@ In your live session, your section might take 7 minutes to read this brief. If s
 ``In a team with high psychological safety, teammates feel safe to take risks around their team members. They feel confident that no one on the team will embarrass or punish anyone else for admitting a mistake, asking a question, or offering a new idea.''
 \end{quote}
 
-\hypertarget{we-all-belong}{%
-\subsection{We All Belong}\label{we-all-belong}}
+\subsection{We All Belong}\label{we-all-belong}
 
 \begin{itemize}
 \tightlist
@@ -3564,8 +3439,7 @@ In your live session, your section might take 7 minutes to read this brief. If s
 How can you add to the psychological safety of your peers in the section and lab teammates?
 \end{quote}
 
-\hypertarget{team-kick-off}{%
-\section{Team Kick-Off}\label{team-kick-off}}
+\section{Team Kick-Off}\label{team-kick-off}
 
 \textbf{Lab 1 Teams}
 
@@ -3596,8 +3470,7 @@ How can you add to the psychological safety of your peers in the section and lab
   What do you see as the biggest risks when working on a team? How can you contribute to an effective team dynamic?
 \end{enumerate}
 
-\hypertarget{a-quick-review}{%
-\section{A Quick Review}\label{a-quick-review}}
+\section{A Quick Review}\label{a-quick-review}
 
 \textbf{Review of Key Terms}
 
@@ -3624,9 +3497,9 @@ How can you add to the psychological safety of your peers in the section and lab
 Take a moment to recall the tests you learned this week. Here is a quick cheat-sheet to their key assumptions.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1097}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5226}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3677}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1097}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5226}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3677}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 paired/unpaired
@@ -3643,8 +3516,7 @@ unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal 
 paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wilcoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
 \end{longtable}
 
-\hypertarget{comparing-groups-r-exercise}{%
-\section{Comparing Groups R Exercise}\label{comparing-groups-r-exercise}}
+\section{Comparing Groups R Exercise}\label{comparing-groups-r-exercise}
 
 The General Social Survey (GSS) is one of the longest running and extensive survey projects in the US. The full dataset includes over 1000 variables spanning demographics, attitudes, and behaviors. The file \texttt{GSS\_w203.RData} contains a small selection of a variables from the 2018 GSS.
 
@@ -3707,11 +3579,9 @@ You have a set of questions that you would like to answer with a statistical tes
   Discuss statistical and practical significance.
 \end{enumerate}
 
-\hypertarget{the-questions}{%
-\section{The Questions}\label{the-questions}}
+\section{The Questions}\label{the-questions}
 
-\hypertarget{set-1}{%
-\subsection{Set 1}\label{set-1}}
+\subsection{Set 1}\label{set-1}
 
 \begin{itemize}
 \tightlist
@@ -3852,7 +3722,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 11 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-53-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-53-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -3860,8 +3730,7 @@ You have a set of questions that you would like to answer with a statistical tes
   Do Americans with pets watch more or less TV than Americans without pets?
 \end{itemize}
 
-\hypertarget{set-2}{%
-\subsection{Set 2}\label{set-2}}
+\subsection{Set 2}\label{set-2}
 
 \begin{itemize}
 \tightlist
@@ -3917,7 +3786,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 929 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-54-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-54-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4000,7 +3869,7 @@ To begin this investigation, we've got to look at the data and see what is in it
 ## parameters: `binwidth`, `bins`, and `pad`
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/produce descriptive plot-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/produce descriptive plot-1.pdf}}
 
 With this plot created, we can ask if what we observe in the plot is the produce of what could just be sampling error, or if this is something that was unlikely to arise due if the null hypothesis were true. What is the null hypothesis? Well, lets suppose that if we didn't know anything about the data that we would expect there to be no difference between the amount of time spent with friends or families.
 
@@ -4025,8 +3894,7 @@ With this plot created, we can ask if what we observe in the plot is the produce
 ## alternative hypothesis: true location shift is not equal to 0
 \end{verbatim}
 
-\hypertarget{set-3}{%
-\subsection{Set 3}\label{set-3}}
+\subsection{Set 3}\label{set-3}
 
 \begin{itemize}
 \tightlist
@@ -4036,8 +3904,7 @@ With this plot created, we can ask if what we observe in the plot is the produce
   Are Americans with pets happier than Americans without pets?
 \end{itemize}
 
-\hypertarget{simulating-the-effects-of-test-choices}{%
-\section{Simulating the Effects of Test Choices}\label{simulating-the-effects-of-test-choices}}
+\section{Simulating the Effects of Test Choices}\label{simulating-the-effects-of-test-choices}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4049,8 +3916,7 @@ With this plot created, we can ask if what we observe in the plot is the produce
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{should-we-use-a-t-test-or-a-wilcox-sign-rank}{%
-\subsection{Should we use a t-test or a wilcox sign-rank?}\label{should-we-use-a-t-test-or-a-wilcox-sign-rank}}
+\subsection{Should we use a t-test or a wilcox sign-rank?}\label{should-we-use-a-t-test-or-a-wilcox-sign-rank}
 
 There is some open discussion in the applied statistics literature about whether we should \emph{ever} be using a t-test. In particular, if the underlying distribution that generates the data is \textbf{not} normal, than the assumptions of a t-test are not, technically satisfied and the test does not produce results that have nominal p-value coverage. This is both \emph{technically} and \emph{theoretically} true; and yet, researchers, data scientists, your instructors, and the entire world runs t-tests as ``test of first recourse.''
 
@@ -4066,8 +3932,7 @@ Additional points of argument, which you will investigate in this worksheet:
   If the underlying data \textbf{is not} normal, then the Wilcox test still maintains nominal p-value coverage, whereas the t-test might lose this guarantee.
 \end{itemize}
 
-\hypertarget{the-poisson-distribution}{%
-\subsection{The Poisson Distribution}\label{the-poisson-distribution}}
+\subsection{The Poisson Distribution}\label{the-poisson-distribution}
 
 The poisson distribution has the following PDF:
 
@@ -4091,12 +3956,11 @@ The key shape parameter for a poisson function is \(\lambda\); we show three dif
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/show some from poisson distribution-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/show some from poisson distribution-1.pdf}}
 
 What does this changing distribution do to the p-values?
 
-\hypertarget{write-a-simulation}{%
-\subsection{Write a Simulation}\label{write-a-simulation}}
+\subsection{Write a Simulation}\label{write-a-simulation}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4138,7 +4002,7 @@ What does this changing distribution do to the p-values?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot results of simulation-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot results of simulation-1.pdf}}
 
 And so, the simulation rejects the null at the following rates:
 
@@ -4150,8 +4014,7 @@ And so, the simulation rejects the null at the following rates:
   For the Wilcox test, at a rate of 0.0748107
 \end{itemize}
 
-\hypertarget{what-if-a-distribution-is-much-more-skewed}{%
-\subsection{\texorpdfstring{What if a distribution is much \emph{more} skewed?}{What if a distribution is much more skewed?}}\label{what-if-a-distribution-is-much-more-skewed}}
+\subsection{\texorpdfstring{What if a distribution is much \emph{more} skewed?}{What if a distribution is much more skewed?}}\label{what-if-a-distribution-is-much-more-skewed}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4178,8 +4041,7 @@ And so, the simulation rejects the null at the following rates:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{false-rejection-rates}{%
-\subsection{False Rejection Rates}\label{false-rejection-rates}}
+\subsection{False Rejection Rates}\label{false-rejection-rates}
 
 Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 
@@ -4190,7 +4052,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4231,7 +4093,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-58-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-58-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -4261,8 +4123,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
   \end{itemize}
 \end{itemize}
 
-\hypertarget{what-about-power-to-reject}{%
-\subsection{What about Power to Reject}\label{what-about-power-to-reject}}
+\subsection{What about Power to Reject}\label{what-about-power-to-reject}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4303,10 +4164,9 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-60-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-60-1.pdf}}
 
-\hypertarget{paired-compared-to-unpaired-tests}{%
-\subsection{Paired compared to unpaired tests}\label{paired-compared-to-unpaired-tests}}
+\subsection{Paired compared to unpaired tests}\label{paired-compared-to-unpaired-tests}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4366,12 +4226,11 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot results of paired simulation-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot results of paired simulation-1.pdf}}
 
-\hypertarget{ols-regression-estimates}{%
-\chapter{OLS Regression Estimates}\label{ols-regression-estimates}}
+\chapter{OLS Regression Estimates}\label{ols-regression-estimates}
 
-\includegraphics{./images/linear_regression.png}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/linear_regression.png}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4422,8 +4281,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{learning-objectives-7}{%
-\section{Learning Objectives}\label{learning-objectives-7}}
+\section{Learning Objectives}\label{learning-objectives-7}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4433,8 +4291,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \item
 \end{enumerate}
 
-\hypertarget{class-announcements-6}{%
-\section{Class Announcements}\label{class-announcements-6}}
+\section{Class Announcements}\label{class-announcements-6}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4447,8 +4304,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
   You're doing great - keep it up!
 \end{enumerate}
 
-\hypertarget{roadmap-4}{%
-\section{Roadmap}\label{roadmap-4}}
+\section{Roadmap}\label{roadmap-4}
 
 \textbf{Rear-View Mirror}
 
@@ -4484,8 +4340,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
   The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
 \end{itemize}
 
-\hypertarget{discussion-questions}{%
-\section{Discussion Questions}\label{discussion-questions}}
+\section{Discussion Questions}\label{discussion-questions}
 
 Suppose we have random variables \(X\) and \(Y\).
 
@@ -4499,8 +4354,7 @@ Suppose we have random variables \(X\) and \(Y\).
   What assumptions are needed in terms of causality (\(X\) causes \(Y\), \(Y\) causes \(X\), etc.) in order to compute the regression of \(Y\) on \(X\)?
 \end{itemize}
 
-\hypertarget{the-regression-anatomy-formula}{%
-\section{The Regression Anatomy Formula}\label{the-regression-anatomy-formula}}
+\section{The Regression Anatomy Formula}\label{the-regression-anatomy-formula}
 
 We make the claim in live session that we can re-represent a coefficient that we're interested in as a function of all the other variable in a regression. That is, suppose that we were interested, initially, in estimating the model:
 
@@ -4604,7 +4458,7 @@ To make talking about these easier, here is a plot that might be useful.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot x1 and y and line-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot x1 and y and line-1.pdf}}
 
 In order to access these residuals, we can ``augment'' the dataframe that we used in the model, using the \texttt{broom::augment} function call.
 
@@ -4666,8 +4520,7 @@ Our claim was that the coefficients from \texttt{model\_main} and \texttt{model\
 
 But, why is this an interesting, or at least useful, feature to appreciate?
 
-\hypertarget{coding-activityr-cheat-sheet}{%
-\section{Coding Activity:R Cheat Sheet}\label{coding-activityr-cheat-sheet}}
+\section{Coding Activity:R Cheat Sheet}\label{coding-activityr-cheat-sheet}
 
 Suppose \texttt{x} and \texttt{y} are variables in dataframe \texttt{d}.
 
@@ -4712,8 +4565,7 @@ d %>%
   geom_smooth(method = lm)
 \end{verbatim}
 
-\hypertarget{r-exercise}{%
-\section{R Exercise}\label{r-exercise}}
+\section{R Exercise}\label{r-exercise}
 
 \textbf{Real Estate in Boston}
 
@@ -4756,8 +4608,7 @@ The file \texttt{hprice1.Rdata} contains 88 observations of homes in the Boston 
   Are there variables that would \emph{not} be valid inputs for an OLS regression? If so, why?
 \end{itemize}
 
-\hypertarget{assess-the-relationship-between-price-and-square-footage}{%
-\subsection{Assess the Relationship between Price and Square Footage}\label{assess-the-relationship-between-price-and-square-footage}}
+\subsection{Assess the Relationship between Price and Square Footage}\label{assess-the-relationship-between-price-and-square-footage}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4768,7 +4619,7 @@ The file \texttt{hprice1.Rdata} contains 88 observations of homes in the Boston 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}}
 
 Suppose that you're interested in knowing the relationship between price and square footage.
 
@@ -4800,7 +4651,7 @@ Suppose that you're interested in knowing the relationship between price and squ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-71-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-71-1.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4851,13 +4702,11 @@ price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + 
   Compute the sample correlation between \(X\) and \(e_i\). What guarantees do we have from the book about this correlation? Does the data seem to bear this out?
 \end{enumerate}
 
-\hypertarget{regression-plots-and-discussion}{%
-\section{Regression Plots and Discussion}\label{regression-plots-and-discussion}}
+\section{Regression Plots and Discussion}\label{regression-plots-and-discussion}
 
 In this next set of notes, we're going to give some data, displayed in plots, and we will try to apply what we have learned in the async and reading for this week to answer questions about each of the scatter plots.
 
-\hypertarget{plot-1}{%
-\subsection{Plot 1}\label{plot-1}}
+\subsection{Plot 1}\label{plot-1}
 
 Consider data that is generated according to the following function:
 
@@ -4895,17 +4744,15 @@ From this population, you might consider taking a sample of 100 observations, an
   Rotate the cube so that the points ``fall into line''. When you see this line, how does it help you describe the function that governs this data?
 \end{enumerate}
 
-\hypertarget{ols-regression-inference}{%
-\chapter{OLS Regression Inference}\label{ols-regression-inference}}
+\chapter{OLS Regression Inference}\label{ols-regression-inference}
 
 \begin{figure}
 \centering
-\includegraphics{./images/bridge_sunset.jpeg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/bridge_sunset.jpeg}}
 \caption{sunset on golden gate}
 \end{figure}
 
-\hypertarget{learning-objectives-8}{%
-\section{Learning Objectives}\label{learning-objectives-8}}
+\section{Learning Objectives}\label{learning-objectives-8}
 
 After this week's learning, student will be able to
 
@@ -4920,8 +4767,7 @@ After this week's learning, student will be able to
   \emph{Conduct} a regression based analysis, on real data, in ways that begin to explore regression as a modeling tool.
 \end{enumerate}
 
-\hypertarget{class-announcements-7}{%
-\section{Class Announcements}\label{class-announcements-7}}
+\section{Class Announcements}\label{class-announcements-7}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4934,8 +4780,7 @@ After this week's learning, student will be able to
   Homework 09 has been assigned today, and it is due in a week.
 \end{enumerate}
 
-\hypertarget{roadmap-5}{%
-\section{Roadmap}\label{roadmap-5}}
+\section{Roadmap}\label{roadmap-5}
 
 \textbf{Rear-View Mirror}
 
@@ -4975,11 +4820,9 @@ After this week's learning, student will be able to
   The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
 \end{itemize}
 
-\hypertarget{uncertainty-in-ols}{%
-\section{Uncertainty in OLS}\label{uncertainty-in-ols}}
+\section{Uncertainty in OLS}\label{uncertainty-in-ols}
 
-\hypertarget{discussion-questions-1}{%
-\subsection{Discussion Questions}\label{discussion-questions-1}}
+\subsection{Discussion Questions}\label{discussion-questions-1}
 
 \begin{itemize}
 \tightlist
@@ -5000,8 +4843,7 @@ mg. melatonin & 0.52 \\
 & (0.31) \\
 \end{longtable}
 
-\hypertarget{understanding-uncertainty}{%
-\section{Understanding Uncertainty}\label{understanding-uncertainty}}
+\section{Understanding Uncertainty}\label{understanding-uncertainty}
 
 Imagine three different regression models, each of the following form:
 
@@ -5072,10 +4914,9 @@ A is what we call a homoskedastic distribution. B and C are what we call heteros
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}}
 
-\hypertarget{question-1}{%
-\subsection{Question 1}\label{question-1}}
+\subsection{Question 1}\label{question-1}
 
 The following code draws a sample from distribution A, fits a regression line, and plots it. Run it a few times to see what happens. Now explain how you would visually estimate the standard error of the slope coefficient. Why is this standard error important?
 
@@ -5095,7 +4936,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-78-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-78-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5167,22 +5008,19 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-79-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-79-1.pdf}}
 
-\hypertarget{question-2}{%
-\subsection{Question 2}\label{question-2}}
+\subsection{Question 2}\label{question-2}
 
 You have a sample from each distribution, A, B, and C and you fit a regression of Y on X. Which will have the highest standard error for the slope coefficient? Which will have the lowest standard error? Why? (You may want to try experimenting with the function defined above)
 
-\hypertarget{question-3}{%
-\subsection{Question 3}\label{question-3}}
+\subsection{Question 3}\label{question-3}
 
 For distribution A, perform a simulated experiment. Draw a large number of samples, and for each sample fit a linear regression. Store the slope coefficient from each regression in a vector. Finally, compute the standard deviation for the slope coefficients.
 
 Repeat this process for distributions B and C. Do the results match your intuition?
 
-\hypertarget{understanding-uncertainty-1}{%
-\section{Understanding Uncertainty}\label{understanding-uncertainty-1}}
+\section{Understanding Uncertainty}\label{understanding-uncertainty-1}
 
 Under the relatively stricter assumptions of constant error variance, the variance of a slope coefficient is given by
 
@@ -5211,8 +5049,7 @@ Explain why each term makes the variance higher or lower:
   \(R_j^2\) is \(R^2\) for a regression of \(X_j\) on the other \(X\)'s
 \end{itemize}
 
-\hypertarget{r-exercise-1}{%
-\section{R Exercise}\label{r-exercise-1}}
+\section{R Exercise}\label{r-exercise-1}
 
 \textbf{Real Estate in Boston}
 
@@ -5394,7 +5231,7 @@ With this, it is possible to plot the distribution of these regression coefficie
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-88-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-88-1.pdf}}
 
 Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?
 
@@ -5425,13 +5262,11 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## [1] 0.01947353
 \end{verbatim}
 
-\hypertarget{descriptive-model-building}{%
-\chapter{Descriptive Model Building}\label{descriptive-model-building}}
+\chapter{Descriptive Model Building}\label{descriptive-model-building}
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{./images/curve_fitting.png}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{./images/curve_fitting.png}
 
-\hypertarget{learning-objectives-9}{%
-\section{Learning Objectives}\label{learning-objectives-9}}
+\section{Learning Objectives}\label{learning-objectives-9}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5441,8 +5276,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \item
 \end{enumerate}
 
-\hypertarget{class-announcements-8}{%
-\section{Class Announcements}\label{class-announcements-8}}
+\section{Class Announcements}\label{class-announcements-8}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5459,8 +5293,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   \end{itemize}
 \end{enumerate}
 
-\hypertarget{roadmap-6}{%
-\section{Roadmap}\label{roadmap-6}}
+\section{Roadmap}\label{roadmap-6}
 
 \textbf{Rearview Mirror}
 
@@ -5495,11 +5328,9 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   The famous Classical Linear Model (CLM) allows us to apply regression to smaller samples.
 \end{itemize}
 
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\section{Discussion}\label{discussion}
 
-\hypertarget{three-modes-of-model-building}{%
-\subsection{Three modes of model building}\label{three-modes-of-model-building}}
+\subsection{Three modes of model building}\label{three-modes-of-model-building}
 
 \begin{itemize}
 \tightlist
@@ -5526,8 +5357,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   Think of a research question you are interested in. Which mode is it aligned with?
 \end{itemize}
 
-\hypertarget{the-statistical-modeling-process-in-different-modes}{%
-\subsection{The statistical modeling process in different modes}\label{the-statistical-modeling-process-in-different-modes}}
+\subsection{The statistical modeling process in different modes}\label{the-statistical-modeling-process-in-different-modes}
 
 \begin{itemize}
 \item
@@ -5543,8 +5373,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   \end{itemize}
 \end{itemize}
 
-\hypertarget{r-activity-measuring-the-return-to-education}{%
-\section{R Activity: Measuring the return to education}\label{r-activity-measuring-the-return-to-education}}
+\section{R Activity: Measuring the return to education}\label{r-activity-measuring-the-return-to-education}
 
 \begin{itemize}
 \tightlist
@@ -5580,13 +5409,11 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}}
 
-\hypertarget{transformations}{%
-\subsection{Transformations}\label{transformations}}
+\subsection{Transformations}\label{transformations}
 
-\hypertarget{applying-and-interpreting-logarithms}{%
-\subsubsection{Applying and Interpreting Logarithms}\label{applying-and-interpreting-logarithms}}
+\subsubsection{Applying and Interpreting Logarithms}\label{applying-and-interpreting-logarithms}
 
 \begin{itemize}
 \item
@@ -5597,7 +5424,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   \item
     level-level: \(wage = \beta_0 + \beta_1 educ + u\)
   \item
-    Level-log: \(wage = \beta_0 + \beta_1 \ln(educ) + u\)
+    Level-log: \(wage = \beta_0 + \beta_1 \ln(educ)  + u\)
   \item
     log-level: \(\ln(wage) = \beta_0 + \beta_1 educ + u\)
   \item
@@ -5617,8 +5444,7 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   \textbf{Doing a log transformation for any reason essentially implies a fundamentally different relationship between outcome (Y) and predictor (X) that we need to capture}
 \end{itemize}
 
-\hypertarget{applying-and-interpreting-polynomials}{%
-\subsubsection{Applying and Interpreting Polynomials}\label{applying-and-interpreting-polynomials}}
+\subsubsection{Applying and Interpreting Polynomials}\label{applying-and-interpreting-polynomials}
 
 \begin{itemize}
 \item
@@ -5630,14 +5456,16 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   \item
     \(wage = \beta_0 + \beta_1 educ + \beta_2 exper + \beta_3 tenure + u\)
   \item
-    \(\begin{aligned} wage &= \beta_0 + \beta_1 educ + \beta_2 exper + \beta_3 exper^2 + \\ & \beta_4 tenure + \beta_5 tenure^2 + u \end{aligned}\)
+    \(\begin{aligned}
+    wage &= \beta_0 + \beta_1 educ + \beta_2 exper + \beta_3 exper^2 + \\
+    & \beta_4 tenure + \beta_5 tenure^2 + u
+    \end{aligned}\)
   \end{itemize}
 \item
   How do you interpret the \(\beta\) coefficients?
 \end{itemize}
 
-\hypertarget{applying-and-interpreting-indicator-variables-and-interaction-terms}{%
-\subsubsection{Applying and Interpreting Indicator variables and interaction terms}\label{applying-and-interpreting-indicator-variables-and-interaction-terms}}
+\subsubsection{Applying and Interpreting Indicator variables and interaction terms}\label{applying-and-interpreting-indicator-variables-and-interaction-terms}
 
 \begin{itemize}
 \item
@@ -5651,12 +5479,14 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   \item
     \(wage = \beta_0 + \beta_1 educ + \beta_2 female + \beta_3 educ*female + u\)
   \item
-    \(\begin{aligned} wage &= \beta_0 + \beta_1 female + \beta_2 I(educ = 2) + \beta_3 I(educ = 3)\\ &...+ \beta_{20} I(educ = 20) + u\\ \end{aligned}\)
+    \(\begin{aligned}
+    wage &= \beta_0 + \beta_1 female + \beta_2 I(educ = 2) + \beta_3 I(educ = 3)\\
+    &...+ \beta_{20} I(educ = 20) + u\\
+    \end{aligned}\)
   \end{itemize}
 \end{itemize}
 
-\hypertarget{estimation}{%
-\subsection{Estimation}\label{estimation}}
+\subsection{Estimation}\label{estimation}
 
 \textbf{Estimating Returns to Education}
 
@@ -5681,12 +5511,11 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
   Display all estimated models in a regression table, and discuss the robustness of your results.
 \end{itemize}
 
-\hypertarget{explanatory-model-building}{%
-\chapter{Explanatory Model Building}\label{explanatory-model-building}}
+\chapter{Explanatory Model Building}\label{explanatory-model-building}
 
 \begin{figure}
 \centering
-\includegraphics{./images/duck.png}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/duck.png}}
 \caption{duck yeah}
 \end{figure}
 
@@ -5696,8 +5525,7 @@ Why is something that seems so natural to us in our limited, daily lives, so dif
 
 Of all the weeks in this class, this is perhaps the most conceptually challening.
 
-\hypertarget{learning-objectives-10}{%
-\section{Learning Objectives}\label{learning-objectives-10}}
+\section{Learning Objectives}\label{learning-objectives-10}
 
 At the end of this week's learning, students will be able to
 
@@ -5712,8 +5540,7 @@ At the end of this week's learning, students will be able to
   \textbf{Appreciate} the deep difficulty of causal questions, and how research design guides data collection.
 \end{enumerate}
 
-\hypertarget{class-announcements-9}{%
-\section{Class Announcements}\label{class-announcements-9}}
+\section{Class Announcements}\label{class-announcements-9}
 
 \textbf{Lab 2-Regression}
 
@@ -5799,8 +5626,7 @@ Final Report & Week 14 & 75\% \\
   \end{itemize}
 \end{itemize}
 
-\hypertarget{roadmap-7}{%
-\section{Roadmap}\label{roadmap-7}}
+\section{Roadmap}\label{roadmap-7}
 
 \textbf{Rearview Mirror}
 
@@ -5840,11 +5666,9 @@ Final Report & Week 14 & 75\% \\
   We will address the pervasive issue of false discovery, and ways to be a responsible member of the scientific community.
 \end{itemize}
 
-\hypertarget{discussion-1}{%
-\section{Discussion}\label{discussion-1}}
+\section{Discussion}\label{discussion-1}
 
-\hypertarget{path-diagrams}{%
-\subsection{Path Diagrams}\label{path-diagrams}}
+\subsection{Path Diagrams}\label{path-diagrams}
 
 \[
 \begin{matrix}
@@ -5885,13 +5709,11 @@ Final Report & Week 14 & 75\% \\
   \end{enumerate}
 \end{itemize}
 
-\hypertarget{an-interlude}{%
-\section{An Interlude}\label{an-interlude}}
+\section{An Interlude}\label{an-interlude}
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{./images/correlation.png}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{./images/correlation.png}
 
-\hypertarget{omitted-variable-bias}{%
-\subsection{Omitted Variable Bias}\label{omitted-variable-bias}}
+\subsection{Omitted Variable Bias}\label{omitted-variable-bias}
 
 \begin{itemize}
 \tightlist
@@ -5899,7 +5721,7 @@ Final Report & Week 14 & 75\% \\
   Recall the equation for omitted variable bias
 \end{itemize}
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/ovb.png}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{images/ovb.png}
 
 \begin{itemize}
 \tightlist
@@ -5907,11 +5729,9 @@ Final Report & Week 14 & 75\% \\
   What specific regressions do \(\beta_2\) and \(\gamma_1\) come from?
 \end{itemize}
 
-\hypertarget{r-exercise-2}{%
-\section{R Exercise}\label{r-exercise-2}}
+\section{R Exercise}\label{r-exercise-2}
 
-\hypertarget{omitted-variable-bias-in-r}{%
-\subsection{Omitted Variable Bias in R}\label{omitted-variable-bias-in-r}}
+\subsection{Omitted Variable Bias in R}\label{omitted-variable-bias-in-r}
 
 The file \texttt{htv.RData} contains data from the 1991 National Longitudinal Survey of Youth, provided by Wooldridge. All people in the sample are males age 26 to 34. The data is interesting here, because it includes education, stored in the variable \texttt{educ}, and also a score on an ability test, stored in the variable \texttt{abil}.
 
@@ -5988,14 +5808,13 @@ The file \texttt{htv.RData} contains data from the 1991 National Longitudinal Su
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-92-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-92-1.pdf}}
 
 Assume that the true model is,
 
-\includegraphics[width=0.8\textwidth,height=\textheight]{images/wage_system.png}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{images/wage_system.png}
 
-\hypertarget{questions}{%
-\subsection{Questions:}\label{questions}}
+\subsection{Questions:}\label{questions}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6024,8 +5843,7 @@ Assume that the true model is,
   What does this suggest about the reported statistical significance of education?
 \end{enumerate}
 
-\hypertarget{research-design-strategies}{%
-\section{Research Design Strategies}\label{research-design-strategies}}
+\section{Research Design Strategies}\label{research-design-strategies}
 
 Hopefully you feel like, ``Golly. It would be really, \emph{really} hard to assert some causal model and \emph{know that it is actually true}.'' How does this lead you to think about the role of research design in setting up your data collection?
 
@@ -6038,8 +5856,7 @@ Hopefully you feel like, ``Golly. It would be really, \emph{really} hard to asse
   If you cannot \textbf{do the experiment} to determine the effect of education on wages, what are some options for where to look for data? What would you hope these areas provide to you?
 \end{enumerate}
 
-\hypertarget{discussion-2}{%
-\section{Discussion}\label{discussion-2}}
+\section{Discussion}\label{discussion-2}
 
 \textbf{The Direction of Omitted Variable Bias}
 
@@ -6050,8 +5867,8 @@ Hopefully you feel like, ``Golly. It would be really, \emph{really} hard to asse
 \end{itemize}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5976}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4024}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5976}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4024}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Regression Output
@@ -6070,8 +5887,7 @@ Omitted Variable
 \(\widehat{literacy} = 54 + 12\ network\_access\) & \(wealth\) \\
 \end{longtable}
 
-\hypertarget{the-classical-linear-model}{%
-\chapter{The Classical Linear Model}\label{the-classical-linear-model}}
+\chapter{The Classical Linear Model}\label{the-classical-linear-model}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6079,8 +5895,7 @@ Omitted Variable
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{learning-objectives-11}{%
-\section{Learning Objectives}\label{learning-objectives-11}}
+\section{Learning Objectives}\label{learning-objectives-11}
 
 At the end of this week's learning students will be able to
 
@@ -6095,8 +5910,7 @@ At the end of this week's learning students will be able to
   \textbf{Assess} whether the guarantees that are provided by the classical linear model's requirements are likely to \emph{ever} be true, including within data the student is likely to encounter.
 \end{enumerate}
 
-\hypertarget{class-announcements-10}{%
-\section{Class Announcements}\label{class-announcements-10}}
+\section{Class Announcements}\label{class-announcements-10}
 
 \begin{itemize}
 \tightlist
@@ -6116,8 +5930,7 @@ At the end of this week's learning students will be able to
   \end{itemize}
 \end{itemize}
 
-\hypertarget{roadmap-8}{%
-\section{Roadmap}\label{roadmap-8}}
+\section{Roadmap}\label{roadmap-8}
 
 \textbf{Rearview Mirror}
 
@@ -6163,13 +5976,11 @@ At the end of this week's learning students will be able to
   (Week 13) In a regression studies (and other studies), false discovery is a widespread problem. Understanding its causes can make you a better member of the scientific community.
 \end{itemize}
 
-\hypertarget{the-classical-linear-model-1}{%
-\section{The Classical Linear Model}\label{the-classical-linear-model-1}}
+\section{The Classical Linear Model}\label{the-classical-linear-model-1}
 
 Comparing the Large Sample Model and the CLM
 
-\hypertarget{part-1-1}{%
-\subsection{Part 1}\label{part-1-1}}
+\subsection{Part 1}\label{part-1-1}
 
 \begin{itemize}
 \tightlist
@@ -6193,8 +6004,7 @@ Comparing the Large Sample Model and the CLM
   \end{itemize}
 \end{itemize}
 
-\hypertarget{part-2-1}{%
-\subsection{Part 2}\label{part-2-1}}
+\subsection{Part 2}\label{part-2-1}
 
 \begin{itemize}
 \tightlist
@@ -6220,8 +6030,7 @@ Comparing the Large Sample Model and the CLM
   \textbf{What are the tradeoffs to using one or the other data source?}\\
 \end{itemize}
 
-\hypertarget{part-3-1}{%
-\subsection{Part 3}\label{part-3-1}}
+\subsection{Part 3}\label{part-3-1}
 
 \begin{itemize}
 \tightlist
@@ -6247,8 +6056,7 @@ Comparing the Large Sample Model and the CLM
   \textbf{What would a successful answer accomplish?}
 \end{itemize}
 
-\hypertarget{part-4}{%
-\subsection{Part 4}\label{part-4}}
+\subsection{Part 4}\label{part-4}
 
 \begin{itemize}
 \tightlist
@@ -6256,8 +6064,7 @@ Comparing the Large Sample Model and the CLM
   \textbf{Which data source, the individual or the district-level, do you think is more likely to produce a successful answer?}
 \end{itemize}
 
-\hypertarget{part-5}{%
-\subsection{Part 5}\label{part-5}}
+\subsection{Part 5}\label{part-5}
 
 Problems with the CLM Requirements
 
@@ -6293,8 +6100,7 @@ Problems with the CLM Requirements
   \end{itemize}
 \end{itemize}
 
-\hypertarget{r-exercise-3}{%
-\section{R Exercise}\label{r-exercise-3}}
+\section{R Exercise}\label{r-exercise-3}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6336,8 +6142,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 ## $ carb <dbl> 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,~
 \end{verbatim}
 
-\hypertarget{questions-1}{%
-\subsection{Questions:}\label{questions-1}}
+\subsection{Questions:}\label{questions-1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6356,7 +6161,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-95-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-95-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6366,7 +6171,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/unnamed-chunk-95-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-95-2.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6451,11 +6256,9 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   (As time allows) report the results of both models in a nicely formatted regression table.
 \end{enumerate}
 
-\hypertarget{reproducible-research}{%
-\chapter{Reproducible Research}\label{reproducible-research}}
+\chapter{Reproducible Research}\label{reproducible-research}
 
-\hypertarget{learning-objectives-12}{%
-\section{Learning Objectives}\label{learning-objectives-12}}
+\section{Learning Objectives}\label{learning-objectives-12}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6465,11 +6268,9 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \item
 \end{enumerate}
 
-\hypertarget{class-announcements-11}{%
-\section{Class Announcements}\label{class-announcements-11}}
+\section{Class Announcements}\label{class-announcements-11}
 
-\hypertarget{roadmap-9}{%
-\section{Roadmap}\label{roadmap-9}}
+\section{Roadmap}\label{roadmap-9}
 
 \textbf{Rearview Mirror}
 
@@ -6477,8 +6278,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 
 \textbf{Looking Ahead}
 
-\hypertarget{what-data-science-hopes-to-accomplish}{%
-\section{What data science hopes to accomplish}\label{what-data-science-hopes-to-accomplish}}
+\section{What data science hopes to accomplish}\label{what-data-science-hopes-to-accomplish}
 
 \begin{itemize}
 \tightlist
@@ -6496,8 +6296,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{learning-from-data}{%
-\section{Learning from Data}\label{learning-from-data}}
+\section{Learning from Data}\label{learning-from-data}
 
 \begin{itemize}
 \tightlist
@@ -6527,8 +6326,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{data-science-and-statistics}{%
-\section{Data Science and Statistics}\label{data-science-and-statistics}}
+\section{Data Science and Statistics}\label{data-science-and-statistics}
 
 \begin{itemize}
 \tightlist
@@ -6538,8 +6336,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   And why the way we've chosen to approach statistics in 203?
 \end{itemize}
 
-\hypertarget{why-statistics-a-closing-argument-for-statistics}{%
-\section{Why Statistics?: A Closing Argument for Statistics}\label{why-statistics-a-closing-argument-for-statistics}}
+\section{Why Statistics?: A Closing Argument for Statistics}\label{why-statistics-a-closing-argument-for-statistics}
 
 \begin{itemize}
 \item
@@ -6564,11 +6361,9 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   So that we can either describe, explain or predict behavior.
 \end{itemize}
 
-\hypertarget{course-goals}{%
-\section{Course Goals}\label{course-goals}}
+\section{Course Goals}\label{course-goals}
 
-\hypertarget{course-section-iii-purpose-driven-models}{%
-\subsection{Course Section III: Purpose-Driven Models}\label{course-section-iii-purpose-driven-models}}
+\subsection{Course Section III: Purpose-Driven Models}\label{course-section-iii-purpose-driven-models}
 
 \begin{itemize}
 \item
@@ -6593,8 +6388,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{course-section-ii-sampling-theory-and-testing}{%
-\subsection{Course Section II: Sampling Theory and Testing}\label{course-section-ii-sampling-theory-and-testing}}
+\subsection{Course Section II: Sampling Theory and Testing}\label{course-section-ii-sampling-theory-and-testing}
 
 \begin{itemize}
 \tightlist
@@ -6608,8 +6402,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
   In Lab 1 we computed simple statistics, and used guarantees from sampling theory to \textbf{test} whether these differences were likely to arise under a \emph{``null''} scenario
 \end{itemize}
 
-\hypertarget{course-section-i-probability-theory}{%
-\subsection{Course Section I: Probability Theory}\label{course-section-i-probability-theory}}
+\subsection{Course Section I: Probability Theory}\label{course-section-i-probability-theory}
 
 \begin{itemize}
 \tightlist
@@ -6639,8 +6432,7 @@ We can:
   Compute useful summaries -- i.e.~the BLP, expected value, and covariance -- even with \emph{highly} complex probability density functions.
 \end{itemize}
 
-\hypertarget{statistics-as-a-foundation-for-mids}{%
-\subsection{Statistics as a Foundation for MIDS}\label{statistics-as-a-foundation-for-mids}}
+\subsection{Statistics as a Foundation for MIDS}\label{statistics-as-a-foundation-for-mids}
 
 \begin{itemize}
 \tightlist
@@ -6648,15 +6440,13 @@ We can:
   In w203, we hope to have laid a foundation in probability that can be used not only in statistical applications, but also in every other machine learning application that are likely to ever encounter
 \end{itemize}
 
-\hypertarget{reproducibility-discussion}{%
-\section{Reproducibility Discussion}\label{reproducibility-discussion}}
+\section{Reproducibility Discussion}\label{reproducibility-discussion}
 
 \textbf{Green Jelly Beans}
 
 \textbf{What went wrong here?}
 
-\hypertarget{discussion-3}{%
-\subsection{Discussion}\label{discussion-3}}
+\subsection{Discussion}\label{discussion-3}
 
 \textbf{Status Update}
 You have a dataset of the number of Facebook status updates by day of the week. You run 7 different t-tests, one for posts on Monday (versus all other days), or for Tuesday (versus all other days), etc. Only the test for Sunday is significant, with a p-value of .045, so you throw out the other tests.
@@ -6675,17 +6465,15 @@ What if researcher G above is a sociologist that chooses to measure the effect o
 \textbf{Decreasing Effect Sizes}
 Many observers have noted that as studies yielding statistically significant results are repeated, estimated effect sizes go down and often become insignificant. Why is this the case?
 
-\hypertarget{maximum-likelihood-estimation}{%
-\chapter{Maximum Likelihood Estimation}\label{maximum-likelihood-estimation}}
+\chapter{Maximum Likelihood Estimation}\label{maximum-likelihood-estimation}
 
 \begin{figure}
 \centering
-\includegraphics{./images/salvation_mountain.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{./images/salvation_mountain.jpg}}
 \caption{salvation mountain}
 \end{figure}
 
-\hypertarget{learning-objectives-13}{%
-\section{Learning Objectives}\label{learning-objectives-13}}
+\section{Learning Objectives}\label{learning-objectives-13}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6695,11 +6483,9 @@ Many observers have noted that as studies yielding statistically significant res
 \item
 \end{enumerate}
 
-\hypertarget{class-announcements-12}{%
-\section{Class Announcements}\label{class-announcements-12}}
+\section{Class Announcements}\label{class-announcements-12}
 
-\hypertarget{roadmap-10}{%
-\section{Roadmap}\label{roadmap-10}}
+\section{Roadmap}\label{roadmap-10}
 
 \textbf{Rearview Mirror: What We've Seen}
 
@@ -6708,7 +6494,7 @@ Many observers have noted that as studies yielding statistically significant res
 \item
   \textbf{WLLN}: \(\displaystyle\lim_{n \to \infty} \overline{X}_n \overset{p}{=} E[X]\)
 \item
-  \textbf{CLT} \(\displaystyle\lim_{n \to \infty} \bar{X}_n \overset{d}{=} N(E[X], \text{Var}[X])\)
+  \textbf{CLT} \(\displaystyle\lim_{n \to \infty} \bar{X}_n \overset{d}{=}  N(E[X], \text{Var}[X])\)
 \end{itemize}
 
 \textbf{Today}
@@ -6721,8 +6507,7 @@ Many observers have noted that as studies yielding statistically significant res
   Use a confidence interval to indicate a range of plausible parameter values
 \end{itemize}
 
-\hypertarget{what-is-a-model}{%
-\section{What is a model?}\label{what-is-a-model}}
+\section{What is a model?}\label{what-is-a-model}
 
 \begin{itemize}
 \tightlist
@@ -6742,8 +6527,7 @@ Many observers have noted that as studies yielding statistically significant res
   \end{itemize}
 \end{itemize}
 
-\hypertarget{estimation-1}{%
-\section{Estimation}\label{estimation-1}}
+\section{Estimation}\label{estimation-1}
 
 \begin{itemize}
 \item
@@ -6756,8 +6540,7 @@ Many observers have noted that as studies yielding statistically significant res
   However, all of these estimators are statistics meaning they are functions of the data \(\{X_i\}_{i=1}^n\)
 \end{itemize}
 
-\hypertarget{discussion-of-maximum-likelihood-estimation}{%
-\section{Discussion of Maximum Likelihood Estimation}\label{discussion-of-maximum-likelihood-estimation}}
+\section{Discussion of Maximum Likelihood Estimation}\label{discussion-of-maximum-likelihood-estimation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6774,8 +6557,7 @@ Many observers have noted that as studies yielding statistically significant res
   What happens if your model for the data is wrong? Are your estimates for the parameters ``incorrect''? Or, are they ``correct'' within the context of the model that you've written down?
 \end{enumerate}
 
-\hypertarget{optimization-in-r}{%
-\section{Optimization in R}\label{optimization-in-r}}
+\section{Optimization in R}\label{optimization-in-r}
 
 \begin{itemize}
 \tightlist
@@ -6789,8 +6571,7 @@ Many observers have noted that as studies yielding statistically significant res
   There are many optimizers (e.g.~\texttt{optimize}, and \texttt{optim}). \texttt{optimize} is the simplest to use, but only works in one dimension.
 \end{itemize}
 
-\hypertarget{optimization-example-optimum-price}{%
-\subsection{Optimization Example: Optimum Price}\label{optimization-example-optimum-price}}
+\subsection{Optimization Example: Optimum Price}\label{optimization-example-optimum-price}
 
 \begin{itemize}
 \tightlist
@@ -6870,8 +6651,7 @@ Many observers have noted that as studies yielding statistically significant res
 ## [1] 98.25
 \end{verbatim}
 
-\hypertarget{mle-for-poisson-random-variables}{%
-\section{MLE for Poisson Random Variables}\label{mle-for-poisson-random-variables}}
+\section{MLE for Poisson Random Variables}\label{mle-for-poisson-random-variables}
 
 \begin{itemize}
 \tightlist
@@ -6897,8 +6677,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 ##  [1] 2 2 2 1 2 1 2 2 2 2
 \end{verbatim}
 
-\hypertarget{mle-for-poisson-random-variables-data}{%
-\subsection{MLE for Poisson Random Variables: Data}\label{mle-for-poisson-random-variables-data}}
+\subsection{MLE for Poisson Random Variables: Data}\label{mle-for-poisson-random-variables-data}
 
 \begin{itemize}
 \tightlist
@@ -6931,8 +6710,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 ## 54 69 38 14 14  6  1  2  1  1
 \end{verbatim}
 
-\hypertarget{mle-estimation}{%
-\subsection{MLE Estimation}\label{mle-estimation}}
+\subsection{MLE Estimation}\label{mle-estimation}
 
 \begin{itemize}
 \item
@@ -6980,7 +6758,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{203-live-session_files/figure-latex/plot the likelihood-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot the likelihood-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6988,8 +6766,7 @@ Here is an example of a string of outcomes generated by a Poisson RV, with param
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{confidence-intervals}{%
-\section{Confidence Intervals}\label{confidence-intervals}}
+\section{Confidence Intervals}\label{confidence-intervals}
 
 This exercise is meant to demonstrate what the confidence level in a confidence interval represents. We will assume a standard normal population distribution and simulate what happens when we draw a sample and compute a confidence interval.
 
@@ -7118,8 +6895,7 @@ When your function is complete, you can use the following code to run your funct
   Suppose you run a single study. Based on what you've just written above, why is it incorrect to say that, ``There is a 95\% probability that the true mean is inside this (single) confidence interval''?
 \end{enumerate}
 
-\hypertarget{maximum-likelihood-example-printers}{%
-\section{Maximum Likelihood Example: Printers}\label{maximum-likelihood-example-printers}}
+\section{Maximum Likelihood Example: Printers}\label{maximum-likelihood-example-printers}
 
 \textbf{Part I}
 
@@ -7137,7 +6913,7 @@ You have data from the last 10 times you tried.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth,height=\textheight]{./images/office_space.jpg}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{./images/office_space.jpg}
 \caption{bbc, office space}
 \end{figure}
 
@@ -7157,12 +6933,10 @@ However, even if we want to model this as a Bernoulli distribution, we do not kn
 
 5- \emph{Path 2:} Maximize using numeric methods.
 
-\hypertarget{appendix}{%
-\chapter*{Appendix}\label{appendix}}
+\chapter*{Appendix}\label{appendix}
 \addcontentsline{toc}{chapter}{Appendix}
 
-\hypertarget{blooms-taxonomy}{%
-\section*{Bloom's Taxonomy}\label{blooms-taxonomy}}
+\section*{Bloom's Taxonomy}\label{blooms-taxonomy}
 \addcontentsline{toc}{section}{Bloom's Taxonomy}
 
 An effective rubric for student understanding is attributed to Bloom (1956). Referred to as \emph{Bloom's Taxonomy}, this proposes that there is a hierarchy of student understanding; that a student may have one \emph{level} of reasoning skill with a concept, but not another. The taxonomy proposes to be ordered: some levels of reasoning build upon other levels of reasoning.
