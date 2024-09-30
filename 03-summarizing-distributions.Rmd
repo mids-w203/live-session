@@ -2,7 +2,11 @@
 
 ```{r load unit 03 packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
+library(patchwork)
+
 source('./src/blank_lines.R')
+
+theme_set(theme_minimal())
 ```
 
 ![a majestic valley](./images/yosemite.jpg)
@@ -287,7 +291,7 @@ Suppose that $X$ has the following density function:
 ::: 
 
 ### Joint Density
-#### What's the covariance, meow? [discrete]
+#### Discrete Case: Calculate Covariance
 
 In the reading, you saw that we define **covariance** to be: 
 
@@ -320,15 +324,28 @@ f(x,y)   y=0    y=1
 2.  Are X and Y independent? Why or why not?
 ::: 
 
-#### 
+#### Continuous Case: Calculate Covariance
 
 ::: {.discussion-question}
-Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 10 x^2y, 0 < y \leq x \leq 1.$
+Suppose that $X$ and $Y$ have joint density $f_{X,Y}(x,y) = 8xy, 0 \leq y < x \leq 1.$
 
--   Find $E[X]$
--   Find $E[EY]$
--   Find $\rho[X,Y]$
+-   Break into groups to find $\operatorname{Cov}[X,Y]$
 :::
+
+::: {.discussion-question} 
+Suppose that $X$ and $Y$ are random variables with joint density 
+
+$$
+f_{X,Y}(x,y) = 
+\begin{cases} 
+ 1, & -y < x < y, 0 < y < 1 \\ 
+ 0, & \textrm{elsewhere}
+\end{cases}
+$$
+
+Show that $\operatorname{Cov}[X,Y] = 0$ but that $X$ and $Y$ are dependent. 
+::: 
+
 
 ## Write Code
 Suppose that you have a random variable with a **gnarly** probability distribution function:
@@ -355,7 +372,10 @@ support <- seq(from=0, to=2, by=0.01)
 ```{r}
 ggplot() + 
   geom_function(fun = pdf_fun) + 
-  xlim(min(support), max(support))
+  xlim(min(support), max(support)) + 
+  labs(
+    title = "A Gnarly Plot"
+  )
 ```
 
 ```{r}
@@ -431,32 +451,77 @@ mqe_ <- mean_quadratic_error(
 )
 ```
 
-```{r}
-plot(
-  x = support,
-  y = mse_,
-  type = 'l'
-)
-lines(
-  x = support, 
-  y = mae_, 
-  type = 'l', 
-  col = '#003262'
-)
-lines(
-  x = support, 
-  y = mqe_, 
-  type = 'l', 
-  col = '#FDB515'
-)
-abline(v=1.5, col = 'darkred')
-```
-
-```{r, include=FALSE, eval=FALSE}
-optim(
+```{r find optimal solutions to minimize errors}
+absolute_error_ <- optim(
   par = 0, 
-  fn = mean_square_error, 
+  fn = mean_absolute_error, 
   method = 'Brent', 
   lower = 0, upper = 2
-)
+  )$par
+
+squared_error_ <- optim(
+  par = 0, 
+  fn = mean_square_error, 
+  method = "Brent", 
+  lower = 0, upper = 2
+  )$par
+cubic_error_ <- optim(
+  par = 0, 
+  fn = mean_cubic_error, 
+  method = "Brent", 
+  lower = 0, upper = 2
+  )$par
+quadratic_error_ <- optim(
+  par = 0, 
+  fn = mean_quadratic_error, 
+  method = "Brent", 
+  lower = 0, upper = 2
+  )$par
 ```
+
+```{r}
+all_plots <- ggplot() + 
+  ## add lines 
+  geom_line(aes(x=support, y=scale(mse_)), color = "#003262")  + 
+  geom_line(aes(x=support, y=scale(mae_)), color = "#FDB515")  + 
+  geom_line(aes(x=support, y=scale(mce_)), color = "seagreen") + 
+  geom_line(aes(x=support, y=scale(mqe_)), color = "darkred")  +
+  ## add optimal solution indicators
+  geom_segment(
+    aes(x = squared_error_, 
+    xend = squared_error_, 
+    y = -2, 
+    yend = -1), 
+    arrow = arrow(length = unit(0.25, "cm")),
+    color = "#003262")  + 
+  geom_segment(
+    aes(x = absolute_error_, 
+    xend = absolute_error_, 
+    y = -.2, 
+    yend = -1.2), 
+    arrow = arrow(length = unit(0.25, "cm")),
+    color = "#FDB515")  + 
+  geom_segment(
+    aes(x = cubic_error_, 
+    xend = cubic_error_, 
+    y = -1, 
+    yend = -2), 
+    arrow = arrow(length = unit(0.25, "cm")),
+    color = "seagreen")  + 
+  geom_segment(
+    aes(x = quadratic_error_, 
+    xend = quadratic_error_, 
+    y = -2, 
+    yend = -1), 
+    arrow = arrow(length = unit(0.25, "cm")),
+    color = "darkred")  + 
+  labs(
+    title    = "All Errors on a common scale", 
+    subtitle = "Different Errors lead to different solutions.", 
+    y        = "Error Magnitude", 
+    x        = "Choice of X"
+  )
+
+all_plots
+```
+

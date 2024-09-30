@@ -1,0 +1,138 @@
+---
+title: "Working with Samples of Data"
+format: html
+editor: visual
+---
+
+# Setup
+
+We're going to use data that is supplied by the book *Introduction to Statistics with R*, written by Peter Daalgard. Here is a link to the book: \[[link](https://link.springer.com/book/10.1007/978-0-387-79054-1)\]. This is an old-ish book, so we don't use it as a core resource for the course, but, well, t-tests haven't changed much in the last decade, although idiomatic writing in the language has.
+
+To start with, you have to install this package to make it available to you. This is one of the neat parts of the R ecosystem, that there are many community contributed packages that can be imported and used.
+
+```{r load packages, results='hide', message=FALSE}
+library(ISwR)
+library(tidyverse)
+library(janitor)
+```
+
+```{r set plotting theme}
+theme_set(theme_minimal())
+```
+
+# Question 1
+
+Ok, here's a weird dataset that is included in the `ISwR` package, the `react` dataset. The documentation describes this data as:
+
+> The numeric vector `react` contains differences between two nurses' determinations of 334 tuberculin reaction sizes.
+
+Well, ok then! Once you have loaded the package, you can access this data by referring to the object.
+
+```{r}
+react
+```
+
+To begin, produce a plot of this data that you think is informative of the distribution of the data.
+
+```{r produce a plot}
+ggplot() + 
+  aes(x=react) + 
+  geom_histogram(bins=10)
+```
+
+1.  Does this data look to be "reasonably well distributed"? What does that mean to you in the context and how are you evaluating this?
+2.  Does this distribution differ significantly from zero? Conduct a t-test to evaluate this
+
+```{r conduct a t-test}
+
+```
+
+I don't, and I suspect that you don't either, have enough context to know what a "big difference" would be. So, for this question, let's skip the *very* important task of describing this in context.
+
+# Question 2
+
+Okay, from one weird dataset to another!
+
+The dataset `vitcap` is described in the following way:
+
+> The `vitcap` data frame has 24 rows and 3 columns. It contains data on vital capacity for workers in the cadmium industry. It is a subset of the `vitcap2` data set.
+
+The description goes on to describe the three variables that are included in the data:
+
+1.  `group` : a numeric vector where group codes are as follows:
+    1.  `1`: The individual was exposed for more than 10 years.
+    2.  `3`: The individual was not exposed for more than 10 years.
+2.  `age` : a numeric vector, which is the individuals age in years
+3.  `vital.capacity` : a numeric vector of "vital capacity" which is a measure of lung volume.
+
+## Cleaning Up This Data
+
+Here's the thing, since I'm writing this, I get to be opinionated. And, although these are *aesthetic* preferences for how data should look and be named, they're good preferences, and ones that you could do well to learn from. That's the kind of mandate that I get as the instructor for the course!
+
+1.  **Variable names:** dots (`.`) in variable names are a bad idea; it is going to confuse the heck out of you working between R and python. If you're going to use underscores `_` to separate spaces, then it is too much gymnastics to use those underscores and also capital letters. So **preference 1**: prefer lower-case variable names separated with underscores.
+    1.  You can create these either by setting the "names" attribute of a data.frame object by hand, or you can use a nice function that is in the janitor package: `janitor::clean_names()`.
+    2.  Having a variable called `group` is a bad idea; this has some analytic meaning, and I confuse whether this is a variable name, or a method that I'm using on data.
+2.  If your data is going to split the population into groups, don't name those groups with a numeric label that might be misconstrued as having some actual numeric meaning. In this data, switch the `group` variable to something more expressive.
+    1.  You can make this change using the `dplyr` verb `case_when` .
+    2.  If you haven't used this before, you can ask for the help documentation for the verb by calling for `?case_when` in the console.
+3.  While you're at it, the name of the object that holds your data should also be something that people can anticipate. When I see `vitcap` I don't know what the heck this is – it could be a function, a data-object, or... I don't know, anything else.
+    1.  There is a construct in R that data can be stored in the object `d`. This is easy to type, and there's an understanding within the group of people who are writing analysis in the language that this is likely to hold data. If you don't have another thing to call your data, `d` is just fine.
+    2.  Otherwise, make it clear that your object contains data. For this, you could call this like `lung_capacity` or something else. It isn't typical to call the data object something like `lung_capacity_data`, probably because this leads to a lot of typing.
+4.  You can achieve all of these at the same time, by chaining things together, for example using either the `magrittr` pipe that is included in the `tidyverse` universe of packages, or by using the native pipe that is included in modern R.
+    1.  The magrittr pipe is `%>%` and is kind of baroque looking.
+    2.  The base pipe is `|>` and is a little cleaner, but can be harder to type. I have this mapped to a keyboard shortcut for myself in Rstudio.
+
+If I were going to write this all together, I might write it in the following form:
+
+```{r}
+lung_capacity <- vitcap |> 
+  clean_names() |> 
+  rename(lung_capacity = vital_capacity) |> 
+  mutate(
+    exposure_group = case_when(
+      group == 1 ~ "Exposed", 
+      group == 3 ~ "Not Exposed"
+    )
+  )
+head(lung_capacity)
+```
+
+And then, I can use the `lung_capacity` object to do the work that I want to do.
+
+## Plot
+
+Start by making a plot that you think is informative about the lung capacity of the 24 people in this data. There are three variables that you need to show, so I would consider putting the outcome on the y-axis, the `age` on the x-axis, and the `group` into a color mapping.
+
+This will let the reader see all three axes at once.
+
+```{r}
+lung_capacity |> 
+  ggplot() + 
+  aes(x = age, y = lung_capacity, color = exposure_group) + 
+  geom_point() + 
+  labs(
+    title    = "Lung Capacity and Cadmium Exposure", 
+    subtitle = "Are there confounding features?",
+    color    = "Exposure Group", 
+    x        = "Age", 
+    y        = "Lung Capacity"
+  )
+```
+
+Conduct a `t-test` for whether the lung capacity is different between those who have been exposed to cadmium for more than 10 years, compared to those who have been exposed for fewer than 10 years. Use the "formula interface" which has the following form:
+
+> t.test(LHS \~ RHS, data = d)
+
+Where the left-hand side is the "outcome" that you're interesting in modeling using "explanatory" features on the right hand side.
+
+What is the 95% confidence interval for this difference?
+
+Store your results into an object called `capacity_test_` . After you have estimated this quantity, you can inspect the elements of the test object by calling for `str(capacity_test_)` (which is for structure). If you issue the command `capacity_test_` at the console, the default response for this object it to print a pretty version of the test results.
+
+Notice that when you call for `str(capacity_test_)` you get a list of 10 things, including the `statistic`, the `parameter` the `p.value` and so on.
+
+```{r}
+capacity_test_ <- t.test(lung_capacity ~ group, data = lung_capacity)
+str(capacity_test_)
+capacity_test_
+```

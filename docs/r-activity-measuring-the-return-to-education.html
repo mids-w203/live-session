@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -530,16 +530,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>We will use wage1 dataset in the wooldridge package in the following sections.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="r-activity-measuring-the-return-to-education.html#cb176-1" tabindex="-1"></a>wage1 <span class="ot">&lt;-</span> wooldridge<span class="sc">::</span>wage1</span>
-<span id="cb176-2"><a href="r-activity-measuring-the-return-to-education.html#cb176-2" tabindex="-1"></a><span class="co">#names(wage1)</span></span>
-<span id="cb176-3"><a href="r-activity-measuring-the-return-to-education.html#cb176-3" tabindex="-1"></a></span>
-<span id="cb176-4"><a href="r-activity-measuring-the-return-to-education.html#cb176-4" tabindex="-1"></a>wage1 <span class="sc">%&gt;%</span> </span>
-<span id="cb176-5"><a href="r-activity-measuring-the-return-to-education.html#cb176-5" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb176-6"><a href="r-activity-measuring-the-return-to-education.html#cb176-6" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>wage) <span class="sc">+</span> </span>
-<span id="cb176-7"><a href="r-activity-measuring-the-return-to-education.html#cb176-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="r-activity-measuring-the-return-to-education.html#cb177-1" tabindex="-1"></a>wage1 <span class="ot">&lt;-</span> wooldridge<span class="sc">::</span>wage1</span>
+<span id="cb177-2"><a href="r-activity-measuring-the-return-to-education.html#cb177-2" tabindex="-1"></a><span class="co">#names(wage1)</span></span>
+<span id="cb177-3"><a href="r-activity-measuring-the-return-to-education.html#cb177-3" tabindex="-1"></a></span>
+<span id="cb177-4"><a href="r-activity-measuring-the-return-to-education.html#cb177-4" tabindex="-1"></a>wage1 <span class="sc">%&gt;%</span> </span>
+<span id="cb177-5"><a href="r-activity-measuring-the-return-to-education.html#cb177-5" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb177-6"><a href="r-activity-measuring-the-return-to-education.html#cb177-6" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>wage) <span class="sc">+</span> </span>
+<span id="cb177-7"><a href="r-activity-measuring-the-return-to-education.html#cb177-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 </details>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 <div id="transformations" class="section level3 hasAnchor" number="10.5.1">
 <h3><span class="header-section-number">10.5.1</span> Transformations<a href="r-activity-measuring-the-return-to-education.html#transformations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="applying-and-interpreting-logarithms" class="section level4 hasAnchor" number="10.5.1.1">

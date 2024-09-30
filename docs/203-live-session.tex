@@ -158,7 +158,7 @@
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2024-09-17}
+\date{2024-09-19}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -554,13 +554,13 @@ The \emph{applied} homework will be marked either \texttt{Correct} or \texttt{In
 \chapter{Defining Random Variables}\label{defining-random-variables}
 
 \begin{verbatim}
-## -- Attaching core tidyverse packages ------------------------------------ tidyverse 2.0.0 --
+## -- Attaching core tidyverse packages ----- tidyverse 2.0.0 --
 ## v dplyr     1.1.3     v readr     2.1.4
 ## v forcats   1.0.0     v stringr   1.5.0
 ## v ggplot2   3.4.4     v tibble    3.2.1
 ## v lubridate 1.9.3     v tidyr     1.3.0
 ## v purrr     1.0.2     
-## -- Conflicts ------------------------------------------------------ tidyverse_conflicts() --
+## -- Conflicts ----------------------- tidyverse_conflicts() --
 ## x purrr::%||%()   masks base::%||%()
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -1042,9 +1042,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 2.348914 1.330618 3.237766 2.601114 2.572662 3.472285 3.044980 1.764262
-##  [9] 3.651572 1.184387 2.567567 4.127483 2.367027 1.222441 3.648449 1.302789
-## [17] 2.939004 1.992432 1.217852 2.304866
+##  [1] 1.237991 3.679224 1.999566 2.665579 3.118595 4.178917 1.986320 1.610992
+##  [9] 3.656255 4.008142 2.275195 2.139114 3.558979 2.154422 1.188190 3.581577
+## [17] 2.466553 1.498367 2.953407 3.974018
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1129,9 +1129,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 11.02089 11.08026 18.20869 14.76926 11.43253 15.08656 15.43093 21.06176
-##  [9] 15.01055 19.86403 18.18031 17.39067  9.91332 17.40641 11.74591 18.12543
-## [17] 14.16544 27.54657 16.17258 14.82605
+##  [1] 21.848725 12.958302 18.432399 25.070160 23.977394 20.540846 17.995441
+##  [8]  8.721547 21.321775 15.705741 18.359370 16.148013 19.576897 19.031722
+## [15] 11.511603 18.038288 22.106554 20.915355 18.289997 21.127253
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -1608,7 +1608,7 @@ Suppose that \(X\) has the following density function:
 
 \subsection{Joint Density}\label{joint-density-1}
 
-\subsubsection{What's the covariance, meow? {[}discrete{]}}\label{whats-the-covariance-meow-discrete}
+\subsubsection{Discrete Case: Calculate Covariance}\label{discrete-case-calculate-covariance}
 
 In the reading, you saw that we define \textbf{covariance} to be:
 
@@ -1651,19 +1651,27 @@ x=2 & 0.10 & 0.35 \\
   Are X and Y independent? Why or why not?
 \end{enumerate}
 
-\subsubsection{}\label{section}
+\subsubsection{Continuous Case: Calculate Covariance}\label{continuous-case-calculate-covariance}
 
-Suppose that \(X\) and \(Y\) have joint density \(f_{X,Y}(x,y) = 10 x^2y, 0 < y \leq x \leq 1.\)
+Suppose that \(X\) and \(Y\) have joint density \(f_{X,Y}(x,y) = 8xy, 0 \leq y < x \leq 1.\)
 
 \begin{itemize}
 \tightlist
 \item
-  Find \(E[X]\)
-\item
-  Find \(E[EY]\)
-\item
-  Find \(\rho[X,Y]\)
+  Break into groups to find \(\operatorname{Cov}[X,Y]\)
 \end{itemize}
+
+Suppose that \(X\) and \(Y\) are random variables with joint density
+
+\[
+f_{X,Y}(x,y) = 
+\begin{cases} 
+ 1, & -y < x < y, 0 < y < 1 \\ 
+ 0, & \textrm{elsewhere}
+\end{cases}
+\]
+
+Show that \(\operatorname{Cov}[X,Y] = 0\) but that \(X\) and \(Y\) are dependent.
 
 \section{Write Code}\label{write-code}
 
@@ -1701,7 +1709,10 @@ If you had to pick a single value that minimizes the \(MSE\) of this function, w
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
   \FunctionTok{geom\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ pdf\_fun) }\SpecialCharTok{+} 
-  \FunctionTok{xlim}\NormalTok{(}\FunctionTok{min}\NormalTok{(support), }\FunctionTok{max}\NormalTok{(support))}
+  \FunctionTok{xlim}\NormalTok{(}\FunctionTok{min}\NormalTok{(support), }\FunctionTok{max}\NormalTok{(support)) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"A Gnarly Plot"}
+\NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1790,24 +1801,79 @@ If you had to pick a single value that minimizes the \(MSE\) of this function, w
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(}
-  \AttributeTok{x =}\NormalTok{ support,}
-  \AttributeTok{y =}\NormalTok{ mse\_,}
-  \AttributeTok{type =} \StringTok{\textquotesingle{}l\textquotesingle{}}
-\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}
-  \AttributeTok{x =}\NormalTok{ support, }
-  \AttributeTok{y =}\NormalTok{ mae\_, }
-  \AttributeTok{type =} \StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{, }
-  \AttributeTok{col =} \StringTok{\textquotesingle{}\#003262\textquotesingle{}}
-\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}
-  \AttributeTok{x =}\NormalTok{ support, }
-  \AttributeTok{y =}\NormalTok{ mqe\_, }
-  \AttributeTok{type =} \StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{, }
-  \AttributeTok{col =} \StringTok{\textquotesingle{}\#FDB515\textquotesingle{}}
-\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\FloatTok{1.5}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}darkred\textquotesingle{}}\NormalTok{)}
+\NormalTok{absolute\_error\_ }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}
+  \AttributeTok{par =} \DecValTok{0}\NormalTok{, }
+  \AttributeTok{fn =}\NormalTok{ mean\_absolute\_error, }
+  \AttributeTok{method =} \StringTok{\textquotesingle{}Brent\textquotesingle{}}\NormalTok{, }
+  \AttributeTok{lower =} \DecValTok{0}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}
+\NormalTok{  )}\SpecialCharTok{$}\NormalTok{par}
+
+\NormalTok{squared\_error\_ }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}
+  \AttributeTok{par =} \DecValTok{0}\NormalTok{, }
+  \AttributeTok{fn =}\NormalTok{ mean\_square\_error, }
+  \AttributeTok{method =} \StringTok{"Brent"}\NormalTok{, }
+  \AttributeTok{lower =} \DecValTok{0}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}
+\NormalTok{  )}\SpecialCharTok{$}\NormalTok{par}
+\NormalTok{cubic\_error\_ }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}
+  \AttributeTok{par =} \DecValTok{0}\NormalTok{, }
+  \AttributeTok{fn =}\NormalTok{ mean\_cubic\_error, }
+  \AttributeTok{method =} \StringTok{"Brent"}\NormalTok{, }
+  \AttributeTok{lower =} \DecValTok{0}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}
+\NormalTok{  )}\SpecialCharTok{$}\NormalTok{par}
+\NormalTok{quadratic\_error\_ }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}
+  \AttributeTok{par =} \DecValTok{0}\NormalTok{, }
+  \AttributeTok{fn =}\NormalTok{ mean\_quadratic\_error, }
+  \AttributeTok{method =} \StringTok{"Brent"}\NormalTok{, }
+  \AttributeTok{lower =} \DecValTok{0}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}
+\NormalTok{  )}\SpecialCharTok{$}\NormalTok{par}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{all\_plots }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \DocumentationTok{\#\# add lines }
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{support, }\AttributeTok{y=}\FunctionTok{scale}\NormalTok{(mse\_)), }\AttributeTok{color =} \StringTok{"\#003262"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{support, }\AttributeTok{y=}\FunctionTok{scale}\NormalTok{(mae\_)), }\AttributeTok{color =} \StringTok{"\#FDB515"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{support, }\AttributeTok{y=}\FunctionTok{scale}\NormalTok{(mce\_)), }\AttributeTok{color =} \StringTok{"seagreen"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{support, }\AttributeTok{y=}\FunctionTok{scale}\NormalTok{(mqe\_)), }\AttributeTok{color =} \StringTok{"darkred"}\NormalTok{)  }\SpecialCharTok{+}
+  \DocumentationTok{\#\# add optimal solution indicators}
+  \FunctionTok{geom\_segment}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ squared\_error\_, }
+    \AttributeTok{xend =}\NormalTok{ squared\_error\_, }
+    \AttributeTok{y =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }
+    \AttributeTok{yend =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\StringTok{"cm"}\NormalTok{)),}
+    \AttributeTok{color =} \StringTok{"\#003262"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_segment}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ absolute\_error\_, }
+    \AttributeTok{xend =}\NormalTok{ absolute\_error\_, }
+    \AttributeTok{y =} \SpecialCharTok{{-}}\NormalTok{.}\DecValTok{2}\NormalTok{, }
+    \AttributeTok{yend =} \SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{), }
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\StringTok{"cm"}\NormalTok{)),}
+    \AttributeTok{color =} \StringTok{"\#FDB515"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_segment}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ cubic\_error\_, }
+    \AttributeTok{xend =}\NormalTok{ cubic\_error\_, }
+    \AttributeTok{y =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }
+    \AttributeTok{yend =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{), }
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\StringTok{"cm"}\NormalTok{)),}
+    \AttributeTok{color =} \StringTok{"seagreen"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_segment}\NormalTok{(}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ quadratic\_error\_, }
+    \AttributeTok{xend =}\NormalTok{ quadratic\_error\_, }
+    \AttributeTok{y =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }
+    \AttributeTok{yend =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }
+    \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\StringTok{"cm"}\NormalTok{)),}
+    \AttributeTok{color =} \StringTok{"darkred"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title    =} \StringTok{"All Errors on a common scale"}\NormalTok{, }
+    \AttributeTok{subtitle =} \StringTok{"Different Errors lead to different solutions."}\NormalTok{, }
+    \AttributeTok{y        =} \StringTok{"Error Magnitude"}\NormalTok{, }
+    \AttributeTok{x        =} \StringTok{"Choice of X"}
+\NormalTok{  )}
+
+\NormalTok{all\_plots}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3089,7 +3155,7 @@ Think of wellness/illness as a dichotomous statement.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-45-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-44-1.pdf}}
 
 \begin{itemize}
 \item
@@ -3200,7 +3266,7 @@ We are especially interested in the variable, \texttt{score\_diff}, which repres
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-49-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-48-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3211,7 +3277,7 @@ We are especially interested in the variable, \texttt{score\_diff}, which repres
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-49-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-48-2.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3722,7 +3788,7 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 11 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-53-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-52-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -3771,22 +3837,26 @@ You have a set of questions that you would like to answer with a statistical tes
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 986 rows containing non-finite values (`stat_bin()`).
+## Warning: Removed 986 rows containing non-finite values
+## (`stat_bin()`).
 \end{verbatim}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 929 rows containing non-finite values (`stat_bin()`).
+## Warning: Removed 929 rows containing non-finite values
+## (`stat_bin()`).
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-54-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-53-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4052,7 +4122,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-56-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-55-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4093,7 +4163,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-58-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-57-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -4164,7 +4234,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-60-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-59-1.pdf}}
 
 \subsection{Paired compared to unpaired tests}\label{paired-compared-to-unpaired-tests}
 
@@ -4619,7 +4689,7 @@ The file \texttt{hprice1.Rdata} contains 88 observations of homes in the Boston 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-67-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-66-1.pdf}}
 
 Suppose that you're interested in knowing the relationship between price and square footage.
 
@@ -4651,7 +4721,7 @@ Suppose that you're interested in knowing the relationship between price and squ
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-71-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-70-1.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4914,7 +4984,7 @@ A is what we call a homoskedastic distribution. B and C are what we call heteros
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-76-1.pdf}}
 
 \subsection{Question 1}\label{question-1}
 
@@ -4936,7 +5006,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-78-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4962,10 +5032,12 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2
+## 3.4.0.
 ## i Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where
+## this warning was generated.
 \end{verbatim}
 
 \begin{Shaded}
@@ -5008,7 +5080,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-79-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-78-1.pdf}}
 
 \subsection{Question 2}\label{question-2}
 
@@ -5228,10 +5300,11 @@ With this, it is possible to plot the distribution of these regression coefficie
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-88-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-87-1.pdf}}
 
 Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?
 
@@ -5406,10 +5479,11 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-90-1.pdf}}
 
 \subsection{Transformations}\label{transformations}
 
@@ -5808,7 +5882,7 @@ The file \texttt{htv.RData} contains data from the 1991 National Longitudinal Su
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-92-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}}
 
 Assume that the true model is,
 
@@ -6161,7 +6235,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-95-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-94-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6171,7 +6245,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-95-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-94-2.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

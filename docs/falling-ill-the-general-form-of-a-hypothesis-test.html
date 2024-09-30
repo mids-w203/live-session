@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -532,13 +532,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>State an appropriate null hypothesis.</strong> After you have stated this null hypothesis, can you think about (or, even better) can you produce a distribution of the probability of {0, 1, 2, 3, … 30} of the illnesses reported before the test?</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb61-1" tabindex="-1"></a>null_distribution <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">30</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
-<span id="cb61-2"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb61-2" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb61-3" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb61-4"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb61-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">y=</span>null_distribution) <span class="sc">+</span> </span>
-<span id="cb61-5"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb61-5" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb62-1" tabindex="-1"></a>null_distribution <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">30</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb62-2"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb62-2" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb62-3" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb62-4"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb62-4" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">y=</span>null_distribution) <span class="sc">+</span> </span>
+<span id="cb62-5"><a href="falling-ill-the-general-form-of-a-hypothesis-test.html#cb62-5" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
 </details>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <ul>
 <li><p><strong>State a rejection criteria</strong>. What occurrence in the data would cause you do doubt the plausibility of your null hypothesis?</p></li>
 <li><p><strong>What do you conclude?</strong> Given the data that is presented to you and the null hypothesis, what do you conclude?</p></li>

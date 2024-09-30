@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -538,8 +538,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="joint-density-1" class="section level3 hasAnchor" number="3.8.2">
 <h3><span class="header-section-number">3.8.2</span> Joint Density<a href="practice-computing.html#joint-density-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="whats-the-covariance-meow-discrete" class="section level4 hasAnchor" number="3.8.2.1">
-<h4><span class="header-section-number">3.8.2.1</span> What’s the covariance, meow? [discrete]<a href="practice-computing.html#whats-the-covariance-meow-discrete" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="discrete-case-calculate-covariance" class="section level4 hasAnchor" number="3.8.2.1">
+<h4><span class="header-section-number">3.8.2.1</span> Discrete Case: Calculate Covariance<a href="practice-computing.html#discrete-case-calculate-covariance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In the reading, you saw that we define <strong>covariance</strong> to be:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -588,15 +588,24 @@ Cor[X,Y]    &amp; \equiv \rho[X,Y] \\
 </ol>
 </div>
 </div>
-<div id="section" class="section level4" number="3.8.2.2">
-<h4><span class="header-section-number">3.8.2.2</span> </h4>
+<div id="continuous-case-calculate-covariance" class="section level4 hasAnchor" number="3.8.2.2">
+<h4><span class="header-section-number">3.8.2.2</span> Continuous Case: Calculate Covariance<a href="practice-computing.html#continuous-case-calculate-covariance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="discussion-question">
-<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have joint density <span class="math inline">\(f_{X,Y}(x,y) = 10 x^2y, 0 &lt; y \leq x \leq 1.\)</span></p>
+<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have joint density <span class="math inline">\(f_{X,Y}(x,y) = 8xy, 0 \leq y &lt; x \leq 1.\)</span></p>
 <ul>
-<li>Find <span class="math inline">\(E[X]\)</span></li>
-<li>Find <span class="math inline">\(E[EY]\)</span></li>
-<li>Find <span class="math inline">\(\rho[X,Y]\)</span></li>
+<li>Break into groups to find <span class="math inline">\(\operatorname{Cov}[X,Y]\)</span></li>
 </ul>
+</div>
+<div class="discussion-question">
+<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables with joint density</p>
+<p><span class="math display">\[
+f_{X,Y}(x,y) =
+\begin{cases}
+1, &amp; -y &lt; x &lt; y, 0 &lt; y &lt; 1 \\
+0, &amp; \textrm{elsewhere}
+\end{cases}
+\]</span></p>
+<p>Show that <span class="math inline">\(\operatorname{Cov}[X,Y] = 0\)</span> but that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are dependent.</p>
 </div>
 </div>
 </div>

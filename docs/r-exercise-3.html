@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -520,19 +520,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-exercise-3" class="section level2 hasAnchor" number="12.5">
 <h2><span class="header-section-number">12.5</span> R Exercise<a href="r-exercise-3.html#r-exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="r-exercise-3.html#cb182-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb182-2"><a href="r-exercise-3.html#cb182-2" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
-<span id="cb182-3"><a href="r-exercise-3.html#cb182-3" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb182-4"><a href="r-exercise-3.html#cb182-4" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb182-5"><a href="r-exercise-3.html#cb182-5" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
-<span id="cb182-6"><a href="r-exercise-3.html#cb182-6" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="r-exercise-3.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb183-2"><a href="r-exercise-3.html#cb183-2" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span>
+<span id="cb183-3"><a href="r-exercise-3.html#cb183-3" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb183-4"><a href="r-exercise-3.html#cb183-4" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb183-5"><a href="r-exercise-3.html#cb183-5" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb183-6"><a href="r-exercise-3.html#cb183-6" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
 </details>
 <p>If you haven’t used the <code>mtcars</code> dataset, you haven’t been through an intro applied stats class!</p>
 <p>In this analysis, we will use the mtcars dataset which is a dataset that was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973-74 models). The dataset is automatically available when you start R.</p>
 <p>For more information about the dataset, use the R command: <code>help(mtcars)</code></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="r-exercise-3.html#cb183-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb183-2"><a href="r-exercise-3.html#cb183-2" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="r-exercise-3.html#cb184-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb184-2"><a href="r-exercise-3.html#cb184-2" tabindex="-1"></a><span class="fu">glimpse</span>(mtcars)</span></code></pre></div>
 </details>
 <pre><code>## Rows: 32
 ## Columns: 11
@@ -553,18 +553,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Using the <code>mtcars</code> data, quickly reason about the variables that we’re interested in studying:</li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="r-exercise-3.html#cb185-1" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb185-2"><a href="r-exercise-3.html#cb185-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb185-3"><a href="r-exercise-3.html#cb185-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>mpg) <span class="sc">+</span></span>
-<span id="cb185-4"><a href="r-exercise-3.html#cb185-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)</span></code></pre></div>
-</details>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
-<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="r-exercise-3.html#cb186-1" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb186-2"><a href="r-exercise-3.html#cb186-2" tabindex="-1"></a>  <span class="fu">select</span>(mpg, disp, hp, wt, drat) <span class="sc">%&gt;%</span> </span>
-<span id="cb186-3"><a href="r-exercise-3.html#cb186-3" tabindex="-1"></a>  <span class="fu">pairs</span>(<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
+<span id="cb186-2"><a href="r-exercise-3.html#cb186-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb186-3"><a href="r-exercise-3.html#cb186-3" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>mpg) <span class="sc">+</span></span>
+<span id="cb186-4"><a href="r-exercise-3.html#cb186-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)</span></code></pre></div>
 </details>
-<p><img src="203-live-session_files/figure-html/unnamed-chunk-95-2.png" width="672" /></p>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="r-exercise-3.html#cb187-1" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb187-2"><a href="r-exercise-3.html#cb187-2" tabindex="-1"></a>  <span class="fu">select</span>(mpg, disp, hp, wt, drat) <span class="sc">%&gt;%</span> </span>
+<span id="cb187-3"><a href="r-exercise-3.html#cb187-3" tabindex="-1"></a>  <span class="fu">pairs</span>(<span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
+</details>
+<p><img src="203-live-session_files/figure-html/unnamed-chunk-94-2.png" width="672" /></p>
 <ol style="list-style-type: decimal">
 <li>Using the <code>mtcars</code> data, run a linear regression to find the relationship between miles per gallon (<code>mpg</code>) on the left-hand-side as a function of displacement (<code>disp</code>), gross horsepower (<code>hp</code>), weight (<code>wt</code>), and rear axle ratio (<code>drat</code>) on the right-hand-side. That is, fit a regression of the following form:</li>
 </ol>
@@ -582,10 +582,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="r-exercise-3.html#cb187-1" tabindex="-1"></a><span class="co"># goal:</span></span>
-<span id="cb187-2"><a href="r-exercise-3.html#cb187-2" tabindex="-1"></a><span class="co"># consequence if violated:</span></span></code></pre></div>
-</details>
-<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="r-exercise-3.html#cb188-1" tabindex="-1"></a><span class="co"># goal:</span></span>
 <span id="cb188-2"><a href="r-exercise-3.html#cb188-2" tabindex="-1"></a><span class="co"># consequence if violated:</span></span></code></pre></div>
 </details>
@@ -600,6 +596,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="r-exercise-3.html#cb191-1" tabindex="-1"></a><span class="co"># goal:</span></span>
 <span id="cb191-2"><a href="r-exercise-3.html#cb191-2" tabindex="-1"></a><span class="co"># consequence if violated:</span></span></code></pre></div>
+</details>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="r-exercise-3.html#cb192-1" tabindex="-1"></a><span class="co"># goal:</span></span>
+<span id="cb192-2"><a href="r-exercise-3.html#cb192-2" tabindex="-1"></a><span class="co"># consequence if violated:</span></span></code></pre></div>
 </details>
 <ol start="3" style="list-style-type: decimal">
 <li><p>In addition to the above, assess to what extent (imperfect) collinearity is affecting your inference.</p></li>

@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -539,7 +539,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="write-code.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb26-2"><a href="write-code.html#cb26-2" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> pdf_fun) <span class="sc">+</span> </span>
-<span id="cb26-3"><a href="write-code.html#cb26-3" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(support), <span class="fu">max</span>(support))</span></code></pre></div>
+<span id="cb26-3"><a href="write-code.html#cb26-3" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(support), <span class="fu">max</span>(support)) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="write-code.html#cb26-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-5"><a href="write-code.html#cb26-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;A Gnarly Plot&quot;</span></span>
+<span id="cb26-6"><a href="write-code.html#cb26-6" tabindex="-1"></a>  )</span></code></pre></div>
 </details>
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -612,24 +615,76 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-12"><a href="write-code.html#cb30-12" tabindex="-1"></a>)</span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="write-code.html#cb31-1" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb31-2"><a href="write-code.html#cb31-2" tabindex="-1"></a>  <span class="at">x =</span> support,</span>
-<span id="cb31-3"><a href="write-code.html#cb31-3" tabindex="-1"></a>  <span class="at">y =</span> mse_,</span>
-<span id="cb31-4"><a href="write-code.html#cb31-4" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;l&#39;</span></span>
-<span id="cb31-5"><a href="write-code.html#cb31-5" tabindex="-1"></a>)</span>
-<span id="cb31-6"><a href="write-code.html#cb31-6" tabindex="-1"></a><span class="fu">lines</span>(</span>
-<span id="cb31-7"><a href="write-code.html#cb31-7" tabindex="-1"></a>  <span class="at">x =</span> support, </span>
-<span id="cb31-8"><a href="write-code.html#cb31-8" tabindex="-1"></a>  <span class="at">y =</span> mae_, </span>
-<span id="cb31-9"><a href="write-code.html#cb31-9" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, </span>
-<span id="cb31-10"><a href="write-code.html#cb31-10" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&#39;#003262&#39;</span></span>
-<span id="cb31-11"><a href="write-code.html#cb31-11" tabindex="-1"></a>)</span>
-<span id="cb31-12"><a href="write-code.html#cb31-12" tabindex="-1"></a><span class="fu">lines</span>(</span>
-<span id="cb31-13"><a href="write-code.html#cb31-13" tabindex="-1"></a>  <span class="at">x =</span> support, </span>
-<span id="cb31-14"><a href="write-code.html#cb31-14" tabindex="-1"></a>  <span class="at">y =</span> mqe_, </span>
-<span id="cb31-15"><a href="write-code.html#cb31-15" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, </span>
-<span id="cb31-16"><a href="write-code.html#cb31-16" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&#39;#FDB515&#39;</span></span>
-<span id="cb31-17"><a href="write-code.html#cb31-17" tabindex="-1"></a>)</span>
-<span id="cb31-18"><a href="write-code.html#cb31-18" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">&#39;darkred&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="write-code.html#cb31-1" tabindex="-1"></a>absolute_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb31-2"><a href="write-code.html#cb31-2" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb31-3"><a href="write-code.html#cb31-3" tabindex="-1"></a>  <span class="at">fn =</span> mean_absolute_error, </span>
+<span id="cb31-4"><a href="write-code.html#cb31-4" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&#39;Brent&#39;</span>, </span>
+<span id="cb31-5"><a href="write-code.html#cb31-5" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb31-6"><a href="write-code.html#cb31-6" tabindex="-1"></a>  )<span class="sc">$</span>par</span>
+<span id="cb31-7"><a href="write-code.html#cb31-7" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="write-code.html#cb31-8" tabindex="-1"></a>squared_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb31-9"><a href="write-code.html#cb31-9" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb31-10"><a href="write-code.html#cb31-10" tabindex="-1"></a>  <span class="at">fn =</span> mean_square_error, </span>
+<span id="cb31-11"><a href="write-code.html#cb31-11" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;Brent&quot;</span>, </span>
+<span id="cb31-12"><a href="write-code.html#cb31-12" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb31-13"><a href="write-code.html#cb31-13" tabindex="-1"></a>  )<span class="sc">$</span>par</span>
+<span id="cb31-14"><a href="write-code.html#cb31-14" tabindex="-1"></a>cubic_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb31-15"><a href="write-code.html#cb31-15" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb31-16"><a href="write-code.html#cb31-16" tabindex="-1"></a>  <span class="at">fn =</span> mean_cubic_error, </span>
+<span id="cb31-17"><a href="write-code.html#cb31-17" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;Brent&quot;</span>, </span>
+<span id="cb31-18"><a href="write-code.html#cb31-18" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb31-19"><a href="write-code.html#cb31-19" tabindex="-1"></a>  )<span class="sc">$</span>par</span>
+<span id="cb31-20"><a href="write-code.html#cb31-20" tabindex="-1"></a>quadratic_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb31-21"><a href="write-code.html#cb31-21" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb31-22"><a href="write-code.html#cb31-22" tabindex="-1"></a>  <span class="at">fn =</span> mean_quadratic_error, </span>
+<span id="cb31-23"><a href="write-code.html#cb31-23" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;Brent&quot;</span>, </span>
+<span id="cb31-24"><a href="write-code.html#cb31-24" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb31-25"><a href="write-code.html#cb31-25" tabindex="-1"></a>  )<span class="sc">$</span>par</span></code></pre></div>
+</details>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="write-code.html#cb32-1" tabindex="-1"></a>all_plots <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="write-code.html#cb32-2" tabindex="-1"></a>  <span class="do">## add lines </span></span>
+<span id="cb32-3"><a href="write-code.html#cb32-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>support, <span class="at">y=</span><span class="fu">scale</span>(mse_)), <span class="at">color =</span> <span class="st">&quot;#003262&quot;</span>)  <span class="sc">+</span> </span>
+<span id="cb32-4"><a href="write-code.html#cb32-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>support, <span class="at">y=</span><span class="fu">scale</span>(mae_)), <span class="at">color =</span> <span class="st">&quot;#FDB515&quot;</span>)  <span class="sc">+</span> </span>
+<span id="cb32-5"><a href="write-code.html#cb32-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>support, <span class="at">y=</span><span class="fu">scale</span>(mce_)), <span class="at">color =</span> <span class="st">&quot;seagreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb32-6"><a href="write-code.html#cb32-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>support, <span class="at">y=</span><span class="fu">scale</span>(mqe_)), <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>)  <span class="sc">+</span></span>
+<span id="cb32-7"><a href="write-code.html#cb32-7" tabindex="-1"></a>  <span class="do">## add optimal solution indicators</span></span>
+<span id="cb32-8"><a href="write-code.html#cb32-8" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb32-9"><a href="write-code.html#cb32-9" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> squared_error_, </span>
+<span id="cb32-10"><a href="write-code.html#cb32-10" tabindex="-1"></a>    <span class="at">xend =</span> squared_error_, </span>
+<span id="cb32-11"><a href="write-code.html#cb32-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">2</span>, </span>
+<span id="cb32-12"><a href="write-code.html#cb32-12" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">1</span>), </span>
+<span id="cb32-13"><a href="write-code.html#cb32-13" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">&quot;cm&quot;</span>)),</span>
+<span id="cb32-14"><a href="write-code.html#cb32-14" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;#003262&quot;</span>)  <span class="sc">+</span> </span>
+<span id="cb32-15"><a href="write-code.html#cb32-15" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb32-16"><a href="write-code.html#cb32-16" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> absolute_error_, </span>
+<span id="cb32-17"><a href="write-code.html#cb32-17" tabindex="-1"></a>    <span class="at">xend =</span> absolute_error_, </span>
+<span id="cb32-18"><a href="write-code.html#cb32-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
+<span id="cb32-19"><a href="write-code.html#cb32-19" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="fl">1.2</span>), </span>
+<span id="cb32-20"><a href="write-code.html#cb32-20" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">&quot;cm&quot;</span>)),</span>
+<span id="cb32-21"><a href="write-code.html#cb32-21" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;#FDB515&quot;</span>)  <span class="sc">+</span> </span>
+<span id="cb32-22"><a href="write-code.html#cb32-22" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb32-23"><a href="write-code.html#cb32-23" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> cubic_error_, </span>
+<span id="cb32-24"><a href="write-code.html#cb32-24" tabindex="-1"></a>    <span class="at">xend =</span> cubic_error_, </span>
+<span id="cb32-25"><a href="write-code.html#cb32-25" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
+<span id="cb32-26"><a href="write-code.html#cb32-26" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">2</span>), </span>
+<span id="cb32-27"><a href="write-code.html#cb32-27" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">&quot;cm&quot;</span>)),</span>
+<span id="cb32-28"><a href="write-code.html#cb32-28" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;seagreen&quot;</span>)  <span class="sc">+</span> </span>
+<span id="cb32-29"><a href="write-code.html#cb32-29" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb32-30"><a href="write-code.html#cb32-30" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> quadratic_error_, </span>
+<span id="cb32-31"><a href="write-code.html#cb32-31" tabindex="-1"></a>    <span class="at">xend =</span> quadratic_error_, </span>
+<span id="cb32-32"><a href="write-code.html#cb32-32" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">2</span>, </span>
+<span id="cb32-33"><a href="write-code.html#cb32-33" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">1</span>), </span>
+<span id="cb32-34"><a href="write-code.html#cb32-34" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">&quot;cm&quot;</span>)),</span>
+<span id="cb32-35"><a href="write-code.html#cb32-35" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>)  <span class="sc">+</span> </span>
+<span id="cb32-36"><a href="write-code.html#cb32-36" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-37"><a href="write-code.html#cb32-37" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">&quot;All Errors on a common scale&quot;</span>, </span>
+<span id="cb32-38"><a href="write-code.html#cb32-38" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Different Errors lead to different solutions.&quot;</span>, </span>
+<span id="cb32-39"><a href="write-code.html#cb32-39" tabindex="-1"></a>    <span class="at">y        =</span> <span class="st">&quot;Error Magnitude&quot;</span>, </span>
+<span id="cb32-40"><a href="write-code.html#cb32-40" tabindex="-1"></a>    <span class="at">x        =</span> <span class="st">&quot;Choice of X&quot;</span></span>
+<span id="cb32-41"><a href="write-code.html#cb32-41" tabindex="-1"></a>  )</span>
+<span id="cb32-42"><a href="write-code.html#cb32-42" tabindex="-1"></a></span>
+<span id="cb32-43"><a href="write-code.html#cb32-43" tabindex="-1"></a>all_plots</span></code></pre></div>
 </details>
 <p><img src="203-live-session_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 
