@@ -136,3 +136,46 @@ capacity_test_ <- t.test(lung_capacity ~ group, data = lung_capacity)
 str(capacity_test_)
 capacity_test_
 ```
+
+# Question 3 
+
+When we conduct a t-test, we're *technically* testing a sample of data, to evaluate whether that sample average is different from some hypothesized value. But, the thing that we're *really, actually* interested in learning is whether the **population's expectation** is different than some hypothesized value.
+
+Given a joint density of the following form:
+
+$$
+f_{X,Y}(x,y) = 
+\begin{cases}
+2-x-y, & 0 \leq x \leq 1; 0 \leq y \leq 1 \\ 
+0, & otherwise
+\end{cases}
+$$
+
+Perform the following steps:
+
+Write this function into a function of the following form:
+
+```{r}
+joint_pdf <- function(x_input, y_input) { 
+  probs = 2 - x_input - y_input
+  return(probs)
+  }
+```
+
+```{r}
+d <- data.frame(
+  expand.grid(
+    x = seq(from = 0, to = 1, length.out = 1000), 
+    y = seq(from = 0, to = 1, length.out = 1000)
+  )
+)
+
+d <- d |> 
+  mutate(prob = joint_pdf(x_input = x, y_input = y))
+```
+
+```{r}
+d |> 
+  slice_sample(n = 10, weight_by = prob) %$%  
+  t.test(y, mu = 6/12)
+```
