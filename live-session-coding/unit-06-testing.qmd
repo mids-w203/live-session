@@ -36,15 +36,17 @@ To begin, produce a plot of this data that you think is informative of the distr
 
 ```{r produce a plot}
 ggplot() + 
-  aes(x=react) + 
-  geom_histogram(bins=10)
+  aes(x = react) + 
+  geom_histogram(bins = 12)
+
+mean(react)
 ```
 
 1.  Does this data look to be "reasonably well distributed"? What does that mean to you in the context and how are you evaluating this?
 2.  Does this distribution differ significantly from zero? Conduct a t-test to evaluate this
 
 ```{r conduct a t-test}
-
+t.test(react, mu = -0.79)
 ```
 
 I don't, and I suspect that you don't either, have enough context to know what a "big difference" would be. So, for this question, let's skip the *very* important task of describing this in context.
@@ -64,6 +66,10 @@ The description goes on to describe the three variables that are included in the
     2.  `3`: The individual was not exposed for more than 10 years.
 2.  `age` : a numeric vector, which is the individuals age in years
 3.  `vital.capacity` : a numeric vector of "vital capacity" which is a measure of lung volume.
+
+```{r}
+View(vitcap)
+```
 
 ## Cleaning Up This Data
 
@@ -94,7 +100,6 @@ lung_capacity <- vitcap |>
       group == 3 ~ "Not Exposed"
     )
   )
-head(lung_capacity)
 ```
 
 And then, I can use the `lung_capacity` object to do the work that I want to do.
@@ -121,7 +126,7 @@ lung_capacity |>
 
 Conduct a `t-test` for whether the lung capacity is different between those who have been exposed to cadmium for more than 10 years, compared to those who have been exposed for fewer than 10 years. Use the "formula interface" which has the following form:
 
-> t.test(LHS \~ RHS, data = d)
+> `t.test(LHS ~ RHS, data = d)`
 
 Where the left-hand side is the "outcome" that you're interesting in modeling using "explanatory" features on the right hand side.
 
@@ -132,12 +137,15 @@ Store your results into an object called `capacity_test_` . After you have estim
 Notice that when you call for `str(capacity_test_)` you get a list of 10 things, including the `statistic`, the `parameter` the `p.value` and so on.
 
 ```{r}
-capacity_test_ <- t.test(lung_capacity ~ group, data = lung_capacity)
-str(capacity_test_)
+capacity_test_ <- t.test(
+  formula = lung_capacity ~ exposure_group, 
+  data    = lung_capacity
+  )
+# str(capacity_test_)
 capacity_test_
 ```
 
-# Question 3 
+# Question 3
 
 When we conduct a t-test, we're *technically* testing a sample of data, to evaluate whether that sample average is different from some hypothesized value. But, the thing that we're *really, actually* interested in learning is whether the **population's expectation** is different than some hypothesized value.
 
@@ -156,10 +164,11 @@ Perform the following steps:
 Write this function into a function of the following form:
 
 ```{r}
-joint_pdf <- function(x_input, y_input) { 
+joint_pdf_1 <- function(x_input, y_input) { 
   probs = 2 - x_input - y_input
   return(probs)
-  }
+}
+joint_pdf_1(x_input = .5, y_input = 0.5)
 ```
 
 ```{r}
@@ -169,13 +178,65 @@ d <- data.frame(
     y = seq(from = 0, to = 1, length.out = 1000)
   )
 )
+d
 
 d <- d |> 
-  mutate(prob = joint_pdf(x_input = x, y_input = y))
+  mutate(prob = joint_pdf_1(x_input = x, y_input = y))
+d
 ```
 
 ```{r}
 d |> 
-  slice_sample(n = 10, weight_by = prob) %$%  
-  t.test(y, mu = 6/12)
+  slice_sample(n = 1000, weight_by = prob) %$% 
+  t.test(x,y)
+  
+```
+
+# Question 4
+
+Now that you've seen how to produce this for a simple joint PDF, try for something that is more... complex.
+
+Suppose that you have the following joint PDF:
+
+$$
+f_{XYZ} = 
+\begin{cases}
+\frac{1}{100}e^{-(0.5x + 0.2y + 0.1z)}, & x, y, z \geq 0 \\ 
+0, & otherwise
+\end{cases}
+$$
+
+1.  What are the following expected values?
+    1.  $\mathop{E[X]}$?
+    2.  $\mathop{E[Y]}$?
+    3.  $\mathop{E[Z]}$
+2.  Write code to produce joint probabilities.
+3.  Sample from these joint probabilities, with replacement, and evaluate whether the sample average converges to the expectation that you computed.
+
+```{r}
+joint_pdf_2 <- function(x,y,z) { 
+  prob <- (1/100)*exp(-1*(.5*x + .2*y + .1*z))
+  return(prob)
+}
+
+d2 <- data.frame(
+  expand.grid(
+    x = seq(from = 0, to = 100, by = .2), 
+    y = seq(from = 0, to = 100, by = .2), 
+    z = seq(from = 0, to = 100, by = .2)
+  )
+)
+d2 <- d2 |>  
+  mutate(prob_ = joint_pdf_2(x=x,y=y,z=z))
+```
+
+```{r}
+d2 |>  
+  slice_sample(n=1000, weight_by = prob_) |>
+  summarise(
+    mean_x = mean(x), 
+    mean_y = mean(y), 
+    mean_z = mean(z)
+    ) |>  
+  glimpse()
 ```
