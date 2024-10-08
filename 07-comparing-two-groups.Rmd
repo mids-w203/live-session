@@ -1,3 +1,12 @@
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(magrittr)
+library(ggthemes)
+library(patchwork)
+library(data.table)
+```
+
+
 # Comparing Two Groups
 
 ![](./images/goin_left.jpeg)
@@ -15,12 +24,9 @@ At the conclusion of this week, students will be able to:
 ## Class Announcements
 
 - Great work completing your final w203 test!
-- There is **no** unit 7 homework! 
+- Unit 7 Homework is Group Homework, due next week.
 - The Hypothesis Testing Lab is released today! 
-    - Lab is due at Unit 09 Live Session (two weeks)
-    - Group lab in two parts: 
-      - *Part 1*: Work as a team to engage the fundamentals of hypothesis tests
-      - *Part 2*: Apply these fundamentals to analyze 2020 election data and write a single, three-page analysis
+    - Lab is due at Unit 09 Live Session (two weeks): Apply these fundamentals to analyze 2022 election data and write a single, three-page analysis
     
 
 ## Roadmap
@@ -129,6 +135,10 @@ Take a moment to recall the tests you learned this week.  Here is a quick cheat-
 |-----------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
 | unpaired        | **unpaired t-test** <br> - metric var <br> - i.i.d. <br> - (not too un-)normal  | **Wilcoxon rank-sum** <br> ordinal var <br> i.i.d. <br>  |
 | paired          | **paired t-test** <br> metric var <br> i.i.d. <br> (not too un-)normal          | **Wilcoxon signed-rank** <br> metric var <br> i.i.d. <br> difference is symmetric  <br> <br> **sign test** <br> ordinal var <br> i.i.d. |
+
+## Rank Based Tests 
+
+Darrin Speegle has a nice talk-through, walk through of rank based testing procedures, linked [here](https://bookdown.org/speegled/foundations-of-statistics/RBT.html#two-sample-test). We'll talk through a few examples of this, and then move to estimating against data for the class. 
    
 ## Comparing Groups R Exercise
 
@@ -153,11 +163,41 @@ You have a set of questions that you would like to answer with a statistical tes
 ### Set 1 
 - Do economics majors watch more or less TV than computer science majors?
 
-```{r}
-library(tidyverse)
-library(magrittr)
-library(ggthemes)
+```{r plot relationship}
+GSS %>% 
+  filter(major1 %in% c('computer science', 'economics')) %>% 
+  ggplot() + 
+  aes(x = tvhours, fill = major1) + 
+  geom_histogram(bins = 10, position = 'dodge')
+```
 
+What kinds of tests *could* be reasonable to conduct? For what part of the data would we conduct these tests? 
+
+```{r}
+## The assumptions about the data drive us to the correct test. 
+## But, let's ask all the tests that could *possibly* make sense, and see how 
+##     matching or mis-matching assumptions changes what we learn. 
+
+## Answers are in the next chunk... but don't jump to them right away. 
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r echo=FALSE, eval=FALSE}
 GSS %>% 
   filter(major1 %in% c('computer science', 'economics')) %$% 
   t.test(tvhours ~ major1)
@@ -178,18 +218,8 @@ GSS %>%
 GSS %>% 
   filter(major1 %in% c('computer science', 'economics')) %$% 
   wilcox.test(tvhours ~ major1)
-
-
-
-
-
-
-GSS %>% 
-  filter(major1 %in% c('computer science', 'economics')) %>% 
-  ggplot() + 
-  aes(x=tvhours) + 
-  geom_histogram(bins=10)
 ```
+
 
 
 - Do Americans with pets watch more or less TV than Americans without pets?
@@ -201,25 +231,22 @@ GSS %>%
 GSS %>% 
   select(wwwhr, emailhr) %>% 
   drop_na() %$% 
-  t.test(x=wwwhr, y=emailhr, paired=TRUE)
+  t.test(x = wwwhr, y = emailhr, paired = TRUE)
 
 GSS %>% 
   ggplot() + 
-  geom_histogram(aes(x=wwwhr), fill = 'blue') + 
-  geom_histogram(aes(x=emailhr, fill = 'red'))
+  geom_histogram(aes(x = wwwhr),   fill = 'darkblue', alpha = 0.5) + 
+  geom_histogram(aes(x = emailhr), fill = 'darkred',  alpha = 0.5)
 
 t.test(
   x = GSS$wwwhr, 
   y = GSS$emailhr, 
   paired = FALSE
 )
-
 ```
 
 
 - Do Americans spend more evenings with neighbors or with relatives?
-
-What a great question this is... so glad for the chance to answer it, and to deal with this data that someone else has coded for me. Thank you universe. 
 
 ```{r start by building data}
 wilcox_test_data <- GSS %>% 
@@ -250,15 +277,15 @@ wilcox_test_data %>%
   pivot_longer(cols = c(Friends, Family)) %>%   
   ggplot() + 
     aes(x=value, fill=name) + 
-    geom_histogram(stat='count', position='dodge') + 
+    geom_histogram(stat='count', position='dodge', alpha=0.7) + 
   scale_fill_manual(values = c('#003262', '#FDB515')) + 
   labs(
-    title = 'Do Americans Spend Times With Friends or Family?',
+    title    = 'Do Americans Spend Times With Friends or Family?',
     subtitle = 'A cutting analysis.', 
-    fill = 'Friends or Family', 
-    x = 'Amount of Time Spent') + 
+    fill     = 'Friends or Family', 
+    x        = 'Amount of Time Spent') + 
   scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_fivethirtyeight()
+  theme_minimal()
 ```
 
 With this plot created, we can ask if what we observe in the plot is the produce of what could just be sampling error, or if this is something that was unlikely to arise due if the null hypothesis were true. What is the null hypothesis? Well, lets suppose that if we didn't know anything about the data that we would expect there to be no difference between the amount of time spent with friends or families. 
@@ -267,15 +294,22 @@ With this plot created, we can ask if what we observe in the plot is the produce
 ## risky choice -- casting the factor to a numeric without checking what happens.
 wilcox_test_data %$% 
   wilcox.test(
-    x=as.numeric(family_ordered), 
-    y=as.numeric(friends_ordered),
-    paired=FALSE
+    x = as.numeric(family_ordered), 
+    y = as.numeric(friends_ordered),
+    paired = FALSE
   )
 ```
 
 ### Set 3
 - Are Americans that own guns or Americans that don't own guns more likely to have pets?
 - Are Americans with pets happier than Americans without pets?
+
+### Apply to a New Type of Data 
+- Is there a relationship between college major and gun ownership? 
+
+```{r}
+
+```
 
 ## Simulating the Effects of Test Choices 
 
@@ -297,6 +331,8 @@ Additional points of argument, which you will investigate in this worksheet:
 
 - If the underlying data **is** normal, then the Wilcox test is *nearly* as well powered as the t-test. 
 - If the underlying data **is not** normal, then the Wilcox test still maintains nominal p-value coverage, whereas the t-test might lose this guarantee. 
+
+##
 
 ### The Poisson Distribution 
 

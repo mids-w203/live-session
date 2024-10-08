@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.7 Comparing Groups R Exercise | Statistics for Data Science</title>
+  <title>7.8 Comparing Groups R Exercise | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.7 Comparing Groups R Exercise | Statistics for Data Science" />
+  <meta property="og:title" content="7.8 Comparing Groups R Exercise | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.7 Comparing Groups R Exercise | Statistics for Data Science" />
+  <meta name="twitter:title" content="7.8 Comparing Groups R Exercise | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,14 +23,14 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-09-19" />
+<meta name="date" content="2024-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="a-quick-review.html"/>
+<link rel="prev" href="rank-based-tests.html"/>
 <link rel="next" href="the-questions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -347,22 +347,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="team-kick-off.html"><a href="team-kick-off.html"><i class="fa fa-check"></i><b>7.5</b> Team Kick-Off</a></li>
 <li class="chapter" data-level="7.6" data-path="a-quick-review.html"><a href="a-quick-review.html"><i class="fa fa-check"></i><b>7.6</b> A Quick Review</a></li>
-<li class="chapter" data-level="7.7" data-path="comparing-groups-r-exercise.html"><a href="comparing-groups-r-exercise.html"><i class="fa fa-check"></i><b>7.7</b> Comparing Groups R Exercise</a></li>
-<li class="chapter" data-level="7.8" data-path="the-questions.html"><a href="the-questions.html"><i class="fa fa-check"></i><b>7.8</b> The Questions</a>
+<li class="chapter" data-level="7.7" data-path="rank-based-tests.html"><a href="rank-based-tests.html"><i class="fa fa-check"></i><b>7.7</b> Rank Based Tests</a></li>
+<li class="chapter" data-level="7.8" data-path="comparing-groups-r-exercise.html"><a href="comparing-groups-r-exercise.html"><i class="fa fa-check"></i><b>7.8</b> Comparing Groups R Exercise</a></li>
+<li class="chapter" data-level="7.9" data-path="the-questions.html"><a href="the-questions.html"><i class="fa fa-check"></i><b>7.9</b> The Questions</a>
 <ul>
-<li class="chapter" data-level="7.8.1" data-path="the-questions.html"><a href="the-questions.html#set-1"><i class="fa fa-check"></i><b>7.8.1</b> Set 1</a></li>
-<li class="chapter" data-level="7.8.2" data-path="the-questions.html"><a href="the-questions.html#set-2"><i class="fa fa-check"></i><b>7.8.2</b> Set 2</a></li>
-<li class="chapter" data-level="7.8.3" data-path="the-questions.html"><a href="the-questions.html#set-3"><i class="fa fa-check"></i><b>7.8.3</b> Set 3</a></li>
+<li class="chapter" data-level="7.9.1" data-path="the-questions.html"><a href="the-questions.html#set-1"><i class="fa fa-check"></i><b>7.9.1</b> Set 1</a></li>
+<li class="chapter" data-level="7.9.2" data-path="the-questions.html"><a href="the-questions.html#set-2"><i class="fa fa-check"></i><b>7.9.2</b> Set 2</a></li>
+<li class="chapter" data-level="7.9.3" data-path="the-questions.html"><a href="the-questions.html#set-3"><i class="fa fa-check"></i><b>7.9.3</b> Set 3</a></li>
+<li class="chapter" data-level="7.9.4" data-path="the-questions.html"><a href="the-questions.html#apply-to-a-new-type-of-data"><i class="fa fa-check"></i><b>7.9.4</b> Apply to a New Type of Data</a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html"><i class="fa fa-check"></i><b>7.9</b> Simulating the Effects of Test Choices</a>
+<li class="chapter" data-level="7.10" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html"><i class="fa fa-check"></i><b>7.10</b> Simulating the Effects of Test Choices</a>
 <ul>
-<li class="chapter" data-level="7.9.1" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#should-we-use-a-t-test-or-a-wilcox-sign-rank"><i class="fa fa-check"></i><b>7.9.1</b> Should we use a t-test or a wilcox sign-rank?</a></li>
-<li class="chapter" data-level="7.9.2" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.9.2</b> The Poisson Distribution</a></li>
-<li class="chapter" data-level="7.9.3" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#write-a-simulation"><i class="fa fa-check"></i><b>7.9.3</b> Write a Simulation</a></li>
-<li class="chapter" data-level="7.9.4" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#what-if-a-distribution-is-much-more-skewed"><i class="fa fa-check"></i><b>7.9.4</b> What if a distribution is much <em>more</em> skewed?</a></li>
-<li class="chapter" data-level="7.9.5" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#false-rejection-rates"><i class="fa fa-check"></i><b>7.9.5</b> False Rejection Rates</a></li>
-<li class="chapter" data-level="7.9.6" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#what-about-power-to-reject"><i class="fa fa-check"></i><b>7.9.6</b> What about Power to Reject</a></li>
-<li class="chapter" data-level="7.9.7" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#paired-compared-to-unpaired-tests"><i class="fa fa-check"></i><b>7.9.7</b> Paired compared to unpaired tests</a></li>
+<li class="chapter" data-level="7.10.1" data-path="simulating-the-effects-of-test-choices.html"><a href="simulating-the-effects-of-test-choices.html#should-we-use-a-t-test-or-a-wilcox-sign-rank"><i class="fa fa-check"></i><b>7.10.1</b> Should we use a t-test or a wilcox sign-rank?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>7.11</b> </a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="section.html"><a href="section.html#the-poisson-distribution"><i class="fa fa-check"></i><b>7.11.1</b> The Poisson Distribution</a></li>
+<li class="chapter" data-level="7.11.2" data-path="section.html"><a href="section.html#write-a-simulation"><i class="fa fa-check"></i><b>7.11.2</b> Write a Simulation</a></li>
+<li class="chapter" data-level="7.11.3" data-path="section.html"><a href="section.html#what-if-a-distribution-is-much-more-skewed"><i class="fa fa-check"></i><b>7.11.3</b> What if a distribution is much <em>more</em> skewed?</a></li>
+<li class="chapter" data-level="7.11.4" data-path="section.html"><a href="section.html#false-rejection-rates"><i class="fa fa-check"></i><b>7.11.4</b> False Rejection Rates</a></li>
+<li class="chapter" data-level="7.11.5" data-path="section.html"><a href="section.html#what-about-power-to-reject"><i class="fa fa-check"></i><b>7.11.5</b> What about Power to Reject</a></li>
+<li class="chapter" data-level="7.11.6" data-path="section.html"><a href="section.html#paired-compared-to-unpaired-tests"><i class="fa fa-check"></i><b>7.11.6</b> Paired compared to unpaired tests</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ols-regression-estimates.html"><a href="ols-regression-estimates.html"><i class="fa fa-check"></i><b>8</b> OLS Regression Estimates</a>
@@ -517,8 +522,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comparing-groups-r-exercise" class="section level2 hasAnchor" number="7.7">
-<h2><span class="header-section-number">7.7</span> Comparing Groups R Exercise<a href="comparing-groups-r-exercise.html#comparing-groups-r-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="comparing-groups-r-exercise" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Comparing Groups R Exercise<a href="comparing-groups-r-exercise.html#comparing-groups-r-exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The General Social Survey (GSS) is one of the longest running and extensive survey projects in the US. The full dataset includes over 1000 variables spanning demographics, attitudes, and behaviors. The file <code>GSS_w203.RData</code> contains a small selection of a variables from the 2018 GSS.</p>
 <p>To learn about each variable, you can enter it into the search bar at the <a href="https://gssdataexplorer.norc.org/variables/vfilter">GSS data explorer</a></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -570,7 +575,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="a-quick-review.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rank-based-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="the-questions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

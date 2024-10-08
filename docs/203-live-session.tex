@@ -158,7 +158,7 @@
 
 \title{Statistics for Data Science}
 \author{D. Alex Hughes, Paul Laskowski \& The 203 Teaching Team\footnote{UC Berkeley, School of Information}}
-\date{2024-09-19}
+\date{2024-10-08}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -554,13 +554,13 @@ The \emph{applied} homework will be marked either \texttt{Correct} or \texttt{In
 \chapter{Defining Random Variables}\label{defining-random-variables}
 
 \begin{verbatim}
-## -- Attaching core tidyverse packages ----- tidyverse 2.0.0 --
+## -- Attaching core tidyverse packages ---------------------------------------------------------------------- tidyverse 2.0.0 --
 ## v dplyr     1.1.3     v readr     2.1.4
 ## v forcats   1.0.0     v stringr   1.5.0
 ## v ggplot2   3.4.4     v tibble    3.2.1
 ## v lubridate 1.9.3     v tidyr     1.3.0
 ## v purrr     1.0.2     
-## -- Conflicts ----------------------- tidyverse_conflicts() --
+## -- Conflicts ---------------------------------------------------------------------------------------- tidyverse_conflicts() --
 ## x purrr::%||%()   masks base::%||%()
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -1042,9 +1042,9 @@ If we look into this object, we can see the results of the function call. Below,
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1.237991 3.679224 1.999566 2.665579 3.118595 4.178917 1.986320 1.610992
-##  [9] 3.656255 4.008142 2.275195 2.139114 3.558979 2.154422 1.188190 3.581577
-## [17] 2.466553 1.498367 2.953407 3.974018
+##  [1] 1.401044 2.637784 4.087598 2.105674 4.174847 3.116951 4.275360 1.439993
+##  [9] 3.722005 4.253039 3.365360 2.762892 3.828352 2.881831 1.260404 4.285310
+## [17] 1.669873 2.573297 3.747595 2.646536
 \end{verbatim}
 
 (Notice that R is a \(1\) index language (python is a zero-index language).)
@@ -1129,9 +1129,9 @@ Like before, we could look at the first \(20\) of these samples.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 21.848725 12.958302 18.432399 25.070160 23.977394 20.540846 17.995441
-##  [8]  8.721547 21.321775 15.705741 18.359370 16.148013 19.576897 19.031722
-## [15] 11.511603 18.038288 22.106554 20.915355 18.289997 21.127253
+##  [1] 20.29549 18.47785 23.29018 11.28234 18.93817 18.60745 23.21143 23.19206
+##  [9] 18.83010 16.34688  9.68090 17.99866 22.65670 21.99189 22.02152 19.42756
+## [17] 22.59535 15.92612 20.34516 17.73428
 \end{verbatim}
 
 And, from here we could visualize this distribution.
@@ -3348,24 +3348,14 @@ At the conclusion of this week, students will be able to:
 \item
   Great work completing your final w203 test!
 \item
-  There is \textbf{no} unit 7 homework!
+  Unit 7 Homework is Group Homework, due next week.
 \item
   The Hypothesis Testing Lab is released today!
 
   \begin{itemize}
   \tightlist
   \item
-    Lab is due at Unit 09 Live Session (two weeks)
-  \item
-    Group lab in two parts:
-
-    \begin{itemize}
-    \tightlist
-    \item
-      \emph{Part 1}: Work as a team to engage the fundamentals of hypothesis tests
-    \item
-      \emph{Part 2}: Apply these fundamentals to analyze 2020 election data and write a single, three-page analysis
-    \end{itemize}
+    Lab is due at Unit 09 Live Session (two weeks): Apply these fundamentals to analyze 2022 election data and write a single, three-page analysis
   \end{itemize}
 \end{itemize}
 
@@ -3582,6 +3572,10 @@ unpaired & \textbf{unpaired t-test} - metric var - i.i.d. - (not too un-)normal 
 paired & \textbf{paired t-test} metric var i.i.d. (not too un-)normal & \textbf{Wilcoxon signed-rank} metric var i.i.d. difference is symmetric \textbf{sign test} ordinal var i.i.d. \\
 \end{longtable}
 
+\section{Rank Based Tests}\label{rank-based-tests}
+
+Darrin Speegle has a nice talk-through, walk through of rank based testing procedures, linked \href{https://bookdown.org/speegled/foundations-of-statistics/RBT.html\#two-sample-test}{here}. We'll talk through a few examples of this, and then move to estimating against data for the class.
+
 \section{Comparing Groups R Exercise}\label{comparing-groups-r-exercise}
 
 The General Social Survey (GSS) is one of the longest running and extensive survey projects in the US. The full dataset includes over 1000 variables spanning demographics, attitudes, and behaviors. The file \texttt{GSS\_w203.RData} contains a small selection of a variables from the 2018 GSS.
@@ -3657,130 +3651,11 @@ You have a set of questions that you would like to answer with a statistical tes
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{library}\NormalTok{(magrittr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'magrittr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggthemes)}
-
-\NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(major1 }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}computer science\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}economics\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{\%$\%} 
-  \FunctionTok{t.test}\NormalTok{(tvhours }\SpecialCharTok{\textasciitilde{}}\NormalTok{ major1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##  Welch Two Sample t-test
-## 
-## data:  tvhours by major1
-## t = 1.7123, df = 11.663, p-value = 0.1133
-## alternative hypothesis: true difference in means between group computer science and group economics is not equal to 0
-## 95 percent confidence interval:
-##  -0.3134265  2.5800931
-## sample estimates:
-## mean in group computer science        mean in group economics 
-##                       2.600000                       1.466667
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(major1 }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}computer science\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}economics\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{\%$\%} 
-  \FunctionTok{wilcox.test}\NormalTok{(tvhours }\SpecialCharTok{\textasciitilde{}}\NormalTok{ major1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
-## compute exact p-value with ties
-\end{verbatim}
-
-\begin{verbatim}
-## 
-##  Wilcoxon rank sum test with continuity correction
-## 
-## data:  tvhours by major1
-## W = 101, p-value = 0.1372
-## alternative hypothesis: true location shift is not equal to 0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(major1 }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}computer science\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}economics\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tv\_category =} \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{    tvhours }\SpecialCharTok{\textless{}} \DecValTok{2} \SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{,}
-\NormalTok{    tvhours }\SpecialCharTok{\textgreater{}=} \DecValTok{2} \SpecialCharTok{\&}\NormalTok{ tvhours }\SpecialCharTok{\textless{}} \DecValTok{5} \SpecialCharTok{\textasciitilde{}} \DecValTok{2}\NormalTok{,}
-\NormalTok{    tvhours }\SpecialCharTok{\textgreater{}=} \DecValTok{5} \SpecialCharTok{\textasciitilde{}} \DecValTok{3}\NormalTok{)) }\SpecialCharTok{\%$\%}
-  \CommentTok{\# t.test(tv\_category \textasciitilde{} major1)}
-  \FunctionTok{wilcox.test}\NormalTok{(tv\_category }\SpecialCharTok{\textasciitilde{}}\NormalTok{ major1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
-## compute exact p-value with ties
-\end{verbatim}
-
-\begin{verbatim}
-## 
-##  Wilcoxon rank sum test with continuity correction
-## 
-## data:  tv_category by major1
-## W = 99.5, p-value = 0.1379
-## alternative hypothesis: true location shift is not equal to 0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(major1 }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}computer science\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}economics\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{\%$\%} 
-  \FunctionTok{wilcox.test}\NormalTok{(tvhours }\SpecialCharTok{\textasciitilde{}}\NormalTok{ major1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
-## compute exact p-value with ties
-\end{verbatim}
-
-\begin{verbatim}
-## 
-##  Wilcoxon rank sum test with continuity correction
-## 
-## data:  tvhours by major1
-## W = 101, p-value = 0.1372
-## alternative hypothesis: true location shift is not equal to 0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(major1 }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}computer science\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}economics\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{tvhours) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins=}\DecValTok{10}\NormalTok{)}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ tvhours, }\AttributeTok{fill =}\NormalTok{ major1) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{, }\AttributeTok{position =} \StringTok{\textquotesingle{}dodge\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3788,7 +3663,19 @@ You have a set of questions that you would like to answer with a statistical tes
 ## Warning: Removed 11 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-52-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/plot relationship-1.pdf}}
+
+What kinds of tests \emph{could} be reasonable to conduct? For what part of the data would we conduct these tests?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# The assumptions about the data drive us to the correct test. }
+\DocumentationTok{\#\# But, let\textquotesingle{}s ask all the tests that could *possibly* make sense, and see how }
+\DocumentationTok{\#\#     matching or mis{-}matching assumptions changes what we learn. }
+
+\DocumentationTok{\#\# Answers are in the next chunk... but don\textquotesingle{}t jump to them right away. }
+\end{Highlighting}
+\end{Shaded}
 
 \begin{itemize}
 \tightlist
@@ -3809,7 +3696,7 @@ You have a set of questions that you would like to answer with a statistical tes
 \NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(wwwhr, emailhr) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%$\%} 
-  \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x=}\NormalTok{wwwhr, }\AttributeTok{y=}\NormalTok{emailhr, }\AttributeTok{paired=}\ConstantTok{TRUE}\NormalTok{)}
+  \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wwwhr, }\AttributeTok{y =}\NormalTok{ emailhr, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3831,32 +3718,28 @@ You have a set of questions that you would like to answer with a statistical tes
 \begin{Highlighting}[]
 \NormalTok{GSS }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
-  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{wwwhr), }\AttributeTok{fill =} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{emailhr, }\AttributeTok{fill =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{))}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wwwhr),   }\AttributeTok{fill =} \StringTok{\textquotesingle{}darkblue\textquotesingle{}}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ emailhr), }\AttributeTok{fill =} \StringTok{\textquotesingle{}darkred\textquotesingle{}}\NormalTok{,  }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 986 rows containing non-finite values
-## (`stat_bin()`).
+## Warning: Removed 986 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
 \begin{verbatim}
-## Warning: Removed 929 rows containing non-finite values
-## (`stat_bin()`).
+## Warning: Removed 929 rows containing non-finite values (`stat_bin()`).
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-53-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-55-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3887,8 +3770,6 @@ You have a set of questions that you would like to answer with a statistical tes
 \item
   Do Americans spend more evenings with neighbors or with relatives?
 \end{itemize}
-
-What a great question this is\ldots{} so glad for the chance to answer it, and to deal with this data that someone else has coded for me. Thank you universe.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3922,21 +3803,21 @@ To begin this investigation, we've got to look at the data and see what is in it
   \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Friends, Family)) }\SpecialCharTok{\%\textgreater{}\%}   
   \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
     \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{value, }\AttributeTok{fill=}\NormalTok{name) }\SpecialCharTok{+} 
-    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}count\textquotesingle{}}\NormalTok{, }\AttributeTok{position=}\StringTok{\textquotesingle{}dodge\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}count\textquotesingle{}}\NormalTok{, }\AttributeTok{position=}\StringTok{\textquotesingle{}dodge\textquotesingle{}}\NormalTok{, }\AttributeTok{alpha=}\FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}\#003262\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\#FDB515\textquotesingle{}}\NormalTok{)) }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{title =} \StringTok{\textquotesingle{}Do Americans Spend Times With Friends or Family?\textquotesingle{}}\NormalTok{,}
+    \AttributeTok{title    =} \StringTok{\textquotesingle{}Do Americans Spend Times With Friends or Family?\textquotesingle{}}\NormalTok{,}
     \AttributeTok{subtitle =} \StringTok{\textquotesingle{}A cutting analysis.\textquotesingle{}}\NormalTok{, }
-    \AttributeTok{fill =} \StringTok{\textquotesingle{}Friends or Family\textquotesingle{}}\NormalTok{, }
-    \AttributeTok{x =} \StringTok{\textquotesingle{}Amount of Time Spent\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+    \AttributeTok{fill     =} \StringTok{\textquotesingle{}Friends or Family\textquotesingle{}}\NormalTok{, }
+    \AttributeTok{x        =} \StringTok{\textquotesingle{}Amount of Time Spent\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{guide =} \FunctionTok{guide\_axis}\NormalTok{(}\AttributeTok{n.dodge =} \DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_fivethirtyeight}\NormalTok{()}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in geom_histogram(stat = "count", position = "dodge"): Ignoring unknown
-## parameters: `binwidth`, `bins`, and `pad`
+## Warning in geom_histogram(stat = "count", position = "dodge", alpha = 0.7):
+## Ignoring unknown parameters: `binwidth`, `bins`, and `pad`
 \end{verbatim}
 
 \pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/produce descriptive plot-1.pdf}}
@@ -3948,9 +3829,9 @@ With this plot created, we can ask if what we observe in the plot is the produce
 \DocumentationTok{\#\# risky choice {-}{-} casting the factor to a numeric without checking what happens.}
 \NormalTok{wilcox\_test\_data }\SpecialCharTok{\%$\%} 
   \FunctionTok{wilcox.test}\NormalTok{(}
-    \AttributeTok{x=}\FunctionTok{as.numeric}\NormalTok{(family\_ordered), }
-    \AttributeTok{y=}\FunctionTok{as.numeric}\NormalTok{(friends\_ordered),}
-    \AttributeTok{paired=}\ConstantTok{FALSE}
+    \AttributeTok{x =} \FunctionTok{as.numeric}\NormalTok{(family\_ordered), }
+    \AttributeTok{y =} \FunctionTok{as.numeric}\NormalTok{(friends\_ordered),}
+    \AttributeTok{paired =} \ConstantTok{FALSE}
 \NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
@@ -3972,6 +3853,14 @@ With this plot created, we can ask if what we observe in the plot is the produce
   Are Americans that own guns or Americans that don't own guns more likely to have pets?
 \item
   Are Americans with pets happier than Americans without pets?
+\end{itemize}
+
+\subsection{Apply to a New Type of Data}\label{apply-to-a-new-type-of-data}
+
+\begin{itemize}
+\tightlist
+\item
+  Is there a relationship between college major and gun ownership?
 \end{itemize}
 
 \section{Simulating the Effects of Test Choices}\label{simulating-the-effects-of-test-choices}
@@ -4001,6 +3890,8 @@ Additional points of argument, which you will investigate in this worksheet:
 \item
   If the underlying data \textbf{is not} normal, then the Wilcox test still maintains nominal p-value coverage, whereas the t-test might lose this guarantee.
 \end{itemize}
+
+\section{}\label{section}
 
 \subsection{The Poisson Distribution}\label{the-poisson-distribution}
 
@@ -4122,7 +4013,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-55-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-58-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4163,7 +4054,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-57-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-60-1.pdf}}
 
 \begin{itemize}
 \tightlist
@@ -4234,7 +4125,7 @@ Start with a distribution that has parameters \texttt{alpha=2}, \texttt{beta=7}.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-59-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-62-1.pdf}}
 
 \subsection{Paired compared to unpaired tests}\label{paired-compared-to-unpaired-tests}
 
@@ -4689,7 +4580,7 @@ The file \texttt{hprice1.Rdata} contains 88 observations of homes in the Boston 
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-66-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-69-1.pdf}}
 
 Suppose that you're interested in knowing the relationship between price and square footage.
 
@@ -4721,7 +4612,7 @@ Suppose that you're interested in knowing the relationship between price and squ
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-70-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-73-1.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4984,7 +4875,7 @@ A is what we call a homoskedastic distribution. B and C are what we call heteros
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-76-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-79-1.pdf}}
 
 \subsection{Question 1}\label{question-1}
 
@@ -5006,7 +4897,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-77-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-80-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5032,12 +4923,10 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2
-## 3.4.0.
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## i Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where
-## this warning was generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 \end{verbatim}
 
 \begin{Shaded}
@@ -5080,7 +4969,7 @@ The following code draws a sample from distribution A, fits a regression line, a
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-78-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-81-1.pdf}}
 
 \subsection{Question 2}\label{question-2}
 
@@ -5300,11 +5189,10 @@ With this, it is possible to plot the distribution of these regression coefficie
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-87-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-90-1.pdf}}
 
 Compute the standard deviation of the bootstrapped regression coefficients. How does this compare to the robust standard errors you computed above?
 
@@ -5479,11 +5367,10 @@ Compute the standard deviation of the bootstrapped regression coefficients. How 
 \end{Shaded}
 
 \begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-90-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-93-1.pdf}}
 
 \subsection{Transformations}\label{transformations}
 
@@ -5882,7 +5769,7 @@ The file \texttt{htv.RData} contains data from the 1991 National Longitudinal Su
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-91-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-94-1.pdf}}
 
 Assume that the true model is,
 
@@ -6235,7 +6122,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-94-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-97-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6245,7 +6132,7 @@ For more information about the dataset, use the R command: \texttt{help(mtcars)}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-94-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{203-live-session_files/figure-latex/unnamed-chunk-97-2.pdf}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
