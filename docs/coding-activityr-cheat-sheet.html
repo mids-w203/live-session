@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.6 Coding Activity:R Cheat Sheet | Statistics for Data Science</title>
+  <title>8.7 Coding Activity:R Cheat Sheet | Statistics for Data Science</title>
   <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.6 Coding Activity:R Cheat Sheet | Statistics for Data Science" />
+  <meta property="og:title" content="8.7 Coding Activity:R Cheat Sheet | Statistics for Data Science" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/coffee.jpeg" />
   <meta property="og:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="github-repo" content="mids-w203/live-session" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.6 Coding Activity:R Cheat Sheet | Statistics for Data Science" />
+  <meta name="twitter:title" content="8.7 Coding Activity:R Cheat Sheet | Statistics for Data Science" />
   
   <meta name="twitter:description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science." />
   <meta name="twitter:image" content="/images/coffee.jpeg" />
@@ -23,7 +23,7 @@
 <meta name="author" content="D. Alex Hughes, Paul Laskowski &amp; The 203 Teaching Team" />
 
 
-<meta name="date" content="2024-10-08" />
+<meta name="date" content="2024-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -267,7 +267,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="computing-the-cef.html"><a href="computing-the-cef.html#simple-quantities"><i class="fa fa-check"></i><b>4.6.1</b> Simple Quantities</a></li>
 <li class="chapter" data-level="4.6.2" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-quantities"><i class="fa fa-check"></i><b>4.6.2</b> Conditional Quantities</a></li>
-<li class="chapter" data-level="4.6.3" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-expectation"><i class="fa fa-check"></i><b>4.6.3</b> Conditional Expectation</a></li>
+<li class="chapter" data-level="4.6.3" data-path="computing-the-cef.html"><a href="computing-the-cef.html#conditional-expectation-1"><i class="fa fa-check"></i><b>4.6.3</b> Conditional Expectation</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="minimizing-the-mse.html"><a href="minimizing-the-mse.html"><i class="fa fa-check"></i><b>4.7</b> Minimizing the MSE</a>
 <ul>
@@ -376,15 +376,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="class-announcements-6.html"><a href="class-announcements-6.html"><i class="fa fa-check"></i><b>8.2</b> Class Announcements</a></li>
 <li class="chapter" data-level="8.3" data-path="roadmap-4.html"><a href="roadmap-4.html"><i class="fa fa-check"></i><b>8.3</b> Roadmap</a></li>
 <li class="chapter" data-level="8.4" data-path="discussion-questions.html"><a href="discussion-questions.html"><i class="fa fa-check"></i><b>8.4</b> Discussion Questions</a></li>
-<li class="chapter" data-level="8.5" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html"><i class="fa fa-check"></i><b>8.5</b> The Regression Anatomy Formula</a></li>
-<li class="chapter" data-level="8.6" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.6</b> Coding Activity:R Cheat Sheet</a></li>
-<li class="chapter" data-level="8.7" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.7</b> R Exercise</a>
+<li class="chapter" data-level="8.5" data-path="best-linear-predictor-and-ols-regression-as-a-predictor.html"><a href="best-linear-predictor-and-ols-regression-as-a-predictor.html"><i class="fa fa-check"></i><b>8.5</b> Best Linear Predictor and OLS Regression as a Predictor</a></li>
+<li class="chapter" data-level="8.6" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html"><i class="fa fa-check"></i><b>8.6</b> The Regression Anatomy Formula</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.7.1</b> Assess the Relationship between Price and Square Footage</a></li>
+<li class="chapter" data-level="8.6.1" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html#estimate-an-ols-regression"><i class="fa fa-check"></i><b>8.6.1</b> Estimate an OLS Regression</a></li>
+<li class="chapter" data-level="8.6.2" data-path="the-regression-anatomy-formula.html"><a href="the-regression-anatomy-formula.html#regression-anatomy-and-fritch-waugh-lovell"><i class="fa fa-check"></i><b>8.6.2</b> Regression Anatomy and Fritch Waugh Lovell</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html"><i class="fa fa-check"></i><b>8.8</b> Regression Plots and Discussion</a>
+<li class="chapter" data-level="8.7" data-path="coding-activityr-cheat-sheet.html"><a href="coding-activityr-cheat-sheet.html"><i class="fa fa-check"></i><b>8.7</b> Coding Activity:R Cheat Sheet</a></li>
+<li class="chapter" data-level="8.8" data-path="r-exercise.html"><a href="r-exercise.html"><i class="fa fa-check"></i><b>8.8</b> R Exercise</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html#plot-1"><i class="fa fa-check"></i><b>8.8.1</b> Plot 1</a></li>
+<li class="chapter" data-level="8.8.1" data-path="r-exercise.html"><a href="r-exercise.html#assess-the-relationship-between-price-and-square-footage"><i class="fa fa-check"></i><b>8.8.1</b> Assess the Relationship between Price and Square Footage</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html"><i class="fa fa-check"></i><b>8.9</b> Regression Plots and Discussion</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="regression-plots-and-discussion.html"><a href="regression-plots-and-discussion.html#plot-1"><i class="fa fa-check"></i><b>8.9.1</b> Plot 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="ols-regression-inference.html"><a href="ols-regression-inference.html"><i class="fa fa-check"></i><b>9</b> OLS Regression Inference</a>
@@ -522,8 +527,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="coding-activityr-cheat-sheet" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Coding Activity:R Cheat Sheet<a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="coding-activityr-cheat-sheet" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Coding Activity:R Cheat Sheet<a href="coding-activityr-cheat-sheet.html#coding-activityr-cheat-sheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suppose <code>x</code> and <code>y</code> are variables in dataframe <code>d</code>.</p>
 <p>To fit an ols regression of Y on X:</p>
 <pre><code>mod &lt;- lm(y ~ x, data = d)</code></pre>

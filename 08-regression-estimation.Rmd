@@ -1,10 +1,12 @@
 # OLS Regression Estimates
+
 ![](./images/linear_regression.png)
 
-```{r load packages for unit 08}
+```{r load packages for unit 08, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(broom)
 library(testthat)
+library(patchwork)
 ```
 
 ```{r set themes for unit 08}
@@ -12,18 +14,19 @@ theme_set(theme_minimal())
 ```
 
 
-
 ## Learning Objectives 
 
-1. 
-2. 
-3. 
+At the end of this week, students will be able to: 
+
+1. **Understand** the algorithm that produces the OLS regression estimates. 
+2. **Fit** regressions to produce estimates from a best linear predictor. 
+3. **Produce** predictions from this OLS regression that are informative about the population.
 
 
 ## Class Announcements
 
-1. Lab 1 is due next week.
-2. There is no HW 8.  We will have HW 9 as usual.
+1. Lab 1 is due next week! 
+2. There is not a "homework" assignment this week -- instead you're working on your group's lab
 3. You're doing great - keep it up!
 
 ## Roadmap
@@ -51,7 +54,95 @@ Suppose we have random variables $X$ and $Y$.
 
 - Why do we care about the BLP?
 - What assumptions are needed for OLS to consistently estimate the BLP?
-- What assumptions are needed in terms of causality ($X$ causes $Y$, $Y$ causes $X$, etc.) in order to compute the regression of $Y$ on $X$?
+
+## Best Linear Predictor and OLS Regression as a Predictor
+
+We've worked with this function last week: Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
+
+$$
+f_{X,Y}(x,y) = 
+  \begin{cases}
+    2-x-y, & 0 \leq x \leq 1; 0 \leq y \leq 1 \\ 
+    0, & otherwise
+  \end{cases}
+$$
+
+With this function we have previously been able to calculate some quantities that we care about, specifically: 
+
+1. The covariance between $X$ and $Y$, which we calculated to be: $-1/144$. 
+2. The variance of $X$, which we calculated to be $11/144$. 
+
+With the two of these, we were able to also write down the best linear predictor, 
+
+3. The $\beta_{BLP} = Cov[X,Y]/Var[X] = (-1/144) / (11/144) = -1/11$.
+4. $\alpha_{BLP} = E[Y] - \beta_{BLP}E[X] = (5/12) - (-1/11)(5/12) = 71/132$. (Sorry for the ugly math...)
+
+We wrote code that would sample from this PDF: 
+
+```{r create joint pdf}
+joint_pdf_1 <- function(x_input, y_input) { 
+  probs = 2 - x_input - y_input
+  return(probs)
+}
+joint_pdf_1(x_input = .5, y_input = 0.5)
+```
+
+This next step is the part that requires us to squint a little bit. We're going to create a "population" that has 1,000,000 observations in it, and we're going to sample from this population in a way that is governed by the joint pdf. 
+
+```{r create simulated pop}
+d <- data.frame(
+  expand.grid(
+    x = seq(from = 0, to = 1, length.out = 1000), 
+    y = seq(from = 0, to = 1, length.out = 1000))) |> 
+  mutate(prob = joint_pdf_1(x_input = x, y_input = y))
+d
+```
+
+With that put together, we can take samples from this data: 
+
+```{r}
+sample_10  <- d |> slice_sample(n = 10, weight_by = prob)
+sample_20  <- d |> slice_sample(n = 20, weight_by = prob)
+sample_100 <- d |> slice_sample(n = 100, weight_by = prob)
+sample_200 <- d |> slice_sample(n = 200, weight_by = prob)
+
+sample_10000 <- d |> slice_sample(n = 10000, weight_by = prob)
+```
+
+```{r}
+plot_10 <- 
+  sample_10 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+plot_20 <- 
+  sample_20 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+plot_100 <- 
+  sample_100 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+plot_200 <- 
+  sample_200 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+
+(plot_10 | plot_20) / 
+  (plot_100 | plot_200)
+```
+
+```{r}
+model_100   <- lm(y ~ x, data = sample_100)
+model_200   <- lm(y ~ x, data = sample_200)
+model_10000 <- lm(y ~ x, data = sample_10000)
+
+coef(model_10000)
+```
+
 
 ## The Regression Anatomy Formula 
 
@@ -77,33 +168,56 @@ The claim that we make in the live session is that there is a guarantee that $\b
 Suppose that the population model is the following: 
 
 $$
+X_{1} = 
+\begin{cases}
+  \frac{1}{10}, & 0 \leq x \leq 10, \\ 
+  0, & otherwise
+\end{cases}, \\
+X_{2} = 
+\begin{cases}
+  \frac{1}{10}, & 0 \leq x \leq 10, \\ 
+  0, & otherwise
+\end{cases}, \\
+X_{3} = 
+\begin{cases}
+  \frac{1}{10}, & 0 \leq x \leq 10, \\ 
+  0, & otherwise
+\end{cases}
+$$
+And, furthermore suppose that $Y = g(X_{1}, X_{2}, X_{3}$, specifically, that: 
+
+$$
 Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 $$
+Then, because we know the population model, we can produce a single sample from it 
+using the following code: 
 
-```{r make simulation data} 
+```{r make simulation data, echo = TRUE} 
 d <- data.frame(
-  x1 = runif(n=100, min=0, max=10), 
-  x2 = runif(n=100, min=0, max=10), 
-  x3 = runif(n=100, min=0, max=10)
-)
-
-## because we know the population model, we can produce a single sample from it 
-## using the following code: 
-
-d <- d %>% 
-  mutate(y = -3 + 1*x1 + 2*x2 + 3*x3 + rnorm(n=n(), mean=0, sd=1))
+  x1 = runif(n = 100, min = 0, max = 10), 
+  x2 = runif(n = 100, min = 0, max = 10), 
+  x3 = runif(n = 100, min = 0, max = 10)) %>% 
+  mutate(y = -3 + 1*x1 + 2*x2 + 3*x3 + rnorm(n = n(), mean = 0, sd = 1))
 
 head(d)
 ```
 
 Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other "things" in this universe that also affect $Y$, but that we don't have access to them. By assumption, what we *have* measured in this world, $X_1, X_2, X_3$ are uncorrelated with these other features. 
 
+### Estimate an OLS Regression 
+
+Let's begin by producing an estimate of the OLS regression of Y on these X variables. Notice the way that we're talking about this: 
+
+> We are going to regress Y on $X_{1}$, $X_{2}$, and $X_{3}$. 
+
 ```{r}
 model_main <- lm(y ~ x1 + x2 + x3, data = d)
 coef(model_main)
 ```
 
-The claim is that we can produce an estimate of $\beta_1$ using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression. 
+### Regression Anatomy and Fritch Waugh Lovell
+
+The claim is that we can produce an estimate of $\hat{\beta}_1$ using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression. 
 
 ```{r estiamte auxilary regression}
 model_aux <- lm(x1 ~ x2 + x3, data = d)
@@ -112,7 +226,7 @@ model_aux <- lm(x1 ~ x2 + x3, data = d)
 If we look into the structure of `model_aux` we can see that there are *a ton* of pieces in here. 
 
 ```{r model structure}
-coef(model_aux)
+str(model_aux)
 ```
 
 To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, "residual" in this sense? 
@@ -122,23 +236,28 @@ To make talking about these easier, here is a plot that might be useful.
 ```{r plot x1 and y and line}
 d %>% 
   ggplot() + 
-  aes(x=x1, y=y) + 
+  aes(x = x1, y = y) + 
   geom_point() + 
-  geom_segment(aes(x=0, xend=10, y=0, yend=50), color = 'steelblue')
+  geom_segment(aes(x = 0, xend = 10, y = 0, yend = 50), color = 'steelblue')
 ```
 
 In order to access these residuals, we can "augment" the dataframe that we used in the model, using the `broom::augment` function call. 
 
 ```{r}
-d_augmented <- augment(model_aux)
-d_augmented$y <- d$y
-d_augmented
+model_aux_augmented <- augment(model_aux)
 ```
 
-And finally, with this augmented data that has information from the model, we can estimate the model that includes only the residuals as predictors of $Y$. 
+Because the $Y$ variable wasn't included in the regression for `model_aux` we have to bring of over from the main dataset, which is a little bit... um, hacky. Forgive these sins. 
 
 ```{r}
-model_two <- lm(y ~ .resid, data = d_augmented)
+model_aux_augmented$y <- d$y
+model_aux_augmented
+```
+
+Finally, with this augmented data that has information from the model, we can estimate the model that includes only the residuals as predictors of $Y$. 
+
+```{r}
+model_two <- lm(y ~ .resid, data = model_aux_augmented)
 coef(model_two)
 ```
 
@@ -154,6 +273,13 @@ test_that(
 ```
 
 But, why is this an interesting, or at least useful, feature to appreciate? 
+
+This is actually a really famous, relatively recently "rediscovered" proof. If we have a number of variables, one called an outcome and the rest called features, then we can estimate the relationship between the outcome and one feature in the following way: 
+
+1. Estimate the relationship between all the other features and the one that we're examining; save the information about the feature we're examining which cannot be explained by the other features in some vector. 
+2. Regress the outcome on this leftover information. 
+
+Slightly more of what is happening? In the first model, the leftover information is orthogonal to the information posessed in the regression features. In the second model, we can use this orthagonal information to estimate the effect of one variable. 
 
 ## Coding Activity:R Cheat Sheet
 

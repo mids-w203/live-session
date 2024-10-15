@@ -145,7 +145,7 @@ To begin with, let's compute the simplest quantities:
 
 ### Conditional Quantities
 
-#### Conditional Expectaiton 
+#### Conditional Expectation 
 
 And then, let's think about how to compute the conditional quantities. To get started, you can use the fact that in week two, we already computed the conditional probability density function: 
 
