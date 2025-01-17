@@ -81,24 +81,33 @@ A is what we call a homoskedastic distribution. B and C are what we call heteros
  
 ```{r}
 rA <- function(n, slope=0){
-  x       = runif(n, min=-1, max = 1)
-  epsilon = runif(n, min=-.5, max=.5)
+  x       = runif(n, min = -1,  max = 1)
+  epsilon = runif(n, min = -.5, max = .5)
   y       = 0 + slope*x + epsilon
-  return( data.frame(x=x,y=y) )
+  
+  return(
+    data.frame(x=x, y=y)
+    )
 }
 
 rB <- function(n, slope=0){
-  x       = runif(n, min=-1, max = 1)
-  epsilon = runif(n, min=- abs(x), max=abs(x))
+  x       = runif(n, min = -1, max = 1)
+  epsilon = runif(n, min = - abs(x), max =abs(x))
   y       = 0 + slope*x + epsilon
-  return( data.frame(x=x,y=y) )
+  
+  return(
+    data.frame(x=x,y=y)
+    )
 }
 
 rC <- function(n, slope=0){
-  x       = runif(n, min=-1, max = 1)
-  epsilon = runif(n, min= -1 + abs(x), max=1 - abs(x))
+  x       = runif(n, min = -1, max = 1)
+  epsilon = runif(n, min = -1 + abs(x), max = 1 - abs(x))
   y       = 0 + slope*x + epsilon
-  return( data.frame(x=x,y=y) )
+
+  return(
+    data.frame(x=x,y=y)
+    )
 }
 ```
 
@@ -192,7 +201,10 @@ for(i in 1:100) {
       )
 }
 
-base_plot_a | base_plot_b  | base_plot_c
+base_plot_a + base_plot_b + base_plot_c + patchwork::plot_layout(axes = "collect")
+
+
+?plot_layout()
 ```
 
 

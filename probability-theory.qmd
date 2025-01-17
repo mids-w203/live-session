@@ -1,0 +1,3 @@
+# Probabilty Theory 
+
+Probability theory is the basis for all modeling in data science. In the first part of the course, we will cover the basics. 

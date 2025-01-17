@@ -1,7 +1,7 @@
 # The Classical Linear Model
 
 ```{r}
-# install.packages("corrgram")
+
 ```
 
 
@@ -140,9 +140,9 @@ mtcars %>%
 
 1. Using the `mtcars` data, run a linear regression to find the relationship between miles per gallon (`mpg`) on the left-hand-side as a function of displacement (`disp`), gross horsepower (`hp`), weight (`wt`), and rear axle ratio (`drat`) on the right-hand-side. That is, fit a regression of the following form: 
 
-\[
+$$
 \widehat{mpg} = \hat{\beta_{0}} + \hat{\beta}_{1} disp + \hat{\beta}_{2}horse\_power + \hat{\beta}_{3}weight + \hat{\beta}_{4}drive\_ratio
-\]
+$$
 
 ```{r}
 

@@ -278,12 +278,12 @@ Now suppose that you again had an equal probability of every outcome, but you we
 ::: {.discussion-question}
 Suppose that $X$ has the following density function:
 
-\[
+$$
   f_{X}(x) = \begin{cases} 
     6x(1 - x), & 0 < x < 1 \\ 
     0, & otherwise \\ 
   \end{cases}
-\]
+$$
 
 -   Find $E[X]$.
 -   Find $E[X^2]$.
@@ -295,21 +295,21 @@ Suppose that $X$ has the following density function:
 
 In the reading, you saw that we define **covariance** to be: 
 
-\[
+$$
 \begin{aligned}
 Cov[X,Y]    &= E[(E[X] - X)^{2}(E[Y] - Y)^{2}] \\ 
             &= E[XY] - E[X]E[Y]
 \end{aligned} 
-\]
+$$
 
 And, **correlation** to be a rescaled version of *covariance*: 
 
-\[
+$$
 \begin{aligned}
 Cor[X,Y]    & \equiv \rho[X,Y] \\ 
             & = \frac{Cov[X,Y]}{\sigma_{X}\sigma_{Y}} \\
 \end{aligned}            
-\]
+$$
 
 ::: {.discussion-question} 
 Suppose that $X$ and $Y$ are discrete random variables, where $X$ represents number of office hours attended, and $Y$ represents owning a cat. Furthermore, suppose that $X$ and $Y$ have the joint pmf,
@@ -482,10 +482,10 @@ quadratic_error_ <- optim(
 ```{r}
 all_plots <- ggplot() + 
   ## add lines 
-  geom_line(aes(x=support, y=scale(mse_)), color = "#003262")  + 
-  geom_line(aes(x=support, y=scale(mae_)), color = "#FDB515")  + 
-  geom_line(aes(x=support, y=scale(mce_)), color = "seagreen") + 
-  geom_line(aes(x=support, y=scale(mqe_)), color = "darkred")  +
+  geom_line(aes(x = support, y = scale(mse_)), color = "#003262")  + 
+  geom_line(aes(x = support, y = scale(mae_)), color = "#FDB515")  + 
+  geom_line(aes(x = support, y = scale(mce_)), color = "seagreen") + 
+  geom_line(aes(x = support, y = scale(mqe_)), color = "darkred")  +
   ## add optimal solution indicators
   geom_segment(
     aes(x = squared_error_, 

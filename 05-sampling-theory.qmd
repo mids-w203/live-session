@@ -5,6 +5,8 @@ library(patchwork)
 library(data.table)
 
 theme_set(theme_minimal())
+
+source('./src/blank_lines.R')
 ```
 
 # Learning from Random Samples 

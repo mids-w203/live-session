@@ -1,5 +1,12 @@
 # Hypothesis Testing
 
+```{r}
+#| echo: false
+#| message: false
+library(tidyverse)
+```
+
+
 ![more lake](images/winter_tahoe.jpg)
 
 Frequentist Hypothesis testing is a very well established framework in the applied practice, and scientific literature. Sometimes (often, currently) referred to as Null Hypothesis Significance Testing (NHST), this framework essentially makes an absurd assertion and asks the data to overturn that assertion.
@@ -158,7 +165,7 @@ test_stat_function <- function(data, null_hypothesis) {
 ```
 
 ```{r}
-test_stat_function(data=voltage, null_hypothesis=12) %>% 
+test_stat_function(data=voltage, null_hypothesis=12) |> 
   pt(df=length(voltage)-1) * 2
 ```
 
@@ -232,8 +239,8 @@ In order for a t-test to produce valid results, a set of conditions must be sati
 The file `./data/home_team.csv` contains data on college football games. The data is provided by Wooldridge and was collected by Paul Anderson, an MSU economics major, for a term project. Football records and scores are from 1993 football season.
 
 ```{r}
-home_team <- read.csv('./data/home_team.csv') %>% 
-  select(dscore, dinstt, doutstt) %>% 
+home_team <- read.csv('./data/home_team.csv') |> 
+  select(dscore, dinstt, doutstt) |> 
   rename(
     score_diff               = dscore, 
     in_state_tuition_diff    = dinstt, 
@@ -277,7 +284,7 @@ ggplot() +
 
 
 
-home_team %>% 
+home_team |>  
   ggplot() + 
   aes(x=abs(score_diff)) + 
   geom_density()

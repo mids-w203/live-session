@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science.">
+
+<title>Statistics for Data Science - 2&nbsp; Defining Random Variables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-summarizing-distributions.html" rel="next">
+<link href="./01-probability-spaces.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.3/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-theory.html">Probabilty Theory</a></li><li class="breadcrumb-item"><a href="./02-random-variables.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mids-w203-live-session" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Session</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./probability-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probabilty Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-probability-spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Spaces</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-random-variables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-summarizing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-conditional-expectation-and-BLP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditional Expectation and The BLP</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./sampling-and-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling and Testing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-sampling-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Learning from Random Samples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-comparing-two-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparing Two Groups</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-regression-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">OLS Regression Estimates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-regression-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">OLS Regression Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-descriptive-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Model Building</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-causal-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Model Building</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-classical-linear-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Classical Linear Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-reproducible-research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Reproducible Research</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</a></li>
+  <li><a href="#introduction-to-the-materirals" id="toc-introduction-to-the-materirals" class="nav-link" data-scroll-target="#introduction-to-the-materirals"><span class="header-section-number">2.2</span> Introduction to the Materirals</a></li>
+  <li><a href="#class-announcements" id="toc-class-announcements" class="nav-link" data-scroll-target="#class-announcements"><span class="header-section-number">2.3</span> Class Announcements</a>
+  <ul class="collapse">
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  <li><a href="#study-groups" id="toc-study-groups" class="nav-link" data-scroll-target="#study-groups">Study Groups</a></li>
+  <li><a href="#course-resources" id="toc-course-resources" class="nav-link" data-scroll-target="#course-resources">Course Resources</a></li>
+  </ul></li>
+  <li><a href="#using-definitions-of-random-variables" id="toc-using-definitions-of-random-variables" class="nav-link" data-scroll-target="#using-definitions-of-random-variables"><span class="header-section-number">2.4</span> Using Definitions of Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#random-varaible" id="toc-random-varaible" class="nav-link" data-scroll-target="#random-varaible"><span class="header-section-number">2.4.1</span> Random Varaible</a></li>
+  </ul></li>
+  <li><a href="#pieces-of-a-random-variable" id="toc-pieces-of-a-random-variable" class="nav-link" data-scroll-target="#pieces-of-a-random-variable"><span class="header-section-number">2.5</span> Pieces of a Random Variable</a>
+  <ul class="collapse">
+  <li><a href="#functions-of-functions" id="toc-functions-of-functions" class="nav-link" data-scroll-target="#functions-of-functions"><span class="header-section-number">2.5.1</span> Functions of Functions</a></li>
+  <li><a href="#probability-density-functions-and-cumulative-distribution-functions" id="toc-probability-density-functions-and-cumulative-distribution-functions" class="nav-link" data-scroll-target="#probability-density-functions-and-cumulative-distribution-functions"><span class="header-section-number">2.5.2</span> Probability Density Functions and Cumulative Distribution Functions</a></li>
+  </ul></li>
+  <li><a href="#discrete-continuous-random-variables" id="toc-discrete-continuous-random-variables" class="nav-link" data-scroll-target="#discrete-continuous-random-variables"><span class="header-section-number">2.6</span> Discrete &amp; Continuous Random Variables</a></li>
+  <li><a href="#moving-between-pdf-and-cdf" id="toc-moving-between-pdf-and-cdf" class="nav-link" data-scroll-target="#moving-between-pdf-and-cdf"><span class="header-section-number">2.7</span> Moving Between PDF and CDF</a></li>
+  <li><a href="#joint-density" id="toc-joint-density" class="nav-link" data-scroll-target="#joint-density"><span class="header-section-number">2.8</span> Joint Density</a>
+  <ul class="collapse">
+  <li><a href="#example-uniform-joint-density" id="toc-example-uniform-joint-density" class="nav-link" data-scroll-target="#example-uniform-joint-density"><span class="header-section-number">2.8.1</span> Example: Uniform Joint Density</a></li>
+  <li><a href="#examples-thinking-through-many-plots" id="toc-examples-thinking-through-many-plots" class="nav-link" data-scroll-target="#examples-thinking-through-many-plots"><span class="header-section-number">2.8.2</span> Examples: Thinking Through Many Plots</a></li>
+  <li><a href="#triangle-math" id="toc-triangle-math" class="nav-link" data-scroll-target="#triangle-math"><span class="header-section-number">2.8.3</span> Triangle Math</a></li>
+  <li><a href="#saddle-sores" id="toc-saddle-sores" class="nav-link" data-scroll-target="#saddle-sores"><span class="header-section-number">2.8.4</span> Saddle Sores</a></li>
+  </ul></li>
+  <li><a href="#computing-different-distributions." id="toc-computing-different-distributions." class="nav-link" data-scroll-target="#computing-different-distributions."><span class="header-section-number">2.9</span> Computing Different Distributions.</a></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="header-section-number">2.10</span> Conditional Probability</a></li>
+  <li><a href="#visualizing-distributions-via-simulation" id="toc-visualizing-distributions-via-simulation" class="nav-link" data-scroll-target="#visualizing-distributions-via-simulation"><span class="header-section-number">2.11</span> Visualizing Distributions Via Simulation</a>
+  <ul class="collapse">
+  <li><a href="#example-the-uniform-distribution" id="toc-example-the-uniform-distribution" class="nav-link" data-scroll-target="#example-the-uniform-distribution"><span class="header-section-number">2.11.1</span> Example: The Uniform Distribution</a></li>
+  <li><a href="#example-the-normal-distribution" id="toc-example-the-normal-distribution" class="nav-link" data-scroll-target="#example-the-normal-distribution"><span class="header-section-number">2.11.2</span> Example: The Normal Distribution</a></li>
+  </ul></li>
+  <li><a href="#review-of-terms" id="toc-review-of-terms" class="nav-link" data-scroll-target="#review-of-terms"><span class="header-section-number">2.12</span> Review of Terms</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-theory.html">Probabilty Theory</a></li><li class="breadcrumb-item"><a href="./02-random-variables.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ purrr::%||%()   masks base::%||%()
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+
+Attaching package: 'plotly'
+
+
+The following object is masked from 'package:ggplot2':
+
+    last_plot
+
+
+The following object is masked from 'package:stats':
+
+    filter
+
+
+The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/yosemite.jpg" class="img-fluid figure-img"></p>
+<figcaption>yosemite valley</figcaption>
+</figure>
+</div>
+<section id="learning-objectives" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</h2>
+<p>At the end of this week’s course of study (which includes the async, sync, and homework) students should be able to</p>
+<ol type="1">
+<li><strong>Remember</strong> that random variable are neither random, or variables, but instead that they are objects thare are a foundation that we can use to reason about a world.</li>
+<li><strong>Understand</strong> that the intuition developed by the use of set-theory probability maps into the more expressive space of random variables</li>
+<li><strong>Apply</strong> the appropriate mathematical transformations to move between joint, marginal, and conditional distributions.</li>
+</ol>
+<p>This week’s materials are theoretical tooling to build toward one of the first notable results of the course, <strong>conditional probability</strong>. This is the idea that, if we know that one event has occurred, we can make a conditional statement about the probability distribution for another, dependent distribution.</p>
+</section>
+<section id="introduction-to-the-materirals" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introduction-to-the-materirals"><span class="header-section-number">2.2</span> Introduction to the Materirals</h2>
+<p>From the axioms of probability, it is possible to build a whole, expressive modeling system (that need not be grounded <strong>at all</strong> in the minutia of the world). With this probability model in place, we can describe how frequently events in the random variable will occur. When variable are dependent upon each other, we can utilize information that is encoded in this dependence in order to make predictions that are <em>closer to the truth</em> than predictions made without this information.</p>
+<p>There is both a beauty and a tragedy when reasoning about random variables: we describe random variables using their joint density function.</p>
+<ul>
+<li>The <strong>beauty</strong> is that by reasoning with such general objects – the definitions that we create, and the theorems that we derive in this section of the course – produce guarantees that hold in every case, no matter the function that stands in for the joint density function. We will compute several examples of <em>specific</em> functions to provide a chance to reason about these objects and how they “work”.</li>
+<li>The <strong>tragedy</strong> is that in the “real world”, the world where we are going to eventually going to train and deploy our models, we are never provided with this joint density function. Because we don’t have access to the joint density function, in later weeks we will try to produce estimates using data. The simpler the estimate, the less data we need; the fuller the representation of the joint density function we desire, the more data we need.</li>
+</ul>
+<p>Perhaps this is the creation myth for probability theory: in a perfect world, we can produce a perfect result. But, in the “fallen” world of data, we will only be able to produce approximations.</p>
+</section>
+<section id="class-announcements" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="class-announcements"><span class="header-section-number">2.3</span> Class Announcements</h2>
+<section id="homework" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="homework">Homework</h3>
+<ol type="1">
+<li>You should have turned in your first homework. The solution set for this homework is scheduled to be released to you in Thursday at 2:00p. The solution set contains a full explanation of how we solved the questions posed to you. You can expect that feedback for this homework will be released back to you within seven days.</li>
+<li>You can start working on your second homework when we are out of this class.</li>
+</ol>
+</section>
+<section id="study-groups" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="study-groups">Study Groups</h3>
+<p>It is a <strong>very</strong> good idea for you to create a recurring time to work with a set of your classmates. Working together will help you solve questions more effectively, quickly, and will also help you to learn how to communicate what you do and do not understand about a problem to a group of collaborating data scientists. And, working together with a group will help you to find people who share data science interests with you.</p>
+</section>
+<section id="course-resources" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="course-resources">Course Resources</h3>
+<p>There are several resources to support your learning. A learning object last week was that you would be introduced to each of these systems. Please continue to make sure that you have access to the:</p>
+<ul>
+<li><a href="https://www.lib.berkeley.edu/using-the-libraries/vpn">Library VPN</a> to read all of the scholarly content in the known universe, including the course textbook.</li>
+<li><a href="https://www.bcourses.berkeley.edu">Course LMS Page</a></li>
+</ul>
+</section>
+</section>
+<section id="using-definitions-of-random-variables" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="using-definitions-of-random-variables"><span class="header-section-number">2.4</span> Using Definitions of Random Variables</h2>
+<section id="random-varaible" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="random-varaible"><span class="header-section-number">2.4.1</span> Random Varaible</h3>
+<p>What is a random variable? Does this definition help you?</p>
+<div class="definition" name="Random Variable">
+<p>A random variable is a function <span class="math inline">\(X : \Omega \rightarrow \mathbb{R},\)</span> such that <span class="math inline">\(\forall r \in \mathbb{R}, \{\omega \in \Omega: X(\omega) \leq r\} \in S\)</span>.</p>
+</div>
+<p>Someone, please, read that without using a single “omega”, <span class="math inline">\(\mathbb{R}\)</span>, or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean.</p>
+<div class="callout callout-style-default callout-note callout-titled" name="Why So Serious?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You might notice that the <span class="math inline">\(X(\omega) \leq r\)</span> feels kind of weird; why isn’t it just <span class="math inline">\(X(\omega) = r\)</span>? After all, this is a mapping from an outcome, <span class="math inline">\(\omega \in \Omega\)</span> to a real number, right? So, why not just be direct about it? The answer is a real deep-dive, and one that is better suited to a formal measure theory course.</p>
+<p>The short answer, is that the we use this <span class="math inline">\(\leq r\)</span> range because we’re using a <a href="https://en.wikipedia.org/wiki/Borel_set">Boreal <span class="math inline">\(\sigma\)</span> algebra</a> to constrain the sets that have probability measures. Why this constraint? If we don’t weird stuff can happen. Like, real weird things: you can split a sphere into pieces and create two new spheres of equal volume from the pieces (<a href="https://en.wikipedia.org/wiki/Banach–Tarski_paradox">Banch-Tarski Paradox</a>).</p>
+</div>
+</div>
+<p>The goal of writing with math symbols like this is to be <em>absolutely</em> clear what concepts the author does and does not mean to invoke when they write a definition or a theorem. In a very real sense, this is a language that has specific meaning attached to specific symbols; there is a correspondence between the mathematical language and each of our home languages, but exactly what the relationship is needs to be defined into each student’s home language.</p>
+<div class="discussion-question" name="Why Random Variables?">
+<ul>
+<li>What are the key things that random variables allow you to accomplish?
+<ul>
+<li>Suppose that you were going to try to make a model that predicts the probability of winning “big money” on a slot machine. Big money might be that you get 🍒🍒🍒. Can you do <em>math</em> with 🍒?</li>
+<li>Suppose that you wanted to build a chatbort that uses a language model so that you don’t have to do your homework anymore. How would you go about it? Can you do math on words or concepts?</li>
+<li>Suppose you want to direct class support to students in 203, but their grades are scored <code>[A, A-, ..., C+]</code> and features include prior statistics classes grades, also scored <code>A, A-, ..., C+].</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="pieces-of-a-random-variable" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="pieces-of-a-random-variable"><span class="header-section-number">2.5</span> Pieces of a Random Variable</h2>
+<div class="definition" name="Random Variable, Suite">
+<p>A random variable is a function <span class="math inline">\(X : \Omega \rightarrow \mathbb{R},\)</span> such that <span class="math inline">\(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\)</span>.</p>
+</div>
+<p>There are two key pieces that must exist for every random variable. What are these pieces? The new piece is provided to us in <strong>Definition 1.2.1</strong> <em>Random Variable</em> (on page 16). The older piece (from last week) that is now useful is a part of the Kolmogorov Axiom, the probabilty triple: <span class="math inline">\((\Omega, S, P)\)</span> where <span class="math inline">\(\Omega\)</span> is a sample space, <span class="math inline">\(S\)</span> is an event space, and <span class="math inline">\(P\)</span> is a probability-measure.</p>
+<ol type="1">
+<li></li>
+<li></li>
+</ol>
+<div class="discussion-question">
+<p>Suppose that a random variable is simple and discrete. For concreteness, you could think of this random variable as the answer to the question, “Is the grass wet outside?”.</p>
+<ol type="1">
+<li>What is the sample space?</li>
+<li>What is a sensible function that you might use to map from the sample space to real values?</li>
+<li>What is a sensible function that you might use to map from the sample space to real values? (A student well-seasoned in Maths might use (and define for the rest of the class) the concept of a <em>bijective function</em>).</li>
+<li>If you simply had the values that the random variable function maps to are you guaranteed to be able to describe the entire sample space? Why or why not?</li>
+<li>How would you go about determining the probability mass function for this random variable?</li>
+</ol>
+</div>
+<section id="functions-of-functions" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="functions-of-functions"><span class="header-section-number">2.5.1</span> Functions of Functions</h3>
+<div class="discussion-question" name="Why Functions?">
+<p>Why do we say that random variables are functions? Is there some useful property of these being functions rather than any other quantity? What else <em>could</em> they be if not a function?</p>
+</div>
+<p>What about a function of a random variable, which is a function of a function.</p>
+<div class="definition" name="Function of a Random Variable">
+<p>Let <span class="math inline">\(g : U \rightarrow \mathbb{R}\)</span> be some function, where <span class="math inline">\(X(\Omega) \subseteq U \subseteq \mathbb{R}\)</span>. Then, if <span class="math inline">\(g \circ X : \Omega \rightarrow \mathbb{R}\)</span> is a random variable, we say that <span class="math inline">\(g\)</span> is a <em>function</em> of X and write <span class="math inline">\(g(X)\)</span> to denote the random variable <span class="math inline">\(g \circ X\)</span>.</p>
+</div>
+<p>If a random variable is a function from the real world, or the sample space, or the outcome space to a real number, then what does it mean to define a function of a random variable?</p>
+<ul>
+<li>At what point does this function work? Does this function change the sample space that is possible to observe? Or, does this function change the real-number that each outcome points to?</li>
+</ul>
+<div class="example" name="MNIST">
+<p>Suppose that you are doing some image processing work. To keep things simple, that you are doing image classification in the style of the MNIST dataset.</p>
+<ul>
+<li>Can someone describe what this task is trying to accomplish?</li>
+<li>Has anyone done work like this?</li>
+</ul>
+<p>However, suppose that rather than having good clean indicators for whether a pixel is on or off, instead you have weak indicators – there’s a lot of grey. A lot of the cells are marked in the range <span class="math inline">\(0.2 - 0.3\)</span>.</p>
+<ol type="1">
+<li>How might creating a function that re-maps this grey into more extreme values help your model?</li>
+<li>Is it possible to “blur” events that are in the outcome space? Does this “blurring” meet the requirements of a function of a random variable, as provided above?</li>
+</ol>
+</div>
+</section>
+<section id="probability-density-functions-and-cumulative-distribution-functions" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="probability-density-functions-and-cumulative-distribution-functions"><span class="header-section-number">2.5.2</span> Probability Density Functions and Cumulative Distribution Functions</h3>
+<ul>
+<li>What is a probability mass function?</li>
+<li>What do the <strong>Kolmogorov Axioms</strong> mean must be true about any probability mass function (<em>pmf</em>)?</li>
+</ul>
+<div class="example" name="Berkeley Drivers, No Survivors">
+<p>You should try driving in Berkeley some time. It is a <strong>trip</strong>! Without being deliberately ageist, the city is full of ageing hippies driving beater Subaru Outbacks and making what seem to be stochastic right-or-left turns to buy incense, pottery, or just sourdough bread.</p>
+<p>Suppose that you are walking to campus, and you have to cross 10 crosswalks, each of which are spaced a block apart. Further, suppose that as you get closer to campus, there are fewer aging hippies, and therefore, there is decreasing risk that you’re hit by a Subaru as you cross the street. Specifically, and fortunately for our math, the risk of being hit decreases linearly with each block that you cross.</p>
+<p>Finally, campus provides you with the safety reports from last year, and reports that there were 55 student-Subaru incidents last year, out of 10,000 student-crosswalk crossings.</p>
+<ol type="1">
+<li>What is the <em>pmf</em> for the probability that you are involved in a student-Subaru incident as you walk across these 10 blocks? What sample space, <span class="math inline">\(\Omega\)</span> is appropriate to represent this scenario?</li>
+<li>Suppose that you don’t leave your house – this is a remote program after all! What is your cumulative probability of being involved in a student-subaru incident?</li>
+<li>What is the cumulative probability <em>cmf</em> for the probability that you are involved in a student-Subaru incident?</li>
+<li>Suppose that you live three blocks from campus, but your classmate lives five blocks from campus. What is the difference in the cumulative probability?</li>
+<li>How would you describe the cumulative probability of being hit as you walk closer to campus? That is, suppose that you start 10 blocks away from campus, and are walking to get closer. Is your cumulative probability of being hit on your way to campus increasing or decreasing as you get closer to campus?</li>
+<li>How would you describe the cumulative probability of being hit as you walk <strong>further</strong> from campus? That is, suppose that you start on campus, and you’re walking to a bar after classes. Is your cumulative probability of being hit on your way away from campus increasing or decreasing as you get further from campus?</li>
+</ol>
+</div>
+</section>
+</section>
+<section id="discrete-continuous-random-variables" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="discrete-continuous-random-variables"><span class="header-section-number">2.6</span> Discrete &amp; Continuous Random Variables</h2>
+<p>What, if anything is fundamentally different between discrete and continuous random variables? As a way of starting the conversation, consider the following cases:</p>
+<ul>
+<li>Suppose <span class="math inline">\(X\)</span> is a random variable that describes the time a student spends on w203 homework 1.
+<ul>
+<li>If you have only granular measurement – i.e.&nbsp;the number of nights spent working on the homework – is this discrete or continuous?</li>
+<li>If you have the number of hours, is it discrete or continuous?</li>
+<li>If you have the number of seconds? Or milliseconds?</li>
+</ul></li>
+<li>Is it possible that <span class="math inline">\(P(X = a) = 0\)</span> for every point <span class="math inline">\(a\)</span>? For example, that <span class="math inline">\(P(X = 3600) = 0\)</span>.</li>
+<li>Does one of these measures have more <em>information</em> in it than another?
+<ul>
+<li>How are measurement choices that we make as designers of information capture systems – i.e.&nbsp;the machine processes, human processes, or other processes that we are going to work with as data scientists – reflected in both the amount of information that is gathered, the type of information that is gathered, and the types of random variables that are manifest as a result?</li>
+</ul></li>
+</ul>
+</section>
+<section id="moving-between-pdf-and-cdf" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="moving-between-pdf-and-cdf"><span class="header-section-number">2.7</span> Moving Between PDF and CDF</h2>
+<p>The book defines <em>pmf</em> and <em>cmf</em> first as a way of developing intuition and a way of reasoning about these concepts. It then moves to defining continuous density functions, which is many ways are easier to work with although they lack the means of reasoning about them intuitively. Continuous distributions are defined in the book, and more generally, in terms of the <em>cdf</em>, which is the cumulative distribution function. There are technical reasons for this choice of definition, some of which are signed in the footnotes on the page where the book presents it.</p>
+<p>More importantly for this course, in <strong>Definition 1.2.15</strong> the book defines the relationship between <em>cdf</em> and <em>pdf</em> in the following way:</p>
+<div class="definition" name="Probability Density Function (PDF)">
+<p>For a continuous random variable <span class="math inline">\(X\)</span> with CDF <span class="math inline">\(F\)</span>, the <em>probability density function</em> of <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[
+  f(x) = \left. \frac{d F(u)}{du} \right|_{u=x}, \forall x \in \mathbb{R}.
+\]</span></p>
+<p>The implies, further, that for a random variable <span class="math inline">\(X\)</span> with PDF <span class="math inline">\(f\)</span>, the <em>cumulative density function</em> of <span class="math inline">\(X\)</span> is:</p>
+<p><span class="math display">\[
+F(x) = \int f(x) dx, \forall x \in \mathbb{R}.
+\]</span></p>
+</div>
+<ul>
+<li>How does this definition, which relates <em>pdf</em> and <em>cdf</em> by a means of differentiation and integration, fit with the ideas that we just developed in the context of walking to and from campus?</li>
+</ul>
+<div class="example" name="Working with a continuous pdf and cdf">
+<p>Suppose that you learn than a particular random variable, <span class="math inline">\(X\)</span> has the following function that describes its <em>pdf</em>, <span class="math inline">\(f_{x}(x) = \frac{1}{10}x\)</span>. Also, suppose that you know that the smallest value that is possible for this random variable to obtain is 0.</p>
+<ol type="1">
+<li>What is the CDF of <span class="math inline">\(X\)</span>?</li>
+<li>What is the maximum possible value that <span class="math inline">\(x\)</span> can obtain? How did you develop this answer, using the Kolmogorov axioms of probability?</li>
+<li>What is the cumulative probability of an outcome up to 0.5?</li>
+<li>What is the probability of an outcome between 0.25 and 0.75? Produce an answer to this in two ways:
+<ol type="1">
+<li>Using the <span class="math inline">\(PDF\)</span></li>
+<li>Using the <span class="math inline">\(CDF\)</span></li>
+</ol></li>
+</ol>
+</div>
+</section>
+<section id="joint-density" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="joint-density"><span class="header-section-number">2.8</span> Joint Density</h2>
+<p>Working with a single random variable helps to develop our understanding of how to relate the different features of a <em>pdf</em> and a <em>cdf</em> through differentiation and integration. However, there’s not really <em>that</em> much else that we can do; and, there is probably very little in our professional worlds that would look like a single random variable in isolation.</p>
+<p>We really start to get to something useful when we consider joint density functions. Joint density functions describe the probability that <em>both</em> of two random variables. That is, if we are working with random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, then the joint density function provides a probability statement for <span class="math inline">\(P(X \cap Y)\)</span>.</p>
+<p>In this course, we might typically write this joint density function as <span class="math inline">\(f_{X,Y}(x,y) = f(\cdot)\)</span> where <span class="math inline">\(f(\cdot)\)</span> is the actual function that represents the joint probability. The <span class="math inline">\(f(\cdot)\)</span> means, essentially, “some function” where we just have not designated the specifics of the function; you might think of this as a generic function.</p>
+<section id="example-uniform-joint-density" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="example-uniform-joint-density"><span class="header-section-number">2.8.1</span> Example: Uniform Joint Density</h3>
+<p>Suppose that we know that two variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly uniformly distributed within the the <em>support</em> <span class="math inline">\(x \in [0,4], y \in [0,4]\)</span>. We have a requirement, imposed by the <em>Kolmogorov Axioms</em> that all probabilities must be non-zero, and that the total probability across the whole support must be one.</p>
+<ul>
+<li>Can you use these facts to determine answers to the following:
+<ul>
+<li>What kind of shape does this joint <em>pdf</em> have?</li>
+<li>What is the specific function that describes this shape?</li>
+<li>If you draw this shape on three axes, and <span class="math inline">\(X\)</span>, and <span class="math inline">\(Y\)</span>, and a <span class="math inline">\(P(X,Y)\)</span>, what does this plot look like?</li>
+<li>How do you get from the joint density function, to a marginal density function for <span class="math inline">\(X\)</span>?</li>
+<li>How do you get form the joint density function, to a marginal density function for <span class="math inline">\(Y\)</span>?</li>
+<li>How do you get from these marginal density functions of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> back to the joint density? Is this always possible?</li>
+</ul></li>
+</ul>
+</section>
+<section id="examples-thinking-through-many-plots" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="examples-thinking-through-many-plots"><span class="header-section-number">2.8.2</span> Examples: Thinking Through Many Plots</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-43fd8f494d5f88918e55" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-43fd8f494d5f88918e55">{"x":{"visdat":{"14296f7dbb1c":["function () ","plotlyVisDat"]},"cur_data":"14296f7dbb1c","attrs":{"14296f7dbb1c":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="triangle-math" class="level3" data-number="2.8.3">
+<h3 data-number="2.8.3" class="anchored" data-anchor-id="triangle-math"><span class="header-section-number">2.8.3</span> Triangle Math</h3>
+<p>After considering the intuition for the triangle distribution, do the following: Write down the function that accords with the figure that you’re seeing above.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<ul>
+<li>What is a full statement of the PDF of this image?</li>
+<li>What is the marginal distribution of <span class="math inline">\(X\)</span>, <span class="math inline">\(f_{X}(x)\)</span>?</li>
+<li>What is the marginal distribution of <span class="math inline">\(Y\)</span>, <span class="math inline">\(f_{Y}(y)\)</span>?</li>
+<li>Using the definition of independence, are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent of each other?</li>
+<li>What is the CDF of <span class="math inline">\(X\)</span>, <span class="math inline">\(F_{X}(x)\)</span>?</li>
+</ul>
+</section>
+<section id="saddle-sores" class="level3" data-number="2.8.4">
+<h3 data-number="2.8.4" class="anchored" data-anchor-id="saddle-sores"><span class="header-section-number">2.8.4</span> Saddle Sores</h3>
+<p>Suppose that you know that two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly distributed with the following <em>pdf</em>:</p>
+<p><span class="math display">\[
+f_{X,Y}(x,y) =
+  \begin{cases}
+    a * x^{2} * y^{2}, &amp; 0 &lt; x &lt; 1, 0 &lt; y &lt; 1 \\
+    0, &amp; \text{otherwise.}
+  \end{cases}
+\]</span></p>
+<p>This joint pdf is similar to the pdf that you can visualize above, under the distribution called “saddle”. The difference between this function and the image above is that the function bounds the with support of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> on the range <span class="math inline">\([0,1]\)</span>. This is to make the math easier for us in the next step.</p>
+<ul>
+<li>Can you use these facts to determine the following?
+<ul>
+<li>What value of <span class="math inline">\(a\)</span> makes this a valid joint pdf?</li>
+<li>What is the marginal pdf of <span class="math inline">\(x\)</span>? That is, what is <span class="math inline">\(f_{x}(x)\)</span>?</li>
+<li>What is the conditional pdf of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>? That is, what is <span class="math inline">\(f_{x|y}(x,y)\)</span>?</li>
+<li>Given these facts, would you say that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are dependent or independent?</li>
+<li>If the support for this joint distribution were instead <span class="math inline">\([0,4]\)</span> (rather than <span class="math inline">\([0,1]\)</span>), how would the shape of the distribution change?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="computing-different-distributions." class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="computing-different-distributions."><span class="header-section-number">2.9</span> Computing Different Distributions.</h2>
+<p>Suppose that random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly continuous, with joint density function given by,</p>
+<p><span class="math display">\[
+f(x,y) =
+  \begin{cases}
+    c, &amp; 0 \leq x \leq 1, 0 \leq y \leq x \\
+    0, &amp; otherwise
+\end{cases}
+\]</span></p>
+<p>where <span class="math inline">\(c\)</span> is a constant.</p>
+<ol type="1">
+<li>Draw a graph showing the region of the X-Y plane with positive probability density.</li>
+<li>What is the constant <span class="math inline">\(c\)</span>?</li>
+<li>Compute the marginal density function for <span class="math inline">\(X\)</span>. (Be sure to write a complete expression)</li>
+<li>Compute the conditional density function for <span class="math inline">\(Y\)</span>, conditional on <span class="math inline">\(X=x\)</span>. (Be sure to specify for what values of <span class="math inline">\(x\)</span> this is defined)</li>
+</ol>
+</section>
+<section id="conditional-probability" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">2.10</span> Conditional Probability</h2>
+<p>Conditional probability is <strong>incredible</strong>. In fact, without exaggeration, almost <strong>all</strong> of data science is an exercise in making statements about conditional probability distributions. <em>Don’t believe us?</em></p>
+<ul>
+<li>What is the goal of a “customer churn” model or a conversion model?</li>
+<li>What is the goal of a language-completion model?</li>
+<li>What is the goal of flight-departures model?</li>
+</ul>
+<div class="discussion-question">
+<p><strong>If</strong> we possessed the whole information about a process; <strong>if</strong> we had the CDF that governed probability of occurrences, what kinds of statements would we be able to make? Would we even need data?</p>
+</div>
+<div class="discussion-question">
+<p>Using the distribution above, produce a statement of conditional probability, <span class="math inline">\(f_{Y|X}(y|x)\)</span>.</p>
+</div>
+</section>
+<section id="visualizing-distributions-via-simulation" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="visualizing-distributions-via-simulation"><span class="header-section-number">2.11</span> Visualizing Distributions Via Simulation</h2>
+<p>To this point in the course, we have focused on concepts in “the population” with no reference to samples. This is on purpose! We want to develop the theory that defines the <strong>best possible</strong> predictor if we knew <strong>everything</strong> (if we know formula of the function that maps from <span class="math inline">\(\omega \rightarrow \mathbb{R}\)</span>, and we know the probability of each <span class="math inline">\(\omega \in \Omega\)</span> then we know everything). Beginning in week 5 of the course, we will talk about “approximating” (which we will call estimating) this best possible predictor with a limited sample of data.</p>
+<p>However, at this point, to help build your working understanding, or intuition, for what is happening, we are going to work on a way to <em>simulate</em> draws from a population. In some places, people might refer to these as <em>Monte Carlo</em> methods – this is because the method was developed by von Neumann &amp; Ulam during World War II, and they needed a way to talk about it using a code name. They chose <em>Monte Carlo</em> after a famous casino in Monaco.</p>
+<section id="example-the-uniform-distribution" class="level3" data-number="2.11.1">
+<h3 data-number="2.11.1" class="anchored" data-anchor-id="example-the-uniform-distribution"><span class="header-section-number">2.11.1</span> Example: The Uniform Distribution</h3>
+<blockquote class="blockquote">
+<p>You: “Gosh. There sure are a lot of examples that use the uniform distribution. That must be a really important statistical distribution.”</p>
+<p>Instructor: “Nah. Not really. We’re just using the uniform a bunch so that we don’t get too lost in doing math while we’re working with these concepts.”</p>
+</blockquote>
+<p>We’ll start with a simple uniform distribution, but then we’ll make it a little more complex in a moment.</p>
+<p>We can use R to simulate draws from a probability distribution function by providing it with the name of the distribution that we’re considering, the support of that distribution, or other features of the distribution. In the case of the uniform, the entire distribution is can be described just from it support.</p>
+<p>So, suppose that you had a uniform distribution that had positive probability on the range <span class="math inline">\([1.1, 4.3]\)</span>. Why these? No particular reason. That is, suppose</p>
+<p><span class="math display">\[
+f_{X}(x) =
+  \begin{cases}
+    a &amp; 1.1 \leq x \leq 4.3 \\
+    0 &amp; otherwise
+  \end{cases}
+\]</span></p>
+<p>What does this distribution “look like”? Because it is a uniform, you might have a sense that it will be a horizontal line. But, what is the height of that line? Aha! We could do the math to figure it out, or we could generate an approximation using a simulation.</p>
+<p>In the code below, we are going to create an object called <code>samples_uniform</code> that stores the results of the <code>runif</code> function call.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samples_uniform <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">min=</span><span class="fl">1.1</span>, <span class="at">max=</span><span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What is happening inside <code>runif</code>?</p>
+<p>When you’re writing you own code, you can pull up the documentation for this (and any) function using a question mark, i.e.&nbsp;<code>?</code>, followed by the function name – <code>?runif</code>.</p>
+<p>But, we can speed this up slightly by simply telling you that <code>n</code> is the number of samples to take from the population; <code>min</code> is the low-end of the support, and <code>max</code> is the high-end of the support.</p>
+<p>If we look into this object, we can see the results of the function call. Below, we will show the first <span class="math inline">\(20\)</span> elements of the <code>samples_uniform</code> object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 2.253276 3.474887 4.194507 3.791078 2.341289 2.754651 1.531660 1.369586
+ [9] 2.694481 2.529188 2.693655 3.330845 1.599786 2.577170 2.236188 3.519088
+[17] 1.189404 1.400409 1.750101 2.453439</code></pre>
+</div>
+</div>
+<p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
+<p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(samples_uniform), <span class="at">y=</span>samples_uniform) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the Data'</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Sample Value'</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Index'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plot_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_uniform) <span class="sc">+</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw=</span><span class="fl">0.1</span>)   <span class="sc">+</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the PDF'</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Probability of Drawing Value'</span>, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Sample Value'</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>(plot_full_data <span class="sc">|</span> (plot_density <span class="sc">+</span> <span class="fu">coord_flip</span>())) <span class="sc">/</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  plot_density </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-random-variables_files/figure-html/plot uniform samples-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we’re using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are <em>very</em> explicit about the code that creates them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>samples_uniform_moar <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.1</span>)   <span class="sc">+</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))       <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Low Res, Low Data'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plot_high_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()       <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform_moar) <span class="sc">+</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.01</span>)       <span class="sc">+</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))            <span class="sc">+</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'High Res, More Data'</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="sc">|</span> plot_high_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-random-variables_files/figure-html/plot uniform distributions-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="example-the-normal-distribution" class="level3" data-number="2.11.2">
+<h3 data-number="2.11.2" class="anchored" data-anchor-id="example-the-normal-distribution"><span class="header-section-number">2.11.2</span> Example: The Normal Distribution</h3>
+<p>Folks might have some prior beliefs about the Normal distribution. Don’t worry, we’ll cover this later in the course. But, this is the distribution that you have in mind when you’re thinking of a “bell curve”.</p>
+<p>We can use the same method to visualize a normal distribution as we did for a uniform distribution. In this case, we would issue the call <code>rnorm</code>, together with the population parameters that define the population. At this point in the course, we do not expect that you will know these (and, actually memorizing these facts are not a core focus of the course), but you can <a href="https://en.wikipedia.org/wiki/Normal_distribution">look them up</a> if you like. Truthfully, statistics wikipedia is <em>very</em> good.</p>
+<p>Do do you notice anything about the <code>runif</code> and the <code>rnorm</code> calls that we have identified? Both seem to name the distribution: <span class="math inline">\(unif \approx uniform\)</span> and <span class="math inline">\(norm \approx normal\)</span>, but prepened with a <code>r</code>? This is for “random draw”.</p>
+<p>Base R is loaded with a <em>pile</em> of basic statistics distributions, which you can look into using <code>?distributions</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Like before, we could look at the first <span class="math inline">\(20\)</span> of these samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 24.497334 15.348211 26.349048 22.159840 26.591070 21.751742 21.880909
+ [8] 17.109993 18.808287 18.666536 23.538855 17.679535 13.620293 17.360174
+[15]  6.916686 25.867951 17.688190  9.987599 11.467163 20.864328</code></pre>
+</div>
+</div>
+<p>And, from here we could visualize this distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_normal) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Visualization of this Normal Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-random-variables_files/figure-html/plot normal-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="combining-this-ability" class="level4" data-number="2.11.2.1">
+<h4 data-number="2.11.2.1" class="anchored" data-anchor-id="combining-this-ability"><span class="header-section-number">2.11.2.1</span> Combining This Ability</h4>
+<div class="discussion-question">
+<p>Consider three random variables <span class="math inline">\(A, B, C\)</span>. Suppose,</p>
+<p><span class="math display">\[
+\begin{aligned}    
+  A &amp; \sim Uniform(min=1.1, max=4.3) \\     
+  B &amp; \sim Normal(mean=18, sd=4)     \\     
+  C &amp;= A + B  \end{aligned}
+\]</span></p>
+<p>And, suppose that <span class="math inline">\(B\)</span> is a random variable that is described by the normal density that we considered earlier. Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent of each other.</p>
+<p>Finally, suppose that <span class="math inline">\(C = A + 2B\)</span>.</p>
+<p>What does <span class="math inline">\(C\)</span> look like?</p>
+</div>
+<p>Although this is a simple function applied to a random variable – a legal move – the math would be tedious. What if, instead, one used this simulation method to get a sense for the distribution?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>samples_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>samples_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>samples_C <span class="ot">&lt;-</span> samples_A <span class="sc">+</span> samples_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_C <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_C) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_A), <span class="at">color =</span> <span class="st">'#003262'</span>) <span class="sc">+</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_B), <span class="at">color =</span> <span class="st">'#FDB515'</span>) <span class="sc">+</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_C), <span class="at">color =</span> <span class="st">'darkred'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-random-variables_files/figure-html/plot C-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="review-of-terms" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="review-of-terms"><span class="header-section-number">2.12</span> Review of Terms</h2>
+<p>Remember some of the key terms we learned in the async:</p>
+<ul>
+<li>Joint Density Function</li>
+<li>Conditional Distribution</li>
+<li>Marginal Distribution</li>
+</ul>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Notice, that in general, this kind of <em>curve fitting</em> isn’t really a common data science task. Instead, this is just a learning task that lets the class assess their understanding of the definitions of random variables.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-probability-spaces.html" class="pagination-link" aria-label="Probability Spaces">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Spaces</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-summarizing-distributions.html" class="pagination-link" aria-label="Summarizing Distributions">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -429,6 +429,19 @@
       ],
       "Hash": "e8a1e41acf02548751f45c718d55aa6a"
     },
+    "crosstalk": {
+      "Package": "crosstalk",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R6",
+        "htmltools",
+        "jsonlite",
+        "lazyeval"
+      ],
+      "Hash": "6aa54f69598c32177e920eb3402e8293"
+    },
     "curl": {
       "Package": "curl",
       "Version": "5.1.0",
@@ -865,6 +878,21 @@
       ],
       "Hash": "1e12fe667316a76508898839ecfb2d00"
     },
+    "htmlwidgets": {
+      "Package": "htmlwidgets",
+      "Version": "1.6.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "grDevices",
+        "htmltools",
+        "jsonlite",
+        "knitr",
+        "rmarkdown",
+        "yaml"
+      ],
+      "Hash": "a865aa85bcb2697f47505bfd70422471"
+    },
     "httr": {
       "Package": "httr",
       "Version": "1.4.7",
@@ -971,6 +999,17 @@
       ],
       "Hash": "b64ec208ac5bc1852b285f665d6368b3"
     },
+    "later": {
+      "Package": "later",
+      "Version": "1.3.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "Rcpp",
+        "rlang"
+      ],
+      "Hash": "40401c9cf2bc2259dfe83311c9384710"
+    },
     "latex2exp": {
       "Package": "latex2exp",
       "Version": "0.9.6",
@@ -996,6 +1035,16 @@
         "utils"
       ],
       "Hash": "cc5ac1ba4c238c7ca9fa6a87ca11a7e2"
+    },
+    "lazyeval": {
+      "Package": "lazyeval",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "d908914ae53b04d4c0c0fd72ecc35370"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -1207,11 +1256,17 @@
     },
     "patchwork": {
       "Package": "patchwork",
-      "Version": "1.1.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "1.3.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "patchwork",
+      "RemoteUsername": "thomasp85",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "2695a9f0200b7fd73f295d5c8a3e13e3943078c5",
       "Requirements": [
         "cli",
+        "farver",
         "ggplot2",
         "grDevices",
         "graphics",
@@ -1221,7 +1276,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "c5754106c02e8e019941100c81149431"
+      "Hash": "7a07a3a3918e7c18e86ed64515053d29"
     },
     "pbkrtest": {
       "Package": "pbkrtest",
@@ -1307,6 +1362,38 @@
       ],
       "Hash": "903d68319ae9923fb2e2ee7fa8230b91"
     },
+    "plotly": {
+      "Package": "plotly",
+      "Version": "4.10.3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "RColorBrewer",
+        "base64enc",
+        "crosstalk",
+        "data.table",
+        "digest",
+        "dplyr",
+        "ggplot2",
+        "htmltools",
+        "htmlwidgets",
+        "httr",
+        "jsonlite",
+        "lazyeval",
+        "magrittr",
+        "promises",
+        "purrr",
+        "rlang",
+        "scales",
+        "tibble",
+        "tidyr",
+        "tools",
+        "vctrs",
+        "viridisLite"
+      ],
+      "Hash": "56914cc61df53f2d0283d5498680867e"
+    },
     "praise": {
       "Package": "praise",
       "Version": "1.0.0",
@@ -1349,6 +1436,22 @@
         "prettyunits"
       ],
       "Hash": "14dc9f7a3c91ebb14ec5bb9208a07061"
+    },
+    "promises": {
+      "Package": "promises",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R6",
+        "Rcpp",
+        "fastmap",
+        "later",
+        "magrittr",
+        "rlang",
+        "stats"
+      ],
+      "Hash": "0d8a15c9d000970ada1ab21405387dee"
     },
     "ps": {
       "Package": "ps",

@@ -1,0 +1,3 @@
+# Sampling and Testing 
+
+In this section we will introduce the basics of sampling and testing. 

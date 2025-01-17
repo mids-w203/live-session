@@ -1,5 +1,15 @@
 # Explanatory Model Building
 
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_minimal())
+```
+
+
 ![duck yeah](./images/duck.png)
 
 What does it mean for **this** to cause **that**? This question has flummoxed the discipline of statistics for a *very* long time; but, more than statistics, it has also flummoxed philosophers for even longer! 
@@ -118,7 +128,7 @@ The file `htv.RData` contains data from the 1991 National Longitudinal Survey of
 ```{r load htv data}
 load('./data/htv.RData')
 
-data <- data %>% 
+data <- data |>  
   rename(
     ability    = abil, 
     education  = educ, 
@@ -130,32 +140,31 @@ data <- data %>%
     divorce_14 = brkhme14, 
     siblings   = sibs, 
     tuition_17 = tuit17, 
-    tuition_18 = tuit18) %>% 
+    tuition_18 = tuit18) |>  
   mutate(
-    education_f = cut(education, breaks = c(0,12,16,100))) %>%
+    education_f = cut(education, breaks = c(0,12,16,100))) |> 
   select(-c(ctuit, expersq, lwage))
   
 glimpse(data)
 ```
 
 ```{r}
-wage_plot <- data %>% 
+wage_plot <- data |>  
   ggplot() + 
   aes(x=wage, fill=education_f) + 
   geom_histogram(bins=30)
-ability_plot <- data %>% 
+ability_plot <- data |>  
   ggplot() + 
   aes(x=ability, fill=education_f) + 
   geom_histogram(bins=30)
-wage_by_ability_plot <- data %>% 
+wage_by_ability_plot <- data |>  
   ggplot() + 
   aes(x=ability, y=wage, color=education_f) + 
   geom_point()
   
 
 (wage_plot | ability_plot) / 
-  wage_by_ability_plot + 
-  plot_layout(guides = 'collect')
+  wage_by_ability_plot
 ```
 
 Assume that the true model is,
