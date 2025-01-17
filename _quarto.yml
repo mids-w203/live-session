@@ -1,0 +1,56 @@
+project: 
+  type: book 
+  output-dir: _book
+
+book: 
+  title: "Statistics for Data Science"
+  author: D. Alex Hughes, Paul Laskowski, The 203 Teaching Team
+  date: last-modified
+  page-navigation: true 
+  repo-url: https://github.com/mids-w203-live-session
+  repo-branch: main
+
+  chapters: 
+    - index.qmd
+    - part: probability-theory.qmd
+      chapters: 
+        - 01-probability-spaces.qmd
+        - 02-random-variables.qmd
+        - 03-summarizing-distributions.qmd
+        - 04-conditional-expectation-and-BLP.qmd
+    - part: sampling-and-testing.qmd
+      chapters:
+        - 05-sampling-theory.qmd
+        - 06-hypothesis-testing.qmd
+        - 07-comparing-two-groups.qmd
+    - part: regression.qmd
+      chapters: 
+        - 08-regression-estimation.qmd
+        - 09-regression-inference.qmd
+        - 10-descriptive-models.qmd
+        - 11-causal-models.qmd
+        - 12-classical-linear-model.qmd
+        - 13-reproducible-research.qmd
+      
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+biblatexoptions:
+  - sortcites
+link-citations: true
+github-repo: "mids-w203/live-session"
+description: "This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called *Statistics for Data Science*."
+tags: [Linear models, Econometrics, Causal Analysis, R Programming, Live Session Discussion]
+language:
+  label:
+    fig: "Figure"
+    tab: "Table"
+  ui:
+    chapter_name: "Unit "
+book_filename: "203-live-session"
+
+format: 
+  html: 
+    theme: cosmo
+    cover-image: "images/coffee.jpeg"
+  pdf: 
+    documentclass: scrreprt

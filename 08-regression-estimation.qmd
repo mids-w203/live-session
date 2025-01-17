@@ -1,0 +1,475 @@
+# OLS Regression Estimates
+
+![](./images/linear_regression.png)
+
+```{r load packages for unit 08, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(broom)
+library(testthat)
+library(patchwork)
+```
+
+```{r set themes for unit 08}
+theme_set(theme_minimal())
+```
+
+
+## Learning Objectives 
+
+At the end of this week, students will be able to: 
+
+1. **Understand** the algorithm that produces the OLS regression estimates. 
+2. **Fit** regressions to produce estimates from a best linear predictor. 
+3. **Produce** predictions from this OLS regression that are informative about the population.
+
+
+## Class Announcements
+
+1. Lab 1 is due next week! 
+2. There is not a "homework" assignment this week -- instead you're working on your group's lab
+3. You're doing great - keep it up!
+
+## Roadmap
+
+**Rear-View Mirror**
+
+- Statisticians create a population model to represent the world.
+- Sometimes, the model includes an "outcome" random variable $Y$ and "input" random variables $X_1, X_2,...,X_k$.
+- The joint distribution of $Y$ and $X_1, X_2,...,X_k$ is complicated.
+- The best linear predictor (BLP) is the canonical way to summarize the relationship.
+
+**Today**
+
+- OLS regression is an estimator for the BLP
+- We'll discuss the *mechanics* of OLS
+
+**Looking Ahead**
+
+- To make regression estimates useful, we need measures of uncertainty (standard errors, tests...).
+- The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
+
+## Discussion Questions
+
+Suppose we have random variables $X$ and $Y$.
+
+- Why do we care about the BLP?
+- What assumptions are needed for OLS to consistently estimate the BLP?
+
+## Best Linear Predictor and OLS Regression as a Predictor
+
+We've worked with this function last week: Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
+
+$$
+f_{X,Y}(x,y) = 
+  \begin{cases}
+    2-x-y, & 0 \leq x \leq 1; 0 \leq y \leq 1 \\ 
+    0, & otherwise
+  \end{cases}
+$$
+
+With this function we have previously been able to calculate some quantities that we care about, specifically: 
+
+1. The covariance between $X$ and $Y$, which we calculated to be: $-1/144$. 
+2. The variance of $X$, which we calculated to be $11/144$. 
+
+With the two of these, we were able to also write down the best linear predictor, 
+
+3. The $\beta_{BLP} = Cov[X,Y]/Var[X] = (-1/144) / (11/144) = -1/11$.
+4. $\alpha_{BLP} = E[Y] - \beta_{BLP}E[X] = (5/12) - (-1/11)(5/12) = 71/132$. (Sorry for the ugly math...)
+
+We wrote code that would sample from this PDF: 
+
+```{r create joint pdf}
+joint_pdf_1 <- function(x_input, y_input) { 
+  probs = 2 - x_input - y_input
+  return(probs)
+}
+joint_pdf_1(x_input = 0, y_input = 0)
+```
+
+This next step is the part that requires us to squint a little bit. We're going to create a "population" that has 1,000,000 observations in it, and we're going to sample from this population in a way that is governed by the joint pdf. 
+
+```{r create simulated pop}
+d <- data.frame(
+  expand.grid(
+    x = seq(from = 0, to = 1, length.out = 1000), 
+    y = seq(from = 0, to = 1, length.out = 1000))) |> 
+  mutate(prob = joint_pdf_1(x_input = x, y_input = y))
+tail(d)
+```
+
+With that put together, we can take samples from this data: 
+
+```{r create samples of data}
+sample_10  <- d |> slice_sample(n = 10, weight_by = prob)
+sample_20  <- d |> slice_sample(n = 20, weight_by = prob)
+sample_100 <- d |> slice_sample(n = 100, weight_by = prob)
+sample_200 <- d |> slice_sample(n = 200, weight_by = prob)
+
+sample_10000 <- d |> slice_sample(n = 10000, weight_by = prob)
+```
+
+```{r create plots of sampled data}
+plot_10 <- 
+  sample_10 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+plot_20 <- 
+  sample_20 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+plot_100 <- 
+  sample_100 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+plot_200 <- 
+  sample_200 |> 
+    ggplot() + 
+    aes(x=x, y=y) + 
+    geom_point()
+
+(plot_10 | plot_20) / 
+  (plot_100 | plot_200)
+```
+
+```{r models from sampled data}
+model_10    <- lm(y ~ x, data = sample_10)
+model_100   <- lm(y ~ x, data = sample_100)
+model_200   <- lm(y ~ x, data = sample_200)
+model_10000 <- lm(y ~ x, data = sample_10000)
+
+coef(model_10)
+```
+
+
+```{r simulations of coefficients 1}
+results_10 <- NA 
+for(i in 1:100) { 
+  sample_10  <- d |> slice_sample(n = 10, weight_by = prob)
+  model_10   <- lm(y ~ x, data = sample_10)
+  results_10[i] <- coef(model_10)['x']
+}
+
+results_200 <- NA 
+for(i in 1:100) { 
+  sample_200  <- d |> slice_sample(n = 200, weight_by = prob)
+  model_200   <- lm(y ~ x, data = sample_200)
+  results_200[i] <- coef(model_200)['x']
+  }
+```
+
+```{r simulations of coefficients 2}
+plot_10 <- ggplot() + 
+  aes(x=results_10) + 
+  geom_histogram()
+
+plot_200 <- ggplot() + 
+  aes(x=results_200) + 
+  geom_histogram()
+  
+plot_10 / 
+  plot_200
+```
+
+## The Regression Anatomy Formula 
+
+We make the claim in live session that we can re-represent a coefficient that we're interested in as a function of all the other variable in a regression. That is, suppose that we were interested, initially, in estimating the model: 
+
+$$ 
+Y = \hat\beta_{0} + \hat\beta_{1} X_{1} + \hat\beta_{2} X_{2} + \hat\beta_{3}X_{3} + e
+$$ 
+that we can produce an estimate for $\hat\beta_{1}$ by fitting this auxiliary regression, 
+
+$$
+X_{1} = \hat\delta_{0} + \hat\delta_2X_2 + \hat\delta_3X_3 + r_{1}
+$$
+
+And then using the residuals, noted as $r_1$ above, in a second auxiliary regression, 
+
+$$ 
+Y = \gamma_0 + \gamma_1 r_1
+$$
+
+The claim that we make in the live session is that there is a guarantee that $\beta_1 = \gamma_1$. Here, we are first going to show that this is true, and then we're going to reason about what this means, and why this feature is interesting (or at least useful) when we are estimating a regression. 
+
+Suppose that the population model is the following: 
+
+$$
+X_{1} = 
+\begin{cases}
+  \frac{1}{10}, & 0 \leq x \leq 10, \\ 
+  0, & otherwise
+\end{cases}
+$$ 
+
+$$
+X_{2} = 
+\begin{cases}
+  \frac{1}{10}, & 0 \leq x \leq 10, \\ 
+  0, & otherwise
+\end{cases}
+$$ 
+
+$$
+X_{3} = 
+\begin{cases}
+  \frac{1}{10}, & 0 \leq x \leq 10, \\ 
+  0, & otherwise
+\end{cases}
+$$
+And, furthermore suppose that $Y = g(X_{1}, X_{2}, X_{3}$, specifically, that: 
+
+$$
+Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
+$$
+Then, because we know the population model, we can produce a single sample from it 
+using the following code: 
+
+```{r make simulation data, echo = TRUE} 
+d <- data.frame(
+  x1 = runif(n = 100, min = 0, max = 10), 
+  x2 = runif(n = 100, min = 0, max = 10), 
+  x3 = runif(n = 100, min = 0, max = 10)) %>% 
+  mutate(y = -3 + 1*x1 + 2*x2 + 3*x3 + rnorm(n = n(), mean = 0, sd = 1))
+
+head(d)
+```
+
+Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other "things" in this universe that also affect $Y$, but that we don't have access to them. By assumption, what we *have* measured in this world, $X_1, X_2, X_3$ are uncorrelated with these other features. 
+
+### Estimate an OLS Regression 
+
+Let's begin by producing an estimate of the OLS regression of Y on these X variables. Notice the way that we're talking about this: 
+
+> We are going to regress Y on $X_{1}$, $X_{2}$, and $X_{3}$. 
+
+```{r}
+model_main <- lm(y ~ x1 + x2 + x3, data = d)
+coef(model_main)
+```
+
+### Regression Anatomy and Fritch Waugh Lovell
+
+The claim is that we can produce an estimate of $\hat{\beta}_1$ using an auxiliary set of regression estimates, and then using the regression from that auxiliary regression. 
+
+```{r estiamte auxilary regression}
+model_aux <- lm(x1 ~ x2 + x3, data = d)
+```
+
+If we look into the structure of `model_aux` we can see that there are *a ton* of pieces in here. 
+
+```{r model structure}
+str(model_aux)
+```
+
+To evaluate our claim, we need to find the residuals from this regression. As a knowledge check, what is it that we mean when we say, "residual" in this sense? 
+
+To make talking about these easier, here is a plot that might be useful. 
+
+```{r plot x1 and y and line}
+d %>% 
+  ggplot() + 
+  aes(x = x1, y = y) + 
+  geom_point() + 
+  geom_segment(aes(x = 0, xend = 10, y = 0, yend = 50), color = 'steelblue')
+```
+
+In order to access these residuals, we can "augment" the dataframe that we used in the model, using the `broom::augment` function call. 
+
+```{r}
+model_aux_augmented <- augment(model_aux)
+```
+
+Because the $Y$ variable wasn't included in the regression for `model_aux` we have to bring of over from the main dataset, which is a little bit... um, hacky. Forgive these sins. 
+
+```{r}
+model_aux_augmented$y <- d$y
+model_aux_augmented
+```
+
+Finally, with this augmented data that has information from the model, we can estimate the model that includes only the residuals as predictors of $Y$. 
+
+```{r}
+model_two <- lm(y ~ .resid, data = model_aux_augmented)
+coef(model_two)
+```
+
+Our claim was that the coefficients from `model_main` and `model_two` should be the same. 
+
+```{r}
+test_that(
+  'the model coefficients are equal', 
+  expect_equal(
+    as.numeric(coef(model_main)['x1']), 
+    as.numeric(coef(model_two)['.resid']))
+)
+```
+
+But, why is this an interesting, or at least useful, feature to appreciate? 
+
+This is actually a really famous, relatively recently "rediscovered" proof. If we have a number of variables, one called an outcome and the rest called features, then we can estimate the relationship between the outcome and one feature in the following way: 
+
+1. Estimate the relationship between all the other features and the one that we're examining; save the information about the feature we're examining which cannot be explained by the other features in some vector. 
+2. Regress the outcome on this leftover information. 
+
+Slightly more of what is happening? In the first model, the leftover information is orthogonal to the information posessed in the regression features. In the second model, we can use this orthagonal information to estimate the effect of one variable. 
+
+## Coding Activity:R Cheat Sheet
+
+Suppose `x` and `y` are variables in dataframe `d`.
+
+To fit an ols regression of Y on X:
+
+    mod <- lm(y ~ x, data = d)
+
+To access **coefficients** from the model object:
+
+    mod$coefficients
+    or coef(mod)
+    
+To access **fitted values** from the model object:
+
+    mod$fitted
+    or fitted(mod)
+    or predict(mod)
+
+To access **residuals** from the model object:
+
+    mod$residuals
+    or resid(mod)
+   
+To create a scatterplot that includes the regression line:
+
+    plot(d['x'], d['y'])
+    abline(mod)
+    or 
+    d %>% 
+      ggplot() + 
+      aes(x = x, y = y) + 
+      geom_point() + 
+      geom_smooth(method = lm)
+
+
+## R Exercise
+
+**Real Estate in Boston** 
+
+The file `hprice1.Rdata` contains 88 observations of homes in the Boston area, taken from the real estate pages of the Boston Globe during 1990.  This data was provided by Wooldridge.
+
+```{r}
+load('data/hprice1.RData') # provides 3 objects 
+```
+
+```{r}
+head(data)
+```
+
+- Are there variables that would _not_ be valid outcomes for an OLS regression? If so, why? 
+- Are there variables that would _not_ be valid inputs for an OLS regression? If so, why? 
+
+### Assess the Relationship between Price and Square Footage
+
+
+```{r}
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=price) + 
+  geom_point()
+```
+
+
+Suppose that you're interested in knowing the relationship between price and square footage. 
+
+0. Assess the assumptions of the Large-Sample Linear Model.
+
+1. Create a scatterplot of `price` and `sqrft`. Like every plot you make, ensure that the plot *minimally* has a title and meaningful axes. 
+
+```{r}
+
+```
+
+2. Find the correlation between the two variables.
+
+3. Recall the equation for the slope of the OLS regression line -- here you can either use Variance and Covariance, or if you're bold, the linear algebra.  Compute the slope manually (without using `lm()`)
+
+```{r}
+
+```
+
+4.  Regress `price` on `sqrft` using the `lm` function. This will produce an estimate for the following model: 
+
+\[ 
+  price = \beta_{0} + \beta_{1} sqrft + e
+\] 
+
+
+```{r}
+
+```
+
+```{r}
+data %>% 
+  ggplot() + 
+  aes(x=sqrft, y=lotsize) + 
+  geom_point()
+```
+
+
+5. Create a scatterplot that includes the fitted regression.
+
+```{r}
+
+```
+
+6. Interpret what the coefficient means. 
+
+- State what features you are allowing to change and what features you're requiring do not change.
+- For each additional square foot, how much more (or less) is the house worth? 
+
+7. Estimate a new model (and save it into another object) that includes the size of the lot and whether the house is a colonial. This will estimate the model: 
+
+$$
+price = \beta_{0} + \beta_{1} sqrft + \beta_{2} lotsize + \beta_{3} colonial? + e
+$$ 
+
+- *BUT BEFORE YOU DO*, make a prediction: What do you think is going to happen to the coefficient that relates square footage and price? 
+  - Will the coefficient increase, decrease, or stay the same? 
+
+7. Compute the sample correlation between $X$ and $e_i$. What guarantees do we have from the book about this correlation? Does the data seem to bear this out?
+
+```{r}
+
+```
+
+## Regression Plots and Discussion 
+
+In this next set of notes, we're going to give some data, displayed in plots, and we will try to apply what we have learned in the async and reading for this week to answer questions about each of the scatter plots. 
+
+### Plot 1
+
+Consider data that is generated according to the following function: 
+
+$$
+  Y = 1 + 2x_1 + 3x_2 + e, 
+$$
+
+where $x_1 \sim N(0,2)$, $x_2 \sim N(0,2)$ and $e$ is a constant equal to zero. 
+
+From this population, you might consider taking a sample of 100 observations, and representing this data in the following 3d scatter plot. In this plot, there are three dimensions, an $x_1, x_2$, and $y$ dimensions. 
+
+```{r}
+knitr::include_app(url ="http://www.statistics.wtf/minibeta01/")
+```
+
+1. Rotate the cube and explore the data, looking at each face of the cube, including from the top down. 
+2. One of the lessons that we learned during the random variables section of the course is that every random variable that has been measured can also be marginalized off. You might think of this as "casting down" data from three dimensions, to only two. 
+  1. Sketch the following 2d scatter plots, taking care the label your axes. You need not represent all 100 points, but rather create the *gestalt* of what you see.  
+    1. $Y = f(x_1)$ (but not $x_2$)
+    2. $Y = f(x_2)$ (but not $x_1$)
+    3. $x2 = f(x_1)$
+  2. Once you have sketched the scatter plots, what line would you fit that minimizes the sum of squared residuals in the vertical direction. Define a residual, $\epsilon$, to be the vertical distance between the line you draw, and the corresponding point on the input data. 
+3. What is the *average* of the residuals for each of the lines that you have fitted? How does this correspond to the *moment conditions* discussed in the async? What would happen if you translated this line vertically? 
+4. Rotate the cube so that the points "fall into line". When you see this line, how does it help you describe the function that governs this data? 
