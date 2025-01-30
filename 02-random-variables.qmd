@@ -1,6 +1,10 @@
 # Defining Random Variables
 
-```{r load packages unit 02, echo=FALSE}
+```{r load packages unit 02}
+#| echo: false 
+#| message: false
+#| warning: false
+
 library(tidyverse)
 library(patchwork)
 library(plotly)
@@ -9,6 +13,16 @@ theme_set(theme_minimal())
 ```
 
 ![yosemite valley](./images/yosemite.jpg)
+
+In the first week, you reasoned about the most fundamental elements of frequentist probability: a sample space that defined the total enumeration of all outcomes that are possible, an event space that is all the events possible within that sample space, and a set of rules that establish a valid probability statement.
+
+Building upon this foundation, you learned to think about the probability that two events happened at the same time (*joint probability*), the probability that one event happens, provided that another has happened (*conditional probability*), and how to rearrange some of our basic building blocks to "derive" **Bayes' Rule**.
+
+These building blocks are *very* general. The events that we were thinking of could have been as diverse as acceptance into a graduate program, measuring a quark, probability of some utterance within a longer string of words -- quite literally **anything**! On the one hand, this means that any property that we can prove in this very general case will *have* to be true in any *particular* case. But, on the other hand, it can feel pretty abstract.
+
+This week, we're going to introduce a new concept, the **random variable** which is nearly as abstract as the set theory probability from last week. These random variables are structures that we can use to hold events in the world. In this way, they're quite similar to the sets from last week. New, this week, is that we're going to have specific statements about the probability that some specific outcome occurs -- this is the probability distribution (or density in the continuous case).
+
+We are also going to provide some specific mathematical concepts that define the relationships between different *views* of the probability distribution.
 
 ## Learning Objectives
 
@@ -51,7 +65,7 @@ There are several resources to support your learning. A learning object last wee
 
 ## Using Definitions of Random Variables
 
-### Random Varaible
+### Random Variable
 
 What is a random variable? Does this definition help you?
 
@@ -61,28 +75,37 @@ A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $
 
 Someone, please, read that without using a single "omega", $\mathbb{R}$, or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean.
 
-::: {.callout-note name="Why So Serious?"}
+::: callout-caution
+## Why so serious?
+
 You might notice that the $X(\omega) \leq r$ feels kind of weird; why isn't it just $X(\omega) = r$? After all, this is a mapping from an outcome, $\omega \in \Omega$ to a real number, right? So, why not just be direct about it? The answer is a real deep-dive, and one that is better suited to a formal measure theory course.
 
-The short answer, is that the we use this $\leq r$ range because we're using a [Boreal $\sigma$ algebra](https://en.wikipedia.org/wiki/Borel_set) to constrain the sets that have probability measures. Why this constraint? If we don't weird stuff can happen. Like, real weird things: you can split a sphere into pieces and create two new spheres of equal volume from the pieces ([Banch-Tarski Paradox](https://en.wikipedia.org/wiki/Banach–Tarski_paradox)).
+The short (but deeply technical) answer, is that the we use this $\leq r$ range because we're using a [Boreal $\sigma$ algebra](https://en.wikipedia.org/wiki/Borel_set) to constrain the sets that have probability measures. Why this constraint? If we don't weird stuff can happen. Like, real weird things: you can split a sphere into pieces and create two new spheres of equal volume from the pieces ([Banch-Tarski Paradox](https://en.wikipedia.org/wiki/Banach–Tarski_paradox)). This is an example of a formal language allowing scholars to examine really far out implications of the theory; *but, it isn't something that we're going to engage in this course.*
 :::
 
 The goal of writing with math symbols like this is to be *absolutely* clear what concepts the author does and does not mean to invoke when they write a definition or a theorem. In a very real sense, this is a language that has specific meaning attached to specific symbols; there is a correspondence between the mathematical language and each of our home languages, but exactly what the relationship is needs to be defined into each student's home language.
 
-::: {.discussion-question name="Why Random Variables?"}
--   What are the key things that random variables allow you to accomplish?
-    -   Suppose that you were going to try to make a model that predicts the probability of winning "big money" on a slot machine. Big money might be that you get 🍒🍒🍒. Can you do *math* with 🍒?
-    -   Suppose that you wanted to build a chatbort that uses a language model so that you don't have to do your homework anymore. How would you go about it? Can you do math on words or concepts?
-    -   Suppose you want to direct class support to students in 203, but their grades are scored `[A, A-, ..., C+]` and features include prior statistics classes grades, also scored `A, A-, ..., C+].`
+::: {.callout-tip name="Why Random Variables?"}
+What are the key things that random variables allow you to accomplish?
+
+-   Suppose that you were going to try to make a model that predicts the probability of winning "big money" on a slot machine. Big money might be that you get 🍒🍒🍒. Can you do *math* with 🍒?
+
+-   Suppose that you wanted to build a chatbort that uses a language model so that you don't have to do your homework anymore. How would you go about it? Can you do math on words or concepts?
+
+-   Suppose you want to direct class support to students in 203, but their grades are scored `[A, A-, ..., C+]` and features include prior statistics classes grades, also scored `A, A-, ..., C+].`
 :::
 
 ## Pieces of a Random Variable
 
-::: {.definition name="Random Variable, Suite"}
+There are two key pieces that must exist for every random variable. What are these pieces?
+
+::: callout-important
+## Definition of a Random Variable
+
 A random variable is a function $X : \Omega \rightarrow \mathbb{R},$ such that $\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S$.
 :::
 
-There are two key pieces that must exist for every random variable. What are these pieces? The new piece is provided to us in **Definition 1.2.1** *Random Variable* (on page 16). The older piece (from last week) that is now useful is a part of the Kolmogorov Axiom, the probabilty triple: $(\Omega, S, P)$ where $\Omega$ is a sample space, $S$ is an event space, and $P$ is a probability-measure.
+The new piece is provided to us in **Definition 1.2.1** *Random Variable* (on page 16). The older piece (from last week) that is now useful is a part of the Kolmogorov Axiom, the probabilty triple: $(\Omega, S, P)$ where $\Omega$ is a sample space, $S$ is an event space, and $P$ is a probability-measure.
 
 1.  
 

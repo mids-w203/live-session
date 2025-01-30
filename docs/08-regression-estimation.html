@@ -498,7 +498,7 @@ f_{X,Y}(x,y) =
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)           x 
- 0.06927881  1.09020169 </code></pre>
+  0.3523143  -0.2289297 </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -588,13 +588,13 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         x1       x2        x3         y
-1 0.6515146 1.144058 1.4008248  4.242281
-2 0.7335265 9.072936 0.5818463 18.134104
-3 2.6107358 9.041194 2.8424322 26.309289
-4 5.0721052 9.172851 6.7352403 41.632165
-5 0.8199216 9.575807 3.7421119 27.034978
-6 4.0392832 1.755840 3.2641087 13.690934</code></pre>
+<pre><code>        x1        x2       x3         y
+1 6.387617 7.1774137 3.653399 28.316159
+2 7.211402 7.8566604 6.839385 40.430190
+3 1.977136 1.5880706 2.354089  9.055912
+4 2.311875 1.0635865 9.954673 30.874465
+5 4.404155 0.2671173 2.753822  8.639743
+6 6.594343 2.6984723 8.151757 32.213818</code></pre>
 </div>
 </div>
 <p>Notice that when we made this data, we included a set of random noise at the end. The idea here is that there are other “things” in this universe that also affect <span class="math inline">\(Y\)</span>, but that we don’t have access to them. By assumption, what we <em>have</em> measured in this world, <span class="math inline">\(X_1, X_2, X_3\)</span> are uncorrelated with these other features.</p>
@@ -609,7 +609,7 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_main)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)          x1          x2          x3 
-  -3.420363    1.031301    1.998542    3.024149 </code></pre>
+  -3.225500    1.046511    1.993673    2.984711 </code></pre>
 </div>
 </div>
 </section>
@@ -624,14 +624,14 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(model_aux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 12
- $ coefficients : Named num [1:3] 3.8693 0.0569 0.1425
+ $ coefficients : Named num [1:3] 4.73191 0.00913 0.11274
   ..- attr(*, "names")= chr [1:3] "(Intercept)" "x2" "x3"
- $ residuals    : Named num [1:100] -3.482 -3.735 -2.178 -0.279 -4.128 ...
+ $ residuals    : Named num [1:100] 1.178 1.637 -3.035 -3.552 -0.641 ...
   ..- attr(*, "names")= chr [1:100] "1" "2" "3" "4" ...
- $ effects      : Named num [1:100] -48.03 -2.09 4.24 0.34 -3.33 ...
+ $ effects      : Named num [1:100] -53.596 -0.351 3.209 -3.95 -0.315 ...
   ..- attr(*, "names")= chr [1:100] "(Intercept)" "x2" "x3" "" ...
  $ rank         : int 3
- $ fitted.values: Named num [1:100] 4.13 4.47 4.79 5.35 4.95 ...
+ $ fitted.values: Named num [1:100] 5.21 5.57 5.01 5.86 5.04 ...
   ..- attr(*, "names")= chr [1:100] "1" "2" "3" "4" ...
  $ assign       : int [1:3] 0 1 2
  $ qr           :List of 5
@@ -640,7 +640,7 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
   .. .. ..$ : chr [1:100] "1" "2" "3" "4" ...
   .. .. ..$ : chr [1:3] "(Intercept)" "x2" "x3"
   .. ..- attr(*, "assign")= int [1:3] 0 1 2
-  ..$ qraux: num [1:3] 1.1 1.14 1.04
+  ..$ qraux: num [1:3] 1.1 1.09 1.08
   ..$ pivot: int [1:3] 1 2 3
   ..$ tol  : num 1e-07
   ..$ rank : int 3
@@ -663,9 +663,9 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
   .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
   .. .. ..- attr(*, "names")= chr [1:3] "x1" "x2" "x3"
  $ model        :'data.frame':  100 obs. of  3 variables:
-  ..$ x1: num [1:100] 0.652 0.734 2.611 5.072 0.82 ...
-  ..$ x2: num [1:100] 1.14 9.07 9.04 9.17 9.58 ...
-  ..$ x3: num [1:100] 1.401 0.582 2.842 6.735 3.742 ...
+  ..$ x1: num [1:100] 6.39 7.21 1.98 2.31 4.4 ...
+  ..$ x2: num [1:100] 7.177 7.857 1.588 1.064 0.267 ...
+  ..$ x3: num [1:100] 3.65 6.84 2.35 9.95 2.75 ...
   ..- attr(*, "terms")=Classes 'terms', 'formula'  language x1 ~ x2 + x3
   .. .. ..- attr(*, "variables")= language list(x1, x2, x3)
   .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
@@ -709,18 +709,18 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model_aux_augmented</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 10
-      x1    x2    x3 .fitted .resid   .hat .sigma  .cooksd .std.resid     y
-   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
- 1 0.652  1.14 1.40     4.13 -3.48  0.0348   2.72 0.0202       -1.30   4.24
- 2 0.734  9.07 0.582    4.47 -3.74  0.0465   2.72 0.0319       -1.40  18.1 
- 3 2.61   9.04 2.84     4.79 -2.18  0.0304   2.74 0.00687      -0.810 26.3 
- 4 5.07   9.17 6.74     5.35 -0.279 0.0313   2.74 0.000116     -0.104 41.6 
- 5 0.820  9.58 3.74     4.95 -4.13  0.0320   2.71 0.0261       -1.54  27.0 
- 6 4.04   1.76 3.26     4.43 -0.395 0.0222   2.74 0.000162     -0.146 13.7 
- 7 8.34   6.55 4.66     4.91  3.43  0.0123   2.72 0.00664       1.27  31.3 
- 8 7.85   3.55 7.74     5.17  2.68  0.0246   2.73 0.00826       0.992 36.7 
- 9 4.38   9.12 2.98     4.81 -0.437 0.0305   2.74 0.000276     -0.162 29.0 
-10 3.34   3.65 7.70     5.17 -1.83  0.0240   2.74 0.00377      -0.679 30.8 
+      x1    x2    x3 .fitted .resid   .hat .sigma .cooksd .std.resid     y
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1  6.39 7.18   3.65    5.21  1.18  0.0175   2.71 0.00115      0.441 28.3 
+ 2  7.21 7.86   6.84    5.57  1.64  0.0217   2.70 0.00278      0.614 40.4 
+ 3  1.98 1.59   2.35    5.01 -3.03  0.0362   2.69 0.0165      -1.15   9.06
+ 4  2.31 1.06   9.95    5.86 -3.55  0.0627   2.68 0.0414      -1.36  30.9 
+ 5  4.40 0.267  2.75    5.04 -0.641 0.0481   2.71 0.00100     -0.244  8.64
+ 6  6.59 2.70   8.15    5.68  0.919 0.0303   2.71 0.00125      0.346 32.2 
+ 7  1.79 8.51   6.51    5.54 -3.75  0.0252   2.68 0.0171      -1.41  35.8 
+ 8  6.47 8.11   2.83    5.12  1.35  0.0273   2.70 0.00240      0.507 27.8 
+ 9  3.85 5.07   3.87    5.22 -1.37  0.0120   2.70 0.00105     -0.510 24.0 
+10  2.11 3.96   7.62    5.63 -3.52  0.0200   2.68 0.0119      -1.32  28.6 
 # ℹ 90 more rows</code></pre>
 </div>
 </div>
@@ -730,7 +730,7 @@ Y = -3 + (1\cdot X_1) + (2\cdot X_2) + (3\cdot X_3)
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)      .resid 
-  25.352838    1.031301 </code></pre>
+  28.258288    1.046511 </code></pre>
 </div>
 </div>
 <p>Our claim was that the coefficients from <code>model_main</code> and <code>model_two</code> should be the same.</p>

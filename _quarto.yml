@@ -53,4 +53,5 @@ format:
     theme: cosmo
     cover-image: "images/coffee.jpeg"
   pdf: 
-    documentclass: scrreprt
+    documentclass: book
+    fontfamily: libertinus

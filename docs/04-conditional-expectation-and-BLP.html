@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -270,7 +304,7 @@ window.Quarto = {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">4.2</span> Learning Objectives</a></li>
   <li><a href="#class-announcements" id="toc-class-announcements" class="nav-link" data-scroll-target="#class-announcements"><span class="header-section-number">4.3</span> Class Announcements</a>
   <ul class="collapse">
-  <li><a href="#test-1-is-releasing-to-you-today." id="toc-test-1-is-releasing-to-you-today." class="nav-link" data-scroll-target="#test-1-is-releasing-to-you-today."><span class="header-section-number">4.3.1</span> Test 1 is releasing to you today.</a></li>
+  <li><a href="#test-1-is-releasing-to-you-this-week." id="toc-test-1-is-releasing-to-you-this-week." class="nav-link" data-scroll-target="#test-1-is-releasing-to-you-this-week."><span class="header-section-number">4.3.1</span> Test 1 is releasing to you this week.</a></li>
   </ul></li>
   <li><a href="#roadmap" id="toc-roadmap" class="nav-link" data-scroll-target="#roadmap"><span class="header-section-number">4.4</span> Roadmap</a>
   <ul class="collapse">
@@ -278,11 +312,10 @@ window.Quarto = {
   <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week"><span class="header-section-number">4.4.2</span> This week</a></li>
   <li><a href="#coming-attractions" id="toc-coming-attractions" class="nav-link" data-scroll-target="#coming-attractions"><span class="header-section-number">4.4.3</span> Coming Attractions</a></li>
   </ul></li>
-  <li><a href="#conditional-expectation-function-cef" id="toc-conditional-expectation-function-cef" class="nav-link" data-scroll-target="#conditional-expectation-function-cef"><span class="header-section-number">4.5</span> Conditional Expectation Function (CEF),</a>
+  <li><a href="#conditional-expectation-function-cef" id="toc-conditional-expectation-function-cef" class="nav-link" data-scroll-target="#conditional-expectation-function-cef"><span class="header-section-number">4.5</span> Conditional Expectation Function (CEF)</a>
   <ul class="collapse">
-  <li><a href="#part-i" id="toc-part-i" class="nav-link" data-scroll-target="#part-i"><span class="header-section-number">4.5.1</span> Part I</a></li>
-  <li><a href="#part-ii" id="toc-part-ii" class="nav-link" data-scroll-target="#part-ii"><span class="header-section-number">4.5.2</span> Part II</a></li>
-  <li><a href="#part-iii" id="toc-part-iii" class="nav-link" data-scroll-target="#part-iii"><span class="header-section-number">4.5.3</span> Part III</a></li>
+  <li><a href="#compare-expectation-and-conditional-expectation" id="toc-compare-expectation-and-conditional-expectation" class="nav-link" data-scroll-target="#compare-expectation-and-conditional-expectation"><span class="header-section-number">4.5.1</span> Compare Expectation and Conditional Expectation</a></li>
+  <li><a href="#contrast-expectation-and-conditional-expectation" id="toc-contrast-expectation-and-conditional-expectation" class="nav-link" data-scroll-target="#contrast-expectation-and-conditional-expectation"><span class="header-section-number">4.5.2</span> Contrast Expectation and Conditional Expectation</a></li>
   </ul></li>
   <li><a href="#computing-the-cef" id="toc-computing-the-cef" class="nav-link" data-scroll-target="#computing-the-cef"><span class="header-section-number">4.6</span> Computing the CEF</a>
   <ul class="collapse">
@@ -295,12 +328,11 @@ window.Quarto = {
   <li><a href="#minimizing-mse" id="toc-minimizing-mse" class="nav-link" data-scroll-target="#minimizing-mse"><span class="header-section-number">4.7.1</span> Minimizing MSE</a></li>
   <li><a href="#the-pudding-aka-where-the-proof-is" id="toc-the-pudding-aka-where-the-proof-is" class="nav-link" data-scroll-target="#the-pudding-aka-where-the-proof-is"><span class="header-section-number">4.7.2</span> The pudding (aka: “Where the proof is”)</a></li>
   <li><a href="#the-implication" id="toc-the-implication" class="nav-link" data-scroll-target="#the-implication"><span class="header-section-number">4.7.3</span> The Implication</a></li>
+  <li><a href="#working-with-a-gnarly-function-and-a-lot-of-data." id="toc-working-with-a-gnarly-function-and-a-lot-of-data." class="nav-link" data-scroll-target="#working-with-a-gnarly-function-and-a-lot-of-data."><span class="header-section-number">4.7.4</span> Working with a gnarly function and a lot of data.</a></li>
   </ul></li>
-  <li><a href="#working-with-the-blp" id="toc-working-with-the-blp" class="nav-link" data-scroll-target="#working-with-the-blp"><span class="header-section-number">4.8</span> Working with the BLP</a></li>
-  <li><a href="#joint-distribution-practice" id="toc-joint-distribution-practice" class="nav-link" data-scroll-target="#joint-distribution-practice"><span class="header-section-number">4.9</span> Joint Distribution Practice</a>
+  <li><a href="#working-with-the-blp" id="toc-working-with-the-blp" class="nav-link" data-scroll-target="#working-with-the-blp"><span class="header-section-number">4.8</span> Working with the BLP</a>
   <ul class="collapse">
-  <li><a href="#professorial-mistakes-discrete-rvs" id="toc-professorial-mistakes-discrete-rvs" class="nav-link" data-scroll-target="#professorial-mistakes-discrete-rvs"><span class="header-section-number">4.9.1</span> Professorial Mistakes (Discrete RVs)</a></li>
-  <li><a href="#continuous-blp" id="toc-continuous-blp" class="nav-link" data-scroll-target="#continuous-blp"><span class="header-section-number">4.9.2</span> Continuous BLP</a></li>
+  <li><a href="#continuous-blp" id="toc-continuous-blp" class="nav-link" data-scroll-target="#continuous-blp"><span class="header-section-number">4.8.1</span> Continuous BLP</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -334,9 +366,10 @@ window.Quarto = {
 </figure>
 </div>
 <p>One of our most fundamental goals as data scientists is to produce predictions that are <em>good</em>. In this week’s async, we make a statement of performance that we can use to evaluate how good a job a predictor is doing, choosing Mean Squared Error.</p>
-<p>With the goal of minimizing <span class="math inline">\(MSE\)</span>, then we then present, justify, and prove that the conditional expectation function (<em>the CEF</em>) is the globally best possible predictor. This is an incredibly powerful result, and one that serves as the backstop for <strong>every</strong> other predictor that you will ever fit, whether that predictor is a “simple” regression, or that predictor is a machine learning algorithms (e.g.&nbsp;a random forest) or a deep learning algorithm. Read that again:</p>
+<p>With the goal of minimizing <span class="math inline">\(MSE\)</span> we then present, justify, and prove that the conditional expectation function (<em>the CEF</em>) is the globally best possible predictor. This is an incredibly powerful result, and one that serves as the backstop for <strong>every</strong> other predictor that you will ever fit, whether that predictor is a “simple” regression, or that predictor is a machine learning algorithms (e.g.&nbsp;a random forest) or a deep learning algorithm. Read that again:</p>
 <blockquote class="blockquote">
-<p>Even the most technologically advanced machine learning algorithms <em>cannot possibly</em> perform better than the conditional expectation function at making a prediction.</p>
+<p>Today’s most advanced machine learning algorithms <em>cannot possibly</em> perform better than the conditional expectation function at making a prediction.</p>
+<p><strong>📣 At no time ever</strong> will a machine learning algorithm perform better than the conditional expectation. 📣</p>
 </blockquote>
 <p>Why does the CEF do so well? Because it can contain a <em>vast</em> amount of complex information and relationships; in fact, the complexity of the CEF is a product of the complexity of the underlying probability space. If that is the case, then why don’t we just use the CEF as our predictor every time?</p>
 <p>Well, this is one of the core problems of applied data science work: we are never given the function that describes the behavior of the random variable. And so, we’re left in a world where we are forced to produce predictions from simplifications of the CEF. A very strong simplification, but one that is useful for our puny human brains, is to restrict ourselves to predictors that make predictions from a linear combination of input variables.</p>
@@ -355,27 +388,23 @@ window.Quarto = {
 <p>At the end of this weeks learning, which includes the asynchronous lectures, reading the textbook, this live session, and the homework associated with the concepts, student should be able to</p>
 <ol type="1">
 <li><strong>Recognize</strong> that the conditional expectation function, the <em>CEF</em>, is a the pure-form, best-possible predictor of a target variable given information about other variables.</li>
-<li><strong>Recall</strong> that all other predictors, be they linear predictors, non-linear predictors, branching predictors, or deep learning predictors, are an attempt to approximate the CEF.</li>
 <li><strong>Produce</strong> the conditional expectation function as a predictor, given joint densities of random variables.</li>
-<li><strong>Appreciate</strong> that the best linear predictor, which is a restriction of predictors to include only those that are linear combinations of variables, can produce reasonable predictions, and <strong>anticipate</strong> that the BLP forms the target of inquiry for regression.</li>
+<li><strong>Appreciate</strong> that the best linear predictor, which is a restriction of predictors to include only those that are linear combinations of variables, can produce reasonable predictions and <strong>anticipate</strong> that the BLP forms the target of inquiry for regression.</li>
 </ol>
 </section>
 <section id="class-announcements" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="class-announcements"><span class="header-section-number">4.3</span> Class Announcements</h2>
-<section id="test-1-is-releasing-to-you-today." class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="test-1-is-releasing-to-you-today."><span class="header-section-number">4.3.1</span> Test 1 is releasing to you today.</h3>
-<p>The first test is releasing today. There are review sessions scheduled for this week, practice tests available, and practice problems available. The format for the test is posted in the course discussion channel. In addition to your test, your instructor will describe your responsibilities that are due next week.</p>
+<section id="test-1-is-releasing-to-you-this-week." class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="test-1-is-releasing-to-you-this-week."><span class="header-section-number">4.3.1</span> Test 1 is releasing to you this week.</h3>
+<p>The first test is releasing this week. There are review sessions scheduled for this week, practice tests available, and practice problems available. The format for the test is posted in the course discussion channel. In addition to your test, your instructor will describe your responsibilities that are due next week.</p>
 </section>
 </section>
 <section id="roadmap" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="roadmap"><span class="header-section-number">4.4</span> Roadmap</h2>
 <section id="rearview-mirror" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="rearview-mirror"><span class="header-section-number">4.4.1</span> Rearview Mirror</h3>
-<ul>
-<li>Statisticians create a population model to represent the world.</li>
-<li><span class="math inline">\(E[X], V[X], Cov[X,Y]\)</span> are “simple” summaries of complex joint distributions, which are hooks for our analyses.</li>
-<li>They also have useful properties – for example, <span class="math inline">\(E[X + Y] = E[X] + E[Y]\)</span>.</li>
-</ul>
+<p>Over the past three weeks, we have talked about how statisticians approach the world, using probability theory to help them make sense of the missing information in the world. This probability theory allows for very general representations of the world; and, if we had the functions that defined the probability distributions, we could do a lot! But, because we don’t live in a simulation (probably…) we don’t have access to the actual functions that describe the probability of events occurring.</p>
+<p>We can summarize complex random variables in ways that are useful. We can characterize central tendency using the concept of <strong>expected value</strong> which is the probability weighted “average” of the outcomes. While there are lots of other ways to characterize central tendency, expectation has some nice properties, namely, that it minimizes <em>mean squared error</em> and also that it is part of the representation of <em>variance</em>. <strong>Variance</strong> is a measure of dispersion of a random variable, or “how far away from the center” outcomes might occur. It is defined as the probability weighted “average” of the squared deviation. Finally, <strong>covariance</strong> is a measure of linear dependency between two random variables, and it has a form that is remarkably similar to variance.</p>
 </section>
 <section id="this-week" class="level3" data-number="4.4.2">
 <h3 data-number="4.4.2" class="anchored" data-anchor-id="this-week"><span class="header-section-number">4.4.2</span> This week</h3>
@@ -398,29 +427,29 @@ window.Quarto = {
 </section>
 </section>
 <section id="conditional-expectation-function-cef" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="conditional-expectation-function-cef"><span class="header-section-number">4.5</span> Conditional Expectation Function (CEF),</h2>
-<section id="part-i" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="part-i"><span class="header-section-number">4.5.1</span> Part I</h3>
+<h2 data-number="4.5" class="anchored" data-anchor-id="conditional-expectation-function-cef"><span class="header-section-number">4.5</span> Conditional Expectation Function (CEF)</h2>
 <p>Think back to remember the definition of the expectation of <span class="math inline">\(Y\)</span>:</p>
 <p><span class="math display">\[
   E[Y] = \int_{-\infty}^\infty y \cdot f_{Y}(y) dy
 \]</span></p>
-<p>This week, in the async reading and lectures we added a new concept, the conditional expectation of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x \in \text{Supp}[X]\)</span>:</p>
+<p>When you read the right hand side of that expectation operator, what are the “ingredients” that are within the integral that produce the expected value? <em>(Hint: there are two.)</em></p>
+<p>This week, the async reading and lectures add a new concept, the <strong>conditional expectation</strong> of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[
   E[Y|X=x] =  \int_{-\infty}^\infty y \cdot f_{Y|X}(y|x) dy
 \]</span></p>
-</section>
-<section id="part-ii" class="level3" data-number="4.5.2">
-<h3 data-number="4.5.2" class="anchored" data-anchor-id="part-ii"><span class="header-section-number">4.5.2</span> Part II</h3>
+<p>When you read the right hand side of that conditional expectation operator, what are the “ingredients” that are within the integral that produce the conditional expected value? <em>(Hint: there are two.)</em></p>
+<p>In what ways are these ingredients similar and in what ways are the different from the expected value above?</p>
+<section id="compare-expectation-and-conditional-expectation" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="compare-expectation-and-conditional-expectation"><span class="header-section-number">4.5.1</span> Compare Expectation and Conditional Expectation</h3>
 <ol type="1">
-<li>What desirable properties of a predictor does the expectation possess (note, this is thinking <em>back</em> by a week)? What makes these properties desirable?</li>
-<li>Turning to the content from this week, how, if at all, does the conditional expectation improve on these desirable properties?</li>
+<li><strong>Think back by a week</strong>: What desirable properties of a predictor does the expectation possess? What makes these properties desirable?</li>
+<li><strong>Think about this week</strong>: How, if at all, does the conditional expectation improve on these desirable properties? How does it accomplish this?</li>
 </ol>
 </section>
-<section id="part-iii" class="level3" data-number="4.5.3">
-<h3 data-number="4.5.3" class="anchored" data-anchor-id="part-iii"><span class="header-section-number">4.5.3</span> Part III</h3>
+<section id="contrast-expectation-and-conditional-expectation" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="contrast-expectation-and-conditional-expectation"><span class="header-section-number">4.5.2</span> Contrast Expectation and Conditional Expectation</h3>
 <ul>
-<li><p>Compare and contrast <span class="math inline">\(E[Y]\)</span> and <span class="math inline">\(E[Y|X]\)</span>. For example, when you look at how these operators are “shaped”, how are their components similar or different?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p>Contrast <span class="math inline">\(E[Y]\)</span> and <span class="math inline">\(E[Y|X]\)</span>. For example, when you look at how these operators are “shaped”, how are their components similar or different?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 <li><p>What is <span class="math inline">\(E[Y|X]\)</span> a function of? What are “input” variables to this function?</p></li>
 <li><p>What, if anything, is <span class="math inline">\(E[E[Y|X]]\)</span> a function of?</p></li>
 </ul>
@@ -461,14 +490,8 @@ f(x,y) =
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="conditional-quantities"><span class="header-section-number">4.6.2</span> Conditional Quantities</h3>
 <section id="conditional-expectation" class="level4" data-number="4.6.2.1">
 <h4 data-number="4.6.2.1" class="anchored" data-anchor-id="conditional-expectation"><span class="header-section-number">4.6.2.1</span> Conditional Expectation</h4>
-<p>And then, let’s think about how to compute the conditional quantities. To get started, you can use the fact that in week two, we already computed the conditional probability density function:</p>
-<p><span class="math display">\[
-f_{Y|X}(y|x) = \begin{cases}
-  \frac{1}{x}, &amp; 0 \leq y \leq x \\
-  0,           &amp; \text{otherwise.}
-\end{cases}
-\]</span></p>
-<p>With this knowledge on hand, compute the <span class="math inline">\(CEF[Y|X]\)</span>.</p>
+<p>And then, let’s think about how to compute the conditional quantities.</p>
+<p><strong>Compute the</strong> <span class="math inline">\(CEF[Y|X]\)</span><strong>.</strong> Start by writing down the statement of the conditional expectation function, and then, compute the value.</p>
 <p>&nbsp;<br>
 &nbsp;<br>
 &nbsp;<br>
@@ -578,6 +601,113 @@ f_{Y|X}(y|x) = \begin{cases}
 <h3 data-number="4.7.3" class="anchored" data-anchor-id="the-implication"><span class="header-section-number">4.7.3</span> The Implication</h3>
 <p>If you are choosing some <span class="math inline">\(g\)</span>, you can’t do better than <span class="math inline">\(g(x) = E[Y|X=x]\)</span>.</p>
 </section>
+<section id="working-with-a-gnarly-function-and-a-lot-of-data." class="level3" data-number="4.7.4">
+<h3 data-number="4.7.4" class="anchored" data-anchor-id="working-with-a-gnarly-function-and-a-lot-of-data."><span class="header-section-number">4.7.4</span> Working with a gnarly function and a lot of data.</h3>
+<p>This is risky, because it makes you want data, and we don’t get it yet. We haven’t earned our stripes and we’re still figuring out what works in the perfect world of the population rather than the grimy world of data. 🤫</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span>  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y) <span class="sc">+</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.25</span>, <span class="at">size=</span>.<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-conditional-expectation-and-BLP_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">loess</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat, <span class="at">span =</span> .<span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ask for student prediction functions</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mod_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict.lm</span>(mod_lm, <span class="at">newdata =</span> <span class="fu">data.frame</span>(x))[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2         3         4         5         6         7         8 
+106.72734 -13.27029  51.08303 -13.14008  33.97658  44.73380 109.42962  41.19944 
+        9        10 
+ 54.43715  38.98388 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_loess =</span> <span class="fu">predict</span>(l, x), </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_lm    =</span> <span class="fu">as.numeric</span>(<span class="fu">predict</span>(mod_lm))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## fill student prdictions here</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         x          y pred_loess   pred_lm
+1 9.723571 175.278552 174.258677 106.72734
+2 1.757486   7.387804   4.406954 -13.27029
+3 6.029604  19.275926  18.182077  51.08303
+4 1.766130   4.398535   4.476659 -13.14008
+5 4.893986  12.962855  10.187418  33.97658
+6 5.608108  15.138737  14.044696  44.73380</code></pre>
+</div>
+</div>
+<p>Let’s pull in a mean squared error function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="cf">function</span>(truth, prediction) { </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  mse_ <span class="ot">&lt;-</span> <span class="fu">mean</span>((truth <span class="sc">-</span> prediction)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mse_)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mse</span>(<span class="at">truth=</span>dat<span class="sc">$</span>y, <span class="at">prediction=</span>dat<span class="sc">$</span>pred_loess)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.033517</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span>  </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.25</span>, <span class="at">size=</span>.<span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred_loess), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred_lm), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-conditional-expectation-and-BLP_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What would happen if, rather than having this much data, you had much <em>much</em> less?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dat_small <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span>  </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">50</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">y=</span><span class="dv">50</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(x)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>l_small <span class="ot">&lt;-</span> dat_small <span class="sc">|&gt;</span>  </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">loess</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">span =</span> .<span class="dv">1</span>, <span class="at">data =</span> _)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>lm_small <span class="ot">&lt;-</span> dat_small <span class="sc">|&gt;</span>  </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">data =</span> _)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>dat_small <span class="ot">&lt;-</span> dat_small <span class="sc">|&gt;</span>  </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_loess_small =</span> <span class="fu">predict</span>(l_small), </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_lm_small    =</span> <span class="fu">predict</span>(lm_small)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>dat_small <span class="sc">|&gt;</span>  </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred_loess_small)) <span class="sc">+</span> </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred_lm_small))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-conditional-expectation-and-BLP_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="working-with-the-blp" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="working-with-the-blp"><span class="header-section-number">4.8</span> Working with the BLP</h2>
@@ -593,29 +723,10 @@ f_{Y|X}(y|x) = \begin{cases}
 <li>And, many times, linear predictors (which might seem trivially simple) actually do a very good job of producing predictions that are ‘close’ or useful.</li>
 </ul>
 </div>
-</section>
-<section id="joint-distribution-practice" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="joint-distribution-practice"><span class="header-section-number">4.9</span> Joint Distribution Practice</h2>
-<section id="professorial-mistakes-discrete-rvs" class="level3" data-number="4.9.1">
-<h3 data-number="4.9.1" class="anchored" data-anchor-id="professorial-mistakes-discrete-rvs"><span class="header-section-number">4.9.1</span> Professorial Mistakes (Discrete RVs)</h3>
+<section id="continuous-blp" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="continuous-blp"><span class="header-section-number">4.8.1</span> Continuous BLP</h3>
 <ul>
-<li><p>Let the number of questions that students ask be a RV, <span class="math inline">\(X\)</span>.<br>
-</p></li>
-<li><p>Let <span class="math inline">\(X\)</span> take on values: <span class="math inline">\(\{1, 2, 3\}\)</span>, each with probability <span class="math inline">\(1/3\)</span>.<br>
-</p></li>
-<li><p>Every time a student asks a question, the instructor answers incorrectly with probability <span class="math inline">\(1/4\)</span>, independently of other questions.</p></li>
-<li><p>Let the RV <span class="math inline">\(Y\)</span> be number of incorrect responses.</p></li>
-<li><p><strong>Questions:</strong></p>
-<ul>
-<li>Compute the expectation of <span class="math inline">\(Y\)</span>, conditional on <span class="math inline">\(X\)</span>, <span class="math inline">\(E[Y|X]\)</span></li>
-<li>Using the law of iterated expectations, compute <span class="math inline">\(E[Y] = E\big[E[Y|X]\big]\)</span>.</li>
-</ul></li>
-</ul>
-</section>
-<section id="continuous-blp" class="level3" data-number="4.9.2">
-<h3 data-number="4.9.2" class="anchored" data-anchor-id="continuous-blp"><span class="header-section-number">4.9.2</span> Continuous BLP</h3>
-<ul>
-<li>Recall the PDF that we worked with earlier to produce the $CEF[Y|X].</li>
+<li>Recall the PDF that we worked with earlier to produce the <span class="math inline">\(CEF[Y|X]\)</span>.</li>
 </ul>
 <p><span class="math display">\[
 f(x,y) =

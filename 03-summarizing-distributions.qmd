@@ -1,6 +1,9 @@
 # Summarizing Distributions
 
-```{r load unit 03 packages, echo=FALSE, message=FALSE, warning=FALSE}
+```{r load unit 03 packages}
+#| echo: false
+#| message: false
+#| warning: false
 library(tidyverse)
 library(patchwork)
 
@@ -10,6 +13,7 @@ theme_set(theme_minimal())
 ```
 
 ![a majestic valley](./images/yosemite.jpg)
+
 
 In the last live session, we introduced random variables; probability density and cumulative density; and, made the connection between joint, marginal, and conditional distributions. All of these concepts work with the **entire** distribution.
 
@@ -162,12 +166,12 @@ ggplot() +
 
 -   Does the following formula match with your intuitive description of the *expected value*? Why, or why not?
 
-\[
+$$
   \begin{aligned}
   E[X] &= \sum_{x \in \{EDU\}} x \cdot f(x) \\ 
        &= \sum_{x=0}^{x=28} x\cdot P(X=x)
   \end{aligned}
-\]
+$$
 
 ## Computing by Hand
 ### Compute the Expected Value

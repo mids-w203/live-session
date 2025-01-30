@@ -318,7 +318,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#using-definitions-of-random-variables" id="toc-using-definitions-of-random-variables" class="nav-link" data-scroll-target="#using-definitions-of-random-variables"><span class="header-section-number">2.4</span> Using Definitions of Random Variables</a>
   <ul class="collapse">
-  <li><a href="#random-varaible" id="toc-random-varaible" class="nav-link" data-scroll-target="#random-varaible"><span class="header-section-number">2.4.1</span> Random Varaible</a></li>
+  <li><a href="#random-variable" id="toc-random-variable" class="nav-link" data-scroll-target="#random-variable"><span class="header-section-number">2.4.1</span> Random Variable</a></li>
   </ul></li>
   <li><a href="#pieces-of-a-random-variable" id="toc-pieces-of-a-random-variable" class="nav-link" data-scroll-target="#pieces-of-a-random-variable"><span class="header-section-number">2.5</span> Pieces of a Random Variable</a>
   <ul class="collapse">
@@ -367,44 +367,17 @@ window.Quarto = {
 </header>
 
 
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ purrr::%||%()   masks base::%||%()
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
-
-Attaching package: 'plotly'
-
-
-The following object is masked from 'package:ggplot2':
-
-    last_plot
-
-
-The following object is masked from 'package:stats':
-
-    filter
-
-
-The following object is masked from 'package:graphics':
-
-    layout</code></pre>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/yosemite.jpg" class="img-fluid figure-img"></p>
 <figcaption>yosemite valley</figcaption>
 </figure>
 </div>
+<p>In the first week, you reasoned about the most fundamental elements of frequentist probability: a sample space that defined the total enumeration of all outcomes that are possible, an event space that is all the events possible within that sample space, and a set of rules that establish a valid probability statement.</p>
+<p>Building upon this foundation, you learned to think about the probability that two events happened at the same time (<em>joint probability</em>), the probability that one event happens, provided that another has happened (<em>conditional probability</em>), and how to rearrange some of our basic building blocks to “derive” <strong>Bayes’ Rule</strong>.</p>
+<p>These building blocks are <em>very</em> general. The events that we were thinking of could have been as diverse as acceptance into a graduate program, measuring a quark, probability of some utterance within a longer string of words – quite literally <strong>anything</strong>! On the one hand, this means that any property that we can prove in this very general case will <em>have</em> to be true in any <em>particular</em> case. But, on the other hand, it can feel pretty abstract.</p>
+<p>This week, we’re going to introduce a new concept, the <strong>random variable</strong> which is nearly as abstract as the set theory probability from last week. These random variables are structures that we can use to hold events in the world. In this way, they’re quite similar to the sets from last week. New, this week, is that we’re going to have specific statements about the probability that some specific outcome occurs – this is the probability distribution (or density in the continuous case).</p>
+<p>We are also going to provide some specific mathematical concepts that define the relationships between different <em>views</em> of the probability distribution.</p>
 <section id="learning-objectives" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</h2>
 <p>At the end of this week’s course of study (which includes the async, sync, and homework) students should be able to</p>
@@ -449,46 +422,65 @@ The following object is masked from 'package:graphics':
 </section>
 <section id="using-definitions-of-random-variables" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="using-definitions-of-random-variables"><span class="header-section-number">2.4</span> Using Definitions of Random Variables</h2>
-<section id="random-varaible" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="random-varaible"><span class="header-section-number">2.4.1</span> Random Varaible</h3>
+<section id="random-variable" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="random-variable"><span class="header-section-number">2.4.1</span> Random Variable</h3>
 <p>What is a random variable? Does this definition help you?</p>
 <div class="definition" name="Random Variable">
 <p>A random variable is a function <span class="math inline">\(X : \Omega \rightarrow \mathbb{R},\)</span> such that <span class="math inline">\(\forall r \in \mathbb{R}, \{\omega \in \Omega: X(\omega) \leq r\} \in S\)</span>.</p>
 </div>
 <p>Someone, please, read that without using a single “omega”, <span class="math inline">\(\mathbb{R}\)</span>, or other jargon terminology. Instead, someone read this aloud and tell us what each of the concepts mean.</p>
-<div class="callout callout-style-default callout-note callout-titled" name="Why So Serious?">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Why so serious?
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>You might notice that the <span class="math inline">\(X(\omega) \leq r\)</span> feels kind of weird; why isn’t it just <span class="math inline">\(X(\omega) = r\)</span>? After all, this is a mapping from an outcome, <span class="math inline">\(\omega \in \Omega\)</span> to a real number, right? So, why not just be direct about it? The answer is a real deep-dive, and one that is better suited to a formal measure theory course.</p>
-<p>The short answer, is that the we use this <span class="math inline">\(\leq r\)</span> range because we’re using a <a href="https://en.wikipedia.org/wiki/Borel_set">Boreal <span class="math inline">\(\sigma\)</span> algebra</a> to constrain the sets that have probability measures. Why this constraint? If we don’t weird stuff can happen. Like, real weird things: you can split a sphere into pieces and create two new spheres of equal volume from the pieces (<a href="https://en.wikipedia.org/wiki/Banach–Tarski_paradox">Banch-Tarski Paradox</a>).</p>
+<p>The short (but deeply technical) answer, is that the we use this <span class="math inline">\(\leq r\)</span> range because we’re using a <a href="https://en.wikipedia.org/wiki/Borel_set">Boreal <span class="math inline">\(\sigma\)</span> algebra</a> to constrain the sets that have probability measures. Why this constraint? If we don’t weird stuff can happen. Like, real weird things: you can split a sphere into pieces and create two new spheres of equal volume from the pieces (<a href="https://en.wikipedia.org/wiki/Banach–Tarski_paradox">Banch-Tarski Paradox</a>). This is an example of a formal language allowing scholars to examine really far out implications of the theory; <em>but, it isn’t something that we’re going to engage in this course.</em></p>
 </div>
 </div>
 <p>The goal of writing with math symbols like this is to be <em>absolutely</em> clear what concepts the author does and does not mean to invoke when they write a definition or a theorem. In a very real sense, this is a language that has specific meaning attached to specific symbols; there is a correspondence between the mathematical language and each of our home languages, but exactly what the relationship is needs to be defined into each student’s home language.</p>
-<div class="discussion-question" name="Why Random Variables?">
+<div class="callout callout-style-default callout-tip callout-titled" name="Why Random Variables?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What are the key things that random variables allow you to accomplish?</p>
 <ul>
-<li>What are the key things that random variables allow you to accomplish?
-<ul>
-<li>Suppose that you were going to try to make a model that predicts the probability of winning “big money” on a slot machine. Big money might be that you get 🍒🍒🍒. Can you do <em>math</em> with 🍒?</li>
-<li>Suppose that you wanted to build a chatbort that uses a language model so that you don’t have to do your homework anymore. How would you go about it? Can you do math on words or concepts?</li>
-<li>Suppose you want to direct class support to students in 203, but their grades are scored <code>[A, A-, ..., C+]</code> and features include prior statistics classes grades, also scored <code>A, A-, ..., C+].</code></li>
-</ul></li>
+<li><p>Suppose that you were going to try to make a model that predicts the probability of winning “big money” on a slot machine. Big money might be that you get 🍒🍒🍒. Can you do <em>math</em> with 🍒?</p></li>
+<li><p>Suppose that you wanted to build a chatbort that uses a language model so that you don’t have to do your homework anymore. How would you go about it? Can you do math on words or concepts?</p></li>
+<li><p>Suppose you want to direct class support to students in 203, but their grades are scored <code>[A, A-, ..., C+]</code> and features include prior statistics classes grades, also scored <code>A, A-, ..., C+].</code></p></li>
 </ul>
+</div>
 </div>
 </section>
 </section>
 <section id="pieces-of-a-random-variable" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="pieces-of-a-random-variable"><span class="header-section-number">2.5</span> Pieces of a Random Variable</h2>
-<div class="definition" name="Random Variable, Suite">
+<p>There are two key pieces that must exist for every random variable. What are these pieces?</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition of a Random Variable
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>A random variable is a function <span class="math inline">\(X : \Omega \rightarrow \mathbb{R},\)</span> such that <span class="math inline">\(\forall r \in \mathbb{R}, \{\omega \in \Omega\}: X(\omega) \leq r\} \in S\)</span>.</p>
 </div>
-<p>There are two key pieces that must exist for every random variable. What are these pieces? The new piece is provided to us in <strong>Definition 1.2.1</strong> <em>Random Variable</em> (on page 16). The older piece (from last week) that is now useful is a part of the Kolmogorov Axiom, the probabilty triple: <span class="math inline">\((\Omega, S, P)\)</span> where <span class="math inline">\(\Omega\)</span> is a sample space, <span class="math inline">\(S\)</span> is an event space, and <span class="math inline">\(P\)</span> is a probability-measure.</p>
+</div>
+<p>The new piece is provided to us in <strong>Definition 1.2.1</strong> <em>Random Variable</em> (on page 16). The older piece (from last week) that is now useful is a part of the Kolmogorov Axiom, the probabilty triple: <span class="math inline">\((\Omega, S, P)\)</span> where <span class="math inline">\(\Omega\)</span> is a sample space, <span class="math inline">\(S\)</span> is an event space, and <span class="math inline">\(P\)</span> is a probability-measure.</p>
 <ol type="1">
 <li></li>
 <li></li>
@@ -622,8 +614,8 @@ F(x) = \int f(x) dx, \forall x \in \mathbb{R}.
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="examples-thinking-through-many-plots"><span class="header-section-number">2.8.2</span> Examples: Thinking Through Many Plots</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2a6435fe7f4874c723b3" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-2a6435fe7f4874c723b3">{"x":{"visdat":{"10beb4128e025":["function () ","plotlyVisDat"]},"cur_data":"10beb4128e025","attrs":{"10beb4128e025":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bbf71494b3203f408fdb" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bbf71494b3203f408fdb">{"x":{"visdat":{"1112c60adda9d":["function () ","plotlyVisDat"]},"cur_data":"1112c60adda9d","attrs":{"1112c60adda9d":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -717,41 +709,41 @@ f_{X}(x) =
 <p>What does this distribution “look like”? Because it is a uniform, you might have a sense that it will be a horizontal line. But, what is the height of that line? Aha! We could do the math to figure it out, or we could generate an approximation using a simulation.</p>
 <p>In the code below, we are going to create an object called <code>samples_uniform</code> that stores the results of the <code>runif</code> function call.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samples_uniform <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">min=</span><span class="fl">1.1</span>, <span class="at">max=</span><span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>samples_uniform <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">min=</span><span class="fl">1.1</span>, <span class="at">max=</span><span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What is happening inside <code>runif</code>?</p>
 <p>When you’re writing you own code, you can pull up the documentation for this (and any) function using a question mark, i.e.&nbsp;<code>?</code>, followed by the function name – <code>?runif</code>.</p>
 <p>But, we can speed this up slightly by simply telling you that <code>n</code> is the number of samples to take from the population; <code>min</code> is the low-end of the support, and <code>max</code> is the high-end of the support.</p>
 <p>If we look into this object, we can see the results of the function call. Below, we will show the first <span class="math inline">\(20\)</span> elements of the <code>samples_uniform</code> object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1.739584 2.129926 3.440092 4.012437 1.206239 4.091033 4.168207 2.609761
- [9] 1.926719 1.996277 3.666139 2.405260 2.128438 1.489847 1.680223 4.096011
-[17] 3.331757 1.468031 3.490717 1.261351</code></pre>
+<pre><code> [1] 1.121634 3.637067 3.151003 3.582227 2.896288 3.126589 2.615600 3.703128
+ [9] 1.519524 1.373203 1.491865 3.398777 2.706241 2.171804 2.391703 2.756370
+[17] 1.927367 2.881088 1.776065 3.725820</code></pre>
 </div>
 </div>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
 <p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(samples_uniform), <span class="at">y=</span>samples_uniform) <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the Data'</span>, </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Sample Value'</span>, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Index'</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plot_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_uniform) <span class="sc">+</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw=</span><span class="fl">0.1</span>)   <span class="sc">+</span> </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the PDF'</span>, </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Probability of Drawing Value'</span>, </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Sample Value'</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>(plot_full_data <span class="sc">|</span> (plot_density <span class="sc">+</span> <span class="fu">coord_flip</span>())) <span class="sc">/</span> </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  plot_density </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(samples_uniform), <span class="at">y=</span>samples_uniform) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the Data'</span>, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Sample Value'</span>, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Index'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plot_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_uniform) <span class="sc">+</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw=</span><span class="fl">0.1</span>)   <span class="sc">+</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the PDF'</span>, </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Probability of Drawing Value'</span>, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Sample Value'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>(plot_full_data <span class="sc">|</span> (plot_density <span class="sc">+</span> <span class="fu">coord_flip</span>())) <span class="sc">/</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  plot_density </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -762,22 +754,22 @@ f_{X}(x) =
 </div>
 <p>Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we’re using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are <em>very</em> explicit about the code that creates them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>samples_uniform_moar <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>samples_uniform_moar <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform) <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.1</span>)   <span class="sc">+</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))       <span class="sc">+</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Low Res, Low Data'</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plot_high_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()       <span class="sc">+</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform_moar) <span class="sc">+</span> </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.01</span>)       <span class="sc">+</span> </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))            <span class="sc">+</span> </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'High Res, More Data'</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="sc">|</span> plot_high_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.1</span>)   <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))       <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Low Res, Low Data'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plot_high_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()       <span class="sc">+</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform_moar) <span class="sc">+</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.01</span>)       <span class="sc">+</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))            <span class="sc">+</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'High Res, More Data'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="sc">|</span> plot_high_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -794,23 +786,23 @@ f_{X}(x) =
 <p>Do do you notice anything about the <code>runif</code> and the <code>rnorm</code> calls that we have identified? Both seem to name the distribution: <span class="math inline">\(unif \approx uniform\)</span> and <span class="math inline">\(norm \approx normal\)</span>, but prepened with a <code>r</code>? This is for “random draw”.</p>
 <p>Base R is loaded with a <em>pile</em> of basic statistics distributions, which you can look into using <code>?distributions</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Like before, we could look at the first <span class="math inline">\(20\)</span> of these samples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 26.36110 23.16925 19.64182 17.35627 27.99375 22.56572 23.93113 19.20250
- [9] 14.37030 17.46584 11.72957 23.11839 14.14762 18.63840 21.43236 15.15291
-[17] 19.13655 25.26806 13.32355 11.14718</code></pre>
+<pre><code> [1] 19.51440 25.40651 20.35990 16.96126 16.81673 15.96373 18.13304 14.11636
+ [9] 16.42097 16.84640 19.99429 20.11656 27.01096 22.80324 18.62430 17.41704
+[17] 21.81854 17.42631 14.06537 16.12282</code></pre>
 </div>
 </div>
 <p>And, from here we could visualize this distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_normal) <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Visualization of this Normal Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_normal) <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Visualization of this Normal Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -835,22 +827,22 @@ f_{X}(x) =
 </div>
 <p>Although this is a simple function applied to a random variable – a legal move – the math would be tedious. What if, instead, one used this simulation method to get a sense for the distribution?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>samples_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>samples_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>samples_C <span class="ot">&lt;-</span> samples_A <span class="sc">+</span> samples_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>samples_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>samples_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>samples_C <span class="ot">&lt;-</span> samples_A <span class="sc">+</span> samples_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_C <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_C) <span class="sc">+</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_A), <span class="at">color =</span> <span class="st">'#003262'</span>) <span class="sc">+</span> </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_B), <span class="at">color =</span> <span class="st">'#FDB515'</span>) <span class="sc">+</span> </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_C), <span class="at">color =</span> <span class="st">'darkred'</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_C <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_C) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_A), <span class="at">color =</span> <span class="st">'#003262'</span>) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_B), <span class="at">color =</span> <span class="st">'#FDB515'</span>) <span class="sc">+</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_C), <span class="at">color =</span> <span class="st">'darkred'</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
