@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science.">
 
-<title>Statistics for Data Science - 2&nbsp; Defining Random Variables</title>
+<title>2&nbsp; Defining Random Variables – Statistics for Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -150,13 +150,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-theory.html">Probabilty Theory</a></li><li class="breadcrumb-item"><a href="./02-random-variables.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -191,7 +191,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./probability-theory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probabilty Theory</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -226,7 +226,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./sampling-and-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Sampling and Testing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -255,7 +255,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -309,7 +309,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning Objectives</a></li>
-  <li><a href="#introduction-to-the-materirals" id="toc-introduction-to-the-materirals" class="nav-link" data-scroll-target="#introduction-to-the-materirals"><span class="header-section-number">2.2</span> Introduction to the Materirals</a></li>
+  <li><a href="#introduction-to-the-materials" id="toc-introduction-to-the-materials" class="nav-link" data-scroll-target="#introduction-to-the-materials"><span class="header-section-number">2.2</span> Introduction to the Materials</a></li>
   <li><a href="#class-announcements" id="toc-class-announcements" class="nav-link" data-scroll-target="#class-announcements"><span class="header-section-number">2.3</span> Class Announcements</a>
   <ul class="collapse">
   <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
@@ -388,8 +388,8 @@ window.Quarto = {
 </ol>
 <p>This week’s materials are theoretical tooling to build toward one of the first notable results of the course, <strong>conditional probability</strong>. This is the idea that, if we know that one event has occurred, we can make a conditional statement about the probability distribution for another, dependent distribution.</p>
 </section>
-<section id="introduction-to-the-materirals" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="introduction-to-the-materirals"><span class="header-section-number">2.2</span> Introduction to the Materirals</h2>
+<section id="introduction-to-the-materials" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introduction-to-the-materials"><span class="header-section-number">2.2</span> Introduction to the Materials</h2>
 <p>From the axioms of probability, it is possible to build a whole, expressive modeling system (that need not be grounded <strong>at all</strong> in the minutia of the world). With this probability model in place, we can describe how frequently events in the random variable will occur. When variable are dependent upon each other, we can utilize information that is encoded in this dependence in order to make predictions that are <em>closer to the truth</em> than predictions made without this information.</p>
 <p>There is both a beauty and a tragedy when reasoning about random variables: we describe random variables using their joint density function.</p>
 <ul>
@@ -614,8 +614,8 @@ F(x) = \int f(x) dx, \forall x \in \mathbb{R}.
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="examples-thinking-through-many-plots"><span class="header-section-number">2.8.2</span> Examples: Thinking Through Many Plots</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c5b471c7581a4fc652d0" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-c5b471c7581a4fc652d0">{"x":{"visdat":{"4d457c137b6f":["function () ","plotlyVisDat"]},"cur_data":"4d457c137b6f","attrs":{"4d457c137b6f":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c3cac740e1180e6cd4cb" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c3cac740e1180e6cd4cb">{"x":{"visdat":{"ab9f451ac7ee":["function () ","plotlyVisDat"]},"cur_data":"ab9f451ac7ee","attrs":{"ab9f451ac7ee":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -718,9 +718,9 @@ f_{X}(x) =
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 2.234654 3.208821 2.230534 4.134750 4.004317 3.188793 1.753870 3.559672
- [9] 2.429026 2.947665 3.912242 1.143845 3.854465 2.023560 2.952931 3.728450
-[17] 2.629490 1.708903 3.068128 2.338122</code></pre>
+<pre><code> [1] 2.047023 2.897410 3.497222 1.703162 1.123523 1.538705 1.488206 1.217812
+ [9] 1.247886 1.647439 3.397887 1.516581 3.966495 4.296533 1.863705 3.765488
+[17] 2.238526 4.235234 1.550222 1.511024</code></pre>
 </div>
 </div>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
@@ -792,9 +792,9 @@ f_{X}(x) =
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 25.98688 14.16542 26.92970 13.69004 10.07124 10.60580 17.57015 15.92421
- [9] 20.83161 20.26717 18.16140 14.18662 25.86656 12.39303 15.31269 17.63924
-[17] 12.54036 20.33083 22.81328 14.53269</code></pre>
+<pre><code> [1] 21.61525 14.00544 15.20581 19.91577 16.21050 22.34139 21.71445 20.58828
+ [9] 19.73675 13.61340 15.30999 17.51305 18.05720 14.17160 12.41688 21.72994
+[17] 18.89048 16.00145 16.51479 15.03303</code></pre>
 </div>
 </div>
 <p>And, from here we could visualize this distribution.</p>
@@ -908,18 +908,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -951,7 +940,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -959,7 +968,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1056,7 +1065,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

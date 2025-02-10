@@ -4,7 +4,8 @@
 #| echo: false
 #| message: false
 #| warning: false
-library(tidyverse)
+
+library(ggplot2)
 library(patchwork)
 
 source('./src/blank_lines.R')
@@ -137,7 +138,7 @@ With your instructor, talk about what each of the following definitions mean in 
 -   Suppose that $X$ represents the number of years of education that someone has completed, and so has a support that ranges from $0$ years of education, up to $28$ years of education. (Incidentally, Mark Labovitz has about 28 years of education.)
 -   You can then think of
 
-```{r, echo = FALSE}
+```{r population-education, echo = FALSE}
 set.seed(1)
 
 population_education <- sample(

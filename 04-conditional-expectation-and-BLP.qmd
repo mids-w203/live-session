@@ -6,7 +6,7 @@
 #| echo: false
 #| message: false
 
-library(tidyverse)
+library(dplyr)
 library(ggplot2)
 ```
 
@@ -293,7 +293,7 @@ $\therefore g(X) = E[Y|X]$ gives the smallest $E[(Y-g(X))^2]$
 
 If you are choosing some $g$, you can't do better than $g(x) = E[Y|X=x]$.
 
-### Working with a gnarly function and a lot of data. 
+### Working with a gnarly function and a lot of data.
 
 This is risky, because it makes you want data, and we don't get it yet. We haven't earned our stripes and we're still figuring out what works in the perfect world of the population rather than the grimy world of data. 🤫
 

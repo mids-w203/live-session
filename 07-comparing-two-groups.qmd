@@ -1,5 +1,8 @@
 ```{r, echo=FALSE, message=FALSE}
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(magrittr)
 library(magrittr)
 library(ggthemes)
 library(patchwork)
@@ -164,11 +167,11 @@ You have a set of questions that you would like to answer with a statistical tes
 - Do economics majors watch more or less TV than computer science majors?
 
 ```{r plot relationship}
-GSS %>% 
-  filter(major1 %in% c('computer science', 'economics')) %>% 
-  ggplot() + 
-  aes(x = tvhours, fill = major1) + 
-  geom_histogram(bins = 10, position = 'dodge')
+# GSS %>% 
+#   filter(major1 %in% c('computer science', 'economics')) %>% 
+#   ggplot() + 
+#   aes(x = tvhours, fill = major1) + 
+#   geom_histogram(bins = 10, position = 'dodge')
 ```
 
 What kinds of tests *could* be reasonable to conduct? For what part of the data would we conduct these tests? 

@@ -48,10 +48,12 @@ language:
     chapter_name: "Unit "
 book_filename: "203-live-session"
 
+
 format: 
   html: 
-    theme: cosmo
+    theme: [cosmo]
     cover-image: "images/coffee.jpeg"
   pdf: 
     documentclass: book
     fontfamily: libertinus
+    prefer-html: true

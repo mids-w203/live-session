@@ -154,7 +154,8 @@ base_plot_a <- rA(10) %>%
   ggplot() + 
   aes(x=x, y=y) + 
   geom_point() + 
-  scale_x_continuous(limits = c(-3, 3))
+  scale_x_continuous(limits = c(-3, 3)) + 
+  scale_y_continuous(limits = c(-1, 1))
 
 for(i in 1:100) { 
     base_plot_a <- base_plot_a + rA(data_points) %>% 
@@ -163,7 +164,7 @@ for(i in 1:100) {
         method  = 'lm',         se = FALSE, 
         formula = 'y~x', fullrange = TRUE,
         color   = 'grey',    alpha = 0.5,
-        size    = 0.5
+        linewidth    = 0.5
       )
 }
 
@@ -171,7 +172,8 @@ base_plot_b <- rB(10) %>%
   ggplot() + 
   aes(x=x, y=y) + 
   geom_point() + 
-  scale_x_continuous(limits = c(-3, 3))
+  scale_x_continuous(limits = c(-3, 3)) + 
+  scale_y_continuous(limits = c(-1, 1))
 
 for(i in 1:100) { 
     base_plot_b <- base_plot_b + rB(data_points) %>% 
@@ -180,7 +182,7 @@ for(i in 1:100) {
         method  = 'lm',         se = FALSE, 
         formula = 'y~x', fullrange = TRUE,
         color   = 'grey',    alpha = 0.5,
-        size    = 0.5
+        linewidth    = 0.5
       )
   }
 
@@ -188,7 +190,8 @@ base_plot_c <- rC(10) %>%
   ggplot() + 
   aes(x=x, y=y) + 
   geom_point() + 
-  scale_x_continuous(limits = c(-3, 3))
+  scale_x_continuous(limits = c(-3, 3)) + 
+  scale_y_continuous(limits = c(-1, 1))
 
 for(i in 1:100) { 
     base_plot_c <- base_plot_c + rC(data_points) %>% 
@@ -197,14 +200,11 @@ for(i in 1:100) {
         method  = 'lm',         se = FALSE, 
         formula = 'y~x', fullrange = TRUE,
         color   = 'grey',    alpha = 0.5,
-        size    = 0.5
+        linewidth    = 0.5
       )
 }
 
-base_plot_a + base_plot_b + base_plot_c + patchwork::plot_layout(axes = "collect")
-
-
-?plot_layout()
+base_plot_a + base_plot_b + base_plot_c
 ```
 
 
