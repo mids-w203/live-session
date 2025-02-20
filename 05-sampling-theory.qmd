@@ -416,25 +416,9 @@ For the **Estimator Properties** column, here we're considering, principally bia
 :::
 
 | Population Concept | Pop Notation | Sample Estimator | Sample Notation | Estimator Properties | Sampling Variance of Sample Estimator |
-|------------|------------|------------|------------|------------|---------------|
+|------------|------------|------------|------------|------------|------------|
 | Expected Value |  |  |  |  |  |
 | Population Variance |  |  |  |  |  |
 | Population Covariance |  |  |  |  |  |
 | CEF |  |  |  |  |  |
 | BLP |  |  |  |  |  |
-
-```{r}
-library(broom)
-battery_sampler <- function(size) { 
-  battery_size <- runif(n=size, min=10, 100)
-  time         <- 10 + 2*battery_size + rnorm(n=size)
-  
-  d <- data.frame(battery_size, time)
-  return(d)
-}
-
-battery_data <- battery_sampler(size=10)
-
-model <- lm(time ~ battery_size, data = battery_data)
-tidy(model)
-```

@@ -517,13 +517,13 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">100000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.001036</code></pre>
+<pre><code>[1] 1.500402</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.496682</code></pre>
+<pre><code>[1] 1.997515</code></pre>
 </div>
 </div>
 <p>Notice that, there are two forms of inherent uncertainty in this function:</p>
@@ -537,14 +537,14 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>draws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1.256669 1.911655 1.465358 1.427016 1.757705 1.122704 2.003590 2.033699
- [9] 1.803788 2.058032</code></pre>
+<pre><code> [1] 1.626865 1.069157 1.038931 1.147907 1.495010 1.154530 1.960263 1.707638
+ [9] 1.964129 1.104844</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(draws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.684022</code></pre>
+<pre><code>[1] 1.426927</code></pre>
 </div>
 </div>
 <div class="discussion-question">
@@ -646,7 +646,7 @@ window.Quarto = {
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>, <span class="at">number_of_tosses=</span><span class="dv">2</span>, <span class="at">prob_heads=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1.0 0.5 0.5 0.5 1.0 1.0 1.0 0.0 0.0 0.5</code></pre>
+<pre><code> [1] 1.0 1.0 1.0 0.5 0.5 1.0 0.5 0.5 1.0 0.0</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -768,7 +768,7 @@ window.Quarto = {
 <col style="width: 16%">
 <col style="width: 16%">
 <col style="width: 16%">
-<col style="width: 20%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -823,28 +823,6 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>battery_sampler <span class="ot">&lt;-</span> <span class="cf">function</span>(size) { </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  battery_size <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span>size, <span class="at">min=</span><span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  time         <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>battery_size <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n=</span>size)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(battery_size, time)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(d)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>battery_data <span class="ot">&lt;-</span> <span class="fu">battery_sampler</span>(<span class="at">size=</span><span class="dv">10</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(time <span class="sc">~</span> battery_size, <span class="at">data =</span> battery_data)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term         estimate std.error statistic  p.value
-  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)      9.46    0.604       15.7 2.75e- 7
-2 battery_size     2.01    0.0114     177.  1.16e-15</code></pre>
-</div>
-</div>
 
 
 </section>

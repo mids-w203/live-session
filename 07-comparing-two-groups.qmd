@@ -143,6 +143,18 @@ Take a moment to recall the tests you learned this week.  Here is a quick cheat-
 
 Darrin Speegle has a nice talk-through, walk through of rank based testing procedures, linked [here](https://bookdown.org/speegled/foundations-of-statistics/RBT.html#two-sample-test). We'll talk through a few examples of this, and then move to estimating against data for the class. 
    
+### Movie Ratings 
+
+```{r}
+movies <- read.csv("http://stat.slu.edu/~speegle/_book_data/movieLensData", as.is = TRUE)
+```
+
+Some questions that might be interesting: 
+
+- Are action movies rated more highly than comedies? 
+- Are sequels rated more highly than the first in the series? 
+
+   
 ## Comparing Groups R Exercise
 
 The General Social Survey (GSS) is one of the longest running and extensive survey projects in the US.  The full dataset includes over 1000 variables spanning demographics, attitudes, and behaviors.  The file `GSS_w203.RData` contains a small selection of a variables from the 2018 GSS.  
