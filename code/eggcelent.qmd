@@ -1,0 +1,112 @@
+---
+title: "Eggcelent"
+editor: visual
+---
+
+Let's make a simple predictor: 
+
+- I've got some chickens at home, how many eggs will I get? 
+
+```{r}
+eggproduction  <- 
+  readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2023/2023-04-11/egg-production.csv')
+cagefreepercentages <-
+  readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2023/2023-04-11/cage-free-percentages.csv')
+```
+
+## Setup Code
+
+What is the average number of eggs per chicken? 
+
+```{r}
+
+```
+
+If I have two chickens, how many eggs do I think I'll produce? 
+
+```{r}
+
+```
+
+## Differences in Type 
+
+What if I have some chickens that are free range, some that are organic *and* free range, and still others that are confinement raised? 
+
+Now we need a model! 
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Some Working Thoughts Below 
+
+
+
+
+
+
+```{r}
+eggproduction %>% 
+  filter(prod_type == "hatching eggs") %>% 
+  ggplot() + 
+  aes(x=n_hens, y=n_eggs) + 
+  geom_point()
+
+eggproduction %>% 
+  filter(prod_type == "table eggs") %>% 
+  ggplot() + 
+  aes(x=n_hens, y=n_eggs) + 
+  geom_point()
+
+eggproduction %>% 
+  filter(prod_type == "table eggs") %>% 
+  ggplot() + 
+  aes(x=n_hens, y=n_eggs, color = prod_process) + 
+  geom_point()
+
+eggproduction %>% 
+  filter(prod_type == "table eggs", prod_process == "all") %>% 
+  ggplot() + 
+  aes(x=n_hens, y=n_eggs) + 
+  geom_point()
+
+model <- 
+  eggproduction %>% 
+  filter(prod_type == "table eggs", prod_process == "all") %>% 
+  lm(n_eggs ~ n_hens + I(n_hens^2), data = .)
+
+df_augmented <- augment(model, eggproduction) %>% 
+  filter(prod_type == "table eggs", prod_process == "all") %>% 
+  ggplot() + 
+  aes(x=n_hens, y=n_eggs) + 
+  geom_point()
+
+eggproduction %>% 
+  ggplot() + 
+  aes(
+    x = n_hens, 
+    y = n_eggs
+  ) + 
+  geom_point()
+
+eggproduction %>% 
+  ggplot() + 
+  aes(x=n_hens, fill = paste0(prod_type, prod_process)) + 
+  geom_histogram()
+
+View(eggproduction)
+```
+

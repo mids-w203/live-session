@@ -1,0 +1,13 @@
+# Live Session {.unnumbered}
+
+![](./images/campus.jpeg)
+
+This is the live session work space for the course. Our goal with this repository, is that we're able to communicate *ahead of time* our aims for each week, and that you can prepare accordingly. 
+
+
+```{r load global functions}
+#| echo:    false
+#| warning: false
+#| mesage:  false
+source('./src/blank_lines.R')
+```
