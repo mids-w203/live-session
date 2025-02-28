@@ -161,7 +161,44 @@ You have a set of questions that you would like to answer with a statistical tes
 ## The Questions 
 
 ### Set 1 
+
 - Do economics majors watch more or less TV than computer science majors?
+
+```{r}
+View(GSS)
+
+GSS |> 
+  select(major1) |> 
+  group_by(major1) |>
+  tally()
+
+
+
+GSS |> 
+  filter(major1 %in% c('economics', 'computer science')) |> 
+  ggplot() + 
+  aes(x=tvhours, fill = major1) + 
+  geom_histogram(position='dodge')
+
+
+GSS |> 
+    filter(major1 %in% c('economics', 'computer science')) |> 
+  tally()
+```
+
+It fells like a two sample t-test is the right test for us to conduct. 
+
+Who's watching more TV? 
+
+H_{0}: Both Majors watch the same amount of TV. The expected value of number of hours of TV in both majors is the same. I'll reject the null hypothesis if and only if, the p-value from this test, is smaller than 0.05. 
+
+```{r}
+GSS |> 
+  filter(major1 %in% c('economics', 'computer science'))|> 
+  t.test(tvhours ~ major1, data = _)
+```
+
+
 
 ```{r plot relationship}
 GSS %>% 
@@ -225,18 +262,43 @@ GSS %>%
 - Do Americans with pets watch more or less TV than Americans without pets?
 
 ### Set 2
+
 - Do Americans spend more time emailing or using the web?
 
 ```{r}
+GSS |>
+  ggplot() + 
+  geom_histogram(aes(x = wwwhr),   fill = 'darkblue', alpha = 0.5) + 
+  geom_histogram(aes(x = emailhr), fill = 'darkred',  alpha = 0.5)
+
+GSS |> View()
+```
+
+1. What are we actually testing at the population level? Is the expected value of hours of web different from the expected value of hours on email? 
+2. What is our null hypothesis? They're the same! 
+3. What test is most appropriate? This is a tough for us. There is finite hours in the week, but there are some pretty large outliers, so either the t-test, or the the wilcox could be more approrpaite. Let's conduct both, and see if we learn different things. 
+4. What is our rejection criteria? Let's say a p-value less than 0.05. 
+
+```{r}
+
+t.test(     x = GSS$emailhr, y = GSS$wwwhr)
+t.test(     x = GSS$emailhr, y = GSS$wwwhr, paired = TRUE)
+
+wilcox.test(x = GSS$emailhr, y = GSS$wwwhr)
+
+```
+
+```{r}
+GSS |> 
+  mutate(more_on_email = emailhr > wwwhr) %$%
+  t.test(more_on_email)
+
+
 GSS %>% 
   select(wwwhr, emailhr) %>% 
   drop_na() %$% 
   t.test(x = wwwhr, y = emailhr, paired = TRUE)
 
-GSS %>% 
-  ggplot() + 
-  geom_histogram(aes(x = wwwhr),   fill = 'darkblue', alpha = 0.5) + 
-  geom_histogram(aes(x = emailhr), fill = 'darkred',  alpha = 0.5)
 
 t.test(
   x = GSS$wwwhr, 
@@ -308,8 +370,38 @@ wilcox_test_data %$%
 - Is there a relationship between college major and gun ownership? 
 
 ```{r}
+table(GSS$owngun, GSS$major1)
 
+
+GSS |> 
+  filter(owngun %in% c('yes', 'no'), !is.na(major1)) |>
+  group_by(owngun, major1) |> 
+  tally()
+
+GSS |> 
+  filter(owngun %in% c('yes', 'no'), !is.na(major1)) %$%
+  chisq.test(x=owngun, y=major1)
+
+
+chisq.test(x=GSS$owngun, y=GSS$socrel)
+chisq.test(x=GSS$owngun, y=GSS$socommun)
+chisq.test(x=GSS$owngun, y=GSS$happy)
+
+
+GSS |> 
+  ggplot() + 
+  aes(x=happy, y=owngun) + 
+  geom_jitter()
 ```
+
+If there were no relationship between gun ownership and major, then I'd expect that there's no difference in the joint distribution that isn't just the product of the two marginal distributions. This is Chi-Squared test location! 
+
+```{r}
+?chisq.test
+```
+
+
+
 
 ## Simulating the Effects of Test Choices 
 
