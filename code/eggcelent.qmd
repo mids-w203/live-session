@@ -3,12 +3,17 @@ title: "Eggcelent"
 editor: visual
 ---
 
-Let's make a simple predictor: 
+```{r}
+library(tidyverse)
+```
 
-- I've got some chickens at home, how many eggs will I get? 
+
+Let's make a simple predictor:
+
+-   I've got some chickens at home, how many eggs will I get?
 
 ```{r}
-eggproduction  <- 
+eggs  <- 
   readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2023/2023-04-11/egg-production.csv')
 cagefreepercentages <-
   readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2023/2023-04-11/cage-free-percentages.csv')
@@ -16,47 +21,118 @@ cagefreepercentages <-
 
 ## Setup Code
 
-What is the average number of eggs per chicken? 
+What is the average number of eggs per chicken?
+
+```{r}
+unique(eggs$prod_type)
+unique(eggs$prod_process)
+```
+
+```{r}
+eggs <- eggs %>% 
+  mutate(average_per_chicken = n_eggs / n_hens) %>% 
+  mutate(
+    n_eggs_c = n_eggs - mean(n_eggs), 
+    n_hens_c = n_hens - mean(n_hens)
+  )
+```
+
+```{r}
+eggs %>% 
+  # filter(prod_process != "all") %>% 
+  ggplot() + 
+  aes(x = n_hens, y = n_eggs, shape = prod_type, color = prod_process) + 
+  geom_point() + 
+  stat_smooth(method = "lm", se = FALSE)
+
+# eggs %>% 
+#   ggplot() + 
+#   aes(x = n_hens_c, y = n_eggs_c, shape = prod_type, color = prod_process) + 
+#   geom_point()
+```
+
+
+
+```{r}
+eggs
+
+
+model_eggs <- lm(n_eggs ~ n_hens + prod_type, data = eggs)
+summary(model_eggs)
+
+model_eggs_c <- lm(n_eggs_c ~ n_hens_c, data = eggs)
+summary(model_eggs_c)
+
+
+
+eggs %>% 
+  ggplot() + 
+  aes(x = log(n_hens), y = log(n_eggs)) + 
+  geom_point()
+
+model_eggs_logged <- lm(log(n_eggs) ~ \hat{\beta}*log(n_hens) + prod_type, data = eggs)
+summary(model_eggs_logged)
+```
+
+We can use this model to predict the number of eggs that we will produce! 
+
+```{r}
+
+prediction_df <- data.frame(
+  n_hens    = c(0, 2), 
+  prod_type = c('hatching eggs', 'hatching eggs')
+)
+
+
+predictions <- predict(object = model_eggs, newdata = prediction_df)
+diff(predictions)
+```
+
+
+# Differences by Type? 
+Are the number of eggs laid by hatching chickens different than the number laid by table chickens? 
+
+## Could you estimate this using a t-test? 
+```{r}
+## t.test(n_eggs ~ prod_type, data = eggs) this isn't going to work :troll: 
+
+model_diff <- lm(n_eggs ~ prod_type + n_hens + prod_type * n_hens, data = eggs)
+summary(model_diff)
+
+prediction_data <- 
+  data.frame(
+    n_hens    = c(10, 10, 110, 110), 
+    prod_type = c('table eggs', 'hatching eggs', 'table eggs', 'hatching eggs')
+  )
+
+prediction_data %>% 
+  mutate(predictions = predict(model_diff, newdata = prediction_data)) %>% 
+  group_by(prod_type) %>% 
+  summarise(difference = diff(predictions))
+
+```
+
+
+
+
+
+If I have two chickens, how many eggs do I think I'll produce?
 
 ```{r}
 
 ```
 
-If I have two chickens, how many eggs do I think I'll produce? 
+## Differences in Type
+
+What if I have some chickens that are free range, some that are organic *and* free range, and still others that are confinement raised?
+
+Now we need a model!
 
 ```{r}
 
 ```
 
-## Differences in Type 
-
-What if I have some chickens that are free range, some that are organic *and* free range, and still others that are confinement raised? 
-
-Now we need a model! 
-
-```{r}
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Some Working Thoughts Below 
-
-
-
-
-
+## Some Working Thoughts Below
 
 ```{r}
 eggproduction %>% 
@@ -109,4 +185,81 @@ eggproduction %>%
 
 View(eggproduction)
 ```
+
+
+```{r}
+simulated_data <- 
+  data.frame(x = runif(n = 1000, min = -2, max = 12)) %>% 
+  mutate(y = 2 + x^2 + rnorm(n=1000, mean=0, sd=1.5))
+
+train_data <- simulated_data %>% 
+  slice_sample(prop = .7)
+
+simulated_data %>% 
+  ggplot() + 
+  aes(x=x, y=y) + 
+  geom_point() + 
+  theme_minimal()
+```
+
+```{r}
+model_linear <- lm(y ~ x, data = simulated_data)
+
+simulated_data <- broom::augment(model_linear, simulated_data)
+
+simulated_data %>% 
+  ggplot() + 
+  geom_point(aes(x=x, y=y)) + 
+  geom_line(aes(x=x, y=.fitted), color = 'darkred')
+```
+
+```{r}
+model_quadratic <- lm(y ~ I(x^2), data = simulated_data)
+
+simulated_data <- broom::augment(model_quadratic, simulated_data)
+
+simulated_data %>% 
+  ggplot() + 
+  geom_point(aes(x=x, y=y)) + 
+  geom_line(aes(x=x, y=.fitted), color = 'darkred')
+```
+
+```{r}
+model_0 <- lm(y ~ I(x^0), data = train_data)
+model_1 <- lm(y ~ I(x^1), data = train_data)
+model_2 <- lm(y ~ I(x^2), data = train_data) 
+model_3 <- lm(y ~ I(x^3), data = train_data)
+```
+
+## My criteria to pick a model is lowest MSE? 
+
+```{r}
+mse <- function(data, model){ 
+  mse_ <- mean((data$y - predict(model, newdata = data))^2)
+  return(mse_)
+}
+
+mse(data=train_data, model=model_0)
+mse(data=train_data, model=model_1)
+mse(data=train_data, model=model_2)
+mse(data=train_data, model=model_3)
+```
+
+```{r}
+test_data <- data.frame(x = runif(n = 1000, min = -2, max = 12)) %>% 
+  mutate(y = 2 + x^2 + rnorm(n=1000, mean=0, sd=1.5))
+```
+
+```{r}
+mse(data=test_data, model=model_0)
+mse(data=test_data, model=model_1)
+mse(data=test_data, model=model_2)
+mse(data=test_data, model=model_3)
+```
+
+
+
+
+
+
 
