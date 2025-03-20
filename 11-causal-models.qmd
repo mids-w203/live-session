@@ -48,10 +48,11 @@ At the end of this week's learning, students will be able to
 
 | Deliverable Name     | Week Due | Grade Weight |  
 |----------------------|----------|--------------| 
-| Research Proposal    | Week 12  | 10%          | 
+| Research Proposal    | Week 12  | 5%           | 
 | Within-Team Review   | Week 14  | 5%           | 
 | Final Presentation   | Week 14  | 10%          | 
-| Final Report         | Week 14  | 75%          | 
+| Final Report         | Week 14  | 70%          | 
+| Lab Participation    | Week 14  | 10%          |
 
 
 **Team Work Evaluation**
@@ -93,11 +94,7 @@ At the end of this week's learning, students will be able to
 ### Path Diagrams
 
 $$
-\begin{matrix}
-\\
-\text{Sleep} \rightarrow \text{Feelings of Stress} \\
-\\
-\end{matrix}
+\text{Sleep} \rightarrow \text{Feelings of Stress}
 $$ 
 
 - How would the following fit into this causal path diagram?

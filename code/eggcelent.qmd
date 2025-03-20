@@ -1,6 +1,6 @@
 ---
 title: "Eggcelent"
-editor: visual
+editor: source
 ---
 
 Let's make a simple predictor: 
@@ -36,77 +36,5 @@ Now we need a model!
 
 ```{r}
 
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Some Working Thoughts Below 
-
-
-
-
-
-
-```{r}
-eggproduction %>% 
-  filter(prod_type == "hatching eggs") %>% 
-  ggplot() + 
-  aes(x=n_hens, y=n_eggs) + 
-  geom_point()
-
-eggproduction %>% 
-  filter(prod_type == "table eggs") %>% 
-  ggplot() + 
-  aes(x=n_hens, y=n_eggs) + 
-  geom_point()
-
-eggproduction %>% 
-  filter(prod_type == "table eggs") %>% 
-  ggplot() + 
-  aes(x=n_hens, y=n_eggs, color = prod_process) + 
-  geom_point()
-
-eggproduction %>% 
-  filter(prod_type == "table eggs", prod_process == "all") %>% 
-  ggplot() + 
-  aes(x=n_hens, y=n_eggs) + 
-  geom_point()
-
-model <- 
-  eggproduction %>% 
-  filter(prod_type == "table eggs", prod_process == "all") %>% 
-  lm(n_eggs ~ n_hens + I(n_hens^2), data = .)
-
-df_augmented <- augment(model, eggproduction) %>% 
-  filter(prod_type == "table eggs", prod_process == "all") %>% 
-  ggplot() + 
-  aes(x=n_hens, y=n_eggs) + 
-  geom_point()
-
-eggproduction %>% 
-  ggplot() + 
-  aes(
-    x = n_hens, 
-    y = n_eggs
-  ) + 
-  geom_point()
-
-eggproduction %>% 
-  ggplot() + 
-  aes(x=n_hens, fill = paste0(prod_type, prod_process)) + 
-  geom_histogram()
-
-View(eggproduction)
 ```
 
