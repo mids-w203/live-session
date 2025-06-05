@@ -1,0 +1,54 @@
+---
+title: "Causal Models"
+editor: visual
+---
+
+```{r load packages}
+#| message: false
+library(tidyverse)
+library(here)
+```
+
+> What, if anything, can students to do improve their test scores in this class?
+
+Here, we would like to give you a little piece of data, gathered from earlier this semester, about how people scored on the tests, and what kinds of strategies they took to improve their scores.
+
+In this exercise, we are going to break into three different breakout groups, and each group is going to get a slightly different view of the data:
+
+-   `students_data_a.csv` is the smallest set of data;
+
+-   `students_data_b.csv` is the medium set of data;
+
+-   `students_data_c.csv` is the largest set of data.
+
+When we write "different view" of the data, we mean that you're going to have access to different features to use in creating a model. All the data start from the same place, and have 117 observations, you just have access to more or fewer variables.
+
+# Load Data 
+
+```{r load data}
+students <- read_csv(here("code/students_data_a.csv"), show_col_types = FALSE)
+# students <- read_csv(here("code/students_data_b.csv"), show_col_types = FALSE)
+# students <- read_csv(here("code/students_data_c.csv"), show_col_types = FALSE)
+```
+
+```{r quick exploration of data}
+glimpse(students)
+```
+
+# Analysis 
+
+## Exploratory Data Analysis 
+
+1.  What are the features that are in the data? Plot some of the features and reason about relationships that exist?
+
+## Causal Reasoning 
+
+1.  Using the reasoning system from async this week:
+    1.  What are the relationships *that you can measure*, that you think you should include in a model?
+    2.  What are the relationships *that you **cannot** measure*, that you think you should include in a model?
+
+## Write a Model 
+
+Write a model that estimates the relationship between actions that a student can take and their test scores. Your goal is to produce a model that you can use in order to make recommendations of the following type:
+
+> You should \_\_\_\_\_\_\_, because if you did it would cause your test scores to improve by \_\_\_\_\_\_\_ much.

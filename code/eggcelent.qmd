@@ -1,6 +1,6 @@
 ---
 title: "Eggcelent"
-editor: visual
+editor: source
 ---
 
 ```{r}
