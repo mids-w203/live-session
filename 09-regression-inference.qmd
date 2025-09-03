@@ -61,7 +61,187 @@ After this week's learning, student will be able to
 | mg. melatonin |    0.52              |
 |               |   (0.31)             |
    
-## Understanding Uncertainty
+## Understanding Uncertainty (Part I)
+
+Let's build some intuition about the distribution of regression coefficients. But, first, what are the formal guarantees that we know exist as a result of: 
+
+1. The Weak Law of Large Numbers; and, 
+2. The Central Limit Theorem
+
+```{r}
+data_bivariate <- function(n=100) { 
+  d <- data.frame(
+    x = runif(n=n, min=0, max=10)) |>  
+    mutate(y = 1 + 2*x + runif(n=n, min=-10, max=10))
+  }
+
+data_sample <- data_bivariate(n=100)
+
+data_sample |> 
+  ggplot() + 
+  aes(x=x, y=y) + 
+  geom_point()
+
+model_sample <- lm(y ~ x, data = data_sample) 
+summary(model_sample)
+```
+
+But, that data that we sampled and estimated out model against is just one of the *many* samples that we could have taken! 
+
+Suppose that (since this is simulation) we could go back and take a bunch more samples, and estimate a model for each of them. What would the distribution of the sample estimates look like? 
+
+Recall that none of the data has anything normally distributed inside of it.
+
+```{r}
+coefficient_ <- NA 
+
+for(i in 1:10000) { 
+  data_sample <- data_bivariate(n=100)  
+  model_sample <- lm(y ~ x, data = data_sample) 
+  coefficient_[i] <- coef(model_sample)['x']
+  }
+
+ggplot() + 
+  aes(x=coefficient_) + 
+  geom_histogram()
+
+shapiro.test(sample(coefficient_, 5000))
+```
+
+What if we have two explanatory variables that have no covariance between them? 
+
+```{r}
+data_two_x <- function(n=100) { 
+  d <- data.frame(
+    x1 = runif(n=n, min=0, max=10), 
+    x2 = rpois(n=n, lambda=2)) |>  
+    mutate(
+      y = 1 + 2*x1 - 2*x1^2 + 3*x2 + runif(n=n, min=-10, max=10)
+    )
+  
+  return(d) 
+}
+
+data_sample <- data_two_x(n=100) 
+
+cov(data_sample$x1, data_sample$x2)
+
+
+pairs(data_sample)
+
+model_sample <- lm(y ~ x1 + I(x1^2) + x2, data = data_sample)
+summary(model_sample)
+```
+
+But, once again, that is just one of the samples that are possible from the population. What does the distribution look like if we were to repeatedly resample from the population? 
+
+```{r}
+coefficient_x1_ <- NA 
+coefficient_x2_ <- NA 
+
+for(i in 1:10000) { 
+  data_sample <- data_two_x(n=100) 
+  
+  model <- lm(y ~ x1 + x2, data = data_sample) 
+  coefficient_x1_[i] <- coef(model)['x1']
+  coefficient_x2_[i] <- coef(model)['x2']
+}
+```
+
+```{r}
+x1_plot <- 
+  ggplot() + 
+  aes(x=coefficient_x1_) + 
+  geom_histogram()
+
+x2_plot <- 
+  ggplot() + 
+  aes(x=coefficient_x2_) + 
+  geom_histogram()
+
+x1_x2_plot <- 
+  ggplot() + 
+  aes(x=coefficient_x1_, y=coefficient_x2_) + 
+  geom_hex() + 
+  scale_fill_continuous(type = "viridis")
+
+x1_plot | x2_plot | x1_x2_plot
+```
+
+What if these variables are correlated with one antoher? What does the distibution of the regression coefficients look like then? Why? 
+
+(This is going to take a little more code to write, so hang-tight. It would take you a moment to write this (or GPT it)). 
+
+```{r}
+correlated_data <- function(n=n, unif_min, unif_max, lambda, rho) { 
+
+# Step 1: Generate independent Uniform(0,10) variable
+uniform_var <- runif(n, min = unif_min, max = unif_max)
+
+# Step 2: Generate a second independent variable (Normal) to induce correlation
+normal_noise <- rnorm(n)
+
+# Step 3: Create a correlated Poisson variable
+poisson_mean <- lambda + 
+  rho * (uniform_var - mean(uniform_var)) / sd(uniform_var) * sd(normal_noise)
+poisson_var <- rpois(n, lambda = pmax(poisson_mean, 0))  # Ensure lambda >= 0
+
+correlated_data <- data.frame(
+  x1 = uniform_var, 
+  x2 = poisson_var
+  )
+
+correlated_data <- 
+  correlated_data |>  
+  mutate(
+    y = 1 + 2*x1 + 3*x2 + runif(n=n, min=-10, max=10)
+  )
+
+return(correlated_data)
+}
+
+data_sample <- correlated_data(n=100, unif_min=0, unif_max=10, lambda=2, rho=.7)
+
+model <- lm(y ~ x1 + x2, data = data_sample)
+summary(model)
+```
+
+But, like each of the other times we have done this, we have taken only a single sample from potentially very many samples. Let's see what happens with the very many samples. 
+
+```{r}
+coefficient_x1_ <- NA
+coefficient_x2_ <- NA 
+
+for(i in 1:10000) { 
+  data <- correlated_data(n=100, unif_min=0, unif_max=10, lambda=2, rho=.9)
+  model <- lm(y ~ x1 + x2, data = data) 
+  coefficient_x1_[i] <- coef(model)['x1']
+  coefficient_x2_[i] <- coef(model)['x2']
+}
+```
+
+```{r}
+plot_x1 <- 
+  ggplot() + 
+  aes(x=coefficient_x1_) + 
+  geom_histogram()
+
+plot_x2 <- 
+  ggplot() + 
+  aes(x=coefficient_x2_) + 
+  geom_histogram() 
+
+plot_x1_x2 <- 
+  ggplot() + 
+  aes(x=coefficient_x1_, y=coefficient_x2_) + 
+  geom_density_2d()
+
+plot_x1 | plot_x2 | plot_x1_x2
+```
+
+
+
+## Understanding Uncertainty (Part II)
 
 Imagine three different regression models, each of the following form:
 
@@ -180,7 +360,7 @@ for(i in 1:100) {
       stat_smooth(
         mapping = aes(x=x, y=y), 
         method  = 'lm',         se = FALSE, 
-        formula = 'y~x', fullrange = TRUE,
+        formula = 'y ~ x', fullrange = TRUE,
         color   = 'grey',    alpha = 0.5,
         linewidth    = 0.5
       )

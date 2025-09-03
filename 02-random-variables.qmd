@@ -116,10 +116,9 @@ The new piece is provided to us in **Definition 1.2.1** *Random Variable* (on pa
 Suppose that a random variable is simple and discrete. For concreteness, you could think of this random variable as the answer to the question, "Is the grass wet outside?".
 
 1.  What is the sample space?
-2.  What is a sensible function that you might use to map from the sample space to real values?
-3.  What is a sensible function that you might use to map from the sample space to real values? (A student well-seasoned in Maths might use (and define for the rest of the class) the concept of a *bijective function*).
-4.  If you simply had the values that the random variable function maps to are you guaranteed to be able to describe the entire sample space? Why or why not?
-5.  How would you go about determining the probability mass function for this random variable?
+2.  What is a sensible function that you might use to map from the sample space to real values? (A student well-seasoned in Maths might use (and define for the rest of the class) the concept of a *bijective function*).
+3.  If you simply had the values that the random variable function maps to are you guaranteed to be able to describe the entire sample space? Why or why not?
+4.  How would you go about determining the probability mass function for this random variable?
 :::
 
 ### Functions of Functions
@@ -163,11 +162,11 @@ Suppose that you are walking to campus, and you have to cross 10 crosswalks, eac
 Finally, campus provides you with the safety reports from last year, and reports that there were 55 student-Subaru incidents last year, out of 10,000 student-crosswalk crossings.
 
 1.  What is the *pmf* for the probability that you are involved in a student-Subaru incident as you walk across these 10 blocks? What sample space, $\Omega$ is appropriate to represent this scenario?
-2.  Suppose that you don't leave your house -- this is a remote program after all! What is your cumulative probability of being involved in a student-subaru incident?
-3.  What is the cumulative probability *cmf* for the probability that you are involved in a student-Subaru incident?
-4.  Suppose that you live three blocks from campus, but your classmate lives five blocks from campus. What is the difference in the cumulative probability?
-5.  How would you describe the cumulative probability of being hit as you walk closer to campus? That is, suppose that you start 10 blocks away from campus, and are walking to get closer. Is your cumulative probability of being hit on your way to campus increasing or decreasing as you get closer to campus?
-6.  How would you describe the cumulative probability of being hit as you walk **further** from campus? That is, suppose that you start on campus, and you're walking to a bar after classes. Is your cumulative probability of being hit on your way away from campus increasing or decreasing as you get further from campus?
+2.  How would you describe the cumulative probability of being hit as you walk closer to campus? That is, suppose that you start 10 blocks away from campus, and are walking to get closer. Is your cumulative probability of being hit on your way to campus increasing or decreasing as you get closer to campus?
+3.  How would you describe the cumulative probability of being hit as you walk **further** from campus? That is, suppose that you start on campus, and you're walking to a bar after classes. Is your cumulative probability of being hit on your way away from campus increasing or decreasing as you get further from campus?
+4.  Suppose that you don't leave your house -- this is a remote program after all! What is your cumulative probability of being involved in a student-subaru incident?
+5.  Suppose that you live three blocks from campus, what is the cumulative probability *cmf* for the probability that you are involved in a student-Subaru incident?
+6.  Suppose that you live three blocks from campus, but your classmate lives five blocks from campus. What is the difference in the cumulative probability?
 :::
 
 ## Discrete & Continuous Random Variables
@@ -210,7 +209,7 @@ Suppose that you learn than a particular random variable, $X$ has the following 
 1.  What is the CDF of $X$?
 2.  What is the maximum possible value that $x$ can obtain? How did you develop this answer, using the Kolmogorov axioms of probability?
 3.  What is the cumulative probability of an outcome up to 0.5?
-4.  What is the probability of an outcome between 0.25 and 0.75? Produce an answer to this in two ways:
+4.  What is the probability of an outcome between 0.25 and 0.75? There are two ways to produce an answer to this in two ways:
     1.  Using the $PDF$
     2.  Using the $CDF$
 :::
@@ -235,7 +234,9 @@ Suppose that we know that two variables, $X$ and $Y$ are jointly uniformly distr
     -   How do you get form the joint density function, to a marginal density function for $Y$?
     -   How do you get from these marginal density functions of $X$ and $Y$ back to the joint density? Is this always possible?
 
-### Examples: Thinking Through Many Plots
+### Examples: A Triangle Distribution
+
+Suppose that for two random variables the joint density of the random variables unknown, but that it looks like the following:
 
 ```{r}
 #| echo: false
@@ -260,7 +261,7 @@ plot_ly(x=~x, y=~y, z=~z) %>%
 
 ### Triangle Math
 
-After considering the intuition for the triangle distribution, do the following: Write down the function that accords with the figure that you're seeing above.[^02-random-variables-1]
+Write down the function that accords with the figure that you're seeing above.[^02-random-variables-1]
 
 [^02-random-variables-1]: Notice, that in general, this kind of *curve fitting* isn't really a common data science task. Instead, this is just a learning task that lets the class assess their understanding of the definitions of random variables.
 
@@ -281,6 +282,24 @@ f_{X,Y}(x,y) =
     0, & \text{otherwise.}
   \end{cases}
 $$
+
+```{r}
+saddle_sores <- function(x,y) { 
+  prob = (x^2 - y^2 + 1)
+}
+
+x <- seq(from = 0, to = 1, by = 0.1) 
+y <- seq(from = 0, to = 1, by = 0.1)
+z <- matrix(data = NA, nrow = length(x), ncol = length(y))
+for(i in 1:length(x)) { 
+  for(j in 1:length(y)){ 
+    z[j,i] <- saddle_sores(x[i], y[j])
+  }
+}
+
+plot_ly(x=~x, y=~y, z=~z) %>% 
+   add_surface()
+```
 
 This joint pdf is similar to the pdf that you can visualize above, under the distribution called "saddle". The difference between this function and the image above is that the function bounds the with support of $x$ and $y$ on the range $[0,1]$. This is to make the math easier for us in the next step.
 
@@ -406,13 +425,13 @@ samples_uniform_moar <- runif(n = 1000000, min = 1.1, max = 4.3)
 ```{r plot uniform distributions}
 plot_low_res <- ggplot()   + 
   aes(x = samples_uniform) + 
-  geom_density(bw = 0.1)   + 
+  geom_density(bw = 0.1, from = 1.1, to = 4.3) + 
   lims(y = c(0,0.4))       + 
   labs(title = 'Low Res, Low Data')
 
 plot_high_res <- ggplot()       + 
   aes(x = samples_uniform_moar) + 
-  geom_density(bw = 0.01)       + 
+  geom_density(bw = 0.01, , from = 1.1, to = 4.3) + 
   lims(y = c(0,0.4))            + 
   labs(title = 'High Res, More Data')
 
