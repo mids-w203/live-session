@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="This is the live-session notebook for class discussion for the UC Berkeley School of Information, Masters in Data Science course called Statistics for Data Science.">
+
+<title>3&nbsp; Summarizing Distributions – Statistics for Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-conditional-expectation-and-BLP.html" rel="next">
+<link href="./02-random-variables.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-theory.html">Probabilty Theory</a></li><li class="breadcrumb-item"><a href="./03-summarizing-distributions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistics for Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mids-w203-live-session" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Session</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./probability-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probabilty Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-probability-spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Spaces</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-summarizing-distributions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-conditional-expectation-and-BLP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditional Expectation and The BLP</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./sampling-and-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sampling and Testing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-sampling-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Learning from Random Samples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-comparing-two-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparing Two Groups</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-regression-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">OLS Regression Estimates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-regression-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">OLS Regression Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-descriptive-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Descriptive Model Building</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-causal-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Model Building</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-classical-linear-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The Classical Linear Model</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-reproducible-research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Reproducible Research</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</a></li>
+  <li><a href="#class-announcements" id="toc-class-announcements" class="nav-link" data-scroll-target="#class-announcements"><span class="header-section-number">3.2</span> Class Announcements</a>
+  <ul class="collapse">
+  <li><a href="#what-is-in-the-rearview-mirror" id="toc-what-is-in-the-rearview-mirror" class="nav-link" data-scroll-target="#what-is-in-the-rearview-mirror"><span class="header-section-number">3.2.1</span> What is in the rearview mirror?</a></li>
+  <li><a href="#todays-lesson" id="toc-todays-lesson" class="nav-link" data-scroll-target="#todays-lesson"><span class="header-section-number">3.2.2</span> Today’s Lesson</a></li>
+  <li><a href="#future-attractions" id="toc-future-attractions" class="nav-link" data-scroll-target="#future-attractions"><span class="header-section-number">3.2.3</span> Future Attractions</a></li>
+  </ul></li>
+  <li><a href="#discussion-of-terms" id="toc-discussion-of-terms" class="nav-link" data-scroll-target="#discussion-of-terms"><span class="header-section-number">3.3</span> Discussion of Terms</a>
+  <ul class="collapse">
+  <li><a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value"><span class="header-section-number">3.3.1</span> Expected Value</a></li>
+  </ul></li>
+  <li><a href="#expected-value-1" id="toc-expected-value-1" class="nav-link" data-scroll-target="#expected-value-1"><span class="header-section-number">3.4</span> Expected Value</a></li>
+  <li><a href="#computing-examples" id="toc-computing-examples" class="nav-link" data-scroll-target="#computing-examples"><span class="header-section-number">3.5</span> Computing Examples</a>
+  <ul class="collapse">
+  <li><a href="#expected-value-of-education-discrete-random-variable" id="toc-expected-value-of-education-discrete-random-variable" class="nav-link" data-scroll-target="#expected-value-of-education-discrete-random-variable"><span class="header-section-number">3.5.1</span> Expected Value of Education [discrete random variable]</a></li>
+  <li><a href="#using-a-formula" id="toc-using-a-formula" class="nav-link" data-scroll-target="#using-a-formula"><span class="header-section-number">3.5.2</span> Using a formula</a></li>
+  </ul></li>
+  <li><a href="#computing-by-hand" id="toc-computing-by-hand" class="nav-link" data-scroll-target="#computing-by-hand"><span class="header-section-number">3.6</span> Computing by Hand</a>
+  <ul class="collapse">
+  <li><a href="#compute-the-expected-value" id="toc-compute-the-expected-value" class="nav-link" data-scroll-target="#compute-the-expected-value"><span class="header-section-number">3.6.1</span> Compute the Expected Value</a></li>
+  <li><a href="#playing-a-gnome-game-part-1" id="toc-playing-a-gnome-game-part-1" class="nav-link" data-scroll-target="#playing-a-gnome-game-part-1"><span class="header-section-number">3.6.2</span> Playing a Gnome Game, Part 1</a></li>
+  <li><a href="#compute-the-variance" id="toc-compute-the-variance" class="nav-link" data-scroll-target="#compute-the-variance"><span class="header-section-number">3.6.3</span> Compute the Variance</a></li>
+  <li><a href="#playing-a-gnome-game-part-2" id="toc-playing-a-gnome-game-part-2" class="nav-link" data-scroll-target="#playing-a-gnome-game-part-2"><span class="header-section-number">3.6.4</span> Playing a Gnome Game, Part 2</a></li>
+  </ul></li>
+  <li><a href="#expected-value-by-code" id="toc-expected-value-by-code" class="nav-link" data-scroll-target="#expected-value-by-code"><span class="header-section-number">3.7</span> Expected Value by Code</a>
+  <ul class="collapse">
+  <li><a href="#expected-value-of-a-six-sided-die" id="toc-expected-value-of-a-six-sided-die" class="nav-link" data-scroll-target="#expected-value-of-a-six-sided-die"><span class="header-section-number">3.7.1</span> Expected Value of a Six-Sided Die</a></li>
+  <li><a href="#variance-of-a-six-sided-die" id="toc-variance-of-a-six-sided-die" class="nav-link" data-scroll-target="#variance-of-a-six-sided-die"><span class="header-section-number">3.7.2</span> Variance of a Six-Sided Die</a></li>
+  </ul></li>
+  <li><a href="#practice-computing" id="toc-practice-computing" class="nav-link" data-scroll-target="#practice-computing"><span class="header-section-number">3.8</span> Practice Computing</a>
+  <ul class="collapse">
+  <li><a href="#single-variable" id="toc-single-variable" class="nav-link" data-scroll-target="#single-variable"><span class="header-section-number">3.8.1</span> Single Variable</a></li>
+  <li><a href="#joint-density" id="toc-joint-density" class="nav-link" data-scroll-target="#joint-density"><span class="header-section-number">3.8.2</span> Joint Density</a></li>
+  </ul></li>
+  <li><a href="#write-code" id="toc-write-code" class="nav-link" data-scroll-target="#write-code"><span class="header-section-number">3.9</span> Write Code</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-theory.html">Probabilty Theory</a></li><li class="breadcrumb-item"><a href="./03-summarizing-distributions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summarizing Distributions</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/yosemite.jpg" class="img-fluid figure-img"></p>
+<figcaption>a majestic valley</figcaption>
+</figure>
+</div>
+<p>In the last live session, we introduced random variables; probability density and cumulative density; and, made the connection between joint, marginal, and conditional distributions. All of these concepts work with the <strong>entire</strong> distribution.</p>
+<p>Take, for example, the idea of conditional probability. We noted that conditional probability is defined to be:</p>
+<p><span class="math display">\[
+  f_{Y|X}(y|x) = \frac{f_{Y,X}(y,x)}{f_{X}(x)}
+\]</span></p>
+<p>This is a powerful concept that shows a lot of the range of the reasoning system that we’ve built to this point! The probability distribution of <span class="math inline">\(Y\)</span> might change as a result of changes in <span class="math inline">\(X\)</span>. If you unpack that just a little bit more, we might say that <span class="math inline">\(f_{Y|X}(y|x)\)</span> – the probability density of <span class="math inline">\(Y\)</span> – which is itself a function, is <em>also</em> a function of <span class="math inline">\(X\)</span>. To say it again, to be very explicit: the function is a function of another input. That might sound wild, but it is all perfectly consistent with the world that we’ve built to this point.</p>
+<p>This concept is <strong>very</strong> expressive. Knowing <span class="math inline">\(f_{Y}(y)\)</span> gives a full information representation of a variable; knowing <span class="math inline">\(f_{Y|X}(y|x)\)</span> lets you update that information to make an even more informative statement about <span class="math inline">\(Y\)</span>. In <em>Foundations</em> and at this point in the class, we deal only with conditional probability conditioning on a single variable, but the process generalizes.</p>
+<p>For example, if there were four random variables, <span class="math inline">\(A, B, C, D\)</span>, we could make a statement about <span class="math inline">\(A\)</span> that conditions on <span class="math inline">\(B, C, D\)</span>:</p>
+<p><span class="math display">\[
+  f_{A|\{B,C,D\}}(a|\{b,c,d\}) = \frac{f_{A,B,C,D}(a,b,c,d)}{f_{B,C,D}(b,c,d)}
+\]</span></p>
+<p>In this week’s materials we are going to go in the <em>opposite</em> direction: Rather than producing a very expressive system of probabilities, we’re going to attempt to summarize all of the information contained in a pdf into lower-dimensional representations. Our first task will be summarizing a single random variable in two ways:</p>
+<ol type="1">
+<li>Where is the “center” of the random variable; and,</li>
+<li>How dispersed, “on average” is the random variable from this center.</li>
+</ol>
+<p>After developing the concepts of <em>expectation</em> and <em>variance</em> (which are 1 &amp; 2 above, respectively), we will develop a summary of a joint distribution: the <em>covariance</em>. The particular definitions that we choose to call expectation, variance, and covariance require justification. Why should we use these <em>particular</em> formulae as measures of the “center” and “dispersion”?</p>
+<p>We ground these summaries in the <strong>Mean Squared Error</strong> evaluative metric, as well as justifying this metric.</p>
+<section id="learning-objectives" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning Objectives</h2>
+<p>At the end of the live session and homework this week, students will be able to:</p>
+<ol type="1">
+<li><strong>Understand</strong> the importance of thinking in terms of random variables, while;</li>
+<li>Being able to <strong>appreciate</strong> that it is not typically possible to fully model the world with a single function.</li>
+<li><strong>Articulate</strong> why we need a target for a model, and propose several possible such targets.</li>
+<li><strong>Justify</strong> why expectation is a good model, why variance is a reasonable model, and how covariance relates two-random variables with a common joint distribution.</li>
+<li><strong>Produce</strong> summaries of location and relationship given a particular functional form for a random variable.</li>
+</ol>
+</section>
+<section id="class-announcements" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="class-announcements"><span class="header-section-number">3.2</span> Class Announcements</h2>
+<p>Where have we come from, and where are we going?</p>
+<section id="what-is-in-the-rearview-mirror" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="what-is-in-the-rearview-mirror"><span class="header-section-number">3.2.1</span> What is in the rearview mirror?</h3>
+<ul>
+<li>Statisticians create a population model to represent the world; random variables are the building blocks of such a model.</li>
+<li>We can describe the distribution of a random variable using:
+<ul>
+<li>A <em>CDF</em> for all random variables</li>
+<li>A <em>PMF</em> for discrete random variables</li>
+<li>A <em>PDF</em> for continuous random variables</li>
+</ul></li>
+<li>When we have multiple random variables,
+<ul>
+<li>The joint PMF/PDF describes how they behave together</li>
+<li>The marginal PMF/PDF describes one variable in isolation</li>
+<li>The conditional PMF/PDF describes one variable given the value of another</li>
+</ul></li>
+</ul>
+</section>
+<section id="todays-lesson" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="todays-lesson"><span class="header-section-number">3.2.2</span> Today’s Lesson</h3>
+<p>What might seem frustrating about this probability theory system of reasoning is that we are building a castle in the sky – a fiction. We’re supposing that there is some function that describes the probability that values are generated. In reality, there is no such generative function; it is <em>extremely unlikely</em> (though we’ll acknowledge that it is possible) that the physical reality we believe we exist within is just a complex simulation that has been programmed with functions by some unknown designer.</p>
+<p>Especially frustrating is that we’re supposing this function, and then we’re further saying,</p>
+<blockquote class="blockquote">
+<p>“If only we had this impossible function; and if only we also had the ability to take an impossible derivative of this impossible function, then we could…”</p>
+</blockquote>
+<section id="single-number-summaries-of-a-single-random-variable" class="level4" data-number="3.2.2.1">
+<h4 data-number="3.2.2.1" class="anchored" data-anchor-id="single-number-summaries-of-a-single-random-variable"><span class="header-section-number">3.2.2.1</span> Single number summaries of a single random variable</h4>
+<p>But, here’s the upshot!</p>
+<p><strong>What we are doing today is laying the baseline for models that we will introduce next week.</strong> Here, we are going to suggest that there are radical simplifications that we can produce that hold specific guarantees, no matter how complex the function that we’re reasoning about.</p>
+<p>In particular, in one specific usage of the term <em>best</em> we will prove that the Expectation operation is the best one-number summary of any distribution. To do so, we will define a term, <em>variance</em>, which is the squared deviations from the expectation of a variable that describes how “spread out” is a variable. Then, we will define a concept that is the <em>mean squared error</em> that is the square of the distance between a model prediction and a random variable’s realization. The key realization is that when the model predicts the expectation, then the MSE is equal to the variance of the random variable, which is the smallest possible value it could realize.</p>
+</section>
+<section id="single-number-summaries-of-relationships-between-random-variables" class="level4" data-number="3.2.2.2">
+<h4 data-number="3.2.2.2" class="anchored" data-anchor-id="single-number-summaries-of-relationships-between-random-variables"><span class="header-section-number">3.2.2.2</span> Single number summaries of relationships between random variables</h4>
+<p>Although the single number summaries are <strong>incredibly</strong> powerful, that’s not enough for today’s lesson! We’re also going to suggest that we can create a measure of linear dependence between two variables that we call the “covariance”, and a related, re-scaled version of this relationship that is called the correlation.</p>
+</section>
+</section>
+<section id="future-attractions" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="future-attractions"><span class="header-section-number">3.2.3</span> Future Attractions</h3>
+<ul>
+<li>A predictor is a function that provides a value for one variable, given values of some others.</li>
+<li>Using our summary tools, we will define a predictor’s error and then minimize it.</li>
+<li>This is a basis for linear regression</li>
+</ul>
+</section>
+</section>
+<section id="discussion-of-terms" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="discussion-of-terms"><span class="header-section-number">3.3</span> Discussion of Terms</h2>
+<section id="expected-value" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="expected-value"><span class="header-section-number">3.3.1</span> Expected Value</h3>
+<p>We define the expected value to be the following for a continuous random variable:</p>
+</section>
+</section>
+<section id="expected-value-1" class="level2 definition" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="expected-value-1"><span class="header-section-number">3.4</span> Expected Value</h2>
+<p>For a continuous random variable <span class="math inline">\(X\)</span> with PDF <span class="math inline">\(f\)</span>, the <em>expected value</em> of <span class="math inline">\(X\)</span>, written <span class="math inline">\(E[X]\)</span> is</p>
+<p><span class="math display">\[
+E[X] = \int_{-\infty}^{\infty}xf_{X}(x) dx
+\]</span></p>
+</section>
+<p>Oh, ok. If you say so. (We do…).</p>
+<p>There are two really important things to grasp here:</p>
+<ol type="1">
+<li>What does this mean about a particular PDF?</li>
+<li>What is the justification for this <em>particualar</em> definition?</li>
+</ol>
+<div class="discussion-question">
+<p>With your instructor, talk about what each of the following definitions mean in your own words. For key concepts, you might also formalize this intuition into a formula that can be computed.</p>
+<ul>
+<li>Expected Value, or Expectation</li>
+<li>Central Moments <span class="math inline">\(\rightarrow\)</span> Variance <span class="math inline">\(\rightarrow\)</span> Standard Deviation</li>
+<li>Set aside for later: Chebyshev’s Inequality and the Normal Distribution</li>
+<li>Mean Squared Error and its alternative formula</li>
+<li>Covariance and Correlation</li>
+</ul>
+</div>
+<section id="computing-examples" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="computing-examples"><span class="header-section-number">3.5</span> Computing Examples</h2>
+<section id="expected-value-of-education-discrete-random-variable" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="expected-value-of-education-discrete-random-variable"><span class="header-section-number">3.5.1</span> Expected Value of Education [discrete random variable]</h3>
+<ul>
+<li>The expected value of a discrete random variable <span class="math inline">\(X\)</span> is the weighted average of the values in the range of <span class="math inline">\(X\)</span>.</li>
+<li>Suppose that <span class="math inline">\(X\)</span> represents the number of years of education that someone has completed, and so has a support that ranges from <span class="math inline">\(0\)</span> years of education, up to <span class="math inline">\(28\)</span> years of education. (Incidentally, Mark Labovitz has about 28 years of education.)</li>
+<li>You can then think of</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-summarizing-distributions_files/figure-html/population-education-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="discussion-question">
+<ul>
+<li>Without using specific numbers, describe the process you would use to calculate the expected value of this distribution.</li>
+</ul>
+</div>
+</section>
+<section id="using-a-formula" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="using-a-formula"><span class="header-section-number">3.5.2</span> Using a formula</h3>
+<ul>
+<li>Does the following formula match with your intuitive description of the <em>expected value</em>? Why, or why not?</li>
+</ul>
+<p><span class="math display">\[
+  \begin{aligned}
+  E[X] &amp;= \sum_{x \in \{EDU\}} x \cdot f(x) \\
+       &amp;= \sum_{x=0}^{x=28} x\cdot P(X=x)
+  \end{aligned}
+\]</span></p>
+</section>
+</section>
+<section id="computing-by-hand" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="computing-by-hand"><span class="header-section-number">3.6</span> Computing by Hand</h2>
+<section id="compute-the-expected-value" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="compute-the-expected-value"><span class="header-section-number">3.6.1</span> Compute the Expected Value</h3>
+<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die where the events <span class="math inline">\(\omega \in \Omega\)</span> are mapped using a straightforward function: <span class="math inline">\(X(\omega):\)</span> is a function that counts the number of spots that are showing, and maps the number of dots to the corresponding integer, <span class="math inline">\(\mathbb{Z}\)</span>.</p>
+<ul>
+<li>Calculating by hand, what is the expected value <span class="math inline">\(X\)</span>, which we write as <span class="math inline">\(E[X]\)</span>?</li>
+<li>After you have calculated <span class="math inline">\(E[X]\)</span>: Is it possible that the result of a roll is this value?</li>
+</ul>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blank_lines</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;</p>
+</section>
+<section id="playing-a-gnome-game-part-1" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="playing-a-gnome-game-part-1"><span class="header-section-number">3.6.2</span> Playing a Gnome Game, Part 1</h3>
+<div class="discussion-question">
+<ul>
+<li>Suppose that, out on a hike in the hills above campus, you happen across a gnome who asks you if you would like to play the following game:
+<ul>
+<li>You pay the gnome a dollar, and guess a number between 0 and 6. So, let <span class="math inline">\(g \in \mathbb{R}: 0 \leq g \leq 6\)</span>.</li>
+<li>After you make your guess, the gnome rolls a dice, which comes up with a value <span class="math inline">\(d \in \mathbb{Z}: d \in \{1,2,3,4,5,6\}\)</span>.</li>
+<li>The gnome pays you <span class="math inline">\(p = 0.25 \times |d - g|\)</span>.</li>
+<li><strong>First question</strong>: What is the best guess you can make?</li>
+<li><strong>Second Question</strong>: Should you play this game?</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>Fill this in by hand.</p>
+</blockquote>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blank_lines</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;</p>
+</section>
+<section id="compute-the-variance" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="compute-the-variance"><span class="header-section-number">3.6.3</span> Compute the Variance</h3>
+<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die.</p>
+<ul>
+<li>Calculating by hand, what is the variance of <span class="math inline">\(X\)</span>?</li>
+</ul>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blank_lines</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;</p>
+</section>
+<section id="playing-a-gnome-game-part-2" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="playing-a-gnome-game-part-2"><span class="header-section-number">3.6.4</span> Playing a Gnome Game, Part 2</h3>
+<div class="discussion-question">
+<ul>
+<li>How much do you expect to make on any particular time that you play the game with the best strategy?</li>
+</ul>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">blank_lines</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;</p>
+</section>
+</section>
+<section id="expected-value-by-code" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="expected-value-by-code"><span class="header-section-number">3.7</span> Expected Value by Code</h2>
+<section id="expected-value-of-a-six-sided-die" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="expected-value-of-a-six-sided-die"><span class="header-section-number">3.7.1</span> Expected Value of a Six-Sided Die</h3>
+<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die.</p>
+<ul>
+<li>Build an object to represent the whole sample space, <span class="math inline">\(\Omega\)</span> of a six sided die.</li>
+<li>Determine what probabilities to assign to each value of that object.</li>
+<li>Write the code to run the expectation algorithm that you just performed by hand.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>die <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="st">'fill this in'</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob  =</span> <span class="st">'fill this in'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="variance-of-a-six-sided-die" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="variance-of-a-six-sided-die"><span class="header-section-number">3.7.2</span> Variance of a Six-Sided Die</h3>
+<p>Let <span class="math inline">\(X\)</span> represent the result of one roll of a 6 sided die. Using what you know about the definition of variance, write a function that will compute the variance of your <code>die</code> object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>variance_function <span class="ot">&lt;-</span> <span class="cf">function</span>(die) { </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fill this in</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">=</span> <span class="st">'fill this in'</span>   <span class="do">## you should index to the correct column</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  var <span class="ot">=</span> <span class="st">'fill this in'</span>  <span class="do">## for each, and use the correct function</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(var)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">variance_function</span>(die)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "fill this in"</code></pre>
+</div>
+</div>
+<div class="discussion-question">
+<p>Suppose that you had to keep the values the same on the die (that is the domain of the outcome still had to be the countable set of integers from one to six), but that you could modify the actual random process. Maybe you could sand off some of the corners on the die, or you could place weights on one side so that the side is less likely to come up. In this case, <span class="math inline">\(\omega \in \{1,2,3,4,5,6\}\)</span>, but you’re able to make a new <span class="math inline">\(f_{D}(d)\)</span>.</p>
+<ul>
+<li>How would you change the probability distribution to decrease the variance of this random variable?</li>
+<li>What is the smallest value that you can generate for this random variable? Use the <code>variance_function</code> from above to actually compute this variance.</li>
+<li>What is the largest value of variance that you can generate for this random variable? Use the <code>variance_function</code> from above to actually compute this variance.</li>
+</ul>
+</div>
+<div class="discussion-question">
+<p>Now suppose that you again had an equal probability of every outcome, but you were to apply a function to the number of spots that are showing on the die. Rather that each dot contributing one value to the random variable, instead the random variable’s outcome is the square of the number of spots.</p>
+<ul>
+<li>How would this change the mean?</li>
+<li>How would this change the variance?</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="practice-computing" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="practice-computing"><span class="header-section-number">3.8</span> Practice Computing</h2>
+<section id="single-variable" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="single-variable"><span class="header-section-number">3.8.1</span> Single Variable</h3>
+<div class="discussion-question">
+<p>Suppose that <span class="math inline">\(X\)</span> has the following density function:</p>
+<p><span class="math display">\[
+  f_{X}(x) = \begin{cases}
+    6x(1 - x), &amp; 0 &lt; x &lt; 1 \\
+    0, &amp; otherwise \\
+  \end{cases}
+\]</span></p>
+<ul>
+<li>Find <span class="math inline">\(E[X]\)</span>.</li>
+<li>Find <span class="math inline">\(E[X^2]\)</span>.</li>
+<li>Find <span class="math inline">\(V[X]\)</span>.</li>
+</ul>
+</div>
+</section>
+<section id="joint-density" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="joint-density"><span class="header-section-number">3.8.2</span> Joint Density</h3>
+<section id="discrete-case-calculate-covariance" class="level4" data-number="3.8.2.1">
+<h4 data-number="3.8.2.1" class="anchored" data-anchor-id="discrete-case-calculate-covariance"><span class="header-section-number">3.8.2.1</span> Discrete Case: Calculate Covariance</h4>
+<p>In the reading, you saw that we define <strong>covariance</strong> to be:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Cov[X,Y]    &amp;= E[(E[X] - X)^{2}(E[Y] - Y)^{2}] \\
+            &amp;= E[XY] - E[X]E[Y]
+\end{aligned}
+\]</span></p>
+<p>And, <strong>correlation</strong> to be a rescaled version of <em>covariance</em>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Cor[X,Y]    &amp; \equiv \rho[X,Y] \\
+            &amp; = \frac{Cov[X,Y]}{\sigma_{X}\sigma_{Y}} \\
+\end{aligned}            
+\]</span></p>
+<div class="discussion-question">
+<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are discrete random variables, where <span class="math inline">\(X\)</span> represents number of office hours attended, and <span class="math inline">\(Y\)</span> represents owning a cat. Furthermore, suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the joint pmf,</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">f(x,y)</th>
+<th style="text-align: center;">y=0</th>
+<th style="text-align: center;">y=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">x=0</td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">0.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x=1</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x=2</td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">0.35</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Calculate the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</li>
+<li>Are X and Y independent? Why or why not?</li>
+</ol>
+</div>
+</section>
+<section id="continuous-case-calculate-covariance" class="level4" data-number="3.8.2.2">
+<h4 data-number="3.8.2.2" class="anchored" data-anchor-id="continuous-case-calculate-covariance"><span class="header-section-number">3.8.2.2</span> Continuous Case: Calculate Covariance</h4>
+<div class="discussion-question">
+<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have joint density <span class="math inline">\(f_{X,Y}(x,y) = 8xy, 0 \leq y &lt; x \leq 1.\)</span></p>
+<ul>
+<li>Break into groups to find <span class="math inline">\(\operatorname{Cov}[X,Y]\)</span></li>
+</ul>
+</div>
+<div class="discussion-question">
+<p>Suppose that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables with joint density</p>
+<p><span class="math display">\[
+f_{X,Y}(x,y) =
+\begin{cases}
+1, &amp; -y &lt; x &lt; y, 0 &lt; y &lt; 1 \\
+0, &amp; \textrm{elsewhere}
+\end{cases}
+\]</span></p>
+<p>Show that <span class="math inline">\(\operatorname{Cov}[X,Y] = 0\)</span> but that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are dependent.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="write-code" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="write-code"><span class="header-section-number">3.9</span> Write Code</h2>
+<p>Suppose that you have a random variable with a <strong>gnarly</strong> probability distribution function:</p>
+<p><span class="math display">\[
+  f_{X}(x) = \frac{3*\left(x - 2x^2 + x^3\right)}{2}, 0\leq x\leq 2
+\]</span></p>
+<p>If you had to pick a single value that minimizes the <span class="math inline">\(MSE\)</span> of this function, what would it be?</p>
+<ul>
+<li>First, how would you approach this problem <em>analytically</em>. By this, we mean, “how would you solve this with the closed form answer?</li>
+<li>Second, how might you approach this problem <em>computationally</em>. By this, we mean, “how might you write code that would produce a numeric approximation of the closed form solution?” Don’t worry about actually writing the code – we’ll have done that for you, but what is the <em>process</em> (called in our world, <em>algorithm</em>) that you would use to determine the value that produces the smallest <span class="math inline">\(MSE\)</span>?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pdf_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span>(x <span class="sc">-</span> (<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> x<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>support <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">2</span>, <span class="at">by=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> pdf_fun) <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(support), <span class="fu">max</span>(support)) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"A Gnarly Plot"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-summarizing-distributions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> <span class="cf">function</span>(value, prob){</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(value <span class="sc">*</span> prob)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expected_value</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> (support <span class="sc">-</span> c)<span class="sc">^</span><span class="dv">2</span>, </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob  =</span> <span class="fu">pdf_fun</span>(support)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  )  </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>mpe <span class="ot">&lt;-</span> <span class="cf">function</span>(c, power) { </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expected_value</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> (support <span class="sc">-</span> c)<span class="sc">^</span>power, </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob  =</span> <span class="fu">pdf_fun</span>(support)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mean_absolute_error <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">pdf_fun</span>(support)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  mae_     <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(x_values <span class="sc">-</span> c))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>mean_square_error <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">pdf_fun</span>(support)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  mse_     <span class="ot">&lt;-</span> <span class="fu">sum</span>(((x_values <span class="sc">-</span> c)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> x_values)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mse_)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>mean_cubic_error <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">pdf_fun</span>(support) </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  mce_     <span class="ot">&lt;-</span> <span class="fu">mean</span>((x_values <span class="sc">-</span> c)<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>mean_quadratic_error <span class="ot">&lt;-</span> <span class="cf">function</span>(c) { </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">pdf_fun</span>(support)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  mqe_     <span class="ot">&lt;-</span> <span class="fu">mean</span>((x_values <span class="sc">-</span> c)<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mqe_)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>mean_power_error <span class="ot">&lt;-</span> <span class="cf">function</span>(c, power) { </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">pdf_fun</span>(support)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  m_power_e_     <span class="ot">&lt;-</span> <span class="fu">mean</span>((x_values <span class="sc">-</span> c)<span class="sc">^</span>power)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(m_power_e_)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mean_absolute_error  <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(mean_absolute_error)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mean_square_error    <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(mean_square_error)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mean_cubic_error     <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(mean_cubic_error)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>mean_quadratic_error <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(mean_quadratic_error)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mean_power_error     <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(mean_power_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mae_ <span class="ot">&lt;-</span> <span class="fu">mean_absolute_error</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> support</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>mse_ <span class="ot">&lt;-</span> <span class="fu">mean_square_error</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> support</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>mce_ <span class="ot">&lt;-</span> <span class="fu">mean_cubic_error</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> support</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>mqe_ <span class="ot">&lt;-</span> <span class="fu">mean_quadratic_error</span>(</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> support</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>absolute_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> mean_absolute_error, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">'Brent'</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span>par</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>squared_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> mean_square_error, </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Brent"</span>, </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span>par</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>cubic_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> mean_cubic_error, </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Brent"</span>, </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span>par</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>quadratic_error_ <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> <span class="dv">0</span>, </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">fn =</span> mean_quadratic_error, </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Brent"</span>, </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">2</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span>par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>all_plots <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add lines </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> support, <span class="at">y =</span> <span class="fu">scale</span>(mse_)), <span class="at">color =</span> <span class="st">"#003262"</span>)  <span class="sc">+</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> support, <span class="at">y =</span> <span class="fu">scale</span>(mae_)), <span class="at">color =</span> <span class="st">"#FDB515"</span>)  <span class="sc">+</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> support, <span class="at">y =</span> <span class="fu">scale</span>(mce_)), <span class="at">color =</span> <span class="st">"seagreen"</span>) <span class="sc">+</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> support, <span class="at">y =</span> <span class="fu">scale</span>(mqe_)), <span class="at">color =</span> <span class="st">"darkred"</span>)  <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add optimal solution indicators</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> squared_error_, </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> squared_error_, </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">2</span>, </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">1</span>), </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">"cm"</span>)),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#003262"</span>)  <span class="sc">+</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> absolute_error_, </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> absolute_error_, </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span>.<span class="dv">2</span>, </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="fl">1.2</span>), </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">"cm"</span>)),</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#FDB515"</span>)  <span class="sc">+</span> </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> cubic_error_, </span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> cubic_error_, </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">2</span>), </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">"cm"</span>)),</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"seagreen"</span>)  <span class="sc">+</span> </span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> quadratic_error_, </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> quadratic_error_, </span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">2</span>, </span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">1</span>), </span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.25</span>, <span class="st">"cm"</span>)),</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkred"</span>)  <span class="sc">+</span> </span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">"All Errors on a common scale"</span>, </span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Different Errors lead to different solutions."</span>, </span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">y        =</span> <span class="st">"Error Magnitude"</span>, </span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x        =</span> <span class="st">"Choice of X"</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>all_plots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-summarizing-distributions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-random-variables.html" class="pagination-link" aria-label="Defining Random Variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Defining Random Variables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-conditional-expectation-and-BLP.html" class="pagination-link" aria-label="Conditional Expectation and The BLP">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditional Expectation and The BLP</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
