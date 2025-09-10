@@ -517,13 +517,13 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">100000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.000167</code></pre>
+<pre><code>[1] 1.498635</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.003649</code></pre>
+<pre><code>[1] 1.594294</code></pre>
 </div>
 </div>
 <p>Notice that, there are two forms of inherent uncertainty in this function:</p>
@@ -537,14 +537,14 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">random_distribution</span>(<span class="at">number_samples=</span><span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>draws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1.909077 1.167465 1.155891 1.188379 1.339587 1.215482 1.605296 1.328808
- [9] 1.074760 1.943323</code></pre>
+<pre><code> [1] 1.370191 1.107625 1.845006 1.704669 1.725690 1.200872 1.293501 1.709838
+ [9] 1.467660 1.957752</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(draws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.392807</code></pre>
+<pre><code>[1] 1.53828</code></pre>
 </div>
 </div>
 <div class="discussion-question">
@@ -646,7 +646,7 @@ window.Quarto = {
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">toss_coin</span>(<span class="at">number_of_simulations=</span><span class="dv">10</span>, <span class="at">number_of_tosses=</span><span class="dv">2</span>, <span class="at">prob_heads=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.5 0.5 0.5 0.5 1.0 1.0 0.5 1.0 1.0 0.5</code></pre>
+<pre><code> [1] 0.5 0.5 0.5 1.0 0.5 1.0 1.0 1.0 0.5 0.5</code></pre>
 </div>
 </div>
 <div class="cell">

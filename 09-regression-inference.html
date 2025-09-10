@@ -450,18 +450,18 @@ lm(formula = y ~ x, data = data_sample)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--10.160  -4.732  -0.535   4.500  10.399 
+-9.4532 -4.5689  0.0885  4.9386 10.0122 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  -0.1200     1.0918   -0.11    0.913    
-x             2.2336     0.1965   11.37   &lt;2e-16 ***
+(Intercept)   2.2791     1.1792   1.933   0.0562 .  
+x             1.8407     0.1898   9.699 5.44e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 5.749 on 98 degrees of freedom
-Multiple R-squared:  0.5686,    Adjusted R-squared:  0.5642 
-F-statistic: 129.2 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 5.493 on 98 degrees of freedom
+Multiple R-squared:  0.4898,    Adjusted R-squared:  0.4846 
+F-statistic: 94.08 on 1 and 98 DF,  p-value: 5.441e-16</code></pre>
 </div>
 </div>
 <p>But, that data that we sampled and estimated out model against is just one of the <em>many</em> samples that we could have taken!</p>
@@ -495,7 +495,7 @@ F-statistic: 129.2 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
     Shapiro-Wilk normality test
 
 data:  sample(coefficient_, 5000)
-W = 0.99968, p-value = 0.6522</code></pre>
+W = 0.99954, p-value = 0.2845</code></pre>
 </div>
 </div>
 <p>What if we have two explanatory variables that have no covariance between them?</p>
@@ -515,7 +515,7 @@ W = 0.99968, p-value = 0.6522</code></pre>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(data_sample<span class="sc">$</span>x1, data_sample<span class="sc">$</span>x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.5463703</code></pre>
+<pre><code>[1] -0.05747961</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(data_sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -533,21 +533,21 @@ Call:
 lm(formula = y ~ x1 + I(x1^2) + x2, data = data_sample)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--10.2495  -4.6520  -0.8826   4.7857  11.1105 
+    Min      1Q  Median      3Q     Max 
+-9.9883 -4.7156  0.3696  4.8476 11.2362 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.39606    1.94062   1.235   0.2200    
-x1           1.60951    0.82894   1.942   0.0551 .  
-I(x1^2)     -1.97143    0.07763 -25.395  &lt; 2e-16 ***
-x2           2.40794    0.37203   6.472 4.07e-09 ***
+(Intercept)  1.90319    2.51147   0.758   0.4504    
+x1           1.94721    0.93199   2.089   0.0393 *  
+I(x1^2)     -2.02353    0.08512 -23.772  &lt; 2e-16 ***
+x2           2.88081    0.42607   6.761 1.06e-09 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 5.773 on 96 degrees of freedom
-Multiple R-squared:  0.9907,    Adjusted R-squared:  0.9904 
-F-statistic:  3396 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 5.908 on 96 degrees of freedom
+Multiple R-squared:  0.9893,    Adjusted R-squared:  0.9889 
+F-statistic:  2948 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>But, once again, that is just one of the samples that are possible from the population. What does the distribution look like if we were to repeatedly resample from the population?</p>
@@ -633,20 +633,20 @@ Call:
 lm(formula = y ~ x1 + x2, data = data_sample)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--10.2774  -5.9625  -0.2346   5.8366  11.0509 
+    Min      1Q  Median      3Q     Max 
+-9.7474 -5.1266 -0.6605  4.6251 10.1507 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.3422     1.2496   1.074    0.285    
-x1            1.7380     0.2254   7.710 1.10e-11 ***
-x2            3.2924     0.4793   6.870 6.18e-10 ***
+(Intercept)   0.4393     1.2760   0.344    0.731    
+x1            1.8995     0.2633   7.213 1.21e-10 ***
+x2            3.2750     0.4558   7.186 1.38e-10 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 6.125 on 97 degrees of freedom
-Multiple R-squared:  0.6386,    Adjusted R-squared:  0.6312 
-F-statistic: 85.71 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 6.082 on 97 degrees of freedom
+Multiple R-squared:  0.6854,    Adjusted R-squared:  0.6789 
+F-statistic: 105.7 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>But, like each of the other times we have done this, we have taken only a single sample from potentially very many samples. Let’s see what happens with the very many samples.</p>
@@ -961,7 +961,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed 😸</code></pre>
+<pre><code>Test passed 🎊</code></pre>
 </div>
 </div>
 <p><strong>Questions</strong></p>
@@ -1043,7 +1043,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bootstrap_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0195444</code></pre>
+<pre><code>[1] 0.01969892</code></pre>
 </div>
 </div>
 
