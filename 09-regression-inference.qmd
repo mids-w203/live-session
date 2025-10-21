@@ -13,6 +13,8 @@ theme_set(theme_minimal())
 
 # OLS Regression Inference
 
+If you want to run this code in the School's datahub, clik the following link: [nbgithubpuller](https://ischool.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fmids-w203%2Flive-session&urlpath=rstudio%2F)
+
 ![sunset on golden gate](./images/bridge_sunset.jpeg)
 
 ## Learning Objectives 
