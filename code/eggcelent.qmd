@@ -5,6 +5,7 @@ editor: source
 
 ```{r}
 library(tidyverse)
+library(broom)
 ```
 
 
@@ -56,21 +57,18 @@ eggs %>%
 ```{r}
 eggs
 
-
 model_eggs <- lm(n_eggs ~ n_hens + prod_type, data = eggs)
 summary(model_eggs)
 
 model_eggs_c <- lm(n_eggs_c ~ n_hens_c, data = eggs)
 summary(model_eggs_c)
 
-
-
 eggs %>% 
   ggplot() + 
   aes(x = log(n_hens), y = log(n_eggs)) + 
   geom_point()
 
-model_eggs_logged <- lm(log(n_eggs) ~ \hat{\beta}*log(n_hens) + prod_type, data = eggs)
+model_eggs_logged <- lm(log(n_eggs) ~ log(n_hens) + prod_type, data = eggs)
 summary(model_eggs_logged)
 ```
 
@@ -135,42 +133,42 @@ Now we need a model!
 ## Some Working Thoughts Below
 
 ```{r}
-eggproduction %>% 
+eggs %>% 
   filter(prod_type == "hatching eggs") %>% 
   ggplot() + 
   aes(x=n_hens, y=n_eggs) + 
   geom_point()
 
-eggproduction %>% 
+eggs %>% 
   filter(prod_type == "table eggs") %>% 
   ggplot() + 
   aes(x=n_hens, y=n_eggs) + 
   geom_point()
 
-eggproduction %>% 
+eggs %>% 
   filter(prod_type == "table eggs") %>% 
   ggplot() + 
   aes(x=n_hens, y=n_eggs, color = prod_process) + 
   geom_point()
 
-eggproduction %>% 
+eggs %>% 
   filter(prod_type == "table eggs", prod_process == "all") %>% 
   ggplot() + 
   aes(x=n_hens, y=n_eggs) + 
   geom_point()
 
 model <- 
-  eggproduction %>% 
+  eggs %>% 
   filter(prod_type == "table eggs", prod_process == "all") %>% 
   lm(n_eggs ~ n_hens + I(n_hens^2), data = .)
 
-df_augmented <- augment(model, eggproduction) %>% 
+df_augmented <- augment(model, filter(eggs, prod_type == "table eggs", prod_process == "all")) %>% 
   filter(prod_type == "table eggs", prod_process == "all") %>% 
   ggplot() + 
   aes(x=n_hens, y=n_eggs) + 
   geom_point()
 
-eggproduction %>% 
+eggs %>% 
   ggplot() + 
   aes(
     x = n_hens, 
@@ -178,12 +176,10 @@ eggproduction %>%
   ) + 
   geom_point()
 
-eggproduction %>% 
+eggs %>% 
   ggplot() + 
   aes(x=n_hens, fill = paste0(prod_type, prod_process)) + 
   geom_histogram()
-
-View(eggproduction)
 ```
 
 
@@ -256,10 +252,3 @@ mse(data=test_data, model=model_1)
 mse(data=test_data, model=model_2)
 mse(data=test_data, model=model_3)
 ```
-
-
-
-
-
-
-
