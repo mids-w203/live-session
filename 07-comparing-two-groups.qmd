@@ -7,6 +7,7 @@ library(magrittr)
 library(ggthemes)
 library(patchwork)
 library(data.table)
+library(fosdata)
 ```
 
 
@@ -146,7 +147,7 @@ Darrin Speegle has a nice talk-through, walk through of rank based testing proce
 ### Movie Ratings 
 
 ```{r}
-movies <- read.csv("http://stat.slu.edu/~speegle/_book_data/movieLensData", as.is = TRUE)
+movies <- fosdata::movies
 ```
 
 Some questions that might be interesting: 
@@ -640,17 +641,30 @@ paired_sim <- function(num_sims=10000, num_observations, mean_one, mean_two, pai
     observation_a2 <- observation_a1 + rnorm(n = num_observations, mean = paired_diff, sd=sd_two)
     
     ## run tests
-    unpaired_test_unpaired_data[i] <- t.test(x=observation_a1, y=observation_b,  paired=FALSE)$p.value
-    unpaired_test_paired_data[i]   <- t.test(x=observation_a1, y=observation_a2,  paired=FALSE)$p.value
-    paired_test_unpaired_data[i]   <- t.test(x=observation_a1, y=observation_b,  paired=TRUE)$p.value
-    paired_test_paired_data[i]     <- t.test(x=observation_a1, y=observation_a2, paired=TRUE)$p.value
+    unpaired_test_unpaired_data[i] <- t.test(
+      x      = observation_a1, 
+      y      = observation_b,  
+      paired = FALSE)$p.value
+    unpaired_test_paired_data[i]  <- t.test(
+      x      = observation_a1, 
+      y      = observation_a2, 
+      paired = FALSE)$p.value
+    paired_test_unpaired_data[i]   <- t.test(
+      x      = observation_a1, 
+      y      = observation_b,  
+      paired = TRUE)$p.value
+    paired_test_paired_data[i]     <- t.test(
+      x      = observation_a1, 
+      y      = observation_a2, 
+      paired = TRUE)$p.value
   }
   
   dt <- data.table(
     p_value = c(unpaired_test_unpaired_data, unpaired_test_paired_data, 
                 paired_test_unpaired_data,   paired_test_paired_data), 
     test    = rep(c('unpaired data, unpaired test', 'paired data, unpaired test', 
-                    'unpaired data, paired test', 'paired data, paired test'), each = num_sims)
+                    'unpaired data, paired test', 'paired data, paired test'), 
+                  each = num_sims)
   )
   
   return(dt)
@@ -658,7 +672,14 @@ paired_sim <- function(num_sims=10000, num_observations, mean_one, mean_two, pai
 ```
   
 ```{r run paired simulation}
-bar <- paired_sim(num_observations = 30,  mean_one = 10, mean_two = 11, paired_diff = 1, sd_one = 4, sd_two = 5)
+bar <- paired_sim(
+  num_observations = 30,  
+  mean_one = 10, 
+  mean_two = 11, 
+  paired_diff = 1, 
+  sd_one = 4, 
+  sd_two = 5
+  )
 ```
 
 ```{r plot results of paired simulation}

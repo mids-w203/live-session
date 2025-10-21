@@ -330,7 +330,7 @@ window.Quarto = {
   <li><a href="#joint-density" id="toc-joint-density" class="nav-link" data-scroll-target="#joint-density"><span class="header-section-number">2.8</span> Joint Density</a>
   <ul class="collapse">
   <li><a href="#example-uniform-joint-density" id="toc-example-uniform-joint-density" class="nav-link" data-scroll-target="#example-uniform-joint-density"><span class="header-section-number">2.8.1</span> Example: Uniform Joint Density</a></li>
-  <li><a href="#examples-thinking-through-many-plots" id="toc-examples-thinking-through-many-plots" class="nav-link" data-scroll-target="#examples-thinking-through-many-plots"><span class="header-section-number">2.8.2</span> Examples: Thinking Through Many Plots</a></li>
+  <li><a href="#examples-a-triangle-distribution" id="toc-examples-a-triangle-distribution" class="nav-link" data-scroll-target="#examples-a-triangle-distribution"><span class="header-section-number">2.8.2</span> Examples: A Triangle Distribution</a></li>
   <li><a href="#triangle-math" id="toc-triangle-math" class="nav-link" data-scroll-target="#triangle-math"><span class="header-section-number">2.8.3</span> Triangle Math</a></li>
   <li><a href="#saddle-sores" id="toc-saddle-sores" class="nav-link" data-scroll-target="#saddle-sores"><span class="header-section-number">2.8.4</span> Saddle Sores</a></li>
   </ul></li>
@@ -489,7 +489,6 @@ Definition of a Random Variable
 <p>Suppose that a random variable is simple and discrete. For concreteness, you could think of this random variable as the answer to the question, “Is the grass wet outside?”.</p>
 <ol type="1">
 <li>What is the sample space?</li>
-<li>What is a sensible function that you might use to map from the sample space to real values?</li>
 <li>What is a sensible function that you might use to map from the sample space to real values? (A student well-seasoned in Maths might use (and define for the rest of the class) the concept of a <em>bijective function</em>).</li>
 <li>If you simply had the values that the random variable function maps to are you guaranteed to be able to describe the entire sample space? Why or why not?</li>
 <li>How would you go about determining the probability mass function for this random variable?</li>
@@ -533,11 +532,11 @@ Definition of a Random Variable
 <p>Finally, campus provides you with the safety reports from last year, and reports that there were 55 student-Subaru incidents last year, out of 10,000 student-crosswalk crossings.</p>
 <ol type="1">
 <li>What is the <em>pmf</em> for the probability that you are involved in a student-Subaru incident as you walk across these 10 blocks? What sample space, <span class="math inline">\(\Omega\)</span> is appropriate to represent this scenario?</li>
-<li>Suppose that you don’t leave your house – this is a remote program after all! What is your cumulative probability of being involved in a student-subaru incident?</li>
-<li>What is the cumulative probability <em>cmf</em> for the probability that you are involved in a student-Subaru incident?</li>
-<li>Suppose that you live three blocks from campus, but your classmate lives five blocks from campus. What is the difference in the cumulative probability?</li>
 <li>How would you describe the cumulative probability of being hit as you walk closer to campus? That is, suppose that you start 10 blocks away from campus, and are walking to get closer. Is your cumulative probability of being hit on your way to campus increasing or decreasing as you get closer to campus?</li>
 <li>How would you describe the cumulative probability of being hit as you walk <strong>further</strong> from campus? That is, suppose that you start on campus, and you’re walking to a bar after classes. Is your cumulative probability of being hit on your way away from campus increasing or decreasing as you get further from campus?</li>
+<li>Suppose that you don’t leave your house – this is a remote program after all! What is your cumulative probability of being involved in a student-subaru incident?</li>
+<li>Suppose that you live three blocks from campus, what is the cumulative probability <em>cmf</em> for the probability that you are involved in a student-Subaru incident?</li>
+<li>Suppose that you live three blocks from campus, but your classmate lives five blocks from campus. What is the difference in the cumulative probability?</li>
 </ol>
 </div>
 </section>
@@ -582,7 +581,7 @@ F(x) = \int f(x) dx, \forall x \in \mathbb{R}.
 <li>What is the CDF of <span class="math inline">\(X\)</span>?</li>
 <li>What is the maximum possible value that <span class="math inline">\(x\)</span> can obtain? How did you develop this answer, using the Kolmogorov axioms of probability?</li>
 <li>What is the cumulative probability of an outcome up to 0.5?</li>
-<li>What is the probability of an outcome between 0.25 and 0.75? Produce an answer to this in two ways:
+<li>What is the probability of an outcome between 0.25 and 0.75? There are two ways to produce an answer to this in two ways:
 <ol type="1">
 <li>Using the <span class="math inline">\(PDF\)</span></li>
 <li>Using the <span class="math inline">\(CDF\)</span></li>
@@ -610,18 +609,19 @@ F(x) = \int f(x) dx, \forall x \in \mathbb{R}.
 </ul></li>
 </ul>
 </section>
-<section id="examples-thinking-through-many-plots" class="level3" data-number="2.8.2">
-<h3 data-number="2.8.2" class="anchored" data-anchor-id="examples-thinking-through-many-plots"><span class="header-section-number">2.8.2</span> Examples: Thinking Through Many Plots</h3>
+<section id="examples-a-triangle-distribution" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="examples-a-triangle-distribution"><span class="header-section-number">2.8.2</span> Examples: A Triangle Distribution</h3>
+<p>Suppose that for two random variables the joint density of the random variables unknown, but that it looks like the following:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-000f2a838b4740d9a939" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-000f2a838b4740d9a939">{"x":{"visdat":{"bb281ea7a81c":["function () ","plotlyVisDat"]},"cur_data":"bb281ea7a81c","attrs":{"bb281ea7a81c":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-74c6b03fedb516f1e8c6" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-74c6b03fedb516f1e8c6">{"x":{"visdat":{"b2fb55279158":["function () ","plotlyVisDat"]},"cur_data":"b2fb55279158","attrs":{"b2fb55279158":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2],[0,0.20000000000000001,0.40000000000000002,0.60000000000000009,0.80000000000000004,1,1.2000000000000002,1.4000000000000001,1.6000000000000001,1.8,2]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="triangle-math" class="level3" data-number="2.8.3">
 <h3 data-number="2.8.3" class="anchored" data-anchor-id="triangle-math"><span class="header-section-number">2.8.3</span> Triangle Math</h3>
-<p>After considering the intuition for the triangle distribution, do the following: Write down the function that accords with the figure that you’re seeing above.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Write down the function that accords with the figure that you’re seeing above.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ul>
 <li>What is a full statement of the PDF of this image?</li>
 <li>What is the marginal distribution of <span class="math inline">\(X\)</span>, <span class="math inline">\(f_{X}(x)\)</span>?</li>
@@ -640,6 +640,27 @@ f_{X,Y}(x,y) =
     0, &amp; \text{otherwise.}
   \end{cases}
 \]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>saddle_sores <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) { </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  prob <span class="ot">=</span> (x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> y<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>) </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="at">nrow =</span> <span class="fu">length</span>(x), <span class="at">ncol =</span> <span class="fu">length</span>(y))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) { </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(y)){ </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    z[j,i] <span class="ot">&lt;-</span> <span class="fu">saddle_sores</span>(x[i], y[j])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ly</span>(<span class="at">x=</span><span class="sc">~</span>x, <span class="at">y=</span><span class="sc">~</span>y, <span class="at">z=</span><span class="sc">~</span>z) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">add_surface</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bccc86591bdb02a67b82" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bccc86591bdb02a67b82">{"x":{"visdat":{"b2fb2bf13b60":["function () ","plotlyVisDat"]},"cur_data":"b2fb2bf13b60","attrs":{"b2fb2bf13b60":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"y"},"zaxis":{"title":"z"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"z","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"x":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"y":[0,0.10000000000000001,0.20000000000000001,0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009,0.70000000000000007,0.80000000000000004,0.90000000000000002,1],"z":[[1,1.01,1.04,1.0900000000000001,1.1600000000000001,1.25,1.3600000000000001,1.4900000000000002,1.6400000000000001,1.8100000000000001,2],[0.98999999999999999,1,1.03,1.0800000000000001,1.1499999999999999,1.24,1.3500000000000001,1.48,1.6300000000000001,1.8,1.99],[0.95999999999999996,0.96999999999999997,1,1.05,1.1200000000000001,1.21,1.3200000000000001,1.4500000000000002,1.6000000000000001,1.77,1.96],[0.90999999999999992,0.91999999999999993,0.94999999999999996,1,1.0700000000000001,1.1599999999999999,1.27,1.4000000000000001,1.55,1.72,1.9099999999999999],[0.83999999999999997,0.84999999999999998,0.88,0.92999999999999994,1,1.0899999999999999,1.2000000000000002,1.3300000000000001,1.48,1.6499999999999999,1.8399999999999999],[0.75,0.76000000000000001,0.79000000000000004,0.84000000000000008,0.91000000000000003,1,1.1100000000000001,1.2400000000000002,1.3900000000000001,1.5600000000000001,1.75],[0.6399999999999999,0.64999999999999991,0.67999999999999994,0.72999999999999998,0.79999999999999993,0.8899999999999999,1,1.1299999999999999,1.28,1.45,1.6399999999999999],[0.5099999999999999,0.51999999999999991,0.54999999999999993,0.59999999999999987,0.66999999999999993,0.7599999999999999,0.87,1,1.1499999999999999,1.3199999999999998,1.5099999999999998],[0.35999999999999988,0.36999999999999988,0.39999999999999991,0.44999999999999996,0.51999999999999991,0.60999999999999988,0.71999999999999997,0.84999999999999998,1,1.1699999999999999,1.3599999999999999],[0.18999999999999995,0.19999999999999996,0.22999999999999998,0.28000000000000003,0.34999999999999998,0.43999999999999995,0.55000000000000004,0.68000000000000005,0.83000000000000007,1,1.1899999999999999],[0,0.010000000000000009,0.040000000000000036,0.09000000000000008,0.16000000000000003,0.25,0.3600000000000001,0.4900000000000001,0.64000000000000012,0.81000000000000005,1]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 <p>This joint pdf is similar to the pdf that you can visualize above, under the distribution called “saddle”. The difference between this function and the image above is that the function bounds the with support of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> on the range <span class="math inline">\([0,1]\)</span>. This is to make the math easier for us in the next step.</p>
 <ul>
 <li>Can you use these facts to determine the following?
@@ -709,41 +730,41 @@ f_{X}(x) =
 <p>What does this distribution “look like”? Because it is a uniform, you might have a sense that it will be a horizontal line. But, what is the height of that line? Aha! We could do the math to figure it out, or we could generate an approximation using a simulation.</p>
 <p>In the code below, we are going to create an object called <code>samples_uniform</code> that stores the results of the <code>runif</code> function call.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>samples_uniform <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">min=</span><span class="fl">1.1</span>, <span class="at">max=</span><span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samples_uniform <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">min=</span><span class="fl">1.1</span>, <span class="at">max=</span><span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What is happening inside <code>runif</code>?</p>
 <p>When you’re writing you own code, you can pull up the documentation for this (and any) function using a question mark, i.e.&nbsp;<code>?</code>, followed by the function name – <code>?runif</code>.</p>
 <p>But, we can speed this up slightly by simply telling you that <code>n</code> is the number of samples to take from the population; <code>min</code> is the low-end of the support, and <code>max</code> is the high-end of the support.</p>
 <p>If we look into this object, we can see the results of the function call. Below, we will show the first <span class="math inline">\(20\)</span> elements of the <code>samples_uniform</code> object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>samples_uniform[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 3.237504 3.888276 4.114578 4.143898 2.156814 3.940975 3.703159 2.135608
- [9] 3.058287 3.577808 2.500911 3.936468 4.279798 2.119862 1.730493 3.996119
-[17] 2.643507 1.776886 1.495901 1.409383</code></pre>
+<pre><code> [1] 2.993202 2.022186 3.821097 1.503115 2.674084 3.096346 3.901090 1.386815
+ [9] 1.286357 3.997183 4.171714 2.059980 2.644056 1.254380 1.651339 1.485695
+[17] 1.900143 2.983119 2.343529 1.193876</code></pre>
 </div>
 </div>
 <p>(Notice that R is a <span class="math inline">\(1\)</span> index language (python is a zero-index language).)</p>
 <p>With this object created, we can plot a density of the data and then learn from this histogram what the pdf looks like.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(samples_uniform), <span class="at">y=</span>samples_uniform) <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the Data'</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Sample Value'</span>, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Index'</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plot_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_uniform) <span class="sc">+</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw=</span><span class="fl">0.1</span>)   <span class="sc">+</span> </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the PDF'</span>, </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Probability of Drawing Value'</span>, </span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Sample Value'</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>(plot_full_data <span class="sc">|</span> (plot_density <span class="sc">+</span> <span class="fu">coord_flip</span>())) <span class="sc">/</span> </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  plot_density </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_full_data <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(samples_uniform), <span class="at">y=</span>samples_uniform) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the Data'</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Sample Value'</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Index'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plot_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>samples_uniform) <span class="sc">+</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw=</span><span class="fl">0.1</span>)   <span class="sc">+</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Showing the PDF'</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">'Probability of Drawing Value'</span>, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">'Sample Value'</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>(plot_full_data <span class="sc">|</span> (plot_density <span class="sc">+</span> <span class="fu">coord_flip</span>())) <span class="sc">/</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  plot_density </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -754,22 +775,28 @@ f_{X}(x) =
 </div>
 <p>Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we’re using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are <em>very</em> explicit about the code that creates them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>samples_uniform_moar <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>samples_uniform_moar <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">1000000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform) <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.1</span>)   <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))       <span class="sc">+</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Low Res, Low Data'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plot_high_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()       <span class="sc">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform_moar) <span class="sc">+</span> </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.01</span>)       <span class="sc">+</span> </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))            <span class="sc">+</span> </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'High Res, More Data'</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="sc">|</span> plot_high_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.1</span>, <span class="at">from =</span> <span class="fl">1.1</span>, <span class="at">to =</span> <span class="fl">4.3</span>) <span class="sc">+</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))       <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Low Res, Low Data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_density(bw = 0.1, from = 1.1, to = 4.3): Ignoring unknown
+parameters: `from` and `to`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_high_res <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()       <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_uniform_moar) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bw =</span> <span class="fl">0.01</span>, , <span class="at">from =</span> <span class="fl">1.1</span>, <span class="at">to =</span> <span class="fl">4.3</span>) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.4</span>))            <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'High Res, More Data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_density(bw = 0.01, , from = 1.1, to = 4.3): Ignoring unknown
+parameters: `from` and `to`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_low_res <span class="sc">|</span> plot_high_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -786,23 +813,23 @@ f_{X}(x) =
 <p>Do do you notice anything about the <code>runif</code> and the <code>rnorm</code> calls that we have identified? Both seem to name the distribution: <span class="math inline">\(unif \approx uniform\)</span> and <span class="math inline">\(norm \approx normal\)</span>, but prepened with a <code>r</code>? This is for “random draw”.</p>
 <p>Base R is loaded with a <em>pile</em> of basic statistics distributions, which you can look into using <code>?distributions</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>samples_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Like before, we could look at the first <span class="math inline">\(20\)</span> of these samples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>samples_normal[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 22.06947 24.25581 25.94837 12.90335 22.87799 20.63962 26.92282 15.46508
- [9] 19.63015 20.13955 20.71473 16.53883 16.70725 24.51471 22.48508 24.14511
-[17] 21.39651 23.32772 14.05252 13.40492</code></pre>
+<pre><code> [1] 22.16818 16.33368 15.28437 18.08805 17.94681 16.87469 23.02733 18.40651
+ [9] 17.35745 14.91433 12.42267 14.48479 13.21375 22.06370 19.46731 15.89764
+[17] 22.91420 15.98036 20.41596 15.97875</code></pre>
 </div>
 </div>
 <p>And, from here we could visualize this distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_normal) <span class="sc">+</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Visualization of this Normal Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_normal) <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Visualization of this Normal Distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -827,22 +854,22 @@ f_{X}(x) =
 </div>
 <p>Although this is a simple function applied to a random variable – a legal move – the math would be tedious. What if, instead, one used this simulation method to get a sense for the distribution?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>samples_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>samples_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>samples_C <span class="ot">&lt;-</span> samples_A <span class="sc">+</span> samples_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>samples_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">min =</span> <span class="fl">1.1</span>, <span class="at">max =</span> <span class="fl">4.3</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>samples_B <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>samples_C <span class="ot">&lt;-</span> samples_A <span class="sc">+</span> samples_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_C <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_C) <span class="sc">+</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_A), <span class="at">color =</span> <span class="st">'#003262'</span>) <span class="sc">+</span> </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_B), <span class="at">color =</span> <span class="st">'#FDB515'</span>) <span class="sc">+</span> </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_C), <span class="at">color =</span> <span class="st">'darkred'</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plot_C <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> samples_C) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()   <span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_A), <span class="at">color =</span> <span class="st">'#003262'</span>) <span class="sc">+</span> </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_B), <span class="at">color =</span> <span class="st">'#FDB515'</span>) <span class="sc">+</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> samples_C), <span class="at">color =</span> <span class="st">'darkred'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plot_C_and_A_and_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

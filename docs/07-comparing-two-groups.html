@@ -542,7 +542,7 @@ window.Quarto = {
 <section id="movie-ratings" class="level3" data-number="7.7.1">
 <h3 data-number="7.7.1" class="anchored" data-anchor-id="movie-ratings"><span class="header-section-number">7.7.1</span> Movie Ratings</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"http://stat.slu.edu/~speegle/_book_data/movieLensData"</span>, <span class="at">as.is =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>movies <span class="ot">&lt;-</span> fosdata<span class="sc">::</span>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Some questions that might be interesting:</p>
 <ul>
@@ -867,8 +867,8 @@ f_X(x) = \frac{\lambda^n e^{-\lambda}}{n!}
 </div>
 <p>And so, the simulation rejects the null at the following rates:</p>
 <ul>
-<li>For the t-test, at a rate of 0.0688132</li>
-<li>For the Wilcox test, at a rate of 0.0796072</li>
+<li>For the t-test, at a rate of 0.0672296</li>
+<li>For the Wilcox test, at a rate of 0.077436</li>
 </ul>
 </section>
 <section id="what-if-a-distribution-is-much-more-skewed" class="level3" data-number="7.11.3">
@@ -953,14 +953,14 @@ f_X(x) = \frac{\lambda^n e^{-\lambda}}{n!}
 <ul>
 <li>T-tests
 <ul>
-<li>0.045</li>
-<li>0.055</li>
-<li>0.051</li>
+<li>0.052</li>
+<li>0.049</li>
+<li>0.047</li>
 </ul></li>
 <li>Wilcox Tests
 <ul>
-<li>0.043</li>
-<li>0.05</li>
+<li>0.049</li>
+<li>0.053</li>
 <li>0.05</li>
 </ul></li>
 </ul>
@@ -1026,24 +1026,44 @@ f_X(x) = \frac{\lambda^n e^{-\lambda}}{n!}
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    observation_a2 <span class="ot">&lt;-</span> observation_a1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> num_observations, <span class="at">mean =</span> paired_diff, <span class="at">sd=</span>sd_two)</span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## run tests</span></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    unpaired_test_unpaired_data[i] <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span>observation_a1, <span class="at">y=</span>observation_b,  <span class="at">paired=</span><span class="cn">FALSE</span>)<span class="sc">$</span>p.value</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    unpaired_test_paired_data[i]   <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span>observation_a1, <span class="at">y=</span>observation_a2,  <span class="at">paired=</span><span class="cn">FALSE</span>)<span class="sc">$</span>p.value</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    paired_test_unpaired_data[i]   <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span>observation_a1, <span class="at">y=</span>observation_b,  <span class="at">paired=</span><span class="cn">TRUE</span>)<span class="sc">$</span>p.value</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    paired_test_paired_data[i]     <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span>observation_a1, <span class="at">y=</span>observation_a2, <span class="at">paired=</span><span class="cn">TRUE</span>)<span class="sc">$</span>p.value</span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">c</span>(unpaired_test_unpaired_data, unpaired_test_paired_data, </span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>                paired_test_unpaired_data,   paired_test_paired_data), </span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">test    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">'unpaired data, unpaired test'</span>, <span class="st">'paired data, unpaired test'</span>, </span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'unpaired data, paired test'</span>, <span class="st">'paired data, paired test'</span>), <span class="at">each =</span> num_sims)</span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dt)</span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    unpaired_test_unpaired_data[i] <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> observation_a1, </span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> observation_b,  </span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">paired =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>p.value</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    unpaired_test_paired_data[i]  <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> observation_a1, </span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> observation_a2, </span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">paired =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>p.value</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>    paired_test_unpaired_data[i]   <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> observation_a1, </span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> observation_b,  </span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">paired =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>p.value</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>    paired_test_paired_data[i]     <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">x      =</span> observation_a1, </span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">y      =</span> observation_a2, </span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">paired =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>p.value</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_value =</span> <span class="fu">c</span>(unpaired_test_unpaired_data, unpaired_test_paired_data, </span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>                paired_test_unpaired_data,   paired_test_paired_data), </span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">test    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">'unpaired data, unpaired test'</span>, <span class="st">'paired data, unpaired test'</span>, </span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'unpaired data, paired test'</span>, <span class="st">'paired data, paired test'</span>), </span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>                  <span class="at">each =</span> num_sims)</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dt)</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="fu">paired_sim</span>(<span class="at">num_observations =</span> <span class="dv">30</span>,  <span class="at">mean_one =</span> <span class="dv">10</span>, <span class="at">mean_two =</span> <span class="dv">11</span>, <span class="at">paired_diff =</span> <span class="dv">1</span>, <span class="at">sd_one =</span> <span class="dv">4</span>, <span class="at">sd_two =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="fu">paired_sim</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_observations =</span> <span class="dv">30</span>,  </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_one =</span> <span class="dv">10</span>, </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_two =</span> <span class="dv">11</span>, </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">paired_diff =</span> <span class="dv">1</span>, </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd_one =</span> <span class="dv">4</span>, </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd_two =</span> <span class="dv">5</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>paired_data_plot <span class="ot">&lt;-</span> bar[<span class="fu">grep</span>(<span class="st">'unpaired data'</span>, test, <span class="at">invert=</span><span class="cn">TRUE</span>)] <span class="sc">%&gt;%</span> </span>

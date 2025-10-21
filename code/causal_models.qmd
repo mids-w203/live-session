@@ -23,7 +23,7 @@ In this exercise, we are going to break into three different breakout groups, an
 
 When we write "different view" of the data, we mean that you're going to have access to different features to use in creating a model. All the data start from the same place, and have 117 observations, you just have access to more or fewer variables.
 
-# Load Data 
+# Load Data
 
 ```{r load data}
 students <- read_csv(here("code/students_data_a.csv"), show_col_types = FALSE)
@@ -32,22 +32,22 @@ students <- read_csv(here("code/students_data_a.csv"), show_col_types = FALSE)
 ```
 
 ```{r quick exploration of data}
-glimpse(students)
+View(students)
 ```
 
-# Analysis 
+# Analysis
 
-## Exploratory Data Analysis 
+## Exploratory Data Analysis
 
 1.  What are the features that are in the data? Plot some of the features and reason about relationships that exist?
 
-## Causal Reasoning 
+## Causal Reasoning
 
 1.  Using the reasoning system from async this week:
     1.  What are the relationships *that you can measure*, that you think you should include in a model?
     2.  What are the relationships *that you **cannot** measure*, that you think you should include in a model?
 
-## Write a Model 
+## Write a Model
 
 Write a model that estimates the relationship between actions that a student can take and their test scores. Your goal is to produce a model that you can use in order to make recommendations of the following type:
 
