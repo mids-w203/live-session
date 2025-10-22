@@ -341,6 +341,7 @@ window.Quarto = {
 </header>
 
 
+<p>If you want to run this code in the School’s datahub, clik the following link: <a href="https://ischool.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fmids-w203%2Flive-session&amp;urlpath=rstudio%2F">nbgithubpuller</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/bridge_sunset.jpeg" class="img-fluid figure-img"></p>
@@ -388,6 +389,7 @@ window.Quarto = {
 </section>
 <section id="uncertainty-in-ols" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="uncertainty-in-ols"><span class="header-section-number">9.4</span> Uncertainty in OLS</h2>
+<p>To work alongside with this, click this link: (link)[https://ischool.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fmids-w203%2Flive-session&amp;urlpath=rstudio%2F]</p>
 <section id="discussion-questions" class="level3" data-number="9.4.1">
 <h3 data-number="9.4.1" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">9.4.1</span> Discussion Questions</h3>
 <ul>
@@ -450,18 +452,18 @@ lm(formula = y ~ x, data = data_sample)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--10.3898  -5.2874   0.1616   5.7110  10.7118 
+-10.2662  -4.2928   0.0514   5.3583   9.6526 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   3.4609     1.2977   2.667  0.00895 ** 
-x             1.6230     0.2114   7.677 1.23e-11 ***
+(Intercept)   1.2612     1.3048   0.967    0.336    
+x             2.0296     0.2152   9.430 2.09e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 6.111 on 98 degrees of freedom
-Multiple R-squared:  0.3756,    Adjusted R-squared:  0.3692 
-F-statistic: 58.94 on 1 and 98 DF,  p-value: 1.23e-11</code></pre>
+Residual standard error: 6.046 on 98 degrees of freedom
+Multiple R-squared:  0.4757,    Adjusted R-squared:  0.4704 
+F-statistic: 88.92 on 1 and 98 DF,  p-value: 2.092e-15</code></pre>
 </div>
 </div>
 <p>But, that data that we sampled and estimated out model against is just one of the <em>many</em> samples that we could have taken!</p>
@@ -495,7 +497,7 @@ F-statistic: 58.94 on 1 and 98 DF,  p-value: 1.23e-11</code></pre>
     Shapiro-Wilk normality test
 
 data:  sample(coefficient_, 5000)
-W = 0.9996, p-value = 0.4094</code></pre>
+W = 0.99974, p-value = 0.8281</code></pre>
 </div>
 </div>
 <p>What if we have two explanatory variables that have no covariance between them?</p>
@@ -515,7 +517,7 @@ W = 0.9996, p-value = 0.4094</code></pre>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(data_sample<span class="sc">$</span>x1, data_sample<span class="sc">$</span>x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2122937</code></pre>
+<pre><code>[1] -0.5470115</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(data_sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -533,21 +535,21 @@ Call:
 lm(formula = y ~ x1 + I(x1^2) + x2, data = data_sample)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--10.0578  -5.7669   0.4552   5.2073  10.4960 
+    Min      1Q  Median      3Q     Max 
+-9.2040 -4.6961 -0.8092  4.3223 10.5005 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.76756    1.97417   1.402    0.164    
-x1           0.78099    0.84240   0.927    0.356    
-I(x1^2)     -1.87635    0.07964 -23.561  &lt; 2e-16 ***
-x2           3.11384    0.43030   7.236 1.13e-10 ***
+(Intercept)  1.10399    1.60926   0.686  0.49435    
+x1           2.02821    0.68938   2.942  0.00409 ** 
+I(x1^2)     -1.98097    0.06812 -29.079  &lt; 2e-16 ***
+x2           2.30293    0.40393   5.701 1.31e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 5.992 on 96 degrees of freedom
-Multiple R-squared:  0.9892,    Adjusted R-squared:  0.9889 
-F-statistic:  2942 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 5.552 on 96 degrees of freedom
+Multiple R-squared:  0.9907,    Adjusted R-squared:  0.9904 
+F-statistic:  3404 on 3 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>But, once again, that is just one of the samples that are possible from the population. What does the distribution look like if we were to repeatedly resample from the population?</p>
@@ -633,20 +635,20 @@ Call:
 lm(formula = y ~ x1 + x2, data = data_sample)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--9.9237 -5.6776  0.3686  5.7405 10.5073 
+     Min       1Q   Median       3Q      Max 
+-10.9923  -4.8109   0.2028   3.9180  10.9553 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   0.4041     1.3410   0.301    0.764    
-x1            2.1161     0.2366   8.943 2.57e-14 ***
-x2            3.0723     0.4059   7.568 2.19e-11 ***
+(Intercept)   2.8506     1.2613   2.260    0.026 *  
+x1            1.5852     0.2398   6.611 2.08e-09 ***
+x2            2.9390     0.4114   7.144 1.68e-10 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 6.078 on 97 degrees of freedom
-Multiple R-squared:  0.6865,    Adjusted R-squared:  0.6801 
-F-statistic: 106.2 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 5.667 on 97 degrees of freedom
+Multiple R-squared:  0.6641,    Adjusted R-squared:  0.6572 
+F-statistic: 95.91 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>But, like each of the other times we have done this, we have taken only a single sample from potentially very many samples. Let’s see what happens with the very many samples.</p>
@@ -961,7 +963,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed 🎊</code></pre>
+<pre><code>Test passed 🥳</code></pre>
 </div>
 </div>
 <p><strong>Questions</strong></p>
@@ -1043,7 +1045,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bootstrap_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.01969689</code></pre>
+<pre><code>[1] 0.01948254</code></pre>
 </div>
 </div>
 

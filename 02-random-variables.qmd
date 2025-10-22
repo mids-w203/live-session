@@ -312,6 +312,8 @@ This joint pdf is similar to the pdf that you can visualize above, under the dis
 
 ## Computing Different Distributions.
 
+### Distribution 1
+
 Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
 
 $$
@@ -328,6 +330,23 @@ where $c$ is a constant.
 2.  What is the constant $c$?
 3.  Compute the marginal density function for $X$. (Be sure to write a complete expression)
 4.  Compute the conditional density function for $Y$, conditional on $X=x$. (Be sure to specify for what values of $x$ this is defined)
+
+### Distribution 2
+
+Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
+
+$$
+f(x,y) = 
+  \begin{cases} 
+    3xy(x+y) & 0 \leq \{x, y\} \leq 1 \\ 
+    0 & otherwise
+  \end{cases}
+$$
+
+1.  Draw a graph showing the region of the X-Y plane with positive probability density. (Or, describe the shape if you can't draw it.)
+2.  Compute the marginal density function for $X$. (Be sure to write a complete expression.)
+3.  Compute the marginal density function for $Y$. (Be sure to write a complete experession.)
+4.  Compute the conditional density function for $Y$, conditional on $X$. (Be sure to specify for what values of $x$ this is defined)
 
 ## Conditional Probability
 

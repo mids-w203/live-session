@@ -181,21 +181,16 @@ You have a set of questions that you would like to answer with a statistical tes
 - Do economics majors watch more or less TV than computer science majors?
 
 ```{r}
-View(GSS)
-
 GSS |> 
   select(major1) |> 
   group_by(major1) |>
   tally()
-
-
 
 GSS |> 
   filter(major1 %in% c('economics', 'computer science')) |> 
   ggplot() + 
   aes(x=tvhours, fill = major1) + 
   geom_histogram(position='dodge')
-
 
 GSS |> 
     filter(major1 %in% c('economics', 'computer science')) |> 
@@ -286,8 +281,6 @@ GSS |>
   ggplot() + 
   geom_histogram(aes(x = wwwhr),   fill = 'darkblue', alpha = 0.5) + 
   geom_histogram(aes(x = emailhr), fill = 'darkred',  alpha = 0.5)
-
-GSS |> View()
 ```
 
 1. What are we actually testing at the population level? Is the expected value of hours of web different from the expected value of hours on email? 

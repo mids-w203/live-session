@@ -625,9 +625,9 @@ f(x,y) =
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">predict.lm</span>(mod_lm, <span class="at">newdata =</span> <span class="fu">data.frame</span>(x))[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         1          2          3          4          5          6          7 
--38.287530 -20.068205  68.305843   1.067959  67.618513 -27.429479 -12.594472 
+ 93.839408  37.032192  90.330283  30.431141   5.140366  75.860263  17.467077 
          8          9         10 
- 33.283647  88.651501  12.685098 </code></pre>
+-19.853587  -6.656589 -23.867068 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -638,13 +638,13 @@ f(x,y) =
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           x          y  pred_loess    pred_lm
-1 0.09192794 -26.424772 -24.0483824 -38.287530
-2 1.30607266   2.520625  -0.4386382 -20.068205
-3 7.19536250  47.715695  40.8174629  68.305843
-4 2.71459700   7.355736   8.6326280   1.067959
-5 7.14955847  37.142433  39.5212815  67.618513
-6 0.81551374  -3.019673  -7.6103827 -27.429479</code></pre>
+<pre><code>         x         y pred_loess   pred_lm
+1 8.916123 117.87575 116.153458 93.839408
+2 5.122337  15.51294  11.052027 37.032192
+3 8.681771 101.01087 102.292081 90.330283
+4 4.681496  12.41396   9.927049 30.431141
+5 2.992489  10.79655   8.985842  5.140366
+6 7.715412  56.97060  57.873578 75.860263</code></pre>
 </div>
 </div>
 <p>Let’s pull in a mean squared error function:</p>
@@ -657,7 +657,7 @@ f(x,y) =
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mse</span>(<span class="at">truth=</span>dat<span class="sc">$</span>y, <span class="at">prediction=</span>dat<span class="sc">$</span>pred_loess)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.140598</code></pre>
+<pre><code>[1] 8.880214</code></pre>
 </div>
 </div>
 <div class="cell">

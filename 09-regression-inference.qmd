@@ -53,6 +53,9 @@ After this week's learning, student will be able to
 - The process of building a regression model looks different, depending on whether the goal is prediction, description, or explanation.
 
 ## Uncertainty in OLS
+
+To work alongside with this, click this link: (link)[https://ischool.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fmids-w203%2Flive-session&urlpath=rstudio%2F]
+
 ### Discussion Questions
 
 - List as many differences between the BLP and the OLS line as you can.

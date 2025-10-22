@@ -55,7 +55,9 @@ Suppose we have random variables $X$ and $Y$.
 
 ## Best Linear Predictor and OLS Regression as a Predictor
 
-We've worked with this function last week: Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
+We've worked with this function in previous weeks: 
+
+Suppose that random variables $X$ and $Y$ are jointly continuous, with joint density function given by,
 
 $$
 f_{X,Y}(x,y) = 

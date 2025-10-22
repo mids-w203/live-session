@@ -59,7 +59,6 @@ Where have we come from, and where are we going?
 
 ### What is in the rearview mirror?
 
-::: slide
 -   Statisticians create a population model to represent the world; random variables are the building blocks of such a model.
 -   We can describe the distribution of a random variable using:
     -   A *CDF* for all random variables
@@ -69,7 +68,6 @@ Where have we come from, and where are we going?
     -   The joint PMF/PDF describes how they behave together
     -   The marginal PMF/PDF describes one variable in isolation
     -   The conditional PMF/PDF describes one variable given the value of another
-:::
 
 ### Today's Lesson
 
