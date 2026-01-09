@@ -416,7 +416,7 @@ With this object created, we can plot a density of the data and then learn from 
 
 ```{r plot uniform samples}
 plot_full_data <- ggplot() + 
-  aes(x=1:length(samples_uniform), y=samples_uniform) + 
+  aes(x = 1:length(samples_uniform), y = samples_uniform) + 
   geom_point()  + 
   labs(
     title = 'Showing the Data', 
@@ -424,15 +424,16 @@ plot_full_data <- ggplot() +
     x     = 'Index')
 
 plot_density <- ggplot() + 
-  aes(x=samples_uniform) + 
-  geom_density(bw=0.1)   + 
+  aes(x = samples_uniform) + 
+  geom_density(bw = 0.1)   + 
   labs(
     title = 'Showing the PDF', 
     y     = 'Probability of Drawing Value', 
     x     = 'Sample Value')
 
 (plot_full_data | (plot_density + coord_flip())) / 
-  plot_density 
+  plot_density + 
+  plot_layout(guides = "keep")
 ```
 
 Interesting. From what we can see here, there does not appear to be any discernible pattern. This leaves us with two options: either, we might reduce the resolution that we're using to view this pattern, or we might take more samples and hold the resolution constant. Below, two different plots show these differing approaches, and are *very* explicit about the code that creates them.

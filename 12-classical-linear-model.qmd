@@ -120,6 +120,8 @@ For more information about the dataset, use the R command: `help(mtcars)`
 ```{r load-data, message=FALSE}
 data(mtcars)
 glimpse(mtcars)
+
+mtcars
 ```
 
 ### Questions: 
@@ -131,6 +133,8 @@ mtcars %>%
   ggplot() + 
   aes(x=mpg) +
   geom_histogram(bins=10)
+
+mtcars |> pairs()
 
 mtcars %>% 
   select(mpg, disp, hp, wt, drat) %>% 
@@ -145,26 +149,33 @@ $$
 $$
 
 ```{r}
-
+model <- lm(mpg ~ disp + hp + wt + I(wt^2) + drat, data = mtcars)
 ```
 
 2. For **each** of the following CLM assumptions, assess whether the assumption holds.  Where possible, demonstrate multiple ways of assessing an assumption.  When an assumption appears violated, state what steps you would take in response.
    - I.I.D. data
-   - Linear conditional expectation
    - No perfect collinearity
+   - Linear conditional expectation
    - Homoskedastic errors
    - Normally distributed errors
    
 ```{r evaluate iid}
 # goal:
 # consequence if violated:
-
+# View(mtcars)
 
 ```
    
 ```{r evaluate linear conditional expectation}
-# goal:
+# goal: we estimate the "right model" 
 # consequence if violated:
+plot(resid(model), predict(model))
+
+# plot(model)
+
+# plot(mtcars$wt, resid(model))
+
+# class(model)
 
 
 ```
@@ -173,21 +184,25 @@ $$
 # goal:
 # consequence if violated:
 
-
+summary(model)
 ```
    
 ```{r evaluate homoskedastic errors}
 # goal:
 # consequence if violated:
 
+# We're sure they;re not constnat! 
 
+vcovHC(model, type = "const")
+vcovHC(model, type = "HC2")
 ```
 
 ```{r evaluate normally distributed errors}
 # goal:
 # consequence if violated:
 
-
+hist(resid(model))
+mean(resid(model))
 ```
 
    

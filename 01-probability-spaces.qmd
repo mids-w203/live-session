@@ -174,7 +174,7 @@ What is the difference between a definition and a theorem? On pages 10 and 11 of
 *Baye's Rule* For $A, B \in S$ with $P(A) > 0$ and $P(B) > 0$, $$P(A|B) = \frac{P(B|A)P(A)}{P(B)}.$$
 :::
 
-::: {.discussion-question }
+::: {.discussion-question}
 - What would happen to the statement of the *Multiplicative Law of Probability* if we did not have the definition of *Conditional Probability*? 
 - How does one get from the definition, to the law? 
 - Can one get to *Baye's Rule* wihtout using the *Multiplicative Law of Probability*? 
@@ -237,7 +237,23 @@ Try using this idea of independent in two places:
 2. If two events, $A$ and $B$ are independent, then what happens if you work through a statement of conditional probability, $P(A|B)$?
 ::: 
     
-## A practice problem 
+## One practice problem
+
+Suppose that campus is running two onboarding seminars: one on how to use AI ($A$); another on data privacy ($B$). Suppose that you have the following data about an incoming class of students: 
+
+- 20% of the students attended both seminars (they're the School of Information Students). 
+- 60% of the students who attended the data privacy seminar attended also attended the AI seminar. 
+- 20% of the students skipped everything and went to party instead. 
+
+Answer the following questions: 
+
+- What is $P(B)$? 
+- What is $P(A^{C} \cap B)$? 
+- What is $P(A \cap B^{C})$? 
+- What is $P(A)$? 
+- What is $P(B | A)$? 
+    
+## Another practice problem 
 
 The last task for us to complete today is working through a practice problem on the course practice problem website. Please, click the link below, and follow us over to the the course's practice problem website. 
 

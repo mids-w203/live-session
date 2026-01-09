@@ -260,7 +260,7 @@ Model | Distribution of $\epsilon$ cond. on $X$
 ------|----------------------------------------
  A    | Uniform on $[-.5, +.5]$
  B    | Uniform on $[ - |X|, |X| ]$
- C    | Uniform on $[ -1 + |X|, 1- |X| ]$
+ C    | Uniform on $[ -1 + |X|, 1 - |X| ]$
  
 A is what we call a homoskedastic distribution. B and C are what we call heteroskedastic. Below, we define R functions that simulate draws from these three distributions.
  
@@ -298,9 +298,9 @@ rC <- function(n, slope=0){
 
 ```{r}
 data <- rbind( 
-  data.frame( rA(200), label = 'A'),
-  data.frame( rB(200), label = 'B'),
-  data.frame( rC(200), label = 'C'))
+  data.frame( rA(20), label = 'A'),
+  data.frame( rB(20), label = 'B'),
+  data.frame( rC(20), label = 'C'))
 ```
 
 ```{r}
@@ -420,6 +420,21 @@ $$
 $$
 where $\hat{\sigma}^{2} = V[\hat{\epsilon}]$
 :::
+
+```{r}
+# Estimate the Robust Standard Errors 
+model_a <- lm(y ~ x, data = rA(n=1000))
+model_b <- lm(y ~ x, data = rB(n=1000))
+model_c <- lm(y ~ x, data = rC(n=1000))
+
+coeftest(model_a, vcovHC(model_a))
+coeftest(model_b, vcovHC(model_b))
+coeftest(model_c, vcovHC(model_c))
+```
+
+
+
+
 
 Explain why each term makes the variance higher or lower:
 
