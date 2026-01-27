@@ -27,8 +27,13 @@ knitr::knit_engines$set(notes = function(options) {
 #| echo: false
 #| message: false
 
-x <- runif(n=10000, min = 0, max = 10)
+# easy case 
+x <- runif(n=10000, min  = 0, max = 10)
 y <- (x-3)^3 + 3*x - .25*(x^2 * (x-3)) + rnorm(n=10000, mean=0, sd=3)
+
+# hard case
+x <- rnorm(n=10000, mean = 5, sd = 2)
+y <- (x-3)^3 + 3*x - .25*(x^2 * (x-3)) + rnorm(n=10000, mean=0, sd=30)
 
 dat <- data.frame(x = x, y = y)
 ```
@@ -307,14 +312,18 @@ dat |>
 ```{r im going to fit a moving average}
 l <- loess(y ~ x, data = dat, span = .1)
 # ask for student prediction functions
-mod_lm <- lm(y ~ x, data = dat)
+mod_lm   <- lm(y ~ x, data = dat)
+mod_lm_2 <- lm(y ~ poly(x, 2), data = dat)
+mod_lm_3 <- lm(y ~ poly(x, 3), data = dat)
 
 predict.lm(mod_lm, newdata = data.frame(x))[1:10]
 
 dat <- dat |> 
   mutate(
     pred_loess = predict(l, x), 
-    pred_lm    = as.numeric(predict(mod_lm))
+    pred_lm    = as.numeric(predict(mod_lm)),
+    pred_lm_2  = as.numeric(predict(mod_lm_2)), 
+    pred_lm_3  = as.numeric(predict(mod_lm_3))
     ## fill student prdictions here
     )
 
@@ -331,7 +340,10 @@ mse <- function(truth, prediction) {
 ```
 
 ```{r}
-mse(truth=dat$y, prediction=dat$pred_loess)
+mse(truth = dat$y, prediction = dat$pred_loess)
+mse(truth = dat$y, prediction = dat$pred_lm)
+mse(truth = dat$y, prediction = dat$pred_lm_2)
+mse(truth = dat$y, prediction = dat$pred_lm_3)
 ```
 
 ```{r}
@@ -339,35 +351,49 @@ dat |>
   ggplot() + 
   aes(x = x, y = y) + 
   geom_point(alpha=0.25, size=.1) + 
-  geom_line(aes(x = x, y = pred_loess), color = "red") + 
-  geom_line(aes(x = x, y = pred_lm), color = "blue")
+  geom_line(aes(x = x, y = pred_loess), color = "darkred") + 
+  geom_line(aes(x = x, y = pred_lm),    color = "darkblue") + 
+  geom_line(aes(x = x, y = pred_lm_2),  color = "darkorange") + 
+  geom_line(aes(x = x, y = pred_lm_3),  color = "darkgreen")
 ```
 
 What would happen if, rather than having this much data, you had much *much* less?
 
 ```{r}
+#| warning: false
 dat_small <- dat |>  
-  slice_sample(n = 50) |>  
+  slice_sample(n = 20) |>  
   add_row(x=5, y=50) |>  
   arrange(x)
 
-l_small <- dat_small |>  
-  loess(formula = y ~ x, span = .1, data = _)
-
-lm_small <- dat_small |>  
-  lm(formula = y ~ x, data = _)
+mod_l_small    <- loess(formula = y ~ x, span = .1, data = dat_small)
+mod_lm_small   <- lm(formula = y ~ x, data = dat_small)
+mod_lm_2_small <- lm(y ~ poly(x, 2), data = dat_small)
+mod_lm_3_small <- lm(y ~ poly(x, 3), data = dat_small)
 
 dat_small <- dat_small |>  
   mutate(
-    pred_loess_small = predict(l_small), 
-    pred_lm_small    = predict(lm_small)
+    pred_loess_small = predict(mod_l_small), 
+    pred_lm_small    = predict(mod_lm_small), 
+    pred_lm_2_small  = predict(mod_lm_2_small), 
+    pred_lm_3_small  = predict(mod_lm_3_small)
   )
 
-dat_small |>  
+dat <- dat |> 
+  mutate(
+    pred_loess_small = predict(mod_l_small, newdata = dat$x),
+    pred_lm_small    = predict(mod_lm_small, newdata = dat), 
+    pred_lm_2_small  = predict(mod_lm_2_small, newdata = dat), 
+    pred_lm_3_small  = predict(mod_lm_3_small, newdata = dat)
+  )
+
+dat |>  
   ggplot() + 
-  geom_point(aes(x = x, y = y)) + 
-  geom_line(aes(x = x, y = pred_loess_small)) + 
-  geom_line(aes(x = x, y = pred_lm_small))
+  geom_line(aes(x = x, y = pred_loess_small), color = "darkred") + 
+  geom_line(aes(x = x, y = pred_lm_small),    color = "darkblue") + 
+  geom_line(aes(x = x, y = pred_lm_2_small),  color = "darkorange") + 
+  geom_line(aes(x = x, y = pred_lm_3_small),  color = "darkgreen") + 
+  geom_point(aes(x = dat$x, y = dat$y), size=.1, alpha=.1)
 ```
 
 ## Working with the BLP
